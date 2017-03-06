@@ -9,6 +9,7 @@ CREATE TABLE user (
     email VARCHAR(254) NOT NULL,
     contact VARCHAR(15),
     is_admin BOOLEAN NOT NULL,
+    is_active BOOLEAN NOT NULL,
     PRIMARY KEY (id),
     UNIQUE KEY (username)
 );
@@ -53,7 +54,7 @@ CREATE TABLE match (
 	time_end TIME NOT NULL,
 	date DATE NOT NULL,
 	sport INT NOT NULL,
-	remarks VARCHAR(200), 
+	remarks VARCHAR(200),
 	PRIMARY KEY(match_id) references team(team_id),
 	FOREIGN KEY(sport) references sport(sponsor_id)
 );
