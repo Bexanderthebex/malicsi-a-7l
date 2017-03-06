@@ -18,6 +18,7 @@
   "homepage": "https://github.com/claizelcoubeili/malicsi-a-7l#readme",
   "dependencies": {
     "express": "^4.14.1",
-    "mysql": "^2.13.0"
+    "mysql": "^2.13.0",
+    "body-parser": "^1.15.2"
   }
 }
