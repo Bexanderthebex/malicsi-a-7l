@@ -30,3 +30,38 @@ CREATE TABLE organizer (
     description VARCHAR(100),
     PRIMARY KEY (id)
 );
+
+CREATE TABLE sponsor_institution (
+	sponsor_id INT AUTO INCREMENT,
+	name VARCHAR(100) NOT NULL,
+	description VARCHAR(200),
+	PRIMARY KEY(sponsor_id)
+);
+
+CREATE TABLE sponsor_games (
+	sponsor_id INT NOT NULL,
+	game_id INT NOT NULL,
+	PRIMARY KEY(sponsor_id, game_id),
+	FOREIGN KEY(sponsor_id) references sponsor_institution(sponsor_id),
+	FOREIGN KEY(game_id) references game(game_id)
+);
+
+CREATE TABLE match (
+	match_id INT AUTO INCREMENT,
+	winner INT NOT NULL,
+	time_start TIME NOT NULL,
+	time_end TIME NOT NULL,
+	date DATE NOT NULL,
+	sport INT NOT NULL,
+	remarks VARCHAR(200), 
+	PRIMARY KEY(match_id) references team(team_id),
+	FOREIGN KEY(sport) references sport(sponsor_id)
+);
+
+CREATE TABLE team_in_match (
+	match_id INT NOT NULL,
+	team_id INT NOT NULL,
+	PRIMARY KEY(match_id, team_id),
+	FOREIGN KEY(match_id) references match(match_id),
+	FOREIGN KEY(team_id) references team(team_id)
+);
