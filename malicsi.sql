@@ -25,36 +25,49 @@ CREATE TABLE competitor (
 	FOREIGN KEY (id) REFERENCES user(id)
 );
 
+CREATE TABLE competitor_sport_played (
+	sport_played_id INT NOT NULL AUTO_INCREMENT,
+	id INT NOT NULL,
+	FOREIGN KEY (id) REFERENCES competitor(id),
+	PRIMARY KEY (sport_played_id, id)
+);
+
 CREATE TABLE organizer (
 	id INT NOT NULL,
 	name VARCHAR(50),
 	description VARCHAR(100),
+	FOREIGN KEY (id) REFERENCES user(id),
 	PRIMARY KEY (id)
 );
 
 CREATE TABLE sponsor_institution (
 	sponsor_id INT AUTO_INCREMENT,
 	name VARCHAR(100) NOT NULL,
-	description VARCHAR(200),
+	description TEXT,
 	PRIMARY KEY(sponsor_id)
-);
-
-CREATE TABLE organization (
-	organization_id INT AUTO_INCREMENT NOT NULL,
-	name VARCHAR(50) NOT NULL,
-	PRIMARY KEY (organization_id)
 );
 
 CREATE TABLE game (
 	game_id INT NOT NULL AUTO_INCREMENT,
+	id INT NOT NULL,
 	name VARCHAR(50) NOT NULL,
 	start_date DATE NOT NULL,
 	end_date DATE NOT NULL,
 	location VARCHAR(100) NOT NULL,
-	description VARCHAR(100),
-	overall_winner INT NOT NULL,
+	description TEXT,
+	overall_winner INT,
 	PRIMARY KEY (game_id),
-	FOREIGN KEY (overall_winner) REFERENCES organization(organization_id)
+	FOREIGN KEY (id) REFERENCES organizer(id)
+	-- loop?
+	-- FOREIGN KEY (overall_winner) REFERENCES organization(organization_id)
+);
+
+CREATE TABLE organization (
+	game_id INT NOT NULL,
+	organization_id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL,
+	FOREIGN KEY (game_id) REFERENCES game(game_id),
+	PRIMARY KEY (organization_id, game_id)
 );
 
 CREATE TABLE organization_in_game (
@@ -73,35 +86,72 @@ CREATE TABLE sponsor_games (
 	FOREIGN KEY(game_id) references game(game_id)
 );
 
+
 CREATE TABLE sport (
 	sport_id INT NOT NULL AUTO_INCREMENT,
-	winner INT NOT NULL,
+	winner INT,
 	time_start TIME NOT NULL,
 	time_end TIME NOT NULL,
 	date DATE NOT NULL,
 	scoring_system VARCHAR(50) NOT NULL,
 	game_id INT NOT NULL,
 	PRIMARY KEY (sport_id),
-	FOREIGN KEY (winner) REFERENCES team(team_id),
 	FOREIGN KEY (game_id) REFERENCES game(game_id)
 );
 
+CREATE TABLE team (
+	team_id INT NOT NULL AUTO_INCREMENT,
+	id INT NOT NULL,
+	sport_id INT NOT NULL,
+	team_organization VARCHAR(50) NOT NULL,
+	team_sport VARCHAR(50) NOT NULL,
+	pending_participation BOOLEAN NOT NULL,
+	FOREIGN KEY(id) references competitor(id),
+	FOREIGN KEY(sport_id) references sport(sport_id),
+	PRIMARY KEY(team_id)
+);
+
 CREATE TABLE sport_match (
-	match_id INT AUTO_INCREMENT,
-	winner INT NOT NULL,
+	match_id INT NOT NULL AUTO_INCREMENT,
+	winner INT,
 	time_start TIME NOT NULL,
 	time_end TIME NOT NULL,
-	date DATE NOT NULL,
-	sport INT NOT NULL,
+	sport_id INT NOT NULL,
+	match_date DATE NOT NULL,
 	remarks VARCHAR(200),
 	PRIMARY KEY(match_id),
-	FOREIGN KEY(sport) references sport(sport_id)
+	FOREIGN KEY(sport_id) references sport(sport_id)
 );
+
 
 CREATE TABLE team_in_match (
 	match_id INT NOT NULL,
 	team_id INT NOT NULL,
 	PRIMARY KEY(match_id, team_id),
-	FOREIGN KEY(match_id) references match(match_id),
+	FOREIGN KEY(match_id) references sport_match(match_id),
 	FOREIGN KEY(team_id) references team(team_id)
+);
+
+CREATE TABLE team_opponent (
+	match_id INT NOT NULL,
+	id INT NOT NULL,
+	FOREIGN KEY(match_id) references sport_match(match_id),
+	FOREIGN KEY(id) references competitor(id)
+);
+
+
+CREATE TABLE team_announcement (
+	team_announcement_id INT NOT NULL AUTO_INCREMENT,
+	team_id INT NOT NULL,
+	FOREIGN KEY(team_id) references team(team_id),
+	PRIMARY KEY(team_announcement_id, team_id)
+);
+
+CREATE TABLE competitor_joins_team (
+	id INT NOT NULL,
+	team_id INT NOT NULL,
+	is_member BOOLEAN NOT NULL,
+	FOREIGN KEY(team_id) references team(team_id),
+	FOREIGN KEY(id) references competitor(id),
+	PRIMARY KEY(team_id, id)
 );
