@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(express.static(__dirname + '/public'));
 
-var routes = require('./routes/routes.js');
+var routes = require('./routes/router');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -14,7 +14,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 // place session
 
 // place other routing stuff
+app.use(routes);
 
-app.listen(300, function(){
+app.listen(3000, function(){
 	console.log('Server running at localhost:3000');
 });
