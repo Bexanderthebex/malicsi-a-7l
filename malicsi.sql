@@ -47,9 +47,15 @@ CREATE TABLE sponsor_institution (
 	PRIMARY KEY(sponsor_id)
 );
 
+CREATE TABLE organization (
+	organization_id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(50) NOT NULL,
+	PRIMARY KEY (organization_id)
+);
+
 CREATE TABLE game (
 	game_id INT NOT NULL AUTO_INCREMENT,
-	id INT NOT NULL,
+	organizer_id INT NOT NULL,
 	name VARCHAR(50) NOT NULL,
 	start_date DATE NOT NULL,
 	end_date DATE NOT NULL,
@@ -57,17 +63,10 @@ CREATE TABLE game (
 	description TEXT,
 	overall_winner INT,
 	PRIMARY KEY (game_id),
-	FOREIGN KEY (id) REFERENCES organizer(id)
+	FOREIGN KEY (organizer_id) REFERENCES organizer(id),
 	-- loop?
-	-- FOREIGN KEY (overall_winner) REFERENCES organization(organization_id)
-);
-
-CREATE TABLE organization (
-	game_id INT NOT NULL,
-	organization_id INT NOT NULL AUTO_INCREMENT,
-	name VARCHAR(50) NOT NULL,
-	FOREIGN KEY (game_id) REFERENCES game(game_id),
-	PRIMARY KEY (organization_id, game_id)
+    -- "no." - anton
+    FOREIGN KEY (overall_winner) REFERENCES organization(organization_id)
 );
 
 CREATE TABLE organization_in_game (
