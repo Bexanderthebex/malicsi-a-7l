@@ -13,9 +13,10 @@ CREATE TABLE user (
 
 CREATE TABLE organizer (
     id INT NOT NULL,
-    name VARCHAR(50),
-    description VARCHAR(100),
-    PRIMARY KEY (id)
+    name VARCHAR(50) NOT NULL,
+    description VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id) REFERENCES user(id)
 );
 
 INSERT INTO user VALUES (1, 'jolibee', 'walakapagasa', FALSE);
