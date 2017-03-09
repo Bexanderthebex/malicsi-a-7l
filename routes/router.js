@@ -11,5 +11,6 @@ var adminController = require('../controllers/admin-controller');
 
 router.post('/login', userController.login);
 router.post('/organizer', adminController.createOrganizer);
+router.post('/register', userController.register);
 
 module.exports = router;

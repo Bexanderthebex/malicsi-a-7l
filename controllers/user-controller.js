@@ -21,3 +21,16 @@ exports.login = (req, res) => {
 		});
 	}
 }
+
+exports.register = (req, res) => {
+	//console.log(req.body);
+
+	connection.query('INSERT INTO user (username, password, active) values(?,?,?)', 
+		[req.body.username, req.body.password, req.body.active], function(err, rows){
+		if(err) {
+			return res.status(404).send({ 'message' : 'Error inserting new user!'});
+		}else{
+			return res.status(200).send({ 'message' : 'Successfully inserted new user'});
+		}
+	});
+}
