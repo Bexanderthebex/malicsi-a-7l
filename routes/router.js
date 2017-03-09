@@ -7,6 +7,9 @@ var router = express.Router();
 // router.get('/getSampleSession', profileController.getSampleSession);
 
 var userController = require("../controllers/user-controller");
+
 router.post('/login', userController.login);
+router.post('/register', userController.register);
+
 
 module.exports = router;
