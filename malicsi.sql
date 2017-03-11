@@ -8,7 +8,7 @@ CREATE TABLE user (
 	password VARCHAR(60) NOT NULL,
 	email VARCHAR(254) NOT NULL,
 	contact VARCHAR(15),
-	is_admin BOOLEAN NOT NULL,
+	type CHAR(1) NOT NULL,
 	is_active BOOLEAN NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE KEY (username)
@@ -117,6 +117,7 @@ CREATE TABLE sport_match (
 	time_end TIME NOT NULL,
 	sport_id INT NOT NULL,
 	match_date DATE NOT NULL,
+	is_draw BOOLEAN,
 	remarks VARCHAR(200),
 	PRIMARY KEY(match_id),
 	FOREIGN KEY(sport_id) references sport(sport_id)
