@@ -9,7 +9,6 @@ exports.login = (req, res) => {
 		if(!err) {
 			if (rows.length == 1) {
 				req.session.user = rows[0];
-				console.log(req.session.user);
 				return res.status(200).send({ 'message' : 'Successfully logged in'});
 			} else {
 				return res.status(404).send({ 'message' : 'Incorrect credentials'});

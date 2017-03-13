@@ -27,7 +27,7 @@ describe('MalICSi', function() {	//Describes the module
 				.send({ 'username':'jolibee' })
 				.end(function(err,res) {
 					res.should.status(404);
-					res.body.should.have.property('message').eql('Incorrect password');
+					res.body.should.have.property('message').eql('Incorrect credentials');
 					done();
 				});
 		});
@@ -37,7 +37,7 @@ describe('MalICSi', function() {	//Describes the module
 				.send({ 'username':'mcdo' })
 				.end(function(err,res){
 					res.should.status(404);
-					res.body.should.have.property('message').eql('User does not exist!');
+					res.body.should.have.property('message').eql('Incorrect credentials');
 					done();
 				});
 		});
