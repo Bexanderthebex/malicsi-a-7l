@@ -3,14 +3,19 @@
 const connection = require('./../config/db-connection.js');
 
 exports.login = (req, res) => {
-	query = `SELECT id, username FROM user WHERE username = ? AND password = ?`;
+	query = `SELECT id, username, type FROM user WHERE username = ? AND password = ?`;
 
 	connection.query(query, [req.body.username, req.body.password], function(err, rows){
 		if(!err) {
-			console.log(err);
-			return res.status(200).send({ 'message' : 'Successfully logged in'});
+			if (rows.length == 1) {
+				req.session.user = rows[0];
+				console.log(req.session.user);
+				return res.status(200).send({ 'message' : 'Successfully logged in'});
+			} else {
+				return res.status(404).send({ 'message' : 'Incorrect credentials'});
+			}
 		} else {
-			return res.status(404).send({ 'message' : 'Incorrect password'});
+			return res.status(404).send({ 'message' : 'An error occured'});
 		}
 	});
 }
