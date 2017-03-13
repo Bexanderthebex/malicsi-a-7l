@@ -102,11 +102,12 @@ CREATE TABLE team (
 	team_id INT NOT NULL AUTO_INCREMENT,
 	id INT NOT NULL,
 	sport_id INT NOT NULL,
-	team_organization VARCHAR(50) NOT NULL,
+	team_organization INT NOT NULL,
 	team_sport VARCHAR(50) NOT NULL,
 	pending_participation BOOLEAN NOT NULL,
 	FOREIGN KEY(id) references competitor(id),
 	FOREIGN KEY(sport_id) references sport(sport_id),
+	FOREIGN KEY(team_organization) references organization(organization_id),
 	PRIMARY KEY(team_id)
 );
 
