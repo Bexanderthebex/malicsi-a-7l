@@ -3,29 +3,27 @@
 const connection = require('./../config/db-connection.js');
 
 exports.login = (req, res) => {
-	connection.query('SELECT COUNT(*) cnt FROM user WHERE username=?', [req.body.username], function(err, rows){
-		if(rows[0]["cnt"] === 1) {
-			checkPassword();
-		} else {
-			return res.status(404).send({ 'message' : 'User does not exist!'});
-		}
-	});
+	query = `SELECT id, username, type FROM user WHERE username = ? AND password = ?`;
 
-	var checkPassword = () => {
-		connection.query('SELECT COUNT(*) cnt FROM user WHERE username=? AND password=?', [req.body.username, req.body.password], function(err, rows){
-			if(rows[0]["cnt"] === 1) {
+	connection.query(query, [req.body.username, req.body.password], function(err, rows){
+		if(!err) {
+			if (rows.length == 1) {
+				req.session.user = rows[0];
+				console.log(req.session.user);
 				return res.status(200).send({ 'message' : 'Successfully logged in'});
 			} else {
-				return res.status(404).send({ 'message' : 'Incorrect password'});
+				return res.status(404).send({ 'message' : 'Incorrect credentials'});
 			}
-		});
-	}
+		} else {
+			return res.status(404).send({ 'message' : 'An error occured'});
+		}
+	});
 }
 
 exports.register = (req, res) => {
 	//console.log(req.body);
 
-	connection.query('INSERT INTO user (username, password, active) values(?,?,?)', 
+	connection.query('INSERT INTO user (username, password, active) values(?,?,?)',
 		[req.body.username, req.body.password, req.body.active], function(err, rows){
 		if(err) {
 			return res.status(404).send({ 'message' : 'Error inserting new user!'});
