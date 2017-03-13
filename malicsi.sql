@@ -155,3 +155,10 @@ CREATE TABLE competitor_joins_team (
 	FOREIGN KEY(id) references competitor(id),
 	PRIMARY KEY(team_id, id)
 );
+
+CREATE TABLE log (
+	log_id INT NOT NULL,
+	content VARCHAR(140) NOT NULL,
+	date_created DATETIME NOT NULL,
+	PRIMARY KEY(log_id)
+);
