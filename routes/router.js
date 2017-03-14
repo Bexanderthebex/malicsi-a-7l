@@ -8,9 +8,11 @@ var router = express.Router();
 
 var userController = require("../controllers/user-controller");
 var adminController = require('../controllers/admin-controller');
+var sponsorController = require('../controllers/sponsor-controller')
 
 router.post('/login', userController.login);
 router.post('/organizer', adminController.createOrganizer);
 router.post('/register', userController.register);
+router.post('/game/add-sponsor', sponsorController.addSponsorToGame);
 
 module.exports = router;
