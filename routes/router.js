@@ -8,5 +8,6 @@ router.get('/getSampleSession', profileController.getSampleSession);
 
 var sportController = require("../controllers/sport-controller");
 router.post('/createSport', sportController.createSport);
+router.get('/sport/:sportID', sportController.viewSportDetails);
 
 module.exports = router;
