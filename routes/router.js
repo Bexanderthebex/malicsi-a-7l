@@ -8,9 +8,12 @@ var router = express.Router();
 
 var userController = require("../controllers/user-controller");
 var adminController = require('../controllers/admin-controller');
+var gameController = require("../controllers/game-controller");
 
 router.post('/login', userController.login);
 router.post('/organizer', adminController.createOrganizer);
 router.post('/register', userController.register);
+router.get('/game/:game_id', gameController.viewGameDetails);
+
 
 module.exports = router;
