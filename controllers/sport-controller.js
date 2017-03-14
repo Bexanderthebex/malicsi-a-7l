@@ -16,10 +16,3 @@ exports.createSport = (req, res) => {
 		res.send(results);	
 	})
 }
-
-exports.viewSportDetails = (req, res) => {
-	connection.query('SELECT * FROM sport where sport_id = ?', req.params.sportID, (err, rows, fields) => {
-		if (err) throw err;
-		res.send(results);
-	})
-}
