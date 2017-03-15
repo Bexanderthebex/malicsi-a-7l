@@ -4,20 +4,17 @@ const connection = require('./../config/db-connection.js');
 
 exports.searchCompetitor = (req, res) => {
 	const competitor = {
-		search : req.query.search
+		search : req.body.search
 	}
 
 	function searchCompetitor() {
-		const queryString = 'SELECT id, birthday, first_name, last_name, nickname, sex FROM competitor'
-		+ 'where first_name like ? '
-		+ 'or last_name like ? '
-		+ 'or nickname like ?';
+		const queryString = 'SELECT * FROM competitor where first_name like ? or last_name like ? or nickname like ?';
 
 		const queryParameters = [
 			"%" + competitor.search + "%",
 			"%" + competitor.search + "%",
 			"%" + competitor.search + "%"
-		]
+		];
 
 		connection.query(queryString, queryParameters, send_response);
 	}
