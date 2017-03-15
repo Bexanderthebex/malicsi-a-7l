@@ -16,5 +16,5 @@ connection.connect((err) => {
     }
 });
 
-connection.query('USE databasename');
+connection.query('USE malicsi');
 module.exports = connection;
