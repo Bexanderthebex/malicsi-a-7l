@@ -18,3 +18,4 @@ connection.connect((err) => {
 
 connection.query('USE malicsi');
 module.exports = connection;
+
