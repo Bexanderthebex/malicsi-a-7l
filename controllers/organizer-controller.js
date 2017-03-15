@@ -30,3 +30,15 @@ exports.searchOrganizer = (req, res) => {
 }
 
 
+exports.editOrganizer = (req,res) => {
+	currentUser = req.session.user;
+	query = `UPDATE organizer SET name = ?, description = ? WHERE id = ?`;
+
+	connection.query(query, [req.body.name, req.body.description, currentUser.id], function(err, rows){
+		if(!err) {
+			return res.status(200).send({ 'message' : 'Sucessfully updated info'});
+		} else {
+			return res.status(404).send({ 'message' : 'An error occured'});
+		}
+	});
+}
