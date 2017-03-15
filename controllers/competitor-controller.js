@@ -41,4 +41,5 @@ exports.editCompetitor = (req,res) => {
 			return res.status(404).send({ 'message' : 'An error occured'});
 		}
 	});
+	
 }
