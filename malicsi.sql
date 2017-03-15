@@ -102,11 +102,12 @@ CREATE TABLE team (
 	team_id INT NOT NULL AUTO_INCREMENT,
 	id INT NOT NULL,
 	sport_id INT NOT NULL,
-	team_organization VARCHAR(50) NOT NULL,
+	team_organization INT NOT NULL,
 	team_sport VARCHAR(50) NOT NULL,
 	pending_participation BOOLEAN NOT NULL,
 	FOREIGN KEY(id) references competitor(id),
 	FOREIGN KEY(sport_id) references sport(sport_id),
+	FOREIGN KEY(team_organization) references organization(organization_id),
 	PRIMARY KEY(team_id)
 );
 
@@ -154,4 +155,11 @@ CREATE TABLE competitor_joins_team (
 	FOREIGN KEY(team_id) references team(team_id),
 	FOREIGN KEY(id) references competitor(id),
 	PRIMARY KEY(team_id, id)
+);
+
+CREATE TABLE log (
+	log_id INT NOT NULL,
+	content VARCHAR(140) NOT NULL,
+	date_created DATETIME NOT NULL,
+	PRIMARY KEY(log_id)
 );
