@@ -9,6 +9,7 @@ CREATE TABLE user (
 	email VARCHAR(254) NOT NULL,
 	contact VARCHAR(15),
 	is_admin BOOLEAN NOT NULL,
+	user_type VARCHAR(50) NOT NULL,
 	is_active BOOLEAN NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE KEY (username)
