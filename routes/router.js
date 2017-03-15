@@ -1,7 +1,12 @@
 'use strict'
 
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var userController = require("../controllers/user-controller");
-router.get('/searchCompetitor', userController.searchCompetitor);
+const competitorController = require("../controllers/competitor-controller");
+const organizerController = require("../controllers/organizer-controller");
+
+router.get('/searchCompetitor', competitorController.searchCompetitor);
+router.get('/searchOrganizer', organizerController.searchOrganizer);
+
+module.exports = router;
