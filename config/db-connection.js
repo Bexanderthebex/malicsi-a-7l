@@ -3,9 +3,9 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
   host : 'localhost',
-  user : 'usern',
-  password : 'password',
-  db : 'databasename'
+  user : 'root',
+  password : 'root',
+  db : 'malicsi'
 });
 
 connection.connect((err) => {
@@ -16,5 +16,6 @@ connection.connect((err) => {
     }
 });
 
-connection.query('USE databasename');
+connection.query('USE malicsi');
 module.exports = connection;
+

@@ -8,8 +8,7 @@ CREATE TABLE user (
 	password VARCHAR(60) NOT NULL,
 	email VARCHAR(254) NOT NULL,
 	contact VARCHAR(15),
-	is_admin BOOLEAN NOT NULL,
-	user_type VARCHAR(50) NOT NULL,
+	type CHAR(1) NOT NULL,
 	is_active BOOLEAN NOT NULL,
 	PRIMARY KEY (id),
 	UNIQUE KEY (username)
@@ -103,11 +102,12 @@ CREATE TABLE team (
 	team_id INT NOT NULL AUTO_INCREMENT,
 	id INT NOT NULL,
 	sport_id INT NOT NULL,
-	team_organization VARCHAR(50) NOT NULL,
+	team_organization INT NOT NULL,
 	team_sport VARCHAR(50) NOT NULL,
 	pending_participation BOOLEAN NOT NULL,
 	FOREIGN KEY(id) references competitor(id),
 	FOREIGN KEY(sport_id) references sport(sport_id),
+	FOREIGN KEY(team_organization) references organization(organization_id),
 	PRIMARY KEY(team_id)
 );
 
@@ -118,6 +118,7 @@ CREATE TABLE sport_match (
 	time_end TIME NOT NULL,
 	sport_id INT NOT NULL,
 	match_date DATE NOT NULL,
+	is_draw BOOLEAN,
 	remarks VARCHAR(200),
 	PRIMARY KEY(match_id),
 	FOREIGN KEY(sport_id) references sport(sport_id)
@@ -155,3 +156,11 @@ CREATE TABLE competitor_joins_team (
 	FOREIGN KEY(id) references competitor(id),
 	PRIMARY KEY(team_id, id)
 );
+
+CREATE TABLE log (
+	log_id INT NOT NULL,
+	content VARCHAR(140) NOT NULL,
+	date_created DATETIME NOT NULL,
+	PRIMARY KEY(log_id)
+);
+
