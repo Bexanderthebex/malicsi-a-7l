@@ -162,8 +162,5 @@ CREATE TABLE log (
 	content VARCHAR(140) NOT NULL,
 	date_created DATETIME NOT NULL,
 	PRIMARY KEY(log_id)
-<<<<<<< HEAD
 );
-=======
-);
->>>>>>> 9aa7ed4abeb7a0f538087b434902d2a04d9e3ea3
+
