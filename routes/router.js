@@ -18,5 +18,7 @@ router.post('/register', userController.register);
 
 router.get('/searchCompetitor', competitorController.searchCompetitor);
 router.get('/searchOrganizer', organizerController.searchOrganizer);
+router.post('/editCompetitor', competitorController.editCompetitor);
+router.post('/editOrganizer', organizerController.editOrganizer);
 
 module.exports = router;
