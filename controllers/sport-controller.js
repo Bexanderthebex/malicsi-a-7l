@@ -24,6 +24,14 @@ exports.viewSportDetails = (req, res) => {
 	})
 }
 
+exports.deleteSport = function(req, res, next){
+	db.query("DELETE FROM sport WHERE sport_id = ?"
+		,[req.body.sport_id],
+		function(err,rows){
+		if(err) return next(err);
+	});
+}
+
 exports.addWinnerSport = function(req, res, next){
 	db.query("UPDATE sport SET winner = ? WHERE sport_id = ?"
 			,[req.body.winner,
