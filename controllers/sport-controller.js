@@ -13,6 +13,13 @@ exports.createSport = (req, res) => {
 
 	connection.query('INSERT INTO sport SET ?', newSport, (err, rows, fields) => {
 		if (err) throw err;
-		res.send(results);	
+		res.send(rows);	
+	})
+}
+
+exports.viewSportDetails = (req, res) => {
+	connection.query('SELECT * FROM sport where sport_id = ?', req.params.sportID, (err, rows, fields) => {
+		if (err) throw err;
+		res.send(rows);
 	})
 }
