@@ -12,6 +12,7 @@ exports.addSponsorToGame = (req, res) => {
 		}
 		else res.status(200).send("Successfully added sponsor to game!");
 	})
+
 }
 
 exports.editSponsorDetails = (req, res) => {
