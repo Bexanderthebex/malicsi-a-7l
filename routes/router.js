@@ -8,7 +8,7 @@ var router = express.Router();
 
 var userController = require("../controllers/user-controller");
 var adminController = require('../controllers/admin-controller');
-var gameController = require("../controllers/game-controller");
+var gameController = require('../controllers/game-controller');
 var sponsorController = require('../controllers/sponsor-controller')
 var sportController = require("../controllers/sport-controller");
 var matchController = require("../controllers/match-controller");
@@ -24,8 +24,8 @@ function checkUser(req, res, next) {
 
 router.post('/login', userController.login);
 router.post('/organizer', adminController.createOrganizer);
-router.post('/register', userController.register)
-router.get('/game/:game_id', gameController.viewGameDetails);
+router.post('/register', userController.register);
+router.get('/game/:game_id', gameController.viewGameDetails)
 router.post('/game/addSponsor', sponsorController.addSponsorToGame);
 router.post('/createSport', checkUser, sportController.createSport);
 router.post('/addMatch', checkUser, matchController.addMatch);
