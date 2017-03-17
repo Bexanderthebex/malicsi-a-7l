@@ -53,4 +53,17 @@ exports.editSport = function(req, res, next){
 		    if(err) return next(err);
 		    res.send(rows);
 	});
+
+exports.createSportSchedule = (req, res) => {
+	//perform addMatch() (if matches are not yet created)
+	//retrieve from db the matches for the specific sport
+	//sort the results according to time 
+	var query = 'SELECT * FROM sport_match WHERE sport_id = ?';
+	connection.query(query, [req.body.sport_id], function(err, results, fields){
+		if(err) {
+			res.status(404).send("Unable to create schedule.");
+			throw err;
+		}
+		else res.status(200).send(rows);
+	});
 }
