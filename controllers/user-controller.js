@@ -31,15 +31,8 @@ exports.login = (req, res) => {
 }
 
 exports.register = (req, res) => {
-<<<<<<< HEAD
-	//console.log(req.body);
-
-	connection.query('INSERT INTO user (username, password, active) values(?,?,?)',
-		[req.body.username, req.body.password, req.body.active], function(err, rows){
-=======
 	connection.query('INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?, true)',
 		[req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type], function(err, rows){
->>>>>>> mccartney
 		if(err) {
 			console.log(err);
 			res.status(404).send({ 'message' : 'Error inserting new user!'});
@@ -67,7 +60,7 @@ exports.update = (req, res) =>{
 }
 
 exports.returnInfo = (req, res) => {
-	connection.query('SELECT id, username, is_active, email, contact, type FROM user WHERE id=?', [req.body.id], function(err, rows){
+	connection.query('SELECT id, username, is_active, email, contact, type FROM user WHERE id=?', [req.params.id], function(err, rows){
 		if(rows[0]) {
 			res.status(200).send(rows[0]);
 		} else {

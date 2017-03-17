@@ -34,6 +34,7 @@ function bcryptHash(req, res, next) {
 router.post('/login', sha256Hash, userController.login);
 router.post('/organizer', adminController.createOrganizer);
 router.post('/register', sha256Hash, bcryptHash, userController.register);
+router.get('/user/:id', userController.returnInfo);
 router.put('/user/update', userController.update)
 
 module.exports = router;
