@@ -25,7 +25,7 @@ exports.login = (req, res) => {
 exports.register = (req, res) => {
 	//console.log(req.body);
 
-	connection.query('INSERT INTO user (username, password, active) values(?,?,?)', 
+	connection.query('INSERT INTO user (username, password, active) values(?,?,?)',
 		[req.body.username, req.body.password, req.body.active], function(err, rows){
 		if(err) {
 			return res.status(404).send({ 'message' : 'Error inserting new user!'});
@@ -35,21 +35,12 @@ exports.register = (req, res) => {
 	});
 }
 
-
-
-
-
-
 exports.returninfo = (req, res) => {
-	connection.query('SELECT id, username, active FROM user WHERE username=?', [req.body.username], function(err, rows){
+	connection.query('SELECT id, username, is_active, email, contact, type FROM user WHERE id=?', [req.body.id], function(err, rows){
 		if(rows[0]) {
-			//console.log('User Information: ', rows);
-			return rows[0];
+			res.status(200).send(rows[0]);
 		} else {
-			return res.status(404).send({ 'message' : 'User does not exist!'});
+			res.status(404).send({ 'message' : 'User does not exist!'});
 		}
 	});
-
-	
 }
-
