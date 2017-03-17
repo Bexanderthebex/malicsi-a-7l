@@ -42,6 +42,18 @@ exports.addWinnerSport = function(req, res, next){
 	});
 }
 
+exports.editSport = function(req, res, next){
+	db.query("UPDATE sport SET time_start = ?, time_end = ?, date =?, scoring_system = ? WHERE sport_id = ?"
+		 , [req.body.time_start,
+		    req.body.time_end,
+		    req.body.date,
+		    req.body.scoring_system,
+		    req.body.sport_id],
+		    function(err, rows){
+		    if(err) return next(err);
+		    res.send(rows);
+	});
+
 exports.createSportSchedule = (req, res) => {
 	//perform addMatch() (if matches are not yet created)
 	//retrieve from db the matches for the specific sport
@@ -53,6 +65,5 @@ exports.createSportSchedule = (req, res) => {
 			throw err;
 		}
 		else res.status(200).send(rows);
-	})
-
+	});
 }
