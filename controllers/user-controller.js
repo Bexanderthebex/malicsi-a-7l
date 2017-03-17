@@ -34,3 +34,22 @@ exports.register = (req, res) => {
 		}
 	});
 }
+
+
+
+
+
+
+exports.returninfo = (req, res) => {
+	connection.query('SELECT id, username, active FROM user WHERE username=?', [req.body.username], function(err, rows){
+		if(rows[0]) {
+			//console.log('User Information: ', rows);
+			return rows[0];
+		} else {
+			return res.status(404).send({ 'message' : 'User does not exist!'});
+		}
+	});
+
+	
+}
+
