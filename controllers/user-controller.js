@@ -25,7 +25,7 @@ exports.login = (req, res) => {
 				res.status(404).send({ 'message' : 'Incorrect credentials'});
 			}
 		} else {
-			res.status(404).send({ 'message' : 'An error occured'});
+			res.status(404).send({ 'message' : 'An error occured', 'data': err});
 		}
 	});
 }
@@ -35,7 +35,7 @@ exports.register = (req, res) => {
 		[req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type], function(err, rows){
 		if(err) {
 			console.log(err);
-			res.status(404).send({ 'message' : 'Error inserting new user!'});
+			res.status(404).send({ 'message' : 'Error inserting new user!', 'data': err});
 		}else{
 			req.session.user = {
 				id: rows.insertId,
@@ -49,7 +49,7 @@ exports.register = (req, res) => {
 
 exports.update = (req, res) =>{
 	connection.query('UPDATE user SET username = ?, password = ?, email = ?, contact = ? WHERE id = ?', [req.body.username, req.body.password, req.body.email, req.body.contact, req.session.user.id], function (err, rows){
-		if(err) return next(err);
+		if(err) res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
 		else if (rows.affectedRows === 0) {
 			res.status(404).send({ 'message': 'User was not updated.' });
 		} else {
@@ -61,10 +61,14 @@ exports.update = (req, res) =>{
 
 exports.returnInfo = (req, res) => {
 	connection.query('SELECT id, username, is_active, email, contact, type FROM user WHERE id=?', [req.params.id], function(err, rows){
-		if(rows[0]) {
-			res.status(200).send(rows[0]);
+		if (err) {
+			res.status(404).send({ 'message' : 'Error getting user info!', 'data': err});
 		} else {
-			res.status(404).send({ 'message' : 'User does not exist!'});
+			if(rows[0]) {
+				res.status(200).send(rows[0]);
+			} else {
+				res.status(404).send({ 'message' : 'User does not exist!'});
+			}
 		}
 	});
 }

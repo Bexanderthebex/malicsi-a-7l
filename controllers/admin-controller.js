@@ -60,7 +60,7 @@ exports.changeActivity = (req, res) => {
 				res.status(404).send({'message': 'User does not exist.'});
 			}
 		} else {
-			res.status(404).send({'message': 'Database error.'});
+			res.status(404).send({'message': 'Database error.', 'data': err});
 		}
 	});
 }
