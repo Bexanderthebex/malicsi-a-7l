@@ -34,3 +34,14 @@ exports.register = (req, res) => {
 		}
 	});
 }
+
+exports.update = (req, res) =>{
+	connection.query('UPDATE user SET username = ?, password = ?, email = ?, contact = ? WHERE id = ?', [req.body.username, req.body.password, req.body.email, req.body.contact, req.session.user.id], function (err, rows){
+		if(err) return next(err);
+		else if(rows.affectedRows === 0){
+			res.status(404).send({ 'message': 'User ('+ req.body.username') was not updated.' });
+		}else{
+			res.status(200).send(rows);
+		}
+	});
+}
