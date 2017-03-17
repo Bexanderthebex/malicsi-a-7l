@@ -49,3 +49,18 @@ exports.createOrganizer = (req, res) => {
 		}
 	});
 };
+
+exports.changeActivity = (req, res) => {
+	connection.query('UPDATE user SET is_active=? WHERE id = ?', [req.body.active, req.body.id], (err, rows) => {
+		if (!err) {
+			console.log(rows);
+			if (rows.affectedRows > 0) {
+				res.status(200).send({'message': 'User activity status successfully updated.'});
+			} else {
+				res.status(404).send({'message': 'User does not exist.'});
+			}
+		} else {
+			res.status(404).send({'message': 'Database error.'});
+		}
+	});
+}
