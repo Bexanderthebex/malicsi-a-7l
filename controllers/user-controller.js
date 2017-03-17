@@ -41,6 +41,7 @@ exports.update = (req, res) =>{
 		else if(rows.affectedRows === 0){
 			res.status(404).send({ 'message': 'User ('+ req.body.username') was not updated.' });
 		}else{
+			req.session.user.username = req.body.username;
 			res.status(200).send(rows);
 		}
 	});
