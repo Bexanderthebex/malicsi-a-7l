@@ -20,13 +20,17 @@ exports.login = (req, res) => {
 }
 
 exports.register = (req, res) => {
-	//console.log(req.body);
-
-	connection.query('INSERT INTO user (username, password, active) values(?,?,?)',
-		[req.body.username, req.body.password, req.body.active], function(err, rows){
+	connection.query('INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?, true)',
+		[req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type], function(err, rows){
 		if(err) {
+			console.log(err);
 			return res.status(404).send({ 'message' : 'Error inserting new user!'});
 		}else{
+			req.session.user = {
+				id: rows.insertId,
+				username: req.body.username,
+				type: req.body.type
+			};
 			return res.status(200).send({ 'message' : 'Successfully inserted new user'});
 		}
 	});
