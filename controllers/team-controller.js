@@ -1,42 +1,53 @@
-var db = require(__dirname + './../config/db-connection');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const connection = require('./../config/db-connection.js');
 
 exports.createTeam = function(req, res){
-    db.query("INSERT INTO team(id, sport_id, team_organization, team_sport, pending_participation) VALUES (?, ?, ?, ?, FALSE)",
-            [req.body.competitor_id,
-            req.body.sport_id,
-            req.body.organization_id,
-            req.body.team_sport],
-            function(err){
-                if(err){
-                    return err;
-                }
-            });
-};
+    currentUser = req.session.user;
+    query = "INSERT INTO team(id, sport_id, team_organization, team_sport, pending_participation) VALUES (?, ?, ?, ?, FALSE)";
+    connection.query(query, [currentUser.id, req.body.sport_id, req.body.organization_id, req.body.team_sport], function(err, rows){
+            if(!err) {
+                return res.status(200).send({ 'message' : 'Sucessfully created team'});
+            } else {
+                return res.status(404).send({ 'message' : 'An error occured'});
+            }
+    });
+}
 
 exports.deleteTeam = function(req, res){
-    db.query("DELETE FROM team WHERE team_organization = ?" , [req.body.team_organization],
-    function(err){
-        if(err){
-            return err;
-        }
+    query = "DELETE FROM team WHERE team_organization = ?";
+    connection.query(query, [req.body.team_organization],
+    function(err, rows){
+            if(!err) {
+                return res.status(200).send({ 'message' : 'Sucessfully deleted team'});
+            } else {
+                return res.status(404).send({ 'message' : 'An error occured'});
+            }
     });
 };
 
 exports.teamMembershipRequest = function(req, res){
-    db.query("INSERT INTO competitor_joins_team(id, team_id, is_member) VALUES(?,?,FALSE)",
-     [req.body.competitor_id, req.body.team_id],
-            function(err){
-                if(err){
-                    return err;
-                }
-            });
+    currentUser = req.session.user;
+    query = "INSERT INTO competitor_joins_team(id, team_id, is_member) VALUES(?,?,FALSE)";
+    connection.query(query, [currentUser.id, req.body.team_id],
+            function(err, rows){
+            if(!err) {
+                return res.status(200).send({ 'message' : 'Sucessfully sent request'});
+            } else {
+                return res.status(404).send({ 'message' : 'An error occured'});
+            }
+    });
 }
 
 exports.acceptMembershipRequest = function(req, res){
-    db.query("UPDATE competitor_joins_team SET is_member = TRUE where id = ?", [req.body.competitor_id],
-    function(err){
-        if(err){
-            return err;
-        }
-    });
+    currentUser = req.session.user;
+    query = "UPDATE competitor_joins_team SET is_member = TRUE where id = ? AND team_id = ?";
+    connection.query(query, [req.body.competitor_id ,currentUser.id],
+        function(err, rows){
+                if(!err) {
+                    return res.status(200).send({ 'message' : 'Sucessfully accepted request'});
+                } else {
+                    return res.status(404).send({ 'message' : 'An error occured'});
+                }
+        });
 }
