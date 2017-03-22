@@ -131,7 +131,7 @@ exports.getRequest = function(req,res){
 
 exports.acceptRequest = function(req,res){
 
-	connection.query("UPDATE team SET pending_participation = TRUE WHERE id =?"
+	connection.query("UPDATE team SET pending_participation = TRUE WHERE team_id =?"
 		, [req.body.team_id],
 		function(err,rows){
 			if(!err){
