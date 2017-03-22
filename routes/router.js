@@ -12,13 +12,25 @@ var adminController = require('../controllers/admin-controller');
 var competitorController = require("../controllers/competitor-controller");
 var organizerController = require("../controllers/organizer-controller");
 
+//admin/system routers
 router.post('/login', userController.login);
 router.post('/organizer', adminController.createOrganizer);
 router.post('/register', userController.register);
 
+router.get('/getUserInfo',user.getUserInfo);
+
+//competitor routers
 router.get('/searchCompetitor', competitorController.searchCompetitor);
+router.put('/editCompetitor', competitorController.editCompetitor);
+
+//organizer routers
 router.get('/searchOrganizer', organizerController.searchOrganizer);
-router.post('/editCompetitor', competitorController.editCompetitor);
-router.post('/editOrganizer', organizerController.editOrganizer);
+router.put('/editOrganizer', organizerController.editOrganizer);
+
+//team routers
+router.post('/createTeam',teamController.createTeam);
+router.post('/deleteTeam',teamController.deleteTeam);
+router.post('/teamMembershipRequest',teamController.teamMembershipRequest);
+router.post('/acceptMembershipRequest',teamController.acceptMembershipRequest);
 
 module.exports = router;

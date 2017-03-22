@@ -3,32 +3,22 @@ const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 
 exports.searchOrganizer = (req, res) => {
-	const organizer = {
-		search : req.body.search
-	}
+	query = 'SELECT * FROM organizer where name like ? or description like ?';
 
-	function searchOrganizer() {
-		const queryString = 'SELECT * FROM organizer where name like ? or description like ?';
-
-		const queryParameters = [
-			"%" + organizer.search + "%",
-			"%" + organizer.search + "%"
-		];
-
-		connection.query(queryString, queryParameters, send_response);
-	}
-
-	function send_response(err, rows, args) {
-		if(err) {
-	      return res.status(500).send(err);
-	    } else {
-	      return res.send(rows);
-	    }
-	}
-
-	searchOrganizer();
+	connection.query(query, ["%" + req.query.search + "%", "%" + req.query.search + "%"], function (err, rows) {
+		if(!err) {
+			if(rows.length == 1) {
+				res.status(200).send(rows[0]);
+				return rows[0];
+			} else {
+				res.status(200).send(rows);
+				return rows;
+			}
+		} else {
+			res.status(500).send({'message' : 'Internal Server Error'});
+		}
+	});
 }
-
 
 exports.editOrganizer = (req,res) => {
 	currentUser = req.session.user;
