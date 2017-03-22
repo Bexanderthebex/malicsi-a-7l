@@ -7,9 +7,15 @@ exports.searchCompetitor = (req, res) => {
 
 	connection.query(query, ["%" + req.body.search + "%", "%" + req.body.search + "%", "%" + req.body.search + "%"], function(err, rows){
 	    if(!err) {
-			res.status(200).send(rows);
+	    	if(rows.length == 1) {
+				res.status(200).send(rows[0]);
+				return rows[0];
+			} else {
+				res.status(200).send(rows);
+				return rows;
+			}
 		} else {
-			res.status(404).send({ 'message' : 'An error occured'});
+			res.status(500).send({'message' : 'Internal Server Error'});
 		}
 	});
 }
