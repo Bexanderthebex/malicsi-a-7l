@@ -6,3 +6,4 @@ exports.getSampleSession = (req, res) => {
 	res.send(req.session.user);
 }
 // this is a sample controller
+// something
