@@ -3,28 +3,13 @@ const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 
 exports.searchOrganizer = (req, res) => {
-	const organizer = {
-		search : req.body.search
-	}
+	query = 'SELECT * FROM organizer where name like ? or description like ?';
 
-	function searchOrganizer() {
-		const queryString = 'SELECT * FROM organizer where name like ? or description like ?';
-
-		const queryParameters = [
-			"%" + organizer.search + "%",
-			"%" + organizer.search + "%"
-		];
-
-		connection.query(queryString, queryParameters, send_response);
-	}
-
-	function send_response(err, rows, args) {
-		if(err) {
-	      return res.status(500).send(err);
-	    } else {
-	      return res.send(rows);
-	    }
-	}
-
-	searchOrganizer();
+	connection.query(query, ["%" + req.body.search + "%", "%" + req.body.search + "%"], function (err, rows) {
+		if(!err) {
+			res.status(200).send(rows);
+		} else {
+			res.status(404).send({ 'message' : 'An error occured'});
+		}
+	});
 }
