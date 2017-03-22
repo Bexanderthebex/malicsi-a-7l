@@ -11,13 +11,14 @@ var adminController = require('../controllers/admin-controller');
 
 var competitorController = require("../controllers/competitor-controller");
 var organizerController = require("../controllers/organizer-controller");
+var teamController = require("../controllers/team-controller");
 
 //admin/system routers
 router.post('/login', userController.login);
 router.post('/organizer', adminController.createOrganizer);
 router.post('/register', userController.register);
 
-router.get('/getUserInfo',user.getUserInfo);
+router.get('/getUserInfo',userController.getUserInfo);
 
 //competitor routers
 router.get('/searchCompetitor', competitorController.searchCompetitor);
