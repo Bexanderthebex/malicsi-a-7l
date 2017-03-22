@@ -17,8 +17,15 @@
   },
   "homepage": "https://github.com/claizelcoubeili/malicsi-a-7l#readme",
   "dependencies": {
-    "express": "^4.14.1",
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.15.2",
+    "cookie-session": "^2.0.0-beta.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "mocha": "^3.2.0",
     "mysql": "^2.13.0",
-    "body-parser": "^1.15.2"
+    "should": "^11.2.1",
+    "should-http": "^0.1.0",
+    "supertest": "^3.0.0"
   }
 }
