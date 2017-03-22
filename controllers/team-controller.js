@@ -7,7 +7,8 @@ exports.createTeam = function(req, res){
     query = "INSERT INTO team(id, sport_id, team_organization, team_sport, pending_participation) VALUES (?, ?, ?, ?, FALSE)";
     connection.query(query, [currentUser.id, req.body.sport_id, req.body.organization_id, req.body.team_sport], function(err, rows){
             if(!err) {
-                return res.status(200).send({ 'message' : 'Sucessfully created team'});
+                res.status(200).send({ 'message' : 'Sucessfully created team'});
+                return(connection.query("SELECT * FROM team WHERE id = ?", [currentUser.id]));
             } else {
                 return res.status(404).send({ 'message' : 'An error occured'});
             }
