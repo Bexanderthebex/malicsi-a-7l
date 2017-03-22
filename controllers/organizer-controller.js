@@ -16,13 +16,17 @@ exports.searchOrganizer = (req, res) => {
 
 exports.editOrganizer = (req,res) => {
 	currentUser = req.session.user;
-	query = `UPDATE organizer SET name = ?, description = ? WHERE id = ?`;
 
-	connection.query(query, [req.body.name, req.body.description, currentUser.id], function(err, rows){
+	connection.query('UPDATE organizer SET name = ?, description = ? WHERE id = ?', [req.body.name, req.body.description, currentUser.id], function(err, rows){
 		if(!err) {
-			return res.status(200).send({ 'message' : 'Sucessfully updated info'});
+			connection.query('SELECT * from organizer where id = ?', [currentUser.id], function(err, rows) {
+				if(!err) {
+					return res.status(200).send(rows[0]);
+				}
+			});
+
 		} else {
-			return res.status(404).send({ 'message' : 'An error occured'});
+			return res.status(400).send({ 'message' : 'Not implemented'});
 		}
 	});
 }
