@@ -12,14 +12,25 @@ exports.createSport = (req, res) => {
 	}
 
 	connection.query('INSERT INTO sport SET ?', newSport, (err, rows, fields) => {
-		if (err) throw err;
-		res.send(results);	
+		if (err){ 
+			res.status(500).send(message);
+
+		}else{
+			connection.query('SELECT * FROM sport where sport_id = ?', rows.insertId, (err, rows) => {
+				res.status(200).send(rows[0]);
+			})
+		}
 	})
+
+
 }
 
 exports.viewSportDetails = (req, res) => {
 	connection.query('SELECT * FROM sport where sport_id = ?', req.params.sportID, (err, rows, fields) => {
-		if (err) throw err;
-		res.send(results);
+		if (err){
+			res.status(500).send(err);
+		}else{
+			res.status(200).send(rows[0]);
+		}
 	})
 }
