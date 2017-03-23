@@ -33,7 +33,7 @@ exports.editOrganizer = (req,res) => {
 	});
 }
 
-exports.createGame = function(req,res,next){
+exports.createGame = (req,res,next){
 	connection.query("INSERT INTO game(name,description,location,start_date,end_date,orgz_id) VALUES (?, ?, ?, ?, ?, ?)"
 		, [	req.body.name,
 			req.body.description,
@@ -47,7 +47,7 @@ exports.createGame = function(req,res,next){
 	});
 };
 
-exports.updateGame = function(req,res,next){
+exports.updateGame = (req,res,next){
 	
 	connection.query("UPDATE game SET name = ?,description = ?,location = ?,start_date = ?,end_date = ? WHERE game_id = ?"
 		, [	req.body.name,
@@ -62,7 +62,7 @@ exports.updateGame = function(req,res,next){
 	});
 };
 
-exports.editInfo = function(req,res,next){
+exports.editInfo = (req,res,next){
 	
 	connection.query("UPDATE organizer SET name = ?,description = ? WHERE id = ?"
 		, [ req.body.name,
@@ -74,7 +74,7 @@ exports.editInfo = function(req,res,next){
 	});
 };
 
-exports.findGames = function(req,res,next){
+exports.findGames = (req,res,next){
 
 	connection.query("SELECT * from game WHERE game.organizer_id = ?"
 		, [req.query.id],
@@ -93,7 +93,7 @@ exports.findGames = function(req,res,next){
 		});
 };
 
-exports.findSport = function(req,res,next){
+exports.findSport = (req,res,next){
 
 	connection.query("SELECT * from sport WHERE sport.game_id = ?"
 		, [req.query.game_id],
@@ -107,12 +107,12 @@ exports.findSport = function(req,res,next){
 				return rows;
 			}
 		} else {
-			res.status(404).send({'message' : 'Internal Server Error'});
+			res.status(500).send({'message' : 'Internal Server Error'});
 		}
 		});
 };
 
-exports.findTeam = function(req,res,next){
+exports.findTeam = (req,res,next){
 
 	connection.query("SELECT * from team WHERE team.sport_id = ?"
 		, [req.query.sport_id],
@@ -126,13 +126,13 @@ exports.findTeam = function(req,res,next){
 				return rows;
 			}
 		} else {
-			res.status(404).send({'message' : 'Internal Server Error'});
+			res.status(500).send({'message' : 'Internal Server Error'});
 		}
 		});
 };
 
 
-exports.getRequest = function(req,res){
+exports.getRequest = (req,res){
 	connection.query("SELECT * from team WHERE team_id = ?"
 	, [req.query.team_id],
 		function(err,rows){
@@ -145,13 +145,13 @@ exports.getRequest = function(req,res){
 				return rows;
 			}
 		} else {
-			res.status(404).send({'message' : 'Internal Server Error'});
+			res.status(500).send({'message' : 'Internal Server Error'});
 		}
 	});
 };
 
 
-exports.acceptRequest = function(req,res){
+exports.acceptRequest = (req,res){
 
 	connection.query("UPDATE team SET pending_participation = TRUE WHERE team_id =?"
 	, [req.query.team_id],
@@ -166,7 +166,7 @@ exports.acceptRequest = function(req,res){
 				} 
 			});
 		} else {
-			res.status(404).send({'message' : 'Internal Server Error'});
+			res.status(500).send({'message' : 'Internal Server Error'});
 		}
 	});
 };
