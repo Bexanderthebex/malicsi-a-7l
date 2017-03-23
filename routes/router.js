@@ -31,14 +31,18 @@ router.post('/createGame' gameController.createGame);
 router.post('/updateGame/:game_id' gameController.updateGame);
 router.post('/createSport', checkUser, sportController.createSport);
 router.post('/addMatch', checkUser, matchController.addMatch);
-router.post('/editSport', checkUser, sportController.editSport);
-router.post('/addWinnerSport', checkUser, sportController.addWinnerSport);
+router.put('/editSport', sportController.editSport);
+router.post('/addWinnerSport', sportController.addWinnerSport);
 router.get('/sport/:sportID', sportController.viewSportDetails);
 router.put('/game/sponsor/:sponsor_id', checkUser, sponsorController.editSponsorDetails);
 router.delete('/game/sponsor/:sponsor_id', checkUser, sponsorController.deleteSponsorFromGame);
+<<<<<<< HEAD
+router.delete('/deleteSport', sportController.deleteSport);
+=======
 router.delete('/deleteGame/:game_id' gameController.deleteGame);
 router.delete('/game/deleteSponsor/:sponsor_id', checkUser, sponsorController.deleteSponsorFromGame);
 router.delete('/deleteSport', checkUser, sportController.deleteSport);
+>>>>>>> c73899646b9e84d3b599567fab4ea46aa9cf0b18
 
 
 module.exports = router;
