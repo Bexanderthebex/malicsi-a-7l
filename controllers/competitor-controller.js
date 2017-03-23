@@ -30,13 +30,13 @@ exports.editCompetitor = (req,res) => {
 
 			connection.query(query, [req.body.id], function(err, rows) {
 				if(!err) {
-					return res.status(200).send(rows[0]);
+					res.status(200).send(rows[0]);
+					return rows[0];
 				}
 			});
 
 		} else {
-			console.log(err);
-			return res.status(400).send({ 'message' : 'Not implemented'});
+			return res.status(501).send({ 'message' : 'Not implemented'});
 		}
 	});
 }

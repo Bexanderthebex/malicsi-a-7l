@@ -36,7 +36,7 @@ exports.register = (req, res) => {
 	});
 }
 
-exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
+exports.getUserInfo = (req,res) => {
 	currentUser = req.session.user;
 	connection.query('SELECT * from user ' + 'WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 		if(!err) {
@@ -68,7 +68,8 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 							}
 						);
 
-						res.send(returnObject);
+						res.status(200).send(returnObject);
+						return returnObject;
 					} else {
 						console.log(err);
 					}
@@ -86,6 +87,9 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 								value: rows[0].description
 							}
 						);
+
+						res.status(200).send(returnObject);
+						return returnObject;
 					} else {
 						console.log(err);
 					}
