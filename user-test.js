@@ -17,8 +17,8 @@ describe('MalICSi', function() {	//Describes the module
 			request(url)
 				.post('/register')
 				.send({ 	
-						'username':'John Louis Gosgolan', 
-						'password':'walakapagasa',
+						'username':'jlogsgln', 
+						'password':'hehehe',
 						'email': 'jagosgolan@up.edu.ph',
 						'contact': '09167724643',
 						'type': 'U',
