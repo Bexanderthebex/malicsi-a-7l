@@ -17,6 +17,15 @@ $(document).ready(function(){
         auto: true
     });
 
+    $('.slider4').bxSlider({
+        // slideWidth: 200,
+        minSlides: 0,
+        maxSlides: 1,
+        moveSlides: 2,
+        slideMargin: 6,
+        auto: true
+    });
+
 	$('span').css('height', $(".pic").height());
 	$('span').css('width', $(".pic").width());
 });
