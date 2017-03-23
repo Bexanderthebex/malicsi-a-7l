@@ -77,13 +77,18 @@ exports.editInfo = function(req,res,next){
 exports.findGames = function(req,res,next){
 
 	connection.query("SELECT * from game WHERE game.organizer_id = ?"
-		, [req.body.id],
+		, [req.query.id],
 		function(err,rows){
 		if(!err){
-			res.status(200).send({'message' : 'Sucuessfully Retrieved Info',rows});
-			res.send(rows);
+			if(row.length == 1){
+				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+				return rows[0];
+			} else {
+				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
+				return rows;
+			}
 		} else {
-			res.status(404).send({'message' : 'Information Not Found'})
+			res.status(500).send({'message' : 'Internal Server Error'})
 		}
 		});
 };
@@ -91,13 +96,18 @@ exports.findGames = function(req,res,next){
 exports.findSport = function(req,res,next){
 
 	connection.query("SELECT * from sport WHERE sport.game_id = ?"
-		, [req.body.game_id],
+		, [req.query.game_id],
 		function(err,rows){
 		if(!err){
-			res.status(200).send({'message' : 'Sucuessfully Retrieved Info',rows});
-			res.send(rows);
+			if(row.length == 1){
+				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+				return rows[0];
+			} else {
+				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
+				return rows;
+			}
 		} else {
-			res.status(404).send({'message' : 'Information Not Found'});
+			res.status(404).send({'message' : 'Internal Server Error'});
 		}
 		});
 };
@@ -105,12 +115,18 @@ exports.findSport = function(req,res,next){
 exports.findTeam = function(req,res,next){
 
 	connection.query("SELECT * from team WHERE team.sport_id = ?"
-		, [req.body.sport_id],
+		, [req.query.sport_id],
 		function(err,rows){
 		if(!err){
-			res.status(200).send({'message' : 'Sucuessfully Retrived Info',rows});
+			if(row.length == 1){
+				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+				return rows[0];
+			} else {
+				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
+				return rows;
+			}
 		} else {
-			res.status(404).send({'message' : 'Information Not Found'});
+			res.status(404).send({'message' : 'Internal Server Error'});
 		}
 		});
 };
@@ -118,12 +134,18 @@ exports.findTeam = function(req,res,next){
 
 exports.getRequest = function(req,res){
 	connection.query("SELECT * from team WHERE team_id = ?"
-	, [req,body.team_id],
+	, [req.query.team_id],
 		function(err,rows){
 		if(!err){
-			res.status(200).send({'message' : 'Sucessfully Retrieved Info'})
+			if(row.length == 1){
+				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+				return rows[0];
+			} else {
+				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
+				return rows;
+			}
 		} else {
-			res.status(404).send({'message' : 'Information Not Found'});
+			res.status(404).send({'message' : 'Internal Server Error'});
 		}
 	});
 };
@@ -132,12 +154,19 @@ exports.getRequest = function(req,res){
 exports.acceptRequest = function(req,res){
 
 	connection.query("UPDATE team SET pending_participation = TRUE WHERE team_id =?"
-		, [req.body.team_id],
-		function(err,rows){
-			if(!err){
-				res.status(200).send({'message' : 'Sucuessfully Updated Request'});
-			} else {
-				res.status(404).send({'message' : 'Information Not Found'});
-			}
-		});
+	, [req.query.team_id],
+	function(err,rows){
+		if(!err){
+			res.status(200).send({'message' : 'Sucuessfully Updated Request'});
+			connection.query("SELECT * from team WHERE team_id = ? "
+			, [req.query.team_id],
+			function(err,rows){
+				if(!err){
+					return rows[0];
+				} 
+			});
+		} else {
+			res.status(404).send({'message' : 'Internal Server Error'});
+		}
+	});
 };
