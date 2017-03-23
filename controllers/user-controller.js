@@ -16,16 +16,16 @@ exports.login = (req, res) => {
 							username: rows[0].username,
 							type: rows[0].type
 						}
-						res.status(200).send({ 'message' : 'Successfully logged in'});
+						res.status(200).send({ 'message' : 'Successfully logged in', 'success': true });
 					} else {
-						res.status(404).send({ 'message' : 'Incorrect credentials'});
+						res.status(404).send({ 'message' : 'Incorrect credentials', 'success': false});
 					}
 				});
 			} else {
-				res.status(404).send({ 'message' : 'Incorrect credentials'});
+				res.status(404).send({ 'message' : 'Incorrect credentials', 'success': false});
 			}
 		} else {
-			res.status(404).send({ 'message' : 'An error occured', 'data': err});
+			res.status(404).send({ 'message' : 'An error occured', 'data': err, 'success': false});
 		}
 	});
 }
