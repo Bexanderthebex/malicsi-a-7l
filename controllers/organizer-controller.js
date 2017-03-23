@@ -27,12 +27,13 @@ exports.editOrganizer = (req,res) => {
 		if(!err) {
 			connection.query('SELECT * from organizer where id = ?', [currentUser.id], function(err, rows) {
 				if(!err) {
-					return res.status(200).send(rows[0]);
+					res.status(200).send(rows[0]);
+					return rows[0];
 				}
 			});
 
 		} else {
-			return res.status(400).send({ 'message' : 'Not implemented'});
+			return res.status(501).send({ 'message' : 'Not implemented'});
 		}
 	});
 }

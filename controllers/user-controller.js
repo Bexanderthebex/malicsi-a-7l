@@ -112,7 +112,8 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 							}
 						);
 
-						res.send(returnObject);
+						res.status(200).send(returnObject);
+						return returnObject;
 					} else {
 						console.log(err);
 					}
@@ -130,6 +131,9 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 								value: rows[0].description
 							}
 						);
+
+						res.status(200).send(returnObject);
+						return returnObject;
 					} else {
 						console.log(err);
 					}

@@ -18,8 +18,13 @@ exports.createTeam = function(req, res){
 }
 //to be edited for cascading delete
 exports.deleteTeam = function(req, res){
-    query = "DELETE FROM team WHERE team_organization = ?";
-    connection.query(query, [req.body.team_organization],
+    query = "DELETE FROM team WHERE team_id = ?";
+    query1 = "DELETE FROM team_in_match WHERE team_id = ?";
+    query2 = "DELETE FROM team_opponent WHERE team_id = ?";
+    query3 = "DELETE FROM team_announcement WHERE team_id = ?";
+    query4 = "DELETE FROM competitor_joins_team WHERE team_id = ?";
+    
+    connection.query(query1, [req.body.team_id],
     function(err, rows){
             if(!err) {
                 res.status(200).send({ 'message' : 'Sucessfully deleted team'});
@@ -28,7 +33,47 @@ exports.deleteTeam = function(req, res){
                 return res.status(404).send({ 'message' : 'An error occured'});
             }
     });
-};
+
+    connection.query(query2, [req.body.team_id],
+    function(err, rows){
+            if(!err) {
+                res.status(200).send({ 'message' : 'Sucessfully deleted team'});
+                return 
+            } else {
+                return res.status(404).send({ 'message' : 'An error occured'});
+            }
+    });
+
+    connection.query(query3, [req.body.team_id],
+    function(err, rows){
+            if(!err) {
+                res.status(200).send({ 'message' : 'Sucessfully deleted team'});
+                return 
+            } else {
+                return res.status(404).send({ 'message' : 'An error occured'});
+            }
+    });
+
+    connection.query(query4, [req.body.team_id],
+    function(err, rows){
+            if(!err) {
+                res.status(200).send({ 'message' : 'Sucessfully deleted team'});
+                return 
+            } else {
+                return res.status(404).send({ 'message' : 'An error occured'});
+            }
+    });
+
+    connection.query(query, [req.body.team_id],
+    function(err, rows){
+            if(!err) {
+                res.status(200).send({ 'message' : 'Sucessfully deleted team'});
+                return 
+            } else {
+                return res.status(404).send({ 'message' : 'An error occured'});
+            }
+    });
+}
 
 exports.teamMembershipRequest = function(req, res){
     currentUser = req.session.user;
@@ -48,7 +93,7 @@ exports.teamMembershipRequest = function(req, res){
 exports.acceptMembershipRequest = function(req, res){
     currentUser = req.session.user;
     query = "UPDATE competitor_joins_team SET is_member = TRUE where id = ? AND team_id = ?";
-    connection.query(query, [req.body.competitor_id ,currentUser.id], //hindi ba yung team id?
+    connection.query(query, [currentUser.id ,req.body.competitor_id],
         function(err, rows){
                 if(!err) {
                     res.status(200).send({ 'message' : 'Sucessfully accepted request'});
