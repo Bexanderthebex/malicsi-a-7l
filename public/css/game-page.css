@@ -110,3 +110,23 @@
 .first-place{
     height: 150px;
 }
+
+.first-three-card {
+    height: 250px !important;
+}
+
+.other-card {
+    height: 200px !important;
+}
+
+.padding-right {
+    padding-right: 0rem !important;
+}
+
+.padding-left {
+    padding-left: 0rem !important;
+}
+
+.thicken {
+    font-weight: 500;
+}
