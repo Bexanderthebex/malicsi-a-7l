@@ -36,6 +36,50 @@ exports.register = (req, res) => {
 	});
 }
 
+exports.registerCompetitor = (req, res) => {
+	connection.query('SELECT * from competitor WHERE username = ?', [req.body.username],
+		function(err, rows){
+			returnObject = rows[0];
+		if(!err) {
+			connection.query('INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)',
+				[returnObject.id, req.body.birthday, req.body.first_name, req.body.last_name, req.body.nickname, req.body.sex], function(err, rows){
+				if(!err) {
+					res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
+					returnObject.push(
+						{
+							key: "birthday",
+							value: rows[0].birthday
+						},
+						{
+							key: "sex",
+							value: rows[0].sex
+						},
+						{
+							key: "first_name",
+							value: rows[0].first_name
+						},
+						{
+							key: "last_name",
+							value: rows[0].last_name
+						},
+						{
+							key: "nickname",
+							value: rows[0].nickname
+						}
+					);
+					return returnObject;
+				}else{
+					console.log(err);
+					return res.status(500).send({ 'message' : 'Error inserting new competitor!'});
+				}
+			});
+		}else{
+			console.log(err);
+			return res.status(500).send({ 'message' : 'Error getting new user!'});
+		}
+	});
+}
+
 exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 	currentUser = req.session.user;
 	connection.query('SELECT * from user ' + 'WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {

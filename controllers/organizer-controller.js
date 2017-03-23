@@ -37,48 +37,7 @@ exports.editOrganizer = (req,res) => {
 	});
 }
 
-exports.createGame = (req,res,next){
-	connection.query("INSERT INTO game(name,description,location,start_date,end_date,orgz_id) VALUES (?, ?, ?, ?, ?, ?)"
-		, [	req.body.name,
-			req.body.description,
-			req.body.location,
-			req.body.start_date,
-			req.body.end_date,
-			req.body.orgz_id],
-			function(err,rows){
-		if(err) return next(err);
-		res.send(rows);
-	});
-};
-
-exports.updateGame = (req,res,next){
-	
-	connection.query("UPDATE game SET name = ?,description = ?,location = ?,start_date = ?,end_date = ? WHERE game_id = ?"
-		, [	req.body.name,
-			req.body.description,
-			req.body.location,
-			req.body.start_date,
-			req.body.end_date,
-			req.body.game_id],
-			function(err,rows){
-		if(err) return next(err);
-		res.send(rows);
-	});
-};
-
-exports.editInfo = (req,res,next){
-	
-	connection.query("UPDATE organizer SET name = ?,description = ? WHERE id = ?"
-		, [ req.body.name,
-			req.body.description,
-			req.body.id],
-			function(err,rows){
-		if(err) return next(err);
-		res.send(rows);
-	});
-};
-
-exports.findGames = (req,res,next){
+exports.findGames = (req,res,next) =>{
 
 	connection.query("SELECT * from game WHERE game.organizer_id = ?"
 		, [req.query.id],
@@ -97,7 +56,7 @@ exports.findGames = (req,res,next){
 		});
 };
 
-exports.findSport = (req,res,next){
+exports.findSport = (req,res,next) =>{
 
 	connection.query("SELECT * from sport WHERE sport.game_id = ?"
 		, [req.query.game_id],
@@ -116,7 +75,7 @@ exports.findSport = (req,res,next){
 		});
 };
 
-exports.findTeam = (req,res,next){
+exports.findTeam = (req,res,next) =>{
 
 	connection.query("SELECT * from team WHERE team.sport_id = ?"
 		, [req.query.sport_id],
@@ -136,7 +95,7 @@ exports.findTeam = (req,res,next){
 };
 
 
-exports.getRequest = (req,res){
+exports.getRequest = (req, res, next) => {
 	connection.query("SELECT * from team WHERE team_id = ?"
 	, [req.query.team_id],
 		function(err,rows){
@@ -155,7 +114,7 @@ exports.getRequest = (req,res){
 };
 
 
-exports.acceptRequest = (req,res){
+exports.acceptRequest = (req, res, next) => {
 
 	connection.query("UPDATE team SET pending_participation = TRUE WHERE team_id =?"
 	, [req.query.team_id],
