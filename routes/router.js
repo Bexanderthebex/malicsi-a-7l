@@ -27,8 +27,8 @@ router.post('/organizer', adminController.createOrganizer);
 router.post('/register', userController.register);
 router.get('/game/:game_id', gameController.viewGameDetails)
 router.post('/game/addSponsor', sponsorController.addSponsorToGame);
-router.post('/createGame' gameController.createGame);
-router.post('/updateGame/:game_id' gameController.updateGame);
+router.post('/game/createGame', gameController.createGame);
+router.post('/game/updateGame', gameController.updateGame);
 router.post('/createSport', checkUser, sportController.createSport);
 router.post('/addMatch', checkUser, matchController.addMatch);
 router.post('/editSport', checkUser, sportController.editSport);
