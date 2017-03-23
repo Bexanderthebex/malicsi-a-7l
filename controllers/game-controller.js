@@ -47,16 +47,19 @@ exports.viewGameDetails = (req, res) => {
 		if (err) throw err;
 		res.send(results);
 
-	})
+	});
+}
 
-exports.deleteGame = function(req, res) {
-	connection.query('DELETE FROM grade WHERE id = ?', [req.body.id], function(err, row) {
-		if(err) res.status(500).send('Error in query');
-		if (row.affectedRows === 0) {
-			res.status(554).send('Game ('+req.body.id+') was not removed.');
-		} else {
-			res.status(200).send(row);
+exports.deleteGame = (req, res) => {
+	connection.query('DELETE FROM game WHERE game_id = ?', [req.body.gameId], function(err, rows) {
+		if(!err){
+			if (rows.length == 0) {
+				res.status(501).send('Not Implemented');
+			} else {
+				 res.status(200).send('Sucessful');
+			}
+		}else{
+			res.status(500).send("Internal Server Error");
 		}
 	});
-
 }
