@@ -3,11 +3,11 @@ const mysql = require('mysql');
 
 const connection = mysql.createConnection({
   host : 'localhost',
-  user : 'usern',
+  user : 'root',
   password : 'password',
-  db : 'databasename'
+  db : 'malicsi'
 });
-
+	
 connection.connect((err) => {
     if (!err) {
         console.log("Database connected!");
@@ -16,5 +16,5 @@ connection.connect((err) => {
     }
 });
 
-connection.query('USE databasename');
+connection.query('USE malicsi');
 module.exports = connection;

@@ -2,17 +2,9 @@ var request = require('supertest');
 var should = require('should-http');
 var url = 'http://localhost:3000';
 
-var user = { 	
-				'username':'John Louis Gosgolan', 
-				'password':'walakapagasa',
-				'email': 'jagosgolan@up.edu.ph',
-				'contact': '09167724643',
-				'type': 'user',
-				'is_active': true
-			};
 
 describe('MalICSi', function() {	//Describes the module
-	describe('/register', function() {	//Describes the specific feature
+	describe.only('/register', function() {	//Describes the specific feature
 		it('not respond to POST', function(done) {	//describes kung anung case yung tinetest
 			request(url)
 				.post('/register')
@@ -24,7 +16,14 @@ describe('MalICSi', function() {	//Describes the module
 		it('respond to POST (Successfully registered)', function(done){
 			request(url)
 				.post('/register')
-				.send({json: user}) 
+				.send({ 	
+						'username':'John Louis Gosgolan', 
+						'password':'walakapagasa',
+						'email': 'jagosgolan@up.edu.ph',
+						'contact': '09167724643',
+						'type': 'user',
+						'is_active': true
+					}) 
 				.end(function(err,res){
 					res.should.status(200);
 					done();
