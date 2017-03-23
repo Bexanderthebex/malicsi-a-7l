@@ -42,11 +42,22 @@ exports.editSponsorDetails = (req, res) => {
 		req.body.sponsor_id
 		], 
 		(err, results, fields) => {
-		if(err) {
-			res.status(404).send("Unable to update sponsoring institution details!");
-			throw err;
+		if(!err && results.affectedRows != 0)
+			res.status(200).send("Successfully updated sponsoring institution details!");
+		
+		else if (results.affectedRows == 0)
+			res.status(400).send("Unable to edit sponsor. Reason: Sponsor being edited does not exist.")
+		
+		
+		else if(err){			
+			if (err.code == 'ER_TRUNCATED_WRONG_VALUE_FOR_FIELD')
+				res.status(400).send("Unable to edit sponsor. Reason: Invalid values.");
+			
+			else{
+				console.log(err.code);
+				res.status(500).send("Unknown error.");
+			}
 		}
-		else res.status(200).send("Successfully updated sponsoring institution details!");
 	})
 }
 

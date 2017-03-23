@@ -30,7 +30,7 @@ router.post('/game/sponsor/addSponsor', sponsorController.addSponsorToGame);
 router.post('/createSport', sportController.createSport);
 router.post('/addMatch', checkUser, matchController.addMatch);
 router.get('/sport/:sportID', sportController.viewSportDetails);
-router.put('/game/sponsor/:sponsor_id', checkUser, sponsorController.editSponsorDetails);
-router.delete('/game/sponsor/:sponsor_id', checkUser, sponsorController.deleteSponsorFromGame);
+router.put('/game/sponsor', sponsorController.editSponsorDetails);
+router.delete('/game/sponsor', checkUser, sponsorController.deleteSponsorFromGame);
 
 module.exports = router;
