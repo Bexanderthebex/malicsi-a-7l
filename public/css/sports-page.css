@@ -1,0 +1,74 @@
+#sports-title{
+	height: 150px;
+	width: 100%;
+	background-image: url("assets/basketball.jpg");
+	background-color: #BDBDBD;
+}
+
+#sports-title h4{
+	letter-spacing: 3px;
+	padding-top: 50px;
+	margin-top: 0;
+	text-align: center;
+}
+
+.sports-details{
+	padding-top: 20px;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
+#sports-details h6{
+	font-style: bold;
+	letter-spacing: 3px;
+}
+
+#sports-ranking{
+	margin: 0!important;
+	padding: 0!important;
+	padding-top: 10px!important;
+	/*background: yellow;*/
+	width: 100%;
+	height: 250px;
+}
+
+#sports-ranking-title{
+	text-align: right;
+	border-right: solid;
+	padding-right: 30px;
+}
+
+#sports-ranking-body{
+	/*background: blue;*/
+	padding-left: 20px;
+	/*padding: 0*/
+	
+}
+
+#sports-ranking-body .rank{
+	/*background: yellow;*/
+	width: 60px;
+	float: left;
+	display: inline-block;
+}
+
+.rank-entity{
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#sports-ranking-body > div > div > h5 {
+	margin: 0;
+	/*float: left;*/
+}
+
+#sports-ranking-body > div > div > h6 {
+	margin: 0;
+	/*float: left;*/
+}
+
+
+#sports-ranking-body > div > div > h3{
+	margin-top: 0;
+}
