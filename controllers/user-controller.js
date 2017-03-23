@@ -36,7 +36,7 @@ exports.register = (req, res) => {
 	});
 }
 
-exports.getUserInfo = (req,res) => {
+exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 	currentUser = req.session.user;
 	connection.query('SELECT * from user ' + 'WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 		if(!err) {
