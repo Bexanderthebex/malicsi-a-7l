@@ -21,8 +21,8 @@ describe('MalICSi', function() {	//Describes the module
 						'password':'walakapagasa',
 						'email': 'jagosgolan@up.edu.ph',
 						'contact': '09167724643',
-						'type': 'user',
-						'is_active': true
+						'type': 'U',
+						'is_active': 1
 					}) 
 				.end(function(err,res){
 					res.should.status(200);
