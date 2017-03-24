@@ -11,8 +11,8 @@ exports.createTeam = function(req, res){
                 res.status(200).send({ 'message' : 'Sucessfully created team'});
                 return(connection.query("SELECT * FROM team WHERE id = ?", [currentUser.id]));
             } else {
-                res.status(404).send({ 'message' : 'An error occured'});
-                return 404;
+                res.status(500).send({ 'message' : 'An error occured'});
+                return 500;
             }
     });
 }
@@ -30,7 +30,7 @@ exports.deleteTeam = function(req, res){
                 res.status(200).send({ 'message' : 'Sucessfully deleted team'});
                 return 
             } else {
-                return res.status(404).send({ 'message' : 'An error occured'});
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
     });
 
@@ -40,7 +40,7 @@ exports.deleteTeam = function(req, res){
                 res.status(200).send({ 'message' : 'Sucessfully deleted team'});
                 return 
             } else {
-                return res.status(404).send({ 'message' : 'An error occured'});
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
     });
 
@@ -50,7 +50,7 @@ exports.deleteTeam = function(req, res){
                 res.status(200).send({ 'message' : 'Sucessfully deleted team'});
                 return 
             } else {
-                return res.status(404).send({ 'message' : 'An error occured'});
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
     });
 
@@ -60,7 +60,7 @@ exports.deleteTeam = function(req, res){
                 res.status(200).send({ 'message' : 'Sucessfully deleted team'});
                 return 
             } else {
-                return res.status(404).send({ 'message' : 'An error occured'});
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
     });
 
@@ -70,7 +70,7 @@ exports.deleteTeam = function(req, res){
                 res.status(200).send({ 'message' : 'Sucessfully deleted team'});
                 return 
             } else {
-                return res.status(404).send({ 'message' : 'An error occured'});
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
     });
 }
@@ -84,8 +84,8 @@ exports.teamMembershipRequest = function(req, res){
                 res.status(200).send({ 'message' : 'Sucessfully sent request'});
                 return (connection.query("SELECT * FROM competitor_joins_team WHERE id = ? AND team_id = ?", [currentUser.id, req.body.team_id])[0]);
             } else {
-                res.status(404).send({ 'message' : 'An error occured'});
-                return 404;
+                res.status(500).send({ 'message' : 'An error occured'});
+                return 500;
             }
     });
 }
@@ -99,8 +99,24 @@ exports.acceptMembershipRequest = function(req, res){
                     res.status(200).send({ 'message' : 'Sucessfully accepted request'});
                     return (connection.query("SELECT * FROM competitor_joins_team WHERE id = ? AND team_id = ?", [req.body.competitor_id, currentUser.id])[0]);
                 } else {
-                    res.status(404).send({ 'message' : 'An error occured'});
-                    return 404;
+                    res.status(500).send({ 'message' : 'An error occured'});
+                    return 500;
                 }
         });
 }
+
+exports.getTeamStatistics = function(req, res){
+    query = "SELECT rank, COUNT(ranking) as rankCount FROM team_in_match WHERE team_id = ? group by ranking"
+
+    connection.query(query,[req.query.team_id],
+        function(err, rows){
+            if(!err) {
+                res.status(200).send(rows);
+                return(rows);
+            } else {
+                res.status(500).send({ 'message' : 'An error occured'});
+                return 500;
+            }
+        })
+
+}   
