@@ -6,11 +6,7 @@ const connection = require('./../config/db-connection.js');
 const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
-<<<<<<< HEAD
 	let query = `SELECT id, username, type FROM user WHERE username = ? AND password = ?`;
-=======
-	query = `SELECT id, username, password, type FROM user WHERE username = ?`;
->>>>>>> ab2e250caf2105c86af921ec680b8fcb156e9f82
 
 	connection.query('SELECT id, username, type FROM user WHERE username = ? AND password = ?', [req.body.username, req.body.password], function(err, rows){
 		if(!err) {
@@ -31,18 +27,13 @@ exports.login = (req, res) => {
 				res.status(404).send({ 'message' : 'Incorrect credentials'});
 			}
 		} else {
-<<<<<<< HEAD
-			console.log(err);
-			return res.status(404).send({ 'message' : 'An error occured'});
-=======
 			res.status(404).send({ 'message' : 'An error occured', 'data': err});
->>>>>>> ab2e250caf2105c86af921ec680b8fcb156e9f82
+			return err;
 		}
 	});
 }
 
 exports.register = (req, res) => {
-<<<<<<< HEAD
 	console.log(req.body);
 
 	connection.query('INSERT INTO user (username, password, is_active, is_admin, contact, email) values(?,?,?,?,?,?)',
@@ -50,13 +41,6 @@ exports.register = (req, res) => {
 		if(err) {
 			console.log(err);
 			return res.status(404).send({ 'message' : 'Error inserting new user!'});
-=======
-	connection.query('INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?, true)',
-		[req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type], function(err, rows){
-		if(err) {
-			console.log(err);
-			res.status(404).send({ 'message' : 'Error inserting new user!', 'data': err});
->>>>>>> ab2e250caf2105c86af921ec680b8fcb156e9f82
 		}else{
 			req.session.user = {
 				id: rows.insertId,
