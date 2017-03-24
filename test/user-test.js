@@ -58,7 +58,7 @@ describe('MalICSi', function() {	//Describes the module
 		});
 	});
 
-	describe('/login', function() {	//Describes the specific feature
+	describe.only('/login', function() {	//Describes the specific feature
 		it('not respond to GET', function(done) {	//describes kung anung case yung tinetest
 			request(url)
 				.get('/login')
