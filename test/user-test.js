@@ -4,9 +4,9 @@ var url = 'http://localhost:3000';
 
 describe('MalICSi', function() {	//Describes the module
 	describe.only('/register', function() {	//Describes the specific feature
-		it('not respond to POST', function(done) {	//describes kung anung case yung tinetest
+		it('not respond to GET', function(done) {	//describes kung anung case yung tinetest
 			request(url)
-				.post('/register')
+				.get('/register')
 				.end(function(err, res) {	//catches the http response
 					res.should.status(404);	//translated as "response should (have) status 404"
 					done();
@@ -20,7 +20,7 @@ describe('MalICSi', function() {	//Describes the module
 						'password':'hihihi',
 						'email': 'example@up.edu.ph',
 						'contact': '09111111111',
-						'type': 'U',
+						'type': 'C',
 						'is_active': 1
 					})
 				.end(function(err,res){
@@ -36,7 +36,7 @@ describe('MalICSi', function() {	//Describes the module
 						'password':'hehehe',
 						'email': 'example@up.edu.ph',
 						'contact': '0912345678',
-						'type': 'U',
+						'type': 'C',
 						'is_active': 1
 					})
 				.end(function(err,res){
