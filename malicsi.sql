@@ -113,7 +113,7 @@ CREATE TABLE team (
 
 CREATE TABLE sport_match (
 	match_id INT NOT NULL AUTO_INCREMENT,
-	winner INT,
+	--winner INT,
 	time_start TIME NOT NULL,
 	time_end TIME NOT NULL,
 	sport_id INT NOT NULL,
@@ -128,6 +128,7 @@ CREATE TABLE sport_match (
 CREATE TABLE team_in_match (
 	match_id INT NOT NULL,
 	team_id INT NOT NULL,
+	ranking INT,
 	PRIMARY KEY(match_id, team_id),
 	FOREIGN KEY(match_id) references sport_match(match_id),
 	FOREIGN KEY(team_id) references team(team_id)
