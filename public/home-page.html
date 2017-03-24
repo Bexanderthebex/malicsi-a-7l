@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+	<head>
+		<title>MalICSi</title>
+
+		<!-- CSS -->
+	  	<link href="frontend_modules/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	  	<link href="css/home-page.css" type="text/css" rel="stylesheet"/>
+	  	<link href="css/style.css" type="text/css" rel="stylesheet"/>
+	  	<link href="fa/css/font-awesome.min.css" rel="stylesheet" >
+
+
+		<!-- JS -->
+		<script src="frontend_modules/js/angular.min.js"></script>
+		<script src="frontend_modules/js/angular-route.min.js"></script>
+	  	<script src="frontend_modules/js/jquery-3.1.1.min.js"></script>
+		<!-- <script src="frontend_modules/js/jquery-2.2.5.min.js"></script> -->
+		<script src="js/slider.js"></script>
+
+	</head>
+
+	<body>
+	<!-- Dropdown Structure -->
+	<ul id="dropdown1" class="dropdown-content">
+		<li><a href="#!">one</a></li>
+		<li><a href="#!">two</a></li>
+		<li class="divider"></li>
+		<li><a href="#!">three</a></li>
+	</ul>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo center">Logo</a>
+			<ul class="left hide-on-med-and-down">
+		    	<li><a class="dropdown-button" href="" data-activates="dropdown1">Games</a></li>
+		    	<li><a href="">Profile</a></li>
+		    	<li><a href="">Components</a></li>
+		    	<!-- Dropdown Trigger -->
+		    </ul>
+
+		    <ul class="right hide-on-med-and-down">
+		    	<li><a href="">Log-in</a></li>
+		    	<!-- Dropdown Trigger -->
+		    </ul>
+		</div>
+	</nav>
+
+	<div id="mainHolder">
+		<!-- Do not put anything inside main holder -->
+		<!-- Main holder just keeps the main below the navbar -->
+		<div id="main">
+			<!-- Materialize slider structure -->
+				<!-- Button to view all games -->
+				<a href="#" class="waves-effect waves-light btn view-games">ALL GAMES</a>
+				<div class="slider fullscreen">
+				    <ul class="slides">
+				      <li>
+				      	<img class="img-responsive" src="assets/images/1.jpg"> <!-- random image -->
+				        <div class="caption left-align">
+				          <h3>PalICSihan 2016</h3>
+				          <h5 class="light grey-text text-lighten-3">This is game #1's description</h5>
+				        </div>
+				      </li>
+				      <li>
+				        <img class="img-responsive" src="assets/images/2.jpg"> <!-- random image -->
+				        <div class="caption left-align">
+				          <h3>PalICSihan 2017</h3>
+				          <h5 class="light grey-text text-lighten-3">This is game #2's description</h5>
+				        </div>
+				      </li>
+				      <li>
+				        <img class="img-responsive" src="assets/images/3.jpg"> <!-- random image -->
+				        <div class="caption left-align">
+				          <h3>PalICSihan 2018</h3>
+				          <h5 class="light grey-text text-lighten-3">This is game #3's description</h5>
+				        </div>
+				      </li>
+				      <li>
+				        <img class="img-responsive" src="assets/images/4.jpg"> <!-- random image -->
+				        <div class="caption left-align">
+				          <h3>PalICSihan 2019</h3>
+				          <h5 class="light grey-text text-lighten-3">This is game #4's description</h5>
+				        </div>
+				      </li>
+				    </ul>
+			  	</div>
+			  	<!-- Uncomment this block for the nav-arrows -->
+					<!-- 
+						<div class="col s12 center">
+							<button class="next z-depth-0 btn white btn-flat center"><i class="fa fa-chevron-left fa-lg grey-text text-lighten-1"></i></button>
+							<button class="next z-depth-0 btn white btn-flat center"><i class="fa fa-chevron-right fa-lg grey-text text-lighten-1"></i></button>
+						</div>
+
+						Then set indicators to false in slider.js 
+					-->
+		  	<!-- Other information area -->
+			<div class="under-slider">
+				<div class="info" id="info1">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+				</div>
+				<div class="info" id="info2">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+				</div>
+				<div class="info" id="info3">
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--  Scripts-->
+ 	<script src="frontend_modules/js/materialize.js"></script>
+	</body>
+</html>
+
+
+<!-- 
+
+	TODO
+		1. Tweak aesthetics
+		2. Add some separators
+		3. Die
+	 -->

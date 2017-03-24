@@ -1,0 +1,139 @@
+.slider .slides {
+    background-color: white !important;
+}
+
+.slider {
+    height: 450px !important;
+}
+
+.slides {
+    height: 430px !important;
+}
+
+.tabs {
+    height: auto;
+    white-space: normal;
+}
+
+.tab {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tab-content {
+    height: 200px;
+    width: 100%;
+    background: #fcfcfc;
+    border: 1px solid #f0f0f0;
+}
+
+.indicator {
+    display: none;
+}
+
+.graph_stacked {
+    border-width: 0 0 1px 1px;
+    height: 200px;
+    margin: 0 0 15px 0;
+    position: relative;
+    white-space: nowrap;
+    background: rgba(0, 0, 0, .1);
+    font-size: 0;
+}
+
+.graph_stacked .col {
+    display: inline-block;
+    margin: 0 0 0 1px;
+    height: 100%;
+    vertical-align: bottom;
+    position: relative;
+    width: 22%;
+}
+
+.graph_stacked .col .bar {
+    display: inline-block;
+    vertical-align: bottom;
+    width: 100%;
+}
+
+.graph_stacked .col .bar:first-child {
+    height: 100%;
+    margin: 0;
+    width: 0;
+}
+
+.graph_stacked .col .bar .seg {
+    display: block;
+    background: #2be;
+}
+
+.graph_stacked .col .bar .seg.yel {
+    background: #fc0;
+}
+
+.graph_stacked .col .bar .seg.grn {
+    background: #2e4;
+}
+
+.smaller-padding {
+    padding: 15px !important;
+}
+
+.diagonal-up {
+    margin-bottom: -30% !important;
+    padding-bottom: 45% !important;
+    -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 74%, 100% 0%);
+}
+
+.diagonal-down {
+    -webkit-clip-path: polygon(0% 100%, 0 30%, 100% 0, 100% 100%);
+    margin-top: -30% !important;
+    padding-top: 45% !important;
+}
+
+.middle {
+    margin-left: 40% !important;
+    width: 50px;
+    z-index: 12 !important;
+}
+
+.third-place{
+    height: 100px;
+}
+
+.second-place{
+    height: 120px;
+}
+
+.first-place{
+    height: 150px;
+}
+
+.first-three-card {
+    height: 250px !important;
+}
+
+.other-card {
+    height: 200px !important;
+}
+
+.padding-right {
+    padding-right: 0rem !important;
+}
+
+.padding-left {
+    padding-left: 0rem !important;
+}
+
+.thicken {
+    font-weight: 500;
+}
+
+.game-padding {
+    padding-top: 12px !important;
+}
+
+table.darken > tbody > tr:hover {
+    background-color: #121212 !important;
+}
