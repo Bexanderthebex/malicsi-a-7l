@@ -1,7 +1,5 @@
 #team-lead {
   display:block;
-  /*padding-top: 50%;*/
-  /*text-align: center;*/
   margin-top: 2%;
   border-radius: 50%;
   margin-left: auto;
@@ -17,7 +15,6 @@
 }
 
 .mem {
-  /*border: 1px solid black;*/
   text-align: center;
 }
 
@@ -35,20 +32,6 @@
   margin-left: auto;
   margin-right: auto;
 }
-
-/*.mainhol > .container >div {
-  float:left;
-  padding-top: 2%;
-  height: 50%;
-  width: 20%;
-  border: 1px solid black;
-}
-
-.player-desc {
-  text-align: center;
-  margin-top: -2%;
-  max-width: 20%;
-}*/
 
 .position {
   font-size: 100%;
@@ -70,18 +53,18 @@
 }
 
 .desc {
-    position: relative;
-    cursor: pointer;
+  position: relative;
+  cursor: pointer;
 }
 
 .slider4 {
-   width: 100%;
+ width: 100%;
 }
 
 span { 
-    display: none;
-    position: absolute;
-    top: 0;
-    background: rgba(0, 0, 0, .7);
-    color: #fff;
+  display: none;
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, .7);
+  color: #fff;
 }
