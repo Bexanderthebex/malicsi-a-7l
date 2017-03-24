@@ -12,6 +12,22 @@ let sponsorController = require('../controllers/sponsor-controller')
 let sportController = require("../controllers/sport-controller");
 let matchController = require("../controllers/match-controller");
 
+<<<<<<< HEAD
+var userController = require("../controllers/user-controller");
+var adminController = require('../controllers/admin-controller');
+var gameController = require('../controllers/game-controller');
+var sponsorController = require('../controllers/sponsor-controller')
+var sportController = require("../controllers/sport-controller");
+var matchController = require("../controllers/match-controller");
+
+function checkUser(req, res, next) {
+	console.log(req.session.user);
+	if (req.session.user !== undefined && (req.session.user.type === 'O' || req.session.user.type === 'A')) {
+		next();
+	} else {
+		res.status(403).send('Forbidden');
+	}
+=======
 function sha256Hash(req, res, next) {
     if (req.body.password == undefined) {
         res.status(404).send({ 'message' : 'Incorrect credentials'});
@@ -69,5 +85,6 @@ router.delete('/deleteSport', sportController.deleteSport);
 router.delete('/deleteGame/:game_id' gameController.deleteGame);
 router.delete('/game/deleteGame/', gameController.deleteGame);
 router.delete('/game/deleteSponsor/:sponsor_id', checkUser, sponsorController.deleteSponsorFromGame);
+
 
 module.exports = router;
