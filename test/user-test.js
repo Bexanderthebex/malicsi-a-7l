@@ -99,69 +99,41 @@ describe('MalICSi', function() {	//Describes the module
 	});
 
 
-		describe('/returnInfo', function() {	//Describes the specific feature
-
+	describe.only('/user/:id', function() {	//Describes the specific feature
 		it('should load user info from database', function(done){
 				request(url)
-					.post('/returnInfo')
-					.send({'id': '001', 'username': 'Pat', 'is_active': 'true'})
+					.get('/user/1')
 					.end(function(err, res) {	//catches the http response
 						res.should.status(200);	//translated as "response should (have) status 200"
-					
-						res.should.be.json;
-					      res.body.should.have.property('id');
-					      res.body.should.have.property('username');
-					      res.body.should.have.property('is_active');
 
-				        res.body.username.should.equal('Pat');
-						res.body.id.should.equal('001');
-						res.body.is_active.should.equal('true');
+						res.should.be.json;
+						//res.body.should.have.property('id');
+						//res.body.should.have.property('username');
+						//res.body.should.have.property('is_active');
+						//res.body.should.have.property('email');
+						//res.body.should.have.property('contact');
+						//res.body.should.have.property('type');
+
+						res.body.id.should.equal(1);
+						res.body.username.should.equal('jpelaez');
+						res.body.is_active.should.equal(1);
+						res.body.email.should.equal('example@up.edu.ph');
+						res.body.contact.should.equal('09111111111');
+						res.body.type.should.equal('C');
+
 						done();
 					});
 
 			  });
 
-
-		it('failed to load user info from database', function(done){
+		it('User does not exist', function(done){
 				request(url)
-					.post('/returnInfo')
-					.send({'id': '001', 'username': 'Pat', 'is_active': 'true'})
+					.get('/user/2')
 					.end(function(err, res) {	//catches the http response
 						res.should.status(404);	//translated as "response should (have) status 200"
-						res.body.should.have.property('message').eql('Error getting user info!');
-						
-						
+						res.body.should.have.property('message').eql('User does not exist!');
 						done();
 					});
-
-			  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		});
-
-
+				});
+	});
 });
