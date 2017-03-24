@@ -7,6 +7,10 @@ let bcrypt = require('bcrypt');
 
 let userController = require("../controllers/user-controller");
 let adminController = require('../controllers/admin-controller');
+let gameController = require('../controllers/game-controller');
+let sponsorController = require('../controllers/sponsor-controller')
+let sportController = require("../controllers/sport-controller");
+let matchController = require("../controllers/match-controller");
 
 function sha256Hash(req, res, next) {
     if (req.body.password == undefined) {
@@ -31,6 +35,7 @@ function bcryptHash(req, res, next) {
     });
 }
 
+
 // Example usage: router.post('/r/anime', checkUser('O'), createGame);
 function checkUser(type) {
     return (req, res, next) => {
@@ -48,5 +53,24 @@ router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.get('/user/:id', userController.returnInfo);
 router.put('/user/update', userController.update)
 router.put('/user/active', checkUser('A'), adminController.changeActivity);
+
+
+router.post('/register', userController.register);
+router.get('/game/:game_id', gameController.viewGameDetails)
+router.post('/game/addSponsor', sponsorController.addSponsorToGame);
+router.post('/createGame' gameController.createGame);
+router.post('/updateGame/:game_id' gameController.updateGame);
+router.post('/createSport', checkUser, sportController.createSport);
+router.post('/addMatch', checkUser, matchController.addMatch);
+router.post('/editSport', checkUser, sportController.editSport);
+router.post('/addWinnerSport', checkUser, sportController.addWinnerSport);
+router.get('/sport/:sportID', sportController.viewSportDetails);
+router.put('/game/sponsor/:sponsor_id', checkUser, sponsorController.editSponsorDetails);
+router.delete('/game/sponsor/:sponsor_id', checkUser, sponsorController.deleteSponsorFromGame);
+router.delete('/deleteGame/:game_id' gameController.deleteGame);
+router.delete('/game/deleteSponsor/:sponsor_id', checkUser, sponsorController.deleteSponsorFromGame);
+router.delete('/deleteSport', checkUser, sportController.deleteSport);
+
+
 
 module.exports = router;
