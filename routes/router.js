@@ -31,6 +31,11 @@ function sha256Hash(req, res, next) {
     }
 }
 
+var competitorController = require("../controllers/competitor-controller");
+var organizerController = require("../controllers/organizer-controller");
+var teamController = require("../controllers/team-controller");
+
+//admin/system routers
 function bcryptHash(req, res, next) {
     bcrypt.hash(req.body.password, 10, (err, hash) => {
        if (!err) {
@@ -55,13 +60,30 @@ function checkUser(type) {
     };
 }
 
+//overall user routers
 router.post('/login', sha256Hash, userController.login);
 router.post('/organizer', adminController.createOrganizer);
 router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.get('/user/:id', userController.returnInfo);
 router.put('/user/update', userController.update)
 router.put('/user/active', checkUser('A'), adminController.changeActivity);
+router.get('/getUserInfo',userController.getUserInfo);
 
+//competitor routers
+router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
+router.put('/competitor/editCompetitor', competitorController.editCompetitor);
+
+//organizer routers
+router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);
+router.put('/organizer/editOrganizer', organizerController.editOrganizer);
+
+//team routers
+router.post('/team/createTeam',teamController.createTeam);
+router.post('/team/deleteTeam',teamController.deleteTeam);
+router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
+router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
+
+//game routers
 router.get('/game/:gameId', checkUser, gameController.viewGameDetails)
 router.post('/game/createGame', checkUser, gameController.createGame);
 router.post('/game/addSponsor', checkUser, sponsorController.addSponsorToGame);
@@ -69,7 +91,8 @@ router.put('/game/updateGame', checkUser, gameController.updateGame);
 router.put('/game/editSponsor', checkUser, sponsorController.editSponsorDetails);
 router.delete('/game/deleteGame/', checkUser, gameController.deleteGame);
 router.delete('/game/deleteSponsor', checkUser, sponsorController.deleteSponsorFromGame);
-	
+
+//sport routers
 router.get('/sport/:sportId', checkUser, sportController.viewSportDetails);
 router.post('/sport/createSport', checkUser, sportController.createSport);
 router.post('/sport/addMatch', checkUser, matchController.addMatch);
