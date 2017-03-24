@@ -59,6 +59,11 @@
   height: 100%;
 }
 
+.pic-modal {
+  width: 100%;
+  height: 100%;
+}
+
 .slidepic {
   width: 300px;
   height: 200px;
