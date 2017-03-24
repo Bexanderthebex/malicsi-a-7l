@@ -47,6 +47,6 @@ router.post('/organizer', adminController.createOrganizer);
 router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.get('/user/:id', userController.returnInfo);
 router.put('/user/update', userController.update)
-router.put('/user/active', checkUser('A'), adminController.changeActivity);
+//router.put('/user/active', checkUser('A'), adminController.changeActivity);
 
 module.exports = router;
