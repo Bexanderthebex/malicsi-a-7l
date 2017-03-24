@@ -1,29 +1,60 @@
 'use strict'
 
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+let crypto = require('crypto');
+let bcrypt = require('bcrypt');
 
-// var profileController = require("../controllers/sample-controller");
-// router.get('/getSampleSession', profileController.getSampleSession);
+let userController = require("../controllers/user-controller");
+let adminController = require('../controllers/admin-controller');
+let gameController = require('../controllers/game-controller');
+let sponsorController = require('../controllers/sponsor-controller')
+let sportController = require("../controllers/sport-controller");
+let matchController = require("../controllers/match-controller");
 
-var userController = require("../controllers/user-controller");
-var adminController = require('../controllers/admin-controller');
-var gameController = require('../controllers/game-controller');
-var sponsorController = require('../controllers/sponsor-controller')
-var sportController = require("../controllers/sport-controller");
-var matchController = require("../controllers/match-controller");
-
-function checkUser(req, res, next) {
-	console.log(req.session.user);
-	if (req.session.user !== undefined && (req.session.user.type === 'O' || req.session.user.type === 'A')) {
-		next();
-	} else {
-		res.status(403).send('Forbidden');
-	}
+function sha256Hash(req, res, next) {
+    if (req.body.password == undefined) {
+        res.status(404).send({ 'message' : 'Incorrect credentials'});
+    } else {
+        let hash = crypto.createHash('sha256');
+        hash.update(req.body.password);
+        req.body.password = hash.digest('hex');
+        next();
+    }
 }
 
-router.post('/login', userController.login);
+function bcryptHash(req, res, next) {
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+       if (!err) {
+           req.body.password = hash;
+           next();
+       } else {
+           console.log(err);
+           res.status(404).send('Error in bcrypt');
+       }
+    });
+}
+
+
+// Example usage: router.post('/r/anime', checkUser('O'), createGame);
+function checkUser(type) {
+    return (req, res, next) => {
+        if (req.session.user !== undefined && (req.session.user.type === type || req.session.user.type === 'A')) {
+            next();
+        } else {
+            res.status(401).send({'message': 'Unauthorized access.'});
+        }
+    };
+}
+
+router.post('/login', sha256Hash, userController.login);
 router.post('/organizer', adminController.createOrganizer);
+router.post('/register', sha256Hash, bcryptHash, userController.register);
+router.get('/user/:id', userController.returnInfo);
+router.put('/user/update', userController.update)
+router.put('/user/active', checkUser('A'), adminController.changeActivity);
+
+
 router.post('/register', userController.register);
 router.get('/game/:game_id', gameController.viewGameDetails)
 router.post('/game/addSponsor', sponsorController.addSponsorToGame);
@@ -39,6 +70,7 @@ router.delete('/game/sponsor/:sponsor_id', checkUser, sponsorController.deleteSp
 router.delete('/deleteGame/:game_id' gameController.deleteGame);
 router.delete('/game/deleteSponsor/:sponsor_id', checkUser, sponsorController.deleteSponsorFromGame);
 router.delete('/deleteSport', checkUser, sportController.deleteSport);
+
 
 
 module.exports = router;
