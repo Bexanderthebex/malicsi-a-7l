@@ -69,8 +69,5 @@ router.delete('/deleteSport', sportController.deleteSport);
 router.delete('/deleteGame/:game_id' gameController.deleteGame);
 router.delete('/game/deleteGame/', gameController.deleteGame);
 router.delete('/game/deleteSponsor/:sponsor_id', checkUser, sponsorController.deleteSponsorFromGame);
-router.delete('/deleteSport', checkUser, sportController.deleteSport);
-
-
 
 module.exports = router;
