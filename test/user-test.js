@@ -42,4 +42,31 @@ describe('MalICSi', function() {	//Describes the module
 				});
 		});
 	});
+
+
+		describe('/returnInfo', function() {	//Describes the specific feature
+
+		it('should load user data from database', function(done){
+				request(url)
+					.post('/returnInfo')
+					.send({'id': '001', 'username': 'Pat', 'is_active': 'true'})
+					.end(function(err, res) {	//catches the http response
+						res.should.status(200);	//translated as "response should (have) status 200"
+					
+						res.should.be.json;
+					      res.body.should.have.property('id');
+					      res.body.should.have.property('username');
+					      res.body.should.have.property('is_active');
+
+				        res.body.username.should.equal('Pat');
+						res.body.id.should.equal('001');
+						res.body.is_active.should.equal('true');
+						done();
+					});
+
+			  });
+
+		});
+
+
 });
