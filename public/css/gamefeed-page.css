@@ -1,15 +1,21 @@
+.game-container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 95%;
+}
+
+.search {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    position: inherit !important;
+}
+
 .padding-right {
     padding-right: 0rem !important;
 }
 
 .padding-left {
     padding-left: 0rem !important;
-}
-
-.game-container {
-    margin: 0 auto;
-    max-width: 1280px;
-    width: 95%;
 }
 
 .small-action {
@@ -46,18 +52,6 @@
   margin-bottom: 0px !important;
 }
 
-a:link {
-    color: black;
-}
-
-a:visited {
-    color: black;
-}
-
-a:active {
-    color: black;
-}
-
 .btn-height {
     height: 36px !important;
 }
@@ -68,4 +62,12 @@ a:active {
 
 .sort-adjust {
     margin-top: 9px !important;
+}
+
+#delete-modal_1 {
+    margin-top: 10%;
+}
+
+#add-modal {
+    margin-top: 5%;
 }
