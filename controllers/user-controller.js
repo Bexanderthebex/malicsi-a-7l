@@ -33,6 +33,11 @@ exports.login = (req, res) => {
 	});
 }
 
+exports.logout = (req, res) => {
+	req.session = null;
+	res.status(200).send({'message': 'Logout successful'});
+}
+
 exports.register = (req, res) => {
 	console.log(req.body);
 

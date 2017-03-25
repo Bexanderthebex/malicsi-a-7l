@@ -113,7 +113,6 @@ CREATE TABLE team (
 
 CREATE TABLE sport_match (
 	match_id INT NOT NULL AUTO_INCREMENT,
-	--winner INT,
 	time_start TIME NOT NULL,
 	time_end TIME NOT NULL,
 	sport_id INT NOT NULL,
