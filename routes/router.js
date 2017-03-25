@@ -45,6 +45,7 @@ function checkUser(type) {
 router.post('/login', sha256Hash, userController.login);
 router.post('/organizer', adminController.createOrganizer);
 router.post('/register', sha256Hash, bcryptHash, userController.register);
+router.get('/logout', userController.logout);
 router.get('/user/:id', userController.returnInfo);
 router.put('/user/update', userController.update)
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);

@@ -30,6 +30,11 @@ exports.login = (req, res) => {
 	});
 }
 
+exports.logout = (req, res) => {
+	req.session = null;
+	res.status(200).send({'message': 'Logout successful'});
+}
+
 exports.register = (req, res) => {
 	connection.query('INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?, true)',
 		[req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type], function(err, rows){
