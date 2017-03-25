@@ -163,3 +163,4 @@ CREATE TABLE log (
 	date_created DATETIME NOT NULL,
 	PRIMARY KEY(log_id)
 );
+
