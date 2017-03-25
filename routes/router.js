@@ -57,6 +57,7 @@ function checkUser(type) {
 
 router.post('/login', sha256Hash, userController.login);
 router.post('/organizer', adminController.createOrganizer);
+
 router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.get('/user/:id', userController.returnInfo);
 router.put('/user/update', userController.update)
@@ -79,3 +80,4 @@ router.delete('/sport/deleteSport', checkUser, sportController.deleteSport);
 
 
 module.exports = router;
+
