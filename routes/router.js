@@ -19,6 +19,7 @@ function checkUser(req, res, next) {
 	} else {
 		res.status(403).send('Forbidden');
 	}
+}
 
 function sha256Hash(req, res, next) {
     if (req.body.password == undefined) {
@@ -64,10 +65,10 @@ function checkUser(type) {
 router.post('/login', sha256Hash, userController.login);
 router.post('/organizer', adminController.createOrganizer);
 router.post('/register', sha256Hash, bcryptHash, userController.register);
+router.get('/logout', userController.logout);
 router.get('/user/:id', userController.returnInfo);
-router.put('/user/update', userController.update)
-router.put('/user/active', checkUser('A'), adminController.changeActivity);
-router.get('/getUserInfo',userController.getUserInfo);
+router.put('/user/update', userController.update);
+router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 
 //competitor routers
 router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
@@ -99,6 +100,5 @@ router.post('/sport/addMatch', checkUser, matchController.addMatch);
 router.post('/sport/addWinnerSport', checkUser, sportController.addWinnerSport);
 router.put('/sport/editSport', checkUser, sportController.editSport);
 router.delete('/sport/deleteSport', checkUser, sportController.deleteSport);
-
 
 module.exports = router;
