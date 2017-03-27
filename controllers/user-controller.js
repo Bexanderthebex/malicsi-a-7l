@@ -35,7 +35,7 @@ exports.logout = (req, res) => {
 	res.status(200).send({'message': 'Logout successful'});
 }
 
-exports.register = (req, res) => {
+exports.register = (req, res, next) => {
 	connection.query('INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?, true)',
 		[req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type], function(err, rows){
 		if(err) {
@@ -47,7 +47,7 @@ exports.register = (req, res) => {
 				username: req.body.username,
 				type: req.body.type
 			};
-			res.status(200).send({ 'message' : 'Successfully inserted new user'});
+			next();
 		}
 	});
 }
