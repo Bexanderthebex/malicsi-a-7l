@@ -1,3 +1,5 @@
+'use strict'
+
 var connection = require(__dirname + './../config/db-connection');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
@@ -15,6 +17,7 @@ exports.editSport = function(req, res, next){
 			   else
 			        res.status(404).send("edit unsuccessful. error occured");
 		});
+}
 
 exports.createSport = (req, res) => {
 	const newSport = {

@@ -19,6 +19,7 @@ function checkUser(req, res, next) {
 	} else {
 		res.status(403).send('Forbidden');
 	}
+}
 
 function sha256Hash(req, res, next) {
     if (req.body.password == undefined) {
