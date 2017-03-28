@@ -1,18 +1,19 @@
 'use strict'
 // const mysql = require('mysql');
 // const bodyParser = require('body-parser');
+
 const connection = require('./../config/db-connection.js');
 
 /**
- * POST /organizer
- * createOrganizer: Adds a new organizer
- *
- * PARAMERTERS:
- * username: username of new organizer
- * password: password of new organizer
- * name: name of new organizer
- * description: description of new organizer
- */
+* POST /organizer
+* createOrganizer: Adds a new organizer
+*
+* PARAMERTERS:
+* username: username of new organizer
+* password: password of new organizer
+* name: name of new organizer
+* description: description of new organizer
+*/
 exports.createOrganizer = (req, res) => {
 	let query = `
 		INSERT INTO user SET ?;
