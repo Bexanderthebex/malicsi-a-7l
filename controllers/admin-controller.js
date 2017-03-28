@@ -66,16 +66,3 @@ exports.changeActivity = (req, res) => {
 		}
 	});
 }
-
-exports.connectionPath = (type) => {
-	switch (type){
-		case 'A':
-			return ('./../config/db-admin-connection.js')
-		case 'C':
-			return ('./../config/db-competitor-connection.js')
-		case 'O':
-			return ('./../config/db-organizer-connection.js')
-		case 'G':
-			return ('./../config/db-guest-connection.js')
-	}
-}
