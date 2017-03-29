@@ -9,7 +9,7 @@
 			</div>
 			<div id="visited-competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getvisited-competitor()">
 				<h3 class="rockwell">{{ visited-competitor.nickname }}</h3>
-				<button data-target="invite-to-teams-modal" class="minimalist-button modal-trigger">Invite to Teams</button>
+				<button id="invite-to-teams-button" data-target="invite-to-teams-modal" class="minimalist-button modal-trigger">Invite to Teams</button>
 				<p class="telegrafico">Name: {{ visited-competitor.firstname }} {{ visited-competitor.lastname }}</p>
 				<p class="telegrafico">Contact: {{ visited-competitor.contact }} | E-mail: {{ visited-competitor.email }}</p>
 				<p class="telegrafico">
@@ -187,7 +187,7 @@
 </div>
 
 <!-- Edit Profile Modal -->
-<div id="invite-to-teams-modalmodal" class="modal">
+<div id="invite-to-teams-modal" class="modal">
 	<div class="row remove-bottom">
 		<div class="col s12 padding-left padding-right palette-5">
 			<div class="center">
@@ -203,12 +203,12 @@
 		<div class="row">
 			<form class="col s12">
 				<div class="input-field col l12 m12 s12">
-					<span><input id="team-1" type="checkbox" name="team" value="">
-					<label class="black-text telegrafico" for="team-1" ng-model="">Team 1</label></span>
-					<span><input id="team-2" type="checkbox" name="team" value="">
-					<label class="black-text telegrafico" for="team-2" ng-model="">Team Two</label></span>
-					<span><input id="team-3" type="checkbox" name="team" value="">
-					<label class="black-text telegrafico" for="team-3" ng-model="">Team Threeeee</label></span>
+					<p><span><input id="team-1" type="checkbox" name="team" value="">
+					<label class="black-text telegrafico" for="team-1" ng-model="">Team 1</label></span></p>
+					<p><span><input id="team-2" type="checkbox" name="team" value="">
+					<label class="black-text telegrafico" for="team-2" ng-model="">Team Two</label></span></p>
+					<p><span><input id="team-3" type="checkbox" name="team" value="">
+					<label class="black-text telegrafico" for="team-3" ng-model="">Team Threeeee</label></span></p>
 				</div>
 			</form>
 		</div>
@@ -291,4 +291,4 @@
 
 <!--  Scripts-->
 <script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>
-<script type="text/javascript" src="../js/visited-competitor-visited-profile-page.js"></script>
+<script type="text/javascript" src="../js/competitor-visited-profile-page.js"></script>
