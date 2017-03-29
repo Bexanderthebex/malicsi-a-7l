@@ -11,6 +11,7 @@ let gameController = require('../controllers/game-controller');
 let sponsorController = require('../controllers/sponsor-controller')
 let sportController = require("../controllers/sport-controller");
 let matchController = require("../controllers/match-controller");
+let logController = require("../controllers/log-controller");
 
 function checkUser(req, res, next) {
 	console.log(req.session.user);
@@ -100,5 +101,9 @@ router.post('/sport/addMatch', checkUser, matchController.addMatch);
 router.post('/sport/addWinnerSport', checkUser, sportController.addWinnerSport);
 router.put('/sport/editSport', checkUser, sportController.editSport);
 router.delete('/sport/deleteSport', checkUser, sportController.deleteSport);
+
+//log routers
+router.get('/log/viewAllLogs', checkUser, logController.viewAllLogs);
+router.post('/log/viewLogsByDate', checkUser, logController.viewLogsByDate);
 
 module.exports = router;
