@@ -40,18 +40,13 @@ exports.logout = (req, res) => {
 
 exports.register = (req, res) => {
 	// console.log(req.body);
-
-	connection.query('INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?,?)',
-		[
-			req.body.username, 
-			req.body.password, 
-			req.body.email,
-			req.body.contact,
-			req.body.type,
-			req.body.is_active
-		], function(err, rows){
+	var insert_query = 'INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?,?)';
+	
+	connection.query(insert_query, [req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type, req.body.is_active], function(err, rows){
 			if(!err) {
-				connection.query('SELECT * from user where username = ? && email = ?', [req.body.username, req.body.email], function(err, rows) {
+				var select_query = 'SELECT * from user where username = ? && email = ?';
+
+				connection.query(select_query, [req.body.username, req.body.email], function(err, rows) {
 					if(!err) {
 						req.session.user = {
 							id: rows[0].id,
