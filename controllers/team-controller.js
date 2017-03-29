@@ -5,11 +5,11 @@ const connection = require('./../config/db-connection.js');
 
 exports.createTeam = function(req, res){
     currentUser = req.session.user;
-    query = "INSERT INTO team(id, sport_id, team_organization, team_sport, pending_participation) VALUES (?, ?, ?, ?, FALSE)";
-    connection.query(query, [currentUser.id, req.body.sport_id, req.body.organization_id, req.body.team_sport], function(err, rows){
+    query = "INSERT INTO team(id, sport_id, team_organization, team_sport, pending_participation) VALUES (?, ?, ?, ?, 0)";
+    connection.query(query, [req.body.id, req.body.sport_id, req.body.organization_id, req.body.team_sport], function(err, rows){
             if(!err) {
                 res.status(200).send({ 'message' : 'Sucessfully created team'});
-                return(connection.query("SELECT * FROM team WHERE id = ?", [currentUser.id]));
+                return(connection.query("SELECT * FROM team WHERE id = ?", [req.body.id]));
             } else {
                 res.status(500).send({ 'message' : 'An error occured'});
                 return 500;
@@ -78,7 +78,7 @@ exports.deleteTeam = function(req, res){
 exports.teamMembershipRequest = function(req, res){
     currentUser = req.session.user;
     query = "INSERT INTO competitor_joins_team(id, team_id, is_member) VALUES(?,?,FALSE)";
-    connection.query(query, [currentUser.id, req.body.team_id],
+    connection.query(query, [req.body.id, req.body.team_id],
             function(err, rows){
             if(!err) {
                 res.status(200).send({ 'message' : 'Sucessfully sent request'});
@@ -93,7 +93,7 @@ exports.teamMembershipRequest = function(req, res){
 exports.acceptMembershipRequest = function(req, res){
     currentUser = req.session.user;
     query = "UPDATE competitor_joins_team SET is_member = TRUE where id = ? AND team_id = ?";
-    connection.query(query, [currentUser.id ,req.body.competitor_id],
+    connection.query(query, [req.body.id ,req.body.competitor_id],
         function(err, rows){
                 if(!err) {
                     res.status(200).send({ 'message' : 'Sucessfully accepted request'});
