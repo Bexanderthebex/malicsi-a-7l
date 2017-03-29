@@ -36,11 +36,10 @@ describe('MalICSi', function() {	//Describes the module
 						'password':'hehehe',
 						'email': 'example@up.edu.ph',
 						'contact': '0912345678',
-						'type': 'C',
-						'is_active': 1
+						'type': 'C'
 					})
 				.end(function(err,res){
-					res.should.status(404);
+					res.should.status(501);
 					done();
 				});
 		});
@@ -52,7 +51,7 @@ describe('MalICSi', function() {	//Describes the module
 						'password':'A-7L'
 					})
 				.end(function(err,res){
-					res.should.status(404);
+					res.should.status(501);
 					done();
 				});
 		});
