@@ -54,12 +54,10 @@
             return deferred.promise;
         }
 
-        function getCompetitor(id){
+        function getCompetitor(){
             let deferred = $q.defer();
-
             $http({
                 method: 'GET',
-                data: $.param(id),
                 url: '/competitor/getCompetitor',
                 headers: headers
             }).then((res) => {
@@ -71,12 +69,11 @@
             return deferred.promise;
         }
 
-        function getCompetitorTeams(id){
+        function getCompetitorTeams(){
             let deferred = $q.defer();
 
             $http({
                 method: 'GET',
-                params: id,
                 url: '/competitor/getCompetitorTeams',
                 headers: headers
             }).then((res) => {

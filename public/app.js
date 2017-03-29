@@ -39,7 +39,8 @@
             })
             .when('/competitor/profile', {
                 'templateUrl': 'views/competitor-profile-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'CompetitorController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/competitor/profile/:id', {

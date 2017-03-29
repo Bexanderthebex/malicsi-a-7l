@@ -60,6 +60,24 @@ exports.teamMembershipRequest = (req, res) => {
     );
 }
 
+exports.deleteMembershipRequest = (req, res) => {
+    currentUser = req.session.user;
+    query = "CALL delete_membership_request(?,?)";
+    
+    connection.userType('A').query(query, 
+        [
+            req.body.id,
+            req.body.team_id
+        ], (err, rows) => {
+                if(!err) {
+                    return res.status(200).send({ 'message' : 'Sucessfully deleted request'});
+                } else {
+                    return res.status(500).send({ 'message' : 'An error occured'});
+                }
+        }
+     );
+}
+
 exports.acceptMembershipRequest = (req, res) => {
     currentUser = req.session.user;
     query = "CALL accept_membership_request(?,?)";
