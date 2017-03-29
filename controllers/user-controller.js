@@ -39,23 +39,37 @@ exports.logout = (req, res) => {
 }
 
 exports.register = (req, res) => {
-	console.log(req.body);
+	// console.log(req.body);
 
-	connection.query('INSERT INTO user (username, password, is_active, is_admin, contact, email) values(?,?,?,?,?,?)',
-		[req.body.username, req.body.password, req.body.active, req.body.admin, req.body.contact, req.body.email], function(err, rows){
-		if(err) {
-			console.log(err);
-			return res.status(404).send({ 'message' : 'Error inserting new user!'});
-		}else{
-			req.session.user = {
-				id: rows.insertId,
-				username: req.body.username,
-				type: req.body.type
-			};
-			res.status(200).send({ 'message' : 'Successfully inserted new user'});
-		}
-	});
+	connection.query('INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?,?)',
+		[
+			req.body.username, 
+			req.body.password, 
+			req.body.email,
+			req.body.contact,
+			req.body.type,
+			req.body.is_active
+		], function(err, rows){
+			if(!err) {
+				connection.query('SELECT * from user where username = ? && email = ?', [req.body.username, req.body.email], function(err, rows) {
+					if(!err) {
+						req.session.user = {
+							id: rows[0].id,
+							username: rows[0].username,
+							type: rows[0].type
+						};
+					}
+				});
+
+				return res.status(200).send({ 'message' : 'Successful'});
+			}else{
+				console.log(err);
+				return res.status(501).send({ 'message' : 'Not implemented'});
+			}
+		});
 }
+
+
 
 exports.update = (req, res) =>{
 	connection.query('UPDATE user SET username = ?, password = ?, email = ?, contact = ? WHERE id = ?', [req.body.username, req.body.password, req.body.email, req.body.contact, req.session.user.id], function (err, rows){
