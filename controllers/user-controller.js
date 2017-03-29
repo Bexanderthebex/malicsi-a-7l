@@ -40,9 +40,9 @@ exports.logout = (req, res) => {
 
 exports.register = (req, res) => {
 	// console.log(req.body);
-	var insert_query = 'INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?,?)';
+	var insert_query = 'INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?,true)';
 	
-	connection.query(insert_query, [req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type, req.body.is_active], function(err, rows){
+	connection.query(insert_query, [req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type], function(err, rows){
 			if(!err) {
 				var select_query = 'SELECT * from user where username = ? && email = ?';
 
