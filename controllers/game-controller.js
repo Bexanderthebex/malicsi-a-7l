@@ -4,34 +4,38 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 
-exports.createGame = (req, res) => {
-	let newGame = {
-		organizer_id : req.body.orgId,
-		name : req.body.gameName,
-		start_date : req.body.startDate,
-		end_date : req.body.endDate,
-		location  : req.body.location,
-		description  : req.body.description
-	}
 
-	connection.query('INSERT INTO game SET ?', newGame, (err, row) => {
+
+exports.createGame = (req, res) => {
+	let query = 'CALL create_game(?,?,?,?,?,?);'
+	connection.userType('A').query(query
+	, [req.body.orgID,
+	   req.body.gameName,
+	   req.body.startDate,
+	   req.body.endDate,
+	   req.body.locat,
+	   req.body.descrip
+	   ], 
+
+	   (err, row) => {
 		if(!err){
 			res.status(200).send("Successfully");
 		}
 		else{
-			res.status(500).send("Internal Server Error");
+			res.status(500).send(err);
 		}
 	});
 }
 
 exports.updateGame = (req, res) => {
-	connection.query("UPDATE game SET name = ?, start_date = ?, end_date = ?, location = ?, description = ? WHERE game_id = ?"
-			, [req.body.name,
+	let query = 'CALL update_game(?,?,?,?,?,?);'
+	connection.userType('A').query(query
+			, [req.body.gameId,
+			   req.body.name,
 			   req.body.startDate,
 			   req.body.endDate,
 			   req.body.location,
 			   req.body.description,
-			   req.body.gameId
 			  ],
 
 			   (err, rows) =>{
@@ -45,26 +49,30 @@ exports.updateGame = (req, res) => {
 }
 
 exports.viewGameDetails = (req, res) => {
-	let query = 'select game.name, start_date,end_date, location, game.description, organizer.name as organizer_name , organizer.description as organizer_description, datediff(end_date, start_date) as game_duration from game,organizer where game.organizer_id = organizer.id and game_id = ?';
-	connection.query(query, 
-		[req.params.game_id], 
+	let query = 'call viewGameDetails(?);';
+
+	connection.userType('A').query(query, 
+		[req.params.gameId], 
 		(err, results, fields)	=> {
-		if (err) {
+
+		if (!err && results[0].length!=0) {
+			res.status(200).send(results);
+		}
+		else if (results[0].length==0){
+			res.status(404).send("Game not found.");
+		}		
+		else{
 			console.log(err.code);
 			res.status(500).send("An error occurred.");
 			throw err;
 		}
-		else if (results.length==0){
-			res.status(404).send("Game not found.");
-		}
-		else
-			res.status(200).send(results);
-
+		
 	});
 }
 
 exports.deleteGame = (req, res) => {
-	connection.query('DELETE FROM game WHERE game_id = ?', [req.body.gameId], function(err, rows) {
+	let query = 'CALL delete_game(?);'
+	connection.userType('A').query(query, [req.body.gameId], function(err, rows) {
 		if(!err){
 			if (rows.length == 0) {
 				res.status(501).send('Not Implemented');
