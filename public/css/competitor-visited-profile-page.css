@@ -7,23 +7,23 @@
 /**********************************************************************************************/
 
 
-#competitor-profile-img {
+#visited-profile-img {
 	width: 100%;
 	height: auto;
 }
 
-#competitor-basic-info {
+#visited-basic-info {
 	padding-left: 3%;
 }
 
 /**********************************************************************************************/
 
-#competitor-games-played {
+#visited-games-played {
 	overflow: auto;
 	white-space: nowrap;
 }
 
-#competitor-games-played a { 
+#visited-games-played a { 
 	display: inline-block;
 	text-align: center;
 	padding: 14px;
@@ -32,7 +32,7 @@
 	cursor: pointer;
 }
 
-.competitor-game-img {
+.visited-game-img {
 	width: 200px;
 	border-radius: 5px;
 }
