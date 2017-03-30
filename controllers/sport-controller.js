@@ -8,24 +8,24 @@ exports.editSport = (req, res, next) => {
 	let query = 'call editSport(?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
 	connection.userType('A').query(query,
-			[
-				req.body.sport_name,
-				req.body.mechanics,
-				req.body.time_start,
-				req.body.time_end,
-				req.body.start_date,
-				req.body.end_date,
-				req.body.sport_date,
-			   	req.body.scoring_system,
-			   	req.body.sport_id
-			], function(err, rows){
-			   		if(!err){
-			        	res.status(200).send(rows);
-			        } 
-			   		else{
-			       		 res.status(404).send("edit unsuccessful. error occured");
-			        }
-				});
+	[
+		req.body.sport_name,
+		req.body.mechanics,
+		req.body.time_start,
+		req.body.time_end,
+		req.body.start_date,
+		req.body.end_date,
+		req.body.sport_date,
+		req.body.scoring_system,
+		req.body.sport_id
+	], function(err, rows){
+	if(!err){
+		res.status(200).send(rows);
+	} 
+	else{
+		res.status(404).send("edit unsuccessful. error occured");
+	}
+	});
 }
 
 exports.createSport = (req, res) => {
