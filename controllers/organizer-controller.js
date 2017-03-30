@@ -42,10 +42,11 @@ exports.editOrganizer = (req,res) => {
 }
 
 exports.findGames = (req,res,next) =>{
-
-	connection.query("SELECT * from game WHERE game.organizer_id = ?"
-		, [req.query.id],
-		function(err,rows){
+	query = "CALL findGames"
+	connection.userType('A').query(query, 
+		[
+			req.query.id
+		], function(err,rows){
 		if(!err){
 			if(row.length == 1){
 				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
@@ -55,16 +56,17 @@ exports.findGames = (req,res,next) =>{
 				return rows;
 			}
 		} else {
-			res.status(500).send({'message' : 'Internal Server Error'})
+		 	res.status(500).send({'message' : 'Internal Server Error'})
 		}
 		});
-};
-
+};		 
+		 
 exports.findSport = (req,res,next) =>{
-
-	connection.query("SELECT * from sport WHERE sport.game_id = ?"
-		, [req.query.game_id],
-		function(err,rows){
+	query = "CALL findSport(?)"
+	connection.userType('A').query(query, 
+		[
+		 	req.query.game_id
+		], function(err,rows){
 		if(!err){
 			if(row.length == 1){
 				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
@@ -80,10 +82,11 @@ exports.findSport = (req,res,next) =>{
 };
 
 exports.findTeam = (req,res,next) =>{
-
-	connection.query("SELECT * from team WHERE team.sport_id = ?"
-		, [req.query.sport_id],
-		function(err,rows){
+	query = "CALL findTeam(?)"
+	connection.userType('A').query(query, 
+		[
+			req.query.sport_id
+		], function(err,rows){
 		if(!err){
 			if(row.length == 1){
 				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
@@ -100,13 +103,15 @@ exports.findTeam = (req,res,next) =>{
 
 
 exports.getRequest = (req, res, next) => {
-	connection.query("SELECT * from team WHERE team_id = ?"
-	, [req.query.team_id],
-		function(err,rows){
+	query = "CALL getRequest(?)"
+	connection.userType('A').query(query, 
+		[
+			req.query.team_id
+		], function(err,rows){
 		if(!err){
 			if(row.length == 1){
 				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-				return rows[0];
+				return(rows[0][0]);
 			} else {
 				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
 				return rows;
@@ -119,10 +124,12 @@ exports.getRequest = (req, res, next) => {
 
 
 exports.acceptRequest = (req, res, next) => {
-
-	connection.query("UPDATE team SET pending_participation = TRUE WHERE team_id =?"
-	, [req.query.team_id],
-	function(err,rows){
+	query = "CALL acceptRequest(?)"
+	console.log(query);
+	connection.userType('A').query(query, 
+		[
+			req.query.team_id
+		], function(err,rows){
 		if(!err){
 			res.status(200).send({'message' : 'Sucuessfully Updated Request'});
 			connection.query("SELECT * from team WHERE team_id = ? "
