@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 exports.login = (req, res) => {
 	let query = `SELECT id, username, type, password FROM user WHERE username = ?`;
 
-				console.log(req.body.password);	
+				console.log(req.body.password);
 	connection.query(query, [req.body.username], function(err, rows){
 		if(!err) {
 			if (rows.length == 1) {
