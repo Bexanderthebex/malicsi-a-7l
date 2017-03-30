@@ -185,3 +185,13 @@ table.darken > tbody > tr:hover {
     height: 50px;
     width: 50px;
 }
+
+.search {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    position: inherit !important;
+}
+
+.btn-height {
+    height: 36px !important;
+}

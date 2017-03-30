@@ -71,3 +71,12 @@
 #add-modal {
     margin-top: 5%;
 }
+
+.extend-header {
+    height: 200px;
+    padding-top: 25px;
+}
+
+.sort-section {
+    width: 20%;
+}
