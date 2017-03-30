@@ -2,7 +2,7 @@ USE malicsi;
 DROP procedure IF EXISTS createTeam;
 DELIMITER //
 
-CREATE PROCEDURE createTeam (IN id INT, IN sport_id INT, IN team_organization INT, IN team_sport VARCHAR(50)) 
+CREATE PROCEDURE create_team (IN id INT, IN sport_id INT, IN team_organization INT, IN team_sport VARCHAR(50)) 
 
 
 BEGIN
@@ -17,7 +17,7 @@ DROP procedure IF EXISTS deleteTeam;
 
 DELIMITER ;
 
-CREATE PROCEDURE deleteTeam (IN team_id INT) 
+CREATE PROCEDURE delete_team (IN team_id INT) 
 
 
 BEGIN
@@ -33,7 +33,7 @@ DROP procedure IF EXISTS teamMembershipRequest;
 
 DELIMITER ;
 
-CREATE PROCEDURE teamMembershipRequest (IN id INT, IN team_id INT) 
+CREATE PROCEDURE team_membership_request (IN id INT, IN team_id INT) 
 
 
 BEGIN
@@ -47,7 +47,7 @@ END; //
 DROP procedure IF EXISTS acceptMembershipRequest;
 DELIMITER ;
 
-CREATE PROCEDURE acceptMembershipRequest (IN id INT, IN competitor_id INT) 
+CREATE PROCEDURE accept_membership_request (IN id INT, IN competitor_id INT) 
 
 
 BEGIN

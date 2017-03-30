@@ -42,7 +42,7 @@ exports.editOrganizer = (req,res) => {
 }
 
 exports.findGames = (req,res,next) =>{
-	query = "CALL findGames"
+	query = "CALL find_games"
 	connection.userType('A').query(query, 
 		[
 			req.query.id
@@ -62,7 +62,7 @@ exports.findGames = (req,res,next) =>{
 };		 
 		 
 exports.findSport = (req,res,next) =>{
-	query = "CALL findSport(?)"
+	query = "CALL find_sport(?)"
 	connection.userType('A').query(query, 
 		[
 		 	req.query.game_id
@@ -82,7 +82,7 @@ exports.findSport = (req,res,next) =>{
 };
 
 exports.findTeam = (req,res,next) =>{
-	query = "CALL findTeam(?)"
+	query = "CALL find_team(?)"
 	connection.userType('A').query(query, 
 		[
 			req.query.sport_id
@@ -103,7 +103,7 @@ exports.findTeam = (req,res,next) =>{
 
 
 exports.getRequest = (req, res, next) => {
-	query = "CALL getRequest(?)"
+	query = "CALL get_request(?)"
 	connection.userType('A').query(query, 
 		[
 			req.query.team_id
@@ -124,7 +124,7 @@ exports.getRequest = (req, res, next) => {
 
 
 exports.acceptRequest = (req, res, next) => {
-	query = "CALL acceptRequest(?)"
+	query = "CALL accept_request(?)"
 	console.log(query);
 	connection.userType('A').query(query, 
 		[
