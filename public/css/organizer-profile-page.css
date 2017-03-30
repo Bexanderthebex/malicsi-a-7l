@@ -1,23 +1,23 @@
-#header-img {
-	width: 100%;
-	height: auto;
-}
-
-#profile-photo {
-	position: absolute;
-	margin-top: -6%;
-	margin-left: 5%;
-}
-
-#profile-img {
-	width: 25%;
-	height: auto;
+#stats {
+    margin-top: 0px;
 }
 
 #left-panel {
-	margin-top: 5%;
+    margin-top: 0px;
+    /*position: fixed;
+    width: 25%;*/
 }
 
-.slider5 {
-	width: 100%;
+/*#right-panel {
+    position: relative;
+    margin-left: 25%;
+}*/
+
+#slider-img {/*
+    width: 20%;
+    height: auto;*/
+}
+
+.slide-item {
+    margin-bottom: 0px !important;
 }
