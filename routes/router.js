@@ -87,11 +87,11 @@ router.post('/team/acceptMembershipRequest',teamController.acceptMembershipReque
 
 //game routers
 router.get('/game/:gameId', checkUser, gameController.viewGameDetails)
-router.post('/game/createGame', checkUser, gameController.createGame);
+router.post('/game/createGame', gameController.createGame);
 router.post('/game/addSponsor', checkUser, sponsorController.addSponsorToGame);
-router.put('/game/updateGame', checkUser, gameController.updateGame);
+router.put('/game/updateGame',gameController.updateGame);
 router.put('/game/editSponsor', checkUser, sponsorController.editSponsorDetails);
-router.delete('/game/deleteGame/', checkUser, gameController.deleteGame);
+router.delete('/game/deleteGame/',gameController.deleteGame);
 router.delete('/game/deleteSponsor', checkUser, sponsorController.deleteSponsorFromGame);
 
 //sport routers
