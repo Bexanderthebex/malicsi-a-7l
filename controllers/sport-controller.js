@@ -5,7 +5,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
 exports.editSport = (req, res, next) => {
-	let query = 'call editSport(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+	let query = 'CALL edit_sport(?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
 	connection.userType('A').query(query,
 	[
@@ -79,7 +79,7 @@ exports.addWinnerSport = (req, res, next) => {
 }
 
 exports.deleteSport = (req, res, next) => {
-	let query = 'call deleteSport(?)'
+	let query = 'CALL delete_sport(?)'
 
 	connection.userType('A').query(query,
 		[
