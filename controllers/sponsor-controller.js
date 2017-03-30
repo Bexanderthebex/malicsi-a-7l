@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 
 exports.addSponsorToGame = (req, res) => {
-	var query = 'call addSponsorToGame(?, ?)';
+	var query = 'CALL add_sponsor_to_game(?, ?)';
 	var params = {
 		sponsor_id : req.body.sponsorId,
 		game_id : req.body.gameId
@@ -37,7 +37,7 @@ exports.addSponsorToGame = (req, res) => {
 }
 
 exports.editSponsorDetails = (req, res) => {
-	var query = 'CALL editSponsorDetails(?,?)';
+	var query = 'CALL edit_sponsor_details(?,?)';
 	connection.query(query, 
 		[req.body.description, 
 		req.body.sponsor_id
@@ -63,7 +63,7 @@ exports.editSponsorDetails = (req, res) => {
 }
 
 exports.deleteSponsorFromGame = (req, res) => {
-	var query = 'CALL deleteSponsorFromGame(?,?)';
+	var query = 'CALL delete_sponsor_from_game(?,?)';
 	connection.query(query, 
 		[req.body.sponsor_id,
 		 req.body.game_id
