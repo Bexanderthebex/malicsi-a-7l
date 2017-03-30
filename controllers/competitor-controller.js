@@ -25,21 +25,31 @@ exports.searchCompetitor = (req, res) => {
 
 exports.editCompetitor = (req,res) => {
 	currentUser = req.session.user;
-	query = 'UPDATE competitor SET first_name = ?, last_name = ?, birthday = ?, nickname = ?, sex = ? WHERE id = ?';
+	query = "CALL edit_competitor(?,?,?,?,?,?)";
+	query1 = "SELECT * from competitor where id = ?";
 
-	connection.query(query, [req.body.first_name, req.body.last_name, req.body.birthday, req.body.nickname, req.body.sex, req.body.id], function(err, rows){
-		if(!err) {
-			query = 'SELECT * from competitor where id = ?';
+	connection.userType('A').query(query,
+		[
+			req.body.first_name, 
+			req.body.last_name, 
+			req.body.birthday, 
+			req.body.nickname, 
+			req.body.sex, 
+			req.body.id
+		], function(err, rows){
+			if(!err) {
+				connection.query(query1, 
+					[
+						req.body.id
+					], function(err, rows) {
+					if(!err) {
+						res.status(200).send(rows[0]);
+						return rows[0];
+					}
+				});
 
-			connection.query(query, [req.body.id], function(err, rows) {
-				if(!err) {
-					res.status(200).send(rows[0]);
-					return rows[0];
-				}
-			});
-
-		} else {
-			return res.status(501).send({ 'message' : 'Not implemented'});
-		}
+			} else {
+				return res.status(501).send({ 'message' : 'Not implemented'});
+			}
 	});
 }
