@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+	<head>
+		<title>MalICSi</title>
+
+		<!-- CSS -->
+	  	<link href="frontend_modules/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	  	<link href="frontend_modules/css/jquery.bxslider.min.css" type="text/css" rel="stylesheet"/>
+	  	<link href="css/style.css" type="text/css" rel="stylesheet"/>
+	  	<link href="fa/css/font-awesome.min.css" rel="stylesheet" >
+	  	<link href="frontend_modules/css/slick.css" type="text/css" rel="stylesheet"/>
+        <link href="frontend_modules/css/slick-theme.css" type="text/css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="css/competitor-profile-page.css" type="text/css" rel="stylesheet"/>
+        <link href="css/error-404-page.css" type="text/css" rel="stylesheet"/>
+        <link href="css/gamefeed-page.css" type="text/css" rel="stylesheet"/>
+        <link href="css/game-page.css" type="text/css" rel="stylesheet"/>
+        <link href="css/help.css" type="text/css" rel="stylesheet"/>
+        <link href="css/home-page.css" type="text/css" rel="stylesheet"/>
+        <link href="css/login-page.css" type="text/css" rel="stylesheet"/>
+        <link href="css/organization-page.css" type="text/css" rel="stylesheet"/>
+        <link href="css/organizer-profile-page.css" type="text/css" rel="stylesheet"/>
+        <link href="css/search-page.css" type="text/css" rel="stylesheet"/>
+        <link href="css/sports-page.css" type="text/css" rel="stylesheet"/>
+
+
+		<!-- JS -->
+		<script src="frontend_modules/js/angular.min.js"></script>
+		<script src="frontend_modules/js/angular-route.min.js"></script>
+	  	<script src="frontend_modules/js/jquery-3.1.1.min.js"></script>
+	  	<script src="frontend_modules/js/jquery.bxslider.min.js"></script>
+		<script src="frontend_modules/js/jquery-2.2.5.min.js"></script>
+		<script src="js/slider.js"></script>
+
+	</head>
+
+	<body>
+	<!-- NAVIGATION BAR -->
+	<ul id="dropdown1" class="dropdown-content">
+		<li><a href="#!">one</a></li>
+		<li><a href="#!">two</a></li>
+		<li class="divider"></li>
+		<li><a href="#!">three</a></li>
+	</ul>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo center">Logo</a>
+			<ul class="left hide-on-med-and-down">
+		    	<li><a class="dropdown-button" href="" data-activates="dropdown1">Games</a></li>
+		    	<li><a href="">Profile</a></li>
+		    	<li><a href="">Components</a></li>
+		    	<!-- Dropdown Trigger -->
+		    </ul>
+
+		    <ul class="right hide-on-med-and-down">
+		    	<li><a href="">Log-in</a></li>
+		    	<!-- Dropdown Trigger -->
+		    </ul>
+		</div>
+	</nav>
+
+	<div ng-view></div>
+
+	<!--  Scripts-->
+ 	<script src="frontend_modules/js/materialize.js"></script>
+ 	<script src="frontend_modules/js/slick.min.js"></script>
+	</body>
+</html>
