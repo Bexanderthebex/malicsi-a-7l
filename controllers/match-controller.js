@@ -18,3 +18,21 @@ exports.addMatch = (req, res) => {
 		}
 	})
 }
+
+exports.editMatch = function(req, res, next){
+	connection.userType('A').query("CALL edit_match(?, ?, ?, ?, ?)"
+			[req.body.timeStart,
+			 req.body.timeEnd,
+			 req.body.date,
+			 req.body.remarks,
+			 req.body.matchID],
+			(err, rows) => {
+			if(!err){
+			    connection.userType('A').query('CALL view_match(?)', rows.insertId, (err, rows) => {
+					res.status(200).send(rows[0]);
+				})
+			}else{
+			    res.status(404).send("Not Found");
+			}
+		});
+}
