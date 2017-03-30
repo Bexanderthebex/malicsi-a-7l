@@ -28,6 +28,7 @@ function sha256Hash(req, res, next) {
         let hash = crypto.createHash('sha256');
         hash.update(req.body.password);
         req.body.password = hash.digest('hex');
+        console.log("Hi");
         next();
     }
 }
