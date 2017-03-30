@@ -41,8 +41,8 @@ exports.logout = (req, res) => {
 exports.register = (req, res) => {
 	console.log(req.body);
 
-	connection.query('INSERT INTO user (username, password, is_active, is_admin, contact, email) values(?,?,?,?,?,?)',
-		[req.body.username, req.body.password, req.body.active, req.body.admin, req.body.contact, req.body.email], function(err, rows){
+	connection.query('INSERT INTO user (username, password, is_active, contact, email, type) values(?,?,?,?,?,?)',
+		[req.body.username, req.body.password, req.body.active, req.body.contact, req.body.email, req.body.type], function(err, rows){
 		if(err) {
 			console.log(err);
 			return res.status(404).send({ 'message' : 'Error inserting new user!'});
