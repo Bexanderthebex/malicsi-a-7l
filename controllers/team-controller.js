@@ -6,7 +6,7 @@ const connection = require('./../config/db-connection.js');
 exports.createTeam = (req, res) => {
     currentUser = req.session.user;
     query = "CALL createTeam(?, ?, ?, ?)";
-    connection.query(query, [req.body.id, req.body.sport_id, req.body.organization_id, req.body.team_sport], function(err, rows){
+    connection.userType('A').query(query, [req.body.id, req.body.sport_id, req.body.organization_id, req.body.team_sport], function(err, rows){
             if(!err) {
                 res.status(200).send({ 'message' : 'Sucessfully created team'});
                 return(connection.query("SELECT * FROM team WHERE id = ?", [req.body.id]));
@@ -20,7 +20,7 @@ exports.createTeam = (req, res) => {
 exports.deleteTeam = (req, res) => {
     query = "CALL deleteTeam(?)";
    
-    connection.query(query, [req.body.team_id],
+    connection.userType('A').query(query, [req.body.team_id],
     function(err, rows){
             if(!err) {
                 res.status(200).send({ 'message' : 'Sucessfully deleted team'});
@@ -34,7 +34,7 @@ exports.deleteTeam = (req, res) => {
 exports.teamMembershipRequest = (req, res) => {
     currentUser = req.session.user;
     query = "CALL teamMembershipRequest(?,?)";
-    connection.query(query, [req.body.id, req.body.team_id],
+    connection.userType('A').query(query, [req.body.id, req.body.team_id],
             function(err, rows){
             if(!err) {
                 res.status(200).send({ 'message' : 'Sucessfully sent request'});
@@ -49,7 +49,7 @@ exports.teamMembershipRequest = (req, res) => {
 exports.acceptMembershipRequest = (req, res) => {
     currentUser = req.session.user;
     query = "CALL acceptMembershipRequest(?,?)";
-    connection.query(query, [req.body.id ,req.body.competitor_id],
+    connection.userType('A').query(query, [req.body.id ,req.body.competitor_id],
         function(err, rows){
                 if(!err) {
                     res.status(200).send({ 'message' : 'Sucessfully accepted request'});
