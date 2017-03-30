@@ -54,10 +54,10 @@
         <div id="main" class="container">
             <div class="row">
                 <!-- Left Panel -->
-                <div class="col s12 m3 l3" id="left-panel">
-                    <div class="card">
+                <div id="left-panel" >
+                    <div class="card blue darken-4">
                         <div class="card-image">
-                            <img src="assets/profile.gif" id="profile-img">
+                            <img src="assets/avatar.png" id="profile-img">
                         </div>
                         <ul class="collection" id="stats">
                             <li class="collection-item">Ongoing Games<span class="badge">3</span></li>
@@ -68,16 +68,16 @@
                     </div>
                 </div>
                 <!-- Right Panel -->
-                <div class="col s12 m9 l9" id="right-panel">
+                <div id="right-panel">
                     <div class="row">
-                        <h4>John Doe</h4>
+                        <h4>Joanne Doe</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>
                     </div>
 
                     <div class="row">
                         <h5>Games Handled</h5>
                         
-                        <ul class="tabs tabs-transparent light-blue darken-3">
+                        <ul class="tabs tabs-transparent blue darken-4">
                             <li class="tab col s4"><a class="active white-text" href="#ongoing">Ongoing</a></li>
                             <li class="tab col s4"><a class="white-text" href="#incoming">Incoming</a></li>
                             <li class="tab col s4"><a class="white-text" href="#past">Past</a></li>
@@ -347,9 +347,9 @@
                                 <div class="row">
                                     <div class="col s3"><h6>Game</h6></div>
                                     <div class="col s9">
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Game" id="create-game"><i class="material-icons left">add</i></a>
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Game" id="update-game"><i class="material-icons left">update</i></a>
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Game" id="delete-game"><i class="material-icons left">delete</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Game" id="create-game" href="#create-game-modal"><i class="material-icons left">add</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Game" id="update-game" href="#update-game-modal"><i class="material-icons left">update</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Game" id="delete-game" href="#delete-game-modal"><i class="material-icons left">delete</i></a>
                                     </div>
                                 </div>
                             </div>
@@ -357,9 +357,9 @@
                                 <div class="row">
                                     <div class="col s3"><h6>Sports</h6></div>
                                     <div class="col s9">
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Sports" id="create-sports"><i class="material-icons left">add</i></a>
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Sports" id="update-sports"><i class="material-icons left">update</i></a>
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Sports" id="delete-sports"><i class="material-icons left">delete</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Sports" id="create-sports" href="#create-sports-modal"><i class="material-icons left">add</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Sports" id="update-sports" href="#update-sports-modal"><i class="material-icons left">update</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Sports" id="delete-sports" href="#delete-sports-modal"><i class="material-icons left">delete</i></a>
                                     </div>
                                 </div>
                             </div>
@@ -369,9 +369,9 @@
                                 <div class="row">
                                     <div class="col s3"><h6>Match</h6></div>
                                     <div class="col s9">
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Match" id="create-match"><i class="material-icons left">add</i></a>
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Match" id="update-match"><i class="material-icons left">update</i></a>
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Match" id="delete-match"><i class="material-icons left">delete</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Match" id="create-match" href="#create-match-modal"><i class="material-icons left">add</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Match" id="update-match" href="#update-match-modal"><i class="material-icons left">update</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Match" id="delete-match" href="#delete-match-modal"><i class="material-icons left">delete</i></a>
                                     </div>
                                 </div>
                             </div>
@@ -379,9 +379,9 @@
                                 <div class="row">
                                     <div class="col s3"><h6>Organization</h6></div>
                                     <div class="col s9">
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Organization" id="create-org"><i class="material-icons left">add</i></a>
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Organization" id="update-org"><i class="material-icons left">update</i></a>
-                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Organization" id="delete-org"><i class="material-icons left">delete</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Organization" id="create-org" href="#create-org-modal"><i class="material-icons left">add</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Organization" id="update-org" href="#update-org-modal"><i class="material-icons left">update</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Organization" id="delete-org" href="#delete-org-modal"><i class="material-icons left">delete</i></a>
                                     </div>
                                 </div>
                             </div>
@@ -390,7 +390,7 @@
                             <div class="col s12 l6">
                                 <div class="row">
                                     <div class="col s3"><h6>Invite</h6></div>
-                                    <div class="col s9"><a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Invite Team to a Match" id="invite-team"><i class="material-icons left">add</i></a></div>
+                                    <div class="col s9"><a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Invite Team to a Match" id="invite-team" href="#invite-modal"><i class="material-icons left">add</i></a></div>
                                 </div>
                             </div>
                             <div class="col s12 l6"></div>

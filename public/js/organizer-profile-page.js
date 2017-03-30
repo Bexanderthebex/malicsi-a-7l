@@ -8,6 +8,8 @@ $(document).ready(function(){
         autoplay: true,
         rows: 2
     });
+    
+    $('.modal').modal();
 
     $('#create-game').on('click', function() {
         $('#create-game-modal').openModal();
