@@ -10,13 +10,14 @@
         <link href="frontend_modules/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="css/style.css" type="text/css" rel="stylesheet"/>
         <link href="css/organizer-profile-page.css" type="text/css" rel="stylesheet"/>
-        <link href="frontend_modules/css/jquery.bxslider.min.css" type="text/css" rel="stylesheet"/>
+        <link href="frontend_modules/css/slick.css" type="text/css" rel="stylesheet"/>
+        <link href="frontend_modules/css/slick-theme.css" type="text/css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!-- JS -->
         <script src="frontend_modules/js/angular.min.js"></script>
         <script src="frontend_modules/js/angular-route.min.js"></script>
         <script src="frontend_modules/js/jquery-3.1.1.min.js"></script>
-        <script src="frontend_modules/js/jquery.bxslider.min.js"></script>
         <script src="js/organizer-profile-page.js"></script>
 
     </head>
@@ -52,131 +53,683 @@
         <!-- Main holder just keeps the main below the navbar -->
         <div id="main" class="container">
             <div class="row">
-                <!-- Header Photo -->
-                <div id="header">
-                    <img src="assets/samp.jpg" id="header-img">
+                <!-- Left Panel -->
+                <div id="left-panel" >
+                    <div class="card blue darken-4">
+                        <div class="card-image">
+                            <img src="assets/avatar.png" id="profile-img">
+                        </div>
+                        <ul class="collection" id="stats">
+                            <li class="collection-item">Ongoing Games<span class="badge">3</span></li>
+                            <li class="collection-item">Incoming Games<span class="badge">5</span></li>
+                            <li class="collection-item">Past Games<span class="badge">12</span></li>
+                            <li class="collection-item">Organizations Created<span class="badge">1</span></li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- Profile Photo -->
-                <div id="profile-photo">
+                <!-- Right Panel -->
+                <div id="right-panel">
+                    <div class="row">
+                        <h4>Joanne Doe</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>
+                    </div>
 
-                    <img src="assets/dp.png" id="profile-img">
+                    <div class="row">
+                        <h5>Games Handled</h5>
+                        
+                        <ul class="tabs tabs-transparent blue darken-4">
+                            <li class="tab col s4"><a class="active white-text" href="#ongoing">Ongoing</a></li>
+                            <li class="tab col s4"><a class="white-text" href="#incoming">Incoming</a></li>
+                            <li class="tab col s4"><a class="white-text" href="#past">Past</a></li>
+                            <div class="indicator black" style="z-index: 1"></div>
+                        </ul>
+                        
+                        <div id="ongoing" class="col s12 light-blue lighten-3">
+                            <div class="slide">
+                                <div class="slide-item row">
+                                    <div class="col s4 valign-wrapper">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="incoming" class="col s12 light-blue lighten-3">
+                            <div class="slide">
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="past" class="col s12 light-blue lighten-3">
+                            <div class="slide">
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                                <div class="slide-item row">
+                                    <div class="col s4">
+                                        <div class="center-align">
+                                            <img src="assets/thumbnail.jpg" id="slider-img">
+                                        </div>
+                                    </div>
+                                    <div class="col s8">
+                                        <p>PalICSihan 2017<br>March 20-28, 2017<br>Beijing, China</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h5>Functionalities</h5>
+                        <div class="row">
+                            <div class="col s12 l6">
+                                <div class="row">
+                                    <div class="col s3"><h6>Game</h6></div>
+                                    <div class="col s9">
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Game" id="create-game" href="#create-game-modal"><i class="material-icons left">add</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Game" id="update-game" href="#update-game-modal"><i class="material-icons left">update</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Game" id="delete-game" href="#delete-game-modal"><i class="material-icons left">delete</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 l6">
+                                <div class="row">
+                                    <div class="col s3"><h6>Sports</h6></div>
+                                    <div class="col s9">
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Sports" id="create-sports" href="#create-sports-modal"><i class="material-icons left">add</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Sports" id="update-sports" href="#update-sports-modal"><i class="material-icons left">update</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Sports" id="delete-sports" href="#delete-sports-modal"><i class="material-icons left">delete</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 l6">
+                                <div class="row">
+                                    <div class="col s3"><h6>Match</h6></div>
+                                    <div class="col s9">
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Match" id="create-match" href="#create-match-modal"><i class="material-icons left">add</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Match" id="update-match" href="#update-match-modal"><i class="material-icons left">update</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Match" id="delete-match" href="#delete-match-modal"><i class="material-icons left">delete</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 l6">
+                                <div class="row">
+                                    <div class="col s3"><h6>Organization</h6></div>
+                                    <div class="col s9">
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Organization" id="create-org" href="#create-org-modal"><i class="material-icons left">add</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Organization" id="update-org" href="#update-org-modal"><i class="material-icons left">update</i></a>
+                                        <a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Organization" id="delete-org" href="#delete-org-modal"><i class="material-icons left">delete</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12 l6">
+                                <div class="row">
+                                    <div class="col s3"><h6>Invite</h6></div>
+                                    <div class="col s9"><a class="waves-effect waves-light btn-floating btn-large tooltipped light-blue darken-3" data-position="top" data-tooltip="Invite Team to a Match" id="invite-team" href="#invite-modal"><i class="material-icons left">add</i></a></div>
+                                </div>
+                            </div>
+                            <div class="col s12 l6"></div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="row">
+                        <h5>Functionalities</h5>
+                        <div class="row">
+                            <div class="col s3"><h6>Game</h6></div>
+                            <div class="col s9">
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Game"><i class="material-icons left">add</i>Create</a>
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Game""><i class="material-icons left">update</i>Update</a>
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Game""><i class="material-icons left">delete</i>Delete</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s3"><h6>Sports</h6></div>
+                            <div class="col s9">
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Sports"><i class="material-icons left">add</i>Create</a>
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Sports""><i class="material-icons left">update</i>Update</a>
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Sports""><i class="material-icons left">delete</i>Delete</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s3"><h6>Match</h6></div>
+                            <div class="col s9">
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Match"><i class="material-icons left">add</i>Create</a>
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Match""><i class="material-icons left">update</i>Update</a>
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Match""><i class="material-icons left">delete</i>Delete</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s3"><h6>Organization</h6></div>
+                            <div class="col s9">
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Create Organization"><i class="material-icons left">add</i>Create</a>
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Update Organization""><i class="material-icons left">update</i>Update</a>
+                                <a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Delete Organization""><i class="material-icons left">delete</i>Delete</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s3"><h6>Invite</h6></div>
+                            <div class="col s9"><a class="waves-effect waves-light btn tooltipped light-blue darken-3" data-position="top" data-tooltip="Invite Team to a Match"><i class="material-icons left">mail</i>Invite</a></div>
+                        </div>
+                    </div> -->
+                </div>
+
+            
+        </div>
+    </div>
+
+    <div id="create-game-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Create Game</h5>
+                        </div>
+                    <br>
                 </div>
             </div>
-            <div class="row">
-                <!-- Left panel -->
-                <div id="left-panel" class="col s12 m12 l3">
-                    <div class="row">
-                        <h5 class="center-align">John Doe</h5>
-                    </div>
-                    <div class="row card">
-                        <div class="card-content">
-                            <span class="card-title">About Me</span>
-                            <ul>
-                                <li>Name: John Does</li>
-                                <li>Age: 25</li>
-                                <li>Gender: Male</li>
-                                <li>Organization: some org</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col hide-on-small-only">
-                            <ul class="section table-of-contents">
-                                <li><a href="#events">Ongoing Events</a></li>
-                                <li><a href="#link2">Future Events</a></li>
-                                <li><a href="#link3">Past Events</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Right panel -->
-                <div id="right-panel" class="col s12 m12 l9">
-                    <div id="events" class="section scrollspy row">
-                        <h5>Handled Games</h5>
-                        <h5>Ongoing</h5>
-                        <div class="slider5">
-                            <div class="slide"><img src="http://placehold.it/300x150&text=FooBar1"></div>
-                            <div class="slide">
-                                <div>
-                                    <h5><a href="">Game 1</a></h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>  
-                                </div>
-                            </div>
-                            <div class="slide"><img src="http://placehold.it/300x150&text=FooBar2"></div>
-                            <div class="slide">
-                                <div>
-                                    <h5><a href="">Game 2</a></h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>  
-                                </div>
-                            </div>
-                            <div class="slide"><img src="http://placehold.it/300x150&text=FooBar3"></div>
-                            <div class="slide">
-                                <div>
-                                    <h5><a href="">Game 3</a></h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="link2" class="section scrollspy row">
-                        <h5>Soon...</h5>
-                        <div class="slider5">
-                            <div class="slide"><img src="http://placehold.it/300x150&text=FooBar1"></div>
-                            <div class="slide">
-                                <div>
-                                    <h5><a href="">Game 1</a></h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>  
-                                </div>
-                            </div>
-                            <div class="slide"><img src="http://placehold.it/300x150&text=FooBar2"></div>
-                            <div class="slide">
-                                <div>
-                                    <h5><a href="">Game 2</a></h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>  
-                                </div>
-                            </div>
-                            <div class="slide"><img src="http://placehold.it/300x150&text=FooBar3"></div>
-                            <div class="slide">
-                                <div>
-                                    <h5><a href="">Game 3</a></h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="link3" class="section scrollspy row">
-                        <h5>Past Games</h5>
-                        <div class="slider5">
-                            <div class="slide"><img src="http://placehold.it/300x150&text=FooBar1"></div>
-                            <div class="slide">
-                                <div>
-                                    <h5><a href="">Game 1</a></h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>  
-                                </div>
-                            </div>
-                            <div class="slide"><img src="http://placehold.it/300x150&text=FooBar2"></div>
-                            <div class="slide">
-                                <div>
-                                    <h5><a href="">Game 2</a></h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>  
-                                </div>
-                            </div>
-                            <div class="slide"><img src="http://placehold.it/300x150&text=FooBar3"></div>
-                            <div class="slide">
-                                <div>
-                                    <h5><a href="">Game 3</a></h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Create</a>
+        </div>
+    </div>
 
+    <div id="update-game-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Update Game</h5>
+                        </div>
+                    <br>
+                </div>
             </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Update</a>
+        </div>
+    </div>
+
+    <div id="delete-game-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Delete Game</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        </div>
+    </div>
+
+    <div id="create-sports-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Create Sports</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Create</a>
+        </div>
+    </div>
+
+    <div id="update-sports-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Update Sports</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Update</a>
+        </div>
+    </div>
+
+    <div id="delete-sports-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Delete Sports</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        </div>
+    </div>
+
+    <div id="create-match-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Create Match</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Create</a>
+        </div>
+    </div>
+
+    <div id="update-match-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Update Match</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Update</a>
+        </div>
+    </div>
+
+    <div id="delete-match-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Delete Game</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        </div>
+    </div>
+
+    <div id="create-org-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Create Organization</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Create</a>
+        </div>
+    </div>
+
+    <div id="update-org-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Update Organization</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Update</a>
+        </div>
+    </div>
+
+    <div id="delete-org-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Delete Game</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        </div>
+    </div>
+
+    <div id="invite-modal" class="modal">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right blue darken-4">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center">
+                            <h5>Invite Team to a Match</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="modal-content">
+            <p>Form contents here...</p>
+        </div>
+        <div class="divider"></div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
+            <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">mail</i>Invite</a>
         </div>
     </div>
 
     <!--  Scripts-->
     <script src="frontend_modules/js/materialize.js"></script>
+    <script src="frontend_modules/js/slick.min.js"></script>
     </body>
 </html>
