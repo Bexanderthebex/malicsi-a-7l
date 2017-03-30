@@ -1,4 +1,5 @@
 'use strict'
+
 var connection = require(__dirname + './../config/db-connection');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');

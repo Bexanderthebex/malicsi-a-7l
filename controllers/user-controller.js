@@ -22,16 +22,20 @@ exports.login = (req, res) => {
 						res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
 						console.log('hello')
-						res.status(404).send({ 'message' : 'Incorrect credentials'});
+						res.status(401).send({ 'message' : 'Incorrect credentials'});
 					}
 				});
 			} else {
 				console.log(rows);
-				res.status(404).send({ 'message' : 'Incorrect credentials'});
+				res.status(401).send({ 'message' : 'Incorrect credentials'});
 			}
 		} else {
-			res.status(404).send({ 'message' : 'An error occured', 'data': err});
-			return err;
+			if (err.code == 'ER_BAD_NULL_ERROR') {
+				res.status(500).send({ 'message' : 'Missing credentials'});
+			} else {
+				res.status(500).send({ 'message' : 'Unknown'});
+			}
+
 		}
 	});
 }
@@ -52,21 +56,19 @@ exports.register = (req, res, next) => {
 		req.body.contact,
 		req.body.type
 	], function(err, rows){
-		console.log(next);
 		if(!err) {
-			console.log(rows)
-			req.session.user = {
-				id: rows.insertId,
-				username: req.body.username,
-				type: req.body.type
-			};
-			console.log(req.session.user)
-
+			req.body.id = rows.insertId;
 			next();
-
 		}else{
 			console.log(err);
-			res.status(501).send({ 'message' : 'Not implemented'});
+			if (err.code == 'ER_BAD_NULL_ERROR') {
+				res.status(500).send({ 'message' : 'Missing field' });
+			} else if (err.code == 'ER_DUP_ENTRY') {
+				res.status(500).send({ 'message' : 'Duplicate entry' });
+			} else {
+				res.status(500).send({ 'message': 'Unknown' });
+			}
+			//res.status(501).send({ 'message' : 'Not implemented'});
 		}
 	});
 }
@@ -98,45 +100,55 @@ exports.returnInfo = (req, res) => {
 }
 
 exports.registerCompetitor = (req, res) => {
-	connection.query('SELECT * from competitor WHERE username = ?', [req.body.username],
-		function(err, rows){
-			returnObject = rows[0];
+	let query = 'INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)';
+	connection.query(query, [
+		req.body.id,
+		req.body.birthday,
+		req.body.first_name,
+		req.body.last_name,
+		req.body.nickname,
+		req.body.sex
+	], function(err, rows){
 		if(!err) {
-			connection.query('INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)',
-				[returnObject.id, req.body.birthday, req.body.first_name, req.body.last_name, req.body.nickname, req.body.sex], function(err, rows){
-				if(!err) {
-					res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
-					returnObject.push(
-						{
-							key: "birthday",
-							value: rows[0].birthday
-						},
-						{
-							key: "sex",
-							value: rows[0].sex
-						},
-						{
-							key: "first_name",
-							value: rows[0].first_name
-						},
-						{
-							key: "last_name",
-							value: rows[0].last_name
-						},
-						{
-							key: "nickname",
-							value: rows[0].nickname
-						}
-					);
-					return returnObject;
-				}else{
-					console.log(err);
-					return res.status(500).send({ 'message' : 'Error inserting new competitor!'});
+			req.session.user = {
+				id: req.body,
+				username: req.body.username,
+				type: req.body.type
+			};
+
+			res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
+			/*returnObject.push(
+				{
+					key: "birthday",
+					value: rows[0].birthday
+				},
+				{
+					key: "sex",
+					value: rows[0].sex
+				},
+				{
+					key: "first_name",
+					value: rows[0].first_name
+				},
+				{
+					key: "last_name",
+					value: rows[0].last_name
+				},
+				{
+					key: "nickname",
+					value: rows[0].nickname
 				}
-			});
+			);
+			return returnObject;*/
 		}else{
 			console.log(err);
-			return res.status(500).send({ 'message' : 'Error getting new user!'});
+			if (err.code == 'ER_BAD_NULL_ERROR') {
+				res.status(500).send({ 'message' : 'Missing field' });
+			} else if (err.code == 'ER_DUP_ENTRY') {
+				res.status(500).send({ 'message' : 'Duplicate entry' });
+			} else {
+				res.status(500).send({ 'message': 'Error inserting new competitor!' });
+			}
 		}
 	});
 }

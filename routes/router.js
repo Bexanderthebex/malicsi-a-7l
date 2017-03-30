@@ -65,7 +65,7 @@ function checkUser(type) {
 //overall user routers
 router.post('/login', sha256Hash, userController.login);
 router.post('/organizer', adminController.createOrganizer);
-router.post('/register', sha256Hash, bcryptHash, userController.register);
+router.post('/register', sha256Hash, bcryptHash, userController.register, userController.registerCompetitor);
 router.get('/logout', userController.logout);
 router.get('/user/:id', userController.returnInfo);
 router.put('/user/update', userController.update);
