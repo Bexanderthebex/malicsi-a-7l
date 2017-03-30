@@ -99,6 +99,7 @@ router.get('/sport/:sportId', sportController.viewSportDetails);
 router.post('/sport/createSport', checkUser, sportController.createSport);
 router.post('/sport/addMatch', checkUser, matchController.addMatch);
 router.put('/sport/editMatch', matchController.editMatch);
+router.put('/sport/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
 router.post('/sport/addWinnerSport', checkUser, sportController.addWinnerSport);
 router.put('/sport/editSport', checkUser, sportController.editSport);
 router.delete('/sport/deleteSport', checkUser, sportController.deleteSport);
