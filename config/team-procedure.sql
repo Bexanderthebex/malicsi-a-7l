@@ -53,3 +53,8 @@ BEGIN
 END; //
 
 DELIMITER ;
+
+GRANT EXECUTE ON procedure createTeam to root;
+GRANT EXECUTE ON procedure deleteTeam to root;
+GRANT EXECUTE ON procedure teamMembershipRequest to root;
+GRANT EXECUTE ON procedure acceptMembershipRequest to root;
