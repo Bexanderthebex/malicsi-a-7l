@@ -95,11 +95,14 @@ router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
 
 //sport routers
-router.get('/sport/:sportId',  sportController.viewSportDetails);
-router.post('/sport/createSport',  sportController.createSport);
-router.post('/sport/addWinnerSport',  sportController.addWinnerSport);
-router.put('/sport/editSport',  sportController.editSport);
-router.delete('/sport/deleteSport',  sportController.deleteSport);
+router.get('/sport/:sportId', sportController.viewSportDetails);
+router.post('/sport/createSport', checkUser, sportController.createSport);
+router.put('/sport/editMatch', matchController.editMatch);
+router.put('/sport/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
+router.post('/sport/addWinnerSport', checkUser, sportController.addWinnerSport);
+router.put('/sport/editSport', checkUser, sportController.editSport);
+router.delete('/sport/deleteSport', checkUser, sportController.deleteSport);
+
 
 //match routers
 router.post('/sport/addMatch',  matchController.addMatch);
