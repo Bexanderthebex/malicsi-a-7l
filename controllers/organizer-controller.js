@@ -23,6 +23,22 @@ exports.searchOrganizer = (req, res) => {
 	});
 }
 
+exports.getOrganizer = (req, res) => {
+	query = 'CALL get_organizer(?)';
+
+	connection.userType('A').query(query, 
+		[
+			"%" + req.query.search + "%"
+		], function (err, rows) {
+			if(!err) {
+				res.status(200).send(rows[0]);
+				return rows;
+			} else {
+				res.status(500).send({'message' : 'Internal Server Error'});
+			}
+	});
+}
+
 exports.editOrganizer = (req,res) => {
 	currentUser = req.session.user;
 	query = "CALL edit_organizer(?,?,?)";
