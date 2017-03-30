@@ -95,7 +95,7 @@ router.delete('/game/deleteGame/', checkUser, gameController.deleteGame);
 router.delete('/game/deleteSponsor', checkUser, sponsorController.deleteSponsorFromGame);
 
 //sport routers
-router.get('/sport/:sportId', checkUser, sportController.viewSportDetails);
+router.get('/sport/:sportId', sportController.viewSportDetails);
 router.post('/sport/createSport', checkUser, sportController.createSport);
 router.post('/sport/addMatch', checkUser, matchController.addMatch);
 router.post('/sport/addWinnerSport', checkUser, sportController.addWinnerSport);
