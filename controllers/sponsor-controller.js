@@ -3,16 +3,17 @@ const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 
 exports.addSponsorToGame = (req, res) => {
-	var query = 'INSERT into sponsor_games SET ?';
+	var query = 'call addSponsorToGame(?, ?)';
 	var params = {
 		sponsor_id : req.body.sponsorId,
 		game_id : req.body.gameId
 	}
-	connection.query(query, 
-		params, 
+	connection.userType('A').query(query, 
+		[req.body.gameId, req.body.sponsorId], 
 		(err, results, fields)	=> {	
 		if(!err){
-			res.status(204).send("Successfully added sponsor to game!");		
+			console.log("Success");
+			res.status(200).send("Successfully added sponsor to game!");		
 		}	
 		else{
 			if(err.code == 'ER_DUP_ENTRY') {
