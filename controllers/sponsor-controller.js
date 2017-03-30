@@ -37,7 +37,7 @@ exports.addSponsorToGame = (req, res) => {
 }
 
 exports.editSponsorDetails = (req, res) => {
-	var query = 'UPDATE sponsor_institution SET description = ? WHERE sponsor_id = ?';
+	var query = 'CALL editSponsorDetails(?,?)';
 	connection.query(query, 
 		[req.body.description, 
 		req.body.sponsor_id
@@ -63,7 +63,7 @@ exports.editSponsorDetails = (req, res) => {
 }
 
 exports.deleteSponsorFromGame = (req, res) => {
-	var query = 'DELETE FROM sponsor_institution WHERE sponsor_id = ? AND game_id = ?';
+	var query = 'CALL deleteSponsorFromGame(?,?)';
 	connection.query(query, 
 		[req.body.sponsor_id,
 		 req.body.game_id
