@@ -86,21 +86,24 @@ router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 
 //game routers
-router.get('/game/:gameId', checkUser, gameController.viewGameDetails)
-router.post('/game/createGame', checkUser, gameController.createGame);
-router.post('/game/addSponsor', checkUser, sponsorController.addSponsorToGame);
-router.put('/game/updateGame', checkUser, gameController.updateGame);
-router.put('/game/editSponsor', checkUser, sponsorController.editSponsorDetails);
-router.delete('/game/deleteGame/', checkUser, gameController.deleteGame);
-router.delete('/game/deleteSponsor', checkUser, sponsorController.deleteSponsorFromGame);
+router.get('/game/:gameId',  gameController.viewGameDetails)
+router.post('/game/createGame',  gameController.createGame);
+router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
+router.put('/game/updateGame',  gameController.updateGame);
+router.put('/game/editSponsor',  sponsorController.editSponsorDetails);
+router.delete('/game/deleteGame/',  gameController.deleteGame);
+router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
 
 //sport routers
-router.get('/sport/:sportId', checkUser, sportController.viewSportDetails);
-router.post('/sport/createSport', checkUser, sportController.createSport);
-router.post('/sport/addMatch', checkUser, matchController.addMatch);
-router.post('/sport/addWinnerSport', checkUser, sportController.addWinnerSport);
-router.put('/sport/editSport', checkUser, sportController.editSport);
-router.delete('/sport/deleteSport', checkUser, sportController.deleteSport);
+router.get('/sport/:sportId',  sportController.viewSportDetails);
+router.post('/sport/createSport',  sportController.createSport);
+router.post('/sport/addWinnerSport',  sportController.addWinnerSport);
+router.put('/sport/editSport',  sportController.editSport);
+router.delete('/sport/deleteSport',  sportController.deleteSport);
+
+//match routers
+router.post('/sport/addMatch',  matchController.addMatch);
+router.get('/sport/match/:sportId',  matchController.viewMatchInSport);
 
 module.exports = router;
 
