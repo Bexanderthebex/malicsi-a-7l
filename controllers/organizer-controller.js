@@ -23,9 +23,9 @@ exports.searchOrganizer = (req, res) => {
 exports.editOrganizer = (req,res) => {
 	currentUser = req.session.user;
 
-	connection.query('UPDATE organizer SET name = ?, description = ? WHERE id = ?', [req.body.name, req.body.description, currentUser.id], function(err, rows){
+	connection.query('UPDATE organizer SET name = ?, description = ? WHERE id = ?', [req.body.name, req.body.description, req.body.id], function(err, rows){
 		if(!err) {
-			connection.query('SELECT * from organizer where id = ?', [currentUser.id], function(err, rows) {
+			connection.query('SELECT * from organizer where id = ?', [req.body.id], function(err, rows) {
 				if(!err) {
 					res.status(200).send(rows[0]);
 					return rows[0];
