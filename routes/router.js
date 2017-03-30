@@ -12,15 +12,6 @@ let sponsorController = require('../controllers/sponsor-controller')
 let sportController = require("../controllers/sport-controller");
 let matchController = require("../controllers/match-controller");
 
-function checkUser(req, res, next) {
-	console.log(req.session.user);
-	if (req.session.user !== undefined && (req.session.user.type === 'O' || req.session.user.type === 'A')) {
-		next();
-	} else {
-		res.status(403).send('Forbidden');
-	}
-}
-
 function sha256Hash(req, res, next) {
     if (req.body.password == undefined) {
         res.status(404).send({ 'message' : 'Incorrect credentials'});
@@ -96,14 +87,17 @@ router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
 
 //sport routers
-router.get('/sport/:sportId',  sportController.viewSportDetails);
-router.post('/sport/createSport',  sportController.createSport);
-router.post('/sport/addWinnerSport',  sportController.addWinnerSport);
-router.put('/sport/editSport',  sportController.editSport);
-router.delete('/sport/deleteSport',  sportController.deleteSport);
+router.get('/sport/:sportId', sportController.viewSportDetails);
+router.post('/sport/createSport', sportController.createSport);
+router.put('/sport/editMatch', matchController.editMatch);
+router.put('/sport/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
+router.post('/sport/addWinnerSport', sportController.addWinnerSport);
+router.put('/sport/editSport', sportController.editSport);
+router.delete('/sport/deleteSport', sportController.deleteSport);
+
 
 //match routers
-router.post('/sport/addMatch',  matchController.addMatch);
+router.post('/sport/match/addMatch',  matchController.addMatch);
 router.get('/sport/match/:sportId',  matchController.viewMatchInSport);
 
 module.exports = router;
