@@ -3,20 +3,23 @@ const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 
 exports.searchOrganizer = (req, res) => {
-	query = 'SELECT * FROM organizer where name like ? or description like ?';
+	query = 'CALL search_organizer(?)';
 
-	connection.query(query, ["%" + req.query.search + "%", "%" + req.query.search + "%"], function (err, rows) {
-		if(!err) {
-			if(rows.length == 1) {
-				res.status(200).send(rows[0]);
-				return rows[0];
+	connection.userType('A').query(query, 
+		[
+			"%" + req.query.search + "%"
+		], function (err, rows) {
+			if(!err) {
+				if(rows[0].length == 1) {
+					res.status(200).send(rows[0][0]);
+					return rows[0][0];
+				} else {
+					res.status(200).send(rows[0]);
+					return rows;
+				}
 			} else {
-				res.status(200).send(rows);
-				return rows;
+				res.status(500).send({'message' : 'Internal Server Error'});
 			}
-		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
-		}
 	});
 }
 
