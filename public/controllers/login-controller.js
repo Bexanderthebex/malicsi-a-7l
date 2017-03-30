@@ -2,10 +2,11 @@ var app = angular.module('projectApp', []);
 
 app.controller('logIn', ['$scope', '$http', '$window', function($scope, $http, $window){
 	$scope.logAccount = function(uname, password){
-		var uname = $scope.username;
-		var pword = $scope.password;
+		var uname = $scope.uname;
+		var pword = $scope.pword;
 
-		console.log("hello");
+		console.log(uname);
+		console.log(pword);
 
 		$http.post('/login', {
 			username : uname,
