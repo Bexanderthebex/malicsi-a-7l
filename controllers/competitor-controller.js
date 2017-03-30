@@ -23,6 +23,22 @@ exports.searchCompetitor = (req, res) => {
 	});
 }
 
+exports.getCompetitor = (req, res) => {
+	query = 'CALL get_competitor(?)';
+
+	connection.userType('A').query(query, 
+		[
+			"%" + req.query.search + "%"
+		], function(err, rows){
+		    if(!err) {
+				res.status(200).send(rows[0]);
+				return rows;
+			} else {
+				res.status(500).send({'message' : 'Internal Server Error'});
+			}
+	});
+}
+
 exports.editCompetitor = (req,res) => {
 	currentUser = req.session.user;
 	query = 'UPDATE competitor SET first_name = ?, last_name = ?, birthday = ?, nickname = ?, sex = ? WHERE id = ?';
