@@ -106,14 +106,26 @@ exports.acceptMembershipRequest = function(req, res){
 }
 
 exports.getTeamStatistics = function(req, res){
-    query = "SELECT rank, COUNT(ranking) as rankCount FROM team_in_match WHERE team_id = ? group by ranking"
-
-    connection.query(query,[req.query.team_id],
-        function(err, rows){
+    query = "CALL rankings(?,?)"
+    console.log(query);
+    connection.userType('A').query(query,
+        [
+            req.query.team_id,
+            req.query.id
+        ], function(err, rows){
             if(!err) {
-                res.status(200).send(rows);
-                return(rows);
+                if (rows[0].length == 1){
+                    console.log(rows[0][0]);
+                    res.status(200).send(rows[0][0]);
+                    return(rows[0][0]);
+                }
+                else{
+                    console.log(rows[0]);
+                    res.status(200).send(rows[0]);
+                    return(rows[0][0]);
+                }
             } else {
+                console.log(err);
                 res.status(500).send({ 'message' : 'An error occured'});
                 return 500;
             }
