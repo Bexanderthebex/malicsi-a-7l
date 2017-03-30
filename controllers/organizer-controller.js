@@ -41,24 +41,33 @@ exports.getOrganizer = (req, res) => {
 
 exports.editOrganizer = (req,res) => {
 	currentUser = req.session.user;
+	query = "CALL edit_organizer(?,?,?)";
+	query1 = "CALL get_organizer(?)";
 
-	connection.query('UPDATE organizer SET name = ?, description = ? WHERE id = ?', [req.body.name, req.body.description, req.body.id], function(err, rows){
-		if(!err) {
-			connection.query('SELECT * from organizer where id = ?', [req.body.id], function(err, rows) {
-				if(!err) {
-					res.status(200).send(rows[0]);
-					return rows[0];
-				}
-			});
+	connection.userType('A').query(query, 
+		[
+			req.body.name, 
+			req.body.description, 
+			req.body.id], function(err, rows){
+			if(!err) {
+				connection.query(query1, 
+					[
+						req.body.id
+					], function(err, rows) {
+					if(!err) {
+						res.status(200).send(rows[0]);
+						return rows[0];
+					}
+				});
 
-		} else {
-			return res.status(501).send({ 'message' : 'Not implemented'});
-		}
+			} else {
+				return res.status(501).send({ 'message' : 'Not implemented'});
+			}
 	});
 }
 
 exports.findGames = (req,res,next) =>{
-	query = "CALL find_games"
+	query = "CALL find_games(?)"
 	connection.userType('A').query(query, 
 		[
 			req.query.id
