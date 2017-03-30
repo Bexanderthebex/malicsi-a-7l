@@ -79,3 +79,8 @@ END; //
 
 DELIMITER ;
 
+grant execute on procedure findGame to organizer
+grant execute on procedure findSport to organizer
+grant execute on procedure findTeam to organizer
+grant execute on procedure getRequest to organizer
+grant execute on procedure acceptRequest to organizer
