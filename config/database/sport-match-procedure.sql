@@ -13,6 +13,18 @@ END;
 //
 DELIMITER ;
 
+DELIMITER //
+CREATE PROCEDURE `delete_match`(in matchID int)
+BEGIN
+DELETE FROM team_in_match WHERE match_id = matchID;
+DELETE FROM sport_match WHERE match_id = matchID;
+END //
+DELIMITER ;
+
+grant execute on procedure delete_match to organizer;
+grant execute on procedure delete_match to administrator;
+
+
 GRANT EXECUTE ON PROCEDURE view_match_sport TO administrator;
 GRANT EXECUTE ON PROCEDURE view_match_sport TO organizer;
 GRANT EXECUTE ON PROCEDURE view_match_sport TO competitor;
