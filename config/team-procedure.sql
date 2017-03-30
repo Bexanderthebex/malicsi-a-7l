@@ -53,3 +53,22 @@ BEGIN
 END; //
 
 DELIMITER ;
+
+CREATE PROCEDURE rankings ( IN teamID INT, IN user_id INT) 
+
+
+BEGIN
+
+
+   SELECT ranking, COUNT(ranking) as rankCount FROM team_in_match WHERE team_id = teamID group by ranking;
+
+
+END; //	
+
+DELIMITER ;
+
+GRANT EXECUTE ON procedure createTeam to root;
+GRANT EXECUTE ON procedure deleteTeam to root;
+GRANT EXECUTE ON procedure teamMembershipRequest to root;
+GRANT EXECUTE ON procedure acceptMembershipRequest to root;
+GRANT EXECUTE ON procedure rankings to root;
