@@ -1,38 +1,76 @@
-@media only screen and (max-width : 992px) {
-  header, main, footer {
-    padding-left: 0;
-    margin-left: 0;
-  }
+#competitor-profile-img {
+	width: 100%;
+	height: auto;
 }
+
+#competitor-basic-info {
+	padding-left: 3%;
+}
+
+/**********************************************************************************************/
+
+#competitor-games-played {
+	overflow: auto;
+	white-space: nowrap;
+}
+
+#competitor-games-played a { 
+	display: inline-block;
+	text-align: center;
+	padding: 14px;
+	text-decoration: none; 
+	position: relative;
+	cursor: pointer;
+}
+
+.competitor-game-img {
+	width: 150px;
+	border-radius: 5px;
+}
+
+.game-desc {
+	background: rgba(0, 0, 0, .7);
+	border-radius: 5px;
+	padding-left: 3px;
+	position: absolute;
+	text-align: left;
+	font-size: 10pt;
+	display: none;
+	color: #fff;
+	top: 0;
+}
+
+/**********************************************************************************************/
+
+.margin-bottom-zero {
+	margin-bottom: 0;
+}
+
+.width-75 {
+	width: 75%;
+}
+
+/**********************************************************************************************/
+
+.tabs .indicator {
+    background-color: #00a5d3;
+}
+
+.affiliation-div {
+	height: 250px;
+	overflow-y: auto;
+}
+
+#affiliation-head {
+	margin-top: 0;
+	padding-top: 16px;
+}
+
+/**********************************************************************************************/
+
 
 #stats {
     margin-top: 0px;
-}
-
-#left-panel {
-    margin-top: 0px;
-    position: fixed;
-    width: 15%;
-}
-
-#profile-img {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-#right-panel {
-    position: relative;
-    margin-left: 25%;
-    width: 75%;
-}
-
-#slider-img {/*
-    width: 20%;
-    height: auto;*/
-}
-
-.slide-item {
-    margin-bottom: 0px !important;
 }
 
 #wins-badge {
@@ -57,10 +95,10 @@
 }
 
 #stats-panel {
-    padding-top: 5%;
-    padding-bottom: 5%;
-
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
+
 .stats-badge {
     height: 80px;
     width: 80px;
@@ -75,29 +113,4 @@
 
 .stat-desc {
     font-size: 9pt;
-}
-
-.width-75 {
-    width: 75%;
-}
-
-.tabs .indicator {
-    background-color: #00a5d3;
-}
-
-#test-swipe-1, #test-swipe-2 {
-    height: 400px !important;
-    overflow-y: scroll;
-}
-
-.vdivider-right {
-    border-right: 2px solid #bdbdbd;
-}
-
-.vdivider-left {
-    border-left: 2px solid #bdbdbd;
-}
-
-#all-games {
-    margin-top: 20px;
 }

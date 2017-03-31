@@ -1,0 +1,21 @@
+@font-face {
+	font-family: century-gothic;
+	src: url(../fonts/century-gothic/century-gothic.TTF);
+}
+
+@font-face {
+	font-family: rockwell;
+	src: url(../fonts/rockwell/ROCK.TTF);
+}
+
+.century-gothic {
+	font-family: century-gothic;
+}
+
+.rockwell {
+	font-family: rockwell;
+}
+
+.strong {
+	font-weight: bold;
+}
