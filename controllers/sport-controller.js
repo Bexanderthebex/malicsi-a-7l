@@ -59,7 +59,7 @@ exports.viewSportDetails = (req, res) => {
 
 
 exports.addWinnerSport = (req, res, next) => {
-	let query = 'call addWinnerSport(?,?)';
+	let query = 'call add_winner_sport(?,?)';
 	connection.userType('A').query(query,
 			[
 				req.body.winner,
