@@ -86,3 +86,18 @@ exports.viewMatchDetails = (req, res) => {
 
 
 }
+
+exports.deleteMatch = (req, res) => {
+	let query = 'delete_match(?);'
+	connection.query(query, [req.body.matchId], function(err, rows) {
+		if(!err){
+			if (rows.length == 0) {
+				res.status(501).send('Not Implemented');
+			} else {
+				 res.status(200).send('Sucessful');
+			}
+		}else{
+			res.status(500).send("Internal Server Error");
+		}
+	});
+}
