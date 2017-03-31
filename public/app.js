@@ -9,9 +9,7 @@
 
     function config($routeProvider, $locationProvider){
         $locationProvider.html5Mode({
-            enabled: true,
-            requireBase: false,
-            rewriteLinks: false
+            enabled: true
         });
         
         $routeProvider
