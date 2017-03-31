@@ -79,7 +79,7 @@ exports.addWinnerSport = (req, res, next) => {
 }
 
 exports.deleteSport = (req, res, next) => {
-	let query = 'CALL delete_sport(?)'
+	let query = 'CALL delete_sport(?)';
 
 	connection.userType('A').query(query,
 		[
