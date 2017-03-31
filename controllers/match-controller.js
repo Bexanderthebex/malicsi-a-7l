@@ -63,7 +63,7 @@ exports.editTeamRankingInMatch = function(req, res, next){
 		    res.status(404).send("Not Found");
 		}
 	})
-
+}
 
 exports.viewMatchDetails = (req, res) => {
 	let query = 'call view_match_details(?);';
