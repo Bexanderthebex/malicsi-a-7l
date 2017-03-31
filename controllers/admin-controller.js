@@ -53,16 +53,20 @@ exports.createOrganizer = (req, res) => {
 };
 
 exports.changeActivity = (req, res) => {
-	connection.query('UPDATE user SET is_active=? WHERE id = ?', [req.body.active, req.body.id], (err, rows) => {
-		if (!err) {
+	let query = 'UPDATE user SET is_active = ? WHERE id = ?';
+	connection.query(query, [req.body.is_active, req.params.id], (err, rows) => {
+		if(!err){
 			console.log(rows);
-			if (rows.affectedRows > 0) {
-				res.status(200).send({'message': 'User activity status successfully updated.'});
-			} else {
+			if(rows.affectedRows == 0) {
 				res.status(404).send({'message': 'User does not exist.'});
+			}else{
+				res.status(200).send({'message': 'User activity status successfully updated.'});
 			}
-		} else {
-			res.status(404).send({'message': 'Database error.', 'data': err});
+		}else{
+			console.log(err);
+			if(err.code == 'ER_BAD_NULL_ERROR') {
+				res.status(400).send({ 'message' : 'Missing field.' });
+			}
 		}
 	});
 }
