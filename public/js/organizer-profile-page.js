@@ -1,13 +1,15 @@
 $(document).ready(function(){
     $('ul.tabs').tabs();
 
-    $('.slide').slick({
-        infinite: true,
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        autoplay: true,
-        rows: 2
-    });
+    $('.collapsible').collapsible();
+
+    // $('.slide').slick({
+    //     infinite: true,
+    //     slidesToShow: 2,
+    //     slidesToScroll: 2,
+    //     autoplay: true,
+    //     rows: 2
+    // });
     
     $('.modal').modal();
 
