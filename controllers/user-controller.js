@@ -1,18 +1,20 @@
 'use strict'
 
-// const mysql = require('mysql');
-// const bodyParser = require('body-parser');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
-	let query = `SELECT id, username, type, password FROM user WHERE username = ?`;
+	var query = 'SELECT id, username, type, password FROM user WHERE username = ?';
+	// get user type
+	console.log(req.session);
+	// var type = req.session.user.type;
 
-				console.log(req.body.password);
-	connection.query(query, [req.body.username], function(err, rows){
+	connection.userType('A').query(query, [req.body.username], function(err, rows){
 		if(!err) {
 			if (rows.length == 1) {
-				console.log(rows[0].password);
+				// console.log(rows[0].password);
 				bcrypt.compare(req.body.password, rows[0].password, (err, isCorrect) => {
 					if (isCorrect) {
 						req.session.user = {
@@ -23,7 +25,8 @@ exports.login = (req, res) => {
 						res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
 						console.log('hello')
-						res.status(401).send({ 'message' : 'Incorrect credentials'});
+						res.send({ 'message' : 'Incorrect credentials'}).status(401);
+						console.log(res);
 					}
 				});
 			} else {

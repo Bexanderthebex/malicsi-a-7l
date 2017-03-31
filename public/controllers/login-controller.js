@@ -12,12 +12,12 @@ app.controller('logIn', ['$scope', '$http', '$window', function($scope, $http, $
 			username : uname,
 			password : pword,
 		}).then(function(result){
-
+			console.log(result);
 			if (result.data.message == 'Successfully logged in') {
 				$window.location.href = '/home-page.html';
-			}else{
-				$scope.username = '';
-				$scope.password = '';
+			}else {
+				$scope.uname = '';
+				$scope.pword = '';
 			}
 		});
 	}

@@ -25,7 +25,7 @@ exports.createOrganizer = (req, res) => {
 		active: true
 	}
 
-	connection.query(query, userParams, (err, rows) => {
+	connection.userType('A').query(query, userParams, (err, rows) => {
 		if (!err) {
 			console.log(rows);
 
@@ -39,7 +39,7 @@ exports.createOrganizer = (req, res) => {
 				description: req.body.description
 			}
 
-			connection.query(query, organizerParams, (err, rows) => {
+			connection.userType('A').query(query, organizerParams, (err, rows) => {
 				if (!err) {
 					res.status(200).send('Organizer added.');
 				} else {
@@ -53,7 +53,7 @@ exports.createOrganizer = (req, res) => {
 };
 
 exports.changeActivity = (req, res) => {
-	connection.query('UPDATE user SET is_active=? WHERE id = ?', [req.body.active, req.body.id], (err, rows) => {
+	connection.userType('A').query('UPDATE user SET is_active=? WHERE id = ?', [req.body.active, req.body.id], (err, rows) => {
 		if (!err) {
 			console.log(rows);
 			if (rows.affectedRows > 0) {
