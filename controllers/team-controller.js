@@ -86,4 +86,31 @@ exports.getTeamStatistics = (req, res) => {
                 return 500;
             }
         })
-}   
+}  
+
+exports.countTeamInSports = (req, res) => {
+    query = "CALL count_teams_in_sport(?,?)"
+    console.log(query);
+    connection.userType('A').query(query,
+        [
+            req.query.sport_id,
+            req.query.id
+        ], function(err, rows){
+            if(!err) {
+                if (rows[0].length == 1){
+                    console.log(rows[0][0]);
+                    res.status(200).send(rows[0][0]);
+                    return(rows[0][0]);
+                }
+                else{
+                    console.log(rows[0]);
+                    res.status(200).send(rows[0]);
+                    return(rows[0][0]);
+                }
+            } else {
+                console.log(err);
+                res.status(500).send({ 'message' : 'An error occured'});
+                return 500;
+            }
+        })
+}    

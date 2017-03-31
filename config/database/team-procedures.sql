@@ -48,8 +48,28 @@ CREATE PROCEDURE rankings ( IN teamID INT, IN user_id INT)
 
 DELIMITER ;
 
+DROP procedure IF EXISTS count_teams_in_sport;
+DELIMITER //
+CREATE PROCEDURE count_teams_in_sport ( IN sport_id INT, IN user_id INT) 
+	BEGIN
+	   SELECT sport_id, COUNT(team_id) as rankCount FROM team WHERE sport_id = sport_id group by sport_id;
+	END; //	
+
+DELIMITER ;
+
 GRANT EXECUTE ON procedure create_team to competitor;
 GRANT EXECUTE ON procedure delete_team to competitor;
 GRANT EXECUTE ON procedure team_membership_request to competitor;
 GRANT EXECUTE ON procedure accept_membership_request to competitor;
 GRANT EXECUTE ON procedure rankings to competitor;
+GRANT EXECUTE ON procedure count_teams_in_sport to competitor;
+
+GRANT EXECUTE ON procedure create_team to admin;
+GRANT EXECUTE ON procedure delete_team to admin;
+GRANT EXECUTE ON procedure team_membership_request to admin;
+GRANT EXECUTE ON procedure accept_membership_request to admin;
+GRANT EXECUTE ON procedure rankings to admin;
+GRANT EXECUTE ON procedure count_teams_in_sport to admin;
+
+GRANT EXECUTE ON procedure rankings to guest;
+GRANT EXECUTE ON procedure count_teams_in_sport to guest;
