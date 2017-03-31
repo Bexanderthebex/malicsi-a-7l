@@ -33,34 +33,36 @@
 		<script src="frontend_modules/js/angular.min.js"></script>
 		<script src="frontend_modules/js/angular-route.min.js"></script>
 	  	<script src="frontend_modules/js/jquery.bxslider.min.js"></script>
+
 		<script src="js/slider.js"></script>
 
 	</head>
 
 	<body>
 	<!-- NAVIGATION BAR -->
-	<ul id="dropdown1" class="dropdown-content">
-		<li><a href="#!">one</a></li>
-		<li><a href="#!">two</a></li>
-		<li class="divider"></li>
-		<li><a href="#!">three</a></li>
-	</ul>
-	<nav>
-		<div class="nav-wrapper">
-			<a href="#" class="brand-logo center">Logo</a>
-			<ul class="left hide-on-med-and-down">
-		    	<li><a class="dropdown-button" href="" data-activates="dropdown1">Games</a></li>
-		    	<li><a href="">Profile</a></li>
-		    	<li><a href="">Components</a></li>
-		    	<!-- Dropdown Trigger -->
-		    </ul>
-
-		    <ul class="right hide-on-med-and-down">
-		    	<li><a href="">Log-in</a></li>
-		    	<!-- Dropdown Trigger -->
-		    </ul>
+	<div id="navbar" class="row">
+		<!-- APP LOGO AND TITLE -->
+		<div id="nav-logo" class="col s6 valign-wrapper">
+			<img src="assets/logo/logo.png" alt="">
+			MAL<div class="palette-text-1">ICS</div>I
 		</div>
-	</nav>
+		
+		<!-- NAV BUTTONS -->
+		<div class="col s4" id="navigation">
+			<div id="nav-profile" class="navbtns valign-wrapper right"><i class="material-icons">face</i></div>
+			<div class="navbtns valign-wrapper right palette-text-1">ORGANIZATIONS</div>
+			<div class="navbtns valign-wrapper right palette-text-2" >GAMES</div>
+			<div class="navbtns valign-wrapper right palette-text-3">HOME</div>
+		</div>
+
+		<!-- NAV SEARCH BAR -->
+		<div class="col s2 valign-wrapper" id="nav-search">
+			<form id="nav-search-bar">
+				<input type="search" >
+			</form>
+		</div>
+	</div>
+			
 
 	<div ng-view></div>
 

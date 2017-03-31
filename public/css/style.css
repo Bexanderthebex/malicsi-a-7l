@@ -6,6 +6,34 @@
   src: local('Material Icons'), local('MaterialIcons-Regular'), url('/fonts/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2') format('woff2');
 }
 
+@font-face {
+	font-family: 'leixo';
+	src:url('/fonts/leixo/LEIXO-DEMO.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'vintage-avalanche';
+	src:url('/fonts/vintage-avalanche.otf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'telegrafico';
+	src:url('/fonts/telegrafico.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'rounded-elegance';
+	src:url('/fonts/Rounded_Elegance.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
 	width: 100%;
 	height: 100%;
@@ -25,12 +53,30 @@ nav a {
 }
 
 #navbar{
+	z-index: 9999;
 	width: 100%;
-	height: 45px;
-	background: #212121;
+	height: 60px;
+	background: black;
 	position: fixed;
 	color: white;
 	margin: 0!important;
+	padding-left: 150px;
+	padding-right: 50px;
+}
+
+#nav-profile{
+	color: white;
+}
+
+#nav-profile:hover{
+	border-color: white!important;
+}
+
+#nav-logo{
+	/*width: 25%;*/
+	height: 100%;
+	font-family: "leixo";
+	font-size: 24px;
 }
 
 #logo {
@@ -41,12 +87,38 @@ nav a {
 	height: 40px;
 }
 
+#nav-search-bar{
+	height: 100%;
+	/*background: blue;*/
+}
+
 #navbar .col{
 	margin: 0!important;
+	padding: 0;
+}
+
+#navbar img{
+	height: 50%;
+	margin-right: 15px;
+}
+
+#navigation{
+	height: 100%;
 }
 
 .navbtns {
-	width: 80px;
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 100%;
+	font-size: 16px;
+	/*letter-spacing: 1px;*/
+	font-family: "telegrafico";
+}
+
+.navbtns:hover{
+	padding-top: 5px;
+	border-bottom: solid 5px;
+	border-color: #00b8ff;
 }
 
 #navbar a {
@@ -58,7 +130,7 @@ nav a {
 #mainHolder{
 	width: 100%;
 	height: 100%;
-	padding-top: 64px;
+	padding-top: 60px;
 }
 
 
@@ -132,4 +204,74 @@ nav a {
 
 .palette-text-5 {
 	color: #001f2b;
+}
+
+#nav-search{
+	height: 50% !important;
+}
+
+#nav-search input{
+	margin: 0;
+}
+
+#nav-search-bar input {
+	outline: none;
+}
+#nav-search-bar input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: "telegrafico";
+    font-size: 16px;
+}
+#nav-search-bar input::-webkit-search-decoration,
+#nav-search-bar input::-webkit-search-cancel-button {
+	display: none; 
+}
+
+
+#nav-search-bar input[type=search] {
+    background: #00a6d7 url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: none;
+    padding: 9px 10px 9px 32px;
+    width: 55px;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+#nav-search-bar input[type=search]:focus {
+	width: 130px;
+	background-color: #fff;
+	padding-left: 32px;
+	color: #000;
+	border-color: white;
+	cursor: auto;
+	
+	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	box-shadow: 0 0 5px rgba(109,207,246,.5);
+}
+
+
+/* Demo 2 */
+#nav-search-bar input[type=search] {
+    margin-top: 13px;
+    height: 16px;
+	width: 15px;
+	padding-left: 12px;
+	color: transparent;
+	cursor: pointer;
+}
+#nav-search-bar input[type=search]:hover {
+	background-color: #fff;
+}
+
+#nav-search-bar input:-moz-placeholder {
+	color: transparent;
+}
+#nav-search-bar input::-webkit-input-placeholder {
+	color: transparent;
 }
