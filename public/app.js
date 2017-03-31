@@ -8,6 +8,12 @@
     config.$inject = ['$routeProvider','$locationProvider'];
 
     function config($routeProvider, $locationProvider){
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false,
+            rewriteLinks: false
+        });
+        
         $routeProvider
             .when('/', {
                 'templateUrl': 'views/home-page.html',
