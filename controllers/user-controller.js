@@ -47,8 +47,9 @@ exports.logout = (req, res) => {
 
 exports.register = (req, res, next) => {
 	let query = "CALL register_user(?,?,?,?,?)";
+	var type = req.body.type;
 
-	connection.userType('A').query(query, 
+	connection.userType(type).query(query, 
 	[
 		req.body.username,
 		req.body.password,
