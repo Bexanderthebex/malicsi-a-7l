@@ -7,7 +7,6 @@ delimiter //
 	//
 delimiter ;
 
-
 delimiter //
 	create procedure addWinnerSport(in winnerInput int(11), in sportId int(11))
 	BEGIN
