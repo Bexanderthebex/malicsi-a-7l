@@ -14,12 +14,12 @@ let matchController = require("../controllers/match-controller");
 let logController = require("../controllers/log-controller");
 
 function checkUser(req, res, next) {
-	console.log(req.session.user);
-	if (req.session.user !== undefined && (req.session.user.type === 'O' || req.session.user.type === 'A')) {
-		next();
-	} else {
-		res.status(403).send('Forbidden');
-	}
+  console.log(req.session.user);
+  if (req.session.user !== undefined && (req.session.user.type === 'O' || req.session.user.type === 'A')) {
+    next();
+  } else {
+    res.status(403).send('Forbidden');
+  }
 }
 
 function sha256Hash(req, res, next) {
@@ -67,8 +67,8 @@ router.post('/login', sha256Hash, userController.login);
 router.post('/organizer', adminController.createOrganizer);
 router.post('/register', sha256Hash, bcryptHash, userController.register, userController.registerCompetitor);
 router.get('/logout', userController.logout);
-router.get('/user/:id', userController.returnInfo);
-router.put('/user/update', userController.update);
+router.get('/user/:id', userController.getUserInfo);
+router.put('/user/update', sha256Hash, bcryptHash, userController.update);
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 
 //competitor routers
