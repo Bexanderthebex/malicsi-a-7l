@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+	<head>
+		<title>MalICSi</title>
+
+		<!-- CSS -->
+		<link href="frontend_modules/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+		<link href="css/style.css" type="text/css" rel="stylesheet"/>
+		<link href="css/competitor-profile-page.css" type="text/css" rel="stylesheet"/>
+		<link href="frontend_modules/css/slick.css" type="text/css" rel="stylesheet"/>
+		<link href="frontend_modules/css/slick-theme.css" type="text/css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+		<!-- JS -->
+		<script src="frontend_modules/js/angular.min.js"></script>
+		<script src="frontend_modules/js/angular-route.min.js"></script>
+		<script src="frontend_modules/js/jquery-3.1.1.min.js"></script>
+		<script src="js/competitor-profile-page.js"></script>
+
+	</head>
+
+	<body>
+
+	<!-- NAVIGATION BAR -->
+	<ul id="dropdown1" class="dropdown-content">
+		<li><a href="#!">one</a></li>
+		<li><a href="#!">two</a></li>
+		<li class="divider"></li>
+		<li><a href="#!">three</a></li>
+	</ul>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo center">Logo</a>
+			<ul class="left hide-on-med-and-down">
+				<li><a class="dropdown-button" href="" data-activates="dropdown1">Games</a></li>
+				<li><a href="">Profile</a></li>
+				<li><a href="">Components</a></li>
+				<!-- Dropdown Trigger -->
+			</ul>
+
+			<ul class="right hide-on-med-and-down">
+				<li><a href="">Log-in</a></li>
+				<!-- Dropdown Trigger -->
+			</ul>
+		</div>
+	</nav>
+
+	<div id="mainHolder">
+		<!-- Do not put anything inside main holder -->
+		<!-- Main holder just keeps the main below the navbar -->
+		<div id="main" class="container">
+			<div class="row">
+				<!-- Left Panel -->
+				<div id="left-panel" class="hide-on-med-and-down">
+					<div class="card palette-3">
+						<div class="card-image">
+							<img src="assets/avatar.png" id="profile-img">
+						</div>
+						<div id="stats-panel" class="grey lighten-2">
+							<div id="wins-badge" class="circle container valign-wrapper hoverable">
+								<div class="valign center-block">
+									<div id="wins-stat" class="center-align">9</div>
+									<div>WINS</div>
+								</div>
+							</div>
+							<div class="row center-block margin-bottom-0">
+								<div class="col l6 m6 s6 center-block">
+									<div id="draws-badge" class="stats-badge circle container valign-wrapper hoverable">
+										<div class="valign center-block">
+											<div class="stats-num center-align">4</div>
+											<div class="stat-desc">DRAWS</div>
+										</div>
+									</div>
+								</div>
+								<div class="col l6 m6 s6 center-block">
+									<div id="losses-badge" class="stats-badge circle container valign-wrapper hoverable">
+										<div class="valign center-block">
+											<div class="stats-num center-align">4</div>
+											<div class="stat-desc">LOSSES</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Right Panel -->
+				<main id="right-panel">
+					<div class="row">
+						<h4>Joanne Doe</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>
+					</div>
+
+					 <div class="row">
+						<h5>Games Handled</h5>
+						
+						<ul class="tabs tabs-transparent blue darken-4">
+							<li class="tab col s6"><a class="active white-text" href="#Teams">Teams</a></li>
+							<li class="tab col s6"><a class="white-text" href="#Organizations">Organizations</a></li>
+							<div class="indicator black" style="z-index: 1"></div>
+						</ul>
+						
+						<div id="Teams" class="col s12 light-blue lighten-3">
+							<div class="slide">
+								<div class="slide-item row">
+									<div class="col s4 valign-wrapper">
+										<div class="center-align">
+											<img src="assets/thumbnail.jpg" id="slider-img">
+										</div>
+									</div>
+									<div class="col s8">
+										<p>Team 1<br>Lorem ipsum dolor sit amet<br>Consectetur adipisicing elit</p>
+									</div>
+								</div>
+								<div class="slide-item row">
+									<div class="col s4">
+										<div class="center-align">
+											<img src="assets/thumbnail.jpg" id="slider-img">
+										</div>
+									</div>
+									<div class="col s8">
+										<p>Team 2<br>Lorem ipsum dolor sit amet<br>Consectetur adipisicing elit</p>
+									</div>
+								</div>
+								<div class="slide-item row">
+									<div class="col s4">
+										<div class="center-align">
+											<img src="assets/thumbnail.jpg" id="slider-img">
+										</div>
+									</div>
+									<div class="col s8">
+										<p>Team 3<br>Lorem ipsum dolor sit amet<br>Consectetur adipisicing elit</p>
+									</div>
+								</div>
+								<div class="slide-item row">
+									<div class="col s4">
+										<div class="center-align">
+											<img src="assets/thumbnail.jpg" id="slider-img">
+										</div>
+									</div>
+									<div class="col s8">
+										<p>Team 4<br>Lorem ipsum dolor sit amet<br>Consectetur adipisicing elit</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div id="Organizations" class="col s12 light-blue lighten-3">
+							<div class="slide">
+								<div class="slide-item row">
+									<div class="col s4 valign-wrapper">
+										<div class="center-align">
+											<img src="assets/thumbnail.jpg" id="slider-img">
+										</div>
+									</div>
+									<div class="col s8">
+										<p>Organization 1<br>Lorem ipsum dolor sit amet<br>Consectetur adipisicing elit</p>
+									</div>
+								</div>
+								<div class="slide-item row">
+									<div class="col s4">
+										<div class="center-align">
+											<img src="assets/thumbnail.jpg" id="slider-img">
+										</div>
+									</div>
+									<div class="col s8">
+										<p>Organization 2<br>Lorem ipsum dolor sit amet<br>Consectetur adipisicing elit</p>
+									</div>
+								</div>
+								<div class="slide-item row">
+									<div class="col s4">
+										<div class="center-align">
+											<img src="assets/thumbnail.jpg" id="slider-img">
+										</div>
+									</div>
+									<div class="col s8">
+										<p>Organization 3<br>Lorem ipsum dolor sit amet<br>Consectetur adipisicing elit</p>
+									</div>
+								</div>
+								<div class="slide-item row">
+									<div class="col s4">
+										<div class="center-align">
+											<img src="assets/thumbnail.jpg" id="slider-img">
+										</div>
+									</div>
+									<div class="col s8">
+										<p>Organization 4<br>Lorem ipsum dolor sit amet<br>Consectetur adipisicing elit</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row margin-bottom-0">
+						<div class="row valign-wrapper">
+							<div class="col l3 m3 s3 valign center-align">
+								<h5>SPORTS PLAYED</h5>
+							</div>
+							<div class="row center-block margin-bottom-0">
+								<div class="col l3 m3 s3 center-block">
+									<div class="palette-3 stats-badge circle container valign-wrapper hoverable">
+										<div class="valign center-block">
+											
+										</div>
+									</div>
+								</div>
+								<div class="col l3 m3 s3 center-block">
+									<div class="palette-1 stats-badge circle container valign-wrapper hoverable">
+										<div class="valign center-block">
+											
+										</div>
+									</div>
+								</div>
+								<div class="col l3 m3 s3 center-block">
+									<div class="palette-3 stats-badge circle container valign-wrapper hoverable">
+										<div class="valign center-block">
+											
+										</div>
+									</div>
+								</div>
+								<div class="col l3 m3 s3 center-block">
+									<div class="palette-1 stats-badge circle container valign-wrapper hoverable">
+										<div class="valign center-block">
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col l3 m3 s3 valign">
+							<a class="btn palette-3 waves-effect waves-light" id="view-all-sports" href="#view-all-sports-modal">VIEW ALL</a>
+							</div>
+						</div>
+						<div class="divider divider-color"></div>
+						<div id="all-games" class="row valign-wrapper margin-bottom-0">
+							<div class="col l3 m3 s3 valign center-align">
+								<h5>GAMES</h5>
+							</div>
+							<div class="row center-block margin-bottom-0">
+								<div class="col l3 m3 s3 center-block">
+									<div class="palette-2 stats-badge circle container valign-wrapper hoverable">
+										<div class="valign center-block">
+											
+										</div>
+									</div>
+								</div>
+								<div class="col l3 m3 s3 center-block">
+									<div class="palette-4 stats-badge circle container valign-wrapper hoverable">
+										<div class="valign center-block">
+											
+										</div>
+									</div>
+								</div>
+								<div class="col l3 m3 s3 center-block">
+									<div class="palette-2 stats-badge circle container valign-wrapper hoverable">
+										<div class="valign center-block">
+											
+										</div>
+									</div>
+								</div>
+								<div class="col l3 m3 s3 center-block">
+									<div class="palette-4 stats-badge circle container valign-wrapper hoverable">
+										<div class="valign center-block">
+										</div>	
+									</div>
+								</div>
+							</div>
+							<div class="col l3 m3 s3 valign">
+							<a class="btn palette-3 waves-effect waves-light" id="view-all-games" href="#view-all-games-modal">VIEW ALL</a>
+							</div>
+						</div>
+					</div>
+				</main>
+				<div id="view-all-sports-modal" class="modal">
+					<div class="row remove-bottom">
+						<div class="col s12 padding-left padding-right blue darken-4">
+							<div class="center">
+								<br>
+									<div class="card-title white-text center">
+										<h5>Sports</h5>
+									</div>
+								<br>
+							</div>
+						</div>
+					</div>  
+					<div class="modal-content">
+						<p>content</p>
+					</div>
+					<div class="divider"></div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
+					</div>
+				</div>
+				<div id="view-all-games-modal" class="modal">
+					<div class="row remove-bottom">
+						<div class="col s12 padding-left padding-right blue darken-4">
+							<div class="center">
+								<br>
+									<div class="card-title white-text center">
+										<h5>Games</h5>
+									</div>
+								<br>
+							</div>
+						</div>
+					</div>  
+					<div class="modal-content">
+						<p>content</p>
+					</div>
+					<div class="divider"></div>
+					<div class="modal-footer">
+						<a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--  Scripts-->
+	<script src="frontend_modules/js/materialize.js"></script>
+	<script src="frontend_modules/js/slick.min.js"></script>
+	</body>
+</html>
