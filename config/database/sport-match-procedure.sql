@@ -14,7 +14,7 @@ END;
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE `delete_match`(in matchID int)
+CREATE PROCEDURE delete_match (in matchID int)
 BEGIN
 DELETE FROM team_in_match WHERE match_id = matchID;
 DELETE FROM sport_match WHERE match_id = matchID;
