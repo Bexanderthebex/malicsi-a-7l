@@ -3,16 +3,17 @@ const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 
 exports.addSponsorToGame = (req, res) => {
-	var query = 'INSERT into sponsor_games SET ?';
+	var query = 'CALL add_sponsor_to_game(?, ?)';
 	var params = {
 		sponsor_id : req.body.sponsorId,
 		game_id : req.body.gameId
 	}
-	connection.query(query, 
-		params, 
+	connection.userType('A').query(query, 
+		[req.body.gameId, req.body.sponsorId], 
 		(err, results, fields)	=> {	
 		if(!err){
-			res.status(204).send("Successfully added sponsor to game!");		
+			console.log("Success");
+			res.status(200).send("Successfully added sponsor to game!");		
 		}	
 		else{
 			if(err.code == 'ER_DUP_ENTRY') {
@@ -36,7 +37,7 @@ exports.addSponsorToGame = (req, res) => {
 }
 
 exports.editSponsorDetails = (req, res) => {
-	var query = 'UPDATE sponsor_institution SET description = ? WHERE sponsor_id = ?';
+	var query = 'CALL edit_sponsor_details(?,?)';
 	connection.query(query, 
 		[req.body.description, 
 		req.body.sponsor_id
@@ -62,7 +63,7 @@ exports.editSponsorDetails = (req, res) => {
 }
 
 exports.deleteSponsorFromGame = (req, res) => {
-	var query = 'DELETE FROM sponsor_institution WHERE sponsor_id = ? AND game_id = ?';
+	var query = 'CALL delete_sponsor_from_game(?,?)';
 	connection.query(query, 
 		[req.body.sponsor_id,
 		 req.body.game_id

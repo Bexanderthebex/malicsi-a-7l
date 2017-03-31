@@ -1,0 +1,35 @@
+#header-img {
+	width: 100%;
+	height: auto;
+}
+
+#profile-photo {
+	position: absolute;
+	margin-top: -6%;
+	margin-left: 5%;
+}
+
+#profile-img {
+	width: 25%;
+	height: auto;
+}
+
+#left-panel {
+	margin-top: 5%;
+}
+
+.width-100 {
+	width: 100%;
+}
+
+.carousel {
+	height: 200px !important; 
+}
+
+.height-100 {
+	height: 100% !important;
+}
+
+img {
+	height: auto;
+}
