@@ -7,14 +7,9 @@ const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
 	var query = 'SELECT id, username, type, password FROM user WHERE username = ?';
-	// get user type
-	console.log(req.session);
-	var type = req.session.user.type;
-
-	connection.userType(type).query(query, [req.body.username], function(err, rows){
+	connection.userType('A').query(query, [req.body.username], function(err, rows){
 		if(!err) {
 			if (rows.length == 1) {
-				// console.log(rows[0].password);
 				bcrypt.compare(req.body.password, rows[0].password, (err, isCorrect) => {
 					if (isCorrect) {
 						req.session.user = {
@@ -22,15 +17,16 @@ exports.login = (req, res) => {
 							username: rows[0].username,
 							type: rows[0].type
 						}
+						console.log(req.session.user.type);
 						res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
 						console.log('hello')
 						res.send({ 'message' : 'Incorrect credentials'}).status(401);
-						console.log(res);
+						//console.log(res);
 					}
 				});
 			} else {
-				console.log(rows);
+				//console.log(rows);
 				res.status(401).send({ 'message' : 'Incorrect credentials'});
 			}
 		} else {

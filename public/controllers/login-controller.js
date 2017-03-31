@@ -7,10 +7,10 @@
     UserCtrl.$inject = ['$scope', '$http', '$window'];
 
     function UserCtrl($scope, $http, $window) {
-		$scope.uname = "hello";
-		$scope.pword = "what";
+		$scope.uname = undefined;
+		$scope.pword = undefined;
 
-		$scope.logAccount = function(uname, password){
+		$scope.logAccount = function(){
 			console.log($scope.uname);
 			console.log($scope.pword);
 
@@ -18,13 +18,15 @@
 				username : $scope.uname,
 				password : $scope.pword,
 			}).then(function(result){
-				console.log(result);
-				if (result.data.message == 'Successfully logged in') {
-					$window.location.href = '/';
-				}else {
-					$scope.uname = '';
-					$scope.pword = '';
-				}
+				//if (result.message == 'Successfully logged in') {
+				console.log(result.data);
+				//$window.location.href = '/';
+				//}else {
+				//	$scope.uname = '';
+				//	$scope.pword = '';
+				//}
+			}, function(err) {
+				console.log(err);
 			});
 		}
 		

@@ -20,7 +20,7 @@
                 // 'access': { requiredAuthentication: true }
             })
             .when('/organizer/profile', {
-                'templateUrl': 'views/organizer-profile.html',
+                'templateUrl': 'views/organizer-profile-page.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
