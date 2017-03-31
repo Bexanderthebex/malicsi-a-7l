@@ -1,43 +1,51 @@
-var app = angular.module('projectApp', []); 
+'use strict';
 
-app.controller('logIn', ['$scope', '$http', '$window', function($scope, $http, $window){
-	$scope.logAccount = function(uname, password){
-		var uname = $scope.uname;
-		var pword = $scope.pword;
+(() => {
+	angular.module('app')
+		.controller('UserCtrl', UserCtrl) //name, then callback function
+		
+    UserCtrl.$inject = ['$scope', '$http', '$window'];
 
-		console.log(uname);
-		console.log(pword);
+    function UserCtrl($scope, $http, $window) {
+		$scope.uname = "hello";
+		$scope.pword = "what";
 
-		$http.post('/login', {
-			username : uname,
-			password : pword,
-		}).then(function(result){
-			console.log(result);
-			if (result.data.message == 'Successfully logged in') {
-				$window.location.href = '/home-page.html';
-			}else {
-				$scope.uname = '';
-				$scope.pword = '';
-			}
-		});
+		$scope.logAccount = function(uname, password){
+			console.log($scope.uname);
+			console.log($scope.pword);
+
+			$http.post('/login', {
+				username : $scope.uname,
+				password : $scope.pword,
+			}).then(function(result){
+				console.log(result);
+				if (result.data.message == 'Successfully logged in') {
+					$window.location.href = '/';
+				}else {
+					$scope.uname = '';
+					$scope.pword = '';
+				}
+			});
+		}
+		
+		$scope.signUp = function(fname, lname, uname, pword, bday, emailAdd){
+			$http.post('/account/add', {
+				firstName: fname,
+				lastName: lname,
+				username: uname,
+				password: pword,
+				birthday: bday,
+				emailAddress: emailAdd,
+			}).then(function(result){
+				$scope.fname = "";
+				$scope.lname = "";
+				$scope.uname = "";
+				$scope.pword = "";
+				$scope.bday = "";
+				$scope.ead = "";
+			})
+		}
 	}
-	
-	$scope.signUp = function(fname, lname, uname, pword, bday, emailAdd){
-		$http.post('/account/add', {
-			firstName: fname,
-			lastName: lname,
-			username: uname,
-			password: pword,
-			birthday: bday,
-			emailAddress: emailAdd,
-		}).then(function(result){
-			$scope.fname = "";
-			$scope.lname = "";
-			$scope.uname = "";
-			$scope.pword = "";
-			$scope.bday = "";
-			$scope.ead = "";
-		})
-	}
+})();
 
-}]);
+
