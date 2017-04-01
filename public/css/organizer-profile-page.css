@@ -22,3 +22,16 @@
 .slide-item {
     margin-bottom: 0px !important;
 }
+
+table.highlight tbody tr:hover {
+    background-color: #039be5 !important;
+}
+
+#organizer-profile-ongoing, #organizer-profile-past, #organizer-profile-incoming {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+#organizer-ongoing-showall a:link,a:hover,a:visited{
+    color: white;
+}

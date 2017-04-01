@@ -8,9 +8,9 @@
     config.$inject = ['$routeProvider','$locationProvider'];
 
     function config($routeProvider, $locationProvider){
-        $locationProvider.html5Mode({
-            enabled: true
-        });
+        // $locationProvider.html5Mode({
+        //     enabled: true
+        // });
         
         $routeProvider
             .when('/', {

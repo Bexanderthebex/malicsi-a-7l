@@ -62,3 +62,8 @@
 .sort-adjust {
     margin-top: 9px !important;
 }
+
+#search-img-card {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}

@@ -1,13 +1,15 @@
 $(document).ready(function(){
     $('ul.tabs').tabs();
 
-    $('.slide').slick({
-        infinite: true,
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        autoplay: true,
-        rows: 2
-    });
+    // $('.slide').slick({
+    //     infinite: true,
+    //     slidesToShow: 2,
+    //     slidesToScroll: 2,
+    //     autoplay: true,
+    //     rows: 2
+    // });
+
+    $('.tooltipped').tooltip();
     
     $('.modal').modal();
 
@@ -27,6 +29,4 @@ $(document).ready(function(){
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15 // Creates a dropdown of 15 years to control year
     });
-
-    $('.tooltipped').tooltip();
 });
