@@ -69,6 +69,7 @@ router.put('/competitor/editCompetitor', competitorController.editCompetitor);
 //organizer routers
 router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
+router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);
 
 //team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);

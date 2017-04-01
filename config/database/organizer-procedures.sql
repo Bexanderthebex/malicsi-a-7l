@@ -75,7 +75,17 @@ DELIMITER //
 
 	CREATE PROCEDURE accept_request (IN teamID INT) 
 	BEGIN
-	   UPDATE team SET pending_participation = TRUE WHERE team_id =teamID;
+	   UPDATE team SET pending_participation = TRUE WHERE team_id = teamID;
+	END; //
+
+DELIMITER ;
+
+DROP procedure IF EXISTS get_pending_participation;
+DELIMITER //
+
+	CREATE PROCEDURE get_pending_participation (IN id INT) 
+	BEGIN
+	   SELECT * from (sport join game using (game_id)) JOIN team using (sport_id) WHERE pending_participation = 1 AND organizer_id = id;
 	END; //
 
 DELIMITER ;
@@ -84,6 +94,7 @@ grant execute on procedure find_game to organizer;
 grant execute on procedure find_sport to organizer;
 grant execute on procedure find_team to organizer;
 grant execute on procedure get_request to organizer;
+grant execute on procedure get_pending_participation to organizer;
 grant execute on procedure accept_request to organizer;
 grant execute on procedure accept_request to organizer;
 grant execute on procedure find_game to admin;
