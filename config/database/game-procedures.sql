@@ -41,7 +41,7 @@ END
 //
 DELIMITER ;
 
-
+DROP PROCEDURE IF EXISTS view_game_details;
 delimiter //
 CREATE PROCEDURE view_game_details(in game_id int)
 BEGIN
