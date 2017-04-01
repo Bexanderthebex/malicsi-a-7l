@@ -169,3 +169,23 @@ exports.acceptRequest = (req, res, next) => {
 		}
 	});
 };
+
+exports.getPendingParticipation = (req, res, next) => {
+	query = "CALL get_pending_participation(?)"
+	connection.userType('A').query(query, 
+		[
+			req.query.organizer_id
+		], function(err,rows){
+		if(!err){
+			if(row.length == 1){
+				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+				return(rows[0][0]);
+			} else {
+				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
+				return rows;
+			}
+		} else {
+			res.status(500).send({'message' : 'Internal Server Error'});
+		}
+	});
+};
