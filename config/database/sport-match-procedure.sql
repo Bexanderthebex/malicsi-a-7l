@@ -1,3 +1,6 @@
+USE malicsi;
+
+DROP PROCEDURE IF EXISTS view_match_sport;
 DELIMITER //
 CREATE PROCEDURE view_match_sport(IN  s_id INT)
 BEGIN 
@@ -5,6 +8,7 @@ SELECT * FROM sport_match where sport_id = s_id;
 END; //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_match_details;
 DELIMITER //
 CREATE PROCEDURE view_match_details(IN in_match_id INT)
   BEGIN
@@ -12,6 +16,7 @@ CREATE PROCEDURE view_match_details(IN in_match_id INT)
   END; //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_match;
 DELIMITER //
 CREATE PROCEDURE view_all_match()
 	BEGIN
@@ -19,6 +24,7 @@ CREATE PROCEDURE view_all_match()
 	END;//
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS delete_match;
 DELIMITER //
 CREATE PROCEDURE delete_match (in matchID int)
 BEGIN
