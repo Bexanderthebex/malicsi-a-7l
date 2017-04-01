@@ -53,7 +53,12 @@ DELIMITER ;
 
 grant execute on procedure create_competitor to competitor;
 grant execute on procedure update_user to competitor;
+grant execute on procedure select_user to competitor;
 
 grant execute on procedure create_user to administrator;
 grant execute on procedure create_competitor to administrator;
+grant execute on procedure select_user to administrator;
 grant execute on procedure update_user to administrator;
+
+grant execute on procedure select_user to guest;
+grant execute on procedure select_user to organizer;
