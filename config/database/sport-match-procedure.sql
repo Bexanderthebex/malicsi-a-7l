@@ -13,6 +13,15 @@ END;
 //
 DELIMITER ;
 
+DELIMITER //
+	CREATE PROCEDURE view_all_match()
+	BEGIN
+		SELECT * FROM sport_match;
+	END;
+	//
+DELIMITER ;
+
+
 GRANT EXECUTE ON PROCEDURE view_match_sport TO administrator;
 GRANT EXECUTE ON PROCEDURE view_match_sport TO organizer;
 GRANT EXECUTE ON PROCEDURE view_match_sport TO competitor;
@@ -22,3 +31,8 @@ GRANT EXECUTE ON PROCEDURE view_match_details TO administrator;
 GRANT EXECUTE ON PROCEDURE view_match_details TO organizer;
 GRANT EXECUTE ON PROCEDURE view_match_details TO competitor;
 GRANT EXECUTE ON PROCEDURE view_match_details TO guest;
+
+GRANT EXECUTE ON PROCEDURE view_all_match TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_match TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_match TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_match TO guest;

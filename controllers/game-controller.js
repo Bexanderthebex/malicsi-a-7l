@@ -81,3 +81,20 @@ exports.deleteGame = (req, res) => {
 		}
 	});
 }
+
+exports.countGameOrganizer = (req, res) => {
+	let query = 'CALL count_game_organizer(?)';
+	connection.userType('A').query(query,
+		[
+			req.params.organizerId
+		], (err, rows, fields) => {
+			//console.log(req.body.organizerId);
+			if(!err){
+				res.status(200).send(rows);
+			}
+			else{
+
+				res.status(500).send("Internal Server Error");
+			}
+		});
+}

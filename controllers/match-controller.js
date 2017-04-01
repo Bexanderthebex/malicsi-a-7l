@@ -62,7 +62,8 @@ exports.editTeamRankingInMatch = function(req, res, next){
 		}else{
 		    res.status(404).send("Not Found");
 		}
-	})
+	});
+}
 
 
 exports.viewMatchDetails = (req, res) => {
@@ -70,7 +71,7 @@ exports.viewMatchDetails = (req, res) => {
 
 	connection.userType('A').query(query, 
 		[req.params.matchId], 
-		(err, results, fields)	=> {
+		(err, results, fields) => {
 
 		if (!err && results[0].length!=0) {
 			res.status(200).send(results);
@@ -85,4 +86,15 @@ exports.viewMatchDetails = (req, res) => {
 	});
 
 
+}
+
+exports.viewAllMatch = (req, res) => {
+
+	connection.userType('A').query('SELECT m FROM sport_match',
+		(err, results) => {
+			if(err) throw err;
+			else{
+				res.status(200).send(results);
+			}
+		})
 }
