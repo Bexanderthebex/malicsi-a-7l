@@ -74,14 +74,14 @@ GRANT EXECUTE ON PROCEDURE delete_team TO competitor;
 GRANT EXECUTE ON PROCEDURE team_membership_request TO competitor;
 GRANT EXECUTE ON PROCEDURE accept_membership_request TO competitor;
 GRANT EXECUTE ON PROCEDURE rankings TO competitor;
-GRANT EXECUTE ON PROCEDURE count_teams_in_sport to competitor;
+GRANT EXECUTE ON PROCEDURE count_teams_in_sport TO competitor;
 
-GRANT EXECUTE ON PROCEDURE create_team to admin;
-GRANT EXECUTE ON PROCEDURE delete_team to admin;
-GRANT EXECUTE ON PROCEDURE team_membership_request to admin;
-GRANT EXECUTE ON PROCEDURE accept_membership_request to admin;
-GRANT EXECUTE ON PROCEDURE rankings to admin;
-GRANT EXECUTE ON PROCEDURE count_teams_in_sport to admin;
+GRANT EXECUTE ON PROCEDURE create_team TO admin;
+GRANT EXECUTE ON PROCEDURE delete_team TO admin;
+GRANT EXECUTE ON PROCEDURE team_membership_request TO admin;
+GRANT EXECUTE ON PROCEDURE accept_membership_request TO admin;
+GRANT EXECUTE ON PROCEDURE rankings TO admin;
+GRANT EXECUTE ON PROCEDURE count_teams_in_sport TO admin;
 
-GRANT EXECUTE ON PROCEDURE rankings to guest;
-GRANT EXECUTE ON PROCEDURE count_teams_in_sport to guest;
+GRANT EXECUTE ON PROCEDURE rankings TO guest;
+GRANT EXECUTE ON PROCEDURE count_teams_in_sport TO guest;
