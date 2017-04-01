@@ -21,9 +21,9 @@ BEGIN
 END//
 DELIMITER ;
 
-GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO ORGANIZER;
-GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO ADMINISTRATOR;
-GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO ORGANIZER;
-GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO ADMINISTRATOR;
+GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO organizer;
+GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO administrator;
+GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO organizer;
+GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO administrator;
 grant execute on procedure delete_sponsor_from_game to organizer;
 grant execute on procedure delete_sponsor_from_game to administrator;
