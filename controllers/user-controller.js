@@ -46,10 +46,11 @@ exports.logout = (req, res) => {
 }
 
 exports.register = (req, res, next) => {
-	// console.log(req.body);
-	var insert_query = 'INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?,true)';
-	var type = req.session.user.type;
-	connection.userType(type).query(insert_query, [
+	let query = "CALL register_user(?,?,?,?,?)";
+	var type = req.body.type;
+
+	connection.userType(type).query(query, 
+	[
 		req.body.username,
 		req.body.password,
 		req.body.email,
@@ -68,7 +69,6 @@ exports.register = (req, res, next) => {
 			} else {
 				res.status(500).send({ 'message': 'Unknown' });
 			}
-			//res.status(501).send({ 'message' : 'Not implemented'});
 		}
 	});
 }
