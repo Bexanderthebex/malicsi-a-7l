@@ -77,7 +77,7 @@ router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 
 //game routers
-router.get('/game/:gameId',  gameController.viewGameDetails)
+router.get('/game/:gameId',  gameController.viewGameDetails);
 router.post('/game/createGame',  gameController.createGame);
 router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
 router.put('/game/updateGame',  gameController.updateGame);
@@ -94,7 +94,7 @@ router.put('/sport/editTeamRankingInMatch', matchController.editTeamRankingInMat
 router.post('/sport/addWinnerSport', sportController.addWinnerSport);
 router.put('/sport/editSport', sportController.editSport);
 router.delete('/sport/deleteSport', sportController.deleteSport);
-
+router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
 
 //match routers
 router.post('/sport/match/addMatch',  matchController.addMatch);
