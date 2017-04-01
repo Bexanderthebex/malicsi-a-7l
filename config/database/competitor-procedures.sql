@@ -1,21 +1,21 @@
 USE malicsi;
 
-DROP procedure IF EXISTS search_competitor;
+DROP PROCEDURE IF EXISTS search_competitor;
 DELIMITER //
 
 	CREATE PROCEDURE search_competitor (IN search VARCHAR(30)) 
 	BEGIN
-	   SELECT * FROM competitor where first_name like search or last_name like search or nickname like search;
+	   SELECT * FROM competitor WHERE first_name LIKE search OR last_name LIKE search OR nickname LIKE search;
 	END; //
 
 DELIMITER ;
 
-DROP procedure IF EXISTS get_competitor;
+DROP PROCEDURE IF EXISTS get_competitor;
 DELIMITER //
 
 CREATE PROCEDURE get_competitor (IN search INT) 
 	BEGIN
-	   SELECT * FROM competitor where id = search;
+	   SELECT * FROM competitor WHERE id = search;
 	END; //
 
 DELIMITER ;
@@ -23,7 +23,7 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS edit_competitor;
 DELIMITER //
-	CREATE PROCEDURE edit_competitor(in first_name VARCHAR(30), in last_name VARCHAR(30), in birthday DATE, in nickname VARCHAR(15), in sex CHAR(1), in id INT)
+	CREATE PROCEDURE edit_competitor(IN first_name VARCHAR(30), IN last_name VARCHAR(30), IN birthday DATE, IN nickname VARCHAR(15), IN sex CHAR(1), IN id INT)
 
 	BEGIN
 		UPDATE competitor SET first_name = first_name, last_name = last_name, birthday = birthday, nickname = nickname, sex = sex WHERE id = id;

@@ -8,7 +8,7 @@ exports.searchOrganizer = (req, res) => {
 	connection.userType('A').query(query, 
 		[
 			"%" + req.query.search + "%"
-		], function (err, rows) {
+		], (err, rows) => {
 			if(!err) {
 				if(rows[0].length == 1) {
 					res.status(200).send(rows[0][0]);
@@ -20,7 +20,8 @@ exports.searchOrganizer = (req, res) => {
 			} else {
 				res.status(500).send({'message' : 'Internal Server Error'});
 			}
-	});
+		}
+	);
 }
 
 exports.getOrganizer = (req, res) => {
@@ -29,14 +30,15 @@ exports.getOrganizer = (req, res) => {
 	connection.userType('A').query(query, 
 		[
 			"%" + req.query.search + "%"
-		], function (err, rows) {
+		], (err, rows) => {
 			if(!err) {
 				res.status(200).send(rows[0]);
 				return rows;
 			} else {
 				res.status(500).send({'message' : 'Internal Server Error'});
 			}
-	});
+		}
+	);
 }
 
 exports.editOrganizer = (req,res) => {
@@ -48,42 +50,45 @@ exports.editOrganizer = (req,res) => {
 		[
 			req.body.name, 
 			req.body.description, 
-			req.body.id], function(err, rows){
+			req.body.id
+		], (err, rows) => {
 			if(!err) {
 				connection.query(query1, 
 					[
 						req.body.id
-					], function(err, rows) {
-					if(!err) {
-						res.status(200).send(rows[0]);
-						return rows[0];
+					], (err, rows) => {
+						if(!err) {
+							res.status(200).send(rows[0]);
+							return rows[0];
+						}
 					}
-				});
-
+				);
 			} else {
 				return res.status(501).send({ 'message' : 'Not implemented'});
 			}
-	});
+		}
+	);
 }
 
-exports.findGames = (req,res,next) =>{
+exports.findGames = (req,res,next) => {
 	query = "CALL find_games(?)"
 	connection.userType('A').query(query, 
 		[
 			req.query.id
-		], function(err,rows){
-		if(!err){
-			if(row.length == 1){
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-				return rows[0];
+		], (err,rows) => {
+			if(!err){
+				if(row.length == 1){
+					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+					return rows[0];
+				} else {
+					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
+					return rows;
+				}
 			} else {
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-				return rows;
+			 	res.status(500).send({'message' : 'Internal Server Error'})
 			}
-		} else {
-		 	res.status(500).send({'message' : 'Internal Server Error'})
 		}
-		});
+	);
 };		 
 		 
 exports.findSport = (req,res,next) =>{
@@ -91,19 +96,20 @@ exports.findSport = (req,res,next) =>{
 	connection.userType('A').query(query, 
 		[
 		 	req.query.game_id
-		], function(err,rows){
-		if(!err){
-			if(row.length == 1){
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-				return rows[0];
+		], (err,rows) => {
+			if(!err){
+				if(row.length == 1){
+					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+					return rows[0];
+				} else {
+					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
+					return rows;
+				}
 			} else {
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-				return rows;
+				res.status(500).send({'message' : 'Internal Server Error'});
 			}
-		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
 		}
-		});
+	);
 };
 
 exports.findTeam = (req,res,next) =>{
@@ -111,7 +117,7 @@ exports.findTeam = (req,res,next) =>{
 	connection.userType('A').query(query, 
 		[
 			req.query.sport_id
-		], function(err,rows){
+		], (err,rows) => {
 		if(!err){
 			if(row.length == 1){
 				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
@@ -132,40 +138,45 @@ exports.getRequest = (req, res, next) => {
 	connection.userType('A').query(query, 
 		[
 			req.query.team_id
-		], function(err,rows){
-		if(!err){
-			if(row.length == 1){
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-				return(rows[0][0]);
+		], (err,rows) => {
+			if(!err){
+				if(row.length == 1){
+					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+					return(rows[0][0]);
+				} else {
+					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
+					return rows;
+				}
 			} else {
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-				return rows;
+				res.status(500).send({'message' : 'Internal Server Error'});
 			}
-		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
 		}
-	});
+	);
 };
 
 
 exports.acceptRequest = (req, res, next) => {
 	query = "CALL accept_request(?)"
-	console.log(query);
+	query1 = "CALL get_team(?)"
+
 	connection.userType('A').query(query, 
 		[
 			req.query.team_id
-		], function(err,rows){
-		if(!err){
-			res.status(200).send({'message' : 'Sucuessfully Updated Request'});
-			connection.query("SELECT * from team WHERE team_id = ? "
-			, [req.query.team_id],
-			function(err,rows){
-				if(!err){
-					return rows[0];
-				} 
-			});
-		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
+		], (err,rows) => {
+			if(!err){
+				res.status(200).send({'message' : 'Successfully Updated Request'});
+				connection.query(query1,
+					[
+				 		req.query.team_id
+					], (err,rows) => {
+						if(!err){
+							return rows[0];
+						} 
+					}
+				);
+			} else {
+				res.status(500).send({'message' : 'Internal Server Error'});
+			}
 		}
-	});
+	);
 };
