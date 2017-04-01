@@ -5,7 +5,21 @@ BEGIN
 END;
 //
 delimiter ;
-grant execute on procedure view_game_details to organizer;
-grant execute on procedure view_game_details to competitor;
-grant execute on procedure view_game_details to administrator;
-grant execute on procedure view_game_details to guest;
+
+delimiter //
+	CREATE procedure count_game_organizer(in organizerId int(11))
+	BEGIN
+		SELECT COUNT(game_id) FROM game WHERE organizer_id = organizerId;
+	END;
+	//
+delimiter ;
+
+
+GRANT execute ON procedure count_game_organizer to organizer;
+GRANT execute ON procedure count_game_organizer to competitor;
+GRANT execute ON procedure count_game_organizer to administrator;
+GRANT execute ON procedure count_game_organizer to guest;
+GRANT execute ON procedure view_game_details to organizer;
+GRANT execute ON procedure view_game_details to competitor;
+GRANT execute ON procedure view_game_details to administrator;
+GRANT execute ON procedure view_game_details to guest;
