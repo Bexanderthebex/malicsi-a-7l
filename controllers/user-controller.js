@@ -6,11 +6,10 @@ const connection = require('./../config/db-connection.js');
 const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
-	let select_query = 'SELECT id, username, password, type FROM user WHERE username = ?';
-
-	connection.userType('A').query(select_query, [req.body.username], function(err, rows){
+	var query = 'SELECT id, username, type, password FROM user WHERE username = ?';
+	connection.userType('A').query(query, [req.body.username], function(err, rows){
 		if(!err) {
-			if(rows.length == 1){
+			if (rows.length == 1) {
 				bcrypt.compare(req.body.password, rows[0].password, (err, isCorrect) => {
 					if (isCorrect) {
 						req.session.user = {
@@ -18,18 +17,25 @@ exports.login = (req, res) => {
 							username: rows[0].username,
 							type: rows[0].type
 						}
-						return res.status(200).send({ 'message' : 'Successfully logged in.'});
+						console.log(req.session.user.type);
+						res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
-						return res.status(401).send({ 'message' : 'Incorrect password.'});
+						console.log('hello')
+						res.send({ 'message' : 'Incorrect credentials'}).status(401);
+						//console.log(res);
 					}
 				});
 			} else {
-				console.log(rows);
-				return res.status(404).send({ 'message' : 'User does not exist.'});
+				//console.log(rows);
+				res.status(401).send({ 'message' : 'Incorrect credentials'});
 			}
 		} else {
-			if (err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({ 'message' : 'Missing credentials.'});
-			else return res.status(500).send({ 'message' : 'Unknown'});
+			if (err.code == 'ER_BAD_NULL_ERROR') {
+				res.status(500).send({ 'message' : 'Missing credentials'});
+			} else {
+				res.status(500).send({ 'message' : 'Unknown'});
+			}
+
 		}
 	});
 }

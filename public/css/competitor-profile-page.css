@@ -1,0 +1,116 @@
+#competitor-profile-img {
+	width: 100%;
+	height: auto;
+}
+
+#competitor-basic-info {
+	padding-left: 3%;
+}
+
+/**********************************************************************************************/
+
+#competitor-games-played {
+	overflow: auto;
+	white-space: nowrap;
+}
+
+#competitor-games-played a { 
+	display: inline-block;
+	text-align: center;
+	padding: 14px;
+	text-decoration: none; 
+	position: relative;
+	cursor: pointer;
+}
+
+.competitor-game-img {
+	width: 150px;
+	border-radius: 5px;
+}
+
+.game-desc {
+	background: rgba(0, 0, 0, .7);
+	border-radius: 5px;
+	padding-left: 3px;
+	position: absolute;
+	text-align: left;
+	font-size: 10pt;
+	display: none;
+	color: #fff;
+	top: 0;
+}
+
+/**********************************************************************************************/
+
+.margin-bottom-zero {
+	margin-bottom: 0;
+}
+
+.width-75 {
+	width: 75%;
+}
+
+/**********************************************************************************************/
+
+.tabs .indicator {
+    background-color: #00a5d3;
+}
+
+.affiliation-div {
+	height: 250px;
+	overflow-y: auto;
+}
+
+#affiliation-head {
+	margin-top: 0;
+	padding-top: 16px;
+}
+
+/**********************************************************************************************/
+
+
+#stats {
+    margin-top: 0px;
+}
+
+#wins-badge {
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    line-height: normal;
+    background-color: #35c235;
+}
+
+#wins-stat {
+    font-size: 30pt;
+    font-weight: bold;
+}
+
+#losses-badge {
+    background-color: #d54545;
+}
+
+#draws-badge {
+    background-color: #eae939;
+}
+
+#stats-panel {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.stats-badge {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    line-height: normal;
+}
+
+.stats-num {
+    font-size: 22pt;
+    font-weight: bold;
+}
+
+.stat-desc {
+    font-size: 9pt;
+}
