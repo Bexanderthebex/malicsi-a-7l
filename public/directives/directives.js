@@ -6,6 +6,7 @@
         .directive('editOrganizer', editOrganizer)
         .directive('acceptTeam', acceptTeam)
         .directive('declineTeam', declineTeam)
+        .directive('tooltipDirective', tooltipDirective)
         .directive('dropdownDirective', dropdownDirective)
         .directive('pressEnter', pressEnter)
 
@@ -50,6 +51,19 @@
                 $(element).on('click', function() {
                     $('#organizer-profile-decline-modal').openModal();
                 });
+            }
+
+        }
+
+        function tooltipDirective() {
+            var directive = {
+                link: link,
+                restrict: 'EA'
+            };
+            return directive;
+            
+            function link(scope, element, attrs) {
+                $(element).tooltip();
             }
 
         }
