@@ -6,7 +6,7 @@ const connection = require('./../config/db-connection.js');
 const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
-	let select_query = `SELECT id, username, type, password FROM user WHERE username = ?`;
+	let select_query = 'SELECT id, username, password, type FROM user WHERE username = ?';
 
 	connection.userType('A').query(select_query, [req.body.username], function(err, rows){
 		if(!err) {
@@ -18,18 +18,18 @@ exports.login = (req, res) => {
 							username: rows[0].username,
 							type: rows[0].type
 						}
-						res.status(200).send({ 'message' : 'Successfully logged in.'});
+						return res.status(200).send({ 'message' : 'Successfully logged in.'});
 					} else {
-						res.status(401).send({ 'message' : 'Incorrect password.'});
+						return res.status(401).send({ 'message' : 'Incorrect password.'});
 					}
 				});
 			} else {
 				console.log(rows);
-				res.status(404).send({ 'message' : 'User does not exist.'});
+				return res.status(404).send({ 'message' : 'User does not exist.'});
 			}
 		} else {
-			if (err.code == 'ER_BAD_NULL_ERROR') res.status(400).send({ 'message' : 'Missing credentials.'});
-			else res.status(500).send({ 'message' : 'Unknown'});
+			if (err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({ 'message' : 'Missing credentials.'});
+			else return res.status(500).send({ 'message' : 'Unknown'});
 		}
 	});
 }
@@ -131,28 +131,28 @@ exports.update = (req, res) =>{
 		console.log(req.body);
 		if(!err){
 			if (rows.affectedRows === 0) {
-				res.status(500).send({'message': 'User does not exists.'});
+				return res.status(500).send({'message': 'User does not exists.'});
 			}else{
 				req.session.user.username = req.body.username;
-				res.status(200).send({'message': 'User successfully updated.'});
+				return res.status(200).send({'message': 'User successfully updated.'});
 			}
 		}else{
 			console.log(err);
-			if(err.code == 'ER_BAD_NULL_ERROR') res.status(400).send({'message':'Missing field.'});
-			else if(err.code == 'ER_DUP_ENTRY') res.status(400).send({'message':'Duplicate entry.'})
-			else res.status(500).send({'message':'Unknown error'});
+			if(err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({'message':'Missing field.'});
+			else if(err.code == 'ER_DUP_ENTRY') return res.status(400).send({'message':'Duplicate entry.'})
+			else return res.status(500).send({'message':'Unknown error'});
 		}
 	});
 }
 
 exports.getUserInfo = (req,res) => {
 	let query = 'SELECT * from user WHERE user.id = ?';
-	connection.query(query, [req.params.id], function(err, rows, fields) {
+	connection.userType('A').query(query, [req.params.id], function(err, rows, fields) {
 		if(!err) {
 			var returnObject = rows[0];
 
 			if(returnObject.type == 'O'){
-				connection.query('SELECT name, description from organizer where id = ?', [req.params.id], function(err, rows, fields) {
+				connection.userType('A').query('SELECT name, description from organizer where id = ?', [req.params.id], function(err, rows, fields) {
 					console.log(rows);
 					if(!err) {
 						returnObject["name"] = rows[0].name;
@@ -166,7 +166,7 @@ exports.getUserInfo = (req,res) => {
 					}
 				});
 			}else if(returnObject.type == 'C') {
-				connection.query('SELECT birthday, sex, first_name, last_name, nickname from competitor WHERE id = ?', [req.params.id], function(err, rows, fields){
+				connection.userType('A').query('SELECT birthday, sex, first_name, last_name, nickname from competitor WHERE id = ?', [req.params.id], function(err, rows, fields){
 					if(!err) {
 						returnObject["birthday"] = rows[0].birthday;
 						returnObject["first_name"] = rows[0].first_name;
@@ -186,7 +186,8 @@ exports.getUserInfo = (req,res) => {
 				return returnObject;
 			}
 		}else{
-			res.status(404).send({'message':'User does not exist.'});
+			console.log(err);
+			return res.status(404).send({'message':'User does not exist.'});
 		}
 	});
 }
