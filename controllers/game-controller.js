@@ -52,7 +52,7 @@ exports.viewGameDetails = (req, res) => {
 	let query = 'call viewGameDetails(?);';
 
 	connection.userType('A').query(query, 
-		[req.params.gameId], 
+		[req.query.gameId], 
 		(err, results, fields)	=> {
 
 		if (!err && results[0].length!=0) {

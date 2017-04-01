@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 
 exports.editSport = (req, res, next) => {
 	let query = 'CALL edit_sport(?, ?, ?, ?, ?, ?, ?, ?, ?)';
-
 	connection.userType('A').query(query,
 	[
 		req.body.sportName,
@@ -23,19 +22,20 @@ exports.editSport = (req, res, next) => {
 			res.status(200).send(rows);
 		} 
 		else{
-			res.status(500).send("edit unsuccessful. error occured");
+			res.status(500).send("Edit unsuccessful. Error occured");
 		}
 	});
 }
 
 exports.createSport = (req, res) => {
-  
-	connection.userType('A').query('CALL create_sport(?, ?, ?, ?, ?)', 
+  	let query = 'CALL create_sport(?, ?, ?, ?, ?)';
+	connection.userType('A').query(query, 
 		[req.body.timeStart,
 		 req.body.timeEnd,
 		 req.body.date,
 		 req.body.scoringSystem,
-		 req.body.gameID], 
+		 req.body.gameID
+		 ], 
 		(err, rows) => {
 		if (!err){
 			connection.userType('A').query('CALL specific_sport(?)', rows.insertId, (err, rows) => {
@@ -44,23 +44,27 @@ exports.createSport = (req, res) => {
 		}else{
 			res.status(500).send("Internal Server Error");
 		}
-	})
+	});
 }
 
 exports.viewSportDetails = (req, res) => {
-	connection.userType('A').query('CALL specific_sport(?)', [req.params.sportID], (err, rows) => {
+	let query = 'CALL specific_sport(?)';
+	connection.userType('A').query(query, 
+		[
+		req.query.sportID
+		], 
+		(err, rows) => {
 		if (!err){
 			res.status(200).send(rows[0]);
 		}else{
 			res.status(500).send("Internal Server Error");
 		}
-	})
+	});
 }
 
 
 exports.addWinnerSport = (req, res, next) => {
 	let query = 'CALL add_winner_sport(?,?)';
-
 	connection.userType('A').query(query,
 			[
 				req.body.winner,
@@ -76,7 +80,7 @@ exports.addWinnerSport = (req, res, next) => {
 						res.status(500).send("update unsuccessful. error occured");
 					}
 			
-				});
+			});
 }
 
 exports.deleteSport = (req, res, next) => {
@@ -95,7 +99,7 @@ exports.deleteSport = (req, res, next) => {
 				else{
 					res.status(500).send("delete unsuccessful. error occured");
 				}
-			});
+		});
 
 }
 
