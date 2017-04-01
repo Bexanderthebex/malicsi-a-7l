@@ -71,6 +71,7 @@ router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
 
 //team routers
+router.get('/team/teamStatistics',teamController.getTeamStatistics);
 router.post('/team/createTeam',teamController.createTeam);
 router.post('/team/deleteTeam',teamController.deleteTeam);
 router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
@@ -95,7 +96,7 @@ router.put('/sport/editTeamRankingInMatch', matchController.editTeamRankingInMat
 router.post('/sport/addWinnerSport', sportController.addWinnerSport);
 router.put('/sport/editSport', sportController.editSport);
 router.delete('/sport/deleteSport', sportController.deleteSport);
-
+router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
 
 //match routers
 router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
