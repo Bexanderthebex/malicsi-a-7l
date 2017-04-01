@@ -102,4 +102,3 @@ router.post('/sport/match/addMatch',  matchController.addMatch);
 router.get('/sport/match/:sportId',  matchController.viewMatchInSport);
 
 module.exports = router;
-
