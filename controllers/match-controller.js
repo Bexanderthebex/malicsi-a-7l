@@ -66,6 +66,7 @@ exports.editTeamRankingInMatch = function(req, res, next){
 }
 
 
+
 exports.viewMatchDetails = (req, res) => {
 	let query = 'call view_match_details(?);';
 
@@ -88,13 +89,28 @@ exports.viewMatchDetails = (req, res) => {
 
 }
 
+
 exports.viewAllMatch = (req, res) => {
 
-	connection.userType('A').query('SELECT m FROM sport_match',
+	connection.userType('A').query('SELECT * FROM sport_match',
 		(err, results) => {
 			if(err) throw err;
 			else{
 				res.status(200).send(results);
 			}
-		})
+		});
+}
+exports.deleteMatch = (req, res) => {
+	let query = 'delete_match(?);'
+	connection.query(query, [req.body.matchId], function(err, rows) {
+		if(!err){
+			if (rows.length == 0) {
+				res.status(501).send('Not Implemented');
+			} else {
+				 res.status(200).send('Sucessful');
+			}
+		}else{
+			res.status(500).send("Internal Server Error");
+		}
+	});
 }

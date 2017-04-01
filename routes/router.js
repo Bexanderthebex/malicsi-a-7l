@@ -86,6 +86,7 @@ router.put('/game/editSponsor',  sponsorController.editSponsorDetails);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
 
+
 //sport routers
 router.get('/sport/:sportId', sportController.viewSportDetails);
 router.post('/sport/createSport', sportController.createSport);
