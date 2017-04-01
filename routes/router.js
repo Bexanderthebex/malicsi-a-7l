@@ -71,6 +71,7 @@ router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
 
 //team routers
+router.get('/team/teamStatistics',teamController.getTeamStatistics);
 router.post('/team/createTeam',teamController.createTeam);
 router.post('/team/deleteTeam',teamController.deleteTeam);
 router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
