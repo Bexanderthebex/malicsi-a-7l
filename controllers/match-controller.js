@@ -62,15 +62,17 @@ exports.editTeamRankingInMatch = function(req, res, next){
 		}else{
 		    res.status(404).send("Not Found");
 		}
-	})
+	});
 }
+
+
 
 exports.viewMatchDetails = (req, res) => {
 	let query = 'call view_match_details(?);';
 
 	connection.userType('A').query(query, 
 		[req.params.matchId], 
-		(err, results, fields)	=> {
+		(err, results, fields) => {
 
 		if (!err && results[0].length!=0) {
 			res.status(200).send(results);
@@ -87,6 +89,17 @@ exports.viewMatchDetails = (req, res) => {
 
 }
 
+
+exports.viewAllMatch = (req, res) => {
+
+	connection.userType('A').query('SELECT * FROM sport_match',
+		(err, results) => {
+			if(err) throw err;
+			else{
+				res.status(200).send(results);
+			}
+		});
+}
 exports.deleteMatch = (req, res) => {
 	let query = 'delete_match(?);'
 	connection.query(query, [req.body.matchId], function(err, rows) {
