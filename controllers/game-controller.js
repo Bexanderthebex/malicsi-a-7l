@@ -49,10 +49,31 @@ exports.updateGame = (req, res) => {
 }
 
 exports.viewGameDetails = (req, res) => {
-	let query = 'call viewGameDetails(?);';
+	let query = 'call view_game_details(?);';
 
 	connection.userType('A').query(query, 
 		[req.params.gameId], 
+		(err, results, fields)	=> {
+
+		if (!err && results[0].length!=0) {
+			res.status(200).send(results);
+		}
+		else if (results[0].length==0){
+			res.status(404).send("Game not found.");
+		}		
+		else{
+			console.log(err.code);
+			res.status(500).send("An error occurred.");
+		}
+		
+	});
+}
+
+exports.searchForGameByKeyword = (req,res) => {
+	let query = 'call search_for_game_by_keyword(?);';
+	let param = '%' + req.params.keyword + '%';
+	connection.userType('A').query(query, 
+		param, 
 		(err, results, fields)	=> {
 
 		if (!err && results[0].length!=0) {
@@ -68,7 +89,9 @@ exports.viewGameDetails = (req, res) => {
 		}
 		
 	});
+	
 }
+
 
 exports.deleteGame = (req, res) => {
 	let query = 'CALL delete_game(?);'

@@ -77,7 +77,8 @@ router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 
 //game routers
-router.get('/game/:gameId',  gameController.viewGameDetails)
+router.get('/game/:gameId',  gameController.viewGameDetails);
+router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
 router.post('/game/createGame',  gameController.createGame);
 router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
 router.put('/game/updateGame',  gameController.updateGame);
