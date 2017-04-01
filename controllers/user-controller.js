@@ -91,7 +91,6 @@ exports.registerCompetitor = (req, res) => {
 			connection.query('INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)',
 				[returnObject.id, req.body.birthday, req.body.first_name, req.body.last_name, req.body.nickname, req.body.sex], function(err, rows){
 				if(!err) {
-					res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
 					returnObject.push(
 						{
 							key: "birthday",
@@ -114,6 +113,7 @@ exports.registerCompetitor = (req, res) => {
 							value: rows[0].nickname
 						}
 					);
+					res.status(200).send(returnObject);
 					return returnObject;
 				}else{
 					console.log(err);
