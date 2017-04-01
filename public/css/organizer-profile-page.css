@@ -31,3 +31,7 @@ table.highlight tbody tr:hover {
     padding-right: 0px !important;
     padding-left: 0px !important;
 }
+
+#organizer-ongoing-showall a:link,a:hover,a:visited{
+    color: white;
+}
