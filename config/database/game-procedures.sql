@@ -55,17 +55,18 @@ grant execute on procedure view_game_details to administrator;
 grant execute on procedure view_game_details to guest;
 
 
+DROP PROCEDURE IF EXISTS search_for_game_by_keyword;
 DELIMITER //
 CREATE PROCEDURE search_for_game_by_keyword(in keyword varchar(50))
 BEGIN
-	select name, start_date, end_date, game.description from game where name like keyword or description like keyword;
+	select game.name, start_date, end_date, game.description, organizer.name as organizer_name from game,organizer where game.name like keyword or game.description like keyword or organizer.name like keyword;
 END;
 //
 DELIMITER ;
-grant execute on procedure search_for_game_by_keyword to organizer;
-grant execute on procedure search_for_game_by_keyword to competitor;
-grant execute on procedure search_for_game_by_keyword to administrator;
-grant execute on procedure search_for_game_by_keyword to guest;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO organizer;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO competitor;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO administrator;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO guest;
 
 
 grant execute on procedure update_game to organizer;

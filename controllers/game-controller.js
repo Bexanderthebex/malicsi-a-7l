@@ -50,13 +50,13 @@ exports.updateGame = (req, res) => {
 
 exports.viewGameDetails = (req, res) => {
 	let query = 'call view_game_details(?);';
-
-	connection.userType('A').query(query, 
-		[req.params.gameId], 
+	let param = parseInt(req.params.gameId);
+	if (!isNaN(param)){
+		connection.userType('A').query(query, 
+		param, 
 		(err, results, fields)	=> {
-
 		if (!err && results[0].length!=0) {
-			res.status(200).send(results);
+			res.status(200).send(results[0]);
 		}
 		else if (results[0].length==0){
 			res.status(404).send("Game not found.");
@@ -67,6 +67,9 @@ exports.viewGameDetails = (req, res) => {
 		}
 		
 	});
+
+	}
+	else res.status(400).send("Invalid parameter.");
 }
 
 exports.searchForGameByKeyword = (req,res) => {
@@ -75,9 +78,10 @@ exports.searchForGameByKeyword = (req,res) => {
 	connection.userType('A').query(query, 
 		param, 
 		(err, results, fields)	=> {
-
+		console.log(err);
+		console.log(results);
 		if (!err && results[0].length!=0) {
-			res.status(200).send(results);
+			res.status(200).send(results[0]);
 		}
 		else if (results[0].length==0){
 			res.status(404).send("Game not found.");
@@ -85,7 +89,6 @@ exports.searchForGameByKeyword = (req,res) => {
 		else{
 			console.log(err.code);
 			res.status(500).send("An error occurred.");
-			throw err;
 		}
 		
 	});
