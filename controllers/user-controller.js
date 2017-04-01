@@ -39,20 +39,13 @@ exports.logout = (req, res) => {
 	res.status(200).send({'message': 'Logout successful'});
 }
 
-exports.register = (req, res, next) => {
+/*exports.register = (req, res) => {
+	console.log(req.body);
 	let insert_query = 'CALL create_user(?, ?, ?, ?, ?)';
 
-	connection.userType('A').query(insert_query, [
-		req.body.username,
-		req.body.password,
-		req.body.email,
-		req.body.contact,
-		req.body.type
-	], function(err, rows){
-		if(!err) {
-			req.body.id = rows.insertId;
-			next();
-		}else{
+	connection.userType('A').query(insert_query,
+		[req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type], function(err, rows){
+		if(err) {
 			console.log(err);
 			if (err.code == 'ER_BAD_NULL_ERROR') {
 				res.status(400).send({ 'message' : 'Missing field.' });
@@ -61,6 +54,61 @@ exports.register = (req, res, next) => {
 			} else {
 				res.status(500).send({ 'message': 'Unknown' });
 			}
+		}else{
+			req.session.user = {
+				id: rows.insertId,
+				username: req.body.username,
+				type: req.body.type
+			};
+			res.status(200).send({ 'message' : 'Successfully inserted new user'});
+		}
+	});
+}*/
+
+exports.registerCompetitor = (req, res) => {
+	let insert_user_query = 'CALL create_user(?, ?, ?, ?, ?)';
+	let select_user_query = 'SELECT * FROM user WHERE username = ?';
+	let insert_comp_query = 'CALL create_competitor(?,?,?,?,?,?)';
+
+	connection.userType('A').query(insert_user_query, [req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type], function(err, rows){
+		if(!err){
+			connection.userType('A').query(select_user_query, [req.body.username], function(err, rows){
+				var returnObject = rows[0];
+
+				if(!err){
+					connection.userType('A').query(insert_comp_query, [
+						returnObject.id, 
+						req.body.birthday, 
+						req.body.first_name, 
+						req.body.last_name, 
+						req.body.nickname, 
+						req.body.sex
+					], function(err, rows){
+						if(!err){
+							returnObject["birthday"] = req.body.birthday;
+							returnObject["first_name"] = req.body.first_name;
+							returnObject["last_name"] = req.body.last_name;
+							returnObject["nickname"] = req.body.nickname;
+							returnObject["sex"] = req.body.sex;
+							res.status(200).send({'message':'Successfully created competitor.'});
+							return returnObject;
+						}else{
+							console.log(err);
+							if (err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({ 'message' : 'Missing field' });
+							else if (err.code == 'ER_DUP_ENTRY') return res.status(400).send({ 'message' : 'Duplicate entry' });
+							else return res.status(500).send({ 'message': 'Unknown error.' });
+						}
+					});
+				}else{
+					console.log(err);
+					return res.status(404).send({'message':'User does not exist.'});
+				}
+			});
+		}else{
+			console.log(err);
+			if (err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({ 'message' : 'Missing field' });
+			else if (err.code == 'ER_DUP_ENTRY') return res.status(400).send({ 'message' : 'Duplicate entry' });
+			else return res.status(500).send({ 'message': 'Unknown error.' });
 		}
 	});
 }
@@ -93,60 +141,6 @@ exports.update = (req, res) =>{
 			if(err.code == 'ER_BAD_NULL_ERROR') res.status(400).send({'message':'Missing field.'});
 			else if(err.code == 'ER_DUP_ENTRY') res.status(400).send({'message':'Duplicate entry.'})
 			else res.status(500).send({'message':'Unknown error'});
-		}
-	});
-}
-
-exports.registerCompetitor = (req, res) => {
-	let query = 'CALL create_competitor(?,?,?,?,?,?)';
-	connection.userType('A').query(query, [
-		req.body.id,
-		req.body.birthday,
-		req.body.first_name,
-		req.body.last_name,
-		req.body.nickname,
-		req.body.sex
-	], function(err, rows){
-		if(!err) {
-			req.session.user = {
-				id: req.body,
-				username: req.body.username,
-				type: req.body.type
-			};
-
-			res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
-			/*returnObject.push(
-				{
-					key: "birthday",
-					value: rows[0].birthday
-				},
-				{
-					key: "sex",
-					value: rows[0].sex
-				},
-				{
-					key: "first_name",
-					value: rows[0].first_name
-				},
-				{
-					key: "last_name",
-					value: rows[0].last_name
-				},
-				{
-					key: "nickname",
-					value: rows[0].nickname
-				}
-			);
-			return returnObject;*/
-		}else{
-			console.log(err);
-			if (err.code == 'ER_BAD_NULL_ERROR') {
-				res.status(400).send({ 'message' : 'Missing field' });
-			} else if (err.code == 'ER_DUP_ENTRY') {
-				res.status(400).send({ 'message' : 'Duplicate entry' });
-			} else {
-				res.status(500).send({ 'message': 'Error inserting new competitor!' });
-			}
 		}
 	});
 }
