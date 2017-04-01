@@ -1,5 +1,17 @@
 USE malicsi;
 
+
+DROP procedure IF EXISTS delete_team;
+DELIMITER //
+
+CREATE PROCEDURE get_team (IN id INT) 
+	BEGIN
+		SELECT * from team WHERE team_id = id;
+	END; //
+
+DELIMITER ;
+
+
 DROP procedure IF EXISTS create_team;
 DELIMITER //
 
