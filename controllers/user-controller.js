@@ -48,8 +48,8 @@ exports.logout = (req, res) => {
 exports.register = (req, res, next) => {
 	// console.log(req.body);
 	var insert_query = 'INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?,true)';
-
-	connection.query(insert_query, [
+	var type = req.session.user.type;
+	connection.userType(type).query(insert_query, [
 		req.body.username,
 		req.body.password,
 		req.body.email,
@@ -74,7 +74,8 @@ exports.register = (req, res, next) => {
 }
 
 exports.update = (req, res) =>{
-	connection.query('UPDATE user SET username = ?, password = ?, email = ?, contact = ? WHERE id = ?', [req.body.username, req.body.password, req.body.email, req.body.contact, req.session.user.id], function (err, rows){
+	var type = req.session.user.type;
+	connection.userType(type).query('UPDATE user SET username = ?, password = ?, email = ?, contact = ? WHERE id = ?', [req.body.username, req.body.password, req.body.email, req.body.contact, req.session.user.id], function (err, rows){
 		if(err) res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
 		else if (rows.affectedRows === 0) {
 			res.status(404).send({ 'message': 'User was not updated.' });
@@ -86,7 +87,8 @@ exports.update = (req, res) =>{
 }
 
 exports.returnInfo = (req, res) => {
-	connection.query('SELECT id, username, is_active, email, contact, type FROM user WHERE id=?', [req.params.id], function(err, rows){
+	var type = req.session.user.type;
+	connection.userType(type).query('SELECT id, username, is_active, email, contact, type FROM user WHERE id=?', [req.params.id], function(err, rows){
 		if (err) {
 			res.status(404).send({ 'message' : 'Error getting user info!', 'data': err});
 		} else {
@@ -101,7 +103,8 @@ exports.returnInfo = (req, res) => {
 
 exports.registerCompetitor = (req, res) => {
 	let query = 'INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)';
-	connection.query(query, [
+	var type = req.session.user.type;
+	connection.userType(type).query(query, [
 		req.body.id,
 		req.body.birthday,
 		req.body.first_name,
@@ -154,12 +157,13 @@ exports.registerCompetitor = (req, res) => {
 }
 
 exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
+	var type = req.session.user.type;
 	currentUser = req.session.user;
-	connection.query('SELECT * from user ' + 'WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
+		connection.userType(type).query('SELECT * from user ' + 'WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 		if(!err) {
 			returnObject = rows[0];
 
-			if(currentUser.user_type == 'competitor') {
+			if(currentUser.user_type == 'C') {
 				connection.query('SELECT birthday, sex, first_name, last_name, nickname from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
 					if(!err) {
 						returnObject.push(
@@ -191,8 +195,9 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 						console.log(err);
 					}
 				})
-			} else if (currentUser.user_type == 'organizer') {
-				connection.query('SELECT name, description form organizer where id = ?', [currentUser.id], function(err, rows, fields) {
+			} else if (currentUser.user_type == 'O') {
+				var type = req.session.user.type;
+				connection.userType(type).query('SELECT name, description form organizer where id = ?', [currentUser.id], function(err, rows, fields) {
 					if(!err) {
 						returnObject.push(
 							{
