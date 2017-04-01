@@ -1,14 +1,14 @@
 'use strict'
 
-// const mysql = require('mysql');
-// const bodyParser = require('body-parser');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
 	let select_query = `SELECT id, username, type, password FROM user WHERE username = ?`;
 
-	connection.query(select_query, [req.body.username], function(err, rows){
+	connection.userType('A').query(select_query, [req.body.username], function(err, rows){
 		if(!err) {
 			if(rows.length == 1){
 				bcrypt.compare(req.body.password, rows[0].password, (err, isCorrect) => {
@@ -40,9 +40,9 @@ exports.logout = (req, res) => {
 }
 
 exports.register = (req, res, next) => {
-	let insert_query = 'INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?, 1)';
+	let insert_query = 'CALL create_user(?, ?, ?, ?, ?)';
 
-	connection.query(insert_query, [
+	connection.userType('A').query(insert_query, [
 		req.body.username,
 		req.body.password,
 		req.body.email,
@@ -66,14 +66,14 @@ exports.register = (req, res, next) => {
 }
 
 exports.update = (req, res) =>{
-	let update_query = 'UPDATE user SET username = ?, password = ?, email = ?, contact = ? WHERE id = ?';
+	let update_query = 'CALL update_user(?, ?, ?, ?, ?)';
 
 	/*
 		NOTE FOR FRONT END: Must make sure that if a field is empty, pass the old value.
 		Example, use did not provide password. req.body.password must be the user's old password.
 	*/
 
-	connection.query(update_query, [
+	connection.userType('A').query(update_query, [
 		req.body.username, 
 		req.body.password, 
 		req.body.email, 
@@ -98,8 +98,8 @@ exports.update = (req, res) =>{
 }
 
 exports.registerCompetitor = (req, res) => {
-	let query = 'INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)';
-	connection.query(query, [
+	let query = 'CALL create_competitor(?,?,?,?,?,?)';
+	connection.userType('A').query(query, [
 		req.body.id,
 		req.body.birthday,
 		req.body.first_name,
