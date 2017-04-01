@@ -74,34 +74,37 @@ exports.registerCompetitor = (req, res) => {
 		if(!err){
 			connection.userType('A').query(select_user_query, [req.body.username], function(err, rows){
 				var returnObject = rows[0];
-
-				if(!err){
-					connection.userType('A').query(insert_comp_query, [
-						returnObject.id, 
-						req.body.birthday, 
-						req.body.first_name, 
-						req.body.last_name, 
-						req.body.nickname, 
-						req.body.sex
-					], function(err, rows){
-						if(!err){
-							returnObject["birthday"] = req.body.birthday;
-							returnObject["first_name"] = req.body.first_name;
-							returnObject["last_name"] = req.body.last_name;
-							returnObject["nickname"] = req.body.nickname;
-							returnObject["sex"] = req.body.sex;
-							res.status(200).send({'message':'Successfully created competitor.'});
-							return returnObject;
-						}else{
-							console.log(err);
-							if (err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({ 'message' : 'Missing field' });
-							else if (err.code == 'ER_DUP_ENTRY') return res.status(400).send({ 'message' : 'Duplicate entry' });
-							else return res.status(500).send({ 'message': 'Unknown error.' });
-						}
-					});
+				if(returnObject.type == 'C' || returnObject.type == 'O'){
+					if(!err){
+						connection.userType('A').query(insert_comp_query, [
+							returnObject.id, 
+							req.body.birthday, 
+							req.body.first_name, 
+							req.body.last_name, 
+							req.body.nickname, 
+							req.body.sex
+						], function(err, rows){
+							if(!err){
+								returnObject["birthday"] = req.body.birthday;
+								returnObject["first_name"] = req.body.first_name;
+								returnObject["last_name"] = req.body.last_name;
+								returnObject["nickname"] = req.body.nickname;
+								returnObject["sex"] = req.body.sex;
+								res.status(200).send({'message':'Successfully created competitor.'});
+								return returnObject;
+							}else{
+								console.log(err);
+								if (err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({ 'message' : 'Missing field' });
+								else if (err.code == 'ER_DUP_ENTRY') return res.status(400).send({ 'message' : 'Duplicate entry' });
+								else return res.status(500).send({ 'message': 'Unknown error.' });
+							}
+						});
+					}else{
+						console.log(err);
+						return res.status(404).send({'message':'User does not exist.'});
+					}
 				}else{
-					console.log(err);
-					return res.status(404).send({'message':'User does not exist.'});
+					return res.status(500).send({'message':'User is neither competitor or organizer.'});
 				}
 			});
 		}else{
