@@ -34,6 +34,18 @@ CREATE PROCEDURE create_competitor(
 //
 DELIMITER ;
 
+DROP procedure IF EXISTS select_user;
+DELIMITER //
+CREATE PROCEDURE select_user(
+		in _id INT
+	)
+
+	BEGIN
+		SELECT * from user WHERE id = _id;
+	END;
+//
+DELIMITER ;
+
 
 DROP procedure IF EXISTS update_user;
 DELIMITER //
