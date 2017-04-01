@@ -65,7 +65,7 @@ exports.logout = (req, res) => {
 	});
 }*/
 
-exports.registerCompetitor = (req, res) => {
+exports.register = (req, res) => {
 	let insert_user_query = 'CALL create_user(?, ?, ?, ?, ?)';
 	let select_user_query = 'SELECT * FROM user WHERE username = ?';
 	let insert_comp_query = 'CALL create_competitor(?,?,?,?,?,?)';
@@ -74,6 +74,13 @@ exports.registerCompetitor = (req, res) => {
 		if(!err){
 			connection.userType('A').query(select_user_query, [req.body.username], function(err, rows){
 				var returnObject = rows[0];
+
+				req.session.user = {
+					id: rows.insertId,
+					username: req.body.username,
+					type: req.body.type
+				};
+
 				if(returnObject.type == 'C' || returnObject.type == 'O'){
 					if(!err){
 						connection.userType('A').query(insert_comp_query, [
