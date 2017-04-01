@@ -149,10 +149,10 @@
             <!-- GAMES PARTICIPATED -->
             <div class="col s12 m12 l6">
                 <div class="row">
-                    <h5>Recent Games<a href="#modal1" class="right modal-trigger">Show All</a></h5>
+                    <h5>Recent Games<a href="" class="right modal-trigger" data-target="organization-allgames-modal">Show All</a></h5>
 
 					<!-- Modal Structure -->
-					<div id="modal1" class="modal modal-fixed-footer">
+					<div id="organization-allgames-modal" class="modal modal-fixed-footer">
 						<div class="modal-content">
 							<div class="row">
 								<h4 class="indigo-text">Games Participated</h4>
@@ -257,10 +257,3 @@
 </div>
 
 <script type="text/javascript" src="../js/organization-page.js"></script>
-<script>
-	$('.modal-trigger').on('click', function() {
-        $('#modal1').openModal();
-    });
-
-    $('.modal').modal();
-</script>

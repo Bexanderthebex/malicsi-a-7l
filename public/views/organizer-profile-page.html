@@ -2,199 +2,267 @@
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
     <div id="main" class="container">
-        <div class="row">
-            <!-- Left Panel -->
-            <div id="organizer-profile-left-panel" >
-                <div class="card blue darken-4">
-                    <div class="organizer-profile-card-image">
-                        <img src="assets/avatar.png" id="organizer-profile-img">
-                    </div>
-                    <ul class="collection" id="organizer-profile-stats">
-                        <li class="collection-item">Ongoing Games<span class="badge">3</span></li>
-                        <li class="collection-item">Incoming Games<span class="badge">5</span></li>
-                        <li class="collection-item">Past Games<span class="badge">12</span></li>
-                        <li class="collection-item">Organizations Created<span class="badge">1</span></li>
-                    </ul>
-                </div>
+        <!-- Competitor Basic Info -->
+        <br>
+        <div class="row blue lighten-3">
+            <div class="col l3 m5 s12 center">
+                <br><img id="competitor-profile-img" src="assets/avatar.png" class="blue lighten-2">
             </div>
-            <!-- Right Panel -->
-            <div id="organizer-profile-right-panel">
-                <div class="row">
-                    <h4>Joanne Doe <a href="" id="organizer-profile-edit" edit-organizer><i class="material-icons">edit</i></a></h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent consectetur lectus in mauris bibendum euismod. Mauris ullamcorper velit sit amet sem maximus fermentum. Duis iaculis, nulla a viverra lobortis, purus.</p>
-                </div>
+            <div id="competitor-basic-info" class="col l9 m7 s12">
+                <h3 class="rockwell">John Doe (Johnny)</h3>
+                <p class="century-gothic">Contact: 0912xxxxxxx | E-mail: johndoe@gmail.com</p>
+                <p class="century-gothic">Sex: Male | Age: 20 years old</p>
+                <p>
+                    Lorem ipsum dolor sit amet, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. 
+                </p>
+                <p class="century-gothic">Organizations Created: 3</p>
+            </div>
+        </div>
 
-                <div class="row">
-                    <h5>Games Handled</h5>
-                    
-                    <ul class="tabs tabs-transparent blue darken-4">
-                        <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">Ongoing</a></li>
-                        <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">Incoming</a></li>
-                        <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">Past</a></li>
-                        <div class="indicator black" style="z-index: 1"></div>
-                    </ul>
-                    
-                    <div id="organizer-profile-ongoing" class="col s12 light-blue lighten-3">
-                        <table class="highlight responsive-table">
-                            <tbody>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>April 1, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>April 1, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>April 1, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>April 1, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>April 1, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="highlight">
-                            <tbody>
-                                <tr>
-                                    <td class="center-align" id="organizer-ongoing-showall"><a href="#organizer-ongoing-modal">Show All</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div id="organizer-profile-incoming" class="col s12 light-blue lighten-3">
-                        <table class="highlight responsive-table">
-                            <tbody>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>April 10, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>April 10, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>April 10, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>April 10, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>April 10, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="highlight">
-                            <tbody>
-                                <tr>
-                                    <td class="center-align" id="organizer-incoming-showall"><a href="#organizer-incoming-modal">Show All</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div id="organizer-profile-past" class="col s12 light-blue lighten-3">
-                        <table class="highlight responsive-table">
-                            <tbody>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>March 15, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>March 15, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>March 15, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>March 15, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                                <tr>
-                                    <td>PalICSihan 2017</td>
-                                    <td>March 15, 2017</td>
-                                    <td>Freedom Park, UPLB</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="highlight">
-                            <tbody>
-                                <tr>
-                                    <td class="center-align" id="organizer-past-showall"><a href="#organizer-past-modal">Show All</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+        <div class="row divider"></div>
 
-                <div class="row">
-                    <h5>Requests</h5>
+        <!-- Games Handled -->
+        <div class="row">
+            <div class="col s12 m3 l4">
+                <h4 class="rockwell">Organizations</h4>
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                      <i class="material-icons circle">school</i>
+                      <p>UPLB</p>
+                    </li>
+                    <li class="collection-item avatar">
+                      <i class="material-icons circle">school</i>
+                      <p>UP Diliman</p>
+                    </li>
+                    <li class="collection-item avatar">
+                      <i class="material-icons circle">school</i>
+                      <p>UP Manila</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col s12 m9 l8">
+                <h4 class="rockwell">Games Handled</h4>
+                
+                <ul class="tabs tabs-transparent blue darken-4">
+                    <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">Ongoing (5)</a></li>
+                    <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">Incoming (3)</a></li>
+                    <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">Past (12)</a></li>
+                    <div class="indicator black" style="z-index: 1"></div>
+                </ul>
+                
+                <div id="organizer-profile-ongoing" class="col s12 light-blue lighten-3">
                     <table class="highlight responsive-table">
-                        <thead>
-                            <tr>
-                                <th>Team Name</th>
-                                <th>Sport</th>
-                                <th>Game</th>
-                                <th>Team Count</th>
-                            </tr>
-                        </thead>
                         <tbody>
                             <tr>
-                                <td>Team 1</td>
-                                <td>Basketball</td>
                                 <td>PalICSihan 2017</td>
-                                <td>6/10</td>
-                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-activates="organizer-profile-accept-modal" accept-team><i class="material-icons left">check</i></a>
-                                <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-activates="organizer-profile-decline-modal" decline-team><i class="material-icons left">close</i></a></td>
+                                <td>April 1, 2017</td>
+                                <td>Freedom Park, UPLB</td>
                             </tr>
                             <tr>
-                                <td>Team 2</td>
-                                <td>Basketball</td>
                                 <td>PalICSihan 2017</td>
-                                <td>6/10</td>
-                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-activates="organizer-profile-accept-modal" accept-team><i class="material-icons left">check</i></a>
-                                <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-activates="organizer-profile-decline-modal" decline-team><i class="material-icons left">close</i></a></td>
+                                <td>April 1, 2017</td>
+                                <td>Freedom Park, UPLB</td>
                             </tr>
                             <tr>
-                                <td>Team 3</td>
-                                <td>Basketball</td>
                                 <td>PalICSihan 2017</td>
-                                <td>6/10</td>
-                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-activates="organizer-profile-accept-modal" accept-team><i class="material-icons left">check</i></a>
-                                <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-activates="organizer-profile-decline-modal" decline-team><i class="material-icons left">close</i></a></td>
+                                <td>April 1, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>April 1, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>April 1, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="highlight">
+                        <tbody>
+                            <tr>
+                                <td class="center-align" id="organizer-ongoing-showall"><a href="" data-target="organizer-ongoing-modal" modal>Show All</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="organizer-profile-incoming" class="col s12 light-blue lighten-3">
+                    <table class="highlight responsive-table">
+                        <tbody>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>April 10, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>April 10, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>April 10, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>April 10, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>April 10, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="highlight">
+                        <tbody>
+                            <tr>
+                                <td class="center-align" id="organizer-incoming-showall"><a href="" data-target="organizer-incoming-modal" modal>Show All</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="organizer-profile-past" class="col s12 light-blue lighten-3">
+                    <table class="highlight responsive-table">
+                        <tbody>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>March 15, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>March 15, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>March 15, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>March 15, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                            <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>March 15, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="highlight">
+                        <tbody>
+                            <tr>
+                                <td class="center-align" id="organizer-past-showall"><a href="" data-target="organizer-past-modal" modal>Show All</a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
 
-        
+        <div class="row divider"></div>
+
+        <!-- Requests -->
+        <div class="row">
+            <h4 class="rockwell">Requests</h4>
+            <table class="highlight responsive-table">
+                <thead>
+                    <tr>
+                        <th>Team Name</th>
+                        <th>Sport</th>
+                        <th>Game</th>
+                        <th>Team Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Team 1</td>
+                        <td>Basketball</td>
+                        <td>PalICSihan 2017</td>
+                        <td>6/10</td>
+                        <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">check</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">close</i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Team 2</td>
+                        <td>Basketball</td>
+                        <td>PalICSihan 2017</td>
+                        <td>6/10</td>
+                        <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">check</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">close</i></a></td>
+                    </tr>
+                    <tr>
+                        <td>Team 3</td>
+                        <td>Basketball</td>
+                        <td>PalICSihan 2017</td>
+                        <td>6/10</td>
+                        <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">check</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">close</i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
+    <!-- Edit Profile Button -->
+    <div id="competitor-edit-profile" class="fixed-action-btn">
+        <a href="" class="right modal-trigger btn-floating btn-large palette-3 tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Profile" data-target="edit-profile-modal">
+            <i class="large material-icons">mode_edit</i>
+        </a>
+    </div>
+    
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal modal-fixed-footer">
+        <div class="modal-content">
+            <div class="row">
+                <h4 class="rockwell center"><i class="material-icons">mode_edit</i> Edit Profile</h4>
+                <div class="col l6 m6 s12 input-field">
+                    <input placeholder="John" id="fname" type="text" class="active validate">
+                    <label for="fname">First Name</label>
+                </div>
+                <div class="col l6 m6 s12 input-field">
+                    <input placeholder="Doe" id="lname" type="email" class="validate">
+                    <label for="lname">Last Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l12 m12 s12 input-field">
+                    <input placeholder="email@example.com" id="email" type="text" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col l6 m6 s12 input-field">
+                    <input type="date" id="bdate" class="datepicker">
+                    <label for="bdate" class="active">Birthdate</label><br>
+                </div>
+                <div class="col l6 m6 s12 input-field">
+                    <label>Sex</label><br>
+                    <span><input id="male" type="radio" name="gender" value="male" class="with-gap">
+                        <label for="male">Male</label></span>
+                    <span><input id="female" type="radio" name="gender" value="female" class="with-gap">
+                        <label for="female">Female</label></span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button href="" class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
+            <button href="" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
+        </div>
+    </div>
+
 </div>
 
 <div id="organizer-profile-edit-modal" class="modal">
@@ -229,8 +297,8 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
-        <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Update</a>
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Update</a>
     </div>
 </div>
 
@@ -251,8 +319,8 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
     </div>
 </div>
 
@@ -273,10 +341,164 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a href="#!" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+    </div>
+</div>
+
+<div id="organizer-ongoing-modal" class="modal">
+    <div class="row remove-bottom">
+        <div class="col s12 padding-left padding-right blue darken-4">
+            <div class="center">
+                <br>
+                    <div class="card-title white-text center">
+                        <h5>Ongoing Games</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>  
+    <div class="modal-content">
+        <div class="row">
+            <table class="highlight responsive-table">
+                <tbody>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-footer">
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
+    </div>
+</div>
+
+<div id="organizer-incoming-modal" class="modal">
+    <div class="row remove-bottom">
+        <div class="col s12 padding-left padding-right blue darken-4">
+            <div class="center">
+                <br>
+                    <div class="card-title white-text center">
+                        <h5>Incoming Games</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>  
+    <div class="modal-content">
+        <div class="row">
+            <table class="highlight responsive-table">
+                <tbody>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-footer">
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
+    </div>
+</div>
+
+<div id="organizer-past-modal" class="modal">
+    <div class="row remove-bottom">
+        <div class="col s12 padding-left padding-right blue darken-4">
+            <div class="center">
+                <br>
+                    <div class="card-title white-text center">
+                        <h5>Past Games</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>  
+    <div class="modal-content">
+        <div class="row">
+            <table class="highlight responsive-table">
+                <tbody>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                    <tr>
+                        <td>PalICSihan 2017</td>
+                        <td>March 15, 2017</td>
+                        <td>Freedom Park, UPLB</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-footer">
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
     </div>
 </div>
 
 <!--  Scripts-->
+<script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>
 <script type="text/javascript" src="../js/organizer-profile-page.js"></script>
