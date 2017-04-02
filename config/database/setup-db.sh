@@ -7,5 +7,6 @@ mysql -u root malicsi --password=$1 < sport-match-procedure.sql;
 mysql -u root malicsi --password=$1 < organizer-procedures.sql;
 mysql -u root malicsi --password=$1 < sport-procedures.sql;
 mysql -u root malicsi --password=$1 < team-procedures.sql;
+
 # Append this to file for each procedure.sql file
 # mysql -u root --password=$1 < module-procedures.sql
