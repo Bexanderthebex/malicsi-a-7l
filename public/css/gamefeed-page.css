@@ -1,73 +1,76 @@
-.game-container {
+.gamefeed-game-container {
     margin: 0 auto;
     max-width: 1280px;
     width: 95%;
 }
 
-.search {
+.gamefeed-game-search {
     padding-left: 0 !important;
     padding-right: 0 !important;
     position: inherit !important;
 }
 
-.padding-right {
+.gamefeed-padding-right {
     padding-right: 0rem !important;
 }
 
-.padding-left {
+.gamefeed-padding-left {
     padding-left: 0rem !important;
 }
 
-.small-action {
-    height: 10px;
-}
-
-.smaller-pic {
+.gamefeed-smaller-pic {
     width: 5em;
     height: 5em;
 }
 
-.halfway-fab {
+.gamefeed-fab-adjust {
     bottom: -40px !important;
 }
 
-.extra-padding {
-    padding-top: 20% !important;   
+.gamefeed-padding-down {
+    padding-top: 10px;
+    padding-bottom: 14px;
 }
 
-.padding-down {
-    padding-bottom: 5% !important;
-}
-
-.deletion {
-    width: 30%;
-}
-
-.addition {
-    width: 40%;
-    /*height: 60%;*/
-}
-
-.remove-bottom {
+.gamefeed-remove-bottom {
   margin-bottom: 0px !important;
 }
 
-.btn-height {
+.gamefeed-btn-height {
     height: 36px !important;
 }
 
-.search-adjust {
+.gamefeed-search-adjust {
     margin-top: -13px;
 }
 
-.sort-adjust {
+.gamefeed-sort-adjust {
     margin-top: 9px !important;
 }
 
-#delete-modal_1 {
+#gamefeed-delete-game {
     margin-top: 10%;
+    width: 30%;
 }
 
-#add-modal {
-    margin-top: 5%;
+#gamefeed-add-game {
+    margin-top: 3%;
+}
+
+#gamefeed-update-game {
+    margin-top: 3%;
+}
+
+#gamefeed-extend-header {
+    height: 200px;
+    padding-top: 25px;
+}
+
+.gamefeed-adjust-label {
+    top: -14px !important;
+    font-size: 0.8rem !important;
+}
+
+#gamefeed-give-padding {
+    padding-right: 10px;
 }

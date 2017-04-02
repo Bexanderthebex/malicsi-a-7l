@@ -1,10 +1,21 @@
 #login-container{
 	height: 100%;
 	width: 100%;
-	padding-top: 130px;
+	padding-top: 50px;
 }
 
-#login-container .row {
+#login-card{
+	min-height: 350px;
+	margin-bottom: 50px;
+	border-radius: 5px;
+	padding: 20px;
+}
+
+#login-card .row{
 	margin: 0!important;
-	width: 100%;
+}
+
+#login-buttons{
+	font-family: "telegrafico";
+	font-size: 16px;
 }

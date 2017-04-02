@@ -1,7 +1,7 @@
 
 /*Darkens the images in the slider*/
 .slider .slides img {
-  filter: brightness(40%); 
+  filter: brightness(25%); 
   max-width: 100%;
   max-height: 100%;
 }
@@ -25,22 +25,32 @@
 }
 
 /*Sets the style of the individual info boxes*/
-.info {
-  float: left;
-  height: 150px;
-  width: 20%;
-  /*background-color: #BDBDBD;*/
-/*  margin-top: 1%;*/
-  margin-left: 10%
+
+.home-caption-head {
+  color: #ffffff;
 }
 
-.info p {
-  /*font-family: Roboto;*/
-  font-size: 100%;
+.home-footer {  
+  /*background-color: red;*/
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /*padding: 1rem;*/
+  background-color: #212121;
   text-align: center;
-  /*margin-top: 0 px;*/
+  height: 6%;
+  float:left;
 }
 
-.info:hover {
-  /*background-color: grey;*/
+.home-footer ul li {
+  display: inline;
+  color: grey;
+  font-size: 12px!important;    
+  letter-spacing: 2px!important;
+}
+
+.home-footer div {
+  margin-top: -0.5%;
+  margin-right: 1%;
 }

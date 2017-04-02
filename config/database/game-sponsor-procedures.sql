@@ -32,3 +32,4 @@ GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO administrator;
 
 GRANT EXECUTE ON PROCEDURE delete_sponsor_from_game TO organizer;
 GRANT EXECUTE ON PROCEDURE delete_sponsor_from_game TO administrator;
+

@@ -1,9 +1,7 @@
 $(document).ready(function(){
-	$('.slider6').bxSlider({
-		slideWidth: 300,
-		minSlides: 2,
-		maxSlides: 2,
-		moveSlides: 2,
-		slideMargin: 6
-	});
+	$("#signup-panel").on('click', function(){
+		console.log("ayaw pumasok");
+		$("#login-panel").css("display", "none");
+		$("#signup-panel").css("none", "display");
+	})
 });

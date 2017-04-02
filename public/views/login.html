@@ -1,0 +1,114 @@
+<div id="mainHolder">
+<!-- Do not put anything inside main holder -->
+<!-- Main holder just keeps the main below the navbar -->
+<div id="main">
+	<!-- Do your thing here -->
+  <div id="login-page" class="palette-5">
+	<div id="login-container" class="row" ng-controller="loginCtrl">
+    <div id="login-card" class="offset-s4 col s4 palette-4 valign-wrapper">
+      <div id="login-panel" class="row" style="display: block;">
+        
+        <!-- USERNAME -->
+        <div class="col s12 row">
+          <div class="input-field col s10 offset-s1">
+            <input id="login-username" type="text" ng-model="uname" class="validate">
+            <label for="login-username">Username</label>
+          </div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="col s12 row">
+          <div class="input-field col s10 offset-s1">
+            <input id="login-password" type="text" ng-model="pword" class="validate">
+            <label for="login-password">Password</label>
+          </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="col s12 row" style="margin-top: 20px!important;">
+          <div id="login-buttons" class="col s10 offset-s1">
+            <a class="waves-effect waves-light btn left black">Sign Up</a>
+            <a class="waves-effect waves-light btn right" ng-click="logAccount()">Log In</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="signup-panel" class="row" style="display: none;">
+        
+        <!-- USER NAME & PASSWORD -->
+        <div class="col s12 row">
+          <div class="input-field col s6 ">
+            <input id="signup-uname" type="text" ng-model="suname" class="validate">
+            <label for="signup-uname">Username</label>
+          </div>
+
+          <div class="input-field col s6 ">
+            <input id="signup-password" type="text" ng-model="spword" class="validate">
+            <label for="signup-password">Password</label>
+          </div>
+        </div>
+
+        <!-- NAME -->
+        <div class="col s12 row">
+          <div class="input-field col s4 ">
+            <input id="signup-fname" type="text" ng-model="fname" class="validate">
+            <label for="signup-fname">First Name</label>
+          </div>
+
+          <div class="input-field col s4 ">
+            <input id="signup-lname" type="text" ng-model="lname" class="validate">
+            <label for="signup-lname">Last Name</label>
+          </div>
+
+          <div class="input-field col s4 ">
+            <input id="signup-nname" type="text" ng-model="nname" class="validate">
+            <label for="signup-nname">Nickname</label>
+          </div>
+        </div>
+
+        <!-- BIRTHDAY & SEX -->
+        <div class="col s12 row">
+          <div class="input-field col s6 ">
+            <input id="signup-bday" type="text" ng-model="bday" class="validate">
+            <label for="signup-bday">Birthday</label>
+          </div>
+
+          <div class="input-field col s6 ">
+            <input id="signup-sex" type="text" ng-model="sex" class="validate">
+            <label for="signup-sex">Sex</label>
+          </div>
+        </div>        
+
+
+        <!-- EMAIL & CONTACT NUMBER-->
+        <div class="col s12 row">
+          <div class="input-field col s7 ">
+            <input id="signup-email" type="text" ng-model="email" class="validate">
+            <label for="signup-email">Email Address</label>
+          </div>
+
+          <div class="input-field col s5 ">
+            <input id="signup-cnum" type="text" ng-model="contactNum" class="validate">
+            <label for="signup-cnum">Contact Number</label>
+          </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="col s12 row" style="margin-top: 20px!important;">
+          <div id="login-buttons" class="col s12">
+            <a class="waves-effect waves-light btn left black" ng-click="signUp(suname, spword, fname, lname, nname, bday, sex, email, contactNum);">Sign Up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+	</div>
+  </div>
+</div>
+
+<script>
+  
+</script>
+
+<script type="text/javascript" src="controllers/login-controller.js"></script>
+<script type="text/javascript" src="js/login-page.js"></script>
