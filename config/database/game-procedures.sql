@@ -41,5 +41,47 @@ END
 //
 DELIMITER ;
 
-grant execute on procedure update_game to organizer;
-grant execute on procedure update_game to administrator;
+DROP PROCEDURE IF EXISTS search_for_game_by_keyword;
+DELIMITER //
+CREATE PROCEDURE search_for_game_by_keyword(in keyword varchar(50))
+BEGIN
+	select game.name, start_date, end_date, game.description, organizer.name as organizer_name from game,organizer where game.name like keyword or game.description like keyword or organizer.name like keyword;
+END;
+//
+DELIMITER ;
+
+-- search for game by keyword
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO organizer;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO competitor;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO administrator;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO guest;
+
+-- create game
+GRANT EXECUTE ON PROCEDURE create_game TO organizer;
+GRANT EXECUTE ON PROCEDURE create_game TO administrator;
+
+--  delete game
+GRANT EXECUTE ON PROCEDURE delete_game TO organizer;
+GRANT EXECUTE ON PROCEDURE delete_game TO administrator;
+
+-- update game
+GRANT EXECUTE ON PROCEDURE update_game TO organizer;
+GRANT EXECUTE ON PROCEDURE update_game TO administrator;
+
+-- count game organizer
+GRANT EXECUTE ON PROCEDURE count_game_organizer TO organizer;
+GRANT EXECUTE ON PROCEDURE count_game_organizer TO administrator;
+GRANT EXECUTE ON PROCEDURE count_game_organizer TO competitor;
+GRANT EXECUTE ON PROCEDURE count_game_organizer TO guest;
+
+-- view game details
+GRANT EXECUTE ON PROCEDURE view_game_details TO organizer;
+GRANT EXECUTE ON PROCEDURE view_game_details TO administrator;
+GRANT EXECUTE ON PROCEDURE view_game_details TO competitor;
+GRANT EXECUTE ON PROCEDURE view_game_details TO guest;
+
+GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO guest;
+
