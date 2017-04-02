@@ -11,7 +11,7 @@ exports.addMatch = (req, res) => {
 		 req.body.sportID], 
 		(err, rows) => {
 		if (!err){
-			connection.userType('A').query('CALL view_match(?)', rows.insertId, (err, rows) => {
+			connection.userType('A').query('CALL view_last_inserted_match()', (err, rows) => {
 				res.status(200).send(rows[0]);
 			})
 		}else{
@@ -22,7 +22,8 @@ exports.addMatch = (req, res) => {
 
 
 exports.editMatch = function(req, res, next){
-	connection.userType('A').query("CALL edit_match(?, ?, ?, ?, ?)"
+	let query = 'CALL edit_match(?, ?, ?, ?, ?);';
+	connection.userType('A').query(query,
 		[req.body.timeStart,
 		 req.body.timeEnd,
 		 req.body.date,
@@ -30,11 +31,11 @@ exports.editMatch = function(req, res, next){
 		 req.body.matchID],
 		(err, rows) => {
 		if(!err){
-		    connection.userType('A').query('CALL view_match_details(?)', rows.insertId, (err, rows) => {
+		    connection.userType('A').query('CALL view_match(?)', req.body.matchID, (err, rows) => {
 				res.status(200).send(rows[0]);
-			})
+			});
 		}else{
-		    res.status(404).send("Not Found");
+		    res.status(404).send(err);
 		}
 	})
 }
@@ -69,9 +70,6 @@ exports.viewMatchInSport = (req, res) => {
 	})
 }
 
-
-
-
 exports.viewMatchDetails = (req, res) => {
 	let query = 'call view_match_details(?);';
 
@@ -87,11 +85,8 @@ exports.viewMatchDetails = (req, res) => {
 		}		
 		else{
 			res.status(500).send("An error occurred.");
-		}
-		
+		}		
 	});
-
-
 }
 
 exports.viewAllMatch = (req, res) => {

@@ -91,8 +91,6 @@ router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
 //sport routers
 router.get('/sport/viewSport', sportController.viewSportDetails);
 router.post('/sport/createSport', sportController.createSport);
-router.put('/sport/editMatch', matchController.editMatch);
-router.put('/sport/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
 router.post('/sport/addWinnerSport', sportController.addWinnerSport);
 router.put('/sport/editSport', sportController.editSport);
 router.delete('/sport/deleteSport', sportController.deleteSport);
@@ -102,6 +100,8 @@ router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
 router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
 router.get('/sport/match/viewAllMatch', matchController.viewAllMatch);
 router.post('/sport/match/addMatch',  matchController.addMatch);
+router.put('/sport/match/editMatch', matchController.editMatch);
+router.put('/sport/match/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
 
 
 module.exports = router;

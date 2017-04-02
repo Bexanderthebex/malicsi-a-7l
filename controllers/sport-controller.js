@@ -28,21 +28,26 @@ exports.editSport = (req, res, next) => {
 }
 
 exports.createSport = (req, res) => {
-  	let query = 'CALL create_sport(?, ?, ?, ?, ?)';
+  	let query = 'CALL create_sport(?, ?, ?, ?, ?, ?, ?, ?, ?);';
 	connection.userType('A').query(query, 
-		[req.body.timeStart,
+		[req.body.sportName,
+		 req.body.mechanics,
+		 req.body.timeStart,
 		 req.body.timeEnd,
-		 req.body.date,
+		 req.body.startDate,
+		 req.body.endDate,
+		 req.body.maxTeams,
 		 req.body.scoringSystem,
 		 req.body.gameID
 		 ], 
 		(err, rows) => {
 		if (!err){
-			connection.userType('A').query('CALL specific_sport(?)', rows.insertId, (err, rows) => {
+			connection.userType('A').query('CALL view_last_inserted_sport()', (err, rows) => {
 				res.status(200).send(rows[0]);
 			})
+			// res.status(200).send(rows);
 		}else{
-			res.status(500).send("Internal Server Error");
+			res.status(500).send(err);
 		}
 	});
 }
