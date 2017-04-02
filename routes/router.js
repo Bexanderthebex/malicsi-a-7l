@@ -71,14 +71,16 @@ router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
 
 //team routers
+router.get('/team/teamStatistics',teamController.getTeamStatistics);
 router.post('/team/createTeam',teamController.createTeam);
 router.post('/team/deleteTeam',teamController.deleteTeam);
 router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 
 //game routers
-router.get('/game/:gameId',  gameController.viewGameDetails);
 router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
+router.get('/game/viewGame',  gameController.viewGameDetails);
+router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
 router.post('/game/createGame',  gameController.createGame);
 router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
 router.put('/game/updateGame',  gameController.updateGame);
@@ -88,18 +90,20 @@ router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
 
 
 //sport routers
-router.get('/sport/:sportId', sportController.viewSportDetails);
+router.get('/sport/viewSport', sportController.viewSportDetails);
 router.post('/sport/createSport', sportController.createSport);
 router.put('/sport/editMatch', matchController.editMatch);
 router.put('/sport/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
 router.post('/sport/addWinnerSport', sportController.addWinnerSport);
 router.put('/sport/editSport', sportController.editSport);
 router.delete('/sport/deleteSport', sportController.deleteSport);
-
+router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
 
 //match routers
+router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
+router.get('/sport/match/viewAllMatch', matchController.viewAllMatch);
 router.post('/sport/match/addMatch',  matchController.addMatch);
-router.get('/sport/match/:sportId',  matchController.viewMatchInSport);
+
 
 module.exports = router;
 

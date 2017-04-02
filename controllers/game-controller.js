@@ -76,7 +76,7 @@ exports.searchForGameByKeyword = (req,res) => {
 	let query = 'call search_for_game_by_keyword(?);';
 	let param = '%' + req.params.keyword + '%';
 	connection.userType('A').query(query, 
-		param, 
+		param,
 		(err, results, fields)	=> {
 		console.log(err);
 		console.log(results);
@@ -95,6 +95,28 @@ exports.searchForGameByKeyword = (req,res) => {
 	
 }
 
+exports.viewAllSportsInGame = (req, res) => {
+	let query = 'call view_all_sports_in_game(?);';
+	let param = parseInt(req.params.gameId);
+	if (!isNaN(param)){
+		connection.userType('A').query(query, 
+			param, 
+			(err, results, fields)	=> {
+
+			if (!err && results[0].length!=0) {
+				res.status(200).send(results[0]);
+			}
+			else if (results[0].length==0){
+				res.status(404).send("Sports not found. The game doesn't have sports yet, or the game doesn't exist yet.");
+			}		
+			else{
+				console.log(err.code);
+				res.status(500).send("An error occurred.");
+			}
+		});
+	}
+	else res.status(400).send("Invalid parameter.");
+}
 
 exports.deleteGame = (req, res) => {
 	let query = 'CALL delete_game(?);'
@@ -109,4 +131,21 @@ exports.deleteGame = (req, res) => {
 			res.status(500).send("Internal Server Error");
 		}
 	});
+}
+
+exports.countGameOrganizer = (req, res) => {
+	let query = 'CALL count_game_organizer(?)';
+	connection.userType('A').query(query,
+		[
+			req.params.organizerId
+		], (err, rows, fields) => {
+			//console.log(req.body.organizerId);
+			if(!err){
+				res.status(200).send(rows);
+			}
+			else{
+
+				res.status(500).send("Internal Server Error");
+			}
+		});
 }
