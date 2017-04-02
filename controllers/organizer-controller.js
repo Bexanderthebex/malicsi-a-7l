@@ -200,7 +200,4 @@ exports.getPendingParticipation = (req, res, next) => {
 			res.status(500).send({'message' : 'Internal Server Error'});
 		}
 	});
-=======
-	);
->>>>>>> 31662323e946332aaddc4952425535036bd5394f
 };
