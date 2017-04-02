@@ -78,6 +78,7 @@ router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 
 //game routers
+router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
 router.post('/game/createGame',  gameController.createGame);

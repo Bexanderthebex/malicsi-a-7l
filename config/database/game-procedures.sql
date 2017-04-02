@@ -58,33 +58,23 @@ END
 //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS view_all_sports_in_game;
-delimiter //
-CREATE PROCEDURE view_all_sports_in_game(in in_game_id int)
+
+DROP PROCEDURE IF EXISTS search_for_game_by_keyword;
+DELIMITER //
+CREATE PROCEDURE search_for_game_by_keyword(in keyword varchar(50))
 BEGIN
-	select sport_name, mechanics, winner,time_start, time_end,start_date,end_date, sport_date, scoring_system from sport where game_id = in_game_id;
+	select game.name, start_date, end_date, game.description, organizer.name as organizer_name from game,organizer where game.name like keyword or game.description like keyword or organizer.name like keyword;
 END;
 //
-delimiter ;
+DELIMITER ;
 
-delimiter //
-create procedure view_game_details(in game_id int)
-BEGIN
-	select game.name, start_date,end_date, location, game.description, organizer.name as organizer_name , organizer.description as organizer_description, datediff(end_date, start_date) as game_duration from game,organizer where game.organizer_id = organizer.id and game.game_id = game_id;
-END;
-//
-delimiter ;
+-- search for game by keyword
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO organizer;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO competitor;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO administrator;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO guest;
 
-delimiter //
-	CREATE procedure count_game_organizer(in organizerId int(11))
-	BEGIN
-		SELECT COUNT(game_id) FROM game WHERE organizer_id = organizerId;
-	END;
-	//
-delimiter ;
-
-
-
+-- create game
 GRANT EXECUTE ON PROCEDURE create_game TO organizer;
 GRANT EXECUTE ON PROCEDURE create_game TO administrator;
 
@@ -112,5 +102,3 @@ GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO guest;
-
-
