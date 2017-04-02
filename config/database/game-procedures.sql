@@ -1,63 +1,45 @@
-USE malicsi;
-
-DROP PROCEDURE IF EXISTS view_game_details;
 DELIMITER //
-CREATE PROCEDURE view_game_details(IN game_id_in INT)
+CREATE PROCEDURE `delete_game`(in gameID int)
 BEGIN
-	select game.name, start_date,end_date, location, game.description, organizer.name as organizer_name , organizer.description as organizer_description, datediff(end_date, start_date) as game_duration from game,organizer where game.organizer_id = organizer.id and game.game_id = game_id_in;
-END;
-//
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS count_game_organizer;
-DELIMITER //
-	CREATE PROCEDURE count_game_organizer(IN organizer_id_in INT(11))
-	BEGIN
-		SELECT COUNT(game_id) FROM game WHERE organizer_id = organizer_id_in;
-	END;
-	//
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS delete_game;
-DELIMITER //
-CREATE PROCEDURE delete_game(IN game_id_in INT)
-BEGIN
-	DELETE FROM game WHERE game_id = game_id_in;
+	DELETE FROM game WHERE game_id = gameID;
 END 
 //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS create_game;
+grant execute on procedure delete_game to organizer;
+grant execute on procedure delete_game to administrator;
+
 DELIMITER //
-CREATE PROCEDURE create_game(
-	IN organizer_id_in INT,
-	IN name_in VARCHAR(50),
-	IN start_date_in DATE,
-	IN end_date_in DATE,
-	IN location_in VARCHAR(100),
-	IN description_in TEXT
+CREATE PROCEDURE `create_game`(
+	in organizer_id INT,
+	in name VARCHAR(50),
+	in start_date DATE,
+	in end_date DATE,
+	in location VARCHAR(100),
+	in description TEXT
 	)
 BEGIN
-	INSERT INTO game(organizer_id_in, name, start_date, end_date, location, description, overall_winner) values(organizer_id_in, name_in, start_date_in, end_date_in, location_in, description_in, NULL);
+	INSERT INTO game(organizer_id, name, start_date, end_date, location, description, overall_winner) values(organizer_id, name, start_date, end_date, location, description, NULL);
 END 
 //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS update_game;
+grant execute on procedure create_game to organizer;
+grant execute on procedure create_game to administrator;
+
 DELIMITER //
-CREATE PROCEDURE update_game(
-	IN game_id_in int,
-	IN nama_in VARCHAR(50),
-	IN start_in DATE,
-	IN end_in DATE,
-	IN location_in VARCHAR(100),
-	IN descr_in TEXT)
+CREATE PROCEDURE `update_game`(
+in gameID int,
+in namae VARCHAR(50),
+in start DATE,
+in end DATE,
+in location VARCHAR(100),
+in descr TEXT)
 BEGIN
-	UPDATE game SET name = name_in, start_date = start_in, end_date = end_in, location = location_in, description = descr_in WHERE game_id = game_id_in;
+	UPDATE game SET name = namae, start_date = start, end_date = end, location = location, description = descr WHERE game_id = gameID;
 END 
 //
 DELIMITER ;
-
 
 DROP PROCEDURE IF EXISTS search_for_game_by_keyword;
 DELIMITER //
@@ -102,3 +84,4 @@ GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO guest;
+
