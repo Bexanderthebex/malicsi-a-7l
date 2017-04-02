@@ -20,16 +20,6 @@ exports.addMatch = (req, res) => {
 	})
 }
 
-exports.viewMatchInSport = (req, res) => {
-	let query = "call view_match_sport(?)"
-	connection.userType('A').query(query, [req.params.sportId], (err, rows, fields) => {
-		if (!err){
-			res.status(200).send(rows[0]);
-		}else{
-			res.status(500).send("Internal Server Error");
-		}
-	})
-}
 
 exports.editMatch = function(req, res, next){
 	connection.userType('A').query("CALL edit_match(?, ?, ?, ?, ?)"
@@ -40,7 +30,7 @@ exports.editMatch = function(req, res, next){
 		 req.body.matchID],
 		(err, rows) => {
 		if(!err){
-		    connection.userType('A').query('CALL view_match(?)', rows.insertId, (err, rows) => {
+		    connection.userType('A').query('CALL view_match_details(?)', rows.insertId, (err, rows) => {
 				res.status(200).send(rows[0]);
 			})
 		}else{
@@ -62,15 +52,32 @@ exports.editTeamRankingInMatch = function(req, res, next){
 		}else{
 		    res.status(404).send("Not Found");
 		}
+	});
+}
+
+exports.viewMatchInSport = (req, res) => {
+	let query = "call view_match_sport(?)"
+	connection.userType('A').query(query, 
+		[req.query.sportId], 
+		(err, rows, fields) => {
+		if (!err){
+			res.status(200).send(rows[0]);
+		}else{
+			console.log(err);
+			res.status(500).send("Internal Server Error");
+		}
 	})
+}
+
+
 
 
 exports.viewMatchDetails = (req, res) => {
 	let query = 'call view_match_details(?);';
 
 	connection.userType('A').query(query, 
-		[req.params.matchId], 
-		(err, results, fields)	=> {
+		[req.query.matchId], 
+		(err, results, fields) => {
 
 		if (!err && results[0].length!=0) {
 			res.status(200).send(results);
@@ -85,4 +92,32 @@ exports.viewMatchDetails = (req, res) => {
 	});
 
 
+}
+
+exports.viewAllMatch = (req, res) => {
+	let query = 'SELECT * FROM sport_match';
+	connection.userType('A').query(query,
+		(err, results) => {
+			if(!err){
+				res.status(200).send(results);
+				
+			} 
+			else{
+				res.status(500).send("Internal Server Error");
+			}
+		});
+}
+exports.deleteMatch = (req, res) => {
+	let query = 'CALL delete_match(?);'
+	connection.query(query, [req.body.matchId], function(err, rows) {
+		if(!err){
+			if (rows.length == 0) {
+				res.status(501).send('Not Implemented');
+			} else {
+				 res.status(200).send('Sucessful');
+			}
+		}else{
+			res.status(500).send("Internal Server Error");
+		}
+	});
 }

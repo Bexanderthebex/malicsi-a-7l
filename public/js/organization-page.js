@@ -32,4 +32,6 @@ $(document).ready(function(){
     $('.modal-trigger').on('click', function() {
         $('#modal1').openModal();
     });
+
+    $('.modal').modal();
 });

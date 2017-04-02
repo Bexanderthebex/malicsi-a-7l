@@ -3,12 +3,12 @@ const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 
 exports.searchCompetitor = (req, res) => {
-	query = 'CALL search_competitor(?)';
+	query = "CALL search_competitor(?)";
 
 	connection.userType('A').query(query, 
 		[
 			"%" + req.query.search + "%"
-		], function(err, rows){
+		], (err, rows) => {
 		    if(!err) {
 		    	if(rows[0].length == 1) {
 					res.status(200).send(rows[0][0]);
@@ -20,23 +20,25 @@ exports.searchCompetitor = (req, res) => {
 			} else {
 				res.status(500).send({'message' : 'Internal Server Error'});
 			}
-	});
+		}
+	);
 }
 
 exports.getCompetitor = (req, res) => {
-	query = 'CALL get_competitor(?)';
+	query = "CALL get_competitor(?)";
 
 	connection.userType('A').query(query, 
 		[
 			"%" + req.query.search + "%"
-		], function(err, rows){
+		], (err, rows) => {
 		    if(!err) {
 				res.status(200).send(rows[0]);
 				return rows;
 			} else {
 				res.status(500).send({'message' : 'Internal Server Error'});
 			}
-	});
+		}
+	);
 }
 
 exports.getCompetitorTeams = (req, res) => {
@@ -58,7 +60,7 @@ exports.getCompetitorTeams = (req, res) => {
 exports.editCompetitor = (req,res) => {
 	currentUser = req.session.user;
 	query = "CALL edit_competitor(?,?,?,?,?,?)";
-	query1 = "SELECT * from competitor where id = ?";
+	query1 = "CALL getCompetitor(?)";
 
 	connection.userType('A').query(query,
 		[
@@ -68,20 +70,20 @@ exports.editCompetitor = (req,res) => {
 			req.body.nickname, 
 			req.body.sex, 
 			req.body.id
-		], function(err, rows){
+		], (err, rows) => {
 			if(!err) {
 				connection.query(query1, 
 					[
 						req.body.id
-					], function(err, rows) {
+					], (err, rows) => {
 					if(!err) {
 						res.status(200).send(rows[0]);
 						return rows[0];
 					}
 				});
-
 			} else {
 				return res.status(501).send({ 'message' : 'Not implemented'});
 			}
-	});
+		}
+	);
 }

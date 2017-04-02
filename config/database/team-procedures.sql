@@ -1,6 +1,18 @@
 USE malicsi;
 
-DROP procedure IF EXISTS create_team;
+
+DROP PROCEDURE IF EXISTS delete_team;
+DELIMITER //
+
+CREATE PROCEDURE get_team (IN id INT) 
+	BEGIN
+		SELECT * from team WHERE team_id = id;
+	END; //
+
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS create_team;
 DELIMITER //
 
 CREATE PROCEDURE create_team (IN id INT, IN sport_id INT, IN team_organization INT, IN team_sport VARCHAR(50)) 
@@ -11,7 +23,7 @@ CREATE PROCEDURE create_team (IN id INT, IN sport_id INT, IN team_organization I
 DELIMITER ;
 
 
-DROP procedure IF EXISTS delete_team;
+DROP PROCEDURE IF EXISTS delete_team;
 DELIMITER //
 
 CREATE PROCEDURE delete_team (IN team_id INT) 
@@ -21,7 +33,7 @@ CREATE PROCEDURE delete_team (IN team_id INT)
 DELIMITER ;
 
 
-DROP procedure IF EXISTS team_membership_request;
+DROP PROCEDURE IF EXISTS team_membership_request;
 DELIMITER //
 CREATE PROCEDURE team_membership_request (IN id INT, IN team_id INT) 
 	BEGIN
@@ -30,7 +42,7 @@ CREATE PROCEDURE team_membership_request (IN id INT, IN team_id INT)
 
 DELIMITER ;
 
-DROP procedure IF EXISTS accept_membership_request;
+DROP PROCEDURE IF EXISTS accept_membership_request;
 DELIMITER //
 CREATE PROCEDURE accept_membership_request (IN id INT, IN competitor_id INT) 
 	BEGIN
@@ -39,24 +51,23 @@ CREATE PROCEDURE accept_membership_request (IN id INT, IN competitor_id INT)
 
 DELIMITER ;
 
-DROP procedure IF EXISTS rankings;
+DROP PROCEDURE IF EXISTS rankings;
 DELIMITER //
 CREATE PROCEDURE rankings ( IN teamID INT) 
 	BEGIN
-	   SELECT ranking, COUNT(ranking) as rankCount FROM team_in_match WHERE team_id = teamID group by ranking;
+	   SELECT ranking, COUNT(ranking) AS rankCount FROM team_in_match WHERE team_id = teamID GROUP BY ranking;
 	END; //	
 
 DELIMITER ;
 
-DROP procedure IF EXISTS count_teams_in_sport;
+DROP PROCEDURE IF EXISTS count_teams_in_sport;
 DELIMITER //
 CREATE PROCEDURE count_teams_in_sport ( IN sport_id INT) 
 	BEGIN
-	   SELECT sport_id, COUNT(team_id) as team_count FROM team WHERE sport_id = sport_id GROUP BY sport_id;
+	   SELECT sport_id, COUNT(team_id) AS team_count FROM team WHERE sport_id = sport_id GROUP BY sport_id;
 	END; //	
 
 DELIMITER ;
-
 
 DROP procedure IF EXISTS get_members;
 DELIMITER //
@@ -67,22 +78,22 @@ CREATE PROCEDURE get_members (IN teamID INT)
 	END; //
 DELIMITER ;
 
-GRANT EXECUTE ON procedure create_team to competitor;
-GRANT EXECUTE ON procedure delete_team to competitor;
-GRANT EXECUTE ON procedure team_membership_request to competitor;
-GRANT EXECUTE ON procedure accept_membership_request to competitor;
-GRANT EXECUTE ON procedure rankings to competitor;
-GRANT EXECUTE ON procedure count_teams_in_sport to competitor;
-GRANT EXECUTE ON procedure get_members to competitor;
+GRANT EXECUTE ON procedure create_team TO competitor;
+GRANT EXECUTE ON procedure delete_team TO competitor;
+GRANT EXECUTE ON procedure team_membership_request TO competitor;
+GRANT EXECUTE ON procedure accept_membership_request TO competitor;
+GRANT EXECUTE ON procedure rankings TO competitor;
+GRANT EXECUTE ON procedure count_teams_in_sport TO competitor;
+GRANT EXECUTE ON procedure get_members TO competitor;
 
-GRANT EXECUTE ON procedure create_team to administrator;
-GRANT EXECUTE ON procedure delete_team to administrator;
-GRANT EXECUTE ON procedure team_membership_request to administrator;
-GRANT EXECUTE ON procedure accept_membership_request to administrator;
-GRANT EXECUTE ON procedure rankings to administrator;
-GRANT EXECUTE ON procedure count_teams_in_sport to administrator;
-GRANT EXECUTE ON procedure get_members to administrator;
+GRANT EXECUTE ON procedure create_team TO administrator;
+GRANT EXECUTE ON procedure delete_team TO administrator;
+GRANT EXECUTE ON procedure team_membership_request TO administrator;
+GRANT EXECUTE ON procedure accept_membership_request TO administrator;
+GRANT EXECUTE ON procedure rankings TO administrator;
+GRANT EXECUTE ON procedure count_teams_in_sport TO administrator;
+GRANT EXECUTE ON procedure get_members TO administrator;
 
-GRANT EXECUTE ON procedure rankings to guest;
-GRANT EXECUTE ON procedure count_teams_in_sport to guest;
-GRANT EXECUTE ON procedure get_members to guest;
+GRANT EXECUTE ON procedure rankings TO guest;
+GRANT EXECUTE ON procedure count_teams_in_sport TO guest;
+GRANT EXECUTE ON procedure get_members TO guest;
