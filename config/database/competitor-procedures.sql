@@ -32,6 +32,16 @@ DELIMITER //
 	//
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS get_competitor_teams;
+DELIMITER //
+	CREATE PROCEDURE get_competitor_teams(in id INT)
+
+	BEGIN
+		SELECT *  FROM (competitor JOIN competitor_joins_team using (id)) JOIN team using (team_id) where competitor.id = 1;
+	END;
+
+	//
+DELIMITER ;
 
 GRANT EXECUTE ON PROCEDURE search_competitor TO competitor;
 GRANT EXECUTE ON PROCEDURE search_competitor TO admin;
@@ -40,5 +50,5 @@ GRANT EXECUTE ON PROCEDURE get_competitor TO competitor;
 GRANT EXECUTE ON PROCEDURE get_competitor TO admin;
 GRANT EXECUTE ON PROCEDURE get_competitor TO guest;
 GRANT EXECUTE ON PROCEDURE edit_competitor TO competitor;
-GRANT EXECUTE ON PROCEDURE edit_competitor TO admin;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO admin;
 

@@ -65,6 +65,8 @@ router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 //competitor routers
 router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
 router.put('/competitor/editCompetitor', competitorController.editCompetitor);
+router.get('/competitor/getCompetitorTeams', competitorController.getCompetitorTeams);
+router.get('/competitor/getCompetitor', competitorController.getCompetitor);
 
 //organizer routers
 router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);
@@ -74,9 +76,11 @@ router.get('/organizer/getPendingParticipation', organizerController.getPendingP
 //team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
 router.post('/team/createTeam',teamController.createTeam);
-router.post('/team/deleteTeam',teamController.deleteTeam);
+router.delete('/team/deleteTeam',teamController.deleteTeam);
 router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
+router.get('/team/countTeamInSports',teamController.countTeamInSports);
+router.get('/team/getTeamMembers',teamController.getTeamMembers);
 
 //game routers
 router.get('/game/:gameId',  gameController.viewGameDetails)

@@ -62,12 +62,11 @@ exports.acceptMembershipRequest = (req, res) => {
 }
 
 exports.getTeamStatistics = (req, res) => {
-    query = "CALL rankings(?,?)"
+    query = "CALL rankings(?)"
     console.log(query);
     connection.userType('A').query(query,
         [
-            req.query.team_id,
-            req.query.id
+            req.query.team_id
         ], function(err, rows){
             if(!err) {
                 if (rows[0].length == 1){
@@ -89,12 +88,40 @@ exports.getTeamStatistics = (req, res) => {
 }  
 
 exports.countTeamInSports = (req, res) => {
-    query = "CALL count_teams_in_sport(?,?)"
+    query = "CALL count_teams_in_sport(?)"
     console.log(query);
     connection.userType('A').query(query,
         [
-            req.query.sport_id,
-            req.query.id
+            req.query.sport_id
+        ], function(err, rows){
+            if(!err) {
+                if (rows[0].length == 1){
+                    console.log(rows[0][0]);
+                    res.status(200).send(rows[0][0]);
+                    return(rows[0][0]);
+                }
+                else{
+                    console.log(rows[0]);
+                    res.status(200).send(rows[0]);
+                    return(rows[0][0]);
+                }
+            } else {
+                console.log(err);
+                res.status(500).send({ 'message' : 'An error occured'});
+                return 500;
+            }
+        })
+}    
+
+
+
+
+exports.getTeamMembers = (req, res) => {
+    query = "CALL get_members(?)"
+    console.log(query);
+    connection.userType('A').query(query,
+        [
+            req.query.team_id
         ], function(err, rows){
             if(!err) {
                 if (rows[0].length == 1){
