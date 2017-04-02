@@ -1,14 +1,13 @@
-
 .slider .slides {
     background-color: white !important;
 }
 
 .slider {
-    height: 450px !important;
+    height: 240px !important;
 }
 
 .slides {
-    height: 430px !important;
+    height: 210px !important;
 }
 
 .tabs {
@@ -78,23 +77,24 @@
 }
 
 .smaller-padding {
-    padding: 15px !important;
+    padding: 10px !important;
 }
 
 .diagonal-up {
-    margin-bottom: -30% !important;
-    padding-bottom: 45% !important;
+    margin-bottom: -20% !important;
+    padding-bottom: 10% !important;
     -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 74%, 100% 0%);
 }
 
 .diagonal-down {
     -webkit-clip-path: polygon(0% 100%, 0 30%, 100% 0, 100% 100%);
-    margin-top: -30% !important;
-    padding-top: 45% !important;
+    margin-top: -20% !important;
+    padding-top: 10% !important;
 }
 
 .middle {
-    margin-left: 40% !important;
+    margin-top: -10% !important;
+    margin-left: 35% !important;
     width: 50px;
     z-index: 12 !important;
 }
@@ -109,4 +109,79 @@
 
 .first-place{
     height: 150px;
+}
+
+.first-three-card {
+    height: 250px !important;
+}
+
+.other-card {
+    height: 200px !important;
+}
+
+.padding-right {
+    padding-right: 0rem !important;
+}
+
+.padding-left {
+    padding-left: 0rem !important;
+}
+
+.thicken {
+    font-weight: 500;
+}
+
+.game-padding {
+    padding-top: 12px !important;
+}
+
+table.darken > tbody > tr:hover {
+    background-color: #121212 !important;
+}
+
+.remove-padding {
+    padding: 10px !important;
+}
+
+.remove-padding-absolute {
+    padding: 5px !important;
+}
+
+.remove-margin {
+    margin: 0 0 0 0 !important;
+}
+
+.teamname-adjust {
+    margin-top: 9px !important;
+}
+
+.margin-first-place {
+    margin-bottom: 20px !important;    
+}
+
+.margin-second-place {
+    margin-bottom: 10px !important;    
+}
+
+.margin-third-place {
+    margin-bottom: 0px !important;    
+}
+
+.margin-other-place {
+    margin-bottom: -10px !important;    
+}
+
+.smaller-font-header {
+    font-size: 10px;
+}
+
+.allowance-sports {
+    margin-top: 10px !important;
+}
+
+.adjust-image {
+    margin-left: 10%;
+    margin-top: 15%;
+    height: 50px;
+    width: 50px;
 }
