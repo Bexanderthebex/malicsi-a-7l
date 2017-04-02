@@ -28,39 +28,19 @@ exports.editSport = (req, res, next) => {
 }
 
 exports.createSport = (req, res) => {
-  	let query = 'CALL create_sport(?, ?, ?, ?, ?, ?, ?, ?, ?);';
+  	let query = 'CALL create_sport(?, ?, ?, ?, ?)';
 	connection.userType('A').query(query, 
-		[req.body.sportName,
-		 req.body.mechanics,
-		 req.body.timeStart,
+		[req.body.timeStart,
 		 req.body.timeEnd,
-		 req.body.startDate,
-		 req.body.endDate,
-		 req.body.maxTeams,
+		 req.body.date,
 		 req.body.scoringSystem,
 		 req.body.gameID
 		 ], 
 		(err, rows) => {
 		if (!err){
-			connection.userType('A').query('CALL view_last_inserted_sport()', (err, rows) => {
+			connection.userType('A').query('CALL specific_sport(?)', rows.insertId, (err, rows) => {
 				res.status(200).send(rows[0]);
 			})
-			// res.status(200).send(rows);
-		}else{
-			res.status(500).send("Internal Server Error");
-		}
-	});
-}
-
-exports.countSportByGame = (req, res) => {
-	let query = 'CALL count_sport_by_game(?)';
-	connection.userType('A').query(query, 
-		[
-		req.params.gameID
-		], 
-		(err, rows) => {
-		if (!err){
-			res.status(200).send(rows[0]);
 		}else{
 			res.status(500).send("Internal Server Error");
 		}
@@ -68,7 +48,7 @@ exports.countSportByGame = (req, res) => {
 }
 
 exports.viewSportDetails = (req, res) => {
-	let query = 'CALL view_sport(?)';
+	let query = 'CALL specific_sport(?)';
 	connection.userType('A').query(query, 
 		[
 		req.query.sportID
