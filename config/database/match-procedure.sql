@@ -19,6 +19,16 @@ END //
 DELIMITER ;
 
 DELIMITER //
+DROP PROCEDURE IF EXISTS count_match_by_sport //
+CREATE PROCEDURE count_match_by_sport (IN s_id INT(11))
+BEGIN
+	SELECT COUNT(*) FROM sport_match 
+	WHERE sport_id = s_id;
+END //
+DELIMITER ;
+
+
+DELIMITER //
 DROP PROCEDURE IF EXISTS add_match //
 CREATE PROCEDURE add_match
 (IN t_start TIME, 

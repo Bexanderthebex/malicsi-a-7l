@@ -20,6 +20,20 @@ exports.addMatch = (req, res) => {
 	})
 }
 
+exports.countMatchBySport = (req, res) => {
+	let query = 'CALL count_match_by_sport(?)';
+	connection.userType('A').query(query, 
+		[
+		req.params.sportID
+		], 
+		(err, rows) => {
+		if (!err){
+			res.status(200).send(rows[0]);
+		}else{
+			res.status(500).send("Internal Server Error");
+		}
+	});
+}
 
 exports.editMatch = function(req, res, next){
 	let query = 'CALL edit_match(?, ?, ?, ?, ?);';
@@ -35,7 +49,7 @@ exports.editMatch = function(req, res, next){
 				res.status(200).send(rows[0]);
 			});
 		}else{
-		    res.status(404).send(err);
+		    res.status(404).send("Not Found");
 		}
 	})
 }

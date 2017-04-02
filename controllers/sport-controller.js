@@ -47,13 +47,28 @@ exports.createSport = (req, res) => {
 			})
 			// res.status(200).send(rows);
 		}else{
-			res.status(500).send(err);
+			res.status(500).send("Internal Server Error");
+		}
+	});
+}
+
+exports.countSportByGame = (req, res) => {
+	let query = 'CALL count_sport_by_game(?)';
+	connection.userType('A').query(query, 
+		[
+		req.params.gameID
+		], 
+		(err, rows) => {
+		if (!err){
+			res.status(200).send(rows[0]);
+		}else{
+			res.status(500).send("Internal Server Error");
 		}
 	});
 }
 
 exports.viewSportDetails = (req, res) => {
-	let query = 'CALL specific_sport(?)';
+	let query = 'CALL view_sport(?)';
 	connection.userType('A').query(query, 
 		[
 		req.query.sportID
