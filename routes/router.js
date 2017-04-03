@@ -66,11 +66,11 @@ function checkUser(type) {
 
 //overall user routers
 router.post('/login', sha256Hash, userController.login);
-router.post('/organizer', adminController.createOrganizer);
-router.post('/register', sha256Hash, bcryptHash, userController.register, userController.registerCompetitor);
+router.post('/organizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
+router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.get('/logout', userController.logout);
-router.get('/user/:id', userController.returnInfo);
-router.put('/user/update', userController.update);
+router.get('/user/:id', userController.getUserInfo);
+router.put('/user/update', sha256Hash, bcryptHash, userController.update);
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 
 //competitor routers
