@@ -1,5 +1,5 @@
 #sports-title{
-	height: 150px;
+	height: 180px;
 	width: 100%;
 	background-image: url('/assets/basketball.jpg')!important;
 	background-size: cover;
@@ -11,6 +11,7 @@
 	letter-spacing: 3px;
 	padding-top: 45px;
 	margin-top: 0;
+	margin-bottom: 0;
 	text-align: center;
 	text-shadow: 2px 2px 3px black;
 	/*color: white;*/
@@ -18,6 +19,11 @@
     /*filter: brightness(1.4);*/
 }
 
+#sports-title h6{
+	letter-spacing: 1px;
+	text-align: center;
+	text-shadow: 2px 2px 3px black;
+}
 
 #sports-ranking{
 	margin: 0;
