@@ -30,7 +30,7 @@ DELIMITER //
 
 DELIMITER ;
 
-DROP procedure IF EXISTS rankings;
+DROP procedure IF EXISTS find_game;
 DELIMITER //
 
 	CREATE PROCEDURE find_game (IN userID INT) 
@@ -40,7 +40,7 @@ DELIMITER //
 
 DELIMITER ;
 
-DROP procedure IF EXISTS rankings;
+DROP procedure IF EXISTS find_sport;
 DELIMITER //
 
 	CREATE PROCEDURE find_sport (IN gameID INT) 
@@ -50,7 +50,7 @@ DELIMITER //
 
 DELIMITER ;
 
-DROP procedure IF EXISTS rankings;
+DROP procedure IF EXISTS find_team;
 DELIMITER //
 
 	CREATE PROCEDURE find_team (IN teamID INT) 
@@ -70,7 +70,7 @@ DELIMITER //
 
 DELIMITER ;
 
-DROP procedure IF EXISTS rankings;
+DROP procedure IF EXISTS accept_request;
 DELIMITER //
 
 	CREATE PROCEDURE accept_request (IN teamID INT) 
