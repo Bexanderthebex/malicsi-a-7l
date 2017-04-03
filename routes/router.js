@@ -53,7 +53,6 @@ function bcryptHash(req, res, next) {
     });
 }
 
-
 // Example usage: router.post('/r/anime', checkUser('O'), createGame);
 function checkUser(type) {
     return (req, res, next) => {
@@ -83,36 +82,41 @@ router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
 
 //team routers
+router.get('/team/teamStatistics',teamController.getTeamStatistics);
 router.post('/team/createTeam',teamController.createTeam);
 router.post('/team/deleteTeam',teamController.deleteTeam);
 router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 
-//game routers
-router.get('/game/:gameId', checkUser, gameController.viewGameDetails)
-router.post('/game/createGame', checkUser, gameController.createGame);
-router.post('/game/addSponsor', checkUser, sponsorController.addSponsorToGame);
-router.put('/game/updateGame', checkUser, gameController.updateGame);
-router.put('/game/editSponsor', checkUser, sponsorController.editSponsorDetails);
-router.delete('/game/deleteGame/', checkUser, gameController.deleteGame);
-router.delete('/game/deleteSponsor', checkUser, sponsorController.deleteSponsorFromGame);
+//log routers
+router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
+router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
+
+router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
+router.get('/game/viewGame',  gameController.viewGameDetails);
+router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
+router.post('/game/createGame',  gameController.createGame);
+router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
+router.put('/game/updateGame',  gameController.updateGame);
+router.put('/game/editSponsor',  sponsorController.editSponsorDetails);
+router.delete('/game/deleteGame/',  gameController.deleteGame);
+router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
 
 //sport routers
-router.get('/sport/:sportId', checkUser, sportController.viewSportDetails);
-router.post('/sport/createSport', checkUser, sportController.createSport);
-router.post('/sport/addMatch', checkUser, matchController.addMatch);
-router.post('/sport/addWinnerSport', checkUser, sportController.addWinnerSport);
-router.put('/sport/editSport', checkUser, sportController.editSport);
-router.delete('/sport/deleteSport', checkUser, sportController.deleteSport);
+router.get('/sport/viewSport', sportController.viewSportDetails);
+router.post('/sport/createSport', sportController.createSport);
+router.post('/sport/addWinnerSport', sportController.addWinnerSport);
+router.put('/sport/editSport', sportController.editSport);
+router.delete('/sport/deleteSport', sportController.deleteSport);
+router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
+router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);
 
-<<<<<<< HEAD
-//log routers
-router.get('/log/viewAllLogs', checkUser, logController.viewAllLogs);
-router.post('/log/viewLogsByDate', checkUser, logController.viewLogsByDate);
-=======
-router.all('*', (req, res) => {
-	res.status(200).send('gago')
-})
->>>>>>> 137-connect-login
+//match routers
+router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
+router.get('/sport/match/viewAllMatch', matchController.viewAllMatch);
+router.post('/sport/match/addMatch',  matchController.addMatch);
+router.get('/game/sport/countMatchBySport/:sportID', matchController.countMatchBySport);
+router.put('/sport/match/editMatch', matchController.editMatch);
+router.put('/sport/match/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
 
 module.exports = router;

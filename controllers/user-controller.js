@@ -7,14 +7,9 @@ const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
 	var query = 'SELECT id, username, type, password FROM user WHERE username = ?';
-	// get user type
-	console.log(req.session);
-	// var type = req.session.user.type;
-
 	connection.userType('A').query(query, [req.body.username], function(err, rows){
 		if(!err) {
 			if (rows.length == 1) {
-				// console.log(rows[0].password);
 				bcrypt.compare(req.body.password, rows[0].password, (err, isCorrect) => {
 					if (isCorrect) {
 						req.session.user = {
@@ -22,14 +17,16 @@ exports.login = (req, res) => {
 							username: rows[0].username,
 							type: rows[0].type
 						}
-						res.status(200).send({ 'message' : 'Successfully logged in', 'success': true });
+						console.log(req.session.user.type);
+						res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
 						console.log('hello')
-						res.status(401).send({ 'message' : 'Incorrect credentials'});
+						res.send({ 'message' : 'Incorrect credentials'}).status(401);
+						//console.log(res);
 					}
 				});
 			} else {
-				console.log(rows);
+				//console.log(rows);
 				res.status(401).send({ 'message' : 'Incorrect credentials'});
 			}
 		} else {
@@ -38,13 +35,14 @@ exports.login = (req, res) => {
 			} else {
 				res.status(500).send({ 'message' : 'Unknown'});
 			}
+
 		}
 	});
 }
 
 exports.logout = (req, res) => {
 	req.session = null;
-	res.redirect('/');
+	res.redirect('/')
 }
 
 exports.register = (req, res, next) => {
@@ -161,7 +159,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 		if(!err) {
 			returnObject = rows[0];
 
-			if(currentUser.type == 'C') {
+			if(currentUser.user_type == 'competitor') {
 				connection.query('SELECT birthday, sex, first_name, last_name, nickname from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
 					if(!err) {
 						returnObject.push(
@@ -193,7 +191,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 						console.log(err);
 					}
 				})
-			} else if (currentUser.type == 'O') {
+			} else if (currentUser.user_type == 'organizer') {
 				connection.query('SELECT name, description form organizer where id = ?', [currentUser.id], function(err, rows, fields) {
 					if(!err) {
 						returnObject.push(

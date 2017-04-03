@@ -14,7 +14,7 @@ const connection = require('./../config/db-connection.js');
 * name: name of new organizer
 * description: description of new organizer
 */
-exports.createOrganizer = (req, res) => {
+exports.createOrganizer = (req, res) => {	// Pakidagdagan daw ng userType('A')
 	let query = `
 		INSERT INTO user SET ?;
 	`;
