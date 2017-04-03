@@ -14,7 +14,7 @@ $(document).ready(function(){
         maxSlides: 2,
         moveSlides: 2,
         slideMargin: 6,
-        auto: true
+        auto: false
     });
 
     $('.slider4').bxSlider({
