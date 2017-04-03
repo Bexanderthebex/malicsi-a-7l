@@ -117,12 +117,16 @@
 	font-size: 18px!important;
 }
 
+#sports-matches{
+	margin-bottom: 30px;
+}
+
 .sports-match{
-	border: solid 2px;
+	border: solid 2.5px;
 	border-radius: 8px;
 	min-height: 100px;
 	padding: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 .sports-match-title, .sports-match-players{
@@ -137,5 +141,54 @@
 	font-size: 10px;
 	font-family: "century-gothic";
 	letter-spacing: 1px;
-	/*text-align: center;*/
+}
+
+.sports-match:hover{
+	cursor: pointer!important;
+}
+
+#sports-past-matches .sports-match:hover {
+	background: #001f2b;
+	color: white!important;
+	transition: background 0.5s;
+}
+
+#sports-ongoing-matches .sports-match:hover {
+	background: #00719c;
+	color: white!important;
+	transition: background 0.5s;
+}
+
+#sports-upcoming-matches .sports-match:hover {
+	background: #00415a;
+	color: white!important;
+	transition: background 0.5s;
+}
+
+.sports-type-matches{
+	padding-right: 5px;
+}
+
+.sports-type-matches::-webkit-scrollbar-track
+{
+	background: transparent;
+	/*-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);*/
+	/*background-color: #F5F5F5;*/
+}
+
+.sports-type-matches::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: transparent;
+}
+
+.sports-type-matches::-webkit-scrollbar-thumb
+{
+	background-color: #00719c;
+	border-radius: 5px;
+}
+
+#sports-sponsors{
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
