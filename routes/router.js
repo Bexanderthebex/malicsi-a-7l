@@ -13,6 +13,7 @@ let sportController = require("../controllers/sport-controller");
 let matchController = require("../controllers/match-controller");
 
 function sha256Hash(req, res, next) {
+    console.log(req.body);
     if (req.body.password == undefined) {
         res.status(404).send({ 'message' : 'Incorrect credentials'});
     } else {

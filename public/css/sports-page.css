@@ -1,35 +1,33 @@
 #sports-title{
 	height: 150px;
 	width: 100%;
-	background-image: url("assets/basketball.jpg");
+	background-image: url('/assets/basketball.jpg')!important;
+	background-size: cover;
+	/*background-color:rgba(0,0,0,0.1)!important;*/
 	background-color: #BDBDBD;
 }
 
-#sports-title h4{
+#sports-title h3{
 	letter-spacing: 3px;
-	padding-top: 50px;
+	padding-top: 45px;
 	margin-top: 0;
 	text-align: center;
+	text-shadow: 2px 2px 3px black;
+	/*color: white;*/
+	/*-webkit-filter: brightness(1.4);*/
+    /*filter: brightness(1.4);*/
 }
 
-.sports-details{
-	padding-top: 20px;
-	text-align: center;
-	padding-bottom: 20px;
-}
-
-#sports-details h6{
-	font-style: bold;
-	letter-spacing: 3px;
-}
 
 #sports-ranking{
-	margin: 0!important;
-	padding: 0!important;
-	padding-top: 10px!important;
+	margin: 0;
+	padding-left: 0!important;
+	padding-right: 0!important;
+	padding-top: 50px;
+	padding-bottom: 50px;
 	/*background: yellow;*/
 	width: 100%;
-	height: 250px;
+	/*height: 250px;*/
 }
 
 #sports-ranking-title{
@@ -40,7 +38,8 @@
 
 #sports-ranking-body{
 	/*background: blue;*/
-	padding-left: 20px;
+	/*padding-left: 20px!important;*/
+	padding-right: 40px!important;
 	/*padding: 0*/
 	
 }
@@ -56,19 +55,54 @@
 	width: 100%;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	float: left;
+	/*background: blue;*/
 }
 
 #sports-ranking-body > div > div > h5 {
+	font-family: "telegrafico";
 	margin: 0;
 	/*float: left;*/
 }
 
 #sports-ranking-body > div > div > h6 {
+	font-family: "century-gothic";
 	margin: 0;
 	/*float: left;*/
 }
 
 
-#sports-ranking-body > div > div > h3{
+.rank h3{
+	font-family: "rockwell";
 	margin-top: 0;
+}
+
+#sports-details{
+	min-height: 400px;
+	background-image: url('/assets/basketball2.jpg')!important;
+	background-size: cover;
+}
+
+#sports-scoring{
+	text-align: right;
+}
+
+#sports-mechanics, #sports-scoring{
+	margin: 0!important;
+}
+
+.sports-details{
+	background: white;
+	padding: 30px!important;
+	font-size: 14px;
+	opacity: 0.8;
+}
+
+#sports-ranking-view-all{
+	margin-top: 20px;
+	width: 200px;
+	padding: 10px;
+	color: white;
+	font-size: 16px;
+	text-align: center;
 }
