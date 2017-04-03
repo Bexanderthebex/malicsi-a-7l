@@ -1,6 +1,6 @@
 'use strict';
 
-(function(){  
+(function(){
     angular
         .module('app', ['ngRoute'])
         .config(config)
@@ -11,7 +11,9 @@
         $locationProvider.html5Mode({
             enabled: true
         });
-        
+
+        $locationProvider.hashPrefix('');
+
         $routeProvider
             .when('/', {
                 'templateUrl': 'views/home-page.html',
