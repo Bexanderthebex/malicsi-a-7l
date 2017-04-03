@@ -21,7 +21,7 @@ exports.login = (req, res) => {
 						res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
 						console.log('hello')
-						res.send({ 'message' : 'Incorrect credentials'}).status(401);
+						res.json({ 'message' : 'Incorrect credentials', 'userdata' : rows[0]}).status(401);
 						//console.log(res);
 					}
 				});
@@ -48,8 +48,8 @@ exports.logout = (req, res) => {
 exports.register = (req, res, next) => {
 	// console.log(req.body);
 	var insert_query = 'INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?,true)';
-
-	connection.query(insert_query, [
+	console.log(':DD');
+	connection.userType('A').query(insert_query, [
 		req.body.username,
 		req.body.password,
 		req.body.email,
