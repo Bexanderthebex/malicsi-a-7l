@@ -60,7 +60,7 @@ DELIMITER //
 
 DELIMITER ;
 
-DROP procedure IF EXISTS rankings;
+DROP procedure IF EXISTS get_request;
 DELIMITER //
 
 	CREATE PROCEDURE get_request (IN teamID INT) 
@@ -75,7 +75,7 @@ DELIMITER //
 
 	CREATE PROCEDURE accept_request (IN teamID INT) 
 	BEGIN
-	   UPDATE team SET pending_participation = TRUE WHERE team_id = teamID;
+	   UPDATE team SET pending_participation = 0 WHERE team_id = teamID;
 	END; //
 
 DELIMITER ;
@@ -97,12 +97,12 @@ grant execute on procedure get_request to organizer;
 grant execute on procedure get_pending_participation to organizer;
 grant execute on procedure accept_request to organizer;
 grant execute on procedure accept_request to organizer;
-grant execute on procedure find_game to admin;
-grant execute on procedure find_sport to admin;
-grant execute on procedure find_team to admin;
-grant execute on procedure get_request to admin;
-grant execute on procedure accept_request to admin;
-grant execute on procedure accept_request to admin;
+grant execute on procedure find_game to administrator;
+grant execute on procedure find_sport to administrator;
+grant execute on procedure find_team to administrator;
+grant execute on procedure get_request to administrator;
+grant execute on procedure accept_request to administrator;
+grant execute on procedure accept_request to administrator;
 grant execute on procedure find_game to guest;
 grant execute on procedure find_sport to guest;
 grant execute on procedure find_team to guest;

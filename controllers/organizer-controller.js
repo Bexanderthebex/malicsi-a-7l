@@ -70,7 +70,7 @@ exports.editOrganizer = (req,res) => {
 }
 
 exports.findGames = (req,res,next) => {
-	query = "CALL find_games(?)"
+	query = "CALL find_game(?)"
 	connection.userType('A').query(query, 
 		[
 			req.query.id
@@ -134,7 +134,7 @@ exports.getRequest = (req, res, next) => {
 			req.query.team_id
 		], (err,rows) => {
 			if(!err){
-				if(row.length == 1){
+				if(rows.length == 1){
 					return res.status(200).send(rows[0][0]);
 				} else {
 					return res.status(200).send(rows[0]);
@@ -153,19 +153,29 @@ exports.acceptRequest = (req, res, next) => {
 
 	connection.userType('A').query(query, 
 		[
-			req.query.team_id
+			req.body.team_id
 		], (err,rows) => {
 			if(!err){
-				connection.query(query1,
+				console.log(req.body);
+				connection.userType('A').query(query1,
 					[
-				 		req.query.team_id
+				 		req.body.team_id
 					], (err,rows) => {
 						if(!err){
-							return res.status(200).send(rows[0][0]);
-						} 
+							console.log(req.body);
+							if(rows.length == 1){
+								return res.status(200).send(rows[0][0]);
+							} else {
+								return res.status(200).send(rows[0]);
+							}
+						} else {
+							console.log(err);
+							return res.status(500).send({'message' : 'Internal Server Error'});
+						}
 					}
 				);
 			} else {
+				console.log(err);
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 	});
