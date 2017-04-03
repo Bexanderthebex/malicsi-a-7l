@@ -47,7 +47,7 @@ DROP PROCEDURE IF EXISTS update_game;
 DELIMITER //
 CREATE PROCEDURE update_game(
 	IN game_id_in int,
-	IN nama_in VARCHAR(50),
+	IN name_in VARCHAR(50),
 	IN start_in DATE,
 	IN end_in DATE,
 	IN location_in VARCHAR(100),
@@ -98,6 +98,7 @@ GRANT EXECUTE ON PROCEDURE view_game_details TO administrator;
 GRANT EXECUTE ON PROCEDURE view_game_details TO competitor;
 GRANT EXECUTE ON PROCEDURE view_game_details TO guest;
 
+-- view all sports in game
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
