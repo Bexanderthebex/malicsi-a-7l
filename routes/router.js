@@ -13,11 +13,23 @@ let sportController = require("../controllers/sport-controller");
 let matchController = require("../controllers/match-controller");
 let logController = require("../controllers/log-controller");
 
+function checkUser(req, res, next) {
+  console.log(req.session.user);
+  if (req.session.user !== undefined && (req.session.user.type === 'O' || req.session.user.type === 'A')) {
+    console.log(req.session.user.type);
+    next();
+  } else {
+    res.status(403).send('Forbidden');
+  }
+}
+
 function sha256Hash(req, res, next) {
     console.log(req.body);
     if (req.body.password == undefined) {
+        console.log("Hello");
         res.status(404).send({ 'message' : 'Incorrect credentials'});
     } else {
+        console.log("Hi");
         let hash = crypto.createHash('sha256');
         hash.update(req.body.password);
         req.body.password = hash.digest('hex');
@@ -42,7 +54,6 @@ function bcryptHash(req, res, next) {
     });
 }
 
-
 // Example usage: router.post('/r/anime', checkUser('O'), createGame);
 function checkUser(type) {
     return (req, res, next) => {
@@ -57,7 +68,6 @@ function checkUser(type) {
 //overall user routers
 router.post('/login', sha256Hash, userController.login);
 router.post('/organizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
-
 router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.get('/logout', userController.logout);
 router.get('/user/:id', userController.getUserInfo);
@@ -79,7 +89,10 @@ router.post('/team/deleteTeam',teamController.deleteTeam);
 router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 
-//game routers
+//log routers
+router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
+router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
+
 router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
@@ -89,7 +102,6 @@ router.put('/game/updateGame',  gameController.updateGame);
 router.put('/game/editSponsor',  sponsorController.editSponsorDetails);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
-
 
 //sport routers
 router.get('/sport/viewSport', sportController.viewSportDetails);
