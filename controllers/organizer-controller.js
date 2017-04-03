@@ -11,14 +11,13 @@ exports.searchOrganizer = (req, res) => {
 		], (err, rows) => {
 			if(!err) {
 				if(rows[0].length == 1) {
-					res.status(200).send(rows[0][0]);
-					return rows[0][0];
+					return res.status(200).send(rows[0][0]);
 				} else {
-					res.status(200).send(rows[0]);
-					return rows;
+					return res.status(200).send(rows[0]);
+
 				}
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);
@@ -32,10 +31,10 @@ exports.getOrganizer = (req, res) => {
 			"%" + req.query.search + "%"
 		], (err, rows) => {
 			if(!err) {
-				res.status(200).send(rows[0]);
-				return rows;
+				return res.status(200).send(rows[0][0]);
+				
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);
@@ -58,8 +57,8 @@ exports.editOrganizer = (req,res) => {
 						req.body.id
 					], (err, rows) => {
 						if(!err) {
-							res.status(200).send(rows[0]);
-							return rows[0];
+							return res.status(200).send(rows[0]);
+							
 						}
 					}
 				);
@@ -78,14 +77,13 @@ exports.findGames = (req,res,next) => {
 		], (err,rows) => {
 			if(!err){
 				if(row.length == 1){
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-					return rows[0];
+					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0][0]);
+					
 				} else {
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-					return rows;
+					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
 				}
 			} else {
-			 	res.status(500).send({'message' : 'Internal Server Error'})
+			 	return res.status(500).send({'message' : 'Internal Server Error'})
 			}
 		}
 	);
@@ -99,14 +97,12 @@ exports.findSport = (req,res,next) =>{
 		], (err,rows) => {
 			if(!err){
 				if(row.length == 1){
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-					return rows[0];
+					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0][0]);
 				} else {
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-					return rows;
+					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
 				}
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);
@@ -120,14 +116,12 @@ exports.findTeam = (req,res,next) =>{
 		], (err,rows) => {
 		if(!err){
 			if(row.length == 1){
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-				return rows[0];
+				return res.status(200).send(rows[0][0]);
 			} else {
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-				return rows;
+				return res.status(200).send(rows[0]);
 			}
 		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
+			return res.status(500).send({'message' : 'Internal Server Error'});
 		}
 		});
 };
@@ -141,14 +135,12 @@ exports.getRequest = (req, res, next) => {
 		], (err,rows) => {
 			if(!err){
 				if(row.length == 1){
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-					return(rows[0][0]);
+					return res.status(200).send(rows[0][0]);
 				} else {
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-					return rows;
+					return res.status(200).send(rows[0]);
 				}
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);
@@ -164,18 +156,17 @@ exports.acceptRequest = (req, res, next) => {
 			req.query.team_id
 		], (err,rows) => {
 			if(!err){
-				res.status(200).send({'message' : 'Successfully Updated Request'});
 				connection.query(query1,
 					[
 				 		req.query.team_id
 					], (err,rows) => {
 						if(!err){
-							return rows[0];
+							return res.status(200).send(rows[0][0]);
 						} 
 					}
 				);
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 	});
 };
@@ -188,14 +179,12 @@ exports.getPendingParticipation = (req, res, next) => {
 		], function(err,rows){
 		if(!err){
 			if(row.length == 1){
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-				return(rows[0][0]);
+				return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0][0]);
 			} else {
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-				return rows;
+				return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
 			}
 		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
+			return res.status(500).send({'message' : 'Internal Server Error'});
 		}
 	});
 };

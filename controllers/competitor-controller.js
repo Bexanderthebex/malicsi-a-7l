@@ -11,14 +11,12 @@ exports.searchCompetitor = (req, res) => {
 		], (err, rows) => {
 		    if(!err) {
 		    	if(rows[0].length == 1) {
-					res.status(200).send(rows[0][0]);
-					return rows[0][0];
+					return res.status(200).send(rows[0][0]);
 				} else {
-					res.status(200).send(rows[0]);
-					return rows;
+					return res.status(200).send(rows[0]);
 				}
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);
@@ -32,10 +30,10 @@ exports.getCompetitor = (req, res) => {
 			"%" + req.query.search + "%"
 		], (err, rows) => {
 		    if(!err) {
-				res.status(200).send(rows[0]);
-				return rows;
+				return res.status(200).send(rows[0][0]);
+				
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);
@@ -49,10 +47,9 @@ exports.getCompetitorTeams = (req, res) => {
 			req.query.id
 		], function(err, rows){
 		    if(!err) {
-				res.status(200).send(rows[0]);
-				return rows;
+				return res.status(200).send(rows[0]);				
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 	});
 }
@@ -77,8 +74,7 @@ exports.editCompetitor = (req,res) => {
 						req.body.id
 					], (err, rows) => {
 					if(!err) {
-						res.status(200).send(rows[0]);
-						return rows[0];
+						return res.status(200).send(rows[0][0]);
 					}
 				});
 			} else {

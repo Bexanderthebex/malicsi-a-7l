@@ -53,8 +53,8 @@ exports.teamMembershipRequest = (req, res) => {
                 res.status(200).send({ 'message' : 'Sucessfully sent request'});
                 return (connection.query("SELECT * FROM competitor_joins_team WHERE id = ? AND team_id = ?", [currentUser.id, req.body.team_id])[0]);
             } else {
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
+                return res.status(500).send({ 'message' : 'An error occured'});
+                
             }
     });
 }
@@ -68,8 +68,8 @@ exports.acceptMembershipRequest = (req, res) => {
                     res.status(200).send({ 'message' : 'Sucessfully accepted request'});
                     return (connection.query("SELECT * FROM competitor_joins_team WHERE id = ? AND team_id = ?", [req.body.competitor_id, currentUser.id])[0]);
                 } else {
-                    res.status(500).send({ 'message' : 'An error occured'});
-                    return 500;
+                    return res.status(500).send({ 'message' : 'An error occured'});
+                    
                 }
         });
 }
@@ -84,18 +84,18 @@ exports.getTeamStatistics = (req, res) => {
             if(!err) {
                 if (rows[0].length == 1){
                     console.log(rows[0][0]);
-                    res.status(200).send(rows[0][0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0][0]);
+                    
                 }
                 else{
                     console.log(rows[0]);
-                    res.status(200).send(rows[0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0]);
+                    
                 }
             } else {
                 console.log(err);
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
+                return res.status(500).send({ 'message' : 'An error occured'});
+                
             }
         })
 }  
@@ -110,18 +110,16 @@ exports.countTeamInSports = (req, res) => {
             if(!err) {
                 if (rows[0].length == 1){
                     console.log(rows[0][0]);
-                    res.status(200).send(rows[0][0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0][0]);
                 }
                 else{
                     console.log(rows[0]);
-                    res.status(200).send(rows[0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0]);
                 }
             } else {
                 console.log(err);
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
+                return res.status(500).send({ 'message' : 'An error occured'});
+                
             }
         })
 }    
@@ -139,18 +137,16 @@ exports.getTeamMembers = (req, res) => {
             if(!err) {
                 if (rows[0].length == 1){
                     console.log(rows[0][0]);
-                    res.status(200).send(rows[0][0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0][0]);
                 }
                 else{
                     console.log(rows[0]);
-                    res.status(200).send(rows[0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0]);
                 }
             } else {
                 console.log(err);
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
+                return res.status(500).send({ 'message' : 'An error occured'});
+                
             }
         })
 }    
