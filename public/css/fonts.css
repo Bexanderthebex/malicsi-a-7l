@@ -8,6 +8,20 @@
 	src: url(../fonts/rockwell/ROCK.TTF);
 }
 
+@font-face {
+	font-family: 'leixo';
+	src:url('/fonts/leixo/LEIXO-DEMO.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'telegrafico';
+	src:url('/fonts/telegrafico.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
 .century-gothic {
 	font-family: century-gothic;
 }
@@ -18,4 +32,24 @@
 
 .strong {
 	font-weight: bold;
+}
+
+.telegrafico{
+	font-family: "telegrafico";
+}
+
+.leixo {
+	font-family: "leixo";
+}
+
+.letter-spacing-1{
+	letter-spacing: 1px;
+}
+
+.letter-spacing-2{
+	letter-spacing: 2px;
+}
+
+.letter-spacing-3{
+	letter-spacing: 3px;
 }
