@@ -1,6 +1,7 @@
-#organization-lead {
+#organization-logo {
   display:block;
-  border-radius: 50%;
+  /*border-radius: 50%;*/
+  margin-top: 2%;
   margin-left: auto;
   margin-right: auto;
   height: 16%;
@@ -9,7 +10,7 @@
 
 #organization-name {
   padding-top: 1%;
-  font-size: 200%;
+  font-size: 240%;
   text-align: center;
   margin-top: 0.5%;
 }
