@@ -14,7 +14,7 @@ exports.editSport = (req, res, next) => {
 		req.body.timeEnd,
 		req.body.startDate,
 		req.body.endDate,
-		req.body.sportDate,
+		req.body.maxTeams,
 		req.body.scoringSystem,
 		req.body.sportId
 	], (err, rows) => {

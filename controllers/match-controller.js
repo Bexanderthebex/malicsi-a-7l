@@ -45,7 +45,7 @@ exports.editMatch = function(req, res, next){
 		 req.body.matchID],
 		(err, rows) => {
 		if(!err){
-		    connection.userType('A').query('CALL view_match(?)', req.body.matchID, (err, rows) => {
+		    connection.userType('A').query('CALL view_match_details(?)', req.body.matchID, (err, rows) => {
 				res.status(200).send(rows[0]);
 			});
 		}else{
