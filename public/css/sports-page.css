@@ -94,15 +94,48 @@
 .sports-details{
 	background: white;
 	padding: 30px!important;
-	font-size: 14px;
+	font-size: 12px;
 	opacity: 0.8;
 }
 
 #sports-ranking-view-all{
 	margin-top: 20px;
 	width: 200px;
-	padding: 10px;
+	padding: 15px;
 	color: white;
 	font-size: 16px;
 	text-align: center;
+	cursor: pointer!important;
+}
+
+#sports-ranking-view-all:hover{
+	cursor: pointer!important;
+	box-shadow: 1px 1px 5px #212121;
+}
+
+.sports-details-title{
+	font-size: 18px!important;
+}
+
+.sports-match{
+	border: solid 2px;
+	border-radius: 8px;
+	min-height: 100px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.sports-match-title, .sports-match-players{
+	margin: 0!important;
+}
+
+.sports-match-title div, .sports-match-players div{
+	padding: 0!important;
+}
+
+.sports-match-info{
+	font-size: 10px;
+	font-family: "century-gothic";
+	letter-spacing: 1px;
+	/*text-align: center;*/
 }
