@@ -12,16 +12,9 @@ let sponsorController = require('../controllers/sponsor-controller')
 let sportController = require("../controllers/sport-controller");
 let matchController = require("../controllers/match-controller");
 let logController = require("../controllers/log-controller");
-
-function checkUser(req, res, next) {
-  console.log(req.session.user);
-  if (req.session.user !== undefined && (req.session.user.type === 'O' || req.session.user.type === 'A')) {
-    console.log(req.session.user.type);
-    next();
-  } else {
-    res.status(403).send('Forbidden');
-  }
-}
+let competitorController = require("../controllers/competitor-controller");
+let organizerController = require("../controllers/organizer-controller");
+let teamController = require("../controllers/team-controller");
 
 function sha256Hash(req, res, next) {
     console.log(req.body);
@@ -36,10 +29,6 @@ function sha256Hash(req, res, next) {
         next();
     }
 }
-
-var competitorController = require("../controllers/competitor-controller");
-var organizerController = require("../controllers/organizer-controller");
-var teamController = require("../controllers/team-controller");
 
 //admin/system routers
 function bcryptHash(req, res, next) {
