@@ -9,15 +9,11 @@
                 <br><img id="competitor-profile-img" src="assets/avatar.png" class="blue lighten-2">
             </div>
             <div id="competitor-basic-info" class="col l9 m7 s12">
-                <h3 class="rockwell">John Doe (Johnny)</h3>
-                <p class="century-gothic">Contact: 0912xxxxxxx | E-mail: johndoe@gmail.com</p>
-                <p class="century-gothic">Sex: Male | Age: 20 years old</p>
-                <p>
-                    Lorem ipsum dolor sit amet, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. 
+                <h3 class="rockwell">{{ organizer.name }} <a href="" id="organizer-profile-edit" data-target="edit-profile-modal"><i class="material-icons">edit</i></a></h3>
+                <p class="century-gothic">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
+                <p class="century-gothic">
+                    {{ organizer.description }}
                 </p>
-                <p class="century-gothic">Organizations Created: 3</p>
             </div>
         </div>
 
@@ -26,21 +22,49 @@
         <!-- Games Handled -->
         <div class="row">
             <div class="col s12 m3 l4">
-                <h4 class="rockwell">Organizations</h4>
-                <ul class="collection">
-                    <li class="collection-item avatar">
-                      <i class="material-icons circle">school</i>
-                      <p>UPLB</p>
-                    </li>
-                    <li class="collection-item avatar">
-                      <i class="material-icons circle">school</i>
-                      <p>UP Diliman</p>
-                    </li>
-                    <li class="collection-item avatar">
-                      <i class="material-icons circle">school</i>
-                      <p>UP Manila</p>
-                    </li>
-                </ul>
+                <h4 class="rockwell">Add Game</h4>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="Enter game name" id="name" type="text" class="validate">
+                        <label for="name">Game Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input placeholder="Enter location" id="location" type="text" class="validate">
+                        <label for="location">Location</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="start-date" type="date" class="validate">
+                        <label for="start-date" class="gamefeed-adjust-label">Start</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="end-date" type="date" class="validate">
+                        <label for="end-date" class="gamefeed-adjust-label">End</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="description" class="materialize-textarea"></textarea>
+                        <label for="description">Description</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <a href="" class="waves-effect btn blue darken-4 tooltipped right-align" id="organizer-add-game" data-tooltip="" data-position="top" data-target="organizer-add-game-modal"><i class="material-icons left">add</i>Add Game</a>
+                </div>
+                    <!--
+                    organizer_id:req.body.orgId,
+                    name : req.body.gameName,
+                    start_date : req.body.startDate,
+                    end_date : req.body.endDate,
+                    location    : req.body.location,
+                    description : req.body.description,
+                    overall_winner : req.body.gameWinner
+                    -->
             </div>
 
             <div class="col s12 m9 l8">
@@ -50,36 +74,46 @@
                     <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">Ongoing (5)</a></li>
                     <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">Incoming (3)</a></li>
                     <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">Past (12)</a></li>
-                    <div class="indicator black" style="z-index: 1"></div>
+                    <div class="indicator white" style="z-index: 1"></div>
                 </ul>
                 
-                <div id="organizer-profile-ongoing" class="col s12 light-blue lighten-3">
+                <div id="organizer-profile-ongoing" class="col s12 blue lighten-3">
                     <table class="highlight responsive-table">
                         <tbody>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>April 1, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>April 1, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>April 1, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>April 1, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>April 1, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -92,34 +126,44 @@
                     </table>
                 </div>
                 
-                <div id="organizer-profile-incoming" class="col s12 light-blue lighten-3">
+                <div id="organizer-profile-incoming" class="col s12 blue lighten-3">
                     <table class="highlight responsive-table">
                         <tbody>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>April 10, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>April 10, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>April 10, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
+                            </tr>
+                            <!-- <tr>
+                                <td>PalICSihan 2017</td>
+                                <td>April 10, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>April 10, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                            </tr>
-                            <tr>
-                                <td>PalICSihan 2017</td>
-                                <td>April 10, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                            </tr>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
+                            </tr> -->
                         </tbody>
                     </table>
                     <table class="highlight">
@@ -131,33 +175,43 @@
                     </table>
                 </div>
                 
-                <div id="organizer-profile-past" class="col s12 light-blue lighten-3">
+                <div id="organizer-profile-past" class="col s12 blue lighten-3">
                     <table class="highlight responsive-table">
                         <tbody>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>March 15, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>March 15, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>March 15, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>March 15, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                             <tr>
                                 <td>PalICSihan 2017</td>
                                 <td>March 15, 2017</td>
                                 <td>Freedom Park, UPLB</td>
+                                <td><a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></a>
+                        <a href="" class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -215,12 +269,6 @@
             </table>
         </div>
 
-    </div>
-    <!-- Edit Profile Button -->
-    <div id="competitor-edit-profile" class="fixed-action-btn">
-        <a href="" class="right modal-trigger btn-floating btn-large palette-3 tooltipped" data-position="top" data-delay="50" data-tooltip="Edit Profile" data-target="edit-profile-modal">
-            <i class="large material-icons">mode_edit</i>
-        </a>
     </div>
     
     <!-- Edit Profile Modal -->
@@ -338,6 +386,28 @@
     </div>  
     <div class="modal-content">
         <p>Are you sure you want to decline [TEAM NAME]'s request to join [SPORT NAME]?</p>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-footer">
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
+        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+    </div>
+</div>
+
+<div id="organizer-add-game-modal" class="modal">
+    <div class="row remove-bottom">
+        <div class="col s12 padding-left padding-right blue darken-4">
+            <div class="center">
+                <br>
+                    <div class="card-title white-text center">
+                        <h5>Add Game</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>  
+    <div class="modal-content">
+        <p>Are you sure you want to add this game?</p>
     </div>
     <div class="divider"></div>
     <div class="modal-footer">

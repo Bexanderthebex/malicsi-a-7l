@@ -21,6 +21,7 @@ CREATE TABLE competitor (
 	last_name VARCHAR(30) NOT NULL,
 	nickname VARCHAR(15) NOT NULL,
 	sex CHAR(1),
+	bio TEXT,
 	PRIMARY KEY (id),
 	FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE
 );
@@ -28,6 +29,7 @@ CREATE TABLE competitor (
 CREATE TABLE competitor_sport_played (
 	sport_played_id INT NOT NULL AUTO_INCREMENT,
 	id INT NOT NULL,
+	sport_played VARCHAR(50),
 	PRIMARY KEY (sport_played_id, id),
 	FOREIGN KEY (id) REFERENCES competitor(id) ON DELETE CASCADE
 );
@@ -93,7 +95,7 @@ CREATE TABLE sport (
 	time_end TIME NOT NULL,
 	start_date DATE NOT NULL,
 	end_date DATE NOT NULL,
-	sport_date DATE NOT NULL,
+	max_teams INT NOT NULL,
 	scoring_system VARCHAR(50) NOT NULL,
 	game_id INT NOT NULL,
 	PRIMARY KEY (sport_id),
@@ -106,8 +108,8 @@ CREATE TABLE team (
 	id INT NOT NULL,
 	sport_id INT NOT NULL,
 	team_organization INT NOT NULL,
-	team_sport VARCHAR(50) NOT NULL,
 	pending_participation BOOLEAN NOT NULL,
+	max_members INT NOT NULL,
 	PRIMARY KEY(team_id),
 	FOREIGN KEY(id) REFERENCES competitor(id) ON DELETE CASCADE,
 	FOREIGN KEY(sport_id) REFERENCES sport(sport_id) ON DELETE CASCADE,
@@ -136,17 +138,10 @@ CREATE TABLE team_in_match (
 	FOREIGN KEY(team_id) REFERENCES team(team_id) ON DELETE CASCADE
 );
 
-CREATE TABLE team_opponent (
-	match_id INT NOT NULL,
-	id INT NOT NULL,
-	FOREIGN KEY(match_id) REFERENCES sport_match(match_id) ON DELETE CASCADE,
-	FOREIGN KEY(id) REFERENCES competitor(id) ON DELETE CASCADE
-);
-
-
 CREATE TABLE team_announcement (
 	team_announcement_id INT NOT NULL AUTO_INCREMENT,
 	team_id INT NOT NULL,
+	announcement TEXT,
 	FOREIGN KEY(team_id) REFERENCES team(team_id) ON DELETE CASCADE,
 	PRIMARY KEY(team_announcement_id, team_id)
 );
@@ -171,8 +166,10 @@ CREATE TABLE team_joins_sport (
 
 CREATE TABLE log (
 	log_id INT NOT NULL,
+	id INT NOT NULL,
 	content VARCHAR(140) NOT NULL,
 	date_created DATETIME NOT NULL,
+	FOREIGN KEY(id) REFERENCES user(id) ON DELETE CASCADE,
 	PRIMARY KEY(log_id)
 );
 
@@ -181,10 +178,11 @@ DROP USER competitor;
 DROP USER organizer;
 DROP USER guest;
 
-CREATE USER administrator IDENTIFIED BY 'password1';
-CREATE USER competitor IDENTIFIED BY 'password2';
-CREATE USER organizer IDENTIFIED BY 'password3';
-CREATE USER guest IDENTIFIED BY 'password4';
+CREATE USER IF NOT EXISTS 'administrator'@'localhost' IDENTIFIED BY 'password1';
+CREATE USER IF NOT EXISTS 'organizer'@'localhost' IDENTIFIED BY 'password2';
+CREATE USER IF NOT EXISTS 'competitor'@'localhost' IDENTIFIED BY 'password3';
+CREATE USER IF NOT EXISTS 'guest'@'localhost' IDENTIFIED BY 'password4';
+
 
 -- GRANT [type of permission] ON [database name].[table name] TO ‘admin’@'localhost’;
 GRANT ALL PRIVILEGES ON malicsi.* TO administrator;

@@ -6,33 +6,7 @@
   src: local('Material Icons'), local('MaterialIcons-Regular'), url('/fonts/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2') format('woff2');
 }
 
-@font-face {
-	font-family: 'leixo';
-	src:url('/fonts/leixo/LEIXO-DEMO.ttf');
-	font-weight: normal;
-	font-style: normal;
-}
 
-@font-face {
-	font-family: 'vintage-avalanche';
-	src:url('/fonts/vintage-avalanche.otf');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'telegrafico';
-	src:url('/fonts/telegrafico.ttf');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'rounded-elegance';
-	src:url('/fonts/Rounded_Elegance.ttf');
-	font-weight: normal;
-	font-style: normal;
-}
 
 body {
 	width: 100%;
@@ -275,3 +249,4 @@ nav a {
 #nav-search-bar input::-webkit-input-placeholder {
 	color: transparent;
 }
+
