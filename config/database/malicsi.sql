@@ -181,10 +181,10 @@ DROP USER competitor;
 DROP USER organizer;
 DROP USER guest;
 
-CREATE USER administrator IDENTIFIED BY 'password1';
-CREATE USER competitor IDENTIFIED BY 'password2';
-CREATE USER organizer IDENTIFIED BY 'password3';
-CREATE USER guest IDENTIFIED BY 'password4';
+--CREATE USER administrator IDENTIFIED BY 'password1';
+--CREATE USER competitor IDENTIFIED BY 'password2';
+--CREATE USER organizer IDENTIFIED BY 'password3';
+--CREATE USER guest IDENTIFIED BY 'password4';
 
 -- GRANT [type of permission] ON [database name].[table name] TO ‘admin’@'localhost’;
 GRANT ALL PRIVILEGES ON malicsi.* TO administrator;

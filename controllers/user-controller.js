@@ -1,17 +1,20 @@
 'use strict'
 
-// const mysql = require('mysql');
-// const bodyParser = require('body-parser');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
-	let query = `SELECT id, username, type, password FROM user WHERE username = ?`;
+	var query = 'SELECT id, username, type, password FROM user WHERE username = ?';
+	// get user type
+	console.log(req.session);
+	// var type = req.session.user.type;
 
-	connection.query(query, [req.body.username], function(err, rows){
+	connection.userType('A').query(query, [req.body.username], function(err, rows){
 		if(!err) {
 			if (rows.length == 1) {
-				console.log(rows[0].password)
+				// console.log(rows[0].password);
 				bcrypt.compare(req.body.password, rows[0].password, (err, isCorrect) => {
 					if (isCorrect) {
 						req.session.user = {
@@ -19,7 +22,7 @@ exports.login = (req, res) => {
 							username: rows[0].username,
 							type: rows[0].type
 						}
-						res.status(200).send({ 'message' : 'Successfully logged in'});
+						res.status(200).send({ 'message' : 'Successfully logged in', 'success': true });
 					} else {
 						console.log('hello')
 						res.status(401).send({ 'message' : 'Incorrect credentials'});
@@ -35,14 +38,13 @@ exports.login = (req, res) => {
 			} else {
 				res.status(500).send({ 'message' : 'Unknown'});
 			}
-
 		}
 	});
 }
 
 exports.logout = (req, res) => {
 	req.session = null;
-	res.status(200).send({'message': 'Logout successful'});
+	res.redirect('/');
 }
 
 exports.register = (req, res, next) => {
@@ -159,7 +161,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 		if(!err) {
 			returnObject = rows[0];
 
-			if(currentUser.user_type == 'competitor') {
+			if(currentUser.type == 'C') {
 				connection.query('SELECT birthday, sex, first_name, last_name, nickname from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
 					if(!err) {
 						returnObject.push(
@@ -191,7 +193,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 						console.log(err);
 					}
 				})
-			} else if (currentUser.user_type == 'organizer') {
+			} else if (currentUser.type == 'O') {
 				connection.query('SELECT name, description form organizer where id = ?', [currentUser.id], function(err, rows, fields) {
 					if(!err) {
 						returnObject.push(

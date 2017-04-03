@@ -16,6 +16,7 @@ let logController = require("../controllers/log-controller");
 function checkUser(req, res, next) {
 	console.log(req.session.user);
 	if (req.session.user !== undefined && (req.session.user.type === 'O' || req.session.user.type === 'A')) {
+    console.log(req.session.user.type);
 		next();
 	} else {
 		res.status(403).send('Forbidden');
@@ -24,8 +25,10 @@ function checkUser(req, res, next) {
 
 function sha256Hash(req, res, next) {
     if (req.body.password == undefined) {
+        console.log("Hello");
         res.status(404).send({ 'message' : 'Incorrect credentials'});
     } else {
+        console.log("Hi");
         let hash = crypto.createHash('sha256');
         hash.update(req.body.password);
         req.body.password = hash.digest('hex');
@@ -102,8 +105,14 @@ router.post('/sport/addWinnerSport', checkUser, sportController.addWinnerSport);
 router.put('/sport/editSport', checkUser, sportController.editSport);
 router.delete('/sport/deleteSport', checkUser, sportController.deleteSport);
 
+<<<<<<< HEAD
 //log routers
 router.get('/log/viewAllLogs', checkUser, logController.viewAllLogs);
 router.post('/log/viewLogsByDate', checkUser, logController.viewLogsByDate);
+=======
+router.all('*', (req, res) => {
+	res.status(200).send('gago')
+})
+>>>>>>> 137-connect-login
 
 module.exports = router;
