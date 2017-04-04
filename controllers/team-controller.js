@@ -17,9 +17,9 @@ exports.createTeam = (req, res) => {
             req.body.max_members
         ], (err, rows) => {
             if(!err) {
-                res.status(200).send({ 'message' : 'Sucessfully created team'});
+                return res.status(200).send({ 'message' : 'Sucessfully created team'});
             } else {
-                res.status(500).send({ 'message' : 'An error occured'});
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
         }
     );
@@ -48,9 +48,9 @@ exports.teamMembershipRequest = (req, res) => {
     connection.userType('A').query(query, [req.body.id, req.body.team_id],
             function(err, rows){
             if(!err) {
-                res.status(200).send({ 'message' : 'Sucessfully sent request'});
+                return res.status(200).send({ 'message' : 'Sucessfully sent request'});
             } else {
-                res.status(500).send({ 'message' : 'An error occured'});
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
     });
 }
@@ -64,7 +64,7 @@ exports.acceptMembershipRequest = (req, res) => {
                     res.status(200).send({ 'message' : 'Sucessfully accepted request'});
                 } else {
                     console.log(err);
-                    res.status(500).send({ 'message' : 'An error occured'});
+                    return res.status(500).send({ 'message' : 'An error occured'});
                 }
         });
 }
@@ -79,18 +79,15 @@ exports.getTeamStatistics = (req, res) => {
             if(!err) {
                 if (rows[0].length == 1){
                     console.log(rows[0][0]);
-                    res.status(200).send(rows[0][0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0][0]);
                 }
                 else{
                     console.log(rows[0]);
-                    res.status(200).send(rows[0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0]);
                 }
             } else {
                 console.log(err);
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
         })
 }  
@@ -105,18 +102,15 @@ exports.countTeamInSports = (req, res) => {
             if(!err) {
                 if (rows[0].length == 1){
                     console.log(rows[0][0]);
-                    res.status(200).send(rows[0][0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0][0]);
                 }
                 else{
                     console.log(rows[0]);
-                    res.status(200).send(rows[0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0]);
                 }
             } else {
                 console.log(err);
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
         })
 }    
@@ -134,18 +128,16 @@ exports.getTeamMembers = (req, res) => {
             if(!err) {
                 if (rows[0].length == 1){
                     console.log(rows[0][0]);
-                    res.status(200).send(rows[0][0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0][0]);
                 }
                 else{
                     console.log(rows[0]);
-                    res.status(200).send(rows[0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0]);
+                    
                 }
             } else {
                 console.log(err);
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
         })
 }    
