@@ -20,12 +20,6 @@ exports.createOrganizer = (req, res) => {
 	let insert_query1 = 'CALL create_user(?, ?, ?, ?, ?)';
 	let insert_query2 = 'CALL create_organizer(?, ?, ?)';
 
-	req.session.user = {
-	  id: 21,
-	  username: 'mcdo',
-	  type: 'A'
-	}
-
 	connection.userType('A').query(insert_query1, [req.body.username, req.body.password, req.body.email, req.body.contact, 'O'], function(err, rows){
 		if(!err){
 			connection.userType('A').query(query, [req.body.username], function(err, rows){

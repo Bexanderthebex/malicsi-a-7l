@@ -9,11 +9,11 @@
 }
 
 #game-slider {
-    height: 240px !important;
+    height: 210px !important;
 }
 
 #game-slides {
-    height: 210px !important;
+    height: 200px !important;
 }
 
 .game-smaller-padding {
@@ -22,14 +22,14 @@
 
 .game-match-diagonal-up {
     margin-bottom: -20% !important;
-    padding-bottom: 10% !important;
+    padding-bottom: 2% !important;
     -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 74%, 100% 0%);
 }
 
 .game-match-diagonal-down {
     -webkit-clip-path: polygon(0% 100%, 0 30%, 100% 0, 100% 100%);
     margin-top: -20% !important;
-    padding-top: 10% !important;
+    padding-top: 2% !important;
 }
 
 .game-padding-right {
@@ -122,4 +122,48 @@
 
 .game-padding-down {
     padding-bottom: 12px;
+}
+
+.game-adjust-label {
+    top: -14px !important;
+    font-size: 0.8rem !important;
+}
+
+.game-fixed-sidebar {
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
+
+#game-update-section .game-match:hover {
+    transition: background 0.5s;
+}
+
+.game-type-matches{
+    padding-right: 5px;
+}
+
+.game-type-matches::-webkit-scrollbar-track
+{
+    background: transparent;
+    /*-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);*/
+    /*background-color: #F5F5F5;*/
+}
+
+.game-type-matches::-webkit-scrollbar
+{
+    width: 6px;
+    background-color: transparent;
+}
+
+.game-type-matches::-webkit-scrollbar-thumb
+{
+    background-color: #121212 !important;
+    border-radius: 5px;
+}
+
+.game-match{
+    min-height: 100px;
+    padding: 10px;
 }

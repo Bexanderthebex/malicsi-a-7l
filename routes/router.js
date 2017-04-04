@@ -17,6 +17,7 @@ let organizerController = require("../controllers/organizer-controller");
 let teamController = require("../controllers/team-controller");
 
 function sha256Hash(req, res, next) {
+    console.log(req.body);
     if (req.body.password == undefined) {
         console.log("Hello");
         res.status(404).send({ 'message' : 'Incorrect credentials'});
@@ -45,12 +46,6 @@ function bcryptHash(req, res, next) {
 // Example usage: router.post('/r/anime', checkUser('O'), createGame);
 function checkUser(type) {
     return (req, res, next) => {
-      req.session.user = {
-    id: 21,
-    username: 'mcdo',
-    type: 'A'
-  }
-        console.log(req.session.user);
         if (req.session.user !== undefined && (req.session.user.type === type || req.session.user.type === 'A')) {
             next();
         } else {
@@ -68,7 +63,6 @@ router.get('/logout', userController.logout);
 router.get('/user/:id', userController.getUserInfo);
 router.put('/user/update', sha256Hash, bcryptHash, userController.update);
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
-router.get('/user/info', userController.getUserInfo);
 
 //competitor routers
 router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
@@ -95,7 +89,6 @@ router.post('/team/acceptMembershipRequest',teamController.acceptMembershipReque
 router.get('/team/countTeamInSports',teamController.countTeamInSports);
 router.get('/team/getTeamMembers',teamController.getTeamMembers);
 
-
 // game routers
 router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
@@ -108,14 +101,13 @@ router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
 
 //sport routers
-router.get('/sport/:sportId', sportController.viewSportDetails);
+router.get('/sport/viewSport', sportController.viewSportDetails);
 router.post('/sport/createSport', sportController.createSport);
-router.put('/sport/editMatch', matchController.editMatch);
-router.put('/sport/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
 router.post('/sport/addWinnerSport', sportController.addWinnerSport);
 router.put('/sport/editSport', sportController.editSport);
 router.delete('/sport/deleteSport', sportController.deleteSport);
-
+router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
+router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);
 
 //match routers
 router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);

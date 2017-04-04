@@ -20,30 +20,45 @@
   /*background-color: red;*/
 }
 
-.organization-handler {
+.organization-team-info {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.organization-team-handler {
   font-size: 150%;
 }
 
-.organization-player-name, .organization-position {
+.organization-team-name, .organization-team-info, .organization-team-member-name, .organization-team-member-info {
   text-align: center;
   font-size: 110%;
 }
 
-.organization-teams {
+.organization-team-info-mem-label {
+  text-align: center;
+}
+
+.organization-team-list {
   margin-top: 1%;
 }
 
-.organization-players {
+.organization-team-logo, .organization-team-member-avatar {
   border-radius: 50%;
   height: 70%;
   width: 70%;
 }
 
-.organization-mem {
+.organization-team, .organization-team-member {
   text-align: center;
 }
 
-.container > .row > div > .organization-players{
+.organization-team-member-info {
+  font-size: 95%;
+}
+
+.container > .row > div > .organization-team-logo{
   margin-left: auto;
   margin-right: auto;
 }
