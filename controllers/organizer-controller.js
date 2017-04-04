@@ -114,16 +114,17 @@ exports.findTeam = (req,res,next) =>{
 		[
 			req.query.sport_id
 		], (err,rows) => {
-		if(!err){
-			if(row.length == 1){
-				return res.status(200).send(rows[0][0]);
+			if(!err){
+				if(row.length == 1){
+					return res.status(200).send(rows[0][0]);
+				} else {
+					return res.status(200).send(rows[0]);
+				}
 			} else {
-				return res.status(200).send(rows[0]);
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
-		} else {
-			return res.status(500).send({'message' : 'Internal Server Error'});
 		}
-		});
+	);
 };
 
 
@@ -186,7 +187,7 @@ exports.getPendingParticipation = (req, res, next) => {
 	connection.userType('A').query(query, 
 		[
 			req.query.organizer_id
-		], function(err,rows){
+		], (err,rows) => {
 		if(!err){
 			if(row.length == 1){
 				return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0][0]);
