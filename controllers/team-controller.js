@@ -5,37 +5,35 @@ const connection = require('./../config/db-connection.js');
 
 exports.createTeam = (req, res) => {
     currentUser = req.session.user;
-    query = "CALL createTeam(?, ?, ?, ?)";
+    query = "CALL create_team(?, ?, ?, ?, ?)";
     query1 = "CALL get_team(?)"
 
     connection.userType('A').query(query,
         [
+            req.body.team_name,
             req.body.id, 
             req.body.sport_id, 
-            req.body.organization_id, 
-            req.body.team_sport
+            req.body.team_organization, 
+            req.body.max_members
         ], (err, rows) => {
             if(!err) {
-                res.status(200).send({ 'message' : 'Sucessfully created team'});
-                return(connection.query(query1, [req.body.id]));
+                return res.status(200).send({ 'message' : 'Sucessfully created team'});
             } else {
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
         }
     );
 }
 
 exports.deleteTeam = (req, res) => {
-    query = "CALL deleteTeam(?)";
+    query = "CALL delete_team(?)";
    
     connection.userType('A').query(query, 
         [
             req.body.team_id
         ], (err, rows) => {
             if(!err) {
-                res.status(200).send({ 'message' : 'Sucessfully deleted team'});
-                return 
+                return res.status(200).send({ 'message' : 'Sucessfully deleted team'}); 
             } else {
                 return res.status(500).send({ 'message' : 'An error occured'});
             }
@@ -45,85 +43,101 @@ exports.deleteTeam = (req, res) => {
 
 exports.teamMembershipRequest = (req, res) => {
     currentUser = req.session.user;
-    query = "CALL teamMembershipRequest(?,?)";
+    query = "CALL team_membership_request(?,?)";
+    query1 = "SELECT * FROM competitor_joins_team WHERE id = ? AND team_id = ?";
     
-    connection.userType('A').query(query, [req.body.id, req.body.team_id],
-            function(err, rows){
-            if(!err) {
-                res.status(200).send({ 'message' : 'Sucessfully sent request'});
-                return (connection.query("SELECT * FROM competitor_joins_team WHERE id = ? AND team_id = ?", [currentUser.id, req.body.team_id])[0]);
-            } else {
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
-            }
-    });
+    connection.userType('A').query(query, 
+            [
+                req.body.id,
+                req.body.team_id
+            ], (err, rows) => {
+                if(!err) {
+                    return res.status(200).send({ 'message' : 'Sucessfully sent request'});
+                } else {
+                    return res.status(500).send({ 'message' : 'An error occured'});
+                }
+        }
+    );
 }
 
 exports.acceptMembershipRequest = (req, res) => {
     currentUser = req.session.user;
-    query = "CALL acceptMembershipRequest(?,?)";
-    connection.userType('A').query(query, [req.body.id ,req.body.competitor_id],
-        function(err, rows){
+    query = "CALL accept_membership_request(?,?)";
+    
+    connection.userType('A').query(query, 
+        [
+            req.body.id,
+            req.body.team_id
+        ], (err, rows) => {
                 if(!err) {
-                    res.status(200).send({ 'message' : 'Sucessfully accepted request'});
-                    return (connection.query("SELECT * FROM competitor_joins_team WHERE id = ? AND team_id = ?", [req.body.competitor_id, currentUser.id])[0]);
+                    return res.status(200).send({ 'message' : 'Sucessfully accepted request'});
                 } else {
-                    res.status(500).send({ 'message' : 'An error occured'});
-                    return 500;
+                    return res.status(500).send({ 'message' : 'An error occured'});
                 }
-        });
+        }
+     );
 }
 
 exports.getTeamStatistics = (req, res) => {
-    query = "CALL rankings(?,?)"
-    console.log(query);
+    query = "CALL rankings(?)"
+    
     connection.userType('A').query(query,
         [
-            req.query.team_id,
-            req.query.id
-        ], function(err, rows){
+            req.query.team_id
+        ], (err, rows) => {
             if(!err) {
                 if (rows[0].length == 1){
-                    console.log(rows[0][0]);
-                    res.status(200).send(rows[0][0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0][0]);
                 }
                 else{
-                    console.log(rows[0]);
-                    res.status(200).send(rows[0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0]);
                 }
             } else {
-                console.log(err);
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
         })
 }  
 
 exports.countTeamInSports = (req, res) => {
-    query = "CALL count_teams_in_sport(?,?)"
-    console.log(query);
+    query = "CALL count_teams_in_sport(?)"
+    
     connection.userType('A').query(query,
         [
-            req.query.sport_id,
-            req.query.id
-        ], function(err, rows){
+            req.query.sport_id
+        ], (err, rows) => {
             if(!err) {
                 if (rows[0].length == 1){
-                    console.log(rows[0][0]);
-                    res.status(200).send(rows[0][0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0][0]);
                 }
                 else{
-                    console.log(rows[0]);
-                    res.status(200).send(rows[0]);
-                    return(rows[0][0]);
+                    return res.status(200).send(rows[0]);
                 }
             } else {
-                console.log(err);
-                res.status(500).send({ 'message' : 'An error occured'});
-                return 500;
+                return res.status(500).send({ 'message' : 'An error occured'});
             }
         })
+}    
+
+
+
+
+exports.getTeamMembers = (req, res) => {
+    query = "CALL get_members(?)"
+    
+    connection.userType('A').query(query,
+        [
+            req.query.team_id
+        ], (err, rows) => {
+            if(!err) {
+                if (rows[0].length == 1){
+                    return res.status(200).send(rows[0][0]);
+                }
+                else{
+                    return res.status(200).send(rows[0]);
+                    
+                }
+            } else {
+                return res.status(500).send({ 'message' : 'An error occured'});
+            }
+        });
 }    
