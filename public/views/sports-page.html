@@ -59,7 +59,7 @@
 
 					<div id="sports-ranking-view-all-btn" class="col s4" style="padding-top: 25px!important; cursor: pointer!important;">
 						<a id="sports-ranking-view-all" class="rockwell letter-spacing-2 palette-4" data-target="rankings-view-all-modal">
-							VIEW ALL >>
+							VIEW ALL <i class="fa fa-angle-double-right"></i>
 						</a>
 					</div>
 				</div>
@@ -582,6 +582,7 @@
 			</div>
 		</div>
 
+		<!-- SPONSORS -->
 		<div id="sports-sponsors" class="palette-5">
 			<h5 class="rockwell center white-text">Sponsors</h5>
 			<div class="row palette-text-3" style="padding-left: 200px; padding-right: 200px; text-align: right;">
@@ -602,6 +603,7 @@
 		</div>
 	</div>
 
+	<!-- RANKINGS MODAL -->
 	<div id="rankings-view-all-modal" class="modal modal-fixed-footer">
         <div class="modal-content container">
             <div class="row">
@@ -681,11 +683,52 @@
         </div>
     </div>
 
+	<!-- EDIT MATCH MODAL -->
     <div id="match-edit-modal" class="modal modal-fixed-footer">
         <div class="modal-content container">
             <div class="row">
                 <h4 class="rockwell center">Edit Match</h4>
             </div>
+
+            <!-- EDIT MATCH INFO -->
+            <div class="row">
+            	<div class="input-field col s4">
+            		<span class="telegrafico">Start Time</span>
+                    <input id="match-start-time" class="timepicker" type="time">
+                </div>
+                <div class="input-field col s4">
+                	<span class="telegrafico">End Time</span>
+                    <input id="match-end-time" class="timepicker" type="time">
+                </div>
+                <div class="input-field col s4">
+                	<span class="telegrafico">Date</span>
+                	<input type="date" class="datepicker">
+                </div>
+
+            </div>
+
+			<!-- EDIT PLAYERS -->
+            <table>
+            	<thead>
+            		<tr class="telegrafico">
+            			<th>Players</th>
+            			<th>Actions</th>
+            		</tr>
+            	</thead>
+            	<tbody class="century-gothic">
+            		<tr>
+            			<td>UP Fighting Maroons</td>
+            			<td>
+            				<div class="match-actions">
+            					<i class="fa fa-minus-square fa-lg"></i>
+            				</div>
+            				<div class="match-actions">
+            					<i class="fa fa-pencil-square-o fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            	</tbody>
+            </table>
         </div>
         <div class="modal-footer">
             <button href="" class="modal-action modal-close waves-effect waves-red btn-flat">Save</button>
