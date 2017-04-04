@@ -111,6 +111,8 @@ router.delete('/sport/deleteSport', sportController.deleteSport);
 
 
 //match routers
+router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
+router.get('/sport/match/viewAllMatch', matchController.viewAllMatch);
 router.post('/sport/match/addMatch',  matchController.addMatch);
 router.get('/game/sport/countMatchBySport/:sportID', matchController.countMatchBySport);
 router.put('/sport/match/editMatch', matchController.editMatch);
