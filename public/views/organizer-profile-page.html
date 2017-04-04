@@ -231,7 +231,7 @@
         <div class="row divider"></div>
 
         <!-- Requests -->
-        <div class="row">
+        <div class="row" ng-init="getRequests()">
             <h4 class="rockwell">Requests</h4>
             <table class="highlight responsive-table">
                 <thead>
@@ -243,7 +243,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-repeat="request in requests">
                         <td>Team 1</td>
                         <td>Basketball</td>
                         <td>PalICSihan 2017</td>

@@ -95,5 +95,23 @@
 
             return deferred.promise;
         }
+
+        function getRequests(id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'DELETE',
+                params: game,
+                url: '/game/deleteGame',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
     }
 })();

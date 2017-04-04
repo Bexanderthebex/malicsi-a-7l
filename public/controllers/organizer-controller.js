@@ -13,6 +13,8 @@
         $scope.retrieveGame = retrieveGame;
         $scope.deleteGame = deleteGame;
         $scope.updateGame = updateGame;
+        $scope.getRequests = getRequests;
+        $scope.requests = [];
         $scope.games = [];
         $scope.newGame = {
             orgID: '12',
@@ -60,6 +62,22 @@
         function updateGame(game) {
             OrganizerService
                 .updateGame(game)
+                .then(function(res) {
+                    console.log("updated");
+                }, function(err) {
+                    console.log(err.data);
+                })
+        }
+
+        function getRequests() {
+            OrganizerService
+                .getRequests()
+                .then(function(res) {
+                    console.log(res.data);
+                    $scope.requests = res.data;
+                }, function(err) {
+                    console.log(err.data);
+                })
         }
 
     }
