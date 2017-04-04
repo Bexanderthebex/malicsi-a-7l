@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 // const mysql = require('mysql');
 // const bodyParser = require('body-parser');
 
@@ -14,55 +14,56 @@ const connection = require('./../config/db-connection.js');
 * name: name of new organizer
 * description: description of new organizer
 */
-exports.createOrganizer = (req, res) => {	// Pakidagdagan daw ng userType('A')
-	let query = `
-		INSERT INTO user SET ?;
-	`;
 
-	let userParams = {
-		username: req.body.username,
-		password: req.body.password,
-		active: true
-	}
+exports.createOrganizer = (req, res) => {
+	let query = 'SELECT id FROM user WHERE username = ?';
+	let insert_query1 = 'CALL create_user(?, ?, ?, ?, ?)';
+	let insert_query2 = 'CALL create_organizer(?, ?, ?)';
 
-	connection.userType('A').query(query, userParams, (err, rows) => {
-		if (!err) {
-			console.log(rows);
-
-			query = `
-				INSERT INTO organizer SET ?;
-			`;
-
-			let organizerParams = {
-				id: rows.insertId,
-				name: req.body.name,
-				description: req.body.description
-			}
-
-			connection.userType('A').query(query, organizerParams, (err, rows) => {
-				if (!err) {
-					res.status(200).send('Organizer added.');
-				} else {
-					res.status(200).send('An error occured.');
+	connection.userType('A').query(insert_query1, [req.body.username, req.body.password, req.body.email, req.body.contact, 'O'], function(err, rows){
+		if(!err){
+			connection.userType('A').query(query, [req.body.username], function(err, rows){
+				if(!err){
+					if(rows.length == 1){
+						connection.userType('A').query(insert_query2, [rows[0].id, req.body.name, req.body.description], function(err, rows){
+							if(!err){
+								return res.status(200).send({'message': 'Successfully created organizer.'});
+							}else{
+								console.log(err);
+								if(err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({'message':'Missing field.'});
+								else if(err.code == 'ER_DUP_ENTRY') return res.status(400).send({'message':'Duplicate entry.'})
+								else return res.status(500).send({'message':'Unknown error'});
+							}
+						});
+					}else{
+						return res.status(404).send({'message': 'User does not exists.'});
+					}
+				}else{
+					return res.status(500).send({'message':'Unknown error'});
 				}
 			});
-		} else {
-			res.status(200).send('An error occured.');
+		}else{
+			console.log(err);
+			return res.status(500).send({'message':'Unknown error'});
 		}
 	});
-};
+}
 
 exports.changeActivity = (req, res) => {
-	connection.userType('A').query('UPDATE user SET is_active=? WHERE id = ?', [req.body.active, req.body.id], (err, rows) => {
-		if (!err) {
+	let query = 'CALL update_activity(?, ?)';
+	connection.userType('A').query(query, [req.body.is_active, req.params.id], (err, rows) => {
+		if(!err){
 			console.log(rows);
-			if (rows.affectedRows > 0) {
-				res.status(200).send({'message': 'User activity status successfully updated.'});
-			} else {
-				res.status(404).send({'message': 'User does not exist.'});
+			if(rows.affectedRows == 0) {
+				return res.status(404).send({'message': 'User does not exist.'});
+			}else{
+				return res.status(200).send({'message': 'User activity status successfully updated.'});
 			}
-		} else {
-			res.status(404).send({'message': 'Database error.', 'data': err});
+		}else{
+			console.log(err);
+			if(err.code == 'ER_BAD_NULL_ERROR') {
+				return res.status(400).send({ 'message' : 'Missing field.' });
+			}
 		}
 	});
 }

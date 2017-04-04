@@ -1,5 +1,3 @@
-'use strict'
-
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
@@ -7,7 +5,9 @@ const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
 	var query = 'SELECT id, username, type, password FROM user WHERE username = ?';
-	connection.userType('A').query(query, [req.body.username], function(err, rows){
+	connection.userType('A').query(query, [
+		req.body.username
+	], function(err, rows) {
 		if(!err) {
 			if (rows.length == 1) {
 				bcrypt.compare(req.body.password, rows[0].password, (err, isCorrect) => {
@@ -45,20 +45,55 @@ exports.logout = (req, res) => {
 	res.status(200).send({'message': 'Logout successful'});
 }
 
-exports.register = (req, res, next) => {
-	// console.log(req.body);
-	var insert_query = 'INSERT INTO user (username, password, email, contact, type, is_active) values(?,?,?,?,?,true)';
-	console.log(':DD');
-	connection.userType('A').query(insert_query, [
-		req.body.username,
-		req.body.password,
-		req.body.email,
-		req.body.contact,
-		req.body.type
-	], function(err, rows){
-		if(!err) {
-			req.body.id = rows.insertId;
-			next();
+exports.register = (req, res) => {
+	let insert_user_query = 'CALL create_user(?, ?, ?, ?, ?)';
+	let select_user_query = 'SELECT * FROM user WHERE username = ?';
+	let insert_comp_query = 'CALL create_competitor(?,?,?,?,?,?)';
+
+	connection.userType('A').query(insert_user_query, [req.body.username, req.body.password, req.body.email, req.body.contact, req.body.type], function(err, rows){
+		if(!err){
+			connection.userType('A').query(select_user_query, [req.body.username], function(err, rows){
+				var returnObject = rows[0];
+
+				req.session.user = {
+					id: rows.insertId,
+					username: req.body.username,
+					type: req.body.type
+				};
+
+				if(returnObject.type == 'C' || returnObject.type == 'O'){
+					if(!err){
+						connection.userType('A').query(insert_comp_query, [
+							returnObject.id,
+							req.body.birthday,
+							req.body.first_name,
+							req.body.last_name,
+							req.body.nickname,
+							req.body.sex
+						], function(err, rows){
+							if(!err){
+								returnObject["birthday"] = req.body.birthday;
+								returnObject["first_name"] = req.body.first_name;
+								returnObject["last_name"] = req.body.last_name;
+								returnObject["nickname"] = req.body.nickname;
+								returnObject["sex"] = req.body.sex;
+								res.status(200).send({'message':'Successfully created competitor.'});
+								return returnObject;
+							}else{
+								console.log(err);
+								if (err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({ 'message' : 'Missing field' });
+								else if (err.code == 'ER_DUP_ENTRY') return res.status(400).send({ 'message' : 'Duplicate entry' });
+								else return res.status(500).send({ 'message': 'Unknown error.' });
+							}
+						});
+					}else{
+						console.log(err);
+						return res.status(404).send({'message':'User does not exist.'});
+					}
+				}else{
+					return res.status(500).send({'message':'User is neither competitor or organizer.'});
+				}
+			});
 		}else{
 			console.log(err);
 			if (err.code == 'ER_BAD_NULL_ERROR') {
@@ -74,7 +109,20 @@ exports.register = (req, res, next) => {
 }
 
 exports.update = (req, res) =>{
-	connection.query('UPDATE user SET username = ?, password = ?, email = ?, contact = ? WHERE id = ?', [req.body.username, req.body.password, req.body.email, req.body.contact, req.session.user.id], function (err, rows){
+	let update_query = 'CALL update_user(?, ?, ?, ?, ?)';
+
+	/*
+		NOTE FOR FRONT END: Must make sure that if a field is empty, pass the old value.
+		Example, use did not provide password. req.body.password must be the user's old password.
+	*/
+
+	connection.userType('A').query(update_query, [
+		req.body.username,
+		req.body.password,
+		req.body.email,
+		req.body.contact,
+		req.session.user.id
+	], function (err, rows) {
 		if(err) res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
 		else if (rows.affectedRows === 0) {
 			res.status(404).send({ 'message': 'User was not updated.' });
@@ -86,7 +134,10 @@ exports.update = (req, res) =>{
 }
 
 exports.returnInfo = (req, res) => {
-	connection.query('SELECT id, username, is_active, email, contact, type FROM user WHERE id=?', [req.params.id], function(err, rows){
+	var query = 'SELECT id, username, is_active, email, contact, type FROM user WHERE id=?';
+	connection.query(query, [
+		req.params.id
+	], function(err, rows) {
 		if (err) {
 			res.status(404).send({ 'message' : 'Error getting user info!', 'data': err});
 		} else {
@@ -100,7 +151,7 @@ exports.returnInfo = (req, res) => {
 }
 
 exports.registerCompetitor = (req, res) => {
-	let query = 'INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)';
+	var query = 'INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)';
 	connection.query(query, [
 		req.body.id,
 		req.body.birthday,

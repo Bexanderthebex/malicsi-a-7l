@@ -11,22 +11,24 @@ let gameController = require('../controllers/game-controller');
 let sponsorController = require('../controllers/sponsor-controller')
 let sportController = require("../controllers/sport-controller");
 let matchController = require("../controllers/match-controller");
+let logController = require("../controllers/log-controller");
+let competitorController = require("../controllers/competitor-controller");
+let organizerController = require("../controllers/organizer-controller");
+let teamController = require("../controllers/team-controller");
 
 function sha256Hash(req, res, next) {
     console.log(req.body);
     if (req.body.password == undefined) {
+        console.log("Hello");
         res.status(404).send({ 'message' : 'Incorrect credentials'});
     } else {
+        console.log("Hi");
         let hash = crypto.createHash('sha256');
         hash.update(req.body.password);
         req.body.password = hash.digest('hex');
         next();
     }
 }
-
-var competitorController = require("../controllers/competitor-controller");
-var organizerController = require("../controllers/organizer-controller");
-var teamController = require("../controllers/team-controller");
 
 //admin/system routers
 function bcryptHash(req, res, next) {
@@ -41,7 +43,6 @@ function bcryptHash(req, res, next) {
     });
 }
 
-
 // Example usage: router.post('/r/anime', checkUser('O'), createGame);
 function checkUser(type) {
     return (req, res, next) => {
@@ -55,12 +56,11 @@ function checkUser(type) {
 
 //overall user routers
 router.post('/login', sha256Hash, userController.login);
-router.post('/organizer', adminController.createOrganizer);
-
+router.post('/organizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
 router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.get('/logout', userController.logout);
-router.get('/user/:id', userController.returnInfo);
-router.put('/user/update', userController.update);
+router.get('/user/:id', userController.getUserInfo);
+router.put('/user/update', sha256Hash, bcryptHash, userController.update);
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 
 //competitor routers
@@ -78,7 +78,10 @@ router.post('/team/deleteTeam',teamController.deleteTeam);
 router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 
-//game routers
+//log routers
+router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
+router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
+
 router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
@@ -88,7 +91,6 @@ router.put('/game/updateGame',  gameController.updateGame);
 router.put('/game/editSponsor',  sponsorController.editSponsorDetails);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
-
 
 //sport routers
 router.get('/sport/viewSport', sportController.viewSportDetails);
@@ -108,5 +110,8 @@ router.put('/sport/match/editMatch', matchController.editMatch);
 router.put('/sport/match/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
 
 
-module.exports = router;
+//log routers
+router.get('/log/viewAllLogs', checkUser, logController.viewAllLogs);
+router.post('/log/viewLogsByDate', checkUser, logController.viewLogsByDate);
 
+module.exports = router;
