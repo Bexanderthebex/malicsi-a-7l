@@ -39,7 +39,7 @@
 
         function addGame(game) {
             let deferred = $q.defer();
-
+            console.log(game);
             $http({
                 method: 'POST',
                 data: $.param(game),

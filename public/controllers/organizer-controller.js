@@ -14,12 +14,27 @@
         $scope.deleteGame = deleteGame;
         $scope.updateGame = updateGame;
         $scope.games = [];
-        $scope.game = {};
+        $scope.newGame = {
+            orgID: '12',
+            gameName: undefined,
+            startDate: undefined,
+            endDate: undefined,
+            locat: undefined,
+            descrip: undefined
+        };
   
-        function addGame(game) {
+        function addGame() {
+            $scope.newGame.startDate = $('#start-date').val();
+            $scope.newGame.endDate = $('#end-date').val();
+            console.log($scope.newGame);
             OrganizerService
-                .addGame(game)
-            // $route.reload();
+                .addGame($scope.newGame)
+                .then(function (res){
+                    console.log("added");
+                }, function(err) {
+                    console.log(err);
+                })
+                // $route.reload();
         }
 
         function retrieveGame(id) {
