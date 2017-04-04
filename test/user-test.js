@@ -21,7 +21,12 @@ describe('MalICSi', function() {	//Describes the module
 						'email': 'example@up.edu.ph',
 						'contact': '09111111111',
 						'type': 'C',
-						'is_active': 1
+						'is_active': 1,
+						'birthday': '1997-11-25',
+						'sex': 'V',
+						'first_name': 'kekkity',
+						'last_name': 'kekson',
+						'nickname': 'kek'
 					})
 				.end(function(err,res){
 					res.should.status(200);
@@ -33,14 +38,20 @@ describe('MalICSi', function() {	//Describes the module
 				.post('/register')
 				.send({
 						'username':'jpelaez',
-						'password':'hehehe',
+						'password':'hihihi',
 						'email': 'example@up.edu.ph',
-						'contact': '0912345678',
+						'contact': '09111111111',
 						'type': 'C',
-						'is_active': 1
+						'is_active': 1,
+						'birthday': '1997-11-25',
+						'sex': 'V',
+						'first_name': 'kekkity',
+						'last_name': 'kekson',
+						'nickname': 'kek'
 					})
 				.end(function(err,res){
-					res.should.status(404);
+					console.log(err)
+					res.should.status(500);
 					done();
 				});
 		});
@@ -52,7 +63,7 @@ describe('MalICSi', function() {	//Describes the module
 						'password':'A-7L'
 					})
 				.end(function(err,res){
-					res.should.status(404);
+					res.should.status(500);
 					done();
 				});
 		});
@@ -81,7 +92,7 @@ describe('MalICSi', function() {	//Describes the module
 				.post('/login')
 				.send({ 'username':'jpelaez', 'password': 'kek' })
 				.end(function(err,res) {
-					res.should.status(404);
+					res.should.status(401);
 					res.body.should.have.property('message').eql('Incorrect credentials');
 					done();
 				});
@@ -89,9 +100,9 @@ describe('MalICSi', function() {	//Describes the module
 		it('respond to POST (User does not exist!)', function(done) {
 			request(url)
 				.post('/login')
-				.send({ 'username':'mcdo' })
+				.send({ 'username':'mcdo', 'password': 'fsckjollibee' })
 				.end(function(err,res){
-					res.should.status(404);
+					res.should.status(401);
 					res.body.should.have.property('message').eql('Incorrect credentials');
 					done();
 				});
