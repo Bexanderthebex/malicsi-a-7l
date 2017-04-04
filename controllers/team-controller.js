@@ -79,7 +79,7 @@ exports.acceptMembershipRequest = (req, res) => {
 }
 
 exports.getTeamStatistics = (req, res) => {
-    query = "CALL rankings(?)"
+    query = "CALL rankings(?)";
     
     connection.userType('A').query(query,
         [
@@ -99,7 +99,7 @@ exports.getTeamStatistics = (req, res) => {
 }  
 
 exports.countTeamInSports = (req, res) => {
-    query = "CALL count_teams_in_sport(?)"
+    query = "CALL count_teams_in_sport(?)";
     
     connection.userType('A').query(query,
         [
@@ -118,11 +118,8 @@ exports.countTeamInSports = (req, res) => {
         })
 }    
 
-
-
-
 exports.getTeamMembers = (req, res) => {
-    query = "CALL get_members(?)"
+    query = "CALL get_members(?)";
     
     connection.userType('A').query(query,
         [
@@ -140,4 +137,47 @@ exports.getTeamMembers = (req, res) => {
                 return res.status(500).send({ 'message' : 'An error occured'});
             }
         });
-}    
+}
+
+exports.getTeam = (req, res) => {
+    query = "CALL get_team(?)";
+
+    connection.userType('A').query(query,
+    [
+        req.query.team_id
+    ], (err, rows) => {
+        if(!err) {
+                if (rows[0].length == 1){
+                    return res.status(200).send(rows[0][0]);
+                }
+                else{
+                    return res.status(200).send(rows[0]);
+                    
+                }
+            } else {
+                return res.status(500).send({ 'message' : 'An error occured'});
+            }
+    });
+}
+ 
+
+exports.getCoachedTeam = (req, res) => {
+    query = "CALL get_coached_team(?)";
+
+    connection.userType('A').query(query,
+    [
+        req.query.id
+    ], (err, rows) => {
+        if(!err) {
+                if (rows[0].length == 1){
+                    return res.status(200).send(rows[0][0]);
+                }
+                else{
+                    return res.status(200).send(rows[0]);
+                    
+                }
+            } else {
+                return res.status(500).send({ 'message' : 'An error occured'});
+            }
+    });
+}
