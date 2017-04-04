@@ -173,7 +173,6 @@ CREATE TABLE log (
 	PRIMARY KEY(log_id)
 );
 
-
 CREATE USER IF NOT EXISTS 'administrator'@'localhost' IDENTIFIED BY 'password1';
 CREATE USER IF NOT EXISTS 'organizer'@'localhost' IDENTIFIED BY 'password2';
 CREATE USER IF NOT EXISTS 'competitor'@'localhost' IDENTIFIED BY 'password3';
