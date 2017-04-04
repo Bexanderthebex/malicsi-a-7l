@@ -585,7 +585,7 @@
 		<!-- SPONSORS -->
 		<div id="sports-sponsors" class="palette-5">
 			<h5 class="rockwell center white-text">Sponsors</h5>
-			<div class="row palette-text-3" style="padding-left: 200px; padding-right: 200px; text-align: right;">
+			<div class="row palette-text-3" style="padding-left: 200px; padding-right: 200px; text-align: center;">
 				<div class="col s3">Yakult</div>
 				<div class="col s3">Bear Brand</div>
 				<div class="col s3">Meralco</div>
@@ -704,7 +704,12 @@
                 	<span class="telegrafico">Date</span>
                 	<input type="date" class="datepicker">
                 </div>
+            </div>
 
+            <div class="row">
+            	<div class="col s4 offset-s4 center">
+            		<button class="minimalist-button">SAVE CHANGES</button>
+            	</div>
             </div>
 
 			<!-- EDIT PLAYERS -->
@@ -717,7 +722,29 @@
             	</thead>
             	<tbody class="century-gothic">
             		<tr>
-            			<td>UP Fighting Maroons</td>
+            			<td class="match-player">UP Fighting Maroons</td>
+            			<td>
+            				<div class="match-actions">
+            					<i class="fa fa-minus-square fa-lg"></i>
+            				</div>
+            				<div class="match-actions">
+            					<i class="fa fa-pencil-square-o fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td class="match-player">UP Fighting Maroons</td>
+            			<td>
+            				<div class="match-actions">
+            					<i class="fa fa-minus-square fa-lg"></i>
+            				</div>
+            				<div class="match-actions">
+            					<i class="fa fa-pencil-square-o fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td class="match-player">UP Fighting Maroons</td>
             			<td>
             				<div class="match-actions">
             					<i class="fa fa-minus-square fa-lg"></i>
@@ -729,10 +756,56 @@
             		</tr>
             	</tbody>
             </table>
+
+            <!-- SET WINNER -->
+            <table>
+            	<thead>
+            		<tr class="telegrafico">
+            			<th>Set Winner</th>
+            			<th></th>
+            		</tr>
+            	</thead>
+            	<tbody class="century-gothic">
+            		<tr>
+            			<td class="match-player">UP Fighting Maroons</td>
+            			<td>
+            				<div class="match-actions set-winner">
+            					<i class="fa fa-check fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td class="match-player">UP Fighting Maroons</td>
+            			<td>
+            				<div class="match-actions set-winner">
+            					<i class="fa fa-check fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td class="match-player">UP Fighting Maroons</td>
+            			<td>
+            				<div class="match-actions set-winner">
+            					<i class="fa fa-check fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            	</tbody>
+            </table>
+
+            <!-- ADD PLAYER -->
+	        <div class="row" style="margin: 0; margin-top: 10px;"><span class="telegrafico">Add Player</span></div>
+            <div class="row">
+	            <div class="input-field col s4" style="margin: 0!important;">
+	            	<input type="text" placeholder="Team Name">
+	            </div>
+	            <div class="col s4 center">
+            		<button class="minimalist-button">ADD</button>
+            	</div>
+	        </div>
         </div>
         <div class="modal-footer">
-            <button href="" class="modal-action modal-close waves-effect waves-red btn-flat">Save</button>
-            <button href="" class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
+            <button href="" class="modal-action modal-close waves-effect waves-red btn-flat">Close</button>
         </div>
     </div>
 

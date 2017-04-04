@@ -14,9 +14,6 @@
 	margin-bottom: 0;
 	text-align: center;
 	text-shadow: 2px 2px 3px black;
-	/*color: white;*/
-	/*-webkit-filter: brightness(1.4);*/
-    /*filter: brightness(1.4);*/
 }
 
 #sports-title h6{
@@ -197,4 +194,36 @@
 #sports-sponsors{
 	padding-top: 50px;
 	padding-bottom: 50px;
+}
+
+.match-actions{
+	float: left;
+	margin-right: 10px;
+}
+
+.match-actions:hover{
+	color: #00719c;
+	cursor: pointer!important;
+	transition: color 0.3s;
+}
+
+.minimalist-button{
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 3px;
+	border: solid 2px #00719c;
+	color: #00719c;
+	font-weight: bold;
+	background: white;
+	letter-spacing: 1px;
+	font-size: 12px;
+	font-family: telegrafico;
+}
+
+.minimalist-button:hover{
+	background: #00719c;
+	color: white;
+	transition: background 0.3s;
 }

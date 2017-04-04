@@ -23,5 +23,17 @@ $(document).ready(function(){
         autoclose: false,
         vibrate: true // vibrate the device when dragging clock hand
     });
-    
+
+    // make match player row editable
+    // still not working
+    $('.match-actions').on('click', function() {
+        $('.match-actions').parent().find('.match-player').prop('contenteditable', true);
+    });
+
+
+    $('.set-winner').on('click', function(){
+        $(this).css("color", "#00719c");
+    });
+
+
 });
