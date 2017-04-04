@@ -9,7 +9,7 @@
                 <br><img id="competitor-profile-img" src="assets/avatar.png" class="blue lighten-2">
             </div>
             <div id="competitor-basic-info" class="col l9 m7 s12" ng-init="getOrganizer()">
-                <h3 class="rockwell">{{ organizer.name }} <a href="" id="organizer-profile-edit" data-target="edit-profile-modal"><i class="material-icons">edit</i></a></h3>
+                <h3 class="rockwell">{{ organizer.name }} <a href="" id="organizer-profile-edit" data-target="organizer-profile-edit-modal"><i class="material-icons">edit</i></a></h3>
                 <p class="century-gothic">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
                 <p class="century-gothic">
                     {{ organizer.description }}
@@ -232,16 +232,16 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" ng-init="getOrganizer()">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="first_name" type="text" class="validate">
+                        <input ng-model="organizer.name" id="first_name" type="text" class="validate">
                         <label for="first_name">Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <textarea ng-model="organizer.description" id="textarea1" class="materialize-textarea"></textarea>
                         <label for="textarea1">Description</label>
                     </div>
                 </div>
@@ -335,32 +335,12 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" ng-init="retrieveGame()">
                 <tbody>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                    <tr ng-repeat="game in games">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.location }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -386,32 +366,12 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" ng-init="retrieveGame()">
                 <tbody>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                    <tr ng-repeat="game in games">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.location }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -437,32 +397,12 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" ng-init="retrieveGame()">
                 <tbody>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                    <tr ng-repeat="game in games">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.location }}</td>
                     </tr>
                 </tbody>
             </table>

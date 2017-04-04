@@ -95,5 +95,15 @@
                 })
         }
 
+        function updateOrganizer() {
+            OrganizerService
+                .updateOrganizer(organizer)
+                .then(function(res) {
+                    console.log("updated organizer");
+                }, function(err) {
+                    console.log("error updating organizer");
+                })
+        }
+
     }
 })();
