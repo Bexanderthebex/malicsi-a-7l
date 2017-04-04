@@ -2,11 +2,11 @@
 
 (() => {
 	angular.module('app')
-		.controller('loginCtrl', loginCtrl) //name, then callback function
-		
-    loginCtrl.$inject = ['$scope', '$http', '$window'];
+		.controller('UserCtrl', UserCtrl) //name, then callback function
 
-    function loginCtrl($scope, $http, $window) {
+    UserCtrl.$inject = ['$scope', '$http', '$window'];
+
+    function UserCtrl($scope, $http, $window) {
 		$scope.uname = undefined;
 		$scope.pword = undefined;
 
@@ -29,15 +29,21 @@
 				console.log(err);
 			});
 		}
-		
-		$scope.signUp = function(fname, lname, uname, pword, bday, emailAdd){
-			$http.post('/account/add', {
-				firstName: fname,
-				lastName: lname,
+
+		$scope.signUp = function(fname, lname, nname, uname, sex, pword, bday, email, contactNum){
+			console.log(bday);
+
+			$http.post('/register', {
 				username: uname,
 				password: pword,
-				birthday: bday,
-				emailAddress: emailAdd,
+				email: email,
+				contact: contactNum,
+				type: 'C',
+				birthday: bday.getFullYear()+"-"+bday.getMonth()+"-"+bday.getDate(),
+				first_name: fname,
+				last_name: lname,
+				nickname: nname,
+				sex: sex
 			}).then(function(result){
 				$scope.fname = "";
 				$scope.lname = "";
@@ -49,5 +55,3 @@
 		}
 	}
 })();
-
-

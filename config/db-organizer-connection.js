@@ -12,6 +12,7 @@ connection.connect((err) => {
     if (!err) {
         console.log("Organizer database connected!");
     } else {
+    	console.log(err);
         console.log("Error in database connection!");
     }
 });

@@ -68,6 +68,15 @@ END;
 //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_sports_in_game;
+delimiter //
+CREATE PROCEDURE view_all_sports_in_game(in in_game_id int)
+BEGIN
+	select sport_name, mechanics, winner,time_start, time_end,start_date,end_date, sport_date, scoring_system from sport where game_id = in_game_id;
+END;
+//
+delimiter ;
+
 -- search for game by keyword
 GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO organizer;
 GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO competitor;
@@ -99,7 +108,7 @@ GRANT EXECUTE ON PROCEDURE view_game_details TO competitor;
 GRANT EXECUTE ON PROCEDURE view_game_details TO guest;
 
 -- view all sports in game
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO guest;
+-- GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
+-- GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
+-- GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
+-- GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO guest;
