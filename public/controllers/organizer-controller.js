@@ -1,5 +1,6 @@
+'use strict';
+
 (() => {
-    'use strict';
 
     angular
         .module('app')
@@ -8,28 +9,42 @@
     OrganizerController.$inject = ['$scope', 'OrganizerService'];
 
     function OrganizerController($scope, OrganizerService) {
-        $scope.add_expense = add_expense;
-        $scope.get_expense = get_expense;
-        $scope.expenses = [];
-        $scope.organizer = {};
-
-        function add_expense(expense) {
-            console.log(expense);
-
+        $scope.addGame = addGame;
+        $scope.retrieveGame = retrieveGame;
+        $scope.deleteGame = deleteGame;
+        $scope.updateGame = updateGame;
+        $scope.games = [];
+        $scope.game = {};
+  
+        function addGame(game) {
             OrganizerService
-                .addExpense(expense);
+                .addGame(game)
             // $route.reload();
         }
 
-        function get_expense() {
+        function retrieveGame(id) {
             OrganizerService
-                .getExpense()
+                .retrieveGame(id)
                 .then(function(res) {
-                    $scope.expenses = res;
-                    console.log($scope.expenses);
+                    $scope.games = res;
                 }, function(err) {
                     console.log(err);
                 })
+        }
+
+        function deleteGame(id) {
+            OrganizerService
+                .deleteGame(id)
+                .then(function(res) {
+                    console.log("deleted");
+                }, function(err) {
+                    console.log(err.data);
+                })
+        }
+
+        function updateGame(game) {
+            OrganizerService
+                .updateGame(game)
         }
 
     }

@@ -2,11 +2,11 @@
 
 (() => {
 	angular.module('app')
-		.controller('UserCtrl', UserCtrl) //name, then callback function
+		.controller('loginCtrl', loginCtrl) //name, then callback function
 		
-    UserCtrl.$inject = ['$scope', '$http', '$window'];
+    loginCtrl.$inject = ['$scope', '$http', '$window'];
 
-    function UserCtrl($scope, $http, $window) {
+    function loginCtrl($scope, $http, $window) {
 		$scope.uname = undefined;
 		$scope.pword = undefined;
 
@@ -20,7 +20,7 @@
 			}).then(function(result){
 				//if (result.message == 'Successfully logged in') {
 				console.log(result.data);
-				//$window.location.href = '/';
+				$window.location.href = '/';
 				//}else {
 				//	$scope.uname = '';
 				//	$scope.pword = '';

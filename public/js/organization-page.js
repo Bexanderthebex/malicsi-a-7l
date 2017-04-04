@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $('body').css('overflow', '');
+    
     $('.desc').on({
         mouseover: function() {
             $(this).find('span').fadeIn(200);

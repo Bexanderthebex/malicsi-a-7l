@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $('body').css('overflow', '');
+    
     $('ul.tabs').tabs();
 
     // $('.slide').slick({

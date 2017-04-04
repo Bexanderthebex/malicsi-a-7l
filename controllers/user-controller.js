@@ -21,7 +21,7 @@ exports.login = (req, res) => {
 						res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
 						console.log('hello')
-						res.json({ 'message' : 'Incorrect credentials', 'userdata' : rows[0]}).status(401);
+						res.send({ 'message' : 'Incorrect credentials'}).status(401);
 						//console.log(res);
 					}
 				});
