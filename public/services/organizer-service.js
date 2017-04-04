@@ -15,7 +15,9 @@
             retrieveGame: retrieveGame,
             addGame: addGame,
             updateGame: updateGame,
-            deleteGame: deleteGame
+            deleteGame: deleteGame,
+            getRequests: getRequests,
+            getOrganizer: getOrganizer
         }
 
         return service;
@@ -101,7 +103,7 @@
 
             $http({
                 method: 'GET',
-                params: ,
+                params: '',
                 url: '',
                 headers: headers
             }).then((res) => {
@@ -119,7 +121,7 @@
 
             $http({
                 method: 'GET',
-                params: ,
+                params: '',
                 url: '',
                 headers: headers
             }).then((res) => {

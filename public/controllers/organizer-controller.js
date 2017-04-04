@@ -78,18 +78,18 @@
                     console.log(res.data);
                     $scope.requests = res.data;
                 }, function(err) {
-                    console.log(err.data);
+                    console.log(err);
                 })
         }
 
-        function getOrganizer() {
+        function getOrganizer(id) {
             OrganizerService
                 .getOrganizer(id)
                 .then(function(res) {
                     console.log(res.data);
                     $scope.organizer = res.data;
                 }, function(err) {
-                    console.log(err.data);
+                	
                 })
         }
 
