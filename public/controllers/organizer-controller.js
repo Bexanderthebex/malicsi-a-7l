@@ -13,13 +13,32 @@
         $scope.retrieveGame = retrieveGame;
         $scope.deleteGame = deleteGame;
         $scope.updateGame = updateGame;
+        $scope.getRequests = getRequests;
+        $scope.getOrganizer = getOrganizer;
+        $scope.organizer = {};
+        $scope.requests = [];
         $scope.games = [];
-        $scope.game = {};
-  
-        function addGame(game) {
+        $scope.newGame = {
+            orgID: '12',
+            gameName: undefined,
+            startDate: undefined,
+            endDate: undefined,
+            locat: undefined,
+            descrip: undefined
+        };
+
+        function addGame() {
+            $scope.newGame.startDate = $('#start-date').val();
+            $scope.newGame.endDate = $('#end-date').val();
+            console.log($scope.newGame);
             OrganizerService
-                .addGame(game)
-            // $route.reload();
+                .addGame($scope.newGame)
+                .then(function (res){
+                    console.log("added");
+                }, function(err) {
+                    console.log(err);
+                })
+                // $route.reload();
         }
 
         function retrieveGame(id) {
@@ -45,6 +64,33 @@
         function updateGame(game) {
             OrganizerService
                 .updateGame(game)
+                .then(function(res) {
+                    console.log("updated");
+                }, function(err) {
+                    console.log(err.data);
+                })
+        }
+
+        function getRequests() {
+            OrganizerService
+                .getRequests()
+                .then(function(res) {
+                    console.log(res.data);
+                    $scope.requests = res.data;
+                }, function(err) {
+                    console.log(err.data);
+                })
+        }
+
+        function getOrganizer() {
+            OrganizerService
+                .getOrganizer(id)
+                .then(function(res) {
+                    console.log(res.data);
+                    $scope.organizer = res.data;
+                }, function(err) {
+                    console.log(err.data);
+                })
         }
 
     }

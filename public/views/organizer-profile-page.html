@@ -1,4 +1,4 @@
-<div id="mainHolder">
+<div id="mainHolder" ng-controller="OrganizerController">
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
     <div id="main" class="container">
@@ -8,7 +8,7 @@
             <div class="col l3 m5 s12 center">
                 <br><img id="competitor-profile-img" src="assets/avatar.png" class="blue lighten-2">
             </div>
-            <div id="competitor-basic-info" class="col l9 m7 s12">
+            <div id="competitor-basic-info" class="col l9 m7 s12" ng-init="getOrganizer()">
                 <h3 class="rockwell">{{ organizer.name }} <a href="" id="organizer-profile-edit" data-target="edit-profile-modal"><i class="material-icons">edit</i></a></h3>
                 <p class="century-gothic">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
                 <p class="century-gothic">
@@ -25,38 +25,40 @@
                 <h4 class="rockwell">Add Game</h4>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input placeholder="Enter game name" id="name" type="text" class="validate">
+                        <input placeholder="Enter game name" id="name" type="text" class="validate" ng-model="newGame.gameName">
                         <label for="name">Game Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input placeholder="Enter location" id="location" type="text" class="validate">
+                        <input placeholder="Enter location" id="location" type="text" class="validate" ng-model="newGame.locat">
                         <label for="location">Location</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="start-date" type="date" class="validate">
+                        <input id="start-date" class="datepicker validate" ng-model="newGame.startDate">
                         <label for="start-date" class="gamefeed-adjust-label">Start</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="end-date" type="date" class="validate">
+                        <input id="end-date" class="datepicker validate" ng-model="newGame.endDate">
                         <label for="end-date" class="gamefeed-adjust-label">End</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="description" class="materialize-textarea"></textarea>
+                        <textarea id="description" class="materialize-textarea" ng-model="newGame.descrip"></textarea>
                         <label for="description">Description</label>
                     </div>
                 </div>
                 <div class="row">
-                    <a href="" class="waves-effect btn blue darken-4 tooltipped right-align" id="organizer-add-game" data-tooltip="" data-position="top" data-target="organizer-add-game-modal"><i class="material-icons left">add</i>Add Game</a>
+                    <a class="waves-effect btn blue darken-4 tooltipped right-align" id="organizer-add-game" data-tooltip="" data-position="top" ng-click="addGame()"><i class="material-icons left">add</i>Add Game</a>
                 </div>
                     <!--
+                    href="" 
+                    data-target="organizer-add-game-modal"
                     organizer_id:req.body.orgId,
                     name : req.body.gameName,
                     start_date : req.body.startDate,
@@ -229,7 +231,7 @@
         <div class="row divider"></div>
 
         <!-- Requests -->
-        <div class="row">
+        <div class="row" ng-init="getRequests()">
             <h4 class="rockwell">Requests</h4>
             <table class="highlight responsive-table">
                 <thead>
@@ -241,7 +243,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr ng-repeat="request in requests">
                         <td>Team 1</td>
                         <td>Basketball</td>
                         <td>PalICSihan 2017</td>
@@ -412,7 +414,7 @@
     <div class="divider"></div>
     <div class="modal-footer">
         <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a href="" class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        <a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="addGame()"><i class="material-icons left">check</i>Yes</a>
     </div>
 </div>
 

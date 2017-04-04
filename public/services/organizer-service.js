@@ -39,7 +39,7 @@
 
         function addGame(game) {
             let deferred = $q.defer();
-
+            console.log(game);
             $http({
                 method: 'POST',
                 data: $.param(game),
@@ -85,6 +85,42 @@
                 method: 'DELETE',
                 params: game,
                 url: '/game/deleteGame',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function getRequests(id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: ,
+                url: '',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function getOrganizer(id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: ,
+                url: '',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);
