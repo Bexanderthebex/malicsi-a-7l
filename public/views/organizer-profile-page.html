@@ -8,7 +8,7 @@
             <div class="col l3 m5 s12 center">
                 <br><img id="competitor-profile-img" src="assets/avatar.png" class="blue lighten-2">
             </div>
-            <div id="competitor-basic-info" class="col l9 m7 s12">
+            <div id="competitor-basic-info" class="col l9 m7 s12" ng-init="getOrganizer()">
                 <h3 class="rockwell">{{ organizer.name }} <a href="" id="organizer-profile-edit" data-target="edit-profile-modal"><i class="material-icons">edit</i></a></h3>
                 <p class="century-gothic">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
                 <p class="century-gothic">

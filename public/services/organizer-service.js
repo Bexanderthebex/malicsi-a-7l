@@ -100,9 +100,27 @@
             let deferred = $q.defer();
 
             $http({
-                method: 'DELETE',
-                params: game,
-                url: '/game/deleteGame',
+                method: 'GET',
+                params: ,
+                url: '',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function getOrganizer(id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: ,
+                url: '',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);

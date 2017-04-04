@@ -14,6 +14,8 @@
         $scope.deleteGame = deleteGame;
         $scope.updateGame = updateGame;
         $scope.getRequests = getRequests;
+        $scope.getOrganizer = getOrganizer;
+        $scope.organizer = {};
         $scope.requests = [];
         $scope.games = [];
         $scope.newGame = {
@@ -24,7 +26,7 @@
             locat: undefined,
             descrip: undefined
         };
-  
+
         function addGame() {
             $scope.newGame.startDate = $('#start-date').val();
             $scope.newGame.endDate = $('#end-date').val();
@@ -75,6 +77,17 @@
                 .then(function(res) {
                     console.log(res.data);
                     $scope.requests = res.data;
+                }, function(err) {
+                    console.log(err.data);
+                })
+        }
+
+        function getOrganizer() {
+            OrganizerService
+                .getOrganizer(id)
+                .then(function(res) {
+                    console.log(res.data);
+                    $scope.organizer = res.data;
                 }, function(err) {
                     console.log(err.data);
                 })
