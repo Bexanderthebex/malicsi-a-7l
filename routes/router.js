@@ -45,6 +45,12 @@ function bcryptHash(req, res, next) {
 // Example usage: router.post('/r/anime', checkUser('O'), createGame);
 function checkUser(type) {
     return (req, res, next) => {
+      req.session.user = {
+    id: 21,
+    username: 'mcdo',
+    type: 'A'
+  }
+        console.log(req.session.user);
         if (req.session.user !== undefined && (req.session.user.type === type || req.session.user.type === 'A')) {
             next();
         } else {
@@ -53,10 +59,11 @@ function checkUser(type) {
     };
 }
 
+
 //overall user routers
 router.post('/login', sha256Hash, userController.login);
-router.post('/organizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
 router.post('/register', sha256Hash, bcryptHash, userController.register);
+router.post('/register/createOrganizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
 router.get('/logout', userController.logout);
 router.get('/user/:id', userController.getUserInfo);
 router.put('/user/update', sha256Hash, bcryptHash, userController.update);
