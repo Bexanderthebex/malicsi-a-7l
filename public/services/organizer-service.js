@@ -24,11 +24,11 @@
 
         function retrieveGame(gameId) {
             let deferred = $q.defer();
-
+            console.log(gameId);
             $http({
                 method: 'GET',
-                params: { "gameId": gameId },
-                url: '/game/:gameId',
+                params: { 'id': gameId },
+                url: '/organizer/findGames',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
@@ -103,11 +103,11 @@
 
             $http({
                 method: 'GET',
-                params: '',
-                url: '',
+                params: { 'organizer_id': id },
+                url: '/organizer/getPendingParticipation',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
+                console.log(res.data.data);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -121,8 +121,8 @@
 
             $http({
                 method: 'GET',
-                params: '',
-                url: '',
+                params: { 'search': id },
+                url: '/organizer/getOrganizer',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);

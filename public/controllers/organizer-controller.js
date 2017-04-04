@@ -19,7 +19,7 @@
         $scope.requests = [];
         $scope.games = [];
         $scope.newGame = {
-            orgID: '12',
+            orgID: undefined,
             gameName: undefined,
             startDate: undefined,
             endDate: undefined,
@@ -41,13 +41,15 @@
                 // $route.reload();
         }
 
-        function retrieveGame(id) {
+        function retrieveGame() {
             OrganizerService
-                .retrieveGame(id)
+                .retrieveGame('12')
                 .then(function(res) {
-                    $scope.games = res;
+                    $scope.games = res.data.data;
+                    console.log($scope.games);
+                    console.log(res.data.data);
                 }, function(err) {
-                    console.log(err);
+                    //console.log(err);
                 })
         }
 
@@ -71,25 +73,25 @@
                 })
         }
 
-        function getRequests() {
+        function getRequests(id) {
             OrganizerService
-                .getRequests()
+                .getRequests('12')
                 .then(function(res) {
-                    console.log(res.data);
-                    $scope.requests = res.data;
+                    console.log(res.data.data);
+                    $scope.requests = res.data.data;
                 }, function(err) {
-                    console.log(err);
+                    
                 })
         }
 
         function getOrganizer(id) {
             OrganizerService
-                .getOrganizer(id)
+                .getOrganizer('12')
                 .then(function(res) {
                     console.log(res.data);
                     $scope.organizer = res.data;
                 }, function(err) {
-                	
+
                 })
         }
 
