@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    $('body').css('overflow', '');
+    
     $('.desc').on({
         mouseover: function() {
             $(this).find('span').fadeIn(200);
@@ -14,7 +16,7 @@ $(document).ready(function(){
         maxSlides: 2,
         moveSlides: 2,
         slideMargin: 6,
-        auto: true
+        auto: false
     });
 
     $('.slider4').bxSlider({
