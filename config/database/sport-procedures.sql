@@ -54,7 +54,7 @@ CREATE PROCEDURE edit_sport
  IN timeEnd TIME, 
  IN startDate DATE, 
  IN endDate DATE, 
- IN maxTeams INT
+ IN maxTeams INT,
  IN scoringSystem VARCHAR(50), 
  IN sportId int(11))
 BEGIN

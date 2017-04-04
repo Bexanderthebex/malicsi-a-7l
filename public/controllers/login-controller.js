@@ -30,14 +30,20 @@
 			});
 		}
 
-		$scope.signUp = function(fname, lname, uname, pword, bday, emailAdd){
-			$http.post('/account/add', {
-				firstName: fname,
-				lastName: lname,
+		$scope.signUp = function(fname, lname, nname, uname, sex, pword, bday, email, contactNum){
+			console.log(bday);
+
+			$http.post('/register', {
 				username: uname,
 				password: pword,
-				birthday: bday,
-				emailAddress: emailAdd,
+				email: email,
+				contact: contactNum,
+				type: 'C',
+				birthday: bday.getFullYear()+"-"+bday.getMonth()+"-"+bday.getDate(),
+				first_name: fname,
+				last_name: lname,
+				nickname: nname,
+				sex: sex
 			}).then(function(result){
 				$scope.fname = "";
 				$scope.lname = "";

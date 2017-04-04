@@ -99,7 +99,7 @@ GRANT EXECUTE ON PROCEDURE view_game_details TO competitor;
 GRANT EXECUTE ON PROCEDURE view_game_details TO guest;
 
 -- view all sports in game
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO guest;
+-- GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
+-- GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
+-- GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
+-- GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO guest;
