@@ -45,7 +45,7 @@ exports.getCompetitorTeams = (req, res) => {
 	connection.userType('A').query(query, 
 		[
 			req.query.id
-		], function(err, rows){
+		], (err, rows) => {
 		    if(!err) {
 				return res.status(200).send(rows[0]);				
 			} else {
@@ -73,10 +73,11 @@ exports.editCompetitor = (req,res) => {
 					[
 						req.body.id
 					], (err, rows) => {
-					if(!err) {
-						return res.status(200).send(rows[0][0]);
+						if(!err) {
+							return res.status(200).send(rows[0][0]);
+						}
 					}
-				});
+				);
 			} else {
 				return res.status(501).send({ 'message' : 'Not implemented'});
 			}
