@@ -88,10 +88,7 @@ router.post('/team/acceptMembershipRequest',teamController.acceptMembershipReque
 router.get('/team/countTeamInSports',teamController.countTeamInSports);
 router.get('/team/getTeamMembers',teamController.getTeamMembers);
 
-//log routers
-router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
-router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
-
+// game routers
 router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
@@ -119,9 +116,8 @@ router.get('/game/sport/countMatchBySport/:sportID', matchController.countMatchB
 router.put('/sport/match/editMatch', matchController.editMatch);
 router.put('/sport/match/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
 
-
-//log routers
-router.get('/log/viewAllLogs', checkUser, logController.viewAllLogs);
-router.post('/log/viewLogsByDate', checkUser, logController.viewLogsByDate);
+// log routers
+router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
+router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
 
 module.exports = router;
