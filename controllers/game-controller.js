@@ -7,6 +7,7 @@ const connection = require('./../config/db-connection.js');
 
 
 exports.createGame = (req, res) => {
+	console.log(req.body);
 	let query = 'CALL create_game(?,?,?,?,?,?);'
 	connection.userType('A').query(query
 	, [req.body.orgID,

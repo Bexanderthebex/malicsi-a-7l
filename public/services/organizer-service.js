@@ -15,18 +15,20 @@
             retrieveGame: retrieveGame,
             addGame: addGame,
             updateGame: updateGame,
-            deleteGame: deleteGame
+            deleteGame: deleteGame,
+            getRequests: getRequests,
+            getOrganizer: getOrganizer
         }
 
         return service;
 
         function retrieveGame(gameId) {
             let deferred = $q.defer();
-
+            console.log(gameId);
             $http({
                 method: 'GET',
-                params: { "gameId": gameId },
-                url: '/game/:gameId',
+                params: { 'id': gameId },
+                url: '/organizer/findGames',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
@@ -101,8 +103,30 @@
 
             $http({
                 method: 'GET',
-                params: null, //temporary, pls fix.
-                url: '',
+                params: { 'organizer_id': id },
+                url: '/organizer/getPendingParticipation',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data.data);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function acceptRequests(teamId) {
+            let deferred = $q.defer();
+
+            let team = {
+                'team_id': teamId
+            }
+
+            $http({ 
+                method: 'PUT',
+                data: $.param(team),
+                url: '/organizer/processRequest',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);
@@ -113,14 +137,14 @@
 
             return deferred.promise;
         }
-
+        
         function getOrganizer(id) {
             let deferred = $q.defer();
 
             $http({
                 method: 'GET',
-                params: null, //temporary, pls fix.
-                url: '',
+                params: { 'search': id },
+                url: '/organizer/getOrganizer',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);
