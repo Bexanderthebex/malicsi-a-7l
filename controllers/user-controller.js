@@ -54,14 +54,14 @@ exports.register = (req, res) => {
 
 	connection.userType('A').query(insert_user_query,
 		[
-			req.body.username, 
-			req.body.password, 
-			req.body.email, 
-			req.body.contact, 
+			req.body.username,
+			req.body.password,
+			req.body.email,
+			req.body.contact,
 			req.body.type
 		], (err, rows) => {
 			if(!err){
-				connection.userType('A').query(select_user_query, 
+				connection.userType('A').query(select_user_query,
 					[
 						req.body.username
 					], (err, rows) => {
@@ -218,67 +218,80 @@ exports.registerCompetitor = (req, res) => {
 }
 
 exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
-	currentUser = req.session.user;
-	connection.query('SELECT * from user ' + 'WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
-		if(!err) {
-			returnObject = rows[0];
+	if (req.session == null || req.session.user == undefined) {
+		res.status(200).send(null);
+	} else {
+		let currentUser = req.session.user;
+		connection.userType('A').query('SELECT * FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
+			if(!err) {
+				let returnObject = rows[0];
 
-			if(currentUser.user_type == 'competitor') {
-				connection.query('SELECT birthday, sex, first_name, last_name, nickname from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
-					if(!err) {
-						returnObject.push(
-							{
-								key: "birthday",
-								value: rows[0].birthday
-							},
-							{
-								key: "sex",
-								value: rows[0].sex
-							},
-							{
-								key: "first_name",
-								value: rows[0].first_name
-							},
-							{
-								key: "last_name",
-								value: rows[0].last_name
-							},
-							{
-								key: "nickname",
-								value: rows[0].nickname
-							}
-						);
+				if(currentUser.type == 'C') {
+					connection.userType('A').query('SELECT birthday, sex, first_name, last_name, nickname from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
+						if(!err) {
 
-						res.status(200).send(returnObject);
-						return returnObject;
-					} else {
-						console.log(err);
-					}
-				})
-			} else if (currentUser.user_type == 'organizer') {
-				connection.query('SELECT name, description form organizer where id = ?', [currentUser.id], function(err, rows, fields) {
-					if(!err) {
-						returnObject.push(
-							{
-								key: "name",
-								value: rows[0].name
-							},
-							{
-								key: "description",
-								value: rows[0].description
-							}
-						);
+							returnObject['birthday'] = rows[0].birthday;
+							returnObject['sex'] = rows[0].sex;
+							returnObject['first_name'] = rows[0].first_name;
+							returnObject['last_name'] = rows[0].last_name;
+							returnObject['nickname'] = rows[0].nickname;
 
-						res.status(200).send(returnObject);
-						return returnObject;
-					} else {
-						console.log(err);
-					}
-				});
+							/*
+							returnObject.push(
+								{
+									key: "birthday",
+									value: rows[0].birthday
+								},
+								{
+									key: "sex",
+									value: rows[0].sex
+								},
+								{
+									key: "first_name",
+									value: rows[0].first_name
+								},
+								{
+									key: "last_name",
+									value: rows[0].last_name
+								},
+								{
+									key: "nickname",
+									value: rows[0].nickname
+								}
+							);*/
+
+							res.status(200).send(returnObject);
+							return returnObject;
+						} else {
+							console.log(err);
+						}
+					})
+				} else if (currentUser.type == 'O') {
+					connection.userType('A').query('SELECT name, description form organizer where id = ?', [currentUser.id], function(err, rows, fields) {
+						if(!err) {
+							returnObject['name'] = rows[0].name;
+							returnObject['description'] = rows[0].description
+							returnObject.push(
+								{
+									key: "name",
+									value: rows[0].name
+								},
+								{
+									key: "description",
+									value: rows[0].description
+								}
+							);
+
+							res.status(200).send(returnObject);
+							return returnObject;
+						} else {
+							console.log(err);
+						}
+					});
+				}
+			} else {
+				console.log(err);
 			}
-		} else {
-			console.log(err);
-		}
-	});
+		});
+	}
 }
-
