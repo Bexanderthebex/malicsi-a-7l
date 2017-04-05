@@ -77,6 +77,16 @@ END;
 //
 delimiter ;
 
+DROP PROCEDURE IF EXISTS view_all_upcoming_ongoing_games;
+delimiter //
+CREATE PROCEDURE view_all_upcoming_ongoing_games()
+BEGIN
+	select * from game where (start_date <= now() and end_date >= now()) or (start_date >= now() and end_date >= now());
+END//
+delimiter ;
+
+
+
 -- search for game by keyword
 GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO organizer;
 GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO competitor;
@@ -112,3 +122,9 @@ GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO guest;
+
+-- view all upcoming and ongoing games
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO guest;
