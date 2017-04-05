@@ -1,0 +1,181 @@
+<div id="mainHolder">
+	<div id="main">
+		<div class="row">
+			<!-- SIDE NAV -->
+			<div class="col s3 palette-5 admin-fixed-sidebar z-depth-2">
+				<div id="admin-title" class="valign-wrapper">
+					<div style="width: 100%; text-align: center;">
+						<h4 class="rockwell palette-text-3" style="margin:0; margin-right:80px;">ADMIN  <i class="fa fa-legal" style="margin-left: 10px; color: white;"></i></h4>
+						<h4 class="rockwell palette-text-3" style="margin:0; margin-left: 80px;">PANEL</h4>
+					</div>
+				</div>
+				<div id="admin-buttons">
+					<!-- ADMIN BUTTONS -->
+					<button id="admin-admins-btn">ADMINS</button>
+					<div id="admin-admins-functions" style="width: 100%;">
+						<ul id="admin-admins" style="width: 100%; margin: 0;">
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-users" aria-hidden="true"></i>View Admins</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-user-plus" aria-hidden="true"></i>Edit Admin</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-trash" aria-hidden="true"></i>Delete Admin</button>
+					        	</div>
+					        </li>
+					    </ul>
+					</div>
+
+					<!-- ORGANIZER BUTTONS -->
+					<button id="admin-organizers-btn">ORGANIZERS</button>
+					<div id="admin-organizers-functions" style="width: 100%;">
+						<ul id="admin-organizers" style="width: 100%; margin: 0;">
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-users" aria-hidden="true"></i>View Organizers</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-user-plus" aria-hidden="true"></i>Edit Organizers</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-trash" aria-hidden="true"></i>Delete Organizers</button>
+					        	</div>
+					        </li>
+					    </ul>
+					</div>
+
+					<button id="admin-users-btn">USERS</button> 
+					<div id="admin-users-functions" style="width: 100%;">
+						<ul id="admin-users" style="width: 100%; margin: 0;">
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-users" aria-hidden="true"></i>View Users</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-user-plus" aria-hidden="true"></i>Edit User</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-trash" aria-hidden="true"></i>Delete User</button>
+					        	</div>
+					        </li>
+					    </ul>
+					</div>
+
+					<button id="admin-logs-btn">LOGS</button>
+					<div id="admin-logs-functions" style="width: 100%;">
+						<ul id="admin-logs" style="width: 100%; margin: 0;">
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-users" aria-hidden="true"></i>View Logs</button>
+					        	</div>
+					        </li>
+					    </ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- NAV VIEWS -->
+			<div class="col s9 offset-s3 admin-padding-left admin-padding-right z-depth-2">
+				<!--  -->
+
+			</div>
+		</div>			
+	</div>
+</div>
+
+<!-- <div id="game-add-sport" class="modal">
+	<div class="row game-remove-bottom">
+		<div class="col s12 game-padding-left game-padding-right">
+			<div class="center dark-primary">
+				<br>
+					<div class="card-title white-text center" id="thicken">
+				 		<h5>Add Sport</h5>
+					</div>
+				<br>
+			</div>
+		</div>
+	</div>	
+	<div class="modal-content">
+		<div class="row">
+			<div class="input-field col s6">
+				<input placeholder="Enter sport name" id="name" type="text" class="validate">
+				<label for="name">Sport Name</label>
+			</div>
+
+			<div class="input-field col s2">
+				<input placeholder="Enter team number limit" id="maxTeams" type="number" class="validate">
+				<label for="maxTeams">Max Teams</label>
+			</div>
+
+			<div class="input-field col s4">
+				<select>
+					<option value="" disabled selected>Choose your option</option>
+					<option value="1">Preset system 1</option>
+					<option value="2">Preset system 2</option>
+					<option value="3">None</option>
+				</select>
+				<label>Scoring system</label>
+			</div>
+
+			<div class="col s6">
+				<h5 class="center">Time</h5>
+				<div class="divider"></div><br>
+			</div>
+			<div class="col s6">
+				<h5 class="center">Date</h5>
+				<div class="divider"></div><br>
+			</div>
+
+			<div class="input-field col s3">
+				<input placeholder="Time started" id="start-time" type="time" class="validate">
+				<label class="game-adjust-label" for="start-time">Start</label>
+			</div>
+			<div class="input-field col s3">
+				<input placeholder="Time ended" id="end-time" type="time" class="validate">
+				<label class="game-adjust-label" for="end-time">End</label>
+			</div>
+
+			<div class="input-field col s3">
+				<input placeholder="Date started" id="start-time" type="date" class="validate">
+				<label class="game-adjust-label" for="start-time">Start</label>
+			</div>
+			<div class="input-field col s3">
+				<input placeholder="Date ended" id="end-time" type="date" class="validate">
+				<label class="game-adjust-label" for="end-time">End</label>
+			</div>
+
+			<div class="input-field col s12">
+				<textarea id="description" class="materialize-textarea"></textarea>
+				<label for="description">Description</label>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<a href="#!" class="modal-action modal-close waves-effect btn-flat">Add</a>
+	</div>
+</div> -->
+
+<!--Scripts-->
+<script src="frontend_modules/js/init.js"></script>
+<script src="frontend_modules/js/materialize.js"></script>
+<script src="js/admin-panel.js"></script>

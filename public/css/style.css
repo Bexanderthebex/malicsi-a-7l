@@ -77,6 +77,7 @@ html, body {
 	padding-top: 5px;
 	border-bottom: solid 5px;
 	border-color: #00b8ff;
+	transition: border-bottom 0.5s;
 }
 
 #navbar a {
