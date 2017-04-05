@@ -173,10 +173,14 @@ CREATE TABLE log (
 	PRIMARY KEY(log_id)
 );
 
+DROP USER IF EXISTS 'administrator'@'localhost';
+DROP USER IF EXISTS 'competitor'@'localhost';
+DROP USER IF EXISTS 'organizer'@'localhost';
+DROP USER IF EXISTS 'guest'@'localhost';
 
 CREATE USER IF NOT EXISTS 'administrator'@'localhost' IDENTIFIED BY 'password1';
-CREATE USER IF NOT EXISTS 'organizer'@'localhost' IDENTIFIED BY 'password2';
-CREATE USER IF NOT EXISTS 'competitor'@'localhost' IDENTIFIED BY 'password3';
+CREATE USER IF NOT EXISTS 'competitor'@'localhost' IDENTIFIED BY 'password2';
+CREATE USER IF NOT EXISTS 'organizer'@'localhost' IDENTIFIED BY 'password3';
 CREATE USER IF NOT EXISTS 'guest'@'localhost' IDENTIFIED BY 'password4';
 
 

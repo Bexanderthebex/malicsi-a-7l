@@ -5,7 +5,6 @@ const connection2 = require('./../config/db-competitor-connection.js');
 const connection3 = require('./../config/db-organizer-connection.js');
 const connection4 = require('./../config/db-guest-connection.js');
 
-
 exports.userType = (type) => {
 	switch (type){
 		case 'A':
@@ -18,5 +17,3 @@ exports.userType = (type) => {
 			return connection4;
 	}
 }
-
-
