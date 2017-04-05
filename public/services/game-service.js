@@ -79,7 +79,7 @@
             let deferred = $q.defer();
 
             let ddata = {
-                winner: sport.winner;
+                winner: sport.winner,
                 sportId: sport.sport_id
             }
 
