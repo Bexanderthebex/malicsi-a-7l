@@ -44,11 +44,11 @@ DELIMITER //
 DELIMITER ;
 
 GRANT EXECUTE ON PROCEDURE search_competitor TO competitor;
-GRANT EXECUTE ON PROCEDURE search_competitor TO admin;
+GRANT EXECUTE ON PROCEDURE search_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE search_competitor TO guest;
 GRANT EXECUTE ON PROCEDURE get_competitor TO competitor;
-GRANT EXECUTE ON PROCEDURE get_competitor TO admin;
+GRANT EXECUTE ON PROCEDURE get_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE get_competitor TO guest;
 GRANT EXECUTE ON PROCEDURE edit_competitor TO competitor;
-GRANT EXECUTE ON PROCEDURE get_competitor_teams TO admin;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO administrator;
 

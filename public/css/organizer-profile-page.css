@@ -1,16 +1,11 @@
-#organizer-profile-stats {
-    margin-top: 0px;
-}
-
-#organizer-profile-left-panel {
-    margin-top: 0px;
-    position: fixed;
-    width: 15%;
+.organizer-profile-info {
+    height: 250px;
+    background-image: url('/assets/basketball.jpg')!important;
 }
 
 #organizer-profile-img {
-	max-width: 100%;
-	max-height: 100%;
+	max-width: auto;
+	max-height: 250px;
 }
 
 #organizer-profile-right-panel {
@@ -24,7 +19,9 @@
 }
 
 table.highlight tbody tr:hover {
-    background-color: #039be5 !important;
+    /*background-color: #00719c !important;*/
+    /*color: white;*/
+    cursor: pointer!important;
 }
 
 #organizer-profile-ongoing, #organizer-profile-past, #organizer-profile-incoming {
@@ -32,6 +29,29 @@ table.highlight tbody tr:hover {
     padding-left: 0px !important;
 }
 
-#organizer-ongoing-showall a:link,a:hover,a:visited{
-    color: white;
+#organizer-ongoing-showall {
+    color: white !important;
+}
+
+.organizer-showall {
+    border: solid 2.5px;
+    border-color: #00719c;
+    border-radius: 0px 0px 8px 8px !important;
+}
+
+#organizer-profile-games {
+    background-color: #00719c; 
+    border-radius: 8px 8px 0px 0px;
+}
+
+.organizer-games-data {
+    border-left: solid 2.5px;
+    border-right: solid 2.5px;
+    border-color: #00719c;
+}
+
+#organizer-profile-add-game {
+    border: solid 2.5px;
+    border-radius: 8px;
+    padding: 10px;
 }

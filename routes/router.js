@@ -63,6 +63,7 @@ router.get('/logout', userController.logout);
 router.get('/user/:id', userController.getUserInfo);
 router.put('/user/update', sha256Hash, bcryptHash, userController.update);
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
+router.get('/user', userController.getUserInfo);
 
 //competitor routers
 router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
@@ -90,6 +91,8 @@ router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 router.get('/team/countTeamInSports',teamController.countTeamInSports);
 router.get('/team/getTeamMembers',teamController.getTeamMembers);
+router.get('/team/getTeam',teamController.getTeam);
+router.get('/team/getCoachedTeams',teamController.getCoachedTeam);
 
 // game routers
 router.get('/game/search/:keyword', gameController.searchForGameByKeyword);

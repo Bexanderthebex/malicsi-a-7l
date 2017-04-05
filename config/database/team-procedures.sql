@@ -12,6 +12,17 @@ CREATE PROCEDURE get_team (IN id INT)
 DELIMITER ;
 
 
+DROP PROCEDURE IF EXISTS get_coached_team;
+DELIMITER //
+
+CREATE PROCEDURE get_coached_team (IN idin INT) 
+	BEGIN
+		SELECT * from team WHERE id = idin;
+	END; //
+
+DELIMITER ;
+
+
 DROP PROCEDURE IF EXISTS create_team;
 DELIMITER //
 
