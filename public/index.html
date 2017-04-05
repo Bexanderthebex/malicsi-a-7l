@@ -69,7 +69,6 @@
 		<!-- NAV BUTTONS -->
 
 		<div class="col s4" id="navigation" ng-controller="LandingCtrl">
-			<a ng-hide="iconUrl.length === 0" ng-href="{{iconUrl}}" id="nav-profile" class="navbtns valign-wrapper right"><i class="material-icons">face</i></a>
 			<!-- DROP DOWN -->
 			<a href="#" data-activates="nav-dropdown" data-beloworigin="true" class="dropdown-button navbtns valign-wrapper right palette-text-1" style="color: #00b8ff;"><i class="fa fa-chevron-down"></i></a>
 			<ul id="nav-dropdown" class="dropdown-content">
@@ -79,7 +78,7 @@
 		    </ul>
 
 			
-			<a href="/competitor/profile" id="nav-profile" class="navbtns valign-wrapper right"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+			<a ng-hide="iconUrl.length === 0" ng-href="{{iconUrl}}" id="nav-profile" class="navbtns valign-wrapper right"><i class="fa fa-user-o" aria-hidden="true"></i></a>
 
 			<a href="/organization" class="navbtns valign-wrapper right palette-text-1" style="color: #00b8ff;">ORGANIZATIONS</a>
 			<a href="/game/feed" class="navbtns valign-wrapper right palette-text-2" style="color: #00a5d3;">GAMES</a>
