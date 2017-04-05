@@ -88,6 +88,8 @@ router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 router.get('/team/countTeamInSports',teamController.countTeamInSports);
 router.get('/team/getTeamMembers',teamController.getTeamMembers);
+router.get('/team/getTeam',teamController.getTeam);
+router.get('/team/getCoachedTeams',teamController.getCoachedTeam);
 
 // game routers
 router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
