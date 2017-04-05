@@ -38,7 +38,7 @@ CREATE PROCEDURE create_game(
 	IN description_in TEXT
 	)
 BEGIN
-	INSERT INTO game(organizer_id_in, name, start_date, end_date, location, description, overall_winner) values(organizer_id_in, name_in, start_date_in, end_date_in, location_in, description_in, NULL);
+	INSERT INTO game(organizer_id, name, start_date, end_date, location, description, overall_winner) values(organizer_id_in, name_in, start_date_in, end_date_in, location_in, description_in, NULL);
 END 
 //
 DELIMITER ;
