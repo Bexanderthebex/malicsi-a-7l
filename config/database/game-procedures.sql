@@ -81,7 +81,7 @@ DROP PROCEDURE IF EXISTS view_all_upcoming_ongoing_games;
 delimiter //
 CREATE PROCEDURE view_all_upcoming_ongoing_games()
 BEGIN
-	select * from game where start_date >= now() ;
+	select * from game where (start_date <= now() and end_date >= now()) or (start_date >= now() and end_date >= now());
 END//
 delimiter ;
 
