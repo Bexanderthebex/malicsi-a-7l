@@ -115,7 +115,7 @@ GRANT EXECUTE ON procedure rankings TO competitor;
 GRANT EXECUTE ON procedure count_teams_in_sport TO competitor;
 GRANT EXECUTE ON procedure get_members TO competitor;
 GRANT EXECUTE ON procedure organization_rankings TO competitor;
-
+GRANT EXECUTE ON procedure get_teams_on_organization TO competitor;
 
 GRANT EXECUTE ON procedure create_team TO administrator;
 GRANT EXECUTE ON procedure delete_team TO administrator;
@@ -125,9 +125,11 @@ GRANT EXECUTE ON procedure rankings TO administrator;
 GRANT EXECUTE ON procedure count_teams_in_sport TO administrator;
 GRANT EXECUTE ON procedure get_members TO administrator;
 GRANT EXECUTE ON procedure organization_rankings TO administrator;
+GRANT EXECUTE ON procedure get_teams_on_organization TO administrator;
 
 GRANT EXECUTE ON procedure rankings TO guest;
 GRANT EXECUTE ON procedure count_teams_in_sport TO guest;
 GRANT EXECUTE ON procedure get_members TO guest;
 GRANT EXECUTE ON procedure organization_rankings TO guest;
+GRANT EXECUTE ON procedure get_teams_on_organization TO guest;
 
