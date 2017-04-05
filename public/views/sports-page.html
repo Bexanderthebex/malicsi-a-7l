@@ -722,34 +722,43 @@
             	</thead>
             	<tbody class="century-gothic">
             		<tr>
-            			<td class="match-player">UP Fighting Maroons</td>
+            			<td class="match-player">
+            				<div ng-show="!view">UP Fighting Maroons</div>
+            				<div ng-hide="!view"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
+            			</td>
             			<td>
             				<div class="match-actions">
             					<i class="fa fa-minus-square fa-lg"></i>
             				</div>
-            				<div class="match-actions">
+            				<div class="match-actions" ng-click="view = !view">
             					<i class="fa fa-pencil-square-o fa-lg"></i>
             				</div>
             			</td>
             		</tr>
             		<tr>
-            			<td class="match-player">UP Fighting Maroons</td>
+            			<td class="match-player">
+            				<div ng-show="!view2">UP Fighting Maroons</div>
+            				<div ng-hide="!view2"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
+            			</td>
             			<td>
             				<div class="match-actions">
             					<i class="fa fa-minus-square fa-lg"></i>
             				</div>
-            				<div class="match-actions">
+            				<div class="match-actions" ng-click="view2 = !view2">
             					<i class="fa fa-pencil-square-o fa-lg"></i>
             				</div>
             			</td>
             		</tr>
             		<tr>
-            			<td class="match-player">UP Fighting Maroons</td>
+            			<td class="match-player">
+            				<div ng-show="!view3">UP Fighting Maroons</div>
+            				<div ng-hide="!view3"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
+            			</td>
             			<td>
             				<div class="match-actions">
             					<i class="fa fa-minus-square fa-lg"></i>
             				</div>
-            				<div class="match-actions">
+            				<div class="match-actions" ng-click="view3 = !view3">
             					<i class="fa fa-pencil-square-o fa-lg"></i>
             				</div>
             			</td>
