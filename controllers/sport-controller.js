@@ -122,4 +122,24 @@ exports.deleteSport = (req, res, next) => {
 		});
 
 }
+exports.retrieveSportRankings = (req, res, next) => {
+	let query = 'CALL retrieve_team_rankings_from_sport(?)';
+
+	connection.userType('A').query(query,
+		[req.params.sportId],
+		(err, rows) =>{
+			if(!err){
+				res.status(200).send(rows);
+			}
+			else if(rows.length == undefined){
+				res.status(404).send("Rankings are unavailable.");
+			}
+			else{
+				console.log(err);
+				res.status(500).send("Internal server error.");
+			}
+		});
+}
+
+
 
