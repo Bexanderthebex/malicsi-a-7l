@@ -15,6 +15,7 @@
         $scope.updateGame = updateGame;
         $scope.getRequests = getRequests;
         $scope.getOrganizer = getOrganizer;
+        $scope.acceptRequest = acceptRequest;
         $scope.organizer = {};
         $scope.requests = [];
         $scope.games = [];
@@ -95,13 +96,13 @@
                 })
         }
 
-        function acceptRequest(team) {
+        function acceptRequest() {
             OrganizerService
-                .acceptRequest(team)
+                .acceptRequests('12')
                 .then(function(res) {
                     console.log("accepted");
                 }, function(err) {
-                    console.log(err.data);
+                    console.log("error");
                 })
         }
 

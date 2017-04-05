@@ -27,7 +27,8 @@
             })
             .when('/organizer/profile', {
                 'templateUrl': 'views/organizer-profile-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'OrganizerController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/competitor/profile', {

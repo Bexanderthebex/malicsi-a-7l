@@ -146,8 +146,8 @@ exports.getRequest = (req, res, next) => {
 };
 
 
-exports.acceptRequest = (req, res, next) => {
-	query = "CALL accept_request(?)"
+exports.processsRequest = (req, res, next) => {
+	query = "CALL process_request(?)"
 	query1 = "CALL get_team(?)"
 
 	connection.userType('A').query(query, 

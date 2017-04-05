@@ -119,10 +119,14 @@
         function acceptRequests(teamId) {
             let deferred = $q.defer();
 
+            let team = {
+                'team_id': teamId
+            }
+
             $http({ 
                 method: 'PUT',
-                params: teamId,
-                url: '/organizer/acceptRequest',
+                data: $.param(team),
+                url: '/organizer/processRequest',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);

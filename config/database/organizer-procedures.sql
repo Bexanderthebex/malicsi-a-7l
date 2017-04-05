@@ -70,12 +70,12 @@ DELIMITER //
 
 DELIMITER ;
 
-DROP procedure IF EXISTS accept_request;
+DROP procedure IF EXISTS process_request;
 DELIMITER //
 
-	CREATE PROCEDURE accept_request (IN teamID INT) 
+	CREATE PROCEDURE process_request (IN teamID INT, IN flag INT) 
 	BEGIN
-	   UPDATE team SET pending_participation = 0 WHERE team_id = teamID;
+	   UPDATE team SET pending_participation = flag WHERE team_id = teamID;
 	END; //
 
 DELIMITER ;
