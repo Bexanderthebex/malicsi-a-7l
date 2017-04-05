@@ -3,14 +3,16 @@
     
     angular
         .module('app')
-        .directive('editOrganizer', editOrganizer)
+        .directive('showAllOngoing', showAllOngoing)
+        .directive('showAllIncoming', showAllIncoming)
+        .directive('showAllPast', showAllPast)
         .directive('acceptTeam', acceptTeam)
         .directive('declineTeam', declineTeam)
         .directive('tooltipDirective', tooltipDirective)
         .directive('dropdownDirective', dropdownDirective)
         .directive('pressEnter', pressEnter)
 
-        function editOrganizer() {
+        function showAllOngoing() {
             var directive = {
                 link: link,
                 restrict: 'EA'
@@ -19,7 +21,37 @@
             
             function link(scope, element, attrs) {
                 $(element).on('click', function() {
-                    $('#organizer-profile-edit-modal').openModal();
+                    $('#organizer-ongoing-modal').openModal();
+                });
+            }
+
+        }
+
+        function showAllIncoming() {
+            var directive = {
+                link: link,
+                restrict: 'EA'
+            };
+            return directive;
+            
+            function link(scope, element, attrs) {
+                $(element).on('click', function() {
+                    $('#organizer-incoming-modal').openModal();
+                });
+            }
+
+        }
+
+        function showAllPast() {
+            var directive = {
+                link: link,
+                restrict: 'EA'
+            };
+            return directive;
+            
+            function link(scope, element, attrs) {
+                $(element).on('click', function() {
+                    $('#organizer-past-modal').openModal();
                 });
             }
 
