@@ -65,10 +65,10 @@
 		
 		<!-- NAV BUTTONS -->
 		<div class="col s4" id="navigation">
-			<div id="nav-profile" class="navbtns valign-wrapper right"><i class="material-icons">face</i></div>
-			<div class="navbtns valign-wrapper right palette-text-1">ORGANIZATIONS</div>
-			<div class="navbtns valign-wrapper right palette-text-2" >GAMES</div>
-			<div class="navbtns valign-wrapper right palette-text-3">HOME</div>
+			<a href="/competitor/profile" id="nav-profile" class="navbtns valign-wrapper right"><i class="material-icons">face</i></a>
+			<a href="/organization" class="navbtns valign-wrapper right palette-text-1" style="color: #00b8ff;">ORGANIZATIONS</a>
+			<a href="/game/feed" class="navbtns valign-wrapper right palette-text-2" style="color: #00a5d3;">GAMES</a>
+			<a href="/" class="navbtns valign-wrapper right palette-text-3" style="color: #00719c;">HOME</a>
 		</div>
 
 		<!-- NAV SEARCH BAR -->
@@ -85,6 +85,8 @@
 	<!--  Scripts-->
 	<script src="app.js"></script>
 	<script src="controllers/login-controller.js"></script>
+	<script src="controllers/organizer-controller.js"></script>
+	<script src="services/organizer-service.js"></script>
     <script type="text/javascript" src="directives/directives.js"></script>
  	<script src="frontend_modules/js/materialize.js"></script>
  	<script src="frontend_modules/js/slick.min.js"></script>
@@ -92,4 +94,5 @@
  	<script type="text/javascript" src="js/organizer-profile-page.js"></script>
  	<script type="text/javascript" src="js/login-page.js"></script>
 	</body>
+
 </html>

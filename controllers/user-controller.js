@@ -281,3 +281,4 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 		}
 	});
 }
+

@@ -1,40 +1,66 @@
-#team-lead {
+#organization-logo {
   display:block;
+  /*border-radius: 50%;*/
   margin-top: 2%;
-  border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
-  height: 25%;
-  width: 25%;
+  height: 16%;
+  width: 16%;
 }
 
-.players {
+#organization-name {
+  padding-top: 1%;
+  font-size: 240%;
+  text-align: center;
+  margin-top: 0.5%;
+}
+
+.organization-header {
+  height: 99%;
+  /*background-color: red;*/
+}
+
+.organization-team-info {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.organization-team-handler {
+  font-size: 150%;
+}
+
+.organization-team-name, .organization-team-info, .organization-team-member-name, .organization-team-member-info {
+  text-align: center;
+  font-size: 110%;
+}
+
+.organization-team-info-mem-label {
+  text-align: center;
+}
+
+.organization-team-list {
+  margin-top: 1%;
+}
+
+.organization-team-logo, .organization-team-member-avatar {
   border-radius: 50%;
   height: 70%;
   width: 70%;
 }
 
-.mem {
+.organization-team, .organization-team-member {
   text-align: center;
 }
 
-.player-name, .position, #page-name {
-  text-align: center;
-  font-size: 110%;
+.organization-team-member-info {
+  font-size: 95%;
 }
 
-#page-name {
-  margin-top: 4%;
-  font-size: 200%;
-}
-
-.container > .row > div > img{
+.container > .row > div > .organization-team-logo{
   margin-left: auto;
   margin-right: auto;
-}
-
-.position {
-  font-size: 100%;
 }
 
 .pic {
@@ -61,7 +87,7 @@
  width: 100%;
 }
 
-span { 
+.desc span { 
   display: none;
   position: absolute;
   top: 0;

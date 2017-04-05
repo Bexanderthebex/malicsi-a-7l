@@ -1,10 +1,13 @@
 $(document).ready(function () {
+	$('body').css('overflow', 'hidden');
+
+
 	$('.slider').slider({
-    	height: 490,				// adjust height
-    	full_width: false,
-    	interval: 7000,			
-    	indicators: true			// set to false to disable circle pagers
-  	});
+        height: 490,                // adjust height
+        full_width: false,
+        interval: 7000,         
+        indicators: true            // set to false to disable circle pagers
+    });
 
 	// // nav-arrows
 	// $('.next').click(function() {
