@@ -11,7 +11,7 @@ $(document).ready(function(){
     });
 
     $('.slider5').bxSlider({
-        slideWidth: 300,
+        slideWidth: 250,
         minSlides: 2,
         maxSlides: 2,
         moveSlides: 2,

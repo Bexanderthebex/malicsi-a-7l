@@ -96,7 +96,7 @@ router.get('/team/getCoachedTeams',teamController.getCoachedTeam);
 router.get('/team/getTeamsOnOrganization',teamController.getTeamsOnOrganization);
 router.get('/team/getOrganizationRankings',teamController.getOrganizationRankings);
 // game routers
-router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
+router.get('/game/searchGame', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
 router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
