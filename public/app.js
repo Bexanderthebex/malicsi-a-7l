@@ -36,6 +36,11 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
+            .when('/competitor/profile/other', {
+                'templateUrl': 'views/competitor-visited-profile-page.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
             .when('/help', {
                 'templateUrl': 'views/help.html',
                 'caseInsensitiveMatch': true
