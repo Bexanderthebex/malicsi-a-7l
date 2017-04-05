@@ -63,6 +63,7 @@ router.get('/logout', userController.logout);
 router.get('/user/:id', userController.getUserInfo);
 router.put('/user/update', sha256Hash, bcryptHash, userController.update);
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
+router.get('/user', userController.getUserInfo);
 
 //competitor routers
 router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
@@ -92,6 +93,7 @@ router.get('/team/getTeamMembers',teamController.getTeamMembers);
 // game routers
 router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
+router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
 router.post('/game/createGame',  gameController.createGame);
 router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
