@@ -1,4 +1,4 @@
-<div id="mainHolder" ng-controller="OrganizerController">
+<div id="mainHolder">
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
     <div id="main" class="">
@@ -7,6 +7,7 @@
             <div class="col l3 m5 s12 offset-l2 center">
                 <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
+
             <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getOrganizer()">
                 <h3 class="rockwell">{{ organizer.name }} <a id="organizer-profile-edit" data-target="edit-profile-modal"><i class="material-icons">edit</i></a></h3>
                 <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
@@ -69,41 +70,14 @@
                     <div class="indicator white" style="z-index: 1"></div>
                 </ul>
                 
+
                 <div id="organizer-profile-ongoing" class="col s12">
-                    <table class="highlight responsive-table organizer-games-data">
+                    <table class="highlight responsive-table organizer-games-data" ng-init="retrieveGame()">
                         <tbody class="">
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 1, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 1, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 1, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 1, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 1, 2017</td>
-                                <td>Freedom Park, UPLB</td>
+                            <tr ng-repeat="game in games">
+                                <td>{{ game.name }}</td>
+                                <td>{{ game.start_date }}</td>
+                                <td>{{ game.location}}</td>
                                 <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
                         <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
                             </tr>
@@ -121,24 +95,10 @@
                 <div id="organizer-profile-incoming" class="col s12">
                     <table class="highlight responsive-table organizer-games-data">
                         <tbody>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 10, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 10, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 10, 2017</td>
-                                <td>Freedom Park, UPLB</td>
+                            <tr class="century-gothic" ng-repeat="game in games">
+                                <td>{{ game.name }}</td>
+                                <td>{{ game.start_date}}</td>
+                                <td>{{ game.location }}</td>
                                 <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
                         <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
                             </tr>
@@ -156,38 +116,10 @@
                 <div id="organizer-profile-past" class="col s12">
                     <table class="highlight responsive-table organizer-games-data">
                         <tbody>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>March 15, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>March 15, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>March 15, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>March 15, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>March 15, 2017</td>
-                                <td>Freedom Park, UPLB</td>
+                            <tr class="century-gothic" ng-repeat="game in games">
+                                 <td>{{ game.name }}</td>
+                                <td>{{ game.start_date}}</td>
+                                <td>{{ game.location }}</td>
                                 <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
                         <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
                             </tr>
@@ -218,26 +150,10 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="request in requests" class="century-gothic">
-                        <td>Team 1</td>
-                        <td>Basketball</td>
-                        <td>PalICSihan 2017</td>
-                        <td>6/10</td>
-                        <td><a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">check</i></a>
-                        <a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">close</i></a></td>
-                    </tr>
-                    <tr class="century-gothic">
-                        <td>Team 2</td>
-                        <td>Basketball</td>
-                        <td>PalICSihan 2017</td>
-                        <td>6/10</td>
-                        <td><a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">check</i></a>
-                        <a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">close</i></a></td>
-                    </tr>
-                    <tr class="century-gothic">
-                        <td>Team 3</td>
-                        <td>Basketball</td>
-                        <td>PalICSihan 2017</td>
-                        <td>6/10</td>
+                        <td>{{ request.team_name }}</td>
+                        <td>{{ request.sport_name }}</td>
+                        <td>{{ request.name }} </td>
+                        <td>{{ request.start_date }}</td>
                         <td><a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">check</i></a>
                         <a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">close</i></a></td>
                     </tr>
@@ -303,16 +219,16 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" ng-init="getOrganizer()">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="first_name" type="text" class="validate">
+                        <input ng-model="organizer.name" id="first_name" type="text" class="validate">
                         <label for="first_name">Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <textarea ng-model="organizer.description" id="textarea1" class="materialize-textarea"></textarea>
                         <label for="textarea1">Description</label>
                     </div>
                 </div>
@@ -406,32 +322,12 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" ng-init="retrieveGame()">
                 <tbody>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                    <tr ng-repeat="game in games">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.location }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -457,32 +353,12 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" ng-init="retrieveGame()">
                 <tbody>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                    <tr ng-repeat="game in games">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.location }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -508,32 +384,12 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" ng-init="retrieveGame()">
                 <tbody>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
-                    </tr>
-                    <tr>
-                        <td>PalICSihan 2017</td>
-                        <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                    <tr ng-repeat="game in games">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.location }}</td>
                     </tr>
                 </tbody>
             </table>
