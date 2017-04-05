@@ -10,6 +10,7 @@
 		<!-- CSS -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         
+        <link rel="stylesheet" href="css/material-icons.woff2">
 	  	<link href="fa/css/font-awesome.min.css" rel="stylesheet" >
 	  	<link href="frontend_modules/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	  	<link href="frontend_modules/css/jquery.bxslider.min.css" type="text/css" rel="stylesheet"/>
@@ -42,6 +43,8 @@
         <link href="css/help.css" type="text/css" rel="stylesheet"/>
 		<!-- ERROR 404 PAGE -->
         <link href="css/error-404-page.css" type="text/css" rel="stylesheet"/>
+        <!-- ADMIN PANEL -->
+        <link href="css/admin-panel.css" type="text/css" rel="stylesheet"/>
 
 
 		<!-- JS -->
@@ -64,11 +67,22 @@
 		</div>
 		
 		<!-- NAV BUTTONS -->
-		<div class="col s4" id="navigation">
-			<div id="nav-profile" class="navbtns valign-wrapper right"><i class="material-icons">face</i></div>
-			<div class="navbtns valign-wrapper right palette-text-1">ORGANIZATIONS</div>
-			<div class="navbtns valign-wrapper right palette-text-2" >GAMES</div>
-			<div class="navbtns valign-wrapper right palette-text-3">HOME</div>
+
+		<div class="col s4" id="navigation" ng-controller="LandingCtrl">
+			<!-- DROP DOWN -->
+			<a href="#" data-activates="nav-dropdown" data-beloworigin="true" class="dropdown-button navbtns valign-wrapper right palette-text-1" style="color: #00b8ff;"><i class="fa fa-chevron-down"></i></a>
+			<ul id="nav-dropdown" class="dropdown-content">
+		        <li class="nav-dropdown-item"><a href="#"><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</a></li>
+				<li class="nav-dropdown-item"><a href="#"><i class="fa fa-question" aria-hidden="true"></i>Help</a></li>
+				<li class="nav-dropdown-item"><a href="#"><i class="fa fa-quote-left" aria-hidden="true"></i>About Us</a></li>
+		    </ul>
+
+			
+			<a ng-href="{{iconUrl}}" id="nav-profile" class="navbtns valign-wrapper right"><i class="fa fa-user-o" aria-hidden="true"></i></a>
+
+			<a href="/organization" class="navbtns valign-wrapper right palette-text-1" style="color: #00b8ff;">ORGANIZATIONS</a>
+			<a href="/game/feed" class="navbtns valign-wrapper right palette-text-2" style="color: #00a5d3;">GAMES</a>
+			<a href="/" class="navbtns valign-wrapper right palette-text-3" style="color: #00719c;">HOME</a>
 		</div>
 
 		<!-- NAV SEARCH BAR -->
@@ -85,11 +99,17 @@
 	<!--  Scripts-->
 	<script src="app.js"></script>
 	<script src="controllers/login-controller.js"></script>
+	<script src="controllers/organizer-controller.js"></script>
+	<script src="services/organizer-service.js"></script>
     <script type="text/javascript" src="directives/directives.js"></script>
  	<script src="frontend_modules/js/materialize.js"></script>
  	<script src="frontend_modules/js/slick.min.js"></script>
  	<script type="text/javascript" src="js/competitor-profile-page.js"></script>
  	<script type="text/javascript" src="js/organizer-profile-page.js"></script>
  	<script type="text/javascript" src="js/login-page.js"></script>
+ 	<script type="text/javascript" src="js/navbar.js"></script>
+ 	<script src="js/admin-panel.js"></script>
+	<script src="controllers/nav-controller.js"></script>
 	</body>
+
 </html>

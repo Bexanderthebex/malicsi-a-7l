@@ -11,14 +11,13 @@ exports.searchOrganizer = (req, res) => {
 		], (err, rows) => {
 			if(!err) {
 				if(rows[0].length == 1) {
-					res.status(200).send(rows[0][0]);
-					return rows[0][0];
+					return res.status(200).send(rows[0][0]);
 				} else {
-					res.status(200).send(rows[0]);
-					return rows;
+					return res.status(200).send(rows[0]);
+
 				}
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);
@@ -32,10 +31,10 @@ exports.getOrganizer = (req, res) => {
 			"%" + req.query.search + "%"
 		], (err, rows) => {
 			if(!err) {
-				res.status(200).send(rows[0]);
-				return rows;
+				return res.status(200).send(rows[0][0]);
+				
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);
@@ -58,8 +57,8 @@ exports.editOrganizer = (req,res) => {
 						req.body.id
 					], (err, rows) => {
 						if(!err) {
-							res.status(200).send(rows[0]);
-							return rows[0];
+							return res.status(200).send(rows[0]);
+							
 						}
 					}
 				);
@@ -71,21 +70,20 @@ exports.editOrganizer = (req,res) => {
 }
 
 exports.findGames = (req,res,next) => {
-	query = "CALL find_games(?)"
+	query = "CALL find_game(?)"
 	connection.userType('A').query(query, 
 		[
 			req.query.id
 		], (err,rows) => {
 			if(!err){
 				if(row.length == 1){
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-					return rows[0];
+					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0][0]);
+					
 				} else {
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-					return rows;
+					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
 				}
 			} else {
-			 	res.status(500).send({'message' : 'Internal Server Error'})
+			 	return res.status(500).send({'message' : 'Internal Server Error'})
 			}
 		}
 	);
@@ -99,14 +97,12 @@ exports.findSport = (req,res,next) =>{
 		], (err,rows) => {
 			if(!err){
 				if(row.length == 1){
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-					return rows[0];
+					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0][0]);
 				} else {
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-					return rows;
+					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
 				}
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);
@@ -118,18 +114,17 @@ exports.findTeam = (req,res,next) =>{
 		[
 			req.query.sport_id
 		], (err,rows) => {
-		if(!err){
-			if(row.length == 1){
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-				return rows[0];
+			if(!err){
+				if(row.length == 1){
+					return res.status(200).send(rows[0][0]);
+				} else {
+					return res.status(200).send(rows[0]);
+				}
 			} else {
-				res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-				return rows;
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
-		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
 		}
-		});
+	);
 };
 
 
@@ -140,15 +135,13 @@ exports.getRequest = (req, res, next) => {
 			req.query.team_id
 		], (err,rows) => {
 			if(!err){
-				if(row.length == 1){
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
-					return(rows[0][0]);
+				if(rows.length == 1){
+					return res.status(200).send(rows[0][0]);
 				} else {
-					res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows);
-					return rows;
+					return res.status(200).send(rows[0]);
 				}
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);
@@ -161,22 +154,48 @@ exports.acceptRequest = (req, res, next) => {
 
 	connection.userType('A').query(query, 
 		[
-			req.query.team_id
+			req.body.team_id
 		], (err,rows) => {
 			if(!err){
-				res.status(200).send({'message' : 'Successfully Updated Request'});
-				connection.query(query1,
+				console.log(req.body);
+				connection.userType('A').query(query1,
 					[
-				 		req.query.team_id
+				 		req.body.team_id
 					], (err,rows) => {
 						if(!err){
-							return rows[0];
-						} 
+							console.log(req.body);
+							if(rows.length == 1){
+								return res.status(200).send(rows[0][0]);
+							} else {
+								return res.status(200).send(rows[0]);
+							}
+						} else {
+							console.log(err);
+							return res.status(500).send({'message' : 'Internal Server Error'});
+						}
 					}
 				);
 			} else {
-				res.status(500).send({'message' : 'Internal Server Error'});
+				console.log(err);
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
+	});
+};
+
+exports.getPendingParticipation = (req, res, next) => {
+	query = "CALL get_pending_participation(?)"
+	connection.userType('A').query(query, 
+		[
+			req.query.organizer_id
+		], (err,rows) => {
+		if(!err){
+			if(row.length == 1){
+				return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0][0]);
+			} else {
+				return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+			}
+		} else {
+			return res.status(500).send({'message' : 'Internal Server Error'});
 		}
-	);
+	});
 };

@@ -74,3 +74,7 @@
 #gamefeed-give-padding {
     padding-right: 10px;
 }
+
+.gamefeed-textarea-color {
+    background-color: white !important;
+}

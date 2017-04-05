@@ -4,7 +4,7 @@
 <div id="main">
 	<!-- Do your thing here -->
   <div id="login-page" class="palette-5">
-	<div id="login-container" class="row" ng-controller="loginCtrl">
+	<div id="login-container" class="row" ng-controller="UserCtrl">
     <div id="login-card" class="offset-s4 col s4 palette-4 valign-wrapper">
       <div id="login-panel" class="row" style="display: block;">
         
@@ -69,7 +69,7 @@
         <!-- BIRTHDAY & SEX -->
         <div class="col s12 row">
           <div class="input-field col s6 ">
-            <input id="signup-bday" type="text" ng-model="bday" class="validate">
+            <input id="signup-bday" type="date" ng-model="bday" class="datepicker validate">
             <label for="signup-bday">Birthday</label>
           </div>
 
@@ -96,7 +96,7 @@
         <!-- BUTTONS -->
         <div class="col s12 row" style="margin-top: 20px!important;">
           <div id="login-buttons" class="col s12">
-            <a class="waves-effect waves-light btn left black" ng-click="signUp(suname, spword, fname, lname, nname, bday, sex, email, contactNum);">Sign Up</a>
+            <a class="waves-effect waves-light btn left black" ng-click="signUp(fname, lname, nname, suname, sex, spword, bday, email, contactNum);">Sign Up</a>
           </div>
         </div>
       </div>

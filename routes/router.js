@@ -54,36 +54,46 @@ function checkUser(type) {
     };
 }
 
+
 //overall user routers
 router.post('/login', sha256Hash, userController.login);
-router.post('/organizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
 router.post('/register', sha256Hash, bcryptHash, userController.register);
+router.post('/register/createOrganizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
 router.get('/logout', userController.logout);
 router.get('/user/:id', userController.getUserInfo);
 router.put('/user/update', sha256Hash, bcryptHash, userController.update);
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
+router.get('/user', userController.getUserInfo);
 
 //competitor routers
 router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
 router.put('/competitor/editCompetitor', competitorController.editCompetitor);
+router.get('/competitor/getCompetitorTeams', competitorController.getCompetitorTeams);
+router.get('/competitor/getCompetitor', competitorController.getCompetitor);
 
 //organizer routers
 router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);
+router.get('/organizer/findGames',organizerController.findGames);
+router.get('/organizer/findSport',organizerController.findSport);
+router.get('/organizer/findTeam',organizerController.findTeam);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
+router.get('/organizer/getRequest', organizerController.getRequest);
+router.post('/organizer/acceptRequest', organizerController.acceptRequest);
+router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);
 
 //team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
 router.post('/team/createTeam',teamController.createTeam);
-router.post('/team/deleteTeam',teamController.deleteTeam);
+router.delete('/team/deleteTeam',teamController.deleteTeam);
 router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
+router.get('/team/countTeamInSports',teamController.countTeamInSports);
+router.get('/team/getTeamMembers',teamController.getTeamMembers);
 
-//log routers
-router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
-router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
-
+// game routers
 router.get('/game/search/:keyword', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
+router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
 router.post('/game/createGame',  gameController.createGame);
 router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
@@ -109,9 +119,8 @@ router.get('/game/sport/countMatchBySport/:sportID', matchController.countMatchB
 router.put('/sport/match/editMatch', matchController.editMatch);
 router.put('/sport/match/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
 
-
-//log routers
-router.get('/log/viewAllLogs', checkUser, logController.viewAllLogs);
-router.post('/log/viewLogsByDate', checkUser, logController.viewLogsByDate);
+// log routers
+router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
+router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
 
 module.exports = router;
