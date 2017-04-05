@@ -146,7 +146,7 @@ exports.getRequest = (req, res, next) => {
 };
 
 
-exports.processsRequest = (req, res, next) => {
+exports.processRequest = (req, res, next) => {
 	query = "CALL process_request(?)"
 	query1 = "CALL get_team(?)"
 
