@@ -17,7 +17,7 @@
 
         function searchOrganizer() {
             SearchService
-                .retrieveGame('12')
+                .retrieveOrganizer('12')
                 .then(function(res) {
                     $scope.sports = res.data.data;
                     console.log($scope.sports);
@@ -29,7 +29,7 @@
 
         function searchCompetitor() {
             SearchService
-                .retrieveGame('12')
+                .retrieveCompetitor('12')
                 .then(function(res) {
                     $scope.sports = res.data.data;
                     console.log($scope.sports);
@@ -41,7 +41,7 @@
 
         function searchSport() {
             SearchService
-                .retrieveGame('12')
+                .retrieveSport('12')
                 .then(function(res) {
                     $scope.sports = res.data.data;
                     console.log($scope.sports);
