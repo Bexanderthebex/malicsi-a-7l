@@ -1,15 +1,15 @@
-.competitor-profile-info {
+.visited-competitor-profile-info {
     height: 250px;
     background-color: #00719c;;
     /*background-image: url('/assets/basketball.jpg')!important;*/
 }
 
-#competitor-profile-img {
+#visited-competitor-profile-img {
 	max-width: auto;
 	max-height: 250px;
 }
 
-#competitor-profile-right-panel {
+#visited-competitor-profile-right-panel {
     position: relative;
     margin-left: 25%;
     width: 75%;
@@ -35,7 +35,7 @@ table.highlight tbody tr:hover {
 }
 
 
-#competitor-profile-tabs .indicator {
+#visited-competitor-profile-tabs .indicator {
 	background-color: #00a5d3;
 }
 
@@ -47,39 +47,39 @@ table.highlight tbody tr:hover {
   background-color: transparent !important;
 }
 
-#competitor-teams, #competitor-organizations {
+#visited-competitor-teams, #visited-competitor-organizations {
     padding-right: 0px !important;
     padding-left: 0px !important;
 }
 
-#competitor-ongoing-showall {
+#visited-competitor-ongoing-showall {
     color: white !important;
 }
 
-.competitor-showall {
+.visited-competitor-showall {
     border: solid 2.5px;
     border-color: #00719c;
     border-radius: 0px 0px 8px 8px !important;
 }
 
-#competitor-profile-games {
+#visited-competitor-profile-games {
     background-color: #00719c; 
     border-radius: 8px 8px 0px 0px;
 }
 
-.competitor-games-data {
+.visited-competitor-games-data {
     border-left: solid 2.5px;
     border-right: solid 2.5px;
     border-color: #00719c;
 }
 
-#competitor-profile-add-game {
+#visited-competitor-profile-add-game {
     border: solid 2.5px;
     border-radius: 8px;
     padding: 10px;
 }
 
-.competitor-footer {  
+.visited-competitor-footer {  
   /*background-color: red;*/
   /*position: absolute;
   right: 0;
@@ -93,14 +93,14 @@ table.highlight tbody tr:hover {
   /*float:left;*/
 }
 
-.competitor-footer ul li {
+.visited-competitor-footer ul li {
   display: inline;
   color: grey;
   font-size: 12px!important;    
   letter-spacing: 2px!important;
 }
 
-.competitor-footer div {
+.visited-competitor-footer div {
   margin-top: -0.5%;
   margin-right: 1%;
 }
@@ -155,12 +155,12 @@ table.highlight tbody tr:hover {
 
 /*************************************************************************************************************************/
 
-#competitor-games-played {
+#visited-competitor-games-played {
 	overflow: auto;
 	white-space: nowrap;
 }
 
-#competitor-games-played a { 
+#visited-competitor-games-played a { 
 	display: inline-block;
 	text-align: center;
 	padding: 14px;
@@ -169,7 +169,7 @@ table.highlight tbody tr:hover {
 	cursor: pointer;
 }
 
-.competitor-game-img {
+.visited-competitor-game-img {
 	width: 200px;
 	border-radius: 5px;
 }
@@ -193,12 +193,12 @@ table.highlight tbody tr:hover {
   font-weight: bold;
 }
 
-.competitor-actions{
+.competitor-visited-actions{
     float: left;
     margin-right: 10px;
 }
 
-.competitor-actions:hover{
+.competitor-visited-actions:hover{
     color: #00719c;
     cursor: pointer!important;
     transition: color 0.3s;

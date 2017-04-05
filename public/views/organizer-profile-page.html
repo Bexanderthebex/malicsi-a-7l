@@ -1,4 +1,4 @@
-<div id="mainHolder" ng-controller="OrganizerController">
+<div id="mainHolder">
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
     <div id="main" class="">
@@ -7,8 +7,9 @@
             <div class="col l3 m5 s12 offset-l2 center">
                 <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
+
             <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getOrganizer()">
-                <h3 class="rockwell">{{ organizer.name }} <a id="organizer-profile-edit" data-target="edit-profile-modal"><i class="material-icons">edit</i></a></h3>
+                <h3 class="rockwell">{{ organizer.name }} <a id="organizer-profile-edit" data-target="organizer-profile-edit-modal"><i class="material-icons">edit</i></a></h3>
                 <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
                 <p class="telegrafico">
                     {{ organizer.description }}
@@ -22,36 +23,36 @@
                 <h5 class="rockwell">Add Game</h5>
                 <div class="row palette-border-5" id="organizer-profile-add-game">
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s12" style="margin-top: -5px;">
                             <span class="telegrafico">Game Name</span>
                             <input placeholder="Enter game name" id="name" type="text" class="validate" ng-model="newGame.gameName">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 organizer-add-form">
                             <span class="telegrafico">Location</span>
                             <input placeholder="Enter location" id="location" type="text" class="validate" ng-model="newGame.locat">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s6">
+                        <div class="input-field col s6 organizer-add-form">
                             <span class="telegrafico">Start Date</span>
                             <input id="start-date" class="datepicker validate" ng-model="newGame.startDate">
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s6 organizer-add-form">
                             <span class="telegrafico">End Date</span>
                             <input id="end-date" class="datepicker validate" ng-model="newGame.endDate">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s12 organizer-add-form">
                             <span class="telegrafico">Description</span>
                             <textarea id="description" class="materialize-textarea" ng-model="newGame.descrip"></textarea>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col s6 offset-s3 center">
-                            <button class="minimalist-button" id="organizer-add-game" ng-click="addGame()">ADD GAME</button>
+                        <div class="col s6 offset-s3 center" style="margin-top: -25px; margin-bottom: -25px;">
+                            <button class="minimalist-button" id="organizer-add-game" ng-click="addGame()" data-target="organizer-add-game-modal">ADD GAME</button>
                         </div>
                     </div>
                 </div>
@@ -69,50 +70,89 @@
                     <div class="indicator white" style="z-index: 1"></div>
                 </ul>
                 
+
                 <div id="organizer-profile-ongoing" class="col s12">
-                    <table class="highlight responsive-table organizer-games-data">
+                    <table class="highlight responsive-table organizer-games-data" ng-init="retrieveGame()">
                         <tbody class="">
+
+                            <tr ng-repeat="game in games">
+                                <td>{{ game.name }}</td>
+                                <td>{{ game.start_date }}</td>
+                                <td>{{ game.location}}</td>
+                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
+                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>April 1, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <td>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                             </tr>
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>April 1, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <td>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                             </tr>
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>April 1, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <td>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                             </tr>
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>April 1, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <td>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                             </tr>
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>April 1, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <td>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                     <table class="highlight organizer-showall">
                         <tbody>
                             <tr>
-                                <td class="center-align century-gothic palette-3" id="organizer-ongoing-showall"><a data-target="organizer-ongoing-modal" modal>Show All</a></td>
+                                <td class="center-align century-gothic white-text palette-3" id="organizer-ongoing-showall" data-target="organizer-ongoing-modal">Show All</td>
                             </tr>
                         </tbody>
                     </table>
@@ -121,33 +161,59 @@
                 <div id="organizer-profile-incoming" class="col s12">
                     <table class="highlight responsive-table organizer-games-data">
                         <tbody>
+                            <tr class="century-gothic" ng-repeat="game in games">
+                                <td>{{ game.name }}</td>
+                                <td>{{ game.start_date}}</td>
+                                <td>{{ game.location }}</td>
+                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
+                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>April 10, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <td>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                             </tr>
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>April 10, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <td>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                             </tr>
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>April 10, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <td>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
+
                             </tr>
                         </tbody>
                     </table>
                     <table class="highlight organizer-showall">
                         <tbody>
                             <tr>
-                                <td class="center-align century-gothic palette-3" id="organizer-incoming-showall"><a data-target="organizer-incoming-modal" modal>Show All</a></td>
+                                <td class="center-align century-gothic white-text palette-3" id="organizer-incoming-showall" data-target="organizer-ongoing-modal">Show All</td>
                             </tr>
                         </tbody>
                     </table>
@@ -156,47 +222,86 @@
                 <div id="organizer-profile-past" class="col s12">
                     <table class="highlight responsive-table organizer-games-data">
                         <tbody>
+
+                            <tr class="century-gothic" ng-repeat="game in games">
+                                 <td>{{ game.name }}</td>
+                                <td>{{ game.start_date}}</td>
+                                <td>{{ game.location }}</td>
+                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
+                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>March 15, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <!-- <td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td> -->
                             </tr>
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>March 15, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <!-- <td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td> -->
                             </tr>
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>March 15, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <!-- <td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td> -->
                             </tr>
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>March 15, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <!-- <td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td> -->
                             </tr>
                             <tr class="century-gothic">
                                 <td>PalICSihan 2017</td>
                                 <td>March 15, 2017</td>
                                 <td>Freedom Park, UPLB</td>
-                                <td><button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-update-game" data-tooltip="Update" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">update</i></button>
-                        <button class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-delete-game" data-tooltip="Delete" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">delete</i></button></td>
+                                <!-- <td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td> -->
+
                             </tr>
                         </tbody>
                     </table>
                     <table class="highlight organizer-showall">
                         <tbody>
                             <tr>
-                                <td class="center-align century-gothic palette-3" id="organizer-past-showall"><a data-target="organizer-past-modal" modal>Show All</a></td>
+                                <td class="center-align century-gothic palette-3" id="organizer-ongoing-showall" data-target="organizer-past-modal">Show All</td>
                             </tr>
                         </tbody>
                     </table>
@@ -218,84 +323,129 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="request in requests" class="century-gothic">
+
+                        <td>{{ request.team_name }}</td>
+                        <td>{{ request.sport_name }}</td>
+                        <td>{{ request.name }} </td>
+                        <td>{{ request.start_date }}</td>
+                        <td><a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">check</i></a>
+                        <a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">close</i></a></td>
+
                         <td>Team 1</td>
                         <td>Basketball</td>
                         <td>PalICSihan 2017</td>
                         <td>6/10</td>
-                        <td><a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">check</i></a>
-                        <a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">close</i></a></td>
+                        <td>
+                            <div class="organizer-actions" data-target="organizer-profile-accept-modal">
+                                <i class="fa fa-check fa-lg"></i>
+                            </div>
+                            <div class="organizer-actions" data-target="organizer-profile-decline-modal">
+                                <i class="fa fa-times fa-lg"></i>
+                            </div>
+                        </td>
                     </tr>
                     <tr class="century-gothic">
                         <td>Team 2</td>
                         <td>Basketball</td>
                         <td>PalICSihan 2017</td>
                         <td>6/10</td>
-                        <td><a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">check</i></a>
-                        <a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">close</i></a></td>
+                        <td>
+                            <div class="organizer-actions" data-target="organizer-profile-accept-modal">
+                                <i class="fa fa-check fa-lg"></i>
+                            </div>
+                            <div class="organizer-actions" data-target="organizer-profile-decline-modal">
+                                <i class="fa fa-times fa-lg"></i>
+                            </div>
+                        </td>
                     </tr>
                     <tr class="century-gothic">
                         <td>Team 3</td>
                         <td>Basketball</td>
                         <td>PalICSihan 2017</td>
                         <td>6/10</td>
-                        <td><a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-accept" data-tooltip="Accept" data-position="top" data-target="organizer-profile-accept-modal"><i class="material-icons left">check</i></a>
-                        <a class="waves-effect btn-floating blue darken-4 tooltipped" id="organizer-profile-decline" data-tooltip="Decline" data-position="top" data-target="organizer-profile-decline-modal"><i class="material-icons left">close</i></a></td>
+                        <td>
+                            <div class="organizer-actions" data-target="organizer-profile-accept-modal">
+                                <i class="fa fa-check fa-lg"></i>
+                            </div>
+                            <div class="organizer-actions" data-target="organizer-profile-decline-modal">
+                                <i class="fa fa-times fa-lg"></i>
+                            </div>
+                        </td>
+
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div><br>
 
-    </div>
-    
-    <!-- Edit Profile Modal -->
-    <div id="edit-profile-modal" class="modal modal-fixed-footer">
-        <div class="modal-content">
-            <div class="row">
-                <h5 class="rockwell center"><i class="material-icons">mode_edit</i> Edit Profile</h5>
-                <div class="col l6 m6 s12 input-field">
-                    <span class="telegrafico">First Name</span>
-                    <input placeholder="John" id="fname" type="text" class="active validate">
-                </div>
-                <div class="col l6 m6 s12 input-field">
-                    <span class="telegrafico">Last Name</span>
-                    <input placeholder="Doe" id="lname" type="email" class="validate">
-                </div>
+        <div class="row organizer-footer black">
+            <div class="black">
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#"> Help </a></li>
+                    <li><a href="#"> About Us </a></li>
+                    <li>All Rights Reserved</li>
+                </ul>
             </div>
-            <div class="row">
-                <div class="col l12 m12 s12 input-field">
-                    <span class="telegrafico">Email</span>
-                    <input placeholder="email@example.com" id="email" type="text" class="validate">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col l6 m6 s12 input-field">
-                    <span class="telegrafico">Birthdate</span>
-                    <input type="date" id="bdate" class="datepicker">
-                </div>
-                <div class="col l6 m6 s12 input-field">
-                    <span class="telegrafico">Sex: </span>
-                    <span><input id="male" type="radio" name="gender" value="male" class="with-gap">
-                        <label for="male" class="telegrafico">Male</label></span>
-                    <span><input id="female" type="radio" name="gender" value="female" class="with-gap">
-                        <label for="female" class="telegrafico">Female</label></span>
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button class="modal-action modal-close waves-effect waves-green btn-flat">Save</button>
-            <button class="modal-action modal-close waves-effect waves-red btn-flat">Cancel</button>
         </div>
     </div>
 
 </div>
 
+<!-- Edit Profile Modal -->
 <div id="organizer-profile-edit-modal" class="modal">
     <div class="row remove-bottom">
-        <div class="col s12 padding-left padding-right blue darken-4">
+        <div class="col s12 padding-left padding-right palette-5">
             <div class="center">
                 <br>
-                    <div class="card-title white-text center">
+                    <div class="card-title white-text center rockwell">
                         <h5>Update Profile</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>  
+    <div class="modal-content">
+        <div class="row">
+            <form class="col s12" ng-init="getOrganizer()">
+                <div class="row">
+                    <div class="input-field col s6">
+
+                        <input ng-model="organizer.name" id="first_name" type="text" class="validate">
+                        <label for="first_name">Name</label>
+
+                        <input id="first_name" type="text" class="validate">
+                        <label for="first_name" class="telegrafico">Name</label>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+
+                        <textarea ng-model="organizer.description" id="textarea1" class="materialize-textarea"></textarea>
+                        <label for="textarea1">Description</label>
+
+                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                        <label for="textarea1" class="telegrafico">Description</label>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
+        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">check</i>Update</a>
+    </div>
+</div>
+
+<!-- Update Game -->
+<div id="organizer-update-game-modal" class="modal">
+    <div class="row remove-bottom">
+        <div class="col s12 padding-left padding-right palette-5">
+            <div class="center">
+                <br>
+                    <div class="card-title white-text center rockwell">
+                        <h5>Update Game</h5>
                     </div>
                 <br>
             </div>
@@ -305,15 +455,31 @@
         <div class="row">
             <form class="col s12">
                 <div class="row">
-                    <div class="input-field col s6">
-                        <input id="first_name" type="text" class="validate">
-                        <label for="first_name">Name</label>
+                    <div class="input-field col s12">
+                        <span class="telegrafico">Game Name</span>
+                        <input placeholder="Enter game name" id="name" type="text" class="validate" ng-model="currentGame.gameName">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="textarea1" class="materialize-textarea"></textarea>
-                        <label for="textarea1">Description</label>
+                        <span class="telegrafico">Location</span>
+                        <input placeholder="Enter location" id="location" type="text" class="validate" ng-model="currentGame.locat">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <span class="telegrafico">Start Date</span>
+                        <input id="start-date" class="datepicker validate" ng-model="currentGame.startDate">
+                    </div>
+                    <div class="input-field col s6">
+                        <span class="telegrafico">End Date</span>
+                        <input id="end-date" class="datepicker validate" ng-model="currentGame.endDate">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <span class="telegrafico">Description</span>
+                        <textarea id="description" class="materialize-textarea" ng-model="currentGame.descrip"></textarea>
                     </div>
                 </div>
             </form>
@@ -321,24 +487,48 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Cancel</a>
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Update</a>
+        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
+        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">check</i>Update</a>
     </div>
 </div>
 
-<div id="organizer-profile-accept-modal" class="modal">
+<!-- Delete Game Modal -->
+<div id="organizer-delete-game-modal" class="modal">
     <div class="row remove-bottom">
-        <div class="col s12 padding-left padding-right blue darken-4">
+        <div class="col s12 padding-left padding-right palette-5">
             <div class="center">
                 <br>
-                    <div class="card-title white-text center">
+                    <div class="card-title white-text center rockwell">
+                        <h5>Delete Game</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>  
+    <div class="modal-content telegrafico">
+        <p>Are you sure you want to delete this game?</p>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
+        <a class="modal-action modal-close waves-effect btn-flat" ng-click="addGame()"><i class="material-icons left">check</i>Yes</a>
+    </div>
+</div>
+
+<!-- Accept Team Modal -->
+<div id="organizer-profile-accept-modal" class="modal">
+    <div class="row remove-bottom">
+        <div class="col s12 padding-left padding-right palette-5">
+            <div class="center">
+                <br>
+                    <div class="card-title white-text center rockwell">
                         <h5>Accept Team</h5>
                     </div>
                 <br>
             </div>
         </div>
     </div>  
-    <div class="modal-content">
+    <div class="modal-content telegrafico">
         <p>Are you sure you want to accept [TEAM NAME]'s request to join [SPORT NAME]?</p>
     </div>
     <div class="divider"></div>
@@ -348,19 +538,20 @@
     </div>
 </div>
 
+<!-- Decline Team Modal -->
 <div id="organizer-profile-decline-modal" class="modal">
     <div class="row remove-bottom">
-        <div class="col s12 padding-left padding-right blue darken-4">
+        <div class="col s12 padding-left padding-right palette-5">
             <div class="center">
                 <br>
-                    <div class="card-title white-text center">
+                    <div class="card-title white-text center rockwell">
                         <h5>Decline Team</h5>
                     </div>
                 <br>
             </div>
         </div>
     </div>  
-    <div class="modal-content">
+    <div class="modal-content telegrafico">
         <p>Are you sure you want to decline [TEAM NAME]'s request to join [SPORT NAME]?</p>
     </div>
     <div class="divider"></div>
@@ -370,19 +561,20 @@
     </div>
 </div>
 
+<!-- Add Game Modal -->
 <div id="organizer-add-game-modal" class="modal">
     <div class="row remove-bottom">
-        <div class="col s12 padding-left padding-right blue darken-4">
+        <div class="col s12 padding-left padding-right palette-5">
             <div class="center">
                 <br>
-                    <div class="card-title white-text center">
+                    <div class="card-title white-text center rockwell">
                         <h5>Add Game</h5>
                     </div>
                 <br>
             </div>
         </div>
     </div>  
-    <div class="modal-content">
+    <div class="modal-content telegrafico">
         <p>Are you sure you want to add this game?</p>
     </div>
     <div class="divider"></div>
@@ -392,12 +584,13 @@
     </div>
 </div>
 
+<!-- Ongoing Games Modal -->
 <div id="organizer-ongoing-modal" class="modal">
     <div class="row remove-bottom">
-        <div class="col s12 padding-left padding-right blue darken-4">
+        <div class="col s12 padding-left padding-right palette-5">
             <div class="center">
                 <br>
-                    <div class="card-title white-text center">
+                    <div class="card-title white-text center rockwell">
                         <h5>Ongoing Games</h5>
                     </div>
                 <br>
@@ -406,32 +599,76 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" ng-init="retrieveGame()">
                 <tbody>
-                    <tr>
+
+                    <tr ng-repeat="game in games">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.location }}</td>
+
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
                         <td>Freedom Park, UPLB</td>
+                        <td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
                         <td>Freedom Park, UPLB</td>
+                        <td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                        <td>Freedom Park, UPLB</td><td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                        <td>Freedom Park, UPLB</td><td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                        <td>Freedom Park, UPLB</td><td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
+
                     </tr>
                 </tbody>
             </table>
@@ -443,12 +680,13 @@
     </div>
 </div>
 
+<!-- Incoming Games Modal -->
 <div id="organizer-incoming-modal" class="modal">
     <div class="row remove-bottom">
-        <div class="col s12 padding-left padding-right blue darken-4">
+        <div class="col s12 padding-left padding-right palette-5">
             <div class="center">
                 <br>
-                    <div class="card-title white-text center">
+                    <div class="card-title white-text center rockwell">
                         <h5>Incoming Games</h5>
                     </div>
                 <br>
@@ -457,32 +695,75 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" ng-init="retrieveGame()">
                 <tbody>
-                    <tr>
+
+                    <tr ng-repeat="game in games">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.location }}</td>
+
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
                         <td>Freedom Park, UPLB</td>
+                        <td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                        <td>Freedom Park, UPLB</td><td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                        <td>Freedom Park, UPLB</td><td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                        <td>Freedom Park, UPLB</td><td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
-                        <td>Freedom Park, UPLB</td>
+                        <td>Freedom Park, UPLB</td><td>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
+
                     </tr>
                 </tbody>
             </table>
@@ -494,12 +775,13 @@
     </div>
 </div>
 
+<!-- Past Games Modal -->
 <div id="organizer-past-modal" class="modal">
     <div class="row remove-bottom">
-        <div class="col s12 padding-left padding-right blue darken-4">
+        <div class="col s12 padding-left padding-right palette-5">
             <div class="center">
                 <br>
-                    <div class="card-title white-text center">
+                    <div class="card-title white-text center rockwell">
                         <h5>Past Games</h5>
                     </div>
                 <br>
@@ -508,32 +790,39 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <table class="highlight responsive-table">
+            <table class="highlight responsive-table" ng-init="retrieveGame()">
                 <tbody>
-                    <tr>
+
+                    <tr ng-repeat="game in games">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.location }}</td>
+
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
                         <td>Freedom Park, UPLB</td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
                         <td>Freedom Park, UPLB</td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
                         <td>Freedom Park, UPLB</td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
                         <td>Freedom Park, UPLB</td>
                     </tr>
-                    <tr>
+                    <tr class="century-gothic">
                         <td>PalICSihan 2017</td>
                         <td>March 15, 2017</td>
                         <td>Freedom Park, UPLB</td>
+
                     </tr>
                 </tbody>
             </table>

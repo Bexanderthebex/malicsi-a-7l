@@ -1,0 +1,385 @@
+<div id="mainHolder">
+	<div id="main">
+		<div class="row">
+			<!-- SIDE NAV -->
+			<div class="col s3 palette-5 admin-fixed-sidebar z-depth-2">
+				<div id="admin-title" class="valign-wrapper">
+					<div style="width: 100%; text-align: center;">
+						<h4 class="rockwell palette-text-3" style="margin:0; margin-right:80px;">ADMIN  <i class="fa fa-legal" style="margin-left: 10px; color: white;"></i></h4>
+						<h4 class="rockwell palette-text-3" style="margin:0; margin-left: 80px;">PANEL</h4>
+					</div>
+				</div>
+				<div id="admin-buttons">
+					<!-- ADMIN BUTTONS -->
+					<button id="admin-admins-btn">ADMINS</button>
+					<!-- <div id="admin-admins-functions" style="width: 100%;">
+						<ul id="admin-admins" style="width: 100%; margin: 0;">
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-users" aria-hidden="true"></i>View Admins</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-user-plus" aria-hidden="true"></i>Edit Admin</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-trash" aria-hidden="true"></i>Delete Admin</button>
+					        	</div>
+					        </li>
+					    </ul>
+					</div> -->
+
+					<!-- ORGANIZER BUTTONS -->
+					<button id="admin-organizers-btn">ORGANIZERS</button>
+					<!-- <div id="admin-organizers-functions" style="width: 100%;">
+						<ul id="admin-organizers" style="width: 100%; margin: 0;">
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-users" aria-hidden="true"></i>View Organizers</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-user-plus" aria-hidden="true"></i>Edit Organizers</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-trash" aria-hidden="true"></i>Delete Organizers</button>
+					        	</div>
+					        </li>
+					    </ul>
+					</div> -->
+
+					<button id="admin-users-btn">USERS</button> 
+					<!-- <div id="admin-users-functions" style="width: 100%;">
+						<ul id="admin-users" style="width: 100%; margin: 0;">
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-users" aria-hidden="true"></i>View Users</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-user-plus" aria-hidden="true"></i>Edit User</button>
+					        	</div>
+					        </li>
+
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-trash" aria-hidden="true"></i>Delete User</button>
+					        	</div>
+					        </li>
+					    </ul>
+					</div> -->
+
+					<button id="admin-logs-btn">LOGS</button>
+					<!-- <div id="admin-logs-functions" style="width: 100%;">
+						<ul id="admin-logs" style="width: 100%; margin: 0;">
+					        <li class="admin-hidden-item valign-wrapper">
+					        	<div style="width: 100%; text-align: center;">
+					        		<button class="telegrafico" href="#"><i style="margin-right: 10px;" class="fa fa-users" aria-hidden="true"></i>View Logs</button>
+					        	</div>
+					        </li>
+					    </ul>
+					</div> -->
+				</div>
+			</div>
+
+			<!-- NAV VIEWS -->
+			<div id="admin-main" class="col s9 offset-s3 admin-padding-left admin-padding-right">
+				<!-- Admins -->
+				<div id="admin-adminscrud" class="admin-view" style="display: none;">
+					<h4 class="rockwell">Admins</h4>
+					<table>
+		            	<thead>
+		            		<tr class="telegrafico">
+		            			<th>First Name</th>
+		            			<th>Last Name</th>
+		            			<th>Nickname</th>
+		            			<th>Actions</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody class="century-gothic">
+		            		<tr>
+		            			<td class="match-player">
+		            				<div ng-show="!view">Juan</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view">Dela Cruz</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new last name:"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view">Johnny</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new nickname:"></div>
+		            			</td>
+		            			<td>
+		            				<div class="match-actions">
+		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+		            				<div class="match-actions" ng-click="view = !view">
+		            					<i class="fa fa-pencil-square-o fa-lg"></i>
+		            				</div>
+		            			</td>
+		            		</tr>
+		            		<tr>
+		            			<td class="match-player">
+		            				<div ng-show="!view3">Juan</div>
+		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new first name:"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view3">Dela Cruz</div>
+		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new last name:"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view3">Johnny</div>
+		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new nickname:"></div>
+		            			</td>
+		            			<td>
+		            				<div class="match-actions">
+		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+		            				<div class="match-actions" ng-click="view3 = !view3">
+		            					<i class="fa fa-pencil-square-o fa-lg"></i>
+		            				</div>
+		            			</td>
+		            		</tr>
+		            		<tr>
+		            			<td class="match-player">
+		            				<div ng-show="!view5">Juan</div>
+		            				<div ng-hide="!view5"><input type="text" name="" placeholder="Enter new first name:"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view5">Dela Cruz</div>
+		            				<div ng-hide="!view5"><input type="text" name="" placeholder="Enter new last name:"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view5">Johnny</div>
+		            				<div ng-hide="!view5"><input type="text" name="" placeholder="Enter new nickname:"></div>
+		            			</td>
+		            			<td>
+		            				<div class="match-actions">
+		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+		            				<div class="match-actions" ng-click="view5 = !view5">
+		            					<i class="fa fa-pencil-square-o fa-lg"></i>
+		            				</div>
+		            			</td>
+		            		</tr>
+		            		<tr>
+		            			<td class="match-player">
+		            				<div ng-show="!view8">Juan</div>
+		            				<div ng-hide="!view8"><input type="text" name="" placeholder="Enter new first name:"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view8">Dela Cruz</div>
+		            				<div ng-hide="!view8"><input type="text" name="" placeholder="Enter new last name:"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view8">Johnny</div>
+		            				<div ng-hide="!view8"><input type="text" name="" placeholder="Enter new nickname:"></div>
+		            			</td>
+		            			<td>
+		            				<div class="match-actions">
+		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+		            				<div class="match-actions" ng-click="view8 = !view8">
+		            					<i class="fa fa-pencil-square-o fa-lg"></i>
+		            				</div>
+		            			</td>
+		            		</tr>
+		            		
+		            	</tbody>
+		            </table>
+
+				</div>
+
+				<!-- Organizer -->
+				<div class="admin-view" id="admin-organizerscrud" style="display: none;">
+					<h4 class="rockwell">Organizer</h4>
+					<table>
+		            	<thead>
+		            		<tr class="telegrafico">
+		            			<th>Name</th>
+		            			<th>Description</th>
+		            			<th>Actions</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody class="century-gothic">
+		            		<tr>
+		            			<td class="match-player">
+		            				<div ng-show="!view">Juan Dela Cruz</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new name"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view">We are one we are the world. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, natus ullam voluptatibus, iure odit in aliquam laborum esse quibusdam magni blanditiis officiis corporis dignissimos, quam consequuntur quidem tempore at. Harum!</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
+		            			</td>
+		            			<td>
+		            				<div class="match-actions">
+		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+		            				<div class="match-actions" ng-click="view = !view">
+		            					<i class="fa fa-pencil-square-o fa-lg"></i>
+		            				</div>
+		            			</td>
+		            		</tr>
+		            		<tr>
+		            			<td class="match-player">
+		            				<div ng-show="!view3">Juan Dela Cruz</div>
+		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new name"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis inventore maiores at mollitia ab unde deleniti, aperiam labore sint distinctio temporibus vel, dignissimos tenetur sapiente similique, voluptatum. Repudiandae, molestiae, dolorum.</div>
+		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new description"></div>
+		            			</td>
+		            			<td>
+		            				<div class="match-actions">
+		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+		            				<div class="match-actions" ng-click="view3 = !view3">
+		            					<i class="fa fa-pencil-square-o fa-lg"></i>
+		            				</div>
+		            			</td>
+		            		</tr>
+		            		
+		            	</tbody>
+		            </table>
+
+				</div>
+
+				<!-- Users -->
+				<div class="admin-view" id="admin-userscrud" style="display: none;">
+					<h4 class="rockwell">Users</h4>
+					<table>
+		            	<thead>
+		            		<tr class="telegrafico">
+		            			<th>Username</th>
+		            			<th>Password</th>
+		            			<th>Email</th>
+		            			<th>Contact</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody class="century-gothic">
+		            		<tr>
+		            			<td class="match-player">
+		            				<div ng-show="!view">jdcruz</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new name"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view">hailcaesarcypher</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view">asdfasdf@yhao.com</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view">09352452023</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
+		            			</td>
+		            			<td>
+		            				<div class="match-actions">
+		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+		            				<div class="match-actions" ng-click="view = !view">
+		            					<i class="fa fa-pencil-square-o fa-lg"></i>
+		            				</div>
+		            			</td>
+		            		</tr>
+
+		            		<tr>
+		            			<td class="match-player">
+		            				<div ng-show="!view1">jdcruz</div>
+		            				<div ng-hide="!view1"><input type="text" name="" placeholder="Enter new name"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view1">hailcaesarcypher</div>
+		            				<div ng-hide="!view1"><input type="text" name="" placeholder="Enter new description"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view1">asdfasdf@yhao.com</div>
+		            				<div ng-hide="!view1"><input type="text" name="" placeholder="Enter new description"></div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view1">09352452023</div>
+		            				<div ng-hide="!view1"><input type="text" name="" placeholder="Enter new description"></div>
+		            			</td>
+		            			<td>
+		            				<div class="match-actions">
+		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+		            				<div class="match-actions" ng-click="view1 = !view1">
+		            					<i class="fa fa-pencil-square-o fa-lg"></i>
+		            				</div>
+		            			</td>
+		            		</tr>		            		
+		            	</tbody>
+		            </table>
+
+				</div>
+
+				<!-- Logs -->
+				<div class="admin-view" id="admin-logsview" style="display: none;">
+					<h4 class="rockwell">Logs</h4>
+					<table>
+		            	<thead>
+		            		<tr class="telegrafico">
+		            			<th>Log Id</th>
+		            			<th>Id</th>
+		            			<th>Content</th>
+		            			<th>Date Created</th>
+		            		</tr>
+		            	</thead>
+		            	<tbody class="century-gothic">
+		            		<tr>
+		            			<td>234234</td>
+		            			<td>2322</td>
+		            			<td>Deleted asdf @ asomething</td>
+		            			<td>02-32-2222</td>
+		            		</tr>
+
+							<tr>
+		            			<td>234234</td>
+		            			<td>2322</td>
+		            			<td>Deleted asdf @ asomething</td>
+		            			<td>02-32-2222</td>
+		            		</tr>
+
+		            		<tr>
+		            			<td>234234</td>
+		            			<td>2322</td>
+		            			<td>Deleted asdf @ asomething</td>
+		            			<td>02-32-2222</td>
+		            		</tr>
+
+		            		<tr>
+		            			<td>234234</td>
+		            			<td>2322</td>
+		            			<td>Deleted asdf @ asomething</td>
+		            			<td>02-32-2222</td>
+		            		</tr>		            			            		
+		            	</tbody>
+		            </table>
+
+				</div>
+
+				
+			</div>
+		</div>			
+	</div>
+</div>
+
+<!--Scripts-->
+<script src="frontend_modules/js/init.js"></script>
+<script src="frontend_modules/js/materialize.js"></script>
+<script src="js/admin-panel.js"></script>

@@ -218,16 +218,16 @@ insert into team_joins_sport (team_id, sport_id, is_approved) values (1, 7, 0);
 insert into team_joins_sport (team_id, sport_id, is_approved) values (5, 4, 0);
 
 -- log
-insert into log (log_id, id, content, date_created) values (1, 1, 'eros suspendisse accumsan tortor quis turpis sed ante', '2017-3-29');
-insert into log (log_id, id, content, date_created) values (2, 3, 'ipsum ac tellus semper interdum mauris ullamcorper purus sit amet', '2016-6-5');
-insert into log (log_id, id, content, date_created) values (3, 6, 'est quam pharetra magna ac consequat metus', '2016-6-3');
-insert into log (log_id, id, content, date_created) values (4, 2, 'dolor quis odio consequat varius', '2016-11-20');
-insert into log (log_id, id, content, date_created) values (5, 4, 'in est risus auctor sed tristique in', '2016-7-22');
-insert into log (log_id, id, content, date_created) values (6, 5, 'enim in tempor turpis nec euismod scelerisque quam turpis adipiscing', '2017-3-19');
-insert into log (log_id, id, content, date_created) values (7, 6, 'arcu sed augue aliquam erat volutpat in congue', '2016-6-9');
-insert into log (log_id, id, content, date_created) values (8, 2, 'turpis donec posuere metus vitae ipsum aliquam non mauris morbi', '2016-4-11');
-insert into log (log_id, id, content, date_created) values (9, 2, 'ultrices posuere cubilia curae mauris viverra diam vitae', '2017-3-27');
-insert into log (log_id, id, content, date_created) values (10, 5, 'nulla nunc purus phasellus in felis', '2016-11-9');
+insert into log (log_id, user_id, log_msg, date_created) values (1, 1, 'eros suspendisse accumsan tortor quis turpis sed ante', '2017-3-29');
+insert into log (log_id, user_id, log_msg, date_created) values (2, 3, 'ipsum ac tellus semper interdum mauris ullamcorper purus sit amet', '2016-6-5');
+insert into log (log_id, user_id, log_msg, date_created) values (3, 6, 'est quam pharetra magna ac consequat metus', '2016-6-3');
+insert into log (log_id, user_id, log_msg, date_created) values (4, 2, 'dolor quis odio consequat varius', '2016-11-20');
+insert into log (log_id, user_id, log_msg, date_created) values (5, 4, 'in est risus auctor sed tristique in', '2016-7-22');
+insert into log (log_id, user_id, log_msg, date_created) values (6, 5, 'enim in tempor turpis nec euismod scelerisque quam turpis adipiscing', '2017-3-19');
+insert into log (log_id, user_id, log_msg, date_created) values (7, 6, 'arcu sed augue aliquam erat volutpat in congue', '2016-6-9');
+insert into log (log_id, user_id, log_msg, date_created) values (8, 2, 'turpis donec posuere metus vitae ipsum aliquam non mauris morbi', '2016-4-11');
+insert into log (log_id, user_id, log_msg, date_created) values (9, 2, 'ultrices posuere cubilia curae mauris viverra diam vitae', '2017-3-27');
+insert into log (log_id, user_id, log_msg, date_created) values (10, 5, 'nulla nunc purus phasellus in felis', '2016-11-9');
 
 
 

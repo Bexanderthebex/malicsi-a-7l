@@ -15,16 +15,20 @@ $(document).ready(function(){
     
     $('.modal').modal();
 
-    $('#competitor-profile-edit').on('click', function() {
-        $('#competitor-profile-edit-modal').openModal();
+    $('#visited-competitor-profile-edit').on('click', function() {
+        $('#visited-competitor-profile-edit-modal').openModal();
     });
 
-    $('#competitor-profile-accept').on('click', function() {
-        $('#competitor-profile-accept-modal').openModal();
+    $('#invite-to-teams-button').on('click', function() {
+        $('#invite-to-teams-modal').openModal();
     });
 
-    $('#competitor-profile-decline').on('click', function() {
-        $('#competitor-profile-decline-modal').openModal();
+    $('#visited-competitor-profile-accept').on('click', function() {
+        $('#visited-competitor-profile-accept-modal').openModal();
+    });
+
+    $('#visited-competitor-profile-decline').on('click', function() {
+        $('#visited-competitor-profile-decline-modal').openModal();
     });
 
     $('.datepicker').pickadate({
@@ -38,8 +42,8 @@ $(document).ready(function(){
             $(this).find('.game-desc').stop().fadeOut(200);
         },
     });
-    $('.game-desc').css('height', $(".competitor-game-img").height());
-    $('.game-desc').css('width', $(".competitor-game-img").width());
+    $('.game-desc').css('height', $(".visited-competitor-game-img").height());
+    $('.game-desc').css('width', $(".visited-competitor-game-img").width());
 
     /*************************************************************
         var chip = {
