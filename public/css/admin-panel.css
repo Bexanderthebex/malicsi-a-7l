@@ -1,0 +1,59 @@
+.admin-padding-right {
+    padding-right: 0rem !important;
+}
+
+.admin-padding-left {
+    padding-left: 0rem !important;
+}
+
+.admin-fixed-sidebar {
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    padding: 0!important;
+}
+
+#admin-title{
+    width: 100%;
+    height: 25%;
+    text-align: center;
+}
+
+#admin-buttons{
+    width: 100%;
+    max-height: 70%;
+    overflow-y: auto;
+    margin-right: 10px;
+}
+
+#admin-buttons button{
+    border: none;
+    width: 100%!important;
+    height: 50px;
+    background: transparent;
+    color: white;
+    font-family: telegrafico;
+}
+
+#admin-buttons button:hover{
+    background: #00719c;
+    transition: background 0.3s;
+    color: #001f2b;
+}
+
+.admin-hidden-item{
+    width: 100%;
+    height: 50px;
+    background: #00719c!important;
+    color: white!important;
+}
+
+.admin-hidden-item:hover{
+    color: #00719c!important;
+}
+
+#admin-stopper{
+    width: 100%;
+    height: 5%;
+}
