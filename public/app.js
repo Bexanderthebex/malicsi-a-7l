@@ -71,6 +71,11 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
+            .when('/adminpanel', {
+                'templateUrl': 'views/admin-panel.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
     }
 
 })();

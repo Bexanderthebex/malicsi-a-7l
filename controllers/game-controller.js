@@ -150,3 +150,20 @@ exports.countGameOrganizer = (req, res) => {
 			}
 		});
 }
+
+exports.viewUpcomingOngoingGames = (req,res) =>{
+	let query = 'call view_all_upcoming_ongoing_games();';
+	connection.userType('A').query(query, 
+	(err, results, fields)	=> {
+		if (!err && results[0].length!=0) {
+			res.status(200).send(results[0]);
+		}
+		else if (results[0].length==0){
+			res.status(404).send("No upcoming/ongoing games.");
+		}		
+		else{
+			console.log(err.code);
+			res.status(500).send("An error occurred.");
+		}
+	});
+}
