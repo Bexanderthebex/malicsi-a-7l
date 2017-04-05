@@ -33,7 +33,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -101,7 +101,7 @@
 
             $http({
                 method: 'GET',
-                params: ,
+                params: null, //temporary, pls fix.
                 url: '',
                 headers: headers
             }).then((res) => {
@@ -119,7 +119,7 @@
 
             $http({
                 method: 'GET',
-                params: ,
+                params: null, //temporary, pls fix.
                 url: '',
                 headers: headers
             }).then((res) => {
