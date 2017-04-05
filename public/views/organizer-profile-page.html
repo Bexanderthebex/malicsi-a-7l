@@ -9,6 +9,9 @@
             </div>
 
             <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getOrganizer()">
+            <!-- ng-init -> ito muna yung tatawagin para makuha yung organizer na kailangan
+            yung irereturn ng getOrganizer() ay isang organizer, which is yung $scope.organizer
+            accessible yung values ng attributes ng organizer by enclosing it sa {{ }} -->
                 <h3 class="rockwell">{{ organizer.name }} <a id="organizer-profile-edit" data-target="organizer-profile-edit-modal"><i class="material-icons">edit</i></a></h3>
                 <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
                 <p class="telegrafico">
@@ -26,6 +29,7 @@
                         <div class="input-field col s12" style="margin-top: -5px;">
                             <span class="telegrafico">Game Name</span>
                             <input placeholder="Enter game name" id="name" type="text" class="validate" ng-model="newGame.gameName">
+                            <!-- ng-model -> para makuha yung value na iiinput ng user as name ng bagong game -->
                         </div>
                     </div>
                     <div class="row">
@@ -75,12 +79,15 @@
                     <table class="highlight responsive-table organizer-games-data" ng-init="retrieveGame()">
                         <tbody class="">
                             <tr class="century-gothic" ng-repeat="game in games">
+                            <!-- ng-repeat -> itong <tr> na naka repeat ay mauulit ng ilang beses depende sa 
+                            kung ilan yung laman ng games na array
+                            game represents on element in the array games--> 
                                 <td>{{ game.name }}</td>
                                 <td>{{ game.start_date }}</td>
                                 <td>{{ game.location }}</td>
                                 <td>
                                     <div class="organizer-actions" data-target="organizer-update-game-modal">
-                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                        <i class="fa fa-pencil-square-o fa-lg" ng-click="copy(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
                                         <i class="fa fa-minus-square fa-lg"></i>
@@ -255,29 +262,29 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <span class="telegrafico">Game Name</span>
-                        <input placeholder="Enter game name" id="name" type="text" class="validate" ng-model="game.gameName">
+                        <input placeholder="Enter game name" id="name" type="text" class="validate" ng-model="gameCopy.name">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <span class="telegrafico">Location</span>
-                        <input placeholder="Enter location" id="location" type="text" class="validate" ng-model="game.locat">
+                        <input placeholder="Enter location" id="location" type="text" class="validate" ng-model="gameCopy.location">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
                         <span class="telegrafico">Start Date</span>
-                        <input id="start-date" class="datepicker validate" ng-model="game.startDate">
+                        <input id="start-date" class="datepicker validate" ng-model="gameCopy.startDate">
                     </div>
                     <div class="input-field col s6">
                         <span class="telegrafico">End Date</span>
-                        <input id="end-date" class="datepicker validate" ng-model="game.endDate">
+                        <input id="end-date" class="datepicker validate" ng-model="gameCopy.endDate">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <span class="telegrafico">Description</span>
-                        <textarea id="description" class="materialize-textarea" ng-model="game.descrip"></textarea>
+                        <textarea id="description" class="materialize-textarea" ng-model="gameCopy.description"></textarea>
                     </div>
                 </div>
             </form>
@@ -286,7 +293,7 @@
     <div class="divider"></div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">check</i>Update</a>
+        <a class="modal-action modal-close waves-effect btn-flat telegrafico" ng-click="updateGame()"><i class="material-icons left">check</i>Update</a>
     </div>
 </div>
 
@@ -309,7 +316,11 @@
     <div class="divider"></div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat" ng-click="addGame()"><i class="material-icons left">check</i>Yes</a>
+        <a class="modal-action modal-close waves-effect btn-flat" ng-click="addGame()"><i class="material-icons left">check
+        <!-- ng-click -> natatawag yung method na addGame() kapag kiniclick itong anchor kung 
+        nasaan yung ng-click
+        the function addGame() ay matatagpuan sa controller, which is yung function addGame() {... -->
+        </i>Yes</a>
     </div>
 </div>
 

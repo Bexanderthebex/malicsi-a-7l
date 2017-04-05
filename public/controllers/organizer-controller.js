@@ -6,9 +6,10 @@
         .module('app')
         .controller('OrganizerController', OrganizerController);
 
-    OrganizerController.$inject = ['$scope', 'OrganizerService'];
+    OrganizerController.$inject = ['$scope', '$window', 'OrganizerService'];
 
-    function OrganizerController($scope, OrganizerService) {
+    function OrganizerController($scope, $window, OrganizerService) {
+        //"declare" functions para magamit sa view
         $scope.addGame = addGame;
         $scope.retrieveGame = retrieveGame;
         $scope.deleteGame = deleteGame;
@@ -17,6 +18,9 @@
         $scope.getOrganizer = getOrganizer;
         $scope.acceptRequest = acceptRequest;
         $scope.updateOrganizer = updateOrganizer;
+        $scope.copy = copy;
+
+        //kumabaga "declare" or "initialize" "variables" para mag-access sa front-end yung mga data
         $scope.organizer = {};
         $scope.game = {};
         $scope.requests = [];
@@ -30,47 +34,62 @@
             descrip: undefined
         };
 
+        function copy(game) {
+            $scope.gameCopy = {
+                gameId: game.game_id,
+                name: game.name,
+                startDate: game.start_date,
+                endDate: game.end_date,
+                location: game.location,
+                description: game.description
+            }
+        }
+
         function addGame() {
             $scope.newGame.startDate = $('#start-date').val();
             $scope.newGame.endDate = $('#end-date').val();
             console.log($scope.newGame);
             OrganizerService
-                .addGame($scope.newGame)
-                .then(function (res){
+                .addGame($scope.newGame) //calls addGame function in OrganizerService
+                .then(function (res){ //function block when success sa OrganizerService
                     console.log("added");
-                }, function(err) {
-                    console.log(err);
+                    Materialize.toast('Successfully added new game!', 3000);
+                }, function(err) { //function block when nag-fail yung dapat gawin sa OrganizerService
+                    Materialize.toast('New game not added!', 3000);
                 })
                 // $route.reload();
         }
 
         function retrieveGame() {
             OrganizerService
-                .retrieveGame('12')
-                .then(function(res) {
-                    $scope.games = res.data.data;
+                .retrieveGame('12') //parameters depend on kung ano kailangan ng back-end controllers
+                .then(function(res) { //function block when success in service
+                    $scope.games = res.data.data; //ilalagay sa $scope.games yung res na nakuha sa back-end
+                    //$scope para ma-access siya sa frontend
+                    //accessible sa front-end yung mga $scope using ng-model
                     console.log($scope.games);
                     console.log(res.data.data);
-                }, function(err) {
-                    //console.log(err);
+                }, function(err) { //function block when failed
+                    Materialize.toast('Games not retrieved.', 3000);
                 })
         }
 
-        function deleteGame(id) {
+        function deleteGame() {
             OrganizerService
                 .deleteGame(id)
                 .then(function(res) {
-                    console.log("deleted");
+                    Materialize.toast('Successfully deleted game!', 3000);
                 }, function(err) {
-                    console.log(err.data);
+                    Materialize.toast('Error deleting game!', 3000);
                 })
         }
 
         function updateGame() {
             OrganizerService
-                .updateGame($scope.game)
+                .updateGame($scope.gameCopy)
                 .then(function(res) {
-                    console.log("updated");
+                    Materialize.toast('Successfully updated game!', 3000);
+                    $scope.retrieveGame();
                 }, function(err) {
                     console.log(err.data);
                 })
@@ -83,7 +102,7 @@
                     console.log(res.data.data);
                     $scope.requests = res.data.data;
                 }, function(err) {
-                    
+                    Materialize.toast('Error retrieving requests.', 3000);
                 })
         }
 
@@ -94,7 +113,7 @@
                     console.log(res.data);
                     $scope.organizer = res.data;
                 }, function(err) {
-
+                    Materialize.toast('Error retrieving organizer!', 3000);
                 })
         }
 
@@ -102,9 +121,9 @@
             OrganizerService
                 .acceptRequests('12')
                 .then(function(res) {
-                    console.log("accepted");
+                    Materialize.toast('Successfully accepted request!', 3000);
                 }, function(err) {
-                    console.log("error");
+                    Materialize.toast('Failed to accept request!', 3000);
                 })
         }
 
@@ -113,8 +132,9 @@
                 .updateOrganizer($scope.organizer)
                 .then(function(res) {
                     console.log("updated organizer");
+                    Materialize.toast('Successfully updated organizer!', 3000);
                 }, function(err) {
-                    console.log("error updating organizer");
+                    Materialize.toast('Failed to update organizer!', 3000);
                 })
         }
 
