@@ -6,7 +6,7 @@
 
     function LandingCtrl($scope, $http) {
         $scope.iconUrl = "";
-
+        
         $http.get('/user')
         .then(function(result){
             if (result.data === "") {
