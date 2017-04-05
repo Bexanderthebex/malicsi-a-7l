@@ -74,25 +74,27 @@ exports.viewGameDetails = (req, res) => {
 
 exports.searchForGameByKeyword = (req,res) => {
 	let query = 'call search_for_game_by_keyword(?);';
-	let param = '%' + req.params.keyword + '%';
-	connection.userType('A').query(query, 
-		param,
-		(err, results, fields)	=> {
-		console.log(err);
-		console.log(results);
-		if (!err && results[0].length!=0) {
-			res.status(200).send(results[0]);
-		}
-		else if (results[0].length==0){
-			res.status(404).send("Game not found.");
-		}		
-		else{
-			console.log(err.code);
-			res.status(500).send("An error occurred.");
-		}
-		
-	});
-	
+	let param = '%' + req.query.keyword + '%';
+	if(req.query.keyword != ''){
+		connection.userType('A').query(query, 
+			param,
+			(err, results, fields)	=> {
+			console.log(err);
+			console.log(results);
+			if (!err && results[0].length!=0) {
+				res.status(200).send(results[0]);
+			}
+			else if (results[0].length==0){
+				res.status(404).send("Game not found.");
+			}		
+			else{
+				console.log(err.code);
+				res.status(500).send("An error occurred.");
+			}
+		});
+	}else{
+		res.status(200).send([]);
+	}
 }
 
 exports.viewAllSportsInGame = (req, res) => {
