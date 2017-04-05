@@ -16,7 +16,9 @@
         $scope.getRequests = getRequests;
         $scope.getOrganizer = getOrganizer;
         $scope.acceptRequest = acceptRequest;
+        $scope.updateOrganizer = updateOrganizer;
         $scope.organizer = {};
+        $scope.game = {};
         $scope.requests = [];
         $scope.games = [];
         $scope.newGame = {
@@ -64,9 +66,9 @@
                 })
         }
 
-        function updateGame(game) {
+        function updateGame() {
             OrganizerService
-                .updateGame(game)
+                .updateGame($scope.game)
                 .then(function(res) {
                     console.log("updated");
                 }, function(err) {
@@ -108,7 +110,7 @@
 
         function updateOrganizer() {
             OrganizerService
-                .updateOrganizer(organizer)
+                .updateOrganizer($scope.organizer)
                 .then(function(res) {
                     console.log("updated organizer");
                 }, function(err) {

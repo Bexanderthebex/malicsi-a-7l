@@ -17,7 +17,8 @@
             updateGame: updateGame,
             deleteGame: deleteGame,
             getRequests: getRequests,
-            getOrganizer: getOrganizer
+            getOrganizer: getOrganizer,
+            updateOrganizer: updateOrganizer
         }
 
         return service;
@@ -59,10 +60,10 @@
 
         function updateGame(game) {
             let deferred = $q.defer();
-
+            console.log(game);
             $http({
                 method: 'PUT',
-                params: game, // json
+                data: $.param(game), // json
                 url: '/game/updateGame',
                 headers: headers
             }).then((res) => {
@@ -145,6 +146,24 @@
                 method: 'GET',
                 params: { 'search': id },
                 url: '/organizer/getOrganizer',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function updateOrganizer(organizer) {
+            let deferred = $q.defer();
+            console.log(organizer);
+            $http({
+                method: 'PUT',
+                data: $.param(organizer),
+                url: '/organizer/editOrganizer',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);
