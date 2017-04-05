@@ -98,6 +98,26 @@ exports.getTeamStatistics = (req, res) => {
         })
 }  
 
+exports.getOrganizationRankings = (req, res) => {
+    query = "CALL organization_rankings(?)";
+    
+    connection.userType('A').query(query,
+        [
+            req.query.org_id
+        ], (err, rows) => {
+            if(!err) {
+                if (rows[0].length == 1){
+                    return res.status(200).send(rows[0][0]);
+                }
+                else{
+                    return res.status(200).send(rows[0]);
+                }
+            } else {
+                return res.status(500).send({ 'message' : 'An error occured'});
+            }
+        })
+}  
+
 exports.countTeamInSports = (req, res) => {
     query = "CALL count_teams_in_sport(?)";
     
@@ -167,6 +187,27 @@ exports.getCoachedTeam = (req, res) => {
     connection.userType('A').query(query,
     [
         req.query.id
+    ], (err, rows) => {
+        if(!err) {
+                if (rows[0].length == 1){
+                    return res.status(200).send(rows[0][0]);
+                }
+                else{
+                    return res.status(200).send(rows[0]);
+                    
+                }
+            } else {
+                return res.status(500).send({ 'message' : 'An error occured'});
+            }
+    });
+}
+
+exports.getTeamsOnOrganization = (req, res) => {
+    query = "CALL get_teams_on_organization(?)";
+
+    connection.userType('A').query(query,
+    [
+        req.query.org_id
     ], (err, rows) => {
         if(!err) {
                 if (rows[0].length == 1){
