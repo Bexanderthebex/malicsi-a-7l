@@ -9,12 +9,12 @@
 
         $http.get('/user')
         .then(function(result){
-            //if (result.message == 'Successfully logged in') {
-            console.log("kek", result);
             if (result.data === "") {
+                console.log("kek", result);
                 $scope.iconUrl = '/login';
             } else {
-                $scope.iconUrl = '/competitor/profile'
+                console.log("kek", result);
+                $scope.iconUrl = '/competitor/profile';
             }
         }, function(err) {
             console.log(err);

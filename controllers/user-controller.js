@@ -224,12 +224,11 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 		let currentUser = req.session.user;
 		connection.userType('A').query('SELECT * FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
-				let returnObject = rows[0];
+				let returnObject = rows;
 
 				if(currentUser.type == 'C') {
 					connection.userType('A').query('SELECT birthday, sex, first_name, last_name, nickname from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
 						if(!err) {
-
 							returnObject['birthday'] = rows[0].birthday;
 							returnObject['sex'] = rows[0].sex;
 							returnObject['first_name'] = rows[0].first_name;
@@ -259,7 +258,6 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 									value: rows[0].nickname
 								}
 							);*/
-
 							res.status(200).send(returnObject);
 							return returnObject;
 						} else {
