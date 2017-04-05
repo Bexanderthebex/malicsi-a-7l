@@ -95,6 +95,16 @@
                 })
         }
 
+        function acceptRequest(team) {
+            OrganizerService
+                .acceptRequest(team)
+                .then(function(res) {
+                    console.log("accepted");
+                }, function(err) {
+                    console.log(err.data);
+                })
+        }
+
         function updateOrganizer() {
             OrganizerService
                 .updateOrganizer(organizer)

@@ -116,6 +116,24 @@
             return deferred.promise;
         }
 
+        function acceptRequests(teamId) {
+            let deferred = $q.defer();
+
+            $http({ 
+                method: 'PUT',
+                params: teamId,
+                url: '/organizer/acceptRequest',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+        
         function getOrganizer(id) {
             let deferred = $q.defer();
 
