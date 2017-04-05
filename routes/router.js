@@ -79,7 +79,8 @@ router.get('/organizer/findTeam',organizerController.findTeam);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
 router.get('/organizer/getRequest', organizerController.getRequest);
 router.post('/organizer/processRequest', organizerController.processRequest);
-router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);
+router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);	
+router.get('/organizer/getOrganizer',organizerController.getOrganizer);
 
 //team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
@@ -93,6 +94,7 @@ router.get('/team/getTeam',teamController.getTeam);
 router.get('/team/getCoachedTeams',teamController.getCoachedTeam);
 router.get('/team/getTeamsOnOrganization',teamController.getTeamsOnOrganization);
 router.get('/team/getOrganizationRankings',teamController.getOrganizationRankings);
+
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
