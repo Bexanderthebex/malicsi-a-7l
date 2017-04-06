@@ -53,6 +53,17 @@ CREATE PROCEDURE team_membership_request (IN idin INT, IN team_idin INT)
 
 DELIMITER ;
 
+
+DROP PROCEDURE IF EXISTS delete_membership_request;
+DELIMITER //
+CREATE PROCEDURE delete_membership_request (IN idin INT, IN team_idin INT) 
+	BEGIN
+	   DELETE FROM competitor_joins_team WHERE id = idin AND team_id = team_idin;
+	END; //
+
+DELIMITER ;
+
+
 DROP PROCEDURE IF EXISTS accept_membership_request;
 DELIMITER //
 CREATE PROCEDURE accept_membership_request (IN idin INT, IN team_idin INT) 
@@ -79,6 +90,7 @@ CREATE PROCEDURE organization_rankings ( IN org_id INT)
 	END; //	
 
 DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS count_teams_in_sport;
 DELIMITER //

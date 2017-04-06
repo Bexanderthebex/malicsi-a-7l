@@ -73,17 +73,45 @@ exports.editCompetitor = (req,res) => {
 			req.body.id
 		], (err, rows) => {
 			if(!err) {
-				console.log(req.body);
 				connection.userType('A').query(query1, 
 					[
 						req.body.id
 					], (err, rows) => {
 						if(!err) {
-							// console.log('Here');
-							// console.log(rows[0][0]);
+							return res.status(200).send(rows[0][0]);
+						}
+					}
+				);
+			} else {
+				return res.status(501).send({ 'message' : 'Not implemented'});
+			}
+		}
+	);
+}
+
+exports.editCompetitorBio = (req,res) => {
+	query = "CALL edit_competitor_bio(?,?)";
+	query1 = "CALL get_competitor(?)";
+
+	console.log("id: " + req.body.id);
+	console.log("bio: " + req.body.bio);
+	connection.userType('A').query(query,
+		[
+			req.body.bio,
+			req.body.id
+		], (err, rows) => {
+			if(!err) {
+				connection.userType('A').query(query1, 
+					[
+						req.body.id
+					], (err, rows) => {
+						if(!err) {
+							console.log('Here');
+							console.log(rows[0][0]);
 							return res.status(200).send(rows[0][0]);
 						}
 						else{
+							console.log(err);
 							return res.status(500).send({'message' : 'Internal Server Error'});
 						}
 					}
