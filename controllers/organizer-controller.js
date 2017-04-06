@@ -76,9 +76,9 @@ exports.findGames = (req,res,next) => {
 		], (err,rows) => {
 			if(!err){
 				if(rows.length == 1){
-					return res.status(200).send({'message' : 'Sucessfully Retrieved Info' , 'data': rows[0][0]});
+					return res.status(200).send(rows[0][0]);
 				} else {
-					return res.status(200).send({'message' : 'Sucessfully Retrieved Info', 'data': rows[0]});
+					return res.status(200).send(rows[0]);
 				}
 			} else {
 			 	return res.status(500).send({'message' : 'Internal Server Error'})
