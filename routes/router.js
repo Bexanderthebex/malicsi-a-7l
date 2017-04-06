@@ -117,6 +117,7 @@ router.put('/sport/editSport', sportController.editSport);
 router.delete('/sport/deleteSport', sportController.deleteSport);
 router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
 router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);
+router.get('/sport/ranks/:sportId', sportController.retrieveSportRankings);
 
 //match routers
 router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
