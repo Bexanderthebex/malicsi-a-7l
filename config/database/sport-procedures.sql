@@ -99,6 +99,25 @@ BEGIN
 END //
 DELIMITER ;
 
+
+
+DELIMITER //
+DROP PROCEDURE IF EXISTS retrieve_team_rankings_from_sport //
+CREATE PROCEDURE retrieve_team_rankings_from_sport (IN in_sport_id INT(11))
+BEGIN
+	select organization.name as org_name, sum(team_in_match.ranking) as total_ranks from team_in_match, sport, sport_match, team, organization where sport.sport_id = in_sport_id and sport.sport_id = sport_match.sport_id and sport_match.match_id = team_in_match.match_id and team.team_id = team_in_match.team_id and team.team_organization = organization.organization_id and team_in_match.ranking is not NULL group by organization.name;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS search_for_sport_by_keyword;
+DELIMITER //
+CREATE PROCEDURE search_for_sport_by_keyword(in keyword varchar(50))
+BEGIN
+	select sport.sport_name, sport.start_date, sport.end_date, time_start, time_end, max_teams, sport.mechanics, game.name as game_name from sport,game where (sport.sport_name like keyword or sport.mechanics like keyword or game.name like keyword or game.location like keyword) and sport.game_id = game.game_id;
+END;
+//
+DELIMITER ;
+
 -- create sport
 GRANT EXECUTE ON PROCEDURE create_sport TO organizer;
 GRANT EXECUTE ON PROCEDURE create_sport TO administrator;
@@ -131,3 +150,14 @@ GRANT EXECUTE ON PROCEDURE count_sport_by_game TO administrator;
 GRANT EXECUTE ON PROCEDURE count_sport_by_game TO competitor;
 GRANT EXECUTE ON PROCEDURE count_sport_by_game TO guest;
 
+-- retrieve team rankings from sport
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO organizer;
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO administrator;
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO competitor;
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO guest;
+
+-- search all sport by keyword
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO organizer;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO administrator;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO competitor;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO guest;

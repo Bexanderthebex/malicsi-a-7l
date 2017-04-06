@@ -162,6 +162,66 @@
   margin-right: 10px;
 }
 
-.slider5 {
-  margin-left: 10%;
+.recent-games-card {
+  border-radius: 2px;
+  height: 100% !important;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 2%;
+}
+
+.recent-games-card h4 {
+  margin-top: 0;
+}
+
+.recent-games-card span {
+  padding-bottom: 2%;
+}
+
+.see-more {
+  margin: 0;
+  margin-top: 2.5%;
+  border: 0;
+  height: 100% !important;
+
+}
+
+.recent-games-card:hover {
+  background: #00719c;
+  transition: background 0.5s;
+}
+
+.see-more:hover {
+  background: none;
+  transition: none;
+}
+
+.recent-games-card:hover h4, .recent-games-card:hover span {
+  color: white!important;
+}
+
+.all-games-card:hover {
+  background: #00719c;
+  transition: background 0.5s;
+}
+
+
+.all-games-card {
+  border-radius: 2px;
+  height: 100% !important;
+  /*margin-left: 1%;*/
+  /*margin-right: 2%;*/
+  margin-bottom: 2%;
+}
+
+.all-games-card h4 {
+  margin-top: 0;
+}
+
+.all-games-card span {
+  padding-bottom: 2%;
+}
+
+.all-games-card:hover h4, .all-games-card:hover span {
+  color: white!important;
 }

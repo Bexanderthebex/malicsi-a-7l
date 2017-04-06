@@ -123,3 +123,51 @@ exports.deleteSport = (req, res, next) => {
 
 }
 
+exports.retrieveSportRankings = (req, res, next) => {
+	let query = 'CALL retrieve_team_rankings_from_sport(?)';
+	let param = parseInt(req.params.sportId);
+	if(!isNan(param)){
+		connection.userType('A').query(query,
+			[req.params.sportId],
+			(err, rows) =>{
+				if(!err){
+					res.status(200).send(rows);
+				}
+				else if(rows.length == undefined){
+					res.status(404).send("Rankings are unavailable.");
+				}
+				else{
+					console.log(err);
+					res.status(500).send("Internal server error.");
+				}
+			});
+
+	}
+	else{
+		res.status(400).send("Invalid parameter.");
+	}
+}
+
+exports.searchForSportByKeyword = (req,res) => {
+	let query = 'call search_for_sport_by_keyword(?);';
+	let param = '%' + req.query.keyword + '%';
+	connection.userType('A').query(query, 
+		param,
+		(err, results, fields)	=> {
+		console.log(err);
+		console.log(results);
+		if (!err && results[0].length!=0) {
+			res.status(200).send(results[0]);
+		}
+		else if (results[0].length==0){
+			res.status(404).send("Game not found.");
+		}		
+		else{
+			console.log(err.code);
+			res.status(500).send("An error occurred.");
+		}
+		
+	});
+	
+}
+
