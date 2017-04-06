@@ -39,7 +39,7 @@
   /*padding: 1rem;*/
   background-color: black;
   text-align: center;
-  height: 10%;
+  height: 65px;
   float:left;
   z-index: 5;
 }
@@ -52,7 +52,7 @@
 }
 
 .home-footer div {
-  margin-top: 1%;
+  margin-top: 0.5%;
   margin-right: 1%;
 }
 
