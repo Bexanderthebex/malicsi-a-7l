@@ -263,6 +263,9 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 							console.log(err);
 						}
 					});
+				} else {
+					res.status(200).send(returnObject);
+					return returnObject;
 				}
 			} else {
 				console.log(err);
