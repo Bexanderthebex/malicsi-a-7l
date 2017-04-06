@@ -422,7 +422,7 @@
 		</div>
 
 
-
+				<!-- View All Sports in Game -->
 				<div class="row">
 					<div class="col s12 m8" ng-controller="GameController" ng-init = "retrieveAllSports()">
 						<div class="card-panel palette-3 game-remove-padding">
@@ -543,20 +543,20 @@
 			</div>
 		</div>
 	</div>	
-	<div class="modal-content">
+	<div class="modal-content" ng-controller = "GameController">
 		<div class="row">
 			<div class="input-field col s6">
-				<input placeholder="Enter sport name" id="name" type="text" class="validate">
+				<input placeholder="Enter sport name" id="name" type="text" class="validate" ng-model = "sport_name">
 				<label for="name">Sport Name</label>
 			</div>
 
 			<div class="input-field col s2">
-				<input placeholder="Enter team number limit" id="maxTeams" type="number" class="validate">
+				<input placeholder="Enter team number limit" id="maxTeams" type="number" class="validate" ng-model = "max_teams">
 				<label for="maxTeams">Max Teams</label>
 			</div>
 
 			<div class="input-field col s4">
-				<select>
+				<select id = "scoring-system">
 					<option value="" disabled selected>Choose your option</option>
 					<option value="1">Preset system 1</option>
 					<option value="2">Preset system 2</option>
@@ -584,11 +584,11 @@
 			</div>
 
 			<div class="input-field col s3">
-				<input placeholder="Date started" id="start-time" type="date" class="validate">
+				<input placeholder="Date started" id="start-date" type="date" class="validate">
 				<label class="game-adjust-label" for="start-time">Start</label>
 			</div>
 			<div class="input-field col s3">
-				<input placeholder="Date ended" id="end-time" type="date" class="validate">
+				<input placeholder="Date ended" id="end-date" type="date" class="validate">
 				<label class="game-adjust-label" for="end-time">End</label>
 			</div>
 
@@ -607,7 +607,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat">Add</a>
+		<a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-controller = "GameController" ng-click = "addSport()">Add</a>
 	</div>
 </div>
 

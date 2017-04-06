@@ -21,20 +21,29 @@
         $scope.sport = {};
         $scope.sports = [];
 
+
+
         $scope.newSport = {
-            sport_id: undefined,
-            sport_name: undefined, 
-            mechanics: undefined, 
-            max_teams: undefined, 
-            scoring_system: undefined, 
-            game_id: $scope.thisGame.game_id
+            sportName: undefined, 
+            mechanics: undefined,
+            timeStart: undefined,
+            timeEnd: undefined,
+            startDate: undefined,
+            endDate: undefined, 
+            maxTeams: undefined, 
+            scoringSystem: undefined, 
+            gameID: $scope.thisGame.game_id
         };
 
         function addSport() {
-            $scope.newSport.time_start = $('#start-time').val();
-            $scope.newSport.time_end = $('#end-time').val();
-            $scope.newSport.start_date = $('#start-date').val();
-            $scope.newSport.end_date = $('#end-date').val();
+            $scope.newSport.sportName = $('#name').val();
+            $scope.newSport.timeStart = $('#start-time').val();
+            $scope.newSport.timeEnd = $('#end-time').val();
+            $scope.newSport.startDate = $('#start-date').val();
+            $scope.newSport.endDate = $('#end-date').val();
+            $scope.newSport.mechanics = $('#description').val();
+            $scope.newSport.maxTeams = $('#maxTeams').val();
+            $scope.newSport.scoringSystem = $('#scoring-system').val();
             console.log($scope.newSport);
             GameService
                 .addSport($scope.newSport)
