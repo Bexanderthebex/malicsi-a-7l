@@ -60,25 +60,31 @@ exports.getCompetitorTeams = (req, res) => {
 exports.editCompetitor = (req,res) => {
 	currentUser = req.session.user;
 	query = "CALL edit_competitor(?,?,?,?,?,?)";
-	query1 = "CALL getCompetitor(?)";
-
-	console.log(req.body);
+	query1 = "CALL get_competitor(?)";
+	
+	console.log(req.body.id);
 	connection.userType('A').query(query,
 		[
+			req.body.birthday,
 			req.body.first_name, 
-			req.body.last_name, 
-			req.body.birthday, 
+			req.body.last_name,  
 			req.body.nickname, 
 			req.body.sex, 
 			req.body.id
 		], (err, rows) => {
 			if(!err) {
-				connection.query(query1, 
+				console.log(req.body);
+				connection.userType('A').query(query1, 
 					[
 						req.body.id
 					], (err, rows) => {
 						if(!err) {
+							// console.log('Here');
+							// console.log(rows[0][0]);
 							return res.status(200).send(rows[0][0]);
+						}
+						else{
+							return res.status(500).send({'message' : 'Internal Server Error'});
 						}
 					}
 				);

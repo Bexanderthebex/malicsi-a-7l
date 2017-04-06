@@ -23,10 +23,10 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS edit_competitor;
 DELIMITER //
-	CREATE PROCEDURE edit_competitor(IN first_name VARCHAR(30), IN last_name VARCHAR(30), IN birthday DATE, IN nickname VARCHAR(15), IN sex CHAR(1), IN id INT)
+	CREATE PROCEDURE edit_competitor(IN bday DATE, IN fname VARCHAR(30), IN lname VARCHAR(30), IN nname VARCHAR(15), IN sx CHAR(1), IN cid INT)
 
 	BEGIN
-		UPDATE competitor SET first_name = first_name, last_name = last_name, birthday = birthday, nickname = nickname, sex = sex WHERE id = id;
+		UPDATE competitor SET  birthday = bday, first_name = fname, last_name = lname, nickname = nname, sex = sx WHERE id = cid;
 	END;
 
 	//
