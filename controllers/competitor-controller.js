@@ -84,3 +84,30 @@ exports.editCompetitor = (req,res) => {
 		}
 	);
 }
+
+exports.editCompetitorBio = (req,res) => {
+	currentUser = req.session.user;
+	query = "CALL edit_competitor(?,?)";
+	query1 = "CALL getCompetitor(?)";
+
+	connection.userType('A').query(query,
+		[
+			req.body.bio,
+			req.body.id
+		], (err, rows) => {
+			if(!err) {
+				connection.query(query1, 
+					[
+						req.body.id
+					], (err, rows) => {
+						if(!err) {
+							return res.status(200).send(rows[0][0]);
+						}
+					}
+				);
+			} else {
+				return res.status(501).send({ 'message' : 'Not implemented'});
+			}
+		}
+	);
+}

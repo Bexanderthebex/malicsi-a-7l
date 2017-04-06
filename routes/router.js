@@ -72,6 +72,7 @@ router.get('/competitor/searchCompetitor', competitorController.searchCompetitor
 router.put('/competitor/editCompetitor', competitorController.editCompetitor);
 router.get('/competitor/getCompetitorTeams', competitorController.getCompetitorTeams);
 router.get('/competitor/getCompetitor', competitorController.getCompetitor);
+router.get('/competitor/editCompetitorBio', competitorController.editCompetitorBio);
 
 //organizer routers
 router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);

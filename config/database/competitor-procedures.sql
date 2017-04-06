@@ -32,6 +32,17 @@ DELIMITER //
 	//
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS edit_competitor_bio;
+DELIMITER //
+	CREATE PROCEDURE edit_competitor_bio(IN bio_in TEXT, IN id INT)
+
+	BEGIN
+		UPDATE competitor SET bio = bio_in WHERE id = id;
+	END;
+
+	//
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS get_competitor_teams;
 DELIMITER //
 	CREATE PROCEDURE get_competitor_teams(in id INT)
@@ -51,4 +62,10 @@ GRANT EXECUTE ON PROCEDURE get_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE get_competitor TO guest;
 GRANT EXECUTE ON PROCEDURE edit_competitor TO competitor;
 GRANT EXECUTE ON PROCEDURE get_competitor_teams TO administrator;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO competitor;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO guest;
+GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO administrator;
+GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO competitor;
+GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO guest;
+
 
