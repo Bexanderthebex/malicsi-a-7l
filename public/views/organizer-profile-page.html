@@ -90,7 +90,7 @@
                                         <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                        <i class="fa fa-minus-square fa-lg"></i>
+                                        <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -117,7 +117,7 @@
                                         <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                        <i class="fa fa-minus-square fa-lg"></i>
+                                        <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -141,10 +141,10 @@
                                 <td>{{ game.location }}</td>
                                 <td>
                                     <div class="organizer-actions" data-target="organizer-udpate-game-modal">
-                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                        <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                        <i class="fa fa-minus-square fa-lg"></i>
+                                        <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -184,7 +184,7 @@
                                 <i class="fa fa-check fa-lg" ng-click="copyRequest(request)"></i>
                             </div>
                             <div class="organizer-actions" data-target="organizer-profile-decline-modal">
-                                <i class="fa fa-times fa-lg"></i>
+                                <i class="fa fa-times fa-lg" ng-click="copyRequest(request)"></i>
                             </div>
                         </td>
                     </tr>
@@ -316,10 +316,7 @@
     <div class="divider"></div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat" ng-click="addGame()"><i class="material-icons left">check
-        <!-- ng-click -> natatawag yung method na addGame() kapag kiniclick itong anchor kung 
-        nasaan yung ng-click
-        the function addGame() ay matatagpuan sa controller, which is yung function addGame() {... -->
+        <a class="modal-action modal-close waves-effect btn-flat" ng-click="deleteGame()"><i class="material-icons left">check
         </i>Yes</a>
     </div>
 </div>
@@ -361,7 +358,7 @@
         </div>
     </div>  
     <div class="modal-content telegrafico">
-        <p>Are you sure you want to decline [TEAM NAME]'s request to join [SPORT NAME]?</p>
+        <p>Are you sure you want to decline {{ requestCopy.team_name }}'s request to join {{ requestCopy.sport_name }}?</p>
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
@@ -390,6 +387,9 @@
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
         <a class="modal-action modal-close waves-effect btn-flat" ng-click="addGame()"><i class="material-icons left">check</i>Yes</a>
+        <!-- ng-click -> natatawag yung method na addGame() kapag kiniclick itong anchor kung 
+        nasaan yung ng-click
+        the function addGame() ay matatagpuan sa controller, which is yung function addGame() {... -->
     </div>
 </div>
 
@@ -419,7 +419,7 @@
                                         <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                        <i class="fa fa-minus-square fa-lg"></i>
+                                        <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                 </td>
                     </tr>
@@ -459,7 +459,7 @@
                                         <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                        <i class="fa fa-minus-square fa-lg"></i>
+                                        <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                 </td>
                     </tr>
@@ -499,7 +499,7 @@
                                         <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                        <i class="fa fa-minus-square fa-lg"></i>
+                                        <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                 </td>
                     </tr>
