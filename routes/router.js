@@ -72,7 +72,7 @@ router.get('/competitor/searchCompetitor', competitorController.searchCompetitor
 router.put('/competitor/editCompetitor', competitorController.editCompetitor);
 router.get('/competitor/getCompetitorTeams', competitorController.getCompetitorTeams);
 router.get('/competitor/getCompetitor', competitorController.getCompetitor);
-router.get('/competitor/editCompetitorBio', competitorController.editCompetitorBio);
+router.put('/competitor/editCompetitorBio', competitorController.editCompetitorBio);
 
 //organizer routers
 router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);
@@ -86,6 +86,7 @@ router.put('/organizer/processRequest', organizerController.processRequest);
 router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);
 router.get('/organizer/findGames',organizerController.findGames);
 router.get('/organizer/getOrganizer',organizerController.getOrganizer);
+router.delete('/organizer/deleteTeam',organizerController.deleteTeam);
 
 //team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
