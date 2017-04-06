@@ -27,9 +27,10 @@ exports.getCompetitor = (req, res) => {
 
 	connection.userType('A').query(query, 
 		[
-			"%" + req.query.search + "%"
+			req.query.search
 		], (err, rows) => {
 		    if(!err) {
+				// console.log(rows[0][0]);
 				return res.status(200).send(rows[0][0]);
 				
 			} else {
@@ -42,12 +43,14 @@ exports.getCompetitor = (req, res) => {
 exports.getCompetitorTeams = (req, res) => {
 	query = 'CALL get_competitor_teams(?)';
 
+	console.log(req.session.user.id);
 	connection.userType('A').query(query, 
 		[
-			req.query.id
+			req.session.id
 		], (err, rows) => {
 		    if(!err) {
-				return res.status(200).send(rows[0]);				
+				console.log(rows[0][0]);
+				return res.status(200).send(rows[0][0]);				
 			} else {
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
@@ -59,6 +62,7 @@ exports.editCompetitor = (req,res) => {
 	query = "CALL edit_competitor(?,?,?,?,?,?)";
 	query1 = "CALL getCompetitor(?)";
 
+	console.log(req.body);
 	connection.userType('A').query(query,
 		[
 			req.body.first_name, 
