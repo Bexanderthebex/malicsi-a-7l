@@ -178,7 +178,7 @@ exports.viewUpcomingOngoingGames = (req,res) =>{
 			else{
 				console.log(err.code);
 				res.status(500).send("An error occurred.");
-			
+			}			
 	});
 }
 
@@ -190,9 +190,11 @@ exports.viewAllMatchesInGame = (req, res) => {
 		], (err, rows, fields) => {
 			if(!err && rows[0].length != 0){
 				return res.status(200).send(rows[0]);
-			}else if(rows[0].length ==0 ){
+			}
+			else if(rows[0].length ==0 ){
 				res.send(404).send("No ongoing games");
-			}else{
+			}
+			else{
 				res.status(500).send("Internal Server Error Occured");
 			}
 		});
