@@ -72,3 +72,40 @@
 .admin-view h4{
     margin: 0;
 }
+
+#gamefeed-game-search-bar input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: "telegrafico";
+    font-size: 16px;
+}
+
+#adminpanel-search-bar input::-webkit-search-decoration,
+#adminpanel-search-bar input::-webkit-search-cancel-button {
+    display: none; 
+}
+
+#adminpanel-search-bar input[type=search] {
+    background: white url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: none;
+    padding: 9px 10px 9px 32px;
+    width: 95%;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+#adminpanel-search-bar input[type=search] {
+    height: 17px;
+}
+
+#adminpanel-search-bar input:-moz-placeholder {
+    color: transparent;
+}
+
+#adminpanel-search-bar input::-webkit-input-placeholder {
+    color: transparent;
+}
