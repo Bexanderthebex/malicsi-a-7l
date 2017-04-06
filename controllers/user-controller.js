@@ -241,7 +241,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 						}
 					})
 				} else if (currentUser.type == 'O') {
-					connection.userType('A').query('SELECT name, description form organizer where id = ?', [currentUser.id], function(err, rows, fields) {
+					connection.userType('A').query('SELECT name, description from organizer where id = ?', [currentUser.id], function(err, rows, fields) {
 						if(!err) {
 							returnObject['name'] = rows[0].name;
 							returnObject['description'] = rows[0].description
