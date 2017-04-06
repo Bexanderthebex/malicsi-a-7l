@@ -16,7 +16,8 @@
             addSport: addSport,
             updateSport: updateSport,
             updateWinner: updateWinner,
-            deleteSport: deleteSport
+            deleteSport: deleteSport.
+            viewUpcomingOngoingGames: viewUpcomingOngoingGames;
         }
 
         return service;
@@ -34,7 +35,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -121,6 +122,21 @@
             return deferred.promise;
         }
 
-        
+        function viewUpcomingOngoingGames()
+            let deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                params: {}
+                url: '/game/viewUpcomingOngoing',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res.data);
+            }, (err) => {
+               deferred.reject(res.data);
+            });
+
+            return deferred.promise;
+        }
     }
 })();
