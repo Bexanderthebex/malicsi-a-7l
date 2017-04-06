@@ -11,10 +11,10 @@
         .then(function(result){
             if (result.data === "") {
                 console.log("kek", result);
-                $scope.iconUrl = '/login';
+                $scope.iconUrl = '#/login';
             } else {
                 console.log("kek", result);
-                $scope.iconUrl = '/competitor/profile';
+                $scope.iconUrl = '#/competitor/profile';
             }
         }, function(err) {
             console.log(err);
