@@ -37,7 +37,7 @@ DELIMITER //
 	CREATE PROCEDURE get_competitor_teams(in id INT)
 
 	BEGIN
-		SELECT *  FROM (competitor JOIN competitor_joins_team using (id)) JOIN team using (team_id) where competitor.id = 1;
+		SELECT *  FROM (competitor JOIN competitor_joins_team using (id)) JOIN team using (team_id) where competitor.id = id;
 	END;
 
 	//
