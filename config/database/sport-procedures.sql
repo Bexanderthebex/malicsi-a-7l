@@ -156,8 +156,4 @@ GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO administrator;
 GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO competitor;
 GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO guest;
 
--- search all sport by keyword
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO organizer;
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO administrator;
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO competitor;
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO guest;
+
