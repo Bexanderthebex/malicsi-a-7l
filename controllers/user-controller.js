@@ -20,7 +20,7 @@ exports.login = (req, res) => {
 							type: rows[0].type
 						}
 						console.log(req.session.user.type);
-						res.status(200).send({ 'message' : 'Successfully logged in'});
+						return res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
 						console.log('hello')
 						res.json({ 'message' : 'Incorrect credentials', 'userdata' : rows[0]}).status(401);
@@ -29,13 +29,13 @@ exports.login = (req, res) => {
 				});
 			} else {
 				//console.log(rows);
-				res.status(401).send({ 'message' : 'Incorrect credentials'});
+				return res.status(401).send({ 'message' : 'Incorrect credentials'});
 			}
 		} else {
 			if (err.code == 'ER_BAD_NULL_ERROR') {
-				res.status(500).send({ 'message' : 'Missing credentials'});
+				return res.status(500).send({ 'message' : 'Missing credentials'});
 			} else {
-				res.status(500).send({ 'message' : 'Unknown'});
+				return res.status(500).send({ 'message' : 'Unknown'});
 			}
 
 		}
@@ -110,13 +110,13 @@ exports.register = (req, res) => {
 			}else{
 				console.log(err);
 				if (err.code == 'ER_BAD_NULL_ERROR') {
-					res.status(500).send({ 'message' : 'Missing field' });
+					return res.status(500).send({ 'message' : 'Missing field' });
 				} else if (err.code == 'ER_DUP_ENTRY') {
-					res.status(500).send({ 'message' : 'Duplicate entry' });
+					return res.status(500).send({ 'message' : 'Duplicate entry' });
 				} else {
-					res.status(500).send({ 'message': 'Unknown' });
+					return res.status(500).send({ 'message': 'Unknown' });
 				}
-				//res.status(501).send({ 'message' : 'Not implemented'});
+				//return res.status(501).send({ 'message' : 'Not implemented'});
 			}
 		}
 	);
@@ -137,12 +137,12 @@ exports.update = (req, res) =>{
 		req.body.contact,
 		req.session.user.id
 	], function (err, rows) {
-		if(err) res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
+		if(err) return res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
 		else if (rows.affectedRows === 0) {
-			res.status(404).send({ 'message': 'User was not updated.' });
+			return res.status(404).send({ 'message': 'User was not updated.' });
 		} else {
 			req.session.user.username = req.body.username;
-			res.status(200).send(rows);
+			return res.status(200).send(rows);
 		}
 	});
 }
@@ -153,12 +153,12 @@ exports.returnInfo = (req, res) => {
 		req.params.id
 	], function(err, rows) {
 		if (err) {
-			res.status(404).send({ 'message' : 'Error getting user info!', 'data': err});
+			return res.status(404).send({ 'message' : 'Error getting user info!', 'data': err});
 		} else {
 			if(rows[0]) {
-				res.status(200).send(rows[0]);
+				return res.status(200).send(rows[0]);
 			} else {
-				res.status(404).send({ 'message' : 'User does not exist!'});
+				return res.status(404).send({ 'message' : 'User does not exist!'});
 			}
 		}
 	});
@@ -181,7 +181,7 @@ exports.registerCompetitor = (req, res) => {
 				type: req.body.type
 			};
 
-			res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
+			return res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
 			/*returnObject.push(
 				{
 					key: "birthday",
@@ -208,11 +208,11 @@ exports.registerCompetitor = (req, res) => {
 		}else{
 			console.log(err);
 			if (err.code == 'ER_BAD_NULL_ERROR') {
-				res.status(500).send({ 'message' : 'Missing field' });
+				return res.status(500).send({ 'message' : 'Missing field' });
 			} else if (err.code == 'ER_DUP_ENTRY') {
-				res.status(500).send({ 'message' : 'Duplicate entry' });
+				return res.status(500).send({ 'message' : 'Duplicate entry' });
 			} else {
-				res.status(500).send({ 'message': 'Error inserting new competitor!' });
+				return res.status(500).send({ 'message': 'Error inserting new competitor!' });
 			}
 		}
 	});
@@ -237,7 +237,6 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 							returnObject[0]['last_name'] = rows[0].last_name;
 							returnObject[0]['nickname'] = rows[0].nickname;
 							returnObject[0]['bio'] = rows[0].bio;
-
 					
 							// console.log("2nd: ")
 							// console.log(returnObject[0]);
@@ -261,12 +260,14 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 									value: rows[0].description
 								}
 							);
-
-							res.status(200).send(returnObject[0]);
+              
+							return res.status(200).send(returnObject);
 						} else {
 							console.log(err);
 						}
 					});
+				} else {
+					return res.status(200).send(returnObject);
 				}
 			} else {
 				console.log(err);
