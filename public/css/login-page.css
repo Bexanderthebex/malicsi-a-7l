@@ -107,6 +107,13 @@
 	margin: 0!important;
 }
 
+input::-webkit-input-placeholder{
+	color: black!important;
+	font-family: century-gothic!important;
+	letter-spacing: 1px!important;
+	font-style: bold;
+}
+
 #login-container input::-webkit-input-placeholder{
 	color: black!important;
 	font-family: century-gothic!important;
