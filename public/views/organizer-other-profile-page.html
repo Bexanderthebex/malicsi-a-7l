@@ -1,0 +1,137 @@
+<div id="mainHolder">
+    <!-- Do not put anything inside main holder -->
+    <!-- Main holder just keeps the main below the navbar -->
+    <div id="main" class="">
+        <!-- Organizer Basic Info -->
+        <div class="row palette-3 organizer-profile-info">
+            <div class="col l3 m5 s12 offset-l2 center">
+                <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
+            </div>
+
+            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getOrganizer()">
+                <h3 class="rockwell">{{ organizer.name }} <a id="organizer-profile-edit" data-target="organizer-profile-edit-modal"><i class="material-icons">edit</i></a></h3>
+                <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
+                <p class="telegrafico">
+                    {{ organizer.description }}
+                </p>
+            </div>
+        </div>
+
+        <div class="row container">
+        <!-- Games Handled -->
+            <div class="col s12">
+                <h5 class="rockwell">Games Handled</h5>
+                
+                <ul class="tabs tabs-transparent telegrafico" id="organizer-profile-games">
+                    <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">ONGOING (5)</a></li>
+                    <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">INCOMING (3)</a></li>
+                    <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">PAST (12)</a></li>
+                    <div class="indicator white" style="z-index: 1"></div>
+                </ul>
+                
+
+                <div id="organizer-profile-ongoing" class="col s12">
+                    <table class="highlight responsive-table organizer-games-data" ng-init="retrieveGame()">
+                        <tbody class="">
+
+                            <tr ng-repeat="game in games" class="century-gothic">
+                                <td>{{ game.name }}</td>
+                                <td>{{ game.start_date }}</td>
+                                <td>{{ game.location}}</td>
+                            </tr>
+
+                            <tr class="century-gothic">
+                                <td>PalICSihan 2017</td>
+                                <td>April 1, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                                
+                            </tr>
+                            <tr class="century-gothic">
+                                <td>PalICSihan 2017</td>
+                                <td>April 1, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <table class="highlight organizer-showall">
+                        <tbody>
+                            <tr>
+                                <td class="center-align century-gothic white-text palette-3" id="organizer-ongoing-showall" data-target="organizer-ongoing-modal">Show All</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="organizer-profile-incoming" class="col s12">
+                    <table class="highlight responsive-table organizer-games-data">
+                        <tbody>
+                            <tr class="century-gothic" ng-repeat="game in games">
+                                <td>{{ game.name }}</td>
+                                <td>{{ game.start_date}}</td>
+                                <td>{{ game.location }}</td>
+                            </tr>
+
+                            <tr class="century-gothic">
+                                <td>PalICSihan 2017</td>
+                                <td>April 1, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="highlight organizer-showall">
+                        <tbody>
+                            <tr>
+                                <td class="center-align century-gothic white-text palette-3" id="organizer-incoming-showall" data-target="organizer-ongoing-modal">Show All</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div id="organizer-profile-past" class="col s12">
+                    <table class="highlight responsive-table organizer-games-data">
+                        <tbody>
+
+                            <tr class="century-gothic" ng-repeat="game in games">
+                                 <td>{{ game.name }}</td>
+                                <td>{{ game.start_date}}</td>
+                                <td>{{ game.location }}</td>
+                            </tr>
+
+                            <tr class="century-gothic">
+                                <td>PalICSihan 2017</td>
+                                <td>April 1, 2017</td>
+                                <td>Freedom Park, UPLB</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="highlight organizer-showall">
+                        <tbody>
+                            <tr>
+                                <td class="center-align century-gothic palette-3" id="organizer-ongoing-showall" data-target="organizer-past-modal">Show All</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="row organizer-footer black">
+            <div class="black">
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#"> Help </a></li>
+                    <li><a href="#"> About Us </a></li>
+                    <li>All Rights Reserved</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--  Scripts-->
+<script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>
+<script type="text/javascript" src="../js/organizer-profile-page.js"></script>

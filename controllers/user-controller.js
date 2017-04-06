@@ -219,7 +219,7 @@ exports.registerCompetitor = (req, res) => {
 
 exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 	if (req.session == null || req.session.user == undefined) {
-		return res.status(200).send(null);
+		res.status(200).send(null);
 	} else {
 		let currentUser = req.session.user;
 		connection.userType('A').query('SELECT * FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
@@ -235,8 +235,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 							returnObject['last_name'] = rows[0].last_name;
 							returnObject['nickname'] = rows[0].nickname;
 
-							res.status(200).send(returnObject);
-							return returnObject;
+							res.status(200).send(returnObject[0]);
 						} else {
 							console.log(err);
 						}
@@ -257,8 +256,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 								}
 							);
 
-							res.status(200).send(returnObject);
-							return returnObject;
+							res.status(200).send(returnObject[0]);
 						} else {
 							console.log(err);
 						}
