@@ -109,7 +109,13 @@ BEGIN
 END //
 DELIMITER ;
 
-
+DELIMITER //
+DROP PROCEDURE IF EXISTS view_all_matches_in_game //
+CREATE PROCEDURE view_all_matches_in_game(in game_id_input INT(11))
+BEGIN
+	SELECT team_id, match_id, sport_id, game_id, sport_match.time_start, sport_match.time_end from ((game join sport using (game_id)) join sport_match using (sport_id)) join team_in_match using (match_id) where game_id = game_id_input;
+END //
+DELIMITER ;
 
 -- create sport
 GRANT EXECUTE ON PROCEDURE create_sport TO organizer;
@@ -148,3 +154,9 @@ GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO organizer;
 GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO administrator;
 GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO competitor;
 GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO guest;
+
+-- view all matches in game
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO guest;

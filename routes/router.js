@@ -100,6 +100,7 @@ router.get('/team/getOrganizationRankings',teamController.getOrganizationRanking
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
+router.get('/game/viewAllMatchesInGame', gameController.viewAllMatchesInGame);
 router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
 router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
@@ -109,7 +110,6 @@ router.put('/game/updateGame',  gameController.updateGame);
 router.put('/game/editSponsor',  sponsorController.editSponsorDetails);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
-
 
 //sport routers
 router.get('/sport/viewSport', sportController.viewSportDetails);
