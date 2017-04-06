@@ -1,0 +1,35 @@
+.orgfeed-match-header {
+    margin-top: -18px !important;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    height: 70px;
+}
+
+.orgfeed-match-header h4 {
+    font-size: 300%;
+}
+
+.orgfeed-orglist {
+    margin-top: 5%;
+}
+
+.orgfeed-orglist a {
+    font-size: 150%;
+}
+
+.orgfeed-orglist a:hover {
+    color: white;
+    transition: all .5s;
+}
+
+.orgfeed-game-container {
+    margin: 0 auto;
+    margin-top: 2%;
+    max-width: 1280px;
+    width: 80%;
+}
+
+.orgfeed-sort-adjust {
+    margin-top: 5px !important;
+    margin-left: 11%;
+}
