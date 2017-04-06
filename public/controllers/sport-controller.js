@@ -9,14 +9,15 @@
     SportController.$inject = ['$scope', 'SportService', 'OrganizerService'];
 
     function SportController($scope, SportService, OrganizerService) {
-        $scope.initialize = initialize;
         $scope.addMatch = addMatch;
         $scope.editMatch = editMatch;
         $scope.deleteMatch = deleteMatch;
         $scope.retrieveMatches = retrieveMatches;
         $scope.retrieveSport = retrieveSport;
+        $scope.retrieveSportRankings = retrieveSportRankings;
         $scope.sport = {};
         $scope.game = {};
+        $scope.rankings = [];
         $scope.newMatch = {
             orgID: undefined,
             gameName: undefined,
@@ -25,10 +26,6 @@
             locat: undefined,
             descrip: undefined
         };
-
-        function initialize() {
-            retrieveSport();
-        }
 
         function retrieveSport() {
             SportService
@@ -39,6 +36,7 @@
                     console.log(res.data);
                     console.log($scope.sport.game_id);
                     retrieveGame($scope.sport.game_id);
+                    retrieveSportRankings($scope.sport.sport_id);
                 }, function(err) {
                     console.log("sport not retrieved");
                 })
@@ -54,6 +52,18 @@
                     console.log(res.data);
                 }, function(err) {
                     console.log("sport not retrieved");
+                })
+        }
+
+        function retrieveSportRankings(sport_id) {
+            SportService
+                .retrieveSportRankings(sport_id) //parameter is sport id
+                .then(function (res){
+                    console.log("retrieved rankings");
+                    $scope.rankings = res.data;
+                    console.log(res.data);
+                }, function(err) {
+                    console.log("rankings not retrieved");
                 })
         }
 

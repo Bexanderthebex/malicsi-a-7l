@@ -126,12 +126,13 @@ exports.deleteSport = (req, res, next) => {
 exports.retrieveSportRankings = (req, res, next) => {
 	let query = 'CALL retrieve_team_rankings_from_sport(?)';
 	let param = parseInt(req.params.sportId);
-	if(!isNan(param)){
+	if(!isNaN(param)){
 		connection.userType('A').query(query,
 			[req.params.sportId],
 			(err, rows) =>{
 				if(!err){
 					res.status(200).send(rows);
+					console.log(rows[0]);
 				}
 				else if(rows.length == undefined){
 					res.status(404).send("Rankings are unavailable.");

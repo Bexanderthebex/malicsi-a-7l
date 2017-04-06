@@ -17,7 +17,8 @@
             deleteMatch: deleteMatch,
             retrieveMatches: retrieveMatches,
             retrieveSport: retrieveSport,
-            retrieveGame: retrieveGame
+            retrieveGame: retrieveGame,
+            retrieveSportRankings: retrieveSportRankings
         }
 
         return service;
@@ -114,6 +115,23 @@
                 method: 'GET',
                 params: { 'gameId':game_id },
                 url: '/game/viewGame',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+        function retrieveSportRankings(sport_id) {
+            let deferred = $q.defer();
+            console.log(sport_id);
+            $http({
+                method: 'GET',
+                // params: { 'gameId':game_id },
+                url: '/sport/ranks/' + sport_id,
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
