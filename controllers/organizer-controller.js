@@ -51,7 +51,7 @@ exports.editOrganizer = (req,res) => {
 			req.body.id
 		], (err, rows) => {
 			if(!err) {
-				connection.query(query1, 
+				connection.userType('A').query(query1, 
 					[
 						req.body.id
 					], (err, rows) => {
