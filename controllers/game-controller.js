@@ -178,7 +178,7 @@ exports.viewUpcomingOngoingGames = (req,res) =>{
 			else{
 				console.log(err.code);
 				res.status(500).send("An error occurred.");
-			
+			}
 	});
 }
 
