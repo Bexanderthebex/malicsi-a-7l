@@ -78,8 +78,10 @@ router.get('/organizer/findSport',organizerController.findSport);
 router.get('/organizer/findTeam',organizerController.findTeam);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
 router.get('/organizer/getRequest', organizerController.getRequest);
-router.post('/organizer/processRequest', organizerController.processRequest);
-router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);	
+// //////////////////
+router.put('/organizer/processRequest', organizerController.processRequest);
+router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);
+router.get('/organizer/findGames',organizerController.findGames);
 router.get('/organizer/getOrganizer',organizerController.getOrganizer);
 
 //team routers
@@ -117,6 +119,7 @@ router.put('/sport/editSport', sportController.editSport);
 router.delete('/sport/deleteSport', sportController.deleteSport);
 router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
 router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);
+router.get('/sport/ranks/:sportId', sportController.retrieveSportRankings);
 
 //match routers
 router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);

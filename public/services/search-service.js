@@ -4,7 +4,7 @@
     angular.module('app')
            .factory('SearchService', SearchService);
 
-    searchService.$inject = ['$http', '$q'];
+    SearchService.$inject = ['$http', '$q'];
 
     const headers = {
         'content-type': 'application/x-www-form-urlencoded'

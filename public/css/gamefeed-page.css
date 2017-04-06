@@ -1,7 +1,7 @@
 .gamefeed-game-container {
     margin: 0 auto;
     max-width: 1280px;
-    width: 95%;
+    width: 80%;
 }
 
 .gamefeed-game-search {
@@ -28,8 +28,9 @@
 }
 
 .gamefeed-padding-down {
-    padding-top: 10px;
-    padding-bottom: 14px;
+    /*padding-top: 10px;*/
+    padding-bottom: 26px;
+    padding-right: 10px;
 }
 
 .gamefeed-remove-bottom {
@@ -45,7 +46,7 @@
 }
 
 .gamefeed-sort-adjust {
-    margin-top: 9px !important;
+    margin-top: 5px !important;
 }
 
 #gamefeed-delete-game {
@@ -62,7 +63,7 @@
 }
 
 #gamefeed-extend-header {
-    height: 200px;
+    height: 12%;
     padding-top: 25px;
 }
 
@@ -77,4 +78,115 @@
 
 .gamefeed-textarea-color {
     background-color: white !important;
+}
+
+
+#gamefeed-game-search input{
+    margin: 0;
+}
+
+#gamefeed-game-search-bar input {
+    outline: none;
+}
+
+#gamefeed-game-search-bar input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: "telegrafico";
+    font-size: 16px;
+}
+
+#gamefeed-game-search-bar input::-webkit-search-decoration,
+#gamefeed-game-search-bar input::-webkit-search-cancel-button {
+    display: none; 
+}
+
+#gamefeed-game-search-bar input[type=search] {
+    background: white url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: none;
+    padding: 9px 10px 9px 32px;
+    width: 95%;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+#gamefeed-game-search-bar input[type=search] {
+    height: 17px;
+}
+
+#gamefeed-game-search-bar input:-moz-placeholder {
+    color: transparent;
+}
+
+#gamefeed-game-search-bar input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.gamefeed-sort-part {
+    width: 100%;
+}
+
+
+.gamefeed-match{
+    border: solid 2.5px;
+    border-radius: 8px;
+    min-height: 100px;
+    margin-top: 10px;
+}
+
+.gamefeed-match-title, .gamefeed-match-players{
+    margin: 0 !important;
+}
+
+.gamefeed-match-title div, .gamefeed-match-players div{
+    padding: 0 !important;
+}
+
+.gamefeed-description{
+    font-size: 10px;
+    font-family: "century-gothic";
+    letter-spacing: 1px;
+}
+
+.gamefeed-match-container{
+    padding-left: 10px; 
+    padding-right: 10px; 
+    padding-bottom: 10px; 
+}
+
+.gamefeed-match-header {
+    margin-top: -18px !important;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+#gamefeed-game-title .gamefeed-match:hover {
+    border-color: #001f2b;
+    color: white !important;
+    transition: background-color 0.5s;
+    background: #001f2b;
+}
+
+#game-ongoing-match .gamefeed-match:hover {
+    border-color: #00415a;
+    color: white !important;
+    background: #00415a;
+    transition: background-color 0.5s;
+}
+
+#game-upcoming-match .gamefeed-match:hover {
+    border-color: #00719c;
+    color: white !important;
+    transition: background-color 0.5s;
+    background: #00719c;
+}
+
+.gamefeed-match-info{
+    font-size: 12px;
+    font-family: "century-gothic";
+    letter-spacing: 1px;
 }

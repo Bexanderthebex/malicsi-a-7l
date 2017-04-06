@@ -1,4 +1,4 @@
-.indicators{
+#game-slider .indicators{
     margin-bottom: 1% !important;
 }
 
@@ -183,11 +183,11 @@
 
 .game-type-matches::-webkit-scrollbar{
     width: 6px;
-    background-color: transparent;
+    /*background-color: white;*/
 }
 
 .game-type-matches::-webkit-scrollbar-thumb{
-    /*background-color: #121212 !import-ant;*/
+    background-color: white;
     border-radius: 5px;
 }
 
@@ -263,7 +263,7 @@
 }
 
 .game-update-title{
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
 }
 
@@ -283,9 +283,9 @@
 }
 
 .game-rank-title{
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 800;
-    margin-top: 10px;
+    margin-top: 11px;
 }
 
 .game-sponsor-title {
@@ -389,5 +389,9 @@
     bottom: 0px !important;
     position: absolute;
     width: 100%;
-    margin-left: -26px;
+    margin-left: -10px;
+}
+
+.game-arrange-padding {
+    padding: 10px !important;
 }

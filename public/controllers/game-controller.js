@@ -10,7 +10,7 @@
 
     function GameController($scope, $routeParams, GameService) {
         $scope.thisGame = {
-            game_id: $routeParams.id;
+            game_id: $routeParams.id
         };
         $scope.addSport = addSport;
         $scope.retrieveSport = retrieveSport;
@@ -26,7 +26,7 @@
             mechanics: undefined, 
             max_teams: undefined, 
             scoring_system: undefined, 
-            game_id: $scope.thisGame.game_id;
+            game_id: $scope.thisGame.game_id
         };
 
         function addSport() {
