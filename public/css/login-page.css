@@ -11,6 +11,7 @@
 	position: fixed;	
 	padding: 0!important;
 	margin: 0!important;
+	box-shadow: 1px 1px black;
 }
 
 #login-card{
@@ -106,6 +107,20 @@
 	margin: 0!important;
 }
 
-#login-container input {
-	
+#login-container input::-webkit-input-placeholder{
+	color: black!important;
+	font-family: century-gothic!important;
+	letter-spacing: 1px!important;
+	font-style: bold;
+	font-size: 12px!important;
+	line-height: 12px!important;
+}
+
+#login-container .input-field input[type=text]{
+	border-bottom: 3px solid #00415a!important;
+}
+
+#login-container .input-field input[type=password]{
+	border-bottom: 3px solid #00415a!important;
+ /*color: #00415a;*/
 }
