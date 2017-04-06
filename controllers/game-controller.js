@@ -7,7 +7,6 @@ const connection = require('./../config/db-connection.js');
 
 
 exports.createGame = (req, res) => {
-	console.log(req.body);
 	let query = 'CALL create_game(?,?,?,?,?,?);'
 	connection.userType('A').query(query
 	, [req.body.orgID,
@@ -27,6 +26,8 @@ exports.createGame = (req, res) => {
 		}
 	});
 }
+
+
 
 exports.updateGame = (req, res) => {
 	let query = 'CALL update_game(?,?,?,?,?,?);'
@@ -167,5 +168,6 @@ exports.viewUpcomingOngoingGames = (req,res) =>{
 			console.log(err.code);
 			res.status(500).send("An error occurred.");
 		}
+	
 	});
 }

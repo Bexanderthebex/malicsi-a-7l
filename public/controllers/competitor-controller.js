@@ -6,92 +6,68 @@
         .module('app')
         .controller('CompetitorController', CompetitorController);
 
-    OrganizerController.$inject = ['$scope', 'OrganizerService'];
+    CompetitorController.$inject = ['$scope', 'CompetitorService'];
 
-    function OrganizerController($scope, CompetitorService) {
-        $scope.addGame = addGame;
-        $scope.retrieveGame = retrieveGame;
-        $scope.deleteGame = deleteGame;
-        $scope.updateGame = updateGame;
-        $scope.getRequests = getRequests;
-        $scope.getOrganizer = getOrganizer;
-        $scope.organizer = {};
-        $scope.requests = [];
-        $scope.games = [];
-        $scope.newGame = {
-            orgID: '12',
-            gameName: undefined,
-            startDate: undefined,
-            endDate: undefined,
-            locat: undefined,
-            descrip: undefined
-        };
+    function CompetitorController($scope, CompetitorService) {
+        $scope.competitor = [];
+        $scope.competitorteams = [];
+        $scope.editComp = {
+            first_name: undefined,
+            last_name: undefined,
+            birthdate: undefined,
+            nickname: undefined,
+            sex: undefined,
+            id: undefined
+        }
 
-        function addGame() {
-            $scope.newGame.startDate = $('#start-date').val();
-            $scope.newGame.endDate = $('#end-date').val();
-            console.log($scope.newGame);
-            OrganizerService
-                .addGame($scope.newGame)
-                .then(function (res){
+        $scope.searchCompetitor = searchCompetitor;
+        $scope.editCompetitor = editCompetitor;
+        $scope.getCompetitor = getCompetitor;
+        $scope.getCompetitorTeams = getCompetitorTeams;
+        
+        function searchCompetitor(id){
+            CompetitorService
+                .searchCompetitor(id)
+                .then(function(res) {
+                    $scope.competitor = res;
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function editCompetitor(){
+            $scope.editComp.first_name = $('#firstname').val();
+            $scope.editComp.last_name = $('#lastname').val();
+            $scope.editComp.birthdate = $('#birthdate').val();
+            $scope.editComp.nickname = $('#nickname').val();
+            $scope.editComp.sex = $('#sex').val();
+            $scope.editComp.id = $('#competitorid').val();
+
+            CompetitorService.editCompetitor($scope.editComp).then(function (res){
                     console.log("added");
                 }, function(err) {
                     console.log(err);
                 })
-                // $route.reload();
         }
 
-        function retrieveGame(id) {
-            OrganizerService
-                .retrieveGame(id)
+        function getCompetitor(id){
+            CompetitorService
+                .getCompetitor(id)
                 .then(function(res) {
-                    $scope.games = res;
+                    $scope.competitor = res;
                 }, function(err) {
                     console.log(err);
                 })
         }
 
-        function deleteGame(id) {
-            OrganizerService
-                .deleteGame(id)
+        function getCompetitorTeams(id){
+            CompetitorService
+                .getCompetitorTeams(id)
                 .then(function(res) {
-                    console.log("deleted");
+                    $scope.competitorteams = res;
                 }, function(err) {
-                    console.log(err.data);
+                    console.log(err);
                 })
         }
-
-        function updateGame(game) {
-            OrganizerService
-                .updateGame(game)
-                .then(function(res) {
-                    console.log("updated");
-                }, function(err) {
-                    console.log(err.data);
-                })
-        }
-
-        function getRequests() {
-            OrganizerService
-                .getRequests()
-                .then(function(res) {
-                    console.log(res.data);
-                    $scope.requests = res.data;
-                }, function(err) {
-                    console.log(err.data);
-                })
-        }
-
-        function getOrganizer() {
-            OrganizerService
-                .getOrganizer(id)
-                .then(function(res) {
-                    console.log(res.data);
-                    $scope.organizer = res.data;
-                }, function(err) {
-                    console.log(err.data);
-                })
-        }
-
     }
 })();
