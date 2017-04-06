@@ -122,3 +122,23 @@ exports.editCompetitorBio = (req,res) => {
 		}
 	);
 }
+
+
+
+exports.getCompetitorRanking = (req, res) => {
+	query = "CALL get_competitor_ranking(?)";
+
+	connection.userType('A').query(query, 
+		[
+			req.query.id
+		], (err, rows) => {
+		    if(!err) {
+				// console.log(rows[0][0]);
+				return res.status(200).send(rows[0][0]);
+				
+			} else {
+				return res.status(500).send({'message' : 'Internal Server Error'});
+			}
+		}
+	);
+}

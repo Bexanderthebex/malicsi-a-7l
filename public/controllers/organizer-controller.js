@@ -28,7 +28,7 @@
         $scope.requests = [];
         $scope.games = [];
         $scope.newGame = {
-            orgID: '12',
+            orgID: '1',
             gameName: undefined,
             startDate: undefined,
             endDate: undefined,
@@ -78,18 +78,17 @@
                 }, function(err) { //function block when nag-fail yung dapat gawin sa OrganizerService
                     Materialize.toast('New game not added!', 3000);
                 })
-                // $route.reload();
         }
 
         function retrieveGame() {
             OrganizerService
-                .retrieveGame('12') //parameters depend on kung ano kailangan ng back-end controllers
+                .retrieveGame('1') //parameters depend on kung ano kailangan ng back-end controllers
                 .then(function(res) { //function block when success in service
-                    $scope.games = res.data.data; //ilalagay sa $scope.games yung res na nakuha sa back-end
+                    $scope.games = res.data; //ilalagay sa $scope.games yung res na nakuha sa back-end
                     //$scope para ma-access siya sa frontend
                     //accessible sa front-end yung mga $scope using ng-model
                     console.log($scope.games);
-                    console.log(res.data.data);
+                    console.log(res.data);
                 }, function(err) { //function block when failed
                     Materialize.toast('Games not retrieved.', 3000);
                 })
@@ -121,8 +120,8 @@
             OrganizerService
                 .getRequests('11') //user id $scope.getCurrentUser.id
                 .then(function(res) {
-                    console.log(res.data.data);
-                    $scope.requests = res.data.data;
+                    console.log(res.data);
+                    $scope.requests = res.data;
                 }, function(err) {
                     Materialize.toast('Error retrieving requests.', 3000);
                 })
@@ -131,7 +130,7 @@
         function getOrganizer() {
             getCurrentUser();
             OrganizerService
-                .getOrganizer('12') //$scope.getCurrentUser.id
+                .getOrganizer('1') //$scope.getCurrentUser.id
                 .then(function(res) {
                     console.log(res.data);
                     $scope.organizer = res.data;

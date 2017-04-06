@@ -54,6 +54,22 @@ DELIMITER //
 	//
 DELIMITER ;
 
+
+DROP PROCEDURE IF EXISTS get_competitor_ranking;
+DELIMITER //
+	CREATE PROCEDURE get_competitor_ranking(in id_in INT)
+
+	BEGIN
+		SELECT ranking, COUNT(ranking) AS rankCount FROM team JOIN team_in_match using (team_id) WHERE id = id_in GROUP BY ranking;
+	END;
+
+	//
+DELIMITER ;
+
+
+
+
+
 GRANT EXECUTE ON PROCEDURE search_competitor TO competitor;
 GRANT EXECUTE ON PROCEDURE search_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE search_competitor TO guest;
@@ -69,5 +85,9 @@ GRANT EXECUTE ON PROCEDURE get_competitor_teams TO competitor;
 GRANT EXECUTE ON PROCEDURE get_competitor_teams TO guest;
 GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO administrator;
 GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO competitor;
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO competitor;
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO administrator;
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO organizer;
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO guest;
 
 
