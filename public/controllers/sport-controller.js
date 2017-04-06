@@ -20,12 +20,10 @@
         $scope.game = {};
         $scope.rankings = [];
         $scope.newMatch = {
-            orgID: undefined,
-            gameName: undefined,
-            startDate: undefined,
-            endDate: undefined,
-            locat: undefined,
-            descrip: undefined
+            timeStart: undefined,
+            timeEnd: undefined,
+            date: undefined,
+            sportID: undefined
         };
 
         function retrieveSport() {
@@ -76,7 +74,20 @@
             }
         }
 
+        function addZero(i) {
+            if (i < 10) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
         function addMatch() {
+            var ts = new Date($scope.timeStart);
+            var te = new Date($scope.timeEnd);
+            $scope.newMatch.timeStart = addZero(ts.getHours()) + ':' + addZero(ts.getMinutes()) + ':' + addZero(ts.getSeconds());
+            $scope.newMatch.timeEnd = addZero(te.getHours()) + ':' + addZero(te.getMinutes()) + ':' + addZero(te.getSeconds());
+            $scope.newMatch.sportID = $scope.sport.sport_id;
+            console.log($scope.newMatch);
             SportService
                 .addMatch($scope.newMatch)
                 .then(function (res){

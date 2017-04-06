@@ -28,7 +28,7 @@
             console.log(newMatch);
             $http({
                 method: 'POST',
-                params: newMatch,
+                data: $.param(newMatch),
                 url: '/sport/match/addMatch',
                 headers: headers
             }).then((res) => {
