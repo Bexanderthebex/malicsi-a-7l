@@ -101,3 +101,7 @@
 	background: #00b8ff!important;
 	color: black!important;
 }
+
+#signup-panel .col, #signup-panel input{
+	margin: 0!important;
+}
