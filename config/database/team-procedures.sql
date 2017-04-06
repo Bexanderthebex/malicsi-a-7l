@@ -53,6 +53,17 @@ CREATE PROCEDURE team_membership_request (IN idin INT, IN team_idin INT)
 
 DELIMITER ;
 
+
+DROP PROCEDURE IF EXISTS delete_membership_request;
+DELIMITER //
+CREATE PROCEDURE delete_membership_request (IN idin INT, IN team_idin INT) 
+	BEGIN
+	   DELETE FROM competitor_joins_team WHERE id = idin AND team_id = team_idin;
+	END; //
+
+DELIMITER ;
+
+
 DROP PROCEDURE IF EXISTS accept_membership_request;
 DELIMITER //
 CREATE PROCEDURE accept_membership_request (IN idin INT, IN team_idin INT) 
@@ -70,6 +81,16 @@ CREATE PROCEDURE rankings ( IN team_idin INT)
 	END; //	
 
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS organization_rankings;
+DELIMITER //
+CREATE PROCEDURE organization_rankings ( IN org_id INT) 
+	BEGIN
+	   SELECT ranking, COUNT(ranking) AS rankCount FROM (team_in_match JOIN team USING (team_id)) WHERE team_organization = org_id GROUP BY ranking;
+	END; //	
+
+DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS count_teams_in_sport;
 DELIMITER //
@@ -89,6 +110,15 @@ CREATE PROCEDURE get_members (IN team_idin INT)
 	END; //
 DELIMITER ;
 
+DROP procedure IF EXISTS get_teams_on_organization;
+DELIMITER //
+
+CREATE PROCEDURE get_teams_on_organization (IN org_id INT) 
+	BEGIN
+	   SELECT * FROM team  WHERE team_organization = org_id;
+	END; //
+DELIMITER ;
+
 GRANT EXECUTE ON procedure create_team TO competitor;
 GRANT EXECUTE ON procedure delete_team TO competitor;
 GRANT EXECUTE ON procedure team_membership_request TO competitor;
@@ -96,6 +126,8 @@ GRANT EXECUTE ON procedure accept_membership_request TO competitor;
 GRANT EXECUTE ON procedure rankings TO competitor;
 GRANT EXECUTE ON procedure count_teams_in_sport TO competitor;
 GRANT EXECUTE ON procedure get_members TO competitor;
+GRANT EXECUTE ON procedure organization_rankings TO competitor;
+GRANT EXECUTE ON procedure get_teams_on_organization TO competitor;
 
 GRANT EXECUTE ON procedure create_team TO administrator;
 GRANT EXECUTE ON procedure delete_team TO administrator;
@@ -104,7 +136,12 @@ GRANT EXECUTE ON procedure accept_membership_request TO administrator;
 GRANT EXECUTE ON procedure rankings TO administrator;
 GRANT EXECUTE ON procedure count_teams_in_sport TO administrator;
 GRANT EXECUTE ON procedure get_members TO administrator;
+GRANT EXECUTE ON procedure organization_rankings TO administrator;
+GRANT EXECUTE ON procedure get_teams_on_organization TO administrator;
 
 GRANT EXECUTE ON procedure rankings TO guest;
 GRANT EXECUTE ON procedure count_teams_in_sport TO guest;
 GRANT EXECUTE ON procedure get_members TO guest;
+GRANT EXECUTE ON procedure organization_rankings TO guest;
+GRANT EXECUTE ON procedure get_teams_on_organization TO guest;
+
