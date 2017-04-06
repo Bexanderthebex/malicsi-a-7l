@@ -1,4 +1,4 @@
-<div id="mainHolder">
+<div id="mainHolder" ng-controller="AdminCtrl">
 	<div id="main">
 		<div class="row">
 			<!-- SIDE NAV -->
@@ -106,9 +106,9 @@
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
-		            		<tr>
+		            		<tr ng-repeat="a in admins">
 		            			<td class="match-player">
-		            				<div ng-show="!view">Juan</div>
+		            				<div ng-show="!view">{{a.username}}</div>
 		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
 		            			</td>
 		            			<td>

@@ -2,7 +2,7 @@
     angular.module('app')
         .controller('NavCtrl', NavCtrl);
 
-    LandingCtrl.$inject = ['$scope', '$http'];
+    NavCtrl.$inject = ['$scope', '$http'];
 
     function NavCtrl($scope, $http) {
         $scope.iconUrl = "";
