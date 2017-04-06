@@ -120,6 +120,7 @@ router.delete('/sport/deleteSport', sportController.deleteSport);
 router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
 router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);
 router.get('/sport/ranks/:sportId', sportController.retrieveSportRankings);
+router.get('/sport/search', sportController.searchForSportByKeyword);
 
 //match routers
 router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
