@@ -15,6 +15,7 @@
         $scope.retrieveMatches = retrieveMatches;
         $scope.retrieveSport = retrieveSport;
         $scope.retrieveSportRankings = retrieveSportRankings;
+        $scope.checkRankings = checkRankings;
         $scope.sport = {};
         $scope.game = {};
         $scope.rankings = [];
@@ -29,7 +30,7 @@
 
         function retrieveSport() {
             SportService
-                .retrieveSport('1') //parameter is sport id
+                .retrieveSport('3') //parameter is sport id
                 .then(function (res){
                     console.log("retrieved sport");
                     $scope.sport = res.data;
@@ -65,6 +66,14 @@
                 }, function(err) {
                     console.log("rankings not retrieved");
                 })
+        }
+
+        function checkRankings() {
+            if (($scope.rankings).length == 0) {
+                return false;
+            } else {
+                return true;
+            }
         }
 
         function addMatch() {

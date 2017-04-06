@@ -16,43 +16,11 @@
 					<h6 class="rockwell">As of 7:08PM • 03/27/2017</h6>
 				</div>
 
-				<div id="sports-ranking-body" class="col s9 row">
-					<div class="rank-entity col s4">
-						<div class="rank"><h3>01</h3></div>
+				<div id="sports-ranking-body" class="col s9 row" ng-show="checkRankings()">
+					<div class="rank-entity col s4" ng-repeat="team in rankings | limitTo: 5">
+						<div class="rank"><h3>0{{ team.total_ranks }}</h3></div>
 						<div>
-							<h5>Blue Team</h5>
-							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
-						</div>
-					</div>
-
-					<div class="rank-entity col s4">
-						<div class="rank"><h3>02</h3></div>
-						<div>
-							<h5>Blue Team</h5>
-							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
-						</div>
-					</div>
-
-					<div class="rank-entity col s4">
-						<div class="rank"><h3>03</h3></div>
-						<div>
-							<h5>Blue Team</h5>
-							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
-						</div>
-					</div>
-
-					<div class="rank-entity col s4">
-						<div class="rank"><h3>04</h3></div>
-						<div>
-							<h5>Blue Team</h5>
-							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
-						</div>
-					</div>
-
-					<div class="rank-entity col s4">
-						<div class="rank"><h3>05</h3></div>
-						<div>
-							<h5>Blue Team</h5>
+							<h5>{{ team.org_name }}</h5>
 							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
 						</div>
 					</div>
@@ -62,6 +30,10 @@
 							VIEW ALL <i class="fa fa-angle-double-right"></i>
 						</a>
 					</div>
+				</div>
+
+				<div class="col s9 row" ng-hide="checkRankings()">
+					<h3 class="rockwell">Not Available</h3>
 				</div>
 			</div>
 		</div>
