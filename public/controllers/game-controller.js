@@ -8,7 +8,7 @@
 
     GameController.$inject = ['$scope', '$routeParams', 'GameService'];
 
-    function GameController($scope, $routeParams, GameService) {
+    function GameController($scope, $routeParams,  GameService) {
         $scope.thisGame = {
             game_id: $routeParams.gameId
         };
@@ -18,9 +18,12 @@
         $scope.updateSport = updateSport;
         $scope.updateWinner = updateWinner;
         $scope.retrieveAllSports = retrieveAllSports;
+        $scope.passSport = passSport;
+        $scope.viewGameDetails = viewGameDetails;
         $scope.sport = {};
         $scope.sports = [];
-
+        $scope.sportCopy = {};
+        $scope.game = {};
 
 
         $scope.newSport = {
@@ -49,10 +52,30 @@
                 .addSport($scope.newSport)
                 .then(function (res){
                     console.log("added");
+                    Materialize.toast("Successfully added the sport!", 3000);
                 }, function(err) {
                     console.log(err);
+                    Materialize.toast("Failed to add the sport!", 3000);
                 })
                 // $route.reload();
+        }
+
+        function passSport(sport){
+            
+            $scope.sportCopy = {
+                sport_id: sport.sport_id,
+                sport_name: sport.sport_name,
+                mechanics: sport.mechanics,
+                winner: sport.winner,
+                time_start: sport.time_start,
+                time_end: sport.time_end,
+                start_date: sport.start_date,
+                end_date: sport.end_date,
+                max_teams: sport.max_teams,
+                scoring_system: sport.scoring_system,
+                game_id: sport.game_id
+            };
+            console.log(sport);
         }
 
         function retrieveSport() {
@@ -74,17 +97,22 @@
                     $scope.sports = res.data;
                 }, function(err) {
                     console.log(err);
+                    Materialize.toast('Failed to retrieve sports!', 3000);
                 })
         }
 
 
-        function deleteSport(id) {
+        function deleteSport(sport) {
+            console.log("To delete sport " + sport.sportId);
             GameService
-                .deleteSport(id)
+                .deleteSport(sport.sportId)
                 .then(function(res) {
                     console.log("deleted");
+                    Materialize.toast('Successfully deleted the sport!', 3000);
+                    retrieveAllSports();
                 }, function(err) {
                     console.log(err.data);
+                    Materialize.toast('Failed to delete sport!', 3000);
                 })
         }
 
@@ -93,8 +121,11 @@
                 .updateSport(sport)
                 .then(function(res) {
                     console.log("updated");
+                    Materialize.toast('Successfully updated the sport!', 3000);
+                    retrieveAllSports();
                 }, function(err) {
                     console.log(err.data);
+                    Materialize.toast('Failed to update the sport!', 3000);
                 })
         }
 
@@ -105,6 +136,19 @@
                     console.log("updated");
                 }, function(err) {
                     console.log(err.data);
+                })
+        }
+
+        function viewGameDetails(){
+            GameService
+                .viewGameDetails($scope.thisGame.game_id)
+                .then(function(res){
+                    console.log("game details retrieved for game#"+ $scope.thisGame.game_id);
+                    console.log(res.data[0]);
+                    $scope.game = res.data[0];
+                }, function(err){
+                    console.log(err.data);
+                    Materialize.toast('Failed to retrieve game details!', 3000);
                 })
         }
 

@@ -63,7 +63,7 @@ BEGIN
 	mechanics = mechanicsInput, 
 	time_start = timeStart, 
 	time_end = timeEnd, 
-	start_end = startDate, 
+	start_date = startDate, 
 	end_date = endDate, 
 	max_teams = maxTeams, 
 	scoring_system = scoringSystem 
@@ -99,8 +99,6 @@ BEGIN
 END //
 DELIMITER ;
 
-
-
 DELIMITER //
 DROP PROCEDURE IF EXISTS retrieve_team_rankings_from_sport //
 CREATE PROCEDURE retrieve_team_rankings_from_sport (IN in_sport_id INT(11))
@@ -109,7 +107,14 @@ BEGIN
 END //
 DELIMITER ;
 
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO organizer;
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO administrator;
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO competitor;
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO guest;
 
+
+call retrieve_team_rankings_from_sport(6);
+	select organization.name, sum(team_in_match.ranking) from team_in_match, sport, sport_match, team, organization where sport.sport_id = 6 and sport.sport_id = sport_match.sport_id and sport_match.match_id = team_in_match.match_id and team.team_id = team_in_match.team_id and team.team_organization = organization.organization_id and team_in_match.ranking is not NULL group by organization.name;
 
 -- create sport
 GRANT EXECUTE ON PROCEDURE create_sport TO organizer;
@@ -143,8 +148,3 @@ GRANT EXECUTE ON PROCEDURE count_sport_by_game TO administrator;
 GRANT EXECUTE ON PROCEDURE count_sport_by_game TO competitor;
 GRANT EXECUTE ON PROCEDURE count_sport_by_game TO guest;
 
--- retrieve team rankings from sport
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO organizer;
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO administrator;
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO competitor;
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO guest;

@@ -17,7 +17,8 @@
             updateSport: updateSport,
             updateWinner: updateWinner,
             deleteSport: deleteSport,
-            retrieveAllSports: retrieveAllSports
+            retrieveAllSports: retrieveAllSports,
+            viewGameDetails: viewGameDetails
         }
 
         return service;
@@ -54,6 +55,28 @@
             return deferred.promise;
         }
 
+        function viewGameDetails(game_id){
+            let deferred = $q.defer();
+            let game = {
+                gameId: game_id
+            }
+
+            $http({
+                method: 'GET',
+                params: game,
+                url: '/game/viewGame/',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+        
+
         function addSport(sport) {
             let deferred = $q.defer();
             console.log(sport);
@@ -75,10 +98,22 @@
         function updateSport(sport) {
             let deferred = $q.defer();
 
+            let editedSport = {
+                sportName: sport.sport_name,
+                mechanics: sport.mechanics,
+                timeStart: sport.time_start,
+                timeEnd: sport.time_end,
+                startDate: sport.start_date,
+                endDate: sport.end_date,
+                maxTeams: sport.max_teams,
+                scoringSystem: sport.scoring_system,
+                sportId: sport.sport_id
+            }
+            console.log(editedSport);
             $http({
                 method: 'PUT',
-                params: sport, // json
-                url: '/sport/updateSport',
+                data: $.param(editedSport), // json
+                url: '/sport/editSport',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);
@@ -115,16 +150,16 @@
             return deferred.promise;
         }
 
-        function deleteSport(sportId) {
+        function deleteSport(id) {
             let deferred = $q.defer();
 
             let sport = {
-                sportID: id
+                sportId: id
             }
 
             $http({
                 method: 'DELETE',
-                params: sport,
+                data: $.param(sport),
                 url: '/sport/deleteSport',
                 headers: headers
             }).then((res) => {

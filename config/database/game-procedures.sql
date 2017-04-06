@@ -72,7 +72,7 @@ DROP PROCEDURE IF EXISTS view_all_sports_in_game;
 delimiter //
 CREATE PROCEDURE view_all_sports_in_game(in in_game_id int)
 BEGIN
-	select sport_name, mechanics, winner,time_start, time_end,start_date,end_date, scoring_system from sport where game_id = in_game_id;
+	select * from sport where game_id = in_game_id;
 END;
 //
 delimiter ;

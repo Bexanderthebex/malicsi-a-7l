@@ -22,6 +22,7 @@ exports.editSport = (req, res, next) => {
 			res.status(200).send(rows);
 		} 
 		else{
+			console.log(err);
 			res.status(500).send("Edit unsuccessful. Error occured");
 		}
 	});
@@ -111,7 +112,7 @@ exports.deleteSport = (req, res, next) => {
 			req.body.sportId
 		], (err,rows) => {
 				if(!err) {
-					res.status(200).send("successfully deleted " + req.body.sport_id);
+					res.status(200).send("successfully deleted " + req.body.sportIDd);
 				}
 				else if(rows.length == undefined ){ 
 					res.status(404).send(req.body.sport_id + " not found!");

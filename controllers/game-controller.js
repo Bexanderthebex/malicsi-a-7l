@@ -52,7 +52,7 @@ exports.updateGame = (req, res) => {
 
 exports.viewGameDetails = (req, res) => {
 	let query = 'call view_game_details(?);';
-	let param = parseInt(req.params.gameId);
+	let param = parseInt(req.query.gameId);	
 	if (!isNaN(param)){
 		connection.userType('A').query(query, 
 		param, 
