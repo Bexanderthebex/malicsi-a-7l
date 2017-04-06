@@ -4,6 +4,7 @@ var connection = require(__dirname + './../config/db-connection');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
+
 exports.editSport = (req, res, next) => {
 	let query = 'CALL edit_sport(?, ?, ?, ?, ?, ?, ?, ?, ?)';
 	connection.userType('A').query(query,
@@ -28,43 +29,67 @@ exports.editSport = (req, res, next) => {
 	});
 }
 
+
 exports.createSport = (req, res) => {
   	let query = 'CALL create_sport(?, ?, ?, ?, ?, ?, ?, ?, ?);';
 	connection.userType('A').query(query, 
-		[req.body.sportName,
-		 req.body.mechanics,
-		 req.body.timeStart,
-		 req.body.timeEnd,
-		 req.body.startDate,
-		 req.body.endDate,
-		 req.body.maxTeams,
-		 req.body.scoringSystem,
-		 req.body.gameID
-		 ], 
-		(err, rows) => {
-		if (!err){
-			connection.userType('A').query('CALL view_last_inserted_sport()', (err, rows) => {
-				res.status(200).send(rows[0]);
-			})
-			// res.status(200).send(rows);
-		}else{
-			res.status(500).send("Internal Server Error");
+		[
+			req.body.sportName,
+			req.body.mechanics,
+			req.body.timeStart,
+			req.body.timeEnd,
+			req.body.startDate,
+			req.body.endDate,
+			req.body.maxTeams,
+			req.body.scoringSystem,
+			req.body.gameID
+		], (err, rows) => {
+			if (!err){
+				connection.userType('A').query('CALL view_last_inserted_sport()', (err, rows) => {
+					return res.status(200).send(rows[0]);
+				})
+				// res.status(200).send(rows);
+			}else{
+				res.status(500).send("Internal Server Error");
 		}
 	});
 }
+
+exports.editSport = (req, res, next) => {
+	let query = 'CALL edit_sport(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+	connection.userType('A').query(query,
+		[
+			req.body.sportName,
+			req.body.mechanics,
+			req.body.timeStart,
+			req.body.timeEnd,
+			req.body.startDate,
+			req.body.endDate,
+			req.body.maxTeams,
+			req.body.scoringSystem,
+			req.body.sportId
+		], (err, rows) => {
+			if(!err){
+				return res.status(200).send(rows);
+			} 
+			else{
+				res.status(500).send("Edit unsuccessful. Error occured");
+			}
+	});
+}
+
 
 exports.countSportByGame = (req, res) => {
 	let query = 'CALL count_sport_by_game(?)';
 	connection.userType('A').query(query, 
 		[
-		req.params.gameID
-		], 
-		(err, rows) => {
-		if (!err){
-			res.status(200).send(rows[0]);
-		}else{
-			res.status(500).send("Internal Server Error");
-		}
+			req.params.gameID
+		], (err, rows) => {
+			if (!err){
+				return res.status(200).send(rows[0]);
+			}else{
+				res.status(500).send("Internal Server Error");
+			}
 	});
 }
 
@@ -72,14 +97,13 @@ exports.viewSportDetails = (req, res) => {
 	let query = 'CALL view_sport(?)';
 	connection.userType('A').query(query, 
 		[
-		req.query.sportID
-		], 
-		(err, rows) => {
-		if (!err){
-			res.status(200).send(rows[0]);
-		}else{
-			res.status(500).send("Internal Server Error");
-		}
+			req.query.sportID
+		], (err, rows) => {
+			if (!err){
+				return res.status(200).send(rows[0]);
+			}else{
+				res.status(500).send("Internal Server Error");
+			}
 	});
 }
 
@@ -87,21 +111,21 @@ exports.viewSportDetails = (req, res) => {
 exports.addWinnerSport = (req, res, next) => {
 	let query = 'CALL add_winner_sport(?,?)';
 	connection.userType('A').query(query,
-			[
-				req.body.winner,
-				req.body.sportId
-			], (err, rows) => {
-					if(!err && !rows){
-						res.status(200).send(rows);
-					}
-					else if(rows.length = undefined){
-						res.status(404).send(req.body.sport_id + " already updated");
-					}
-					else{
-						res.status(500).send("update unsuccessful. error occured");
-					}
-			
-			});
+		[
+			req.body.winner,
+			req.body.sportId
+		], (err, rows) => {
+				if(!err && !rows){
+					return res.status(200).send(rows);
+				}
+				else if(rows.length = undefined){
+					res.status(404).send(req.body.sport_id + " already updated");
+				}
+				else{
+					res.status(500).send("update unsuccessful. error occured");
+				}
+		
+		});
 }
 
 exports.deleteSport = (req, res, next) => {
@@ -112,7 +136,7 @@ exports.deleteSport = (req, res, next) => {
 			req.body.sportId
 		], (err,rows) => {
 				if(!err) {
-					res.status(200).send("successfully deleted " + req.body.sportIDd);
+					res.status(200).send("successfully deleted " + req.body.sportId);
 				}
 				else if(rows.length == undefined ){ 
 					res.status(404).send(req.body.sport_id + " not found!");
@@ -132,7 +156,7 @@ exports.retrieveSportRankings = (req, res, next) => {
 			[req.params.sportId],
 			(err, rows) =>{
 				if(!err){
-					res.status(200).send(rows);
+					return res.status(200).send(rows);
 				}
 				else if(rows.length == undefined){
 					res.status(404).send("Rankings are unavailable.");
@@ -149,5 +173,27 @@ exports.retrieveSportRankings = (req, res, next) => {
 	}
 }
 
+exports.searchForSportByKeyword = (req,res) => {
+	let query = 'call search_for_sport_by_keyword(?);';
+	let param = '%' + req.query.keyword + '%';
+	connection.userType('A').query(query, 
+		param,
+		(err, results, fields)	=> {
+		console.log(err);
+		console.log(results);
+		if (!err && results[0].length!=0) {
+			res.status(200).send(results[0]);
+		}
+		else if (results[0].length==0){
+			res.status(404).send("Game not found.");
+		}		
+		else{
+			console.log(err.code);
+			res.status(500).send("An error occurred.");
+		}
+		
+	});
+	
+}
 
 
