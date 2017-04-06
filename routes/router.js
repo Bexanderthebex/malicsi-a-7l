@@ -64,6 +64,8 @@ router.get('/user/:id', userController.getUserInfo);
 router.put('/user/update', sha256Hash, bcryptHash, userController.update);
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 router.get('/user', userController.getUserInfo);
+router.post('/user/getUsersByType', checkUser('A'), adminController.getUsersByType);
+router.post('/user/getAllUsers', checkUser('A'), adminController.getAllUsers);
 
 //competitor routers
 router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
@@ -78,8 +80,10 @@ router.get('/organizer/findSport',organizerController.findSport);
 router.get('/organizer/findTeam',organizerController.findTeam);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
 router.get('/organizer/getRequest', organizerController.getRequest);
-router.post('/organizer/processRequest', organizerController.processRequest);
-router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);	
+// //////////////////
+router.put('/organizer/processRequest', organizerController.processRequest);
+router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);
+router.get('/organizer/findGames',organizerController.findGames);
 router.get('/organizer/getOrganizer',organizerController.getOrganizer);
 
 //team routers
@@ -100,7 +104,6 @@ router.get('/game/searchGame', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
 router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
-router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
 router.post('/game/createGame',  gameController.createGame);
 router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
 router.put('/game/updateGame',  gameController.updateGame);
@@ -117,6 +120,7 @@ router.put('/sport/editSport', sportController.editSport);
 router.delete('/sport/deleteSport', sportController.deleteSport);
 router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
 router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);
+router.get('/sport/ranks/:sportId', sportController.retrieveSportRankings);
 
 //match routers
 router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
