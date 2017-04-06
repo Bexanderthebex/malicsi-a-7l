@@ -7,6 +7,7 @@ const connection = require('./../config/db-connection.js');
 
 
 exports.createGame = (req, res) => {
+	console.log(req.body);
 	let query = 'CALL create_game(?,?,?,?,?,?);'
 	connection.userType('A').query(query, 
 		[	
@@ -18,9 +19,10 @@ exports.createGame = (req, res) => {
 			req.body.descrip
 	    ], (err, rows) => {
 			if(!err){
-				connection.userType('A').query('CALL view_last_inserted_game)',(err, rows) => {
-					return res.status(200).send(rows[0]);
-				});
+				res.status(200).send(rows[0]);
+				connection.userType('A').query('CALL view_last_inserted_game'),(err, rows) => {
+					res.status(200).send(rows[0]);
+				};
 			}
 			else{
 				res.status(500).send(err);
