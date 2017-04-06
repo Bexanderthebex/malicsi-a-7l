@@ -1,4 +1,5 @@
 USE malicsi;
+
 DROP PROCEDURE IF EXISTS add_sponsor_to_game;
 DELIMITER //
 CREATE PROCEDURE add_sponsor_to_game(IN game_id INT,  IN sponsor_id INT)
@@ -10,17 +11,17 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS view_all_sponsors_in_game;
 DELIMITER //
-CREATE PROCEDURE view_all_sponsors_in_game (IN g_id INT)
+CREATE PROCEDURE view_all_sponsors_in_game(IN g_id INT)
 BEGIN
-	SELECT * FROM sponsor_institution game_id = g_id;
+	SELECT * FROM sponsor_institution WHERE game_id = g_id;
 END//
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS view_sponsor;
 DELIMITER //
-CREATE PROCEDURE view_sponsor(IN spon_id INT, IN g_id INT)
+CREATE PROCEDURE view_sponsor(IN spon_id INT)
 BEGIN
-	SELECT * FROM sponsor_institution WHERE sponsor_id = spon_id AND game_id = g_id;
+	SELECT * FROM sponsor_institution WHERE sponsor_id = spon_id;
 END//
 DELIMITER ;
 
@@ -34,9 +35,9 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS delete_sponsor_from_game;
 DELIMITER //
-CREATE PROCEDURE delete_sponsor_from_game (IN spon_id INT, IN g_id INT)
+CREATE PROCEDURE delete_sponsor_from_game (IN spon_id INT)
 BEGIN
-	DELETE FROM sponsor_institution WHERE sponsor_id = spon_id AND game_id = g_id;
+	DELETE FROM sponsor_institution WHERE sponsor_id = spon_id;
 END//
 DELIMITER ;
 

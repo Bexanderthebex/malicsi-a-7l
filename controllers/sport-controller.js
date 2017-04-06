@@ -4,29 +4,6 @@ var connection = require(__dirname + './../config/db-connection');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 
-exports.editSport = (req, res, next) => {
-	let query = 'CALL edit_sport(?, ?, ?, ?, ?, ?, ?, ?, ?)';
-	connection.userType('A').query(query,
-		[
-			req.body.sportName,
-			req.body.mechanics,
-			req.body.timeStart,
-			req.body.timeEnd,
-			req.body.startDate,
-			req.body.endDate,
-			req.body.maxTeams,
-			req.body.scoringSystem,
-			req.body.sportId
-		], (err, rows) => {
-			if(!err){
-				return res.status(200).send(rows);
-			} 
-			else{
-				res.status(500).send("Edit unsuccessful. Error occured");
-			}
-	});
-}
-
 exports.createSport = (req, res) => {
   	let query = 'CALL create_sport(?, ?, ?, ?, ?, ?, ?, ?, ?);';
 	connection.userType('A').query(query, 
@@ -51,6 +28,30 @@ exports.createSport = (req, res) => {
 		}
 	});
 }
+
+exports.editSport = (req, res, next) => {
+	let query = 'CALL edit_sport(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+	connection.userType('A').query(query,
+		[
+			req.body.sportName,
+			req.body.mechanics,
+			req.body.timeStart,
+			req.body.timeEnd,
+			req.body.startDate,
+			req.body.endDate,
+			req.body.maxTeams,
+			req.body.scoringSystem,
+			req.body.sportId
+		], (err, rows) => {
+			if(!err){
+				return res.status(200).send(rows);
+			} 
+			else{
+				res.status(500).send("Edit unsuccessful. Error occured");
+			}
+	});
+}
+
 
 exports.countSportByGame = (req, res) => {
 	let query = 'CALL count_sport_by_game(?)';

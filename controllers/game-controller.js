@@ -18,7 +18,9 @@ exports.createGame = (req, res) => {
 			req.body.descrip
 	    ], (err, rows) => {
 			if(!err){
-				return res.status(200).send("Successfully");
+				connection.userType('A').query('CALL view_last_inserted_game)',(err, rows) => {
+					return res.status(200).send(rows[0]);
+				});
 			}
 			else{
 				res.status(500).send(err);
@@ -30,9 +32,10 @@ exports.createGame = (req, res) => {
 
 exports.updateGame = (req, res) => {
 	let query = 'CALL update_game(?,?,?,?,?,?);'
+	let gameId = req.body.gameId;
 	connection.userType('A').query(query, 
 		[
-			req.body.gameId,
+			gameId,
 			req.body.name,
 			req.body.startDate,
 			req.body.endDate,
@@ -40,7 +43,10 @@ exports.updateGame = (req, res) => {
 			req.body.description,
 		], (err, rows) =>{
 				if(!err){
-					return res.status(200).send("Successfully");
+					connection.userType('A').query('CALL view_game_details(?)', gameId, (err, rows) => {
+						return res.status(200).send(rows[0]);
+				
+					});
 				}
 				else{
 					res.status(500).send("Internal Server Error");
@@ -70,29 +76,6 @@ exports.viewGameDetails = (req, res) => {
 
 	}
 	else res.status(400).send("Invalid parameter.");
-}
-
-exports.searchForGameByKeyword = (req,res) => {
-	let query = 'call search_for_game_by_keyword(?);';
-	let param = '%' + req.query.keyword + '%';
-	if(req.query.keyword != ''){
-		connection.userType('A').query(query, 
-			[
-				'%' + req.query.keyword + '%'
-			],
-			(err, results, fields)	=> {
-			if (!err && results[0].length!=0) {
-				return res.status(200).send(results[0])
-			}
-			else if (rows[0].length==0){
-				res.status(404).send("Game not found.");
-			}		
-			else{
-				console.log(err.code);
-				res.status(500).send("An error occurred.");
-			}	
-		});
-	} else res.status(400).send("Invalid parameter.");
 }
 
 exports.searchForGameByKeyword = (req,res) => {
@@ -142,13 +125,22 @@ exports.viewAllSportsInGame = (req, res) => {
 }
 
 exports.deleteGame = (req, res) => {
-	let query = 'CALL delete_game(?);'
-	connection.userType('A').query(query, [req.body.gameId], function(err, rows) {
+	let query = 'CALL view_game_details(?);'
+	let gameId = req.body.gameId;
+	connection.userType('A').query(query, 
+		[
+			gameId
+		], 
+		(err, rows) => {
+		let deleted = rows;
 		if(!err){
 			if (rows.length == 0) {
 				res.status(501).send('Not Implemented');
 			} else {
-				return res.status(200).send('Sucessful');
+				connection.userType('A').query('CALL delete_game(?)', gameId, (err, rows) => {
+				return res.status(200).send(deleted[0]);
+				
+				});
 			}
 		}else{
 			res.status(500).send("Internal Server Error");
