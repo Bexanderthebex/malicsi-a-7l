@@ -39,7 +39,8 @@
             })
             .when('/competitor/profile', {
                 'templateUrl': 'views/competitor-profile-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'CompetitorController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/competitor/profile/:id', {
@@ -49,6 +50,11 @@
             })
             .when('/help', {
                 'templateUrl': 'views/help.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
+            .when('/aboutus', {
+                'templateUrl': 'views/about-us.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })

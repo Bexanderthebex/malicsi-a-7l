@@ -44,7 +44,8 @@ exports.login = (req, res) => {
 
 exports.logout = (req, res) => {
 	req.session = null;
-	res.status(200).send({'message': 'Logout successful'});
+	console.log(req.session);
+	return res.status(200).send({'message': 'Logout successful'});
 }
 
 exports.register = (req, res) => {
@@ -225,17 +226,22 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 		connection.userType('A').query('SELECT * FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
 				let returnObject = rows;
-
+				// console.log("1st: ");
+				// console.log(returnObject[0]);
 				if(currentUser.type == 'C') {
-					connection.userType('A').query('SELECT birthday, sex, first_name, last_name, nickname from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
+					connection.userType('A').query('SELECT birthday, sex, first_name, last_name, nickname, bio from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
 						if(!err) {
-							returnObject['birthday'] = rows[0].birthday;
-							returnObject['sex'] = rows[0].sex;
-							returnObject['first_name'] = rows[0].first_name;
-							returnObject['last_name'] = rows[0].last_name;
-							returnObject['nickname'] = rows[0].nickname;
+							returnObject[0]['birthday'] = rows[0].birthday;
+							returnObject[0]['sex'] = rows[0].sex;
+							returnObject[0]['first_name'] = rows[0].first_name;
+							returnObject[0]['last_name'] = rows[0].last_name;
+							returnObject[0]['nickname'] = rows[0].nickname;
+							returnObject[0]['bio'] = rows[0].bio;
 
-							res.status(200).send(returnObject[0]);
+					
+							// console.log("2nd: ")
+							// console.log(returnObject[0]);
+							return res.status(200).send(returnObject[0]);
 						} else {
 							console.log(err);
 						}
