@@ -108,7 +108,7 @@ exports.viewMatchDetails = (req, res) => {
 }
 
 exports.viewAllMatch = (req, res) => {
-	let query = 'CALL view_';
+	let query = 'CALL view_all_match()';
 	connection.userType('A').query(query,
 		(err, rows) => {
 			if(!err){
