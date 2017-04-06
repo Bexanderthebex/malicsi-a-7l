@@ -67,3 +67,32 @@ exports.changeActivity = (req, res) => {
 		}
 	});
 }
+
+exports.getUsersByType = (req, res) => {
+	let query = 'SELECT * FROM user WHERE type = ?';
+	connection.userType('A').query(query, [
+		req.body.type
+	], (err, rows) => {
+		if(!err){
+			console.log(rows);
+			res.status(200).send(rows);
+		}else{
+			console.log(err);
+			res.status(500).send({ 'message' : 'Internal Server Error.' });
+		}
+	});
+}
+
+exports.getAllUsers = (req, res) => {
+	console.log("HI")
+	let query = 'SELECT * FROM user';
+	connection.userType('A').query(query, [], (err, rows) => {
+		if(!err){
+			console.log(rows);
+			res.status(200).send(rows);
+		}else{
+			console.log(err);
+			res.status(500).send({ 'message' : 'Internal Server Error.' });
+		}
+	});
+}
