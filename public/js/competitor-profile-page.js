@@ -78,4 +78,16 @@ $(document).ready(function(){
             minLength: 1
         }
     });
+
+    $('.chips-initial').material_chip({
+        data: [{
+            tag: 'Jane Mare',
+            }, {
+            tag: 'Jean Mare',
+            }, {
+            tag: 'Joan Mare',
+        }],
+    });
+
+    $('.chips').on('chip.delete', function(e, chip){ alert('This member will be removed.'); });
 });
