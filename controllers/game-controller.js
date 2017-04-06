@@ -52,10 +52,37 @@ exports.viewGameDetails = (req, res) => {
 	let query = 'call view_game_details(?);';
 	let param = parseInt(req.params.gameId);
 	if (!isNaN(param)){
-		connection.userType('A').query(query, param, 
-		(err, rows, fields)	=> {
-			if (!err && rows[0].length!=0) {
-				return res.status(200).send(rows[0]);
+		connection.userType('A').query(query, 
+		param, 
+		(err, results, fields)	=> {
+		if (!err && results[0].length!=0) {
+			return res.status(200).send(results[0]);
+		}
+		else if (results[0].length==0){
+			res.status(404).send("Game not found.");
+		}		
+		else{
+			console.log(err.code);
+			res.status(500).send("An error occurred.");
+		}
+		
+	});
+
+	}
+	else res.status(400).send("Invalid parameter.");
+}
+
+exports.searchForGameByKeyword = (req,res) => {
+	let query = 'call search_for_game_by_keyword(?);';
+	let param = '%' + req.query.keyword + '%';
+	if(req.query.keyword != ''){
+		connection.userType('A').query(query, 
+			[
+				'%' + req.query.keyword + '%'
+			],
+			(err, results, fields)	=> {
+			if (!err && results[0].length!=0) {
+				return res.status(200).send(results[0])
 			}
 			else if (rows[0].length==0){
 				res.status(404).send("Game not found.");

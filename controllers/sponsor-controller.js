@@ -9,11 +9,16 @@ exports.addSponsorToGame = (req, res) => {
 		game_id : req.body.gameId
 	}
 	connection.userType('A').query(query, 
-		[req.body.gameId, req.body.sponsorId], 
+		[
+			req.body.gameId, 
+			req.body.sponsorId
+		], 
 		(err, results, fields)	=> {	
 		if(!err){
-			console.log("Success");
-			res.status(200).send("Successfully added sponsor to game!");		
+			connection.userType('A').query('CALL view_last_inserted_sponsor ()',(err, rows) => {
+				return res.status(200).send(rows[0]);
+				
+			});
 		}	
 		else{
 			if(err.code == 'ER_DUP_ENTRY') {
@@ -38,15 +43,17 @@ exports.addSponsorToGame = (req, res) => {
 
 exports.editSponsorDetails = (req, res) => {
 	var query = 'CALL edit_sponsor_details(?,?)';
-	connection.query(query, 
-		[req.body.description, 
-		req.body.sponsor_id
+	connection.userType('A').query(query, 
+		[
+			req.body.description, 
+			req.body.sponsor_id
 		], 
-		(err, results, fields) => {
-		if(!err && results.affectedRows != 0)
+		(err, rows) => {
+		if(!err && rows.affectedRows != 0)
+			
 			res.status(200).send("Successfully updated sponsoring institution details!");
 		
-		else if (results.affectedRows == 0)
+		else if (rows.affectedRows == 0)
 			res.status(400).send("Unable to edit sponsor. Reason: Sponsor being edited does not exist.")
 		
 		
@@ -63,16 +70,22 @@ exports.editSponsorDetails = (req, res) => {
 }
 
 exports.deleteSponsorFromGame = (req, res) => {
-	var query = 'CALL delete_sponsor_from_game(?,?)';
+	var query = 'CALL view_sponsor(?,?)';
+	let sponsorId = req.body.sponsorId;
+	let gameId = req.body.gameId;
 	connection.query(query, 
-		[req.body.sponsor_id,
-		 req.body.game_id
+		[
+			sponsorId,
+			gameId
 		], 
-		(err, results, fields) => {
-		if(err) {
-			res.status(404).send("Unable to delete sponsoring institution!");
-			throw err;
+		(err, rows) => {
+		let deleted = rows;
+		if(!err) {
+			connection.userType('A').query('CALL delete_sponsor_from_game(?)', sponsorId, gameId , (err, rows) => {
+				return res.status(200).send(deleted[0]);
+			})
 		}
-		else res.status(200).send("Successfully deleted sponsoring institution!");
+		else 
+			res.status(404).send("Unable to delete sponsoring institution!");
 	})
 }

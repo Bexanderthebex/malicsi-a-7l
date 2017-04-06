@@ -1,7 +1,7 @@
 USE malicsi;
 
+DROP PROCEDURE IF EXISTS create_sport;
 DELIMITER //
-DROP PROCEDURE IF EXISTS create_sport //
 CREATE PROCEDURE create_sport
 (IN s_name VARCHAR(50), 
  IN mech TEXT, 
@@ -89,9 +89,8 @@ DELIMITER //
 DELIMITER ;
 
 
-
+DROP PROCEDURE IF EXISTS count_sport_by_game;
 DELIMITER //
-DROP PROCEDURE IF EXISTS count_sport_by_game //
 CREATE PROCEDURE count_sport_by_game (IN g_id INT(11))
 BEGIN
 	SELECT COUNT(*) FROM sport 
@@ -100,21 +99,29 @@ END //
 DELIMITER ;
 
 
-
+DROP PROCEDURE IF EXISTS retrieve_team_rankings_from_sport;
 DELIMITER //
-DROP PROCEDURE IF EXISTS retrieve_team_rankings_from_sport //
 CREATE PROCEDURE retrieve_team_rankings_from_sport (IN in_sport_id INT(11))
 BEGIN
 	select organization.name as org_name, sum(team_in_match.ranking) as total_ranks from team_in_match, sport, sport_match, team, organization where sport.sport_id = in_sport_id and sport.sport_id = sport_match.sport_id and sport_match.match_id = team_in_match.match_id and team.team_id = team_in_match.team_id and team.team_organization = organization.organization_id and team_in_match.ranking is not NULL group by organization.name;
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_matches_in_game;
 DELIMITER //
-DROP PROCEDURE IF EXISTS view_all_matches_in_game //
 CREATE PROCEDURE view_all_matches_in_game(in game_id_input INT(11))
 BEGIN
 	SELECT team_id, match_id, sport_id, game_id, sport_match.time_start, sport_match.time_end from ((game join sport using (game_id)) join sport_match using (sport_id)) join team_in_match using (match_id) where game_id = game_id_input;
 END //
+
+DROP PROCEDURE IF EXISTS search_for_sport_by_keyword;
+DELIMITER //
+CREATE PROCEDURE search_for_sport_by_keyword(in keyword varchar(50))
+BEGIN
+	select sport.sport_name, sport.start_date, sport.end_date, time_start, time_end, max_teams, sport.mechanics, game.name as game_name from sport,game where (sport.sport_name like keyword or sport.mechanics like keyword or game.name like keyword or game.location like keyword) and sport.game_id = game.game_id;
+END;
+//
+
 DELIMITER ;
 
 -- create sport
@@ -155,8 +162,16 @@ GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO administrator;
 GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO competitor;
 GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO guest;
 
+
 -- view all matches in game
 GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO organizer;
 GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO administrator;
 GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO competitor;
 GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO guest;
+
+-- search all sport by keyword
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO organizer;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO administrator;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO competitor;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO guest;
+

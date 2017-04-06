@@ -120,6 +120,7 @@ router.delete('/sport/deleteSport', sportController.deleteSport);
 router.get('/game/sport/:gameId', gameController.viewAllSportsInGame);
 router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);
 router.get('/sport/ranks/:sportId', sportController.retrieveSportRankings);
+router.get('/sport/search', sportController.searchForSportByKeyword);
 
 //match routers
 router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
@@ -128,6 +129,7 @@ router.post('/sport/match/addMatch',  matchController.addMatch);
 router.get('/game/sport/countMatchBySport/:sportID', matchController.countMatchBySport);
 router.put('/sport/match/editMatch', matchController.editMatch);
 router.put('/sport/match/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
+router.delete('/sport/match/deleteMatch', matchController.deleteMatch);
 
 // log routers
 router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
