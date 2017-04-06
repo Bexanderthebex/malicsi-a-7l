@@ -36,14 +36,14 @@
         };
 
         function addSport() {
-            $scope.newSport.sportName = $('#name').val();
-            $scope.newSport.timeStart = $('#start-time').val();
-            $scope.newSport.timeEnd = $('#end-time').val();
-            $scope.newSport.startDate = $('#start-date').val();
-            $scope.newSport.endDate = $('#end-date').val();
-            $scope.newSport.mechanics = $('#description').val();
-            $scope.newSport.maxTeams = $('#maxTeams').val();
-            $scope.newSport.scoringSystem = $('#scoring-system').val();
+            $scope.newSport.sportName = $('#addName').val();
+            $scope.newSport.timeStart = $('#addStartTime').val();
+            $scope.newSport.timeEnd = $('#addEndTime').val();
+            $scope.newSport.startDate = $('#addStartDate').val();
+            $scope.newSport.endDate = $('#addEndDate').val();
+            $scope.newSport.mechanics = $('#addDescription').val();
+            $scope.newSport.maxTeams = $('#addMaxTeams').val();
+            $scope.newSport.scoringSystem = $('#addScoringSystem').val();
             console.log($scope.newSport);
             GameService
                 .addSport($scope.newSport)

@@ -461,7 +461,7 @@
 								</div>
 							</div>
 
-							<div class="row">
+							<div class="row" ng-controller="GameController" ng-init="retrieveAllSports()">
 								<div class="col s4">
 									<div class="game-sport" data-target="game-add-sport">
 										<div class="card game-hovercard">
@@ -474,14 +474,14 @@
 										</div>
 									</div>
 								</div>
-								<div class="col s4">
+								<div class="col s4" ng-repeat = "sport in sports">
 									<div class="game-sport">
 										<div class="card game-hovercard">
 											<div class="center">
 												<img src="assets/badges/badge_archery.png" class="game-adjust-image activator">
 											</div>
 											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Archery</span>
+												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">{{sport.sport_name}}</span>
 											</div>
 											<div class="card-reveal game-arrange-padding grey lighten-2">
 												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
@@ -489,392 +489,23 @@
 												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
 												<div class="telegrafico">Date</div>
 												<div class="game-match-info">
-													Start: 03/20/2007
+													Start: {{sport.start_date}}
 												</div>
 												<div class="game-match-info">
-													End: 03/20/2007
+													End: {{sport.end_date}}
 												</div>
 												<div class="telegrafico">Time</div>
 												<div class="game-match-info">
-													Start: 08:00AM
+													Start: {{sport.start_time}}
 												</div>
 												<div class="game-match-info">
-													End: 11:00AM
+													End: {{sport.end_time}}
 												</div>
 												<div class="telegrafico">Teams Remaining</div>
 												<div class="game-match-info">
 													9/10
 												</div>
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">archery</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_badminton.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Badminton</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">badminton</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_baseball.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Baseball</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">baseball</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_boxing.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Boxing</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">boxing</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_fencing.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Fencing</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">fencing</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_golf.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Golf</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">golf</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_gymnastics.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Gymnastics</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">gymnastics</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_swimming.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Swimming</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">swimming</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_tennis.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Tennis</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">tennis</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_tracknfield.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Track and Field</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">track and field</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_volleyball.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Volleyball</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">volleyball</div>
+												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">{{sport.sport_name | lowercase}}</div>
 											</div>
 										</div>
 									</div>
@@ -1032,7 +663,7 @@
 	</div>
 </div>
 
-<div id="game-add-sport" class="modal">
+<div id="game-add-sport" class="modal" ng-controller="GameController">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-3">
 			<div class="center">
@@ -1047,17 +678,17 @@
 	<div class="modal-content">
 		<div class="row">
 			<div class="input-field col s6">
-				<input placeholder="Enter sport name" id="name" type="text" class="validate">
+				<input placeholder="Enter sport name" id="addName" type="text" class="validate">
 				<label for="name">Sport Name</label>
 			</div>
 
 			<div class="input-field col s2">
-				<input placeholder="Enter team number limit" id="maxTeams" type="number" class="validate">
+				<input placeholder="Enter team number limit" id="addMaxTeams" type="number" class="validate">
 				<label for="maxTeams">Max Teams</label>
 			</div>
 
 			<div class="input-field col s4">
-				<select>
+				<select id = "addScoringSystem">
 					<option value="" disabled selected>Choose your option</option>
 					<option value="1">Preset system 1</option>
 					<option value="2">Preset system 2</option>
@@ -1076,25 +707,25 @@
 			</div>
 
 			<div class="input-field col s3">
-				<input placeholder="Time started" id="start-time" type="time" class="validate">
+				<input placeholder="Time started" id="addStartTime" type="time" class="validate">
 				<label class="game-adjust-label" for="start-time">Start</label>
 			</div>
 			<div class="input-field col s3">
-				<input placeholder="Time ended" id="end-time" type="time" class="validate">
+				<input placeholder="Time ended" id="addEndTime" type="time" class="validate">
 				<label class="game-adjust-label" for="end-time">End</label>
 			</div>
 
 			<div class="input-field col s3">
-				<input placeholder="Date started" id="start-time" type="date" class="validate">
+				<input placeholder="Date started" id="addStartDate" type="date" class="validate">
 				<label class="game-adjust-label" for="start-time">Start</label>
 			</div>
 			<div class="input-field col s3">
-				<input placeholder="Date ended" id="end-time" type="date" class="validate">
+				<input placeholder="Date ended" id="addEndDate" type="date" class="validate">
 				<label class="game-adjust-label" for="end-time">End</label>
 			</div>
 
 			<div class="input-field col s12">
-				<textarea id="description" class="materialize-textarea"></textarea>
+				<textarea id="addDescription" class="materialize-textarea"></textarea>
 				<label for="description">Mechanics</label>
 			</div>
 
@@ -1108,7 +739,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat">Add</a>
+		<a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-click="addSport()">Add</a>
 	</div>
 </div>
 
