@@ -20,6 +20,24 @@
 
         return service;
 
+
+        function getOrganizationRankings(org_id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: { "org_id": org_id },
+                url: '/team/getOrganizationRankings',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
         function retrieveTeams(org_id) {
             let deferred = $q.defer();
 
@@ -54,7 +72,7 @@
             return deferred.promise;
         }
 
-        function getOrganizationRankings(team_id) {
+        function getOrganizationRankings(org_id) {
             let deferred = $q.defer();
 
             $http({
