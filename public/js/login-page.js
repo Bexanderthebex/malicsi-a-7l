@@ -5,6 +5,8 @@ $(document).ready(function(){
 	})
 
 	$('.datepicker').pickadate({
-		format: 'yyyy-mm-dd'
+		format: 'yyyy-mm-dd',
+		selectMonths: true,
+		selectYear: 120
 	})
 });
