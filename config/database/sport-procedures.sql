@@ -109,7 +109,14 @@ BEGIN
 END //
 DELIMITER ;
 
-
+DROP PROCEDURE IF EXISTS search_for_sport_by_keyword;
+DELIMITER //
+CREATE PROCEDURE search_for_sport_by_keyword(in keyword varchar(50))
+BEGIN
+	select sport.sport_name, sport.start_date, sport.end_date, time_start, time_end, max_teams, sport.mechanics, game.name as game_name from sport,game where (sport.sport_name like keyword or sport.mechanics like keyword or game.name like keyword or game.location like keyword) and sport.game_id = game.game_id;
+END;
+//
+DELIMITER ;
 
 -- create sport
 GRANT EXECUTE ON PROCEDURE create_sport TO organizer;
@@ -148,3 +155,9 @@ GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO organizer;
 GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO administrator;
 GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO competitor;
 GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO guest;
+
+-- search all sport by keyword
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO organizer;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO administrator;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO competitor;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO guest;
