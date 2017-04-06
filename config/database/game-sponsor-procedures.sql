@@ -8,6 +8,22 @@ END;
 //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_sponsors_in_game;
+DELIMITER //
+CREATE PROCEDURE view_all_sponsors_in_game (IN g_id INT)
+BEGIN
+	SELECT * FROM sponsor_institution game_id = g_id;
+END//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_sponsor;
+DELIMITER //
+CREATE PROCEDURE view_sponsor(IN spon_id INT, IN g_id INT)
+BEGIN
+	SELECT * FROM sponsor_institution WHERE sponsor_id = spon_id AND game_id = g_id;
+END//
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS edit_sponsor_details;
 DELIMITER //
 CREATE PROCEDURE edit_sponsor_details(IN descr TEXT, IN spon_id INT)
@@ -24,6 +40,16 @@ BEGIN
 END//
 DELIMITER ;
 
+
+DROP PROCEDURE IF EXISTS view_last_inserted_sponsor;
+DELIMITER //
+CREATE PROCEDURE view_last_inserted_sponsor()
+BEGIN
+	SELECT * FROM sponsor_games
+	WHERE sponsor_id = (SELECT LAST_INSERT_ID());
+END; //
+DELIMITER ;
+
 GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO organizer;
 GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO administrator;
 
@@ -33,3 +59,15 @@ GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO administrator;
 GRANT EXECUTE ON PROCEDURE delete_sponsor_from_game TO organizer;
 GRANT EXECUTE ON PROCEDURE delete_sponsor_from_game TO administrator;
 
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO organizer;
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO administrator;
+
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO guest;
+
+GRANT EXECUTE ON PROCEDURE view_sponsor TO organizer;
+GRANT EXECUTE ON PROCEDURE view_sponsor TO administrator;
+GRANT EXECUTE ON PROCEDURE view_sponsor TO competitor;
+GRANT EXECUTE ON PROCEDURE view_sponsor TO guest;

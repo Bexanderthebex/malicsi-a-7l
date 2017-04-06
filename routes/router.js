@@ -125,6 +125,7 @@ router.post('/sport/match/addMatch',  matchController.addMatch);
 router.get('/game/sport/countMatchBySport/:sportID', matchController.countMatchBySport);
 router.put('/sport/match/editMatch', matchController.editMatch);
 router.put('/sport/match/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
+router.delete('/sport/match/deleteMatch', matchController.deleteMatch);
 
 // log routers
 router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);

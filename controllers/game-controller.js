@@ -79,7 +79,9 @@ exports.searchForGameByKeyword = (req,res) => {
 	let param = '%' + req.query.keyword + '%';
 	if(req.query.keyword != ''){
 		connection.userType('A').query(query, 
-			param,
+			[
+				'%' + req.query.keyword + '%'
+			],
 			(err, results, fields)	=> {
 			console.log(err);
 			console.log(results);
