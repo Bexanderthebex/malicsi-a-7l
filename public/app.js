@@ -84,7 +84,8 @@
             })
             .when('/sports', {
                 'templateUrl': 'views/sports-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'SportController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/adminpanel', {

@@ -1,11 +1,11 @@
-<div id="mainHolder">
+<div id="mainHolder" ng-init="initialize()">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
 		<!-- Do your thing here -->
 		<div id="sports-title" class="rockwell ">
-			<h3 class="white-text">PALICSIHAN • BASKETBALL</h3>
-			<h6 class="white-text">12/23/2007 • Start: 08:00AM End: 9:00PM • Beijing, Muntinlupa </h6>
+			<h3 class="white-text">{{ game.name }} • {{ sport.sport_name }}</h3>
+			<h6 class="white-text">{{ sport.start_date | date:"MM/dd/yyyy" }} - {{ sport.end_date | date:"MM/dd/yyyy" }} • Start: {{ sport.time_start | date:"shortTime" }} End: {{ sport.time_end | date:"shortTime" }} • {{ game.location }} </h6>
 		</div>
 
 		<!-- RANKINGS -->
@@ -573,14 +573,14 @@
 				<div id="sports-mechanics" class="row">
 					<div class="col s6 offset-s6 sports-details">
 						<p class="sports-details-title telegrafico">MECHANICS</p>
-						<p class="century-gothic letter-spacing-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ad, repellat fugiat, eum ipsa maiores aspernatur labore hic, soluta est quaerat voluptatem mollitia nobis! Autem, a, ullam! Dicta, optio dolores. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati iusto fugiat similique omnis impedit illum repudiandae eius magnam itaque voluptatibus ab, totam quos ipsa, ducimus alias, veniam possimus autem quod.</p>
+						<p class="century-gothic letter-spacing-1">{{ sport.mechanics }}</p>
 					</div>
 				</div>
 
 				<div id="sports-scoring" class="row">
 					<div class="col s6 sports-details">
 						<p class="sports-details-title telegrafico">SCORING SYSTEM</p>
-						<p class="century-gothic letter-spacing-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ad, repellat fugiat, eum ipsa maiores aspernatur labore hic, soluta est quaerat voluptatem mollitia nobis! Autem, a, ullam! Dicta, optio dolores. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati iusto fugiat similique omnis impedit illum repudiandae eius magnam itaque voluptatibus ab, totam quos ipsa, ducimus alias, veniam possimus autem quod.</p>
+						<p class="century-gothic letter-spacing-1">{{ sport.scoring_system }}</p>
 					</div>
 				</div>
 			</div>

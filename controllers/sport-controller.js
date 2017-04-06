@@ -75,7 +75,7 @@ exports.viewSportDetails = (req, res) => {
 		], 
 		(err, rows) => {
 		if (!err){
-			res.status(200).send(rows[0]);
+			res.status(200).send(rows[0][0]);
 		}else{
 			res.status(500).send("Internal Server Error");
 		}
