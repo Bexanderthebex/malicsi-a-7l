@@ -117,25 +117,29 @@ grant execute on procedure get_organizer to organizer;
 grant execute on procedure get_organizer to competitor;
 grant execute on procedure get_organizer to guest;
 grant execute on procedure get_organizer to administrator;
+
 grant execute on procedure get_request to administrator;
 grant execute on procedure get_request to organizer;
+
 grant execute on procedure get_pending_participation to organizer;
 grant execute on procedure get_pending_participation to administrator;
 
 grant execute on procedure process_request to organizer;
 grant execute on procedure process_request to administrator;
 
+grant execute on procedure find_game to administrator;
+grant execute on procedure find_game to organizer;
+grant execute on procedure find_game to competitor;
+grant execute on procedure find_game to guest;
+
 grant execute on procedure delete_team to administrator;
 grant execute on procedure delete_team to competitor;
 
-grant execute on procedure find_game to organizer;
-grant execute on procedure find_game to competitor;
-grant execute on procedure find_game to administrator;
-grant execute on procedure find_game to guest;
 grant execute on procedure find_sport to organizer;
 grant execute on procedure find_sport to competitor;
 grant execute on procedure find_sport to administrator;
 grant execute on procedure find_sport to guest;
+
 grant execute on procedure find_team to organizer;
 grant execute on procedure find_team to competitor;
 grant execute on procedure find_team to administrator;
