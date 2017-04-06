@@ -83,11 +83,11 @@
                             kung ilan yung laman ng games na array
                             game represents on element in the array games--> 
                                 <td>{{ game.name }}</td>
-                                <td>{{ game.start_date }}</td>
+                                <td>{{ game.start_date| date:"longDate" }}</td>
                                 <td>{{ game.location }}</td>
                                 <td>
                                     <div class="organizer-actions" data-target="organizer-update-game-modal">
-                                        <i class="fa fa-pencil-square-o fa-lg" ng-click="copy(game)"></i>
+                                        <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
                                         <i class="fa fa-minus-square fa-lg"></i>
@@ -110,11 +110,11 @@
                         <tbody>
                             <tr class="century-gothic" ng-repeat="game in games">
                                 <td>{{ game.name }}</td>
-                                <td>{{ game.start_date}}</td>
+                                <td>{{ game.start_date| date:"longDate"}}</td>
                                 <td>{{ game.location }}</td>
                                 <td>
                                     <div class="organizer-actions" data-target="organizer-update-game-modal">
-                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                        <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
                                         <i class="fa fa-minus-square fa-lg"></i>
@@ -137,10 +137,10 @@
                         <tbody>
                             <tr class="century-gothic" ng-repeat="game in games">
                                 <td>{{ game.name }}</td>
-                                <td>{{ game.start_date}}</td>
+                                <td>{{ game.start_date| date:"longDate"}}</td>
                                 <td>{{ game.location }}</td>
                                 <td>
-                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                    <div class="organizer-actions" data-target="organizer-udpate-game-modal">
                                         <i class="fa fa-pencil-square-o fa-lg"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
@@ -181,7 +181,7 @@
                         <td>{{ request.start_date }}</td>
                         <td>
                             <div class="organizer-actions" data-target="organizer-profile-accept-modal">
-                                <i class="fa fa-check fa-lg"></i>
+                                <i class="fa fa-check fa-lg" ng-click="copyRequest(request)"></i>
                             </div>
                             <div class="organizer-actions" data-target="organizer-profile-decline-modal">
                                 <i class="fa fa-times fa-lg"></i>
@@ -338,12 +338,12 @@
         </div>
     </div>  
     <div class="modal-content telegrafico">
-        <p>Are you sure you want to accept [TEAM NAME]'s request to join [SPORT NAME]?</p>
+        <p>Are you sure you want to accept {{ requestCopy.team_name }}'s request to join {{ requestCopy.sport_name }}?</p>
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        <a class="modal-action modal-close waves-effect btn-flat" ng-click="acceptRequest()"><i class="material-icons left">check</i>Yes</a>
     </div>
 </div>
 
@@ -412,11 +412,11 @@
                 <tbody>
                     <tr class="century-gothic" ng-repeat="game in games">
                         <td> {{ game.name }}</td>
-                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.start_date| date:"longDate" }}</td>
                         <td> {{ game.location }}</td>
                         <td>
-                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
                                         <i class="fa fa-minus-square fa-lg"></i>
@@ -452,11 +452,11 @@
                 <tbody>
                     <tr class="century-gothic" ng-repeat="game in games">
                         <td> {{ game.name }}</td>
-                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.start_date| date:"longDate" }}</td>
                         <td> {{ game.location }}</td>
                         <td>
-                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                        <i class="fa fa-pencil-square-o fa-lg"></i>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
                                     </div>
                                     <div class="organizer-actions" data-target="organizer-delete-game-modal">
                                         <i class="fa fa-minus-square fa-lg"></i>
@@ -492,8 +492,16 @@
                 <tbody>
                     <tr class="century-gothic" ng-repeat="game in games">
                         <td> {{ game.name }}</td>
-                        <td> {{ game.start_date }}</td>
+                        <td> {{ game.start_date| date:"longDate" }}</td>
                         <td> {{ game.location }}</td>
+                        <td>
+                                    <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                        <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
+                                    </div>
+                                    <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                        <i class="fa fa-minus-square fa-lg"></i>
+                                    </div>
+                                </td>
                     </tr>
                 </tbody>
             </table>

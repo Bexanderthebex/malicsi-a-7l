@@ -18,7 +18,8 @@
         $scope.getOrganizer = getOrganizer;
         $scope.acceptRequest = acceptRequest;
         $scope.updateOrganizer = updateOrganizer;
-        $scope.copy = copy;
+        $scope.copyGame = copyGame;
+        $scope.copyRequest = copyRequest;
 
         //kumabaga "declare" or "initialize" "variables" para mag-access sa front-end yung mga data
         $scope.organizer = {};
@@ -34,7 +35,7 @@
             descrip: undefined
         };
 
-        function copy(game) {
+        function copyGame(game) {
             $scope.gameCopy = {
                 gameId: game.game_id,
                 name: game.name,
@@ -42,6 +43,14 @@
                 endDate: game.end_date,
                 location: game.location,
                 description: game.description
+            }
+        }
+
+        function copyRequest(request) {
+            $scope.requestCopy = {
+                team_id: request.team_id,
+                team_name: request.team_name,
+                sport_name: request.sport_name
             }
         }
 
@@ -119,7 +128,7 @@
 
         function acceptRequest() {
             OrganizerService
-                .acceptRequests('12')
+                .acceptRequests($scope.requestCopy.team_id) //team id
                 .then(function(res) {
                     Materialize.toast('Successfully accepted request!', 3000);
                 }, function(err) {

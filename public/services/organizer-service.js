@@ -18,7 +18,8 @@
             deleteGame: deleteGame,
             getRequests: getRequests,
             getOrganizer: getOrganizer,
-            updateOrganizer: updateOrganizer
+            updateOrganizer: updateOrganizer,
+            acceptRequests: acceptRequests
         }
 
         return service;
@@ -125,7 +126,7 @@
             }
 
             $http({ 
-                method: 'PUT',
+                method: 'POST',
                 data: $.param(team),
                 url: '/organizer/processRequest',
                 headers: headers
