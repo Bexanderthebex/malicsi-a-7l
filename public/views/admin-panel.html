@@ -1,4 +1,4 @@
-<div id="mainHolder">
+<div id="mainHolder" ng-controller="AdminCtrl">
 	<div id="main">
 		<div class="row">
 			<!-- SIDE NAV -->
@@ -58,7 +58,7 @@
 					    </ul>
 					</div> -->
 
-					<button id="admin-users-btn">USERS</button> 
+					<button id="admin-users-btn">USERS</button>
 					<!-- <div id="admin-users-functions" style="width: 100%;">
 						<ul id="admin-users" style="width: 100%; margin: 0;">
 					        <li class="admin-hidden-item valign-wrapper">
@@ -102,25 +102,14 @@
 					<table>
 		            	<thead>
 		            		<tr class="telegrafico">
-		            			<th>First Name</th>
-		            			<th>Last Name</th>
-		            			<th>Nickname</th>
-		            			<th>Actions</th>
+		            			<th>Username</th>
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
-		            		<tr>
+		            		<tr ng-repeat="a in admins">
 		            			<td class="match-player">
-		            				<div ng-show="!view">Juan</div>
+		            				<div ng-show="!view">{{a.username}}</div>
 		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view">Dela Cruz</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new last name:"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view">Johnny</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new nickname:"></div>
 		            			</td>
 		            			<td>
 		            				<div class="match-actions">
@@ -131,73 +120,6 @@
 		            				</div>
 		            			</td>
 		            		</tr>
-		            		<tr>
-		            			<td class="match-player">
-		            				<div ng-show="!view3">Juan</div>
-		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new first name:"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view3">Dela Cruz</div>
-		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new last name:"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view3">Johnny</div>
-		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new nickname:"></div>
-		            			</td>
-		            			<td>
-		            				<div class="match-actions">
-		            					<i class="fa fa-minus-square fa-lg"></i>
-		            				</div>
-		            				<div class="match-actions" ng-click="view3 = !view3">
-		            					<i class="fa fa-pencil-square-o fa-lg"></i>
-		            				</div>
-		            			</td>
-		            		</tr>
-		            		<tr>
-		            			<td class="match-player">
-		            				<div ng-show="!view5">Juan</div>
-		            				<div ng-hide="!view5"><input type="text" name="" placeholder="Enter new first name:"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view5">Dela Cruz</div>
-		            				<div ng-hide="!view5"><input type="text" name="" placeholder="Enter new last name:"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view5">Johnny</div>
-		            				<div ng-hide="!view5"><input type="text" name="" placeholder="Enter new nickname:"></div>
-		            			</td>
-		            			<td>
-		            				<div class="match-actions">
-		            					<i class="fa fa-minus-square fa-lg"></i>
-		            				</div>
-		            				<div class="match-actions" ng-click="view5 = !view5">
-		            					<i class="fa fa-pencil-square-o fa-lg"></i>
-		            				</div>
-		            			</td>
-		            		</tr>
-		            		<tr>
-		            			<td class="match-player">
-		            				<div ng-show="!view8">Juan</div>
-		            				<div ng-hide="!view8"><input type="text" name="" placeholder="Enter new first name:"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view8">Dela Cruz</div>
-		            				<div ng-hide="!view8"><input type="text" name="" placeholder="Enter new last name:"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view8">Johnny</div>
-		            				<div ng-hide="!view8"><input type="text" name="" placeholder="Enter new nickname:"></div>
-		            			</td>
-		            			<td>
-		            				<div class="match-actions">
-		            					<i class="fa fa-minus-square fa-lg"></i>
-		            				</div>
-		            				<div class="match-actions" ng-click="view8 = !view8">
-		            					<i class="fa fa-pencil-square-o fa-lg"></i>
-		            				</div>
-		            			</td>
-		            		</tr>
-		            		
 		            	</tbody>
 		            </table>
 
@@ -251,7 +173,7 @@
 		            				</div>
 		            			</td>
 		            		</tr>
-		            		
+
 		            	</tbody>
 		            </table>
 
@@ -322,7 +244,7 @@
 		            					<i class="fa fa-pencil-square-o fa-lg"></i>
 		            				</div>
 		            			</td>
-		            		</tr>		            		
+		            		</tr>
 		            	</tbody>
 		            </table>
 
@@ -367,15 +289,15 @@
 		            			<td>2322</td>
 		            			<td>Deleted asdf @ asomething</td>
 		            			<td>02-32-2222</td>
-		            		</tr>		            			            		
+		            		</tr>
 		            	</tbody>
 		            </table>
 
 				</div>
 
-				
+
 			</div>
-		</div>			
+		</div>
 	</div>
 </div>
 

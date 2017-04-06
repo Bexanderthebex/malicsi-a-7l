@@ -1,4 +1,4 @@
-<div id="mainHolder">
+<div id="mainHolder" ng-init="initUser()">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
@@ -198,9 +198,9 @@
 		<div class="row container">
 		 	<!-- STATISTICS -->
             <div class="col s12 m12 l5 palette-3">
-                <div class="row center-align">
+                <div class="row center-align" ng-init="retrieveOrganizationStatistics(1)" ng-model="OrganizationController">
                     <div class="col s4 m4 l4">
-                        <h1 class="stat-nums rockwell strong">3</h1>
+                        <h1 class="stat-nums rockwell strong"> {{organizationStats}} </h1>
                     </div>
                     <div class="col s4 m4 l4">
                         <h1 class="stat-nums rockwell strong">1</h1>
@@ -312,3 +312,4 @@
 </div>
 
 <script type="text/javascript" src="../js/organization-page.js"></script>
+<script type="text/javascript" src="../controllers/organization-controller.js"></script>
