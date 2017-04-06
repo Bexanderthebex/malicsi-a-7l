@@ -15,7 +15,7 @@ DELIMITER //
 
 	CREATE PROCEDURE get_organizer (IN search INT) 
 	BEGIN
-	   SELECT * FROM organizer where id = search;
+	   SELECT * FROM user join organizer using(id) where id = search;
 	END; //
 
 DELIMITER ;
@@ -70,12 +70,12 @@ DELIMITER //
 
 DELIMITER ;
 
-DROP procedure IF EXISTS accept_request;
+DROP procedure IF EXISTS process_request;
 DELIMITER //
 
-	CREATE PROCEDURE accept_request (IN teamID INT) 
+	CREATE PROCEDURE process_request (IN teamID INT, IN flag INT) 
 	BEGIN
-	   UPDATE team SET pending_participation = 0 WHERE team_id = teamID;
+	   UPDATE team SET pending_participation = flag WHERE team_id = teamID;
 	END; //
 
 DELIMITER ;

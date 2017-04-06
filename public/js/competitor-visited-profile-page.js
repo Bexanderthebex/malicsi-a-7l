@@ -19,6 +19,10 @@ $(document).ready(function(){
         $('#visited-competitor-profile-edit-modal').openModal();
     });
 
+    $('#invite-to-teams-button').on('click', function() {
+        $('#invite-to-teams-modal').openModal();
+    });
+
     $('#visited-competitor-profile-accept').on('click', function() {
         $('#visited-competitor-profile-accept-modal').openModal();
     });

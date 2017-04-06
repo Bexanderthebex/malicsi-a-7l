@@ -28,11 +28,10 @@ exports.getOrganizer = (req, res) => {
 
 	connection.userType('A').query(query, 
 		[
-			"%" + req.query.search + "%"
+			req.query.search
 		], (err, rows) => {
 			if(!err) {
 				return res.status(200).send(rows[0][0]);
-				
 			} else {
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
@@ -76,11 +75,10 @@ exports.findGames = (req,res,next) => {
 			req.query.id
 		], (err,rows) => {
 			if(!err){
-				if(row.length == 1){
-					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0][0]);
-					
+				if(rows.length == 1){
+					return res.status(200).send({'message' : 'Sucessfully Retrieved Info' , 'data': rows[0][0]});
 				} else {
-					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+					return res.status(200).send({'message' : 'Sucessfully Retrieved Info', 'data': rows[0]});
 				}
 			} else {
 			 	return res.status(500).send({'message' : 'Internal Server Error'})
@@ -148,8 +146,8 @@ exports.getRequest = (req, res, next) => {
 };
 
 
-exports.acceptRequest = (req, res, next) => {
-	query = "CALL accept_request(?)"
+exports.processRequest = (req, res, next) => {
+	query = "CALL process_request(?)"
 	query1 = "CALL get_team(?)"
 
 	connection.userType('A').query(query, 
@@ -189,10 +187,10 @@ exports.getPendingParticipation = (req, res, next) => {
 			req.query.organizer_id
 		], (err,rows) => {
 		if(!err){
-			if(row.length == 1){
-				return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0][0]);
+			if(rows.length == 1){
+				return res.status(200).send({'message' : 'Sucessfully Retrieved Info', 'data': rows[0][0]});
 			} else {
-				return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+				return res.status(200).send({'message' : 'Sucessfully Retrieved Info', 'data': rows[0]});
 			}
 		} else {
 			return res.status(500).send({'message' : 'Internal Server Error'});

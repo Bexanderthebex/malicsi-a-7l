@@ -12,18 +12,57 @@ $(document).ready(function(){
   );
 
   $('#admin-admins-btn').on('click', function(){
-    $('#admin-admins-functions').toggle();
+    $('#admin-adminscrud').css('display', 'inline');
+    $('#admin-organizerscrud').css('display', 'none');
+    $('#admin-userscrud').css('display', 'none');
+    $('#admin-logsview').css('display', 'none');
+
+    $('#admin-adminscrud').css('background', '#00719c');
+    $('#admin-organizerscrud').css('background', 'transparent');
+    $('#admin-userscrud').css('background', 'transparent');
+    $('#admin-logsview').css('background', 'transparent');    
+    // $('#admin-admins-functions').toggle();
+
   });
 
   $('#admin-organizers-btn').on('click', function(){
-    $('#admin-organizers-functions').toggle();
+    // $('#admin-organizers-functions').toggle();
+    $('#admin-adminscrud').css('display', 'none');
+    $('#admin-organizerscrud').css('display', 'inline');
+    $('#admin-userscrud').css('display', 'none');
+    $('#admin-logsview').css('display', 'none');
+
+    $('#admin-adminscrud').css('background', 'transparent');
+    $('#admin-organizerscrud').css('background', '#00719c');
+    $('#admin-userscrud').css('background', 'transparent');
+    $('#admin-logsview').css('background', 'transparent');    
   });
 
   $('#admin-users-btn').on('click', function(){
-    $('#admin-users-functions').toggle();
+    // $('#admin-users-functions').toggle();
+    $('#admin-adminscrud').css('display', 'none');
+    $('#admin-organizerscrud').css('display', 'none');
+    $('#admin-userscrud').css('display', 'inline');
+    $('#admin-logsview').css('display', 'none');
+
+    $('#admin-adminscrud').css('background', 'transparent');
+    $('#admin-organizerscrud').css('background', 'transparent');
+    $('#admin-userscrud').css('background', '#00719c');
+    $('#admin-logsview').css('background', 'transparent');    
   });
 
   $('#admin-logs-btn').on('click', function(){
-    $('#admin-logs-functions').toggle();
+    // $('#admin-logs-functions').toggle();
+    $('#admin-adminscrud').css('display', 'none');
+    $('#admin-organizerscrud').css('display', 'none');
+    $('#admin-userscrud').css('display', 'none');
+    $('#admin-logsview').css('display', 'inline');
+
+    $('#admin-adminscrud').css('background', 'transparent');
+    $('#admin-organizerscrud').css('background', 'transparent');
+    $('#admin-userscrud').css('background', 'transparent');
+    $('#admin-logsview').css('background', '#00719c');    
   });
+
+
 });

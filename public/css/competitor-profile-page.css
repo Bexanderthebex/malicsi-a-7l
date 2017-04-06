@@ -192,3 +192,14 @@ table.highlight tbody tr:hover {
 .bold {
   font-weight: bold;
 }
+
+.competitor-actions{
+    float: left;
+    margin-right: 10px;
+}
+
+.competitor-actions:hover{
+    color: #00719c;
+    cursor: pointer!important;
+    transition: color 0.3s;
+}

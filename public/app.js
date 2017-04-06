@@ -27,11 +27,17 @@
             })
             .when('/organizer/profile', {
                 'templateUrl': 'views/organizer-profile-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'OrganizerController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/competitor/profile', {
                 'templateUrl': 'views/competitor-profile-page.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
+            .when('/competitor/profile/other', {
+                'templateUrl': 'views/competitor-visited-profile-page.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
