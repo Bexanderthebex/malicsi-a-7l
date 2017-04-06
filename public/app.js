@@ -61,6 +61,11 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
+            .when('/organizations', {
+                'templateUrl': 'views/organizations.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
             .when('/organization', {
                 'templateUrl': 'views/organization-page.html',
                 'caseInsensitiveMatch': true
