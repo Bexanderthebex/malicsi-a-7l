@@ -18,245 +18,495 @@
         </div>
 
         <div class="container col s12">
-			<ul id="competitor-profile-tabs" class="tabs">
-				<li class="tab col s3"><a class="blue-text darken-3 telegrafico active" href="#profile-div">Profile</a></li>
-				<li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#teams-managed-div">Teams Managed</a></li>
-			</ul>
-		</div>
+            <ul id="competitor-profile-tabs" class="tabs">
+                <li class="tab col s3"><a class="blue-text darken-3 telegrafico active" href="#profile-div">Profile</a></li>
+                <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#teams-managed-div">Teams Managed</a></li>
+                <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#pending-requests-div">Pending Requests</a></li>
+            </ul>
+        </div>
         <div id="profile-div" class="col s12">
-	        <div class="row container">
-	            <div class="col s12 m5 l4">
-			        <!-- Statistics -->
-					<h5 class="rockwell">Statistics</h5>
-	                <div class="row palette-border-5" id="competitor-profile-add-game">
-	                    <div id="competitor-stats-panel" class="grey lighten-2 col l12 m12 s12">
-							<div class="row">
-			                	<br>
-								<div id="stats-panel" class="container">
-									<div id="wins-badge" class="circle container valign-wrapper">
-										<div class="valign center-block">
-											<div id="wins-stat" class="center-align">9</div>
-											<div class="telegrafico">WINS</div>
-										</div>
-									</div>
-									<div class="row center-block margin-bottom-0">
-										<div class="col l6 m6 s6 center-block">
-											<div id="draws-badge" class="stats-badge circle container valign-wrapper">
-												<div class="valign center-block">
-													<div class="stats-num center-align">4</div>
-													<div class="stat-desc telegrafico">DRAWS</div>
-												</div>
-											</div>
-										</div>
-										<div class="col l6 m6 s6 center-block">
-											<div id="losses-badge" class="stats-badge circle container valign-wrapper">
-												<div class="valign center-block">
-													<div class="stats-num center-align">4</div>
-													<div class="stat-desc telegrafico">LOSSES</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-								
-							<div class="row center">
-								<div class="input-field col l6 m6 s6 offset-l3 offset-m3 offset-s3">
-									<select class="browser-default minimalist-button">
-										<option value="" selected disabled>Sports</option>
-										<option class="white black-text" value="">Basketball</option>
-										<option class="white black-text" value="">Baseball</option>
-										<option class="white black-text" value="">Football</option>
-										<option class="white black-text" value="">Swimming</option>
-										<option class="white black-text" value="">Hockey</option>
-									</select>
-								</div>	
-							</div>
-						</div>
+            <div class="row container">
+                <div class="col s12 m5 l4">
+                    <!-- Statistics -->
+                    <h5 class="rockwell">Statistics</h5>
+                    <div class="row palette-border-5" id="competitor-profile-add-game">
+                        <div id="competitor-stats-panel" class="grey lighten-2 col l12 m12 s12">
+                            <div class="row">
+                                <br>
+                                <div id="stats-panel" class="container">
+                                    <div id="wins-badge" class="circle container valign-wrapper">
+                                        <div class="valign center-block">
+                                            <div id="wins-stat" class="center-align">9</div>
+                                            <div class="telegrafico">FIRST</div>
+                                        </div>
+                                    </div>
+                                    <div class="row center-block margin-bottom-0">
+                                        <div class="col l6 m6 s6 center-block">
+                                            <div id="draws-badge" class="stats-badge circle container valign-wrapper">
+                                                <div class="valign center-block">
+                                                    <div class="stats-num center-align">4</div>
+                                                    <div class="stat-desc telegrafico">SECOND</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col l6 m6 s6 center-block">
+                                            <div id="losses-badge" class="stats-badge circle container valign-wrapper">
+                                                <div class="valign center-block">
+                                                    <div class="stats-num center-align">4</div>
+                                                    <div class="stat-desc telegrafico">THIRD</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            <div class="row center">
+                                <div class="input-field col l6 m6 s6 offset-l3 offset-m3 offset-s3">
+                                    <select class="browser-default minimalist-button">
+                                        <option value="" selected disabled>Sports</option>
+                                        <option class="white black-text" value="">Basketball</option>
+                                        <option class="white black-text" value="">Baseball</option>
+                                        <option class="white black-text" value="">Football</option>
+                                        <option class="white black-text" value="">Swimming</option>
+                                        <option class="white black-text" value="">Hockey</option>
+                                    </select>
+                                </div>  
+                            </div>
+                        </div>
 
-						<div class="col s12 m12 l12">
-	                	<ul>
-		                	<li><a class="profile-links century-gothic" data-target="edit-profile-modal"><i class="left tiny material-icons">mode_edit</i>Edit Profile</a></li>
-		                	<li><a class="profile-links century-gothic" data-target="pending-requests-modal"><i class="left tiny material-icons">assignment_turned_in</i>Peding Requests</a></li>
-	                	</ul>
-	                </div>
-	                </div>
-	            </div>
+                        <!--div class="col s12 m12 l12">
+                            <ul>
+                                <li><a class="profile-links century-gothic" data-target="edit-profile-modal"><i class="left tiny material-icons">mode_edit</i>Edit Profile</a></li>
+                                <li><a class="profile-links century-gothic" data-target="pending-requests-modal"><i class="left tiny material-icons">assignment_turned_in</i>Peding Requests</a></li>
+                            </ul>
+                        </div-->
+                    </div>
+                </div>
 
-		        <!-- Affiliations -->
-	            <div class="col s12 m7 l8">
-	                <h5 class="rockwell">Affiliations</h5>
-	                
-	                <ul class="tabs tabs-fixed-width tabs-transparent telegrafico" id="competitor-profile-games">
-	                    <li class="tab col s4"><a class="white-text" href="#competitor-teams">TEAMS</a></li>
-	                    <li class="tab col s4"><a class="white-text" href="#competitor-organizations">ORGANIZATIONS</a></li>
-	                    <div class="indicator white" style="z-index: 1"></div>
-	                </ul>
+                <!-- Affiliations -->
+                <div class="col s12 m7 l8">
+                    <h5 class="rockwell">Affiliations</h5>
+                    
+                    <ul class="tabs tabs-fixed-width tabs-transparent telegrafico" id="competitor-profile-games">
+                        <li class="tab col s4"><a class="white-text" href="#competitor-teams">TEAMS</a></li>
+                        <li class="tab col s4"><a class="white-text" href="#competitor-organizations">ORGANIZATIONS</a></li>
+                        <div class="indicator white" style="z-index: 1"></div>
+                    </ul>
 
-	                <div id="competitor-teams" class="col s12">
-	                    <table class="highlight responsive-table competitor-games-data">
-	                        <tbody>
-	                            <tr class="century-gothic">
-	                                <td>New York Knicks</td>
-	                                <td>Basketball</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>Real Madrid</td>
-	                                <td>Football</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>Mighty Ducks</td>
-	                                <td>Hockey</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>New York Knicks</td>
-	                                <td>Basketball</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>Mighty Ducks</td>
-	                                <td>Hockey</td>
-	                            </tr>
-	                        </tbody>
-	                    </table>
-	                    <table class="highlight competitor-showall">
-	                        <tbody>
-	                            <tr>
-	                                <td class="center-align century-gothic palette-3" id="competitor-past-showall"><a data-target="competitor-past-modal" show-all-past>Show All</a></td>
-	                            </tr>
-	                        </tbody>
-	                    </table>
-	                </div>
-	                <div id="competitor-organizations" class="col s12">
-	                    <table class="highlight responsive-table competitor-games-data">
-	                        <tbody>
-	                            <tr class="century-gothic">
-	                                <td>National Basketball Association</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>International Federation of Association Football</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>Canadian Hockey League</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>National Basketball Association</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>Canadian Hockey League</td>
-	                            </tr>
-	                        </tbody>
-	                    </table>
-	                    <table class="highlight competitor-showall">
-	                        <tbody>
-	                            <tr>
-	                                <td class="center-align century-gothic palette-3" id="competitor-past-showall"><a data-target="competitor-past-modal" show-all-past>Show All</a></td>
-	                            </tr>
-	                        </tbody>
-	                    </table>
-	                </div>
-	            </div>
-	        </div>
+                    <div id="competitor-teams" class="col s12">
+                        <table class="highlight responsive-table competitor-games-data">
+                            <tbody>
+                                <tr class="century-gothic">
+                                    <td>New York Knicks</td>
+                                    <td>Basketball</td>
+                                </tr>
+                                <tr class="century-gothic">
+                                    <td>Real Madrid</td>
+                                    <td>Football</td>
+                                </tr>
+                                <tr class="century-gothic">
+                                    <td>Mighty Ducks</td>
+                                    <td>Hockey</td>
+                                </tr>
+                                <tr class="century-gothic">
+                                    <td>New York Knicks</td>
+                                    <td>Basketball</td>
+                                </tr>
+                                <tr class="century-gothic">
+                                    <td>Mighty Ducks</td>
+                                    <td>Hockey</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="highlight competitor-showall">
+                            <tbody>
+                                <tr>
+                                    <td class="center-align century-gothic palette-3" id="competitor-past-showall"><a data-target="competitor-past-modal" show-all-past>Show All</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="competitor-organizations" class="col s12">
+                        <table class="highlight responsive-table competitor-games-data">
+                            <tbody>
+                                <tr class="century-gothic">
+                                    <td>National Basketball Association</td>
+                                </tr>
+                                <tr class="century-gothic">
+                                    <td>International Federation of Association Football</td>
+                                </tr>
+                                <tr class="century-gothic">
+                                    <td>Canadian Hockey League</td>
+                                </tr>
+                                <tr class="century-gothic">
+                                    <td>National Basketball Association</td>
+                                </tr>
+                                <tr class="century-gothic">
+                                    <td>Canadian Hockey League</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="highlight competitor-showall">
+                            <tbody>
+                                <tr>
+                                    <td class="center-align century-gothic palette-3" id="competitor-past-showall"><a data-target="competitor-past-modal" show-all-past>Show All</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-	        <!-- Sports Played -->
-	        <div class="row container" ng-init="">
-	            <h5 class="rockwell">Sports Played</h5>		
-				<div class="chip">Basketball</div>
-				<div class="chip">Baseball</div>
-				<div class="chip">Football</div>
-				<div class="chip">Swimming</div>
-				<div class="chip">Hockey</div>
-	        </div><br>
+            <!-- Sports Played -->
+            <div class="row container" ng-init="">
+                <h5 class="rockwell">Sports Played</h5>     
+                <div class="chip">Basketball</div>
+                <div class="chip">Baseball</div>
+                <div class="chip">Football</div>
+                <div class="chip">Swimming</div>
+                <div class="chip">Hockey</div>
+            </div><br>
 
-	        <div class="divider"></div>
+            <div class="divider"></div>
 
-	        <!-- Games Participated-->
-	        <div class="row container" ng-init="">
-		        <h5 class="rockwell left-align">Games Participated</h5>		
-				<div id="competitor-games-played">
-					<a class="game-item" href="">
-						<img src="assets/img/1.jpg" class="competitor-game-img hover">
-						<p class="game-desc">
-							<b>Sea Games</b><br>19 August 2017<br>Kuala Lumpur, Malaysia
-						</p>
-					</a>
-					<a class="game-item" href="">
-						<img src="assets/img/3.jpg" class="competitor-game-img hover">
-						<p class="game-desc">
-							<b>Winter Olympics</b><br>31 March 2018<br>PyeongChang, S. Korea
-						</p>
-					</a>
-					<a class="game-item" href="">
-						<img src="assets/img/1.jpg" class="competitor-game-img hover">
-						<p class="game-desc">
-							<b>Sea Games</b><br>19 August 2017<br>Kuala Lumpur, Malaysia
-						</p>
-					</a>
-					<a class="game-item" href="">
-						<img src="assets/img/3.jpg" class="competitor-game-img hover">
-						<p class="game-desc">
-							<b>Winter Olympics</b><br>31 March 2018<br>PyeongChang, S. Korea
-						</p>
-					</a>
-				</div>
-	        </div><br>
+            <!-- Games Participated-->
+            <div class="row container" ng-init="">
+                <h5 class="rockwell left-align">Games Participated</h5>     
+                <div id="competitor-games-played">
+                    <a class="game-item" href="">
+                        <img src="assets/img/1.jpg" class="competitor-game-img hover">
+                        <p class="game-desc">
+                            <b>Sea Games</b><br>19 August 2017<br>Kuala Lumpur, Malaysia
+                        </p>
+                    </a>
+                    <a class="game-item" href="">
+                        <img src="assets/img/3.jpg" class="competitor-game-img hover">
+                        <p class="game-desc">
+                            <b>Winter Olympics</b><br>31 March 2018<br>PyeongChang, S. Korea
+                        </p>
+                    </a>
+                    <a class="game-item" href="">
+                        <img src="assets/img/1.jpg" class="competitor-game-img hover">
+                        <p class="game-desc">
+                            <b>Sea Games</b><br>19 August 2017<br>Kuala Lumpur, Malaysia
+                        </p>
+                    </a>
+                    <a class="game-item" href="">
+                        <img src="assets/img/3.jpg" class="competitor-game-img hover">
+                        <p class="game-desc">
+                            <b>Winter Olympics</b><br>31 March 2018<br>PyeongChang, S. Korea
+                        </p>
+                    </a>
+                </div>
+            </div><br>
 
-	        <div class="row competitor-footer black">
-	            <div class="black">
-	                <ul class="right hide-on-med-and-down">
-	                    <li><a href="#"> Help </a></li>
-	                    <li><a href="#"> About Us </a></li>
-	                    <li>All Rights Reserved</li>
-	                </ul>
-	            </div>
-	        </div>
+            <div class="row competitor-footer black">
+                <div class="black">
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#"> Help </a></li>
+                        <li><a href="#"> About Us </a></li>
+                        <li>All Rights Reserved</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
 
         <div id="teams-managed-div" class="col s12">
-        	<div class="row container">
-        		<button data-target="create-team-modal" class="right minimalist-button modal-trigger">Create a Team</button>
-				<table class="striped bordered">
-				<thead>
-					<tr>
-						<th class="rockwell"><h5>Team Name</h5></th>
-						<th class="rockwell"><h5>Sports</h5></th>
-					</tr>
-				</thead>
-				<tbody class="century-gothic">
-					<tr>
-						<td>Team-1-You-Created</td>
-						<td>Basketball</td>
-						<td><div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team""></i></div></td>
-						<!--a data-target="competitor-delete-team-modal" class="btn-floating btn-flat modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"><i class="material-icons black-text">delete</i></a></td-->
-					</tr>
-					<tr>
-						<td>Team-2-You-Created</td>
-						<td>Baseball</td>
-						<td><div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team""></i></div></td>
-						<!--td><a data-target="competitor-delete-team-modal" class="btn-floating btn-flat modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"><i class="material-icons black-text">delete</i></a></td-->
-					</tr>
-					<tr>
-						<td>Team-3-You-Created</td>
-						<td>Football</td>
-						<td><div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team""></i></div></td>
-						<!--td><a data-target="competitor-delete-team-modal" class="btn-floating btn-flat modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"><i class="material-icons black-text">delete</i></a></td-->
-					</tr>
-					<tr>
-						<td>Team-4-You-Created</td>
-						<td>Swimming</td>
-						<td><div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team""></i></div></td>
-						<!--td><a data-target="competitor-delete-team-modal" class="btn-floating btn-flat modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"><i class="material-icons black-text">delete</i></a></td-->
-					</tr>
-					<tr>
-						<td>Team-5-You-Created</td>
-						<td>Hockey</td>
-						<td><div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team""></i></div></td>
-						<!--td><a data-target="competitor-delete-team-modal" class="btn-floating btn-flat modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"><i class="material-icons black-text">delete</i></a></td-->
-					</tr>
-				</tbody>
-			</table>
-        	</div>
+            <div class="row container">
+                <br>
+                <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
+
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header active">
+                            <div class="row remove-bottom century-gothic">
+                                <div class="col l3 m3 s3"><b>New York Knicks</b></div>
+                                <div class="col l5 m5 s5">National Basketball Association</div>
+                                <div class="col l3 m3 s3">Basketball</div>
+                                <div class="col l1 m1 s1 center-block">
+                                    <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-body grey lighten-3">
+                            <div class="row remove-bottom left-align">
+                                <a class="btn-floating btn-flat waves-effect waves-light tooltipped" data-position="right" data-delay="150" data-tooltip="Remove Member" data-target="competitor-remove-member"><i class="black-text material-icons">delete</i></a>
+                            </div>
+                            <div class="row">
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-1-member-1" class="filled-in" type="checkbox" name="team-1-member-1" value="">
+                                <label class="black-text telegrafico" for="team-1-member-1" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-1-member-2" class="filled-in" type="checkbox" name="team-1-member-2" value="">
+                                <label class="black-text telegrafico" for="team-1-member-2" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-1-member-3" class="filled-in" type="checkbox" name="team-1-member-3" value="">
+                                <label class="black-text telegrafico" for="team-1-member-3" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-1-member-4" class="filled-in" type="checkbox" name="team-1-member-4" value="">
+                                <label class="black-text telegrafico" for="team-1-member-4" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-1-member-5" class="filled-in" type="checkbox" name="team-1-member-5" value="">
+                                <label class="black-text telegrafico" for="team-1-member-5" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-1-member-6" class="filled-in" type="checkbox" name="team-1-member-6" value="">
+                                <label class="black-text telegrafico" for="team-1-member-6" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header active">
+                            <div class="row remove-bottom century-gothic">
+                                <div class="col l3 m3 s3"><b>Real Madrid</b></div>
+                                <div class="col l5 m5 s5">International Federation of Association Football</div>
+                                <div class="col l3 m3 s3">Football</div>
+                                <div class="col l1 m1 s1 center-block">
+                                    <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-body grey lighten-3">
+                            <div class="row remove-bottom left-align">
+                                <a class="btn-floating btn-flat waves-effect waves-light tooltipped" data-position="right" data-delay="150" data-tooltip="Remove team-2-members" data-target="competitor-remove-team-2-member"><i class="black-text material-icons">delete</i></a>
+                            </div>
+                            <div class="row">
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-2-member-1" class="filled-in" type="checkbox" name="team-2-member-1" value="">
+                                <label class="black-text telegrafico" for="team-2-member-1" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-2-member-2" class="filled-in" type="checkbox" name="team-2-member-2" value="">
+                                <label class="black-text telegrafico" for="team-2-member-2" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-2-member-3" class="filled-in" type="checkbox" name="team-2-member-3" value="">
+                                <label class="black-text telegrafico" for="team-2-member-3" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-2-member-4" class="filled-in" type="checkbox" name="team-2-member-4" value="">
+                                <label class="black-text telegrafico" for="team-2-member-4" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-2-member-5" class="filled-in" type="checkbox" name="team-2-member-5" value="">
+                                <label class="black-text telegrafico" for="team-2-member-5" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-2-member-6" class="filled-in" type="checkbox" name="team-2-member-6" value="">
+                                <label class="black-text telegrafico" for="team-2-member-6" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header active">
+                            <div class="row remove-bottom century-gothic">
+                                <div class="col l3 m3 s3"><b>Mighty Ducks</b></div>
+                                <div class="col l5 m5 s5">Canadian Hockey League</div>
+                                <div class="col l3 m3 s3">Hockey</div>
+                                <div class="col l1 m1 s1 center-block">
+                                    <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-body grey lighten-3">
+                            <div class="row remove-bottom left-align">
+                                <a class="btn-floating btn-flat waves-effect waves-light tooltipped" data-position="right" data-delay="150" data-tooltip="Remove team-3-members" data-target="competitor-remove-team-3-member"><i class="black-text material-icons">delete</i></a>
+                            </div>
+                            <div class="row">
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-3-member-1" class="filled-in" type="checkbox" name="team-3-member-1" value="">
+                                <label class="black-text telegrafico" for="team-3-member-1" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-3-member-2" class="filled-in" type="checkbox" name="team-3-member-2" value="">
+                                <label class="black-text telegrafico" for="team-3-member-2" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-3-member-3" class="filled-in" type="checkbox" name="team-3-member-3" value="">
+                                <label class="black-text telegrafico" for="team-3-member-3" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-3-member-4" class="filled-in" type="checkbox" name="team-3-member-4" value="">
+                                <label class="black-text telegrafico" for="team-3-member-4" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-3-member-5" class="filled-in" type="checkbox" name="team-3-member-5" value="">
+                                <label class="black-text telegrafico" for="team-3-member-5" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                                <div class="col s4 m3 l2 center telegrafico">
+                                <input id="team-3-member-6" class="filled-in" type="checkbox" name="team-3-member-6" value="">
+                                <label class="black-text telegrafico" for="team-3-member-6" ng-model="">
+                                    <img class="responsive-img" src="assets/avatar.png">
+                                    <a href="#"><h6 class="player-name">John Doe</h6></a>
+                                    <h6 class="position"> Coach </h6>
+                                </label></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="pending-requests-div" class="col s12">
+            <div class="row container">
+                <div class="col s12 bottom-margin">
+                    <h5 class="rockwell">Applications</h5>
+                    <table class="highlight responsive-table">
+                        <tbody>
+                            <tr class="century-gothic">
+                                <td class="bold">Jane Doe</td>
+                                <td>Team-You-Created</td>
+                                <td>Basketball</td>
+                                <td>
+                                    <div class="competitor-actions" data-target="competitor-accept-applicant-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions" data-target="competitor-decline-applicant-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="century-gothic">
+                                <td class="bold">Jean Doe</td>
+                                <td>Team-You-Created</td>
+                                <td>Football</td>
+                                <td>
+                                    <div class="competitor-actions" data-target="competitor-accept-applicant-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions" data-target="competitor-decline-applicant-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="century-gothic">
+                                <td class="bold">Joan Doe</td>
+                                <td>Team-You-Created</td>
+                                <td>Hockey</td>
+                                <td>
+                                    <div class="competitor-actions" data-target="competitor-accept-applicant-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions" data-target="competitor-decline-applicant-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container divider"></div>
+                <div class="col s12">
+                    <h5 class="rockwell">Invites</h5>
+                    <table class="highlight responsive-table">
+                        <tbody>
+                            <tr class="century-gothic">
+                                <td class="bold">Jane Mare</td>
+                                <td>Team-You-Are-Invited-To</td>
+                                <td>Basketball</td>
+                                <td>
+                                    <div class="competitor-actions" data-target="competitor-accept-invitation-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions" data-target="competitor-decline-invitation-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="century-gothic">
+                                <td class="bold">Jean Mare</td>
+                                <td>Team-You-Are-Invited-To</td>
+                                <td>Football</td>
+                                <td>
+                                    <div class="competitor-actions" data-target="competitor-accept-invitation-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions" data-target="competitor-decline-invitation-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="century-gothic">
+                                <td class="bold">Joan Mare</td>
+                                <td>Team-You-Are-Invited-To</td>
+                                <td>Hockey</td>
+                                <td>
+                                    <div class="competitor-actions" data-target="competitor-accept-invitation-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions" data-target="competitor-decline-invitation-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
         
+        <div class="fixed-action-btn">
+            <a data-target="edit-profile-modal" class="btn-floating btn-large palette-4 tooltipped modal-trigger" data-position="top" data-delay="150" data-tooltip="Edit Profile"><i class="large material-icons">mode_edit</i></a>
+        </div>
     </div>
 
 </div>
@@ -288,13 +538,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col l12 m12 s12">
-                        <span class="telegrafico">Email</span>
-                        <input placeholder="johndoe@example.com" id="email" type="email" class="validate" ng-model="">
-                    </div>
-                </div>
-                <div class="row">
-                	<div class="input-field col l4 m4 s12">
+                    <div class="input-field col l4 m4 s12">
                         <span class="telegrafico">Nickname</span>
                         <input placeholder="Johnny" id="nickname" type="text" class="validate" ng-model="">
                     </div>
@@ -305,9 +549,9 @@
                     <div class="input-field col l4 m4 s12">
                         <span class="telegrafico">Sex</span><br>
                         <span><input id="male" type="radio" name="gender" value="male" class="with-gap">
-						<label class="black-text telegrafico" for="male" ng-model="">Male</label></span>
-						<span><input id="female" type="radio" name="gender" value="female" class="with-gap">
-						<label class="black-text telegrafico" for="female" ng-model="">Female</label></span>
+                        <label class="black-text telegrafico" for="male" ng-model="">Male</label></span>
+                        <span><input id="female" type="radio" name="gender" value="female" class="with-gap">
+                        <label class="black-text telegrafico" for="female" ng-model="">Female</label></span>
                     </div>
                 </div>
             </form>
@@ -320,134 +564,6 @@
     </div>
 </div>
 
-<!-- Pending Requests Modal -->
-<div id="pending-requests-modal" class="modal">
-    <div class="row remove-bottom">
-        <div class="col s12 padding-left padding-right palette-5">
-            <div class="center">
-                <br>
-                    <div class="card-title white-text center rockwell">
-						<h5><i class="material-icons">assignment_turned_in</i> Pending Requests</h5>
-                    </div>
-                <br>
-            </div>
-        </div>
-    </div>  
-    <div class="modal-content">
-        <div class="col l12 m12 s12">
-			<ul id="requests-tabs" class="tabs tabs-transparent">
-				<li class="tab col s3"><a class="blue-text darken-3 telegrafico active" href="#pending-applications-div">APPLICATIONS</a></li>
-				<li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#pending-invites-div">INVITES</a></li>
-			</ul>
-		</div>
-
-        <div id="pending-applications-div" class="col s12">
-            <table class="highlight responsive-table">
-                <tbody>
-                    <tr class="century-gothic">
-                        <td class="bold">Jane Doe</td>
-                        <td>Team-You-Created</td>
-                        <td>Basketball</td>
-                        <td>
-                        	<div class="competitor-actions" data-target="competitor-accept-applicant-modal">
-                                <i class="fa fa-check fa-lg"></i>
-                            </div>
-                            <div class="competitor-actions" data-target="competitor-decline-applicant-modal">
-                                <i class="fa fa-times fa-lg"></i>
-                            </div>
-                        	<!--a data-target="competitor-accept-applicant-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Accept"><i class="large material-icons">done</i></a>
-                        	<a data-target="competitor-decline-applicant-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Decline"><i class="large material-icons">close</i></a-->
-                        </td>
-                    </tr>
-                    <tr class="century-gothic">
-                        <td class="bold">Jean Doe</td>
-                        <td>Team-You-Created</td>
-                        <td>Football</td>
-                        <td>
-                        	<div class="competitor-actions" data-target="competitor-accept-applicant-modal">
-                                <i class="fa fa-check fa-lg"></i>
-                            </div>
-                            <div class="competitor-actions" data-target="competitor-decline-applicant-modal">
-                                <i class="fa fa-times fa-lg"></i>
-                            </div>
-                        	<!--a data-target="competitor-accept-applicant-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Accept"><i class="large material-icons">done</i></a>
-                        	<a data-target="competitor-decline-applicant-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Decline"><i class="large material-icons">close</i></a-->
-                        </td>
-                    </tr>
-                    <tr class="century-gothic">
-                        <td class="bold">Joan Doe</td>
-                        <td>Team-You-Created</td>
-                        <td>Hockey</td>
-                        <td>
-	                        <div class="competitor-actions" data-target="competitor-accept-applicant-modal">
-                                <i class="fa fa-check fa-lg"></i>
-                            </div>
-                            <div class="competitor-actions" data-target="competitor-decline-applicant-modal">
-                                <i class="fa fa-times fa-lg"></i>
-                            </div>
-                        	<!--a data-target="competitor-accept-applicant-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Accept"><i class="large material-icons">done</i></a>
-                        	<a data-target="competitor-decline-applicant-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Decline"><i class="large material-icons">close</i></a-->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div id="pending-invites-div" class="col s12">
-            <table class="highlight responsive-table">
-                <tbody>
-                    <tr class="century-gothic">
-                        <td class="bold">Jane Mare</td>
-                        <td>Team-You-Are-Invited-To</td>
-                        <td>Basketball</td>
-                        <td>
-	                        <div class="competitor-actions" data-target="competitor-accept-invitation-modal">
-                                <i class="fa fa-check fa-lg"></i>
-                            </div>
-                            <div class="competitor-actions" data-target="competitor-decline-invitation-modal">
-                                <i class="fa fa-times fa-lg"></i>
-                            </div>
-                        	<!--a data-target="competitor-accept-invitation-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Accept"><i class="large material-icons">done</i></a>
-                        	<a data-target="competitor-decline-invitation-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Decline"><i class="large material-icons">close</i></a-->
-                        </td>
-                    </tr>
-                    <tr class="century-gothic">
-                        <td class="bold">Jean Mare</td>
-                        <td>Team-You-Are-Invited-To</td>
-                        <td>Football</td>
-                        <td>
-                        	<div class="competitor-actions" data-target="competitor-accept-invitation-modal">
-                                <i class="fa fa-check fa-lg"></i>
-                            </div>
-                            <div class="competitor-actions" data-target="competitor-decline-invitation-modal">
-                                <i class="fa fa-times fa-lg"></i>
-                            </div>
-                        	<!--a data-target="competitor-accept-invitation-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Accept"><i class="large material-icons">done</i></a>
-                        	<a data-target="competitor-decline-invitation-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Decline"><i class="large material-icons">close</i></a-->
-                        </td>
-                    </tr>
-                    <tr class="century-gothic">
-                        <td class="bold">Joan Mare</td>
-                        <td>Team-You-Are-Invited-To</td>
-                        <td>Hockey</td>
-                        <td>
-                        	<div class="competitor-actions" data-target="competitor-accept-invitation-modal">
-                                <i class="fa fa-check fa-lg"></i>
-                            </div>
-                            <div class="competitor-actions" data-target="competitor-decline-invitation-modal">
-                                <i class="fa fa-times fa-lg"></i>
-                            </div>
-                        	<!--a data-target="competitor-accept-invitation-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Accept"><i class="large material-icons">done</i></a>
-                        	<a data-target="competitor-decline-invitation-modal" class="large btn-floating waves-effect waves-light palette-4 modal-trigger tooltipped" data-position="top" data-delay="150" data-tooltip="Decline"><i class="large material-icons">close</i></a-->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>        </div>
-    </div>
-    <div class="divider"></div>
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Close</a>
-    </div>
-</div>
 
 <!-- Edit Profile Modal -->
 <div id="update-bio-modal" class="modal">
@@ -465,12 +581,12 @@
     <div class="modal-content">
         <div class="row">
             <form class="col s12">
-				<div class="row">
-					<div class="input-field col s12">
-						<textarea id="competitor-bio" class="materialize-textarea" data-length="150"></textarea>
-						<label for="competitor-bio">Bio</label>
-					</div>
-				</div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="competitor-bio" class="materialize-textarea" data-length="150"></textarea>
+                        <label for="competitor-bio">Bio</label>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
@@ -505,33 +621,33 @@
                     <div class="input-field col l6 m6 s12">
                         <span class="telegrafico">Game</span>
                         <select class="browser-default">
-                        	<option selected disabled class="white black-text" value="">&nbsp;</option>
-							<option class="white black-text" value="">PalICSihan</option>
-							<option class="white black-text" value="">Palarong UPLB</option>
-							<option class="white black-text" value="">Summer Olympics 2020</option>
-						</select>
+                            <option selected disabled class="white black-text" value="">&nbsp;</option>
+                            <option class="white black-text" value="">PalICSihan</option>
+                            <option class="white black-text" value="">Palarong UPLB</option>
+                            <option class="white black-text" value="">Summer Olympics 2020</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col l6 m6 s12">
                         <span class="telegrafico">Sports</span>
                         <select class="browser-default">
-                        	<option selected disabled class="white black-text" value="">&nbsp;</option>
-							<option class="" value="">Basketball</option>
-							<option class="" value="">Baseball</option>
-							<option class="" value="">Football</option>
-							<option class="" value="">Swimming</option>
-							<option class="" value="">Hockey</option>
-						</select>
+                            <option selected disabled class="white black-text" value="">&nbsp;</option>
+                            <option class="" value="">Basketball</option>
+                            <option class="" value="">Baseball</option>
+                            <option class="" value="">Football</option>
+                            <option class="" value="">Swimming</option>
+                            <option class="" value="">Hockey</option>
+                        </select>
                     </div>
                     <div class="input-field col l6 m6 s12">
                         <span class="telegrafico">Organization</span>
                         <select class="browser-default">
-                        	<option selected disabled class="white black-text" value="">&nbsp;</option>
-							<option class="white black-text" value="">Institute of Computer Science</option>
-							<option class="white black-text" value="">College of Arts and Sciences</option>
-							<option class="white black-text" value="">Philippines</option>
-						</select>
+                            <option selected disabled class="white black-text" value="">&nbsp;</option>
+                            <option class="white black-text" value="">Institute of Computer Science</option>
+                            <option class="white black-text" value="">College of Arts and Sciences</option>
+                            <option class="white black-text" value="">Philippines</option>
+                        </select>
                     </div>
                 </div>
                 <div class="row">
@@ -678,6 +794,29 @@
     </div>  
     <div class="modal-content telegrafico">
         <p>Are you sure you want to delete [TEAM NAME]?</p>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
+        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+    </div>
+</div>
+
+<!-- Delete Team Modal -->
+<div id="competitor-remove-member" class="modal">
+    <div class="row remove-bottom">
+        <div class="col s12 padding-left padding-right palette-5">
+            <div class="center">
+                <br>
+                    <div class="card-title white-text center rockwell">
+                        <h5>Remove Team Members</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>  
+    <div class="modal-content telegrafico">
+        <p>Are you sure you want to remove this/these member/members from the team?</p>
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
