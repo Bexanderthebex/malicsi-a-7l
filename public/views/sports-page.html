@@ -69,7 +69,11 @@
 		<!-- MATCHES -->
 		<div id="sports-matches" class="container">
 			<div class="row" style="margin: 0; margin-top: 20px;">
-				<h4 class="rockwell center strong" style="margin: 0!important;">Matches</h4>
+				<h4 class="rockwell center strong" style="margin: 0!important;">Matches
+
+				<!-- ADD MATCH BUTTON -->
+					<i class="fa fa-plus-square match-actions" data-target="match-add-modal"></i>
+				</h4>
 			</div>
 			<div class="row">
 
@@ -722,34 +726,43 @@
             	</thead>
             	<tbody class="century-gothic">
             		<tr>
-            			<td class="match-player">UP Fighting Maroons</td>
+            			<td class="match-player">
+            				<div ng-show="!view">UP Fighting Maroons</div>
+            				<div ng-hide="!view"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
+            			</td>
             			<td>
             				<div class="match-actions">
             					<i class="fa fa-minus-square fa-lg"></i>
             				</div>
-            				<div class="match-actions">
+            				<div class="match-actions" ng-click="view = !view">
             					<i class="fa fa-pencil-square-o fa-lg"></i>
             				</div>
             			</td>
             		</tr>
             		<tr>
-            			<td class="match-player">UP Fighting Maroons</td>
+            			<td class="match-player">
+            				<div ng-show="!view2">UP Fighting Maroons</div>
+            				<div ng-hide="!view2"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
+            			</td>
             			<td>
             				<div class="match-actions">
             					<i class="fa fa-minus-square fa-lg"></i>
             				</div>
-            				<div class="match-actions">
+            				<div class="match-actions" ng-click="view2 = !view2">
             					<i class="fa fa-pencil-square-o fa-lg"></i>
             				</div>
             			</td>
             		</tr>
             		<tr>
-            			<td class="match-player">UP Fighting Maroons</td>
+            			<td class="match-player">
+            				<div ng-show="!view3">UP Fighting Maroons</div>
+            				<div ng-hide="!view3"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
+            			</td>
             			<td>
             				<div class="match-actions">
             					<i class="fa fa-minus-square fa-lg"></i>
             				</div>
-            				<div class="match-actions">
+            				<div class="match-actions" ng-click="view3 = !view3">
             					<i class="fa fa-pencil-square-o fa-lg"></i>
             				</div>
             			</td>
@@ -806,6 +819,135 @@
         </div>
         <div class="modal-footer">
             <button href="" class="modal-action modal-close waves-effect waves-red btn-flat">Close</button>
+        </div>
+    </div>
+
+	<!-- ADD MATCH MODAL -->
+    <div id="match-add-modal" class="modal modal-fixed-footer">
+        <div class="modal-content container">
+            <div class="row">
+                <h4 class="rockwell center">Add Match</h4>
+            </div>
+
+            <!-- EDIT MATCH INFO -->
+            <div class="row">
+            	<div class="input-field col s4">
+            		<span class="telegrafico">Start Time</span>
+                    <input id="match-start-time" class="timepicker" type="time">
+                </div>
+                <div class="input-field col s4">
+                	<span class="telegrafico">End Time</span>
+                    <input id="match-end-time" class="timepicker" type="time">
+                </div>
+                <div class="input-field col s4">
+                	<span class="telegrafico">Date</span>
+                	<input type="date" class="datepicker">
+                </div>
+            </div>
+
+			<!-- EDIT PLAYERS -->
+            <table>
+            	<thead>
+            		<tr class="telegrafico">
+            			<th>Players</th>
+            			<th>Actions</th>
+            		</tr>
+            	</thead>
+            	<tbody class="century-gothic">
+            		<tr>
+            			<td class="match-player">
+            				<div ng-show="!view">UP Fighting Maroons</div>
+            				<div ng-hide="!view"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
+            			</td>
+            			<td>
+            				<div class="match-actions">
+            					<i class="fa fa-minus-square fa-lg"></i>
+            				</div>
+            				<div class="match-actions" ng-click="view = !view">
+            					<i class="fa fa-pencil-square-o fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td class="match-player">
+            				<div ng-show="!view2">UP Fighting Maroons</div>
+            				<div ng-hide="!view2"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
+            			</td>
+            			<td>
+            				<div class="match-actions">
+            					<i class="fa fa-minus-square fa-lg"></i>
+            				</div>
+            				<div class="match-actions" ng-click="view2 = !view2">
+            					<i class="fa fa-pencil-square-o fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td class="match-player">
+            				<div ng-show="!view3">UP Fighting Maroons</div>
+            				<div ng-hide="!view3"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
+            			</td>
+            			<td>
+            				<div class="match-actions">
+            					<i class="fa fa-minus-square fa-lg"></i>
+            				</div>
+            				<div class="match-actions" ng-click="view3 = !view3">
+            					<i class="fa fa-pencil-square-o fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            	</tbody>
+            </table>
+
+            <!-- SET WINNER -->
+            <table>
+            	<thead>
+            		<tr class="telegrafico">
+            			<th>Set Winner</th>
+            			<th></th>
+            		</tr>
+            	</thead>
+            	<tbody class="century-gothic">
+            		<tr>
+            			<td class="match-player">UP Fighting Maroons</td>
+            			<td>
+            				<div class="match-actions set-winner">
+            					<i class="fa fa-check fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td class="match-player">UP Fighting Maroons</td>
+            			<td>
+            				<div class="match-actions set-winner">
+            					<i class="fa fa-check fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            		<tr>
+            			<td class="match-player">UP Fighting Maroons</td>
+            			<td>
+            				<div class="match-actions set-winner">
+            					<i class="fa fa-check fa-lg"></i>
+            				</div>
+            			</td>
+            		</tr>
+            	</tbody>
+            </table>
+
+            <!-- ADD PLAYER -->
+	        <div class="row" style="margin: 0; margin-top: 10px;"><span class="telegrafico">Add Player</span></div>
+            <div class="row">
+	            <div class="input-field col s4" style="margin: 0!important;">
+	            	<input type="text" placeholder="Team Name">
+	            </div>
+	            <div class="col s4 center">
+            		<button class="minimalist-button">ADD</button>
+            	</div>
+	        </div>
+        </div>
+        <div class="modal-footer">
+            <button href="" class="modal-action modal-close waves-effect waves-red btn-flat">ADD MATCH</button>
         </div>
     </div>
 

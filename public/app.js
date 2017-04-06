@@ -27,11 +27,23 @@
             })
             .when('/organizer/profile', {
                 'templateUrl': 'views/organizer-profile-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'OrganizerController'
+                // 'access': { requiredAuthentication: true }
+            })
+            .when('/organizer/profile/:id', {
+                'templateUrl': 'views/organizer-other-profile-page.html',
+                'caseInsensitiveMatch': true,
+                'controller': 'OrganizerController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/competitor/profile', {
                 'templateUrl': 'views/competitor-profile-page.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
+            .when('/competitor/profile/:id', {
+                'templateUrl': 'views/competitor-visited-profile-page.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
@@ -55,6 +67,11 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
+            .when('/organizations', {
+                'templateUrl': 'views/organizations.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
             .when('/organization', {
                 'templateUrl': 'views/organization-page.html',
                 'caseInsensitiveMatch': true
@@ -67,6 +84,11 @@
             })
             .when('/sports', {
                 'templateUrl': 'views/sports-page.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
+            .when('/adminpanel', {
+                'templateUrl': 'views/admin-panel.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })

@@ -1,0 +1,205 @@
+.visited-competitor-profile-info {
+    height: 250px;
+    background-color: #00719c;;
+    /*background-image: url('/assets/basketball.jpg')!important;*/
+}
+
+#visited-competitor-profile-img {
+	max-width: auto;
+	max-height: 250px;
+}
+
+#visited-competitor-profile-right-panel {
+    position: relative;
+    margin-left: 25%;
+    width: 75%;
+}
+
+.slide-item {
+    margin-bottom: 0px !important;
+}
+
+table.highlight tbody tr:hover {
+    /*background-color: #00719c !important;*/
+    /*color: white;*/
+    cursor: pointer!important;
+}
+
+#update-bio-icon {
+  cursor: pointer!important;
+}
+
+.profile-links:hover {
+  cursor: pointer!important;
+  text-decoration: underline !important;
+}
+
+
+#visited-competitor-profile-tabs .indicator {
+	background-color: #00a5d3;
+}
+
+#requests-tabs .indicator {
+  background-color: #00a5d3;
+}
+
+#requests-tabs {
+  background-color: transparent !important;
+}
+
+#visited-competitor-teams, #visited-competitor-organizations {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+
+#visited-competitor-ongoing-showall {
+    color: white !important;
+}
+
+.visited-competitor-showall {
+    border: solid 2.5px;
+    border-color: #00719c;
+    border-radius: 0px 0px 8px 8px !important;
+}
+
+#visited-competitor-profile-games {
+    background-color: #00719c; 
+    border-radius: 8px 8px 0px 0px;
+}
+
+.visited-competitor-games-data {
+    border-left: solid 2.5px;
+    border-right: solid 2.5px;
+    border-color: #00719c;
+}
+
+#visited-competitor-profile-add-game {
+    border: solid 2.5px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.visited-competitor-footer {  
+  /*background-color: red;*/
+  /*position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;*/
+  /*padding: 1rem;*/
+  background-color: black !important;
+  text-align: center;
+  height: 6%;
+  margin-bottom: 0px;
+  /*float:left;*/
+}
+
+.visited-competitor-footer ul li {
+  display: inline;
+  color: grey;
+  font-size: 12px!important;    
+  letter-spacing: 2px!important;
+}
+
+.visited-competitor-footer div {
+  margin-top: -0.5%;
+  margin-right: 1%;
+}
+
+/*************************************************************************************************************************/
+
+#stats {
+    margin-top: 0px;
+}
+
+#wins-badge {
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    line-height: normal;
+    background-color: #00b8ff;
+}
+
+#wins-stat {
+    font-size: 30pt;
+    font-weight: bold;
+}
+
+#losses-badge {
+    background-color: #00719c;
+}
+
+#draws-badge {
+    background-color: #00a5d3;
+}
+
+#stats-panel {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.stats-badge {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    line-height: normal;
+}
+
+.stats-num {
+    font-size: 22pt;
+    font-weight: bold;
+}
+
+.stat-desc {
+    font-size: 9pt;
+}
+
+/*************************************************************************************************************************/
+
+#visited-competitor-games-played {
+	overflow: auto;
+	white-space: nowrap;
+}
+
+#visited-competitor-games-played a { 
+	display: inline-block;
+	text-align: center;
+	padding: 14px;
+	text-decoration: none; 
+	position: relative;
+	cursor: pointer;
+}
+
+.visited-competitor-game-img {
+	width: 200px;
+	border-radius: 5px;
+}
+
+.game-desc {
+	background-color: rgba(0, 0, 0, .7);
+	color: black;
+	border-radius: 5px;
+	padding-left: 3px;
+	position: absolute;
+	text-align: left;
+	font-size: 10pt;
+	display: none;
+	color: #fff;
+	top: 0;
+}
+
+/*************************************************************************************************************************/
+
+.bold {
+  font-weight: bold;
+}
+
+.competitor-visited-actions{
+    float: left;
+    margin-right: 10px;
+}
+
+.competitor-visited-actions:hover{
+    color: #00719c;
+    cursor: pointer!important;
+    transition: color 0.3s;
+}

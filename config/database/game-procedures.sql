@@ -38,7 +38,7 @@ CREATE PROCEDURE create_game(
 	IN description_in TEXT
 	)
 BEGIN
-	INSERT INTO game(organizer_id_in, name, start_date, end_date, location, description, overall_winner) values(organizer_id_in, name_in, start_date_in, end_date_in, location_in, description_in, NULL);
+	INSERT INTO game(organizer_id, name, start_date, end_date, location, description, overall_winner) values(organizer_id_in, name_in, start_date_in, end_date_in, location_in, description_in, NULL);
 END 
 //
 DELIMITER ;
@@ -77,6 +77,16 @@ END;
 //
 delimiter ;
 
+DROP PROCEDURE IF EXISTS view_all_upcoming_ongoing_games;
+delimiter //
+CREATE PROCEDURE view_all_upcoming_ongoing_games()
+BEGIN
+	select * from game where (start_date <= now() and end_date >= now()) or (start_date >= now() and end_date >= now());
+END//
+delimiter ;
+
+
+
 -- search for game by keyword
 GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO organizer;
 GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO competitor;
@@ -112,3 +122,9 @@ GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
 GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO guest;
+
+-- view all upcoming and ongoing games
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO guest;

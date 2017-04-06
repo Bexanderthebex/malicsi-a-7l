@@ -1,73 +1,111 @@
+.competitor-profile-info {
+    height: 250px;
+    background-color: #00719c;;
+    /*background-image: url('/assets/basketball.jpg')!important;*/
+}
+
 #competitor-profile-img {
-	max-width: 100%;
-	max-height: 100%;
+	max-width: auto;
+	max-height: 250px;
 }
 
-#competitor-basic-info {
-	padding-left: 3%;
+#competitor-profile-right-panel {
+    position: relative;
+    margin-left: 25%;
+    width: 75%;
 }
 
-/**********************************************************************************************/
-
-#competitor-games-played {
-	overflow: auto;
-	white-space: nowrap;
+.slide-item {
+    margin-bottom: 0px !important;
 }
 
-#competitor-games-played a { 
-	display: inline-block;
-	text-align: center;
-	padding: 14px;
-	text-decoration: none; 
-	position: relative;
-	cursor: pointer;
+table.highlight tbody tr:hover {
+    /*background-color: #00719c !important;*/
+    /*color: white;*/
+    cursor: pointer!important;
 }
 
-.competitor-game-img {
-	width: 150px;
-	border-radius: 5px;
+#update-bio-icon {
+  cursor: pointer!important;
 }
 
-.game-desc {
-	background: rgba(0, 0, 0, .7);
-	border-radius: 5px;
-	padding-left: 3px;
-	position: absolute;
-	text-align: left;
-	font-size: 10pt;
-	display: none;
-	color: #fff;
-	top: 0;
+.profile-links:hover {
+  cursor: pointer!important;
+  text-decoration: underline !important;
 }
 
-/**********************************************************************************************/
 
-.margin-bottom-zero {
-	margin-bottom: 0;
+#competitor-profile-tabs .indicator {
+	background-color: #00a5d3;
 }
 
-.width-75 {
-	width: 75%;
+#requests-tabs .indicator {
+  background-color: #00a5d3;
 }
 
-/**********************************************************************************************/
-
-.tabs .indicator {
-    background-color: #00a5d3;
+#requests-tabs {
+  background-color: transparent !important;
 }
 
-.affiliation-div {
-	height: 250px;
-	overflow-y: auto;
+#competitor-teams, #competitor-organizations {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
 }
 
-#affiliation-head {
-	margin-top: 0;
-	padding-top: 16px;
+#competitor-ongoing-showall {
+    color: white !important;
 }
 
-/**********************************************************************************************/
+.competitor-showall {
+    border: solid 2.5px;
+    border-color: #00719c;
+    border-radius: 0px 0px 8px 8px !important;
+}
 
+#competitor-profile-games {
+    background-color: #00719c; 
+    border-radius: 8px 8px 0px 0px;
+}
+
+.competitor-games-data {
+    border-left: solid 2.5px;
+    border-right: solid 2.5px;
+    border-color: #00719c;
+}
+
+#competitor-profile-add-game {
+    border: solid 2.5px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.competitor-footer {  
+  /*background-color: red;*/
+  /*position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;*/
+  /*padding: 1rem;*/
+  background-color: black !important;
+  text-align: center;
+  height: 6%;
+  margin-bottom: 0px;
+  /*float:left;*/
+}
+
+.competitor-footer ul li {
+  display: inline;
+  color: grey;
+  font-size: 12px!important;    
+  letter-spacing: 2px!important;
+}
+
+.competitor-footer div {
+  margin-top: -0.5%;
+  margin-right: 1%;
+}
+
+/*************************************************************************************************************************/
 
 #stats {
     margin-top: 0px;
@@ -78,7 +116,7 @@
     width: 110px;
     border-radius: 50%;
     line-height: normal;
-    background-color: #35c235;
+    background-color: #00b8ff;
 }
 
 #wins-stat {
@@ -87,11 +125,11 @@
 }
 
 #losses-badge {
-    background-color: #d54545;
+    background-color: #00719c;
 }
 
 #draws-badge {
-    background-color: #eae939;
+    background-color: #00a5d3;
 }
 
 #stats-panel {
@@ -113,4 +151,55 @@
 
 .stat-desc {
     font-size: 9pt;
+}
+
+/*************************************************************************************************************************/
+
+#competitor-games-played {
+	overflow: auto;
+	white-space: nowrap;
+}
+
+#competitor-games-played a { 
+	display: inline-block;
+	text-align: center;
+	padding: 14px;
+	text-decoration: none; 
+	position: relative;
+	cursor: pointer;
+}
+
+.competitor-game-img {
+	width: 200px;
+	border-radius: 5px;
+}
+
+.game-desc {
+	background-color: rgba(0, 0, 0, .7);
+	color: black;
+	border-radius: 5px;
+	padding-left: 3px;
+	position: absolute;
+	text-align: left;
+	font-size: 10pt;
+	display: none;
+	color: #fff;
+	top: 0;
+}
+
+/*************************************************************************************************************************/
+
+.bold {
+  font-weight: bold;
+}
+
+.competitor-actions{
+    float: left;
+    margin-right: 10px;
+}
+
+.competitor-actions:hover{
+    color: #00719c;
+    cursor: pointer!important;
+    transition: color 0.3s;
 }
