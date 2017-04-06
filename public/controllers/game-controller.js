@@ -10,13 +10,14 @@
 
     function GameController($scope, $routeParams, GameService) {
         $scope.thisGame = {
-            game_id: $routeParams.id
+            game_id: $routeParams.gameId
         };
         $scope.addSport = addSport;
         $scope.retrieveSport = retrieveSport;
         $scope.deleteSport = deleteSport;
         $scope.updateSport = updateSport;
         $scope.updateWinner = updateWinner;
+        $scope.retrieveAllSports = retrieveAllSports;
         $scope.sport = {};
         $scope.sports = [];
 
@@ -56,6 +57,17 @@
                     //console.log(err);
                 })
         }
+
+        function retrieveAllSports() {
+            GameService
+                .retrieveAllSports($scope.thisGame.game_id)
+                .then(function(res) {
+                    $scope.sports = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
 
         function deleteSport(id) {
             GameService

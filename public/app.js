@@ -51,7 +51,7 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/game', {
+            .when('/game/:gameId', {
                 'templateUrl': 'views/game-page.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }

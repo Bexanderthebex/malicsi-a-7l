@@ -16,7 +16,8 @@
             addSport: addSport,
             updateSport: updateSport,
             updateWinner: updateWinner,
-            deleteSport: deleteSport
+            deleteSport: deleteSport,
+            retrieveAllSports: retrieveAllSports
         }
 
         return service;
@@ -28,6 +29,21 @@
                 method: 'GET',
                 params: { 'sportId': sportId },
                 url: '/sport/viewSport',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+        function retrieveAllSports(gameId) {
+            let deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: '/game/sport/'+gameId,
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
