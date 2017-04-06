@@ -16,8 +16,8 @@
             addSport: addSport,
             updateSport: updateSport,
             updateWinner: updateWinner,
-            deleteSport: deleteSport.
-            viewUpcomingOngoingGames: viewUpcomingOngoingGames;
+            deleteSport: deleteSport,
+            viewUpcomingOngoingGames: viewUpcomingOngoingGames
         }
 
         return service;
@@ -122,18 +122,17 @@
             return deferred.promise;
         }
 
-        function viewUpcomingOngoingGames()
+        function viewUpcomingOngoingGames() {
             let deferred = $q.defer();
 
             $http({
-                method: 'POST',
-                params: {}
+                method: 'GET',
                 url: '/game/viewUpcomingOngoing',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res.data);
             }, (err) => {
-               deferred.reject(res.data);
+                deferred.reject(err);
             });
 
             return deferred.promise;

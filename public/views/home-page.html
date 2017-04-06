@@ -1,4 +1,4 @@
-<div id="mainHolder">
+<div id="mainHolder" ng-controller="LandingCtrl">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
@@ -7,11 +7,11 @@
 		<div class="slider fullscreen">
 			<!-- Add fullscreen after "slider" to make the slider a fullscreen slider -->
 		    <ul class="slides">
-		      <li>
+		      <li ng-repeat="g in games">
 		      	<img class="img-responsive" src="assets/images/1.jpg"> <!-- random image -->
 		        <div class="caption left-align">
-		          <h2><a class="home-caption-head rockwell strong" href="#">PalICSihan 2016</h2>
-		          <h6 class="light grey-text text-lighten-3 century-gothic">Lorem ipsum dolor sit amet blablabla yada yada yada</h6>
+		          <h2><a class="home-caption-head rockwell strong" href="#">{{g.name}}</h2>
+		          <h6 class="light grey-text text-lighten-3 century-gothic">{{g.description}}</h6>
 		        </div>
 		      </li>
 		    </ul>
