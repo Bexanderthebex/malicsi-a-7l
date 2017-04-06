@@ -73,9 +73,19 @@ DELIMITER ;
 DROP procedure IF EXISTS process_request;
 DELIMITER //
 
-	CREATE PROCEDURE process_request (IN teamID INT, IN flag INT) 
+	CREATE PROCEDURE process_request (IN teamID INT) 
 	BEGIN
-	   UPDATE team SET pending_participation = flag WHERE team_id = teamID;
+	   UPDATE team SET pending_participation = 1 WHERE team_id = teamID;
+	END; //
+
+DELIMITER ;
+
+DROP procedure IF EXISTS delete_team;
+DELIMITER //
+
+	CREATE PROCEDURE delete_team (IN teamID INT) 
+	BEGIN
+	   DELETE team WHERE team_id = teamID;
 	END; //
 
 DELIMITER ;
@@ -107,22 +117,29 @@ grant execute on procedure get_organizer to organizer;
 grant execute on procedure get_organizer to competitor;
 grant execute on procedure get_organizer to guest;
 grant execute on procedure get_organizer to administrator;
+
 grant execute on procedure get_request to administrator;
 grant execute on procedure get_request to organizer;
+
 grant execute on procedure get_pending_participation to organizer;
 grant execute on procedure get_pending_participation to administrator;
 
 grant execute on procedure process_request to organizer;
 grant execute on procedure process_request to administrator;
 
+grant execute on procedure find_game to administrator;
 grant execute on procedure find_game to organizer;
 grant execute on procedure find_game to competitor;
-grant execute on procedure find_game to administrator;
 grant execute on procedure find_game to guest;
+
+grant execute on procedure delete_team to administrator;
+grant execute on procedure delete_team to competitor;
+
 grant execute on procedure find_sport to organizer;
 grant execute on procedure find_sport to competitor;
 grant execute on procedure find_sport to administrator;
 grant execute on procedure find_sport to guest;
+
 grant execute on procedure find_team to organizer;
 grant execute on procedure find_team to competitor;
 grant execute on procedure find_team to administrator;
