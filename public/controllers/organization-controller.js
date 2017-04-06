@@ -6,15 +6,33 @@
         .module('app')
         .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', 'OrganizationService'];
+    OrganizationController.$inject = ['$scope', 'OrganizationService', 'UserService'];
 
-    function OrganizationController($scope, OrganizationService) {
+
+    function OrganizationController($scope, OrganizationService, UserService) {
+        $scope.currentUser = [];
         $scope.teams = [];
         $scope.teamStats = [];
+        $scope.organizationStats = [];
         $scope.retrieveTeams = retrieveTeams;
         $scope.joinTeam = joinTeam;
+        $scope.initPage = initPage;
         $scope.retrieveTeamStatistics = retrieveTeamStatistics;
         $scope.retrieveOrganizationStatistics = retrieveOrganizationStatistics;
+
+        function initPage(org_id){
+            console.log("::DD");
+            UserService
+                .getUserInfo()
+                .then(function(res) {
+                    console.log(":D");
+                    console.log(res.data);
+                    $scope.currentUser = res.data;
+                }, function(err) {
+                    console.log(err.data);
+                })
+
+        }
 
         function retrieveTeams(org_id) {
             OrganizationService
@@ -26,9 +44,13 @@
                 })
         }
 
-        function joinTeam(id,team_id) {
+        function joinTeam(team_id) {
+
+
+
+
             OrganizationService
-                .joinTeam(id,team_id)
+                .joinTeam(1,team_id)
                 .then(function(res) {
                     console.log("Joined");
                 }, function(err) {
@@ -46,12 +68,13 @@
                 })
         }
         //to be to be to be
-        function retrieveOrganizationStatistics() {
+        function retrieveOrganizationStatistics(id) {
+            console.log("WAAA");
             OrganizationService
-                .getOrganizationRankings()
+                .getOrganizationRankings(id)
                 .then(function(res) {
                     console.log(res.data);
-                    $scope.requests = res.data;
+                    $scope.organizationStats = res.data;
                 }, function(err) {
                     console.log(err.data);
                 })

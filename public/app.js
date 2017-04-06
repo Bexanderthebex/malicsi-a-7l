@@ -39,7 +39,8 @@
             })
             .when('/competitor/profile', {
                 'templateUrl': 'views/competitor-profile-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'CompetitorController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/competitor/profile/:id', {
@@ -49,6 +50,11 @@
             })
             .when('/help', {
                 'templateUrl': 'views/help.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
+            .when('/about', {
+                'templateUrl': 'views/about-us-page.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
@@ -69,7 +75,8 @@
             })
             .when('/organizations', {
                 'templateUrl': 'views/organizations.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'OrganizationController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/organization', {

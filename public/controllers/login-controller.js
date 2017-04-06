@@ -53,5 +53,22 @@
 				$scope.ead = "";
 			})
 		}
+
+		$scope.logOut = function(){
+			$http.get('/logout')
+			.then(function(result){
+				//if (result.message == 'Successfully logged in') {
+				//console.log(result.data);
+				$window.location.href = '/';
+				//Materialize.toast(result);
+				console.log(result);
+				//}else {
+				//	$scope.uname = '';
+				//	$scope.pword = '';
+				//}
+			}, function(err) {
+				console.log(err);
+			});	
+		}
 	}
 })();
