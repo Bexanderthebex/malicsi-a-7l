@@ -9,9 +9,9 @@ CREATE PROCEDURE create_sport
  IN t_end TIME, 
  IN s_date DATE,
  IN e_date DATE,
- IN max_t INT(11),
+ IN max_t INT,
  IN score_sys VARCHAR(50),
- IN g_id INT(11))
+ IN g_id INT)
 BEGIN
 	INSERT INTO sport
 	(sport_name, 
@@ -27,9 +27,72 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS edit_sport;
+DELIMITER //
+CREATE PROCEDURE edit_sport
+(IN sportName VARCHAR(50), 
+ IN mechanicsInput TEXT, 
+ IN timeStart TIME, 
+ IN timeEnd TIME, 
+ IN startDate DATE, 
+ IN endDate DATE, 
+ IN maxTeams INT,
+ IN scoringSystem VARCHAR(50), 
+ IN sportId int)
+BEGIN
+	UPDATE sport SET 
+	sport_name = sportName, 
+	mechanics = mechanicsInput, 
+	time_start = timeStart, 
+	time_end = timeEnd, 
+	start_date = startDate, 
+	end_date = endDate, 
+	max_teams = maxTeams, 
+	scoring_system = scoringSystem 
+	WHERE sport_id = sportId;
+END; //
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS add_winner_sport;
+DELIMITER //
+CREATE PROCEDURE add_winner_sport(IN winnerInput INT, IN sportId INT)
+	BEGIN
+		UPDATE sport SET winner = winnerInput WHERE sport_id = sport_id;
+	END;//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS delete_sport;
+DELIMITER //
+	CREATE PROCEDURE delete_sport(IN sportId INT)
+	BEGIN
+		DELETE FROM sport WHERE sport_id = sportId;
+	END;
+	//
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS count_sport_by_game;
+DELIMITER //
+CREATE PROCEDURE count_sport_by_game (IN g_id INT)
+BEGIN
+	SELECT COUNT(*) FROM sport 
+	WHERE game_id = g_id;
+END //
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS retrieve_team_rankings_from_sport;
+DELIMITER //
+CREATE PROCEDURE retrieve_team_rankings_from_sport (IN in_sport_id INT)
+BEGIN
+	select organization.name as org_name, sum(team_in_match.ranking) as total_ranks from team_in_match, sport, sport_match, team, organization where sport.sport_id = in_sport_id and sport.sport_id = sport_match.sport_id and sport_match.match_id = team_in_match.match_id and team.team_id = team_in_match.team_id and team.team_organization = organization.organization_id and team_in_match.ranking is not NULL group by organization.name;
+END //
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS view_sport;
 DELIMITER //
-CREATE PROCEDURE view_sport (IN s_id INT(11))
+CREATE PROCEDURE view_sport (IN s_id INT)
 BEGIN
 	SELECT * FROM sport 
 	WHERE sport_id = s_id;
@@ -45,83 +108,24 @@ BEGIN
 END; //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS edit_sport;
-DELIMITER //
-CREATE PROCEDURE edit_sport
-(IN sportName VARCHAR(50), 
- IN mechanicsInput TEXT, 
- IN timeStart TIME, 
- IN timeEnd TIME, 
- IN startDate DATE, 
- IN endDate DATE, 
- IN maxTeams INT,
- IN scoringSystem VARCHAR(50), 
- IN sportId int(11))
-BEGIN
-	UPDATE sport SET 
-	sport_name = sportName, 
-	mechanics = mechanicsInput, 
-	time_start = timeStart, 
-	time_end = timeEnd, 
-	start_end = startDate, 
-	end_date = endDate, 
-	max_teams = maxTeams, 
-	scoring_system = scoringSystem 
-	WHERE sport_id = sportId;
-END; //
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS add_winner_sport;
-DELIMITER //
-CREATE PROCEDURE add_winner_sport(IN winnerInput int(11), IN sportId int(11))
-	BEGIN
-		UPDATE sport SET winner = winnerInput WHERE sport_id = sport_id;
-	END;//
-DELIMITER ;
-
-DROP PROCEDURE IF EXISTS delete_sport;
-DELIMITER //
-	CREATE PROCEDURE delete_sport(IN sportId int(11))
-	BEGIN
-		DELETE FROM sport WHERE sport_id = sportId;
-	END;
-	//
-DELIMITER ;
-
-
-DROP PROCEDURE IF EXISTS count_sport_by_game;
-DELIMITER //
-CREATE PROCEDURE count_sport_by_game (IN g_id INT(11))
-BEGIN
-	SELECT COUNT(*) FROM sport 
-	WHERE game_id = g_id;
-END //
-DELIMITER ;
-
-
-DROP PROCEDURE IF EXISTS retrieve_team_rankings_from_sport;
-DELIMITER //
-CREATE PROCEDURE retrieve_team_rankings_from_sport (IN in_sport_id INT(11))
-BEGIN
-	select organization.name as org_name, sum(team_in_match.ranking) as total_ranks from team_in_match, sport, sport_match, team, organization where sport.sport_id = in_sport_id and sport.sport_id = sport_match.sport_id and sport_match.match_id = team_in_match.match_id and team.team_id = team_in_match.team_id and team.team_organization = organization.organization_id and team_in_match.ranking is not NULL group by organization.name;
-END //
-DELIMITER ;
-
 DROP PROCEDURE IF EXISTS view_all_matches_in_game;
 DELIMITER //
-CREATE PROCEDURE view_all_matches_in_game(in game_id_input INT(11))
+CREATE PROCEDURE view_all_matches_in_game(in game_id_input INT)
 BEGIN
-	SELECT team_id, match_id, sport_id, game_id, sport_match.time_start, sport_match.time_end from ((game join sport using (game_id)) join sport_match using (sport_id)) join team_in_match using (match_id) where game_id = game_id_input;
-END //
+	SELECT team_id, match_id, sport_id, game_id, sport_match.time_start, sport_match.time_end 
+	FROM ((game JOIN sport using (game_id)) 
+		JOIN sport_match using (sport_id)) 
+		JOIN team_in_match using (match_id)
+	WHERE game_id = game_id_input;
+END; //
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS search_for_sport_by_keyword;
 DELIMITER //
 CREATE PROCEDURE search_for_sport_by_keyword(in keyword varchar(50))
 BEGIN
-	select sport.sport_name, sport.start_date, sport.end_date, time_start, time_end, max_teams, sport.mechanics, game.name as game_name from sport,game where (sport.sport_name like keyword or sport.mechanics like keyword or game.name like keyword or game.location like keyword) and sport.game_id = game.game_id;
-END;
-//
-
+	SELECT sport.sport_name, sport.start_date, sport.end_date, time_start, time_end, max_teams, sport.mechanics, game.name AS game_name FROM sport,game WHERE (sport.sport_name LIKE keyword OR sport.mechanics LIKE keyword OR game.name LIKE keyword OR game.location like keyword) and sport.game_id = game.game_id;
+END; //
 DELIMITER ;
 
 -- create sport
