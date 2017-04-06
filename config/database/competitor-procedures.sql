@@ -32,12 +32,23 @@ DELIMITER //
 	//
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS edit_competitor_bio;
+DELIMITER //
+	CREATE PROCEDURE edit_competitor_bio(IN bio_in TEXT, IN id INT)
+
+	BEGIN
+		UPDATE competitor SET bio = bio_in WHERE id = id;
+	END;
+
+	//
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS get_competitor_teams;
 DELIMITER //
 	CREATE PROCEDURE get_competitor_teams(in id INT)
 
 	BEGIN
-		SELECT *  FROM (competitor JOIN competitor_joins_team using (id)) JOIN team using (team_id) where competitor.id = 1;
+		SELECT *  FROM (competitor JOIN competitor_joins_team using (id)) JOIN team using (team_id) where competitor.id = id;
 	END;
 
 	//
@@ -47,8 +58,16 @@ GRANT EXECUTE ON PROCEDURE search_competitor TO competitor;
 GRANT EXECUTE ON PROCEDURE search_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE search_competitor TO guest;
 GRANT EXECUTE ON PROCEDURE get_competitor TO competitor;
+GRANT EXECUTE ON PROCEDURE get_competitor TO organizer;
 GRANT EXECUTE ON PROCEDURE get_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE get_competitor TO guest;
 GRANT EXECUTE ON PROCEDURE edit_competitor TO competitor;
+GRANT EXECUTE ON PROCEDURE edit_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE get_competitor_teams TO administrator;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO organizations;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO competitor;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO guest;
+GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO administrator;
+GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO competitor;
+
 

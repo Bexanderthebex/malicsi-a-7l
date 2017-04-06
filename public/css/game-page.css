@@ -5,11 +5,11 @@
 .game-container {
     margin: 0 auto;
     max-width: 1280px;
-    width: 88%; 
+    width: 88%;
 }
 
 .game-slider-background {
-    background-color: white !important;    
+    background-color: white !important;
 }
 
 #game-slider {
@@ -54,6 +54,11 @@
 }
 
 .game-remove-padding-absolute {
+    padding: 0 !important;
+    cursor: pointer;
+}
+
+.game-remove-padding-absolute {
     padding: 5px !important;
 }
 
@@ -66,7 +71,7 @@
 }
 
 .game-margin-other-place {
-    margin-bottom: -10px !important;  
+    margin-bottom: -10px !important;
 }
 
 .game-smaller-font-header {
@@ -86,10 +91,10 @@
 }
 
 .game-adjust-image {
-    margin-left: 9%;
-    margin-top: 15%;
+    margin-top: 6%;
     height: 100px;
     width: 100px;
+    cursor: pointer;
 }
 
 #game-sport-search {
@@ -132,7 +137,7 @@
 }
 
 .game-padding-search {
-    padding-left: 5px !important; 
+    padding-left: 5px !important;
 }
 
 #game-mini-icon {
@@ -165,7 +170,6 @@
 }
 
 #game-rank-section{
-    margin-top: -10%;
     height: 50%;
 }
 
@@ -182,7 +186,7 @@
 }
 
 .game-type-matches::-webkit-scrollbar{
-    width: 6px;
+    width: 4px;
     /*background-color: white;*/
 }
 
@@ -213,9 +217,9 @@
 }
 
 .game-match-container{
-    padding-left: 10px; 
-    padding-right: 10px; 
-    padding-bottom: 10px; 
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
 }
 
 .game-match-header {
@@ -251,14 +255,23 @@
     border-radius: 50% !important;
     margin-top: 5px;
     z-index: 10;
-}    
+}
 
-.game-line {
-    height: 250px;
-    background-color: black;
+.game-line-update {
+    height: 42.5%;
+    background-color: white;
     width: 2px;
     position: absolute;
-    left: 86%;
+    left: 87%;
+    z-index: -5;
+}
+
+.game-line-rank {
+    height: 35%;
+    background-color: white;
+    width: 2px;
+    position: absolute;
+    left: 87%;
     z-index: -5;
 }
 
@@ -294,7 +307,7 @@
 
 .game-sponsor-description{
     font-size: 10px;
-    margin-top: -20px; 
+    margin-top: -20px;
 }
 
 .game-location-description{
@@ -307,13 +320,9 @@
 }
 
 .game-game-name{
-    padding: 10px !important; 
+    padding: 10px !important;
 }
 
-.game-hovercard {
-    height: 200px;
-    width: 200px;
-}
 
 .game-hovercard:hover {
     /*00b8ff*/
@@ -331,7 +340,7 @@
 }
 
 #game-adjust-icon-add {
-    font-size: 102px;
+    font-size: 100px;
 }
 
 #game-game-search input{
@@ -349,14 +358,15 @@
 }
 #game-game-search-bar input::-webkit-search-decoration,
 #game-game-search-bar input::-webkit-search-cancel-button {
-    display: none; 
+    display: none;
 }
 
 #game-game-search-bar input[type=search] {
+    margin-bottom: 0px !important;
     background: white url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
     border: none;
     padding: 9px 10px 9px 32px;
-    width: 300px;
+    width: 100%;
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
     border-radius: 10em;
@@ -394,4 +404,23 @@
 
 .game-arrange-padding {
     padding: 10px !important;
+}
+
+.game-sidebar {
+    width: 25% !important;
+}
+
+.game-main-content{
+    margin-left: 25% !important;
+    width: 75% !important;
+}
+
+
+.sponsor-actions{
+    margin-left: 10px;
+}
+
+.sponsor-actions:hover{
+    color: black;
+    cursor: pointer!important;
 }

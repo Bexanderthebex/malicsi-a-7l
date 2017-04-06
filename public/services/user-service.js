@@ -13,7 +13,8 @@
 
     function UserService($http, $q) {
         const service = {
-            getUserInfo: getUserInfo
+            getUserInfo: getUserInfo,
+            getUsersByType: getUsersByType
         }
 
         return service;
@@ -30,7 +31,21 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
+            return deferred.promise;
+        }
+
+        function getUsersByType(type) {
+            let deferred = $q.defer();
+
+            $http.post('/user/getUsersByType', {
+				type : type
+			}).then(function(res){
+				deferred.resolve(res)
+			}, function(err) {
+				deferred.reject(err);
+			});
+
             return deferred.promise;
         }
 
