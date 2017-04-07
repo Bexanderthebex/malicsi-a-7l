@@ -327,21 +327,17 @@
 												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport" ng-click="passSport(sport)">update</i></span>
 												<div class="telegrafico">Date</div>
 												<div class="game-match-info">
-													Start: {{sport.start_date}}
+													{{sport.start_date}} - {{sport.end_date}}
 												</div>
-												<div class="game-match-info">
-													End: {{sport.end_date}}
-												</div>
+												
 												<div class="telegrafico">Time</div>
 												<div class="game-match-info">
-													Start: {{sport.time_start}}
+													{{sport.time_start}} - {{sport.time_end}}
 												</div>
-												<div class="game-match-info">
-													End: {{sport.time_end}}
-												</div>
+												
 												<div class="telegrafico">Teams Remaining</div>
 												<div class="game-match-info">
-													9/10
+													9/{{sport.max_teams}}
 												</div>
 												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">{{sport.sport_name | lowercase}}</div>
 											</div>
@@ -626,11 +622,11 @@
 
 			<div class="input-field col s3">
 				<input placeholder="HH:mm:ss" id="start-time" type="text" class="validate" ng-model="sportCopy.time_start">
-				<label class="game-adjust-label" for="start-time">Start</label>
+				<label for="start-time">Start</label>
 			</div>
 			<div class="input-field col s3">
 				<input placeholder="HH:mm:ss" id="end-time" type="text" class="validate" ng-model="sportCopy.time_end">
-				<label class="game-adjust-label" for="end-time">End</label>
+				<label for="end-time">End</label>
 			</div>
 
 			<div class="input-field col s3">
