@@ -74,7 +74,6 @@ exports.getUsersByType = (req, res) => {
 		req.body.type
 	], (err, rows) => {
 		if(!err){
-			console.log(rows);
 			res.status(200).send(rows);
 		}else{
 			console.log(err);
@@ -84,15 +83,30 @@ exports.getUsersByType = (req, res) => {
 }
 
 exports.getAllUsers = (req, res) => {
-	console.log("HI")
 	let query = 'SELECT * FROM user';
 	connection.userType('A').query(query, [], (err, rows) => {
 		if(!err){
-			console.log(rows);
 			res.status(200).send(rows);
 		}else{
 			console.log(err);
 			res.status(500).send({ 'message' : 'Internal Server Error.' });
 		}
 	});
+}
+
+exports.createAdmin = (req, res) => {
+	let query = 'call create_user(?, ?, ?, ?, \'A\')';
+	connection.userType('A').query(query, [
+		req.body.username,
+		req.body.password,
+		req.body.email,
+		req.body.contact
+	], (err, rows) => {
+		if (!err) {
+			res.status(200).send({'message': 'Successfully created admin'});
+		} else {
+			console.log(err);
+			res.status(500).send({ 'message' : 'Internal Server Error.' });
+		}
+	})
 }

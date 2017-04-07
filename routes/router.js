@@ -20,7 +20,6 @@ let organizationController = require("../controllers/organization-controller");
 function sha256Hash(req, res, next) {
     console.log(req.body);
     if (req.body.password == undefined) {
-        console.log("Hello");
         res.status(404).send({ 'message' : 'Incorrect credentials'});
     } else {
         console.log("Hi");
@@ -60,6 +59,7 @@ function checkUser(type) {
 router.post('/login', sha256Hash, userController.login);
 router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.post('/register/createOrganizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
+router.post('/register/createAdmin', checkUser('A'), sha256Hash, bcryptHash, adminController.createAdmin);
 router.get('/logout', userController.logout);
 router.get('/user/:id', userController.getUserInfo);
 router.put('/user/update', sha256Hash, bcryptHash, userController.update);
