@@ -124,7 +124,7 @@ DROP PROCEDURE IF EXISTS search_for_sport_by_keyword;
 DELIMITER //
 CREATE PROCEDURE search_for_sport_by_keyword(in keyword varchar(50))
 BEGIN
-	SELECT sport.sport_name, sport.start_date, sport.end_date, time_start, time_end, max_teams, sport.mechanics, game.name AS game_name FROM sport,game WHERE (sport.sport_name LIKE keyword OR sport.mechanics LIKE keyword OR game.name LIKE keyword OR game.location like keyword) and sport.game_id = game.game_id;
+	SELECT * FROM sport WHERE sport_name like keyword;
 END; //
 DELIMITER ;
 

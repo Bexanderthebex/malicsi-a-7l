@@ -15,6 +15,7 @@ let logController = require("../controllers/log-controller");
 let competitorController = require("../controllers/competitor-controller");
 let organizerController = require("../controllers/organizer-controller");
 let teamController = require("../controllers/team-controller");
+let organizationController = require("../controllers/organization-controller");
 
 function sha256Hash(req, res, next) {
     console.log(req.body);
@@ -91,6 +92,7 @@ router.delete('/organizer/deleteTeam',organizerController.deleteTeam);
 // organization
 router.get('/organization/getOrganization',teamController.getOrganization);
 router.get('/organization/getGamesInOrganization',teamController.getGamesInOrganization);
+router.get('/organization/search',organizationController.searchOrganization);
 
 // team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
