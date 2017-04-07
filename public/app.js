@@ -8,11 +8,11 @@
     config.$inject = ['$routeProvider','$locationProvider'];
 
     function config($routeProvider, $locationProvider){
-        $locationProvider.html5Mode({
-            enabled: true
-        });
+        // $locationProvider.html5Mode({
+        //     enabled: true
+        // });
 
-        $locationProvider.hashPrefix('');
+        // $locationProvider.hashPrefix('');
 
         $routeProvider
             .when('/', {
@@ -39,7 +39,8 @@
             })
             .when('/competitor/profile', {
                 'templateUrl': 'views/competitor-profile-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'CompetitorController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/competitor/profile/:id', {
@@ -49,6 +50,11 @@
             })
             .when('/help', {
                 'templateUrl': 'views/help.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
+            .when('/about', {
+                'templateUrl': 'views/about-us-page.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
@@ -75,7 +81,8 @@
             })
             .when('/organization', {
                 'templateUrl': 'views/organization-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'OrganizationController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/search', {
@@ -85,7 +92,8 @@
             })
             .when('/sports', {
                 'templateUrl': 'views/sports-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'SportController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/adminpanel', {

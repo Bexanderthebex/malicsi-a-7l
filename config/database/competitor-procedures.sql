@@ -23,10 +23,21 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS edit_competitor;
 DELIMITER //
-	CREATE PROCEDURE edit_competitor(IN first_name VARCHAR(30), IN last_name VARCHAR(30), IN birthday DATE, IN nickname VARCHAR(15), IN sex CHAR(1), IN id INT)
+	CREATE PROCEDURE edit_competitor(IN bday DATE, IN fname VARCHAR(30), IN lname VARCHAR(30), IN nname VARCHAR(15), IN sx CHAR(1), IN cid INT)
 
 	BEGIN
-		UPDATE competitor SET first_name = first_name, last_name = last_name, birthday = birthday, nickname = nickname, sex = sex WHERE id = id;
+		UPDATE competitor SET  birthday = bday, first_name = fname, last_name = lname, nickname = nname, sex = sx WHERE id = cid;
+	END;
+
+	//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS edit_competitor_bio;
+DELIMITER //
+	CREATE PROCEDURE edit_competitor_bio(IN bio_in TEXT, IN cid INT)
+
+	BEGIN
+		UPDATE competitor SET bio = bio_in WHERE id = cid;
 	END;
 
 	//
@@ -37,18 +48,46 @@ DELIMITER //
 	CREATE PROCEDURE get_competitor_teams(in id INT)
 
 	BEGIN
-		SELECT *  FROM (competitor JOIN competitor_joins_team using (id)) JOIN team using (team_id) where competitor.id = 1;
+		SELECT *  FROM (competitor JOIN competitor_joins_team using (id)) JOIN team using (team_id) where competitor.id = id;
 	END;
 
 	//
 DELIMITER ;
 
+
+DROP PROCEDURE IF EXISTS get_competitor_ranking;
+DELIMITER //
+	CREATE PROCEDURE get_competitor_ranking(in id_in INT)
+
+	BEGIN
+		SELECT ranking, COUNT(ranking) AS rankCount FROM team JOIN team_in_match using (team_id) WHERE id = id_in GROUP BY ranking;
+	END;
+
+	//
+DELIMITER ;
+
+
+
+
+
 GRANT EXECUTE ON PROCEDURE search_competitor TO competitor;
 GRANT EXECUTE ON PROCEDURE search_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE search_competitor TO guest;
 GRANT EXECUTE ON PROCEDURE get_competitor TO competitor;
+GRANT EXECUTE ON PROCEDURE get_competitor TO organizer;
 GRANT EXECUTE ON PROCEDURE get_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE get_competitor TO guest;
 GRANT EXECUTE ON PROCEDURE edit_competitor TO competitor;
+GRANT EXECUTE ON PROCEDURE edit_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE get_competitor_teams TO administrator;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO organizer;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO competitor;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO guest;
+GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO administrator;
+GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO competitor;
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO competitor;
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO administrator;
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO organizer;
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO guest;
+
 

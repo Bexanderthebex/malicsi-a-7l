@@ -18,13 +18,13 @@
 				username : $scope.uname,
 				password : $scope.pword,
 			}).then(function(result){
-				//if (result.message == 'Successfully logged in') {
-				console.log(result.data);
+				// if (result.message == 'Successfully logged in') {
+				// console.log(result.data);
 				$window.location.href = '/';
-				//}else {
-				//	$scope.uname = '';
-				//	$scope.pword = '';
-				//}
+				// }else {
+				// 	$scope.uname = '';
+				// 	$scope.pword = '';
+				// }
 			}, function(err) {
 				console.log(err);
 			});
@@ -45,6 +45,7 @@
 				nickname: nname,
 				sex: sex
 			}).then(function(result){
+				$window.location.href = '/';
 				$scope.fname = "";
 				$scope.lname = "";
 				$scope.uname = "";
@@ -52,6 +53,23 @@
 				$scope.bday = "";
 				$scope.ead = "";
 			})
+		}
+
+		$scope.logOut = function(){
+			$http.get('/logout')
+			.then(function(result){
+				//if (result.message == 'Successfully logged in') {
+				//console.log(result.data);
+				$window.location.href = '/';
+				// $scope.user = {};
+				console.log(result);
+				//}else {
+				//	$scope.uname = '';
+				//	$scope.pword = '';
+				//}
+			}, function(err) {
+				console.log(err);
+			});	
 		}
 	}
 })();

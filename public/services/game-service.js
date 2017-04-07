@@ -23,6 +23,7 @@
             viewOngoingMatchesInGame: viewOngoingMatchesInGame,
             viewUpcomingMatchesInGame: viewUpcomingMatchesInGame,
             viewOrgRankings: viewOrgRankings
+            viewUpcomingOngoingGames: viewUpcomingOngoingGames
         }
 
         return service;
@@ -40,7 +41,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -195,6 +196,7 @@
             
             return deferred.promise;
         }
+
         function viewOngoingMatchesInGame(game_id){
             let deferred = $q.defer();
             let game = {
@@ -247,6 +249,19 @@
                 deferred.reject(err);
             });
             
+        function viewUpcomingOngoingGames() {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/game/viewUpcomingOngoing',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res.data);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
             return deferred.promise;
         }
     }

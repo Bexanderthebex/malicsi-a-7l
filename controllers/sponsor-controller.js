@@ -1,3 +1,5 @@
+'use strict'
+
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
@@ -69,7 +71,7 @@ exports.viewSponsor = (req, res) => {
 	let query = 'CALL view_sponsor(?,?)';
 	connection.userType('A').query(query,
 		[
-			req.body.sponsorId
+			req.query.sponsorId
 		],
 		(err, rows) => {
 			if(!err){
@@ -81,15 +83,33 @@ exports.viewSponsor = (req, res) => {
 		});
 }
 
-exports.viewSponsor = (req, res) => {
-	let query = 'CALL view_all_sponsors_in_game(?)';
+exports.viewSponsorInSport = (req, res) => {
+	let query = 'CALL view_sponsor_in_sport(?)';
 	connection.userType('A').query(query,
 		[
-			req.body.gameId
+			req.query.sportId
 		],
 		(err, rows) => {
 			if(!err){
-				return res.status(200).send(rows);
+
+				return res.status(200).send(rows[0]);
+			} 
+			else{
+				console.log(err);
+				res.status(500).send("Internal Server Error");
+			}
+		});
+}
+
+exports.viewSponsorInGame = (req, res) => {
+	let query = 'CALL view_all_sponsors_in_game(?)';
+	connection.userType('A').query(query,
+		[
+			req.query.gameId
+		],
+		(err, rows) => {
+			if(!err){
+				return res.status(200).send(rows[0]);
 			} 
 			else{
 				res.status(500).send("Internal Server Error");

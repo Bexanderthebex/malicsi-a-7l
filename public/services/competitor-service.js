@@ -14,6 +14,7 @@
         const service = {
             searchCompetitor: searchCompetitor,
             editCompetitor: editCompetitor,
+            editCompetitorBio: editCompetitorBio,
             getCompetitor: getCompetitor,
             getCompetitorTeams: getCompetitorTeams
         }
@@ -54,12 +55,27 @@
             return deferred.promise;
         }
 
-        function getCompetitor(id){
+        function editCompetitorBio(competitor){
             let deferred = $q.defer();
 
             $http({
+                method: 'PUT',
+                data: $.param(competitor),
+                url: '/competitor/editCompetitorBio',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function getCompetitor(){
+            let deferred = $q.defer();
+            $http({
                 method: 'GET',
-                data: $.param(id),
                 url: '/competitor/getCompetitor',
                 headers: headers
             }).then((res) => {
@@ -71,12 +87,11 @@
             return deferred.promise;
         }
 
-        function getCompetitorTeams(id){
+        function getCompetitorTeams(){
             let deferred = $q.defer();
 
             $http({
                 method: 'GET',
-                params: id,
                 url: '/competitor/getCompetitorTeams',
                 headers: headers
             }).then((res) => {

@@ -267,7 +267,7 @@
                     $scope.temp = res.data;
                     for (var i = $scope.temp.length - 1; i >= 0; i--) {
                         for(var j = $scope.temp.length - 2; j>=0; j--){
-                            if($scope.temp[i].match_id == $scope.temp[j].match_id && $scope.temp[i].team_id != $scope.temp[j        ].team_id && $scope.match_id_tracker.indexOf($scope.temp[i].match_id)==-1){
+                            if($scope.temp[i].match_id == $scope.temp[j].match_id && $scope.temp[i].team_id != $scope.temp[j].team_id && $scope.match_id_tracker.indexOf($scope.temp[i].match_id)==-1){
                                 $scope.mergedMatch = {
                                     team1_name: $scope.temp[i].team_name,
                                     team1_id: $scope.temp[i].team_id,

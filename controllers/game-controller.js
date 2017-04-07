@@ -7,6 +7,7 @@ const connection = require('./../config/db-connection.js');
 
 
 exports.createGame = (req, res) => {
+	console.log(req.body);
 	let query = 'CALL create_game(?,?,?,?,?,?);'
 	connection.userType('A').query(query, 
 		[	
@@ -16,14 +17,17 @@ exports.createGame = (req, res) => {
 			req.body.endDate,
 			req.body.locat,
 			req.body.descrip
-	    ], (err, rows) => {
+	    ], 
+	    (err, results) => {
 			if(!err){
-				connection.userType('A').query('CALL view_last_inserted_game)',(err, rows) => {
+				connection.userType('A').query('CALL view_last_inserted_game()',(err, rows) => {
 					return res.status(200).send(rows[0]);
 				});
 			}
 			else{
+				console.log(err);
 				res.status(500).send(err);
+
 			}
 	});
 }
@@ -58,20 +62,20 @@ exports.viewGameDetails = (req, res) => {
 	let query = 'call view_game_details(?);';
 	let param = parseInt(req.query.gameId);	
 	if (!isNaN(param)){
-		connection.userType('A').query(query, 
-		param, 
+		connection.userType('A').query(query,
+		param,
 		(err, results, fields)	=> {
 		if (!err && results[0].length!=0) {
-			return res.status(200).send(results[0]);
+			res.status(200).send(results[0][0]);
 		}
 		else if (results[0].length==0){
 			res.status(404).send("Game not found.");
-		}		
+		}
 		else{
 			console.log(err.code);
 			res.status(500).send("An error occurred.");
 		}
-		
+
 	});
 
 	}
@@ -82,6 +86,7 @@ exports.searchForGameByKeyword = (req,res) => {
 	let query = 'call search_for_game_by_keyword(?);';
 	if(req.query.keyword != ''){
 		connection.userType('A').query(query,
+
 			[
 				'%' + req.query.keyword + '%'
 			], (err, rows, fields) => {
@@ -107,6 +112,7 @@ exports.viewAllSportsInGame = (req, res) => {
 	let query = 'call view_all_sports_in_game(?);';
 	let param = parseInt(req.params.gameId);
 	if (!isNaN(param)){
+
 		connection.userType('A').query(query, 
 			param, 
 			(err, rows, fields)	=> {
@@ -121,7 +127,7 @@ exports.viewAllSportsInGame = (req, res) => {
 					res.status(500).send("An error occurred.");
 				}
 			});
-	} else res.status(400).send("Invalid parameter.");
+	} else res.status(400).send("Invalid parameter.")
 }
 
 exports.deleteGame = (req, res) => {
@@ -204,9 +210,11 @@ exports.viewAllPastMatchesInGame = (req, res) => {
 		], (err, rows, fields) => {
 			if(!err && rows[0].length != 0){
 				return res.status(200).send(rows[0]);
+
 			}else if(rows[0].length ==0 ){
 				res.status(200).send([]);
-			}else{
+			}
+			else{
 				res.status(500).send("Internal Server Error Occured");
 			}
 		});
@@ -252,3 +260,4 @@ exports.retrieveOrgRankings = (req, res, next) => {
 		res.status(400).send("Invalid parameter.");
 	}
 }
+

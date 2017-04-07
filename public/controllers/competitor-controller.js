@@ -6,24 +6,17 @@
         .module('app')
         .controller('CompetitorController', CompetitorController);
 
-    CompetitorController.$inject = ['$scope', 'CompetitorService'];
+    CompetitorController.$inject = ['$scope', '$window', 'CompetitorService', 'UserService'];
 
-    function CompetitorController($scope, CompetitorService) {
-        $scope.competitor = [];
+    function CompetitorController($scope, $window, CompetitorService, UserService) {
+        $scope.competitor = {};
         $scope.competitorteams = [];
-        $scope.editComp = {
-            first_name: undefined,
-            last_name: undefined,
-            birthdate: undefined,
-            nickname: undefined,
-            sex: undefined,
-            id: undefined
-        }
-
+    
         $scope.searchCompetitor = searchCompetitor;
-        $scope.editCompetitor = editCompetitor;
         $scope.getCompetitor = getCompetitor;
         $scope.getCompetitorTeams = getCompetitorTeams;
+        $scope.editCompetitor = editCompetitor;
+        $scope.editCompetitorBio = editCompetitorBio;
         
         function searchCompetitor(id){
             CompetitorService
@@ -35,39 +28,51 @@
                 })
         }
 
+        function getCompetitor(){
+            UserService
+                .getUserInfo()
+                .then(function(res) {
+                    $scope.competitor = res.data;
+                    console.log(res.data);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function getCompetitorTeams(){
+            CompetitorService
+                .getCompetitorTeams()
+                .then(function(res) {
+                    $scope.competitorteams = res.data;
+                    console.log(res.data);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
         function editCompetitor(){
-            $scope.editComp.first_name = $('#firstname').val();
-            $scope.editComp.last_name = $('#lastname').val();
-            $scope.editComp.birthdate = $('#birthdate').val();
-            $scope.editComp.nickname = $('#nickname').val();
-            $scope.editComp.sex = $('#sex').val();
-            $scope.editComp.id = $('#competitorid').val();
-
-            CompetitorService.editCompetitor($scope.editComp).then(function (res){
-                    console.log("added");
-                }, function(err) {
-                    console.log(err);
-                })
-        }
-
-        function getCompetitor(id){
             CompetitorService
-                .getCompetitor(id)
-                .then(function(res) {
-                    $scope.competitor = res;
+                .editCompetitor($scope.competitor)
+                .then(function (res){
+                    Materialize.toast('Successfully edited!', 3000);
+                    // $window.location.href = '/#/competitor/profile';
                 }, function(err) {
                     console.log(err);
                 })
         }
 
-        function getCompetitorTeams(id){
+
+        function editCompetitorBio(){
+            console.log($scope.competitor);
             CompetitorService
-                .getCompetitorTeams(id)
-                .then(function(res) {
-                    $scope.competitorteams = res;
+                .editCompetitorBio($scope.competitor)
+                .then(function (res){
+                    Materialize.toast('Successfully edited bio!', 3000);
+                    //$window.location.href = '/#/competitor/profile';
                 }, function(err) {
                     console.log(err);
                 })
         }
+
     }
 })();
