@@ -13,8 +13,8 @@ DROP PROCEDURE IF EXISTS view_all_sponsors_in_game;
 DELIMITER //
 CREATE PROCEDURE view_all_sponsors_in_game(IN g_id INT)
 BEGIN
-	SELECT spon.name 
-	FROM  sponsor_institution AS spon 
+	SELECT *
+	FROM  sponsor_institution AS spon organizationorganizationorganization_in_gameorganization_in_gamesponsor_gamesorganizer
 	JOIN sponsor_games AS spon_game 
 	ON spon.sponsor_id = spon_game.sponsor_id 
 	WHERE spon_game.game_id = g_id;
