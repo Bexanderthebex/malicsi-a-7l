@@ -1,4 +1,4 @@
-<div id="mainHolder" ng-controller="CompetitorController">
+<div id="mainHolder" >
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
     <div id="main" class="">
@@ -87,69 +87,70 @@
                         <div class="indicator white" style="z-index: 1"></div>
                     </ul>
 
-                    <div id="competitor-teams" class="col s12" ng-repeat="team in teams">
-                        <table class="highlight responsive-table competitor-games-data">
-                            <tbody>
-                                <tr class="century-gothic">
-                                    <td>New York Knicks</td>
-                                    <td>Basketball</td>
-                                </tr>
-                                <tr class="century-gothic">
-                                    <td>Real Madrid</td>
-                                    <td>Football</td>
-                                </tr>
-                                <tr class="century-gothic">
-                                    <td>Mighty Ducks</td>
-                                    <td>Hockey</td>
-                                </tr>
-                                <tr class="century-gothic">
-                                    <td>New York Knicks</td>
-                                    <td>Basketball</td>
-                                </tr>
-                                <tr class="century-gothic">
-                                    <td>Mighty Ducks</td>
-                                    <td>Hockey</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="highlight competitor-showall">
-                            <tbody>
-                                <tr>
-                                    <td class="center-align century-gothic palette-3" id="competitor-past-showall"><a data-target="competitor-past-modal" show-all-past>Show All</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="competitor-organizations" class="col s12" ng-repeat="team in teams">
-                        <table class="highlight responsive-table competitor-games-data">
-                            <tbody>
-                                <tr class="century-gothic">
-                                    <td>National Basketball Association</td>
-                                </tr>
-                                <tr class="century-gothic">
-                                    <td>International Federation of Association Football</td>
-                                </tr>
-                                <tr class="century-gothic">
-                                    <td>Canadian Hockey League</td>
-                                </tr>
-                                <tr class="century-gothic">
-                                    <td>National Basketball Association</td>
-                                </tr>
-                                <tr class="century-gothic">
-                                    <td>Canadian Hockey League</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="highlight competitor-showall">
-                            <tbody>
-                                <tr>
-                                    <td class="center-align century-gothic palette-3" id="competitor-past-showall"><a data-target="competitor-past-modal" show-all-past>Show All</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+
+	                <div id="competitor-teams" class="col s12" ng-repeat="team in teams">
+	                    <table class="highlight responsive-table competitor-games-data">
+	                        <tbody>
+	                            <tr class="century-gothic">
+	                                <td>{{team.name}}</td>
+	                                <td>{{team.sport}}</td>
+	                            </tr>
+	                            <!-- <tr class="century-gothic">
+	                                <td>Real Madrid</td>
+	                                <td>Football</td>
+	                            </tr>
+	                            <tr class="century-gothic">
+	                                <td>Mighty Ducks</td>
+	                                <td>Hockey</td>
+	                            </tr>
+	                            <tr class="century-gothic">
+	                                <td>New York Knicks</td>
+	                                <td>Basketball</td>
+	                            </tr>
+	                            <tr class="century-gothic">
+	                                <td>Mighty Ducks</td>
+	                                <td>Hockey</td>
+	                            </tr> -->
+	                        </tbody>
+	                    </table>
+	                    <table class="highlight competitor-showall">
+	                        <tbody>
+	                            <tr>
+	                                <td class="center-align century-gothic palette-3" id="competitor-past-showall"><a data-target="competitor-past-modal" show-all-past>Show All</a></td>
+	                            </tr>
+	                        </tbody>
+	                    </table>
+	                </div>
+	                <div id="competitor-organizations" class="col s12" ng-repeat="team in teams">
+	                    <table class="highlight responsive-table competitor-games-data">
+	                        <tbody>
+	                            <tr class="century-gothic">
+	                                <td>{{team.organization}}</td>
+	                            </tr>
+	                            <!-- <tr class="century-gothic">
+	                                <td>International Federation of Association Football</td>
+	                            </tr>
+	                            <tr class="century-gothic">
+	                                <td>Canadian Hockey League</td>
+	                            </tr>
+	                            <tr class="century-gothic">
+	                                <td>National Basketball Association</td>
+	                            </tr>
+	                            <tr class="century-gothic">
+	                                <td>Canadian Hockey League</td>
+	                            </tr> -->
+	                        </tbody>
+	                    </table>
+	                    <table class="highlight competitor-showall">
+	                        <tbody>
+	                            <tr>
+	                                <td class="center-align century-gothic palette-3" id="competitor-past-showall"><a data-target="competitor-past-modal" show-all-past>Show All</a></td>
+	                            </tr>
+	                        </tbody>
+	                    </table>
+	                </div>
+	            </div>
+	        </div>
 
             <!-- Sports Played -->
             <div class="row container" ng-init="">
@@ -429,10 +430,10 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" ng-init="getCompetitor()">
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="competitor-bio" class="materialize-textarea" data-length="150"></textarea>
+                        <textarea id="competitor-bio" class="materialize-textarea" data-length="150" ng-model="competitor.bio"></textarea>
                         <label for="competitor-bio">Bio</label>
                     </div>
                 </div>
@@ -442,7 +443,7 @@
     <div class="divider"></div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">check</i>Update</a>
+        <a class="modal-action modal-close waves-effect btn-flat telegrafico" ng-click="editCompetitorBio()"><i class="material-icons left">check</i>Update</a>
     </div>
 </div>
 
