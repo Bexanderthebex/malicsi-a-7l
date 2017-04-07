@@ -69,7 +69,7 @@ exports.register = (req, res) => {
 						var returnObject = rows[0];
 
 						req.session.user = {
-							id: rows.insertId,
+							id: returnObject.id,
 							username: req.body.username,
 							type: req.body.type
 						};
@@ -223,11 +223,12 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 		res.status(200).send(null);
 	} else {
 		let currentUser = req.session.user;
+		// console.log("id: " + currentUser.id);
 		connection.userType('A').query('SELECT * FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
 				let returnObject = rows;
-				// console.log("1st: ");
-				// console.log(returnObject[0]);
+				console.log("1st: ");
+				console.log(returnObject[0]);
 				if(currentUser.type == 'C') {
 					connection.userType('A').query('SELECT birthday, sex, first_name, last_name, nickname, bio from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
 						if(!err) {
