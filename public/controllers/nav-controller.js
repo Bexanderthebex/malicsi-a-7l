@@ -7,7 +7,7 @@
     function NavCtrl($scope, $http) {
         $scope.iconUrl = "";
         $scope.user = {};
-        $scope.hide = true;
+        $scope.hide = false;
 
         $http.get('/user')
         .then(function(result){
@@ -17,8 +17,9 @@
                 $scope.user = {};
             } else {
                 $scope.user = result.data;
-                $scope.hide = false;
+                $scope.hide = true;
                 console.log(result.data);
+                console.log($scope.hide);
                 if (result.data.type === "C") {
                     $scope.iconUrl = '#/competitor/profile';
                 } else if(result.data.type ==="O") {
