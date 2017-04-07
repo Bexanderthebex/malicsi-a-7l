@@ -37,7 +37,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -121,7 +121,7 @@
                 'team_id': teamId
             }
 
-            $http({ 
+            $http({
                 method: 'POST',
                 data: $.param(team),
                 url: '/organizer/processRequest',
@@ -135,7 +135,7 @@
 
             return deferred.promise;
         }
-        
+
         function getOrganizer(id) {
             let deferred = $q.defer();
 

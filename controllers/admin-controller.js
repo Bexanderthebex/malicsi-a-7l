@@ -113,12 +113,11 @@ exports.createAdmin = (req, res) => {
 
 exports.searchAdmin = (req, res) => {
 	let query = 'call search_admin(?)';
-	console.log(req.query)
+
 	connection.userType('A').query(query, [
-		'%' + req.query.keyword + '%'
+		'%' + req.query.search + '%'
 	], (err, rows) => {
 		if (!err) {
-			console.log(rows);
 			res.status(200).send(rows[0]);
 		} else {
 			console.log(err);

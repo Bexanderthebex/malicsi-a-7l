@@ -224,7 +224,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 	} else {
 		let currentUser = req.session.user;
 		// console.log("id: " + currentUser.id);
-		connection.userType('A').query('SELECT * FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
+		connection.userType('A').query('SELECT username, contact, email, type FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
 				let returnObject = rows;
 				console.log("1st: ");
