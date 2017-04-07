@@ -15,7 +15,9 @@
             retrieveTeams : retrieveTeams,
             joinTeam : joinTeam,
             retrieveTeamStatistics : retrieveTeamStatistics,
-            getOrganizationRankings: getOrganizationRankings
+            getOrganizationRankings: getOrganizationRankings,
+            getOrganization: getOrganization,
+            getGamesInOrganization: getGamesInOrganization
         }
 
         return service;
@@ -106,6 +108,42 @@
 
             return deferred.promise;
         }
+
+        function getOrganization(org_id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: { 'organization_id': org_id },
+                url: '/organization/getOrganization',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function getGamesInOrganization(org_id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: { 'organization_id': org_id },
+                url: '/organization/getGamesInOrganization',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+
 
         
     }

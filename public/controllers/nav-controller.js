@@ -13,8 +13,14 @@
                 console.log("kek", result);
                 $scope.iconUrl = '#/login';
             } else {
-                console.log("kek", result);
-                $scope.iconUrl = '#/competitor/profile';
+                console.log(result.data);
+                if (result.data[0].type === "C") {
+                    $scope.iconUrl = '#/competitor/profile';
+                } else if(result.data[0].type == "O") {
+                    $scope.iconUrl = '#/organizer/profile';
+                } else if(result.data[0].type == "A") {
+                    $scope.iconUrl = '#/adminpanel'
+                }
             }
         }, function(err) {
             console.log(err);

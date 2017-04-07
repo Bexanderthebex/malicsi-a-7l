@@ -24,7 +24,7 @@
 
             $http({
                 method: 'GET',
-                url: '/user/info',
+                url: '/user',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
