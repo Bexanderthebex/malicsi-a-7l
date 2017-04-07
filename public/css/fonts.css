@@ -22,6 +22,11 @@
 	font-style: normal;
 }
 
+@font-face {
+	font-family: script-mt;
+	src: url(../fonts/script-mt/script-mt.TTF);
+}
+
 .century-gothic {
 	font-family: century-gothic;
 }
@@ -40,6 +45,10 @@
 
 .leixo {
 	font-family: "leixo";
+}
+
+.script-mt {
+	font-family: script-mt;
 }
 
 .letter-spacing-1{

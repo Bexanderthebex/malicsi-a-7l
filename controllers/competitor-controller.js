@@ -60,14 +60,14 @@ exports.getCompetitorTeams = (req, res) => {
 exports.editCompetitor = (req,res) => {
 	currentUser = req.session.user;
 	query = "CALL edit_competitor(?,?,?,?,?,?)";
-	query1 = "CALL getCompetitor(?)";
-
-	console.log(req.body);
+	query1 = "CALL get_competitor(?)";
+	
+	console.log(req.body.id);
 	connection.userType('A').query(query,
 		[
+			req.body.birthday,
 			req.body.first_name, 
-			req.body.last_name, 
-			req.body.birthday, 
+			req.body.last_name,  
 			req.body.nickname, 
 			req.body.sex, 
 			req.body.id
@@ -90,27 +90,54 @@ exports.editCompetitor = (req,res) => {
 }
 
 exports.editCompetitorBio = (req,res) => {
-	currentUser = req.session.user;
-	query = "CALL edit_competitor(?,?)";
-	query1 = "CALL getCompetitor(?)";
+	query = "CALL edit_competitor_bio(?,?)";
+	query1 = "CALL get_competitor(?)";
 
+	console.log("id: " + req.body.id);
+	console.log("bio: " + req.body.bio);
 	connection.userType('A').query(query,
 		[
 			req.body.bio,
 			req.body.id
 		], (err, rows) => {
 			if(!err) {
-				connection.query(query1, 
+				connection.userType('A').query(query1, 
 					[
 						req.body.id
 					], (err, rows) => {
 						if(!err) {
+							console.log('Here');
+							console.log(rows[0][0]);
 							return res.status(200).send(rows[0][0]);
+						}
+						else{
+							console.log(err);
+							return res.status(500).send({'message' : 'Internal Server Error'});
 						}
 					}
 				);
 			} else {
 				return res.status(501).send({ 'message' : 'Not implemented'});
+			}
+		}
+	);
+}
+
+
+
+exports.getCompetitorRanking = (req, res) => {
+	query = "CALL get_competitor_ranking(?)";
+
+	connection.userType('A').query(query, 
+		[
+			req.query.id
+		], (err, rows) => {
+		    if(!err) {
+				// console.log(rows[0][0]);
+				return res.status(200).send(rows[0][0]);
+				
+			} else {
+				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
 	);

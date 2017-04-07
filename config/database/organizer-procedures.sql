@@ -23,9 +23,9 @@ DELIMITER ;
 DROP procedure IF EXISTS edit_organizer;
 DELIMITER //
 
-	CREATE PROCEDURE edit_organizer (IN name VARCHAR(50), IN description VARCHAR(100), IN id INT) 
+	CREATE PROCEDURE edit_organizer (IN nme VARCHAR(50), IN descr VARCHAR(100), IN ido INT) 
 	BEGIN
-	   UPDATE organizer SET name = name, description = description WHERE id = id;
+	   UPDATE organizer SET name = nme, description = descr WHERE id = ido;
 	END; //
 
 DELIMITER ;

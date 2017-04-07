@@ -53,8 +53,8 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/aboutus', {
-                'templateUrl': 'views/about-us.html',
+            .when('/about', {
+                'templateUrl': 'views/about-us-page.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })

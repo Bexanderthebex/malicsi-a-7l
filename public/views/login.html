@@ -2,18 +2,18 @@
 <!-- Do not put anything inside main holder -->
 <!-- Main holder just keeps the main below the navbar -->
 <div id="main">
-	<!-- Do your thing here -->
+  <!-- Do your thing here -->
 
-	<div id="login-container" class="row palette-3" ng-controller="UserCtrl" class="valign-wrapper">
+  <div id="login-container" class="row palette-4" ng-controller="UserCtrl" class="valign-wrapper">
     <div class="col s12 m12 l4 offset-l4">
-      <div id="login-card" class="palette-4 valign-wrapper">
+      <div id="login-card" class="palette-3 valign-wrapper">
         <div id="signup-panel" class="row" style="display: none; top: -50px!important;">
           <!-- USER NAME & PASSWORD -->
           <div class="col s12 row">
             <div class="input-field col s6">
               <input placeholder="Username" id="signup-uname" type="text" ng-model="suname" class="validate" data-length="20" required>
             </div>
-            <div class="col s6 right">
+            <div class="col s6 right-align">
               <h4 class="rockwell white-text">Gear up.</h4>
             </div>
           </div>
@@ -47,10 +47,17 @@
             <div class="input-field col s6 ">
               <input placeholder="Birthday" id="signup-bday" type="date" ng-model="bday" class="datepicker validate">
             </div>
-
-            <div placeholder="Sex" class="input-field col s6 ">
-              <input id="signup-sex" type="text" ng-model="sex" class="validate">
+            
+            <div class="col s6 valign-wrapper" style="height: 100%;">
+              <form action="#">
+                  <input name="signup-sex" type="radio" id="signup-sex-female" />
+                  <label for="signup-sex-female">Female</label>
+                  <input name="signup-sex" type="radio" id="signup-sex-male" />
+                  <label for="signup-sex-male">Male</label>
+              </form>
+              
             </div>
+            
           </div>        
 
 
@@ -94,16 +101,14 @@
           <!-- USERNAME -->
           <div class="col s12 row">
             <div class="input-field col s10 offset-s1">
-              <input id="login-username" type="text" ng-model="uname" class="validate">
-              <label for="login-username">Username</label>
+              <input placeholder="Username" id="login-username" type="text" ng-model="uname" class="validate">
             </div>
           </div>
 
           <!-- PASSWORD -->
           <div class="col s12 row">
             <div class="input-field col s10 offset-s1">
-              <input id="login-password" type="password" ng-model="pword" class="validate">
-              <label for="login-password">Password</label>
+              <input placeholder="Password" id="login-password" type="password" ng-model="pword" class="validate">
             </div>
           </div>
 
@@ -125,7 +130,7 @@
     </div>
 
     
-	</div>
+  </div>
 
 </div>
 
