@@ -61,7 +61,7 @@
 				//if (result.message == 'Successfully logged in') {
 				//console.log(result.data);
 				$window.location.href = '/';
-				//Materialize.toast(result);
+				// $scope.user = {};
 				console.log(result);
 				//}else {
 				//	$scope.uname = '';
