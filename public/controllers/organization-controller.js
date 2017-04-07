@@ -6,10 +6,13 @@
         .module('app')
         .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', 'OrganizationService', 'UserService'];
+    OrganizationController.$inject = ['$scope', '$routeParams', 'OrganizationService', 'UserService'];
 
 
-    function OrganizationController($scope, OrganizationService, UserService) {
+    function OrganizationController($scope, $routeParams, OrganizationService, UserService) {
+        $scope.thisOrganization = {
+            organization_id = $routeParams.id;
+        }
         $scope.currentUser = [];
         $scope.teams = [];
         $scope.teamStats = [];

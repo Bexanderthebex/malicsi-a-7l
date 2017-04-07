@@ -75,10 +75,11 @@
             })
             .when('/organizations', {
                 'templateUrl': 'views/organizations.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'OrganizationsController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/organization', {
+            .when('/organization/:id', {
                 'templateUrl': 'views/organization-page.html',
                 'caseInsensitiveMatch': true,
                 'controller': 'OrganizationController'

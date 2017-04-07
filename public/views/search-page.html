@@ -44,50 +44,50 @@
 		<!-- COMPETITOR RESULTS -->
 		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="competitor in competitors">
 			<div class="search-header">	
-				<span href="" class="rockwell strong palette-text-4">{{ competitor.first_name + " " + competitor.last_name }}</span>
+				<a href="#/competitor/profile/{{competitor.id}}" class="rockwell strong palette-text-4">{{ competitor.first_name + " " + competitor.last_name }}</a>
 			</div>
 			<div class="search-result-content">
-				<span class="secondary-text century-gothic"> Competitor </span>
+				<a class="secondary-text century-gothic"> Competitor </a>
 			</div>
 		</div>
 
 		<!-- GAME -->
 		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="game in games">
 			<div class="search-header">	
-				<span href="" class="rockwell strong palette-text-4">{{ game.name }}</span>
+				<a href="#/game/{{game.game_id}}" class="rockwell strong palette-text-4">{{ game.name }}</a>
 			</div>
 			<div class="search-result-content">
-				<span class="secondary-text century-gothic"> Game </span>
+				<a class="secondary-text century-gothic"> Game </a>
 			</div>
 		</div>
 
 		<!-- ORGANIZATION -->
 		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="organization in organizations">
 			<div class="search-header">	
-				<span href="" class="rockwell strong palette-text-4">{{ organization.name }}</span>
+				<a href="#/organization/{{organization.organization_id}}" class="rockwell strong palette-text-4">{{ organization.name }}</a>
 			</div>
 			<div class="search-result-content">
-				<span class="secondary-text century-gothic"> Organization </span>
+				<a class="secondary-text century-gothic"> Organization </a>
 			</div>
 		</div>
 
 		<!-- SPORT -->
 		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="sport in sports">
 			<div class="search-header">	
-				<span href="" class="rockwell strong palette-text-4">{{ sport.sport_name }}</span>
+				<a href="#/sport/{{sport.sport_id}}" class="rockwell strong palette-text-4">{{ sport.sport_name }}</a>
 			</div>
 			<div class="search-result-content">
-				<span class="secondary-text century-gothic"> Sport </span>
+				<a class="secondary-text century-gothic"> Sport </a>
 			</div>
 		</div>
 
 		<!-- ORGANIZER -->
 		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="organizer in organizers">
 			<div class="search-header">	
-				<span href="" class="rockwell strong palette-text-4">{{ organizer.name }}</span>
+				<a href="#/organizer/{{organizer.id}}" class="rockwell strong palette-text-4">{{ organizer.name }}</a>
 			</div>
 			<div class="search-result-content">
-				<span class="secondary-text century-gothic"> Organizer </span>
+				<a class="secondary-text century-gothic"> Organizer </a>
 			</div>
 		</div>
 		
