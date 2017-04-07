@@ -90,7 +90,7 @@ DROP PROCEDURE IF EXISTS search_for_game_by_keyword;
 DELIMITER //
 CREATE PROCEDURE search_for_game_by_keyword(in keyword varchar(50))
 BEGIN
-	select game.name, start_date, end_date, game.description, organizer.name as organizer_name from game,organizer where game.name like keyword or game.description like keyword or organizer.name like keyword;
+	select * from game where game.name like keyword;
 END;
 //
 DELIMITER ;

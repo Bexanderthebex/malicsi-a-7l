@@ -9,64 +9,98 @@
     SearchController.$inject = ['$scope', 'SearchService'];
 
     function SearchController($scope, SearchService) {
-        $scope.addSport = addSport;
-        $scope.retrieveSport = retrieveSport;
-        $scope.deleteSport = deleteSport;
-        $scope.updateSport = updateSport;
-        $scope.updateWinner = updateWinner;
+        $scope.results = [];
+        $scope.competitors = [];
+        $scope.organizations = [];
+        $scope.games = [];
+        $scope.sports = [];
+        $scope.organizers = [];
 
-        function searchOrganizer() {
+        $scope.searchBy = function(searchquery, game, organization, sport, competitor, organizer){
+            $scope.results = [];
+            $scope.competitors = [];
+            $scope.organizations = [];
+            $scope.games = [];
+            $scope.sports = [];
+            $scope.organizers = [];
+
+            if(competitor){
+                searchCompetitor(searchquery);
+            }
+
+            if(organization){
+                searchOrganization(searchquery);
+            }
+
+            if(game){
+                searchGame(searchquery);
+            }
+
+            if(sport){
+                searchSport(searchquery);
+            }
+
+            if(organizer){
+                searchOrganizer(searchquery);
+            }
+        }
+
+        function searchOrganizer(search){
             SearchService
-                .retrieveOrganizer('12')
-                .then(function(res) {
-                    $scope.sports = res.data.data;
-                    console.log(res.data.data);
-                }, function(err) {
-                    //console.log(err);
+                .retrieveOrganizer(search)
+                .then(function(res){
+                    $scope.results.push.apply($scope.results, res.data);
+                    $scope.organizers = res.data;
+                    console.log($scope.results);
+                }, function(err){
+                    
                 })
         }
 
-        function searchCompetitor() {
+        function searchGame(search){
             SearchService
-                .retrieveCompetitor('12')
-                .then(function(res) {
-                    $scope.sports = res.data.data;
-                }, function(err) {
-                    //console.log(err);
+                .retrieveGame(search)
+                .then(function(res){
+                    $scope.results.push.apply($scope.results, res.data);
+                    $scope.games = res.data;
+                    console.log($scope.results);
+                }, function(err){
+                    
                 })
         }
 
-        function searchSport() {
+        function searchSport(search){
             SearchService
-                .retrieveSport('12')
-                .then(function(res) {
-                    $scope.sports = res.data.data;
-                }, function(err) {
-                    //console.log(err);
+                .retrieveSport(search)
+                .then(function(res){
+                    $scope.results.push.apply($scope.results, res.data);
+                    $scope.sports = res.data;
+                    console.log($scope.results);
+                }, function(err){                    
                 })
         }
 
-        function searchGame() {
+        function searchOrganization(search){
             SearchService
-                .retrieveGame('12')
-                .then(function(res) {
-                    $scope.sports = res.data.data;
-                }, function(err) {
-                    //console.log(err);
+                .retrieveOrganization(search)
+                .then(function(res){
+                    $scope.results.push.apply($scope.results, res.data);
+                    $scope.organizations = res.data;
+                    console.log($scope.organizations);
+                }, function(err){                    
                 })
         }
 
-        // function searchOrganization() {
-        //     SearchService
-        //         .retrieveOrganization('12')
-        //         .then(function(res) {
-        //             $scope.sports = res.data.data;
-        //         }, function(err) {
-        //             //console.log(err);
-        //         })
-        // }
-
-        function searchFilter()
+        function searchCompetitor(search){
+            SearchService
+                .retrieveCompetitor(search)
+                .then(function(res){
+                    $scope.results.push.apply($scope.results, res.data);
+                    $scope.competitors = res.data;
+                    console.log($scope.results);
+                }, function(err){                    
+                })
+        }
 
     }
 })();
