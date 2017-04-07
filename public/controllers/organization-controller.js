@@ -11,10 +11,16 @@
 
     function OrganizationController($scope, $routeParams, OrganizationService, UserService) {
         $scope.thisOrganization = {
+<<<<<<< HEAD
             organization_id = $routeParams.id;
         }
+=======
+            organization_id: $routeParams.id
+        };
+>>>>>>> e3dff278838012ef9539ee6a2ccdf0e9b95cf905
         $scope.currentUser = [];
         $scope.teams = [];
+        $scope.temp = [];
         $scope.teamStats = [];
         $scope.organizationStats = [];
         $scope.organization = {};
@@ -36,12 +42,11 @@
                 }, function(err) {
                     console.log(err.data);
                 })
-
         }
 
-        function retrieveOrganization(org_id) {
+        function retrieveOrganization() {
             OrganizationService
-                .getOrganization(org_id)
+                .getOrganization($scope.thisOrganization.organization_id)
                 .then(function(res) {
                     console.log("Data:");
                     console.log(res.data);
@@ -67,6 +72,7 @@
                 .retrieveTeams(org_id)
                 .then(function(res) {
                     $scope.teams = res.data;
+                    console.log($scope.teams);
                 }, function(err) {
                     console.log(err);
                 })

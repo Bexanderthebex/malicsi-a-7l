@@ -17,7 +17,8 @@
         $routeProvider
             .when('/', {
                 'templateUrl': 'views/home-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'LandingCtrl'
                 // 'access': { requiredAuthentication: false }
             })
             .when('/login', {
@@ -45,7 +46,8 @@
             })
             .when('/competitor/profile/:id', {
                 'templateUrl': 'views/competitor-visited-profile-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'CompetitorController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/help', {
@@ -63,12 +65,14 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/game', {
+
+            .when('/game/:gameId', {
                 'templateUrl': 'views/game-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'GameController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/game/feed', {
+            .when('/game', {
                 'templateUrl': 'views/gamefeed.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
@@ -91,7 +95,7 @@
                 'controller': 'SearchController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/sports', {
+            .when('/sports/:id', {
                 'templateUrl': 'views/sports-page.html',
                 'caseInsensitiveMatch': true,
                 'controller': 'SportController'

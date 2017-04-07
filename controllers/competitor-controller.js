@@ -11,7 +11,7 @@ exports.searchCompetitor = (req, res) => {
 		], (err, rows) => {
 		    if(!err) {
 		    	if(rows[0].length == 1) {
-					return res.status(200).send(rows[0][0]);
+					return res.status(200).send(rows[0]);
 				} else {
 					return res.status(200).send(rows[0]);
 				}
@@ -49,8 +49,8 @@ exports.getCompetitorTeams = (req, res) => {
 			req.session.user.id
 		], (err, rows) => {
 		    if(!err) {
-				console.log("here");
-				console.log(rows[0]);
+				// console.log("here");
+				// console.log(rows[0]);
 				return res.status(200).send(rows[0]);				
 			} else {
 				return res.status(500).send({'message' : 'Internal Server Error'});
@@ -107,12 +107,12 @@ exports.editCompetitorBio = (req,res) => {
 						req.body.id
 					], (err, rows) => {
 						if(!err) {
-							console.log('Here');
-							console.log(rows[0][0]);
+							// console.log('Here');
+							// console.log(rows[0][0]);
 							return res.status(200).send(rows[0][0]);
 						}
 						else{
-							console.log(err);
+							// console.log(err);
 							return res.status(500).send({'message' : 'Internal Server Error'});
 						}
 					}
