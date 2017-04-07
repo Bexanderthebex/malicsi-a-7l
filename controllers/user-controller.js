@@ -237,7 +237,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 							returnObject[0]['last_name'] = rows[0].last_name;
 							returnObject[0]['nickname'] = rows[0].nickname;
 							returnObject[0]['bio'] = rows[0].bio;
-					
+
 							// console.log("2nd: ")
 							// console.log(returnObject[0]);
 							return res.status(200).send(returnObject[0]);
@@ -260,7 +260,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 									value: rows[0].description
 								}
 							);
-              
+
 							return res.status(200).send(returnObject);
 						} else {
 							console.log(err);

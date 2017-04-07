@@ -4,10 +4,9 @@ const connection = require('./../config/db-connection.js');
 
 exports.searchCompetitor = (req, res) => {
 	query = "CALL search_competitor(?)";
-
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
-			"%" + req.query.search + "%"
+			"%" + req.query.keyword + "%"
 		], (err, rows) => {
 		    if(!err) {
 		    	if(rows[0].length == 1) {
@@ -25,14 +24,14 @@ exports.searchCompetitor = (req, res) => {
 exports.getCompetitor = (req, res) => {
 	query = "CALL get_competitor(?)";
 
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			req.query.search
 		], (err, rows) => {
 		    if(!err) {
 				// console.log(rows[0][0]);
 				return res.status(200).send(rows[0][0]);
-				
+
 			} else {
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
@@ -44,13 +43,13 @@ exports.getCompetitorTeams = (req, res) => {
 	query = 'CALL get_competitor_teams(?)';
 
 	console.log(req.session.user.id);
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			req.session.id
 		], (err, rows) => {
 		    if(!err) {
 				console.log(rows[0][0]);
-				return res.status(200).send(rows[0][0]);				
+				return res.status(200).send(rows[0][0]);
 			} else {
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
@@ -61,19 +60,19 @@ exports.editCompetitor = (req,res) => {
 	currentUser = req.session.user;
 	query = "CALL edit_competitor(?,?,?,?,?,?)";
 	query1 = "CALL get_competitor(?)";
-	
+
 	console.log(req.body.id);
 	connection.userType('A').query(query,
 		[
 			req.body.birthday,
-			req.body.first_name, 
-			req.body.last_name,  
-			req.body.nickname, 
-			req.body.sex, 
+			req.body.first_name,
+			req.body.last_name,
+			req.body.nickname,
+			req.body.sex,
 			req.body.id
 		], (err, rows) => {
 			if(!err) {
-				connection.userType('A').query(query1, 
+				connection.userType('A').query(query1,
 					[
 						req.body.id
 					], (err, rows) => {
@@ -101,7 +100,7 @@ exports.editCompetitorBio = (req,res) => {
 			req.body.id
 		], (err, rows) => {
 			if(!err) {
-				connection.userType('A').query(query1, 
+				connection.userType('A').query(query1,
 					[
 						req.body.id
 					], (err, rows) => {
@@ -128,14 +127,14 @@ exports.editCompetitorBio = (req,res) => {
 exports.getCompetitorRanking = (req, res) => {
 	query = "CALL get_competitor_ranking(?)";
 
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			req.query.id
 		], (err, rows) => {
 		    if(!err) {
 				// console.log(rows[0][0]);
 				return res.status(200).send(rows[0][0]);
-				
+
 			} else {
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}

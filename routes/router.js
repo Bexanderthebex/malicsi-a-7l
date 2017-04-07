@@ -60,10 +60,11 @@ router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.post('/register/createOrganizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
 router.post('/register/createAdmin', checkUser('A'), sha256Hash, bcryptHash, adminController.createAdmin);
 router.get('/logout', userController.logout);
-router.get('/user/:id', userController.getUserInfo);
-router.put('/user/update', sha256Hash, bcryptHash, userController.update);
-router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 router.get('/user', userController.getUserInfo);
+router.get('/user/searchAdmin', checkUser('A'), adminController.searchAdmin);
+router.get('/user/:id', userController.getUserInfo);
+router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
+router.put('/user/update', sha256Hash, bcryptHash, userController.update);
 router.post('/user/getUsersByType', checkUser('A'), adminController.getUsersByType);
 router.post('/user/getAllUsers', checkUser('A'), adminController.getAllUsers);
 

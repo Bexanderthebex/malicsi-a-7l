@@ -45,11 +45,21 @@
                 $scope.organizerEmail = "";
                 $scope.organizerContact = "";
                 $scope.organizerName = "";
-                $scope.organizerEmail = "";
+                $scope.organizerDescription = "";
 
                 console.log('add organizer', res.data);
             }, (err) => {
 
+            });
+        }
+
+        $scope.searchAdmin = () => {
+            AdminService.searchAdmin($scope.adminSearch)
+            .then((res) => {
+                $scope.admins = res.data;
+                console.log($scope.admins)
+            }, (err) => {
+                console.log(err);
             })
         }
     }

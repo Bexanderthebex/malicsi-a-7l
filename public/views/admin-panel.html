@@ -114,9 +114,9 @@
 					<div class="row center">
 						<div class="col s12">
 							<form id="adminpanel-game-search-bar">
-								<input type="search" >
+								<input ng-model="adminSearch" type="search" >
 							</form>
-							<a class="waves-effect waves-light btn palette-2">Search</a>
+							<a ng-click="searchAdmin()" class="waves-effect waves-light btn palette-2">Search</a>
 						</div>
 						<!--<div class="col s6">
 
@@ -126,12 +126,22 @@
 		            	<thead>
 		            		<tr class="telegrafico">
 		            			<th>Username</th>
+								<th>Email</th>
+								<th>Contact</th>
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
 		            		<tr ng-repeat="a in admins">
 		            			<td class="match-player">
 		            				<div ng-show="!view">{{a.username}}</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
+		            			</td>
+								<td class="match-player">
+		            				<div ng-show="!view">{{a.email}}</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
+		            			</td>
+								<td class="match-player">
+		            				<div ng-show="!view">{{a.contact}}</div>
 		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
 		            			</td>
 		            			<td>
