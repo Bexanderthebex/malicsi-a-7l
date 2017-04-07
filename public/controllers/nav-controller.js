@@ -10,9 +10,11 @@
         $http.get('/user')
         .then(function(result){
             if (result.data === "") {
-                $scope.iconUrl = '/login';
+                console.log("kek", result);
+                $scope.iconUrl = '#/login';
             } else {
-                $scope.iconUrl = '/competitor/profile';
+                console.log("kek", result);
+                $scope.iconUrl = '#/competitor/profile';
             }
         }, function(err) {
             console.log(err);
