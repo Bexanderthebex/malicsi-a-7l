@@ -10,15 +10,16 @@
         $http.get('/user')
         .then(function(result){
             if (result.data === "") {
-                $scope.iconUrl = '/login';
+                console.log("kek", result);
+                $scope.iconUrl = '#/login';
             } else {
                 console.log(result.data);
                 if (result.data[0].type === "C") {
-                    $scope.iconUrl = '/competitor/profile';
+                    $scope.iconUrl = '#/competitor/profile';
                 } else if(result.data[0].type == "O") {
-                    $scope.iconUrl = '/organizer/profile';
+                    $scope.iconUrl = '#/organizer/profile';
                 } else if(result.data[0].type == "A") {
-                    $scope.iconUrl = '/adminpanel'
+                    $scope.iconUrl = '#/adminpanel'
                 }
             }
         }, function(err) {

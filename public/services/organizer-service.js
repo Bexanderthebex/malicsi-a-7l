@@ -81,13 +81,9 @@
         function deleteGame(id) {
             let deferred = $q.defer();
 
-            let game = {
-                gameId: id
-            }
-
             $http({
                 method: 'DELETE',
-                params: game,
+                data: $.param({ gameId: id }),
                 url: '/game/deleteGame',
                 headers: headers
             }).then((res) => {
@@ -109,7 +105,7 @@
                 url: '/organizer/getPendingParticipation',
                 headers: headers
             }).then((res) => {
-                console.log(res.data.data);
+                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);

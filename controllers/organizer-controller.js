@@ -76,9 +76,9 @@ exports.findGames = (req,res,next) => {
 		], (err,rows) => {
 			if(!err){
 				if(rows.length == 1){
-					return res.status(200).send({'message' : 'Sucessfully Retrieved Info' , 'data': rows[0][0]});
+					return res.status(200).send(rows[0][0]);
 				} else {
-					return res.status(200).send({'message' : 'Sucessfully Retrieved Info', 'data': rows[0]});
+					return res.status(200).send(rows[0]);
 				}
 			} else {
 			 	return res.status(500).send({'message' : 'Internal Server Error'})
@@ -94,10 +94,10 @@ exports.findSport = (req,res,next) =>{
 		 	req.query.game_id
 		], (err,rows) => {
 			if(!err){
-				if(row.length == 1){
-					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0][0]);
+				if(rows.length == 1){
+					return res.status(200).send(rows[0][0]);
 				} else {
-					return res.status(200).send({'message' : 'Sucessfully Retrieved Info'},rows[0]);
+					return res.status(200).send(rows[0]);
 				}
 			} else {
 				return res.status(500).send({'message' : 'Internal Server Error'});
@@ -113,7 +113,7 @@ exports.findTeam = (req,res,next) =>{
 			req.query.sport_id
 		], (err,rows) => {
 			if(!err){
-				if(row.length == 1){
+				if(rows.length == 1){
 					return res.status(200).send(rows[0][0]);
 				} else {
 					return res.status(200).send(rows[0]);
@@ -180,6 +180,40 @@ exports.processRequest = (req, res, next) => {
 	});
 };
 
+exports.deleteTeam = (req, res, next) => {
+	query1 = "CALL deleteTeam(?)"
+	query = "CALL get_team(?)"
+
+	connection.userType('A').query(query, 
+		[
+			req.body.team_id
+		], (err,rows) => {
+			if(!err){
+				if(rows.length == 1){
+					res.status(200).send(rows[0][0]);
+				} else {
+					res.status(200).send(rows[0]);
+				}
+				connection.userType('A').query(query1,
+					[
+				 		req.body.team_id
+					], (err,rows) => {
+						if(!err){
+							return 200;
+							
+						} else {
+							console.log(err);
+							return res.status(500).send({'message' : 'Internal Server Error'});
+						}
+					}
+				);
+			} else {
+				console.log(err);
+				return res.status(500).send({'message' : 'Internal Server Error'});
+			}
+	});
+};
+
 exports.getPendingParticipation = (req, res, next) => {
 	query = "CALL get_pending_participation(?)"
 	connection.userType('A').query(query, 
@@ -188,9 +222,9 @@ exports.getPendingParticipation = (req, res, next) => {
 		], (err,rows) => {
 		if(!err){
 			if(rows.length == 1){
-				return res.status(200).send({'message' : 'Sucessfully Retrieved Info', 'data': rows[0][0]});
+				return res.status(200).send(rows[0][0]);
 			} else {
-				return res.status(200).send({'message' : 'Sucessfully Retrieved Info', 'data': rows[0]});
+				return res.status(200).send(rows[0]);
 			}
 		} else {
 			return res.status(500).send({'message' : 'Internal Server Error'});

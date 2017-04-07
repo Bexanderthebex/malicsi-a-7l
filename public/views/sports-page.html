@@ -1,11 +1,11 @@
-<div id="mainHolder">
+<div id="mainHolder" ng-init="retrieveSport()">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
 		<!-- Do your thing here -->
 		<div id="sports-title" class="rockwell ">
-			<h3 class="white-text">PALICSIHAN • BASKETBALL</h3>
-			<h6 class="white-text">12/23/2007 • Start: 08:00AM End: 9:00PM • Beijing, Muntinlupa </h6>
+			<h3 class="white-text">{{ game.name }} • {{ sport.sport_name }}</h3>
+			<h6 class="white-text">{{ sport.start_date | date:"MM/dd/yyyy" }} - {{ sport.end_date | date:"MM/dd/yyyy" }} • Start: {{ sport.time_start | date:"shortTime" }} End: {{ sport.time_end | date:"shortTime" }} • {{ game.location }} </h6>
 		</div>
 
 		<!-- RANKINGS -->
@@ -16,43 +16,11 @@
 					<h6 class="rockwell">As of 7:08PM • 03/27/2017</h6>
 				</div>
 
-				<div id="sports-ranking-body" class="col s9 row">
-					<div class="rank-entity col s4">
-						<div class="rank"><h3>01</h3></div>
+				<div id="sports-ranking-body" class="col s9 row" ng-show="checkRankings()">
+					<div class="rank-entity col s4" ng-repeat="team in rankings | limitTo: 5">
+						<div class="rank"><h3>0{{ team.total_ranks }}</h3></div>
 						<div>
-							<h5>Blue Team</h5>
-							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
-						</div>
-					</div>
-
-					<div class="rank-entity col s4">
-						<div class="rank"><h3>02</h3></div>
-						<div>
-							<h5>Blue Team</h5>
-							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
-						</div>
-					</div>
-
-					<div class="rank-entity col s4">
-						<div class="rank"><h3>03</h3></div>
-						<div>
-							<h5>Blue Team</h5>
-							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
-						</div>
-					</div>
-
-					<div class="rank-entity col s4">
-						<div class="rank"><h3>04</h3></div>
-						<div>
-							<h5>Blue Team</h5>
-							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
-						</div>
-					</div>
-
-					<div class="rank-entity col s4">
-						<div class="rank"><h3>05</h3></div>
-						<div>
-							<h5>Blue Team</h5>
+							<h5>{{ team.org_name }}</h5>
 							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
 						</div>
 					</div>
@@ -62,6 +30,10 @@
 							VIEW ALL <i class="fa fa-angle-double-right"></i>
 						</a>
 					</div>
+				</div>
+
+				<div class="col s9 row" ng-hide="checkRankings()">
+					<h3 class="rockwell">Not Available</h3>
 				</div>
 			</div>
 		</div>
@@ -573,14 +545,14 @@
 				<div id="sports-mechanics" class="row">
 					<div class="col s6 offset-s6 sports-details">
 						<p class="sports-details-title telegrafico">MECHANICS</p>
-						<p class="century-gothic letter-spacing-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ad, repellat fugiat, eum ipsa maiores aspernatur labore hic, soluta est quaerat voluptatem mollitia nobis! Autem, a, ullam! Dicta, optio dolores. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati iusto fugiat similique omnis impedit illum repudiandae eius magnam itaque voluptatibus ab, totam quos ipsa, ducimus alias, veniam possimus autem quod.</p>
+						<p class="century-gothic letter-spacing-1">{{ sport.mechanics }}</p>
 					</div>
 				</div>
 
 				<div id="sports-scoring" class="row">
 					<div class="col s6 sports-details">
 						<p class="sports-details-title telegrafico">SCORING SYSTEM</p>
-						<p class="century-gothic letter-spacing-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ad, repellat fugiat, eum ipsa maiores aspernatur labore hic, soluta est quaerat voluptatem mollitia nobis! Autem, a, ullam! Dicta, optio dolores. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati iusto fugiat similique omnis impedit illum repudiandae eius magnam itaque voluptatibus ab, totam quos ipsa, ducimus alias, veniam possimus autem quod.</p>
+						<p class="century-gothic letter-spacing-1">{{ sport.scoring_system }}</p>
 					</div>
 				</div>
 			</div>
@@ -624,51 +596,9 @@
             		</tr>
             	</thead>
             	<tbody>
-            		<tr>
-            			<td>01</td>
-            			<td>Blue Team</td>
-            			<td>
-            				<h6>Marciso Guiambao</h6>
-            				<h6>Fernando Amorsolo</h6>
-            				<h6>Leonardo DiCaprio</h6>
-            				<h6>Richard Gomez</h6>
-            				<h6>Kitchie Nadal</h6>
-            			</td>
-            			<td>University of The Philippines</td>
-            			<td>98</td>
-            		</tr>
-
-            		<tr>
-            			<td>01</td>
-            			<td>Blue Team</td>
-            			<td>
-            				<h6>Marciso Guiambao</h6>
-            				<h6>Fernando Amorsolo</h6>
-            				<h6>Leonardo DiCaprio</h6>
-            				<h6>Richard Gomez</h6>
-            				<h6>Kitchie Nadal</h6>
-            			</td>
-            			<td>University of The Philippines</td>
-            			<td>98</td>
-            		</tr>
-
-            		<tr>
-            			<td>01</td>
-            			<td>Blue Team</td>
-            			<td>
-            				<h6>Marciso Guiambao</h6>
-            				<h6>Fernando Amorsolo</h6>
-            				<h6>Leonardo DiCaprio</h6>
-            				<h6>Richard Gomez</h6>
-            				<h6>Kitchie Nadal</h6>
-            			</td>
-            			<td>University of The Philippines</td>
-            			<td>98</td>
-            		</tr>
-
-            		<tr>
-            			<td>01</td>
-            			<td>Blue Team</td>
+            		<tr ng-repeat="team in rankings">
+            			<td>{{ team.total_ranks }}</td>
+            			<td>{{ team.org_name }}</td>
             			<td>
             				<h6>Marciso Guiambao</h6>
             				<h6>Fernando Amorsolo</h6>
@@ -831,123 +761,25 @@
 
             <!-- EDIT MATCH INFO -->
             <div class="row">
-            	<div class="input-field col s4">
+            	<div class="input-field col s6">
             		<span class="telegrafico">Start Time</span>
-                    <input id="match-start-time" class="timepicker" type="time">
+                    <input id="match-start-time" class="timepicker" type="time" ng-model="timeStart">
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s6">
                 	<span class="telegrafico">End Time</span>
-                    <input id="match-end-time" class="timepicker" type="time">
+                    <input id="match-end-time" class="timepicker" type="time" ng-model="timeEnd">
                 </div>
-                <div class="input-field col s4">
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
                 	<span class="telegrafico">Date</span>
-                	<input type="date" class="datepicker">
+                	<input class="datepicker" id="matchdate" ng-model="newMatch.date">
                 </div>
             </div>
 
-			<!-- EDIT PLAYERS -->
-            <table>
-            	<thead>
-            		<tr class="telegrafico">
-            			<th>Players</th>
-            			<th>Actions</th>
-            		</tr>
-            	</thead>
-            	<tbody class="century-gothic">
-            		<tr>
-            			<td class="match-player">
-            				<div ng-show="!view">UP Fighting Maroons</div>
-            				<div ng-hide="!view"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
-            			</td>
-            			<td>
-            				<div class="match-actions">
-            					<i class="fa fa-minus-square fa-lg"></i>
-            				</div>
-            				<div class="match-actions" ng-click="view = !view">
-            					<i class="fa fa-pencil-square-o fa-lg"></i>
-            				</div>
-            			</td>
-            		</tr>
-            		<tr>
-            			<td class="match-player">
-            				<div ng-show="!view2">UP Fighting Maroons</div>
-            				<div ng-hide="!view2"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
-            			</td>
-            			<td>
-            				<div class="match-actions">
-            					<i class="fa fa-minus-square fa-lg"></i>
-            				</div>
-            				<div class="match-actions" ng-click="view2 = !view2">
-            					<i class="fa fa-pencil-square-o fa-lg"></i>
-            				</div>
-            			</td>
-            		</tr>
-            		<tr>
-            			<td class="match-player">
-            				<div ng-show="!view3">UP Fighting Maroons</div>
-            				<div ng-hide="!view3"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
-            			</td>
-            			<td>
-            				<div class="match-actions">
-            					<i class="fa fa-minus-square fa-lg"></i>
-            				</div>
-            				<div class="match-actions" ng-click="view3 = !view3">
-            					<i class="fa fa-pencil-square-o fa-lg"></i>
-            				</div>
-            			</td>
-            		</tr>
-            	</tbody>
-            </table>
-
-            <!-- SET WINNER -->
-            <table>
-            	<thead>
-            		<tr class="telegrafico">
-            			<th>Set Winner</th>
-            			<th></th>
-            		</tr>
-            	</thead>
-            	<tbody class="century-gothic">
-            		<tr>
-            			<td class="match-player">UP Fighting Maroons</td>
-            			<td>
-            				<div class="match-actions set-winner">
-            					<i class="fa fa-check fa-lg"></i>
-            				</div>
-            			</td>
-            		</tr>
-            		<tr>
-            			<td class="match-player">UP Fighting Maroons</td>
-            			<td>
-            				<div class="match-actions set-winner">
-            					<i class="fa fa-check fa-lg"></i>
-            				</div>
-            			</td>
-            		</tr>
-            		<tr>
-            			<td class="match-player">UP Fighting Maroons</td>
-            			<td>
-            				<div class="match-actions set-winner">
-            					<i class="fa fa-check fa-lg"></i>
-            				</div>
-            			</td>
-            		</tr>
-            	</tbody>
-            </table>
-
-            <!-- ADD PLAYER -->
-	        <div class="row" style="margin: 0; margin-top: 10px;"><span class="telegrafico">Add Player</span></div>
-            <div class="row">
-	            <div class="input-field col s4" style="margin: 0!important;">
-	            	<input type="text" placeholder="Team Name">
-	            </div>
-	            <div class="col s4 center">
-            		<button class="minimalist-button">ADD</button>
-            	</div>
-	        </div>
         </div>
         <div class="modal-footer">
-            <button href="" class="modal-action modal-close waves-effect waves-red btn-flat">ADD MATCH</button>
+            <button href="" class="modal-action modal-close waves-effect waves-red btn-flat" ng-click="addMatch()">ADD MATCH</button>
         </div>
     </div>
 
