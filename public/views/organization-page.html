@@ -2,9 +2,9 @@
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
-		<div class="organization-header">
+		<div class="organization-header" ng-init="retrieveOrganization(1)">
 			<img class="valign" id="organization-logo" src="assets/team1.png">
-			<h2 id="organization-name" class="rockwell strong letter-spacing-1">The Betels</h2>
+			<h2 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h2>
 		</div>
 		<div class="row org-handler"><h4 class="organization-team-handler palette-text-3 center rockwell"> Teams Handled </h4></div>
 		<!--Slider-->
@@ -238,18 +238,10 @@
 			
 		</div>
 		<!--Recent games modal-->
-		<div class="row container">
-			<div class="col s3 m3 l3 center-align recent-games-card">
-				<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-				<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-			</div>
-			<div class="col s3 m3 l3 center-align recent-games-card">
-				<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-				<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-			</div>
-			<div class="col s3 m3 l3 center-align recent-games-card">
-				<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-				<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+		<div class="row container" ng-init="retrieveGamesInOrganization(1)">
+			<div class="col s3 m3 l3 center-align recent-games-card" ng-repeat="game in gamesInOrganization.slice(0, 3)">
+				<h4 class="rockwell strong palette-text-4">{{game.name}}</h4>
+				<span class="century-gothic secondary-text"> {{ game.description }} </span>
 			</div>
 			<div class="col s3 m3 l2 center-align recent-games-card see-more">
 				<button href="" data-target="organization-allgames-modal" class="minimalist-button"> See more </button>
@@ -257,50 +249,16 @@
 		</div>
 		<!--All games modal-->
 		<div id="organization-allgames-modal" class="modal modal-fixed-footer">
-			<div class="modal-content">
+			<div class="modal-content" ng-init="retrieveGamesInOrganization(1)">
 				<div class="row">
 					<h4 class="rockwell strong palette-text-3 center">Games Participated</h4>
 				</div>
 				<div class="row">
-					<div class="col s4 m4 l4 center-align all-games-card">
-						<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-						<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-					</div>
-					<div class="col s4 m4 l4 center-align all-games-card">
-						<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-						<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-					</div>
-					<div class="col s4 m4 l4 center-align all-games-card">
-						<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-						<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col s4 m4 l4 center-align all-games-card">
-						<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-						<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-					</div>
-					<div class="col s4 m4 l4 center-align all-games-card">
-						<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-						<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-					</div>
-					<div class="col s4 m4 l4 center-align all-games-card">
-						<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-						<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col s4 m4 l4 center-align all-games-card">
-						<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-						<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-					</div>
-					<div class="col s4 m4 l4 center-align all-games-card">
-						<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-						<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-					</div>
-					<div class="col s4 m4 l4 center-align all-games-card">
-						<h4 class="rockwell strong palette-text-4">GAME 1</h4>
-						<span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+					<div class="col s4 m4 l4 center-align all-games-card" ng-repeat="game in gamesInOrganization">
+						<h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
+						<span class="century-gothic secondary-text"> {{ game.description }} </span>
+						<p class="century-gothic secondary-text"> {{ game.start_date }} </p>
+						<p class="century-gothic secondary-text"> {{ game.location }} </p>
 					</div>
 				</div>
 			</div>

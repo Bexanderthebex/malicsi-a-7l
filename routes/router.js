@@ -82,14 +82,17 @@ router.get('/organizer/findSport',organizerController.findSport);
 router.get('/organizer/findTeam',organizerController.findTeam);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
 router.get('/organizer/getRequest', organizerController.getRequest);
-// //////////////////
 router.put('/organizer/processRequest', organizerController.processRequest);
 router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);
 router.get('/organizer/findGames',organizerController.findGames);
 router.get('/organizer/getOrganizer',organizerController.getOrganizer);
 router.delete('/organizer/deleteTeam',organizerController.deleteTeam);
 
-//team routers
+// organization
+router.get('/organization/getOrganization',teamController.getOrganization);
+router.get('/organization/getGamesInOrganization',teamController.getGamesInOrganization);
+
+// team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
 router.post('/team/createTeam',teamController.createTeam);
 router.delete('/team/deleteTeam',teamController.deleteTeam);
@@ -115,6 +118,9 @@ router.put('/game/updateGame',  gameController.updateGame);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 
 // sponsor routers
+router.get('/game/viewSponsor',  sponsorController.viewSponsor);
+router.get('/game/viewSponsorInSport',  sponsorController.viewSponsorInSport);
+router.get('/game/viewSponsorInGame',  sponsorController.viewSponsorInGame);
 router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
 router.put('/game/editSponsor',  sponsorController.editSponsorDetails);
 router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);

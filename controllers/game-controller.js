@@ -17,15 +17,17 @@ exports.createGame = (req, res) => {
 			req.body.endDate,
 			req.body.locat,
 			req.body.descrip
-	    ], (err, rows) => {
+	    ], 
+	    (err, results) => {
 			if(!err){
-				res.status(200).send(rows[0]);
-				connection.userType('A').query('CALL view_last_inserted_game'),(err, rows) => {
-					res.status(200).send(rows[0]);
-				};
+				connection.userType('A').query('CALL view_last_inserted_game()',(err, rows) => {
+					return res.status(200).send(rows[0]);
+				});
 			}
 			else{
+				console.log(err);
 				res.status(500).send(err);
+
 			}
 	});
 }
@@ -58,13 +60,13 @@ exports.updateGame = (req, res) => {
 
 exports.viewGameDetails = (req, res) => {
 	let query = 'call view_game_details(?);';
-	let param = parseInt(req.params.gameId);
+	let param = parseInt(req.query.gameId);
 	if (!isNaN(param)){
 		connection.userType('A').query(query,
 		param,
 		(err, results, fields)	=> {
 		if (!err && results[0].length!=0) {
-			return res.status(200).send(results[0]);
+			res.status(200).send(results[0][0]);
 		}
 		else if (results[0].length==0){
 			res.status(404).send("Game not found.");

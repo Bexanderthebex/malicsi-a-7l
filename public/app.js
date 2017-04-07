@@ -8,11 +8,11 @@
     config.$inject = ['$routeProvider','$locationProvider'];
 
     function config($routeProvider, $locationProvider){
-        $locationProvider.html5Mode({
-            enabled: true
-        });
+        // $locationProvider.html5Mode({
+        //     enabled: true
+        // });
 
-        $locationProvider.hashPrefix('');
+        // $locationProvider.hashPrefix('');
 
         $routeProvider
             .when('/', {
@@ -75,13 +75,13 @@
             })
             .when('/organizations', {
                 'templateUrl': 'views/organizations.html',
-                'caseInsensitiveMatch': true,
-                'controller': 'OrganizationController'
+                'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
             .when('/organization', {
                 'templateUrl': 'views/organization-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'OrganizationController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/search', {
@@ -92,7 +92,8 @@
             })
             .when('/sports', {
                 'templateUrl': 'views/sports-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'SportController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/adminpanel', {

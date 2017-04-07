@@ -71,13 +71,14 @@ exports.viewSportDetails = (req, res) => {
 	let query = 'CALL view_sport(?)';
 	connection.userType('A').query(query, 
 		[
-			req.query.sportID
-		], (err, rows) => {
-			if (!err){
-				return res.status(200).send(rows[0]);
-			}else{
-				res.status(500).send("Internal Server Error");
-			}
+		req.query.sportID
+		], 
+		(err, rows) => {
+		if (!err){
+			res.status(200).send(rows[0][0]);
+		}else{
+			res.status(500).send("Internal Server Error");
+		}
 	});
 }
 
@@ -125,12 +126,13 @@ exports.deleteSport = (req, res, next) => {
 exports.retrieveSportRankings = (req, res, next) => {
 	let query = 'CALL retrieve_team_rankings_from_sport(?)';
 	let param = parseInt(req.params.sportId);
-	if(!isNan(param)){
+	if(!isNaN(param)){
 		connection.userType('A').query(query,
 			[req.params.sportId],
 			(err, rows) =>{
 				if(!err){
-					return res.status(200).send(rows);
+					res.status(200).send(rows[0]);
+					console.log(rows[0]);
 				}
 				else if(rows.length == undefined){
 					res.status(404).send("Rankings are unavailable.");

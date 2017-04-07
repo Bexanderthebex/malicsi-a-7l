@@ -23,10 +23,10 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS edit_competitor;
 DELIMITER //
-	CREATE PROCEDURE edit_competitor(IN first_name VARCHAR(30), IN last_name VARCHAR(30), IN birthday DATE, IN nickname VARCHAR(15), IN sex CHAR(1), IN id INT)
+	CREATE PROCEDURE edit_competitor(IN bday DATE, IN fname VARCHAR(30), IN lname VARCHAR(30), IN nname VARCHAR(15), IN sx CHAR(1), IN cid INT)
 
 	BEGIN
-		UPDATE competitor SET first_name = first_name, last_name = last_name, birthday = birthday, nickname = nickname, sex = sex WHERE id = id;
+		UPDATE competitor SET  birthday = bday, first_name = fname, last_name = lname, nickname = nname, sex = sx WHERE id = cid;
 	END;
 
 	//
@@ -34,10 +34,10 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS edit_competitor_bio;
 DELIMITER //
-	CREATE PROCEDURE edit_competitor_bio(IN bio_in TEXT, IN id INT)
+	CREATE PROCEDURE edit_competitor_bio(IN bio_in TEXT, IN cid INT)
 
 	BEGIN
-		UPDATE competitor SET bio = bio_in WHERE id = id;
+		UPDATE competitor SET bio = bio_in WHERE id = cid;
 	END;
 
 	//
@@ -80,7 +80,7 @@ GRANT EXECUTE ON PROCEDURE get_competitor TO guest;
 GRANT EXECUTE ON PROCEDURE edit_competitor TO competitor;
 GRANT EXECUTE ON PROCEDURE edit_competitor TO administrator;
 GRANT EXECUTE ON PROCEDURE get_competitor_teams TO administrator;
-GRANT EXECUTE ON PROCEDURE get_competitor_teams TO organizations;
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO organizer;
 GRANT EXECUTE ON PROCEDURE get_competitor_teams TO competitor;
 GRANT EXECUTE ON PROCEDURE get_competitor_teams TO guest;
 GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO administrator;
