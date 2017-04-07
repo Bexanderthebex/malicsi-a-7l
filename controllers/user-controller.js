@@ -22,8 +22,8 @@ exports.login = (req, res) => {
 						console.log(req.session.user.type);
 						return res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
-						console.log('hello')
-						res.json({ 'message' : 'Incorrect credentials', 'userdata' : rows[0]}).status(401);
+						// console.log('hello')
+						return res.json({ 'message' : 'Incorrect credentials', 'userdata' : rows[0]}).status(401);
 						//console.log(res);
 					}
 				});
@@ -227,8 +227,8 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 		connection.userType('A').query('SELECT * FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
 				let returnObject = rows;
-				console.log("1st: ");
-				console.log(returnObject[0]);
+				// console.log("1st: ");
+				// console.log(returnObject[0]);
 				if(currentUser.type == 'C') {
 					connection.userType('A').query('SELECT birthday, sex, first_name, last_name, nickname, bio from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
 						if(!err) {
