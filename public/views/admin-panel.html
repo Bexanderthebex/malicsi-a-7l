@@ -153,11 +153,15 @@
 					<h4 class="rockwell">Organizer</h4>
 					<div class="col s6">
 						<h6 class="century-gothic strong">ADD ORGANIZER:</h6>
-						<input placeholder="Username" id="name" type="text" class="validate">
-						<input placeholder="Description" id="description" type="text" class="validate">
+						<input ng-model="organizerUsername" placeholder="Username" id="name" type="text" class="validate">
+						<input ng-model="organizerPassword" placeholder="Password" id="password" type="password" class="validate">
+						<input ng-model="organizerEmail" placeholder="Email" id="email" type="email" class="validate">
+						<input ng-model="organizerContact" placeholder="Contact" id="contact" type="text" class="validate">
+						<input ng-model="organizerName" placeholder="Name" id="org-name" type="text" class="validate">
+						<input ng-model="organizerDescription" placeholder="Description" id="description" type="text" class="validate">
 					</div>
 					<div class="col s1">
-						<button class="minimalist-button"> SUBMIT </button>
+						<button ng-click="addOrganizer()" class="minimalist-button"> SUBMIT </button>
 					</div>
 					<div class="row center">
 						<div class="col s12">

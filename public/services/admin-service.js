@@ -18,7 +18,8 @@
 			retrieveOrganizer: retrieveOrganizer, // Organizer
 			retrieveUser: retrieveUser, // User
 			retrieveLog: retrieveLog, // Log
-			addAdmin: addAdmin
+			addAdmin: addAdmin,
+			addOrganizer: addOrganizer
 
 			//deleteAdmin: deleteAdmin,
 			//addOrganizer: addOrganizer,
@@ -140,6 +141,24 @@
 				method: 'POST',
 				url: '/register/createAdmin',
 				data: $.param(admin),
+				headers: headers
+			}).then((res) => {
+				console.log(res);
+				deferred.resolve(res);
+			}, (err) => {
+				deferred.reject(err);
+			});
+
+			return deferred.promise;
+		}
+
+		function addOrganizer(organizer) {
+			let deferred = $q.defer();
+
+			$http({
+				method: 'POST',
+				url: '/register/createOrganizer',
+				data: $.param(organizer),
 				headers: headers
 			}).then((res) => {
 				console.log(res);

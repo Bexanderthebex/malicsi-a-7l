@@ -20,10 +20,37 @@
                 email: $scope.adminEmail,
                 contact: $scope.adminContact
             }).then((res) => {
+                $scope.adminUsername = "";
+                $scope.adminPassword = "";
+                $scope.adminEmail = "";
+                $scope.adminContact = "";
+
                 console.log('add admin', res.data);
             }, (err) => {
                 console.log(err);
             });
+        }
+
+        $scope.addOrganizer = () => {
+            AdminService.addOrganizer({
+                username: $scope.organizerUsername,
+                password: $scope.organizerPassword,
+                email: $scope.organizerEmail,
+                contact: $scope.organizerContact,
+                name: $scope.organizerName,
+                description: $scope.organizerDescription
+            }).then((res) => {
+                $scope.organizerUsername = "";
+                $scope.organizerPassword = "";
+                $scope.organizerEmail = "";
+                $scope.organizerContact = "";
+                $scope.organizerName = "";
+                $scope.organizerEmail = "";
+
+                console.log('add organizer', res.data);
+            }, (err) => {
+
+            })
         }
     }
 })();
