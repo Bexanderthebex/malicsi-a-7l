@@ -46,11 +46,12 @@ exports.getCompetitorTeams = (req, res) => {
 	console.log(req.session.user.id);
 	connection.userType('A').query(query, 
 		[
-			req.session.id
+			req.session.user.id
 		], (err, rows) => {
 		    if(!err) {
-				console.log(rows[0][0]);
-				return res.status(200).send(rows[0][0]);				
+				console.log("here");
+				console.log(rows[0]);
+				return res.status(200).send(rows[0]);				
 			} else {
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
