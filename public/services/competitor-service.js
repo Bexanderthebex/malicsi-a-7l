@@ -26,8 +26,8 @@
 
             $http({
                 method: 'GET',
-                params: { "competitorId": id },
-                url: '/competitor/: competitorId',
+                params: { "search": id },
+                url: '/competitor/getCompetitor',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);

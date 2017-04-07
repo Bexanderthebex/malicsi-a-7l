@@ -11,7 +11,7 @@ exports.searchCompetitor = (req, res) => {
 		], (err, rows) => {
 		    if(!err) {
 		    	if(rows[0].length == 1) {
-					return res.status(200).send(rows[0][0]);
+					return res.status(200).send(rows[0]);
 				} else {
 					return res.status(200).send(rows[0]);
 				}
