@@ -86,18 +86,14 @@
 			<div id="game-rank-section" class="col s12">
 				<h5 class="rockwell right-align">Ranking</h5>
 				<div class="game-type-matches" style="width: 100%; max-height: 70%; overflow-y: scroll; margin-right: 5px; right: 10px;">
-					<div class="game-line-rank"></div>
+					<div class="game-line-rank" ng-init=viewOrgRankings()></div>
 					<div class="row right-align">
-						<p class="col s10 game-rank-title truncate century-gothic">Organization 1</p>
-						<div class="col s1 game-circle-update palette-4">
-							<h5 class="rockwell game-position-rank">1</h5>
+						<div ng-repeat = "organization in organizations">
+							<p class="col s10 game-rank-title truncate century-gothic" >{{organization.org_name}}</p>
+							<div class="col s1 game-circle-update palette-4">
+								<h5 class="rockwell game-position-rank">{{organization.org_rank}}</h5>
+							</div>
 						</div>
-
-						<p class="col s10 game-rank-title truncate century-gothic">Organization 2</p>
-						<div class="col s1 game-circle-update palette-4">
-							<h5 class="rockwell game-position-rank">2</h5>
-						</div>
-
 						<p class="col s10 game-rank-title truncate century-gothic">Organization 3</p>
 						<div class="col s1 game-circle-update palette-4">
 							<h5 class="rockwell game-position-rank">3</h5>
@@ -152,8 +148,8 @@
 				<div class="slider game-slider-background grey lighten-3" id="game-slider">
 					<ul class="slides game-slider-background grey lighten-3" id="game-slides">
 						<li>
-							<div class="row">
-								<div id="game-past-match" class="col s12 m3">
+							<div class="row" ng-init="retrieveMatchesInGame()">
+								<div id="game-past-match" class="col s12 m3" ng-repeat="pastMatch in pastMatches.slice(0,4)">
 									<div class="game-match palette-border-5">
 										<!-- MATCH TITLE -->
 										<div class="game-padding-left game-padding-right palette-5 center game-match-header">
@@ -164,7 +160,7 @@
 											<div class="row">
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
+														<div class="center century-gothic">{{pastMatch.team1_name}}</div>
 													</div>
 												</div>
 												<div class="col s12 m12">
@@ -174,200 +170,26 @@
 												</div>
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
+														<div class="center century-gothic">{{pastMatch.team2_name}}</div>
 													</div>
 												</div>
 											</div>
 
 											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
+												Start: {{pastMatch.time_start}} • End: {{pastMatch.time_end}}
 											</div>
 											<div class="game-match-info">
-												Date: 03/20/2007
+												Date: {{pastMatch.match_date}} ID: {{pastMatch.match_id}}
 											</div>
 										</div>
 									</div>
 								</div>
-								<div id="game-past-match" class="col s12 m3">
-									<div class="game-match palette-border-5">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-5 center game-match-header">
-											<h5 class="telegrafico white-text">Past</h5>
-										</div>
 
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="game-ongoing-match" class="col s12 m3">
-									<div class="game-match palette-border-4">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-4 center game-match-header">
-											<h5 class="telegrafico white-text">Ongoing</h5>
-										</div>
-
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="game-upcoming-match" class="col s12 m3">
-									<div class="game-match palette-border-3">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-3 center game-match-header">
-											<h5 class="telegrafico white-text">Upcoming</h5>
-										</div>
-
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</li>
 						<li>
 							<div class="row">
-								<div id="game-past-match" class="col s12 m3">
-									<div class="game-match palette-border-5">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-5 center game-match-header">
-											<h5 class="telegrafico white-text">Past</h5>
-										</div>
-
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="game-past-match" class="col s12 m3">
-									<div class="game-match palette-border-5">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-5 center game-match-header">
-											<h5 class="telegrafico white-text">Past</h5>
-										</div>
-
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="game-ongoing-match" class="col s12 m3">
+								<div id="game-ongoing-match" class="col s12 m3" >
 									<div class="game-match palette-border-4">
 										<!-- MATCH TITLE -->
 										<div class="game-padding-left game-padding-right palette-4 center game-match-header">
@@ -402,7 +224,46 @@
 										</div>
 									</div>
 								</div>
-								<div id="game-upcoming-match" class="col s12 m3">
+								<div id="game-ongoing-match" class="col s12 m3" ng-repeat="ongoingMatch in ongoingMatches.slice(0,4)">
+									<div class="game-match palette-border-4">
+										<!-- MATCH TITLE -->
+										<div class="game-padding-left game-padding-right palette-4 center game-match-header">
+											<h5 class="telegrafico white-text">Ongoing</h5>
+										</div>
+
+										<div class="game-match-container">
+											<div class="row">
+												<div class="col s12 m12">
+													<div class="game-match-title">
+														<div class="center century-gothic">{{ongoingMatch.team1_name}}</div>
+													</div>
+												</div>
+												<div class="col s12 m12">
+													<div class="game-match-title">
+														<div class="center telegrafico">VS.</div>
+													</div>
+												</div>
+												<div class="col s12 m12">
+													<div class="game-match-title">
+														<div class="center century-gothic">{{ongoingMatch.team2_name}}</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="game-match-info">
+												Start: {{ongoingMatch.time_start}} • End: {{ongoingMatch.time_end}}
+											</div>
+											<div class="game-match-info">
+												Date: {{ongoingMatch.match_date}}
+											</div>
+										</div>
+									</div>
+								</div>		
+							</div>
+						</li>
+						<li>
+							<div class="row">
+									<div id="game-upcoming-match" class="col s12 m3">
 									<div class="game-match palette-border-3">
 										<!-- MATCH TITLE -->
 										<div class="game-padding-left game-padding-right palette-3 center game-match-header">
@@ -437,8 +298,42 @@
 										</div>
 									</div>
 								</div>
+								<div id="game-upcoming-match" class="col s12 m3">
+									<div class="game-match palette-border-3" ng-repeat= "upcomingMatch in upcomingMatches">
+										<!-- MATCH TITLE -->
+										<div class="game-padding-left game-padding-right palette-3 center game-match-header">
+											<h5 class="telegrafico white-text">Upcoming</h5>
+										</div>
+
+										<div class="game-match-container">
+											<div class="row">
+												<div class="col s12 m12">
+													<div class="game-match-title">
+														<div class="center century-gothic">{{upcomingMatch.team1_name}}</div>
+													</div>
+												</div>
+												<div class="col s12 m12">
+													<div class="game-match-title">
+														<div class="center telegrafico">VS.</div>
+													</div>
+												</div>
+												<div class="col s12 m12">
+													<div class="game-match-title">
+														<div class="center century-gothic">{{upcomingMatch.team2_name}}</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="game-match-info">
+												Start: {{upcomingMatch.time_start}} • End: {{upcomingMatch.time_end}}
+											</div>
+											<div class="game-match-info">
+												Date: {{upcomingMatch.match_date}}
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
-						</li>
 					</ul>
 				</div>
 			</div>

@@ -180,18 +180,75 @@ exports.viewUpcomingOngoingGames = (req,res) =>{
 	});
 }
 
-exports.viewAllMatchesInGame = (req, res) => {
-	let query = 'CALL view_all_matches_in_game(?)';
+exports.viewAllOngoingMatchesInGame = (req, res) => {
+	let query = 'CALL view_all_ongoing_matches_in_game(?)';
 	connection.userType('A').query(query,
 		[
-			req.body.gameId
+			req.query.gameId
 		], (err, rows, fields) => {
 			if(!err && rows[0].length != 0){
 				return res.status(200).send(rows[0]);
 			}else if(rows[0].length ==0 ){
-				res.send(404).send("No ongoing games");
+				res.status(200).send([]);
 			}else{
 				res.status(500).send("Internal Server Error Occured");
 			}
 		});
+}
+
+exports.viewAllPastMatchesInGame = (req, res) => {
+	let query = 'CALL view_all_past_matches_in_game(?)';
+	connection.userType('A').query(query,
+		[
+			req.query.gameId
+		], (err, rows, fields) => {
+			if(!err && rows[0].length != 0){
+				return res.status(200).send(rows[0]);
+			}else if(rows[0].length ==0 ){
+				res.status(200).send([]);
+			}else{
+				res.status(500).send("Internal Server Error Occured");
+			}
+		});
+}
+
+exports.viewAllUpcomingMatchesInGame = (req, res) => {
+	let query = 'CALL view_all_upcoming_matches_in_game(?)';
+	connection.userType('A').query(query,
+		[
+			req.query.gameId
+		], (err, rows, fields) => {
+			if(!err && rows[0].length != 0){
+				return res.status(200).send(rows[0]);
+			}else if(rows[0].length ==0 ){
+				res.status(200).send([]);
+			}else{
+				res.status(500).send("Internal Server Error Occured");
+			}
+		});
+}
+
+exports.retrieveOrgRankings = (req, res, next) => {
+	let query = 'CALL retrieve_org_rankings_from_game(?)';
+	let param = parseInt(req.params.gameId);
+	if(!isNaN(param)){
+		connection.userType('A').query(query,
+			param,
+			(err, rows) =>{
+				if(!err){
+					return res.status(200).send(rows[0]);
+				}
+				else if(rows.length == undefined){
+					res.status(404).send("Rankings are unavailable.");
+				}
+				else{
+					console.log(err);
+					res.status(500).send("Internal server error.");
+				}
+			});
+
+	}
+	else{
+		res.status(400).send("Invalid parameter.");
+	}
 }

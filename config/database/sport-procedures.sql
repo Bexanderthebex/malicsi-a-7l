@@ -89,6 +89,15 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS retrieve_org_rankings_from_game;
+DELIMITER //
+CREATE PROCEDURE retrieve_org_rankings_from_game (IN in_game_id INT)
+BEGIN
+	select organization.name as org_name, sum(team_in_match.ranking) as total_ranks from team_in_match, sport, sport_match, team, organization, game where game.game_id = in_game_id and game.game_id = sport.game_id and sport.sport_id = sport_match.sport_id and sport_match.match_id = team_in_match.match_id and team.team_id = team_in_match.team_id and team.team_organization = organization.organization_id and team_in_match.ranking is not NULL group by organization.name;
+END //
+DELIMITER ;
+
+
 DROP PROCEDURE IF EXISTS view_sport;
 DELIMITER //
 CREATE PROCEDURE view_sport (IN s_id INT)
@@ -115,8 +124,6 @@ BEGIN
 END; //
 DELIMITER ;
 
-call retrieve_team_rankings_from_sport(6);
-	select organization.name, sum(team_in_match.ranking) from team_in_match, sport, sport_match, team, organization where sport.sport_id = 6 and sport.sport_id = sport_match.sport_id and sport_match.match_id = team_in_match.match_id and team.team_id = team_in_match.team_id and team.team_organization = organization.organization_id and team_in_match.ranking is not NULL group by organization.name;
 
 -- create sport
 GRANT EXECUTE ON PROCEDURE create_sport TO organizer;
@@ -162,3 +169,8 @@ GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO administrator;
 GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO competitor;
 GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO guest;
 
+-- retrieve org rankings from game
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO organizer;
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO administrator;
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO competitor;
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO guest;
