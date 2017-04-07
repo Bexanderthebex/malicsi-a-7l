@@ -16,6 +16,7 @@
             retrieveCompetitor: retrieveCompetitor,
             retrieveSport: retrieveSport,
             retrieveGame: retrieveGame
+            retrieveOrganization: retrieveOrganization
         }
 
         return service;
@@ -87,7 +88,6 @@
             
             return deferred.promise;
         }
-
         
     }
 })();

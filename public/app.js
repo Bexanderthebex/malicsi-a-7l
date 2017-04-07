@@ -86,7 +86,8 @@
             })
             .when('/search', {
                 'templateUrl': 'views/search-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'SearchController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/sports', {

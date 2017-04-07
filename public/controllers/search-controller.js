@@ -20,7 +20,6 @@
                 .retrieveOrganizer('12')
                 .then(function(res) {
                     $scope.sports = res.data.data;
-                    console.log($scope.sports);
                     console.log(res.data.data);
                 }, function(err) {
                     //console.log(err);
@@ -32,8 +31,6 @@
                 .retrieveCompetitor('12')
                 .then(function(res) {
                     $scope.sports = res.data.data;
-                    console.log($scope.sports);
-                    console.log(res.data.data);
                 }, function(err) {
                     //console.log(err);
                 })
@@ -44,8 +41,6 @@
                 .retrieveSport('12')
                 .then(function(res) {
                     $scope.sports = res.data.data;
-                    console.log($scope.sports);
-                    console.log(res.data.data);
                 }, function(err) {
                     //console.log(err);
                 })
@@ -56,12 +51,22 @@
                 .retrieveGame('12')
                 .then(function(res) {
                     $scope.sports = res.data.data;
-                    console.log($scope.sports);
-                    console.log(res.data.data);
                 }, function(err) {
                     //console.log(err);
                 })
         }
+
+        // function searchOrganization() {
+        //     SearchService
+        //         .retrieveOrganization('12')
+        //         .then(function(res) {
+        //             $scope.sports = res.data.data;
+        //         }, function(err) {
+        //             //console.log(err);
+        //         })
+        // }
+
+        function searchFilter()
 
     }
 })();

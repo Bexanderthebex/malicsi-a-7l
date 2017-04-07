@@ -10,7 +10,7 @@
 			<div class="row center">
 				<div class="col s6 offset-s3">
 					<form id="gamefeed-game-search-bar">
-						<input type="search" >
+						<input type="search" ng-model="search-page-search" >
 					</form>
 				</div>
 				<div class="col s6 offset-s3 telegrafico search-searchbtn">
@@ -21,10 +21,10 @@
 				<div class="container telegrafico search-sort-part white-text">
 					<p class="search-sort-adjust">
 						Filter:
-						<input type="checkbox" class="filled-in" id="gamechk" checked="checked" />
+						<input type="checkbox" class="filled-in" id="gamechk"/>
 						<label for="gamechk"> Game</label>
 						
-						<input type="checkbox" class="filled-in" id="organization" checked="checked" />
+						<input type="checkbox" class="filled-in" id="organization"/>
 						<label for="organization"> Organization</label>
 						
 						<input type="checkbox" class="filled-in" id="sport" checked="checked" />

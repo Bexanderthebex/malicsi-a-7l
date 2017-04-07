@@ -85,7 +85,7 @@ DELIMITER //
 
 	CREATE PROCEDURE delete_team (IN teamID INT) 
 	BEGIN
-	   DELETE team WHERE team_id = teamID;
+	   DELETE team from team WHERE team_id = teamID;
 	END; //
 
 DELIMITER ;
