@@ -24,12 +24,12 @@
 
         return service;
 
-        function retrieveGame(gameId) {
+        function retrieveGame(org_id) {
             let deferred = $q.defer();
             console.log(gameId);
             $http({
                 method: 'GET',
-                params: { 'id': gameId },
+                params: { 'id': org_id },
                 url: '/organizer/findGames',
                 headers: headers
             }).then((res) => {

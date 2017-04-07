@@ -28,7 +28,7 @@
         $scope.requests = [];
         $scope.games = [];
         $scope.newGame = {
-            orgID: '1',
+            orgID: undefined,
             gameName: undefined,
             startDate: undefined,
             endDate: undefined,
@@ -59,8 +59,8 @@
             UserService
                 .getUserInfo()
                 .then(function (res){
-                    $scope.currentUser = res.data;
-                    console.log($scope.currentUser);
+                    $scope.organizer = res.data;
+                    console.log($scope.organizer);
                 }, function(err) {
                     Materialize.toast('error', 3000);
                 })
@@ -69,6 +69,7 @@
         function addGame() {
             $scope.newGame.startDate = $('#start-date').val();
             $scope.newGame.endDate = $('#end-date').val();
+            $scope.newGame.orgID = $scope.organizer.id;
             console.log($scope.newGame);
             OrganizerService
                 .addGame($scope.newGame) //calls addGame function in OrganizerService
@@ -82,7 +83,7 @@
 
         function retrieveGame() {
             OrganizerService
-                .retrieveGame('1') //parameters depend on kung ano kailangan ng back-end controllers
+                .retrieveGame($scope.organizer.id) //parameters depend on kung ano kailangan ng back-end controllers
                 .then(function(res) { //function block when success in service
                     $scope.games = res.data; //ilalagay sa $scope.games yung res na nakuha sa back-end
                     //$scope para ma-access siya sa frontend
@@ -118,7 +119,7 @@
 
         function getRequests(id) {
             OrganizerService
-                .getRequests('11') //user id $scope.getCurrentUser.id
+                .getRequests($scope.organizer.id) //user id $scope.organizer.id
                 .then(function(res) {
                     console.log(res.data);
                     $scope.requests = res.data;
@@ -130,7 +131,7 @@
         function getOrganizer() {
             getCurrentUser();
             OrganizerService
-                .getOrganizer('1') //$scope.getCurrentUser.id
+                .getOrganizer($scope.organizer.id) //$scope.organizer.id
                 .then(function(res) {
                     console.log(res.data);
                     $scope.organizer = res.data;
