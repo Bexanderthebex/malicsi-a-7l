@@ -63,12 +63,13 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/game', {
+            .when('/game/:gameId', {
                 'templateUrl': 'views/game-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'GameController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/game/feed', {
+            .when('/game', {
                 'templateUrl': 'views/gamefeed.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
