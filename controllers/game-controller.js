@@ -17,15 +17,17 @@ exports.createGame = (req, res) => {
 			req.body.endDate,
 			req.body.locat,
 			req.body.descrip
-	    ], (err, rows) => {
+	    ], 
+	    (err, results) => {
 			if(!err){
-				res.status(200).send(rows[0]);
-				connection.userType('A').query('CALL view_last_inserted_game'),(err, rows) => {
-					res.status(200).send(rows[0]);
-				};
+				connection.userType('A').query('CALL view_last_inserted_game()',(err, rows) => {
+					return res.status(200).send(rows[0]);
+				});
 			}
 			else{
+				console.log(err);
 				res.status(500).send(err);
+
 			}
 	});
 }
