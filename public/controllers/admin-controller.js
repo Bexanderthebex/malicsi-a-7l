@@ -2,17 +2,29 @@
     angular.module('app')
         .controller('AdminCtrl', AdminCtrl);
 
-    AdminCtrl.$inject = ['$scope', '$http', 'UserService'];
+    AdminCtrl.$inject = ['$scope', '$http', 'UserService', 'AdminService'];
 
-    function AdminCtrl($scope, $http, UserService) {
+    function AdminCtrl($scope, $http, UserService, AdminService) {
         $scope.admins = [];
 
         UserService.getUsersByType('A').then((res) => {
             $scope.admins = res.data;
-            console.log('admin', $scope.admins);
         }, (err) => {
             console.log(err);
-        })
+        });
+
+        $scope.addAdmin = () => {
+            AdminService.addAdmin({
+                username: $scope.adminUsername,
+                password: $scope.adminPassword,
+                email: $scope.adminEmail,
+                contact: $scope.adminContact
+            }).then((res) => {
+                console.log('add admin', res.data);
+            }, (err) => {
+                console.log(err);
+            });
+        }
     }
 })();
 
@@ -42,7 +54,7 @@
         $scope.updateUser = updateUser;
         $scope.deleteUser = deleteUser;
         $scope.retrieveLog = retrieveLog;   // Log
-        
+
         //kumabaga "declare" or "initialize" "variables" para mag-access sa front-end yung mga data
         $scope.admins = [];
         $scope.organizers = [];

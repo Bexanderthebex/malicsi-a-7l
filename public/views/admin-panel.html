@@ -12,7 +12,7 @@
 				<div id="admin-buttons">
 					<!-- ADMIN BUTTONS -->
 					<button id="admin-admins-btn">ADMINS</button>
-						
+
 					<!-- <div id="admin-admins-functions" style="width: 100%;">
 						<ul id="admin-admins" style="width: 100%; margin: 0;">
 					        <li class="admin-hidden-item valign-wrapper">
@@ -99,14 +99,17 @@
 			<div id="admin-main" class="col s9 offset-s3 admin-padding-left admin-padding-right">
 				<!-- Admins -->
 				<div id="admin-adminscrud" class="admin-view" style="display: none;">
-					
+
 					<h4 class="rockwell">Admins</h4>
 					<div class="col s6">
 						<h6 class="century-gothic strong">ADD ADMIN:</h6>
-						<input placeholder="Username" id="name" type="text" class="validate">
+						<input ng-model="adminUsername"  placeholder="Username" id="name" type="text" class="validate">
+						<input ng-model="adminPassword" placeholder="Password" id="password" type="password" class="validate">
+						<input ng-model="adminEmail" placeholder="Email" id="email" type="email" class="validate">
+						<input ng-model="adminContact" placeholder="Contact" id="contact" type="text" class="validate">
 					</div>
 					<div class="col s1">
-						<button class="minimalist-button"> SUBMIT </button>
+						<button ng-click="addAdmin()" class="minimalist-button"> SUBMIT </button>
 					</div>
 					<div class="row center">
 						<div class="col s12">
@@ -116,7 +119,7 @@
 							<a class="waves-effect waves-light btn palette-2">Search</a>
 						</div>
 						<!--<div class="col s6">
-							
+
 						</div>-->
 					</div>
 					<table>
@@ -164,7 +167,7 @@
 							<a class="waves-effect waves-light btn palette-2">Search</a>
 						</div>
 						<!--<div class="col s6">
-							
+
 						</div>-->
 					</div>
 					<table>
@@ -239,7 +242,7 @@
 							<a class="waves-effect waves-light btn palette-2">Search</a>
 						</div>
 						<!--<div class="col s6">
-							
+
 						</div>-->
 					</div>
 					<table>
@@ -321,7 +324,7 @@
 							<a class="waves-effect waves-light btn palette-2">Search</a>
 						</div>
 						<!--<div class="col s6">
-							
+
 						</div>-->
 					</div>
 					<table>
