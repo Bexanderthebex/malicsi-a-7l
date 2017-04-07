@@ -167,16 +167,16 @@ exports.getTeam = (req, res) => {
         req.query.team_id
     ], (err, rows) => {
         if(!err) {
-                if (rows[0].length == 1){
-                    return res.status(200).send(rows[0][0]);
-                }
-                else{
-                    return res.status(200).send(rows[0]);
-                    
-                }
-            } else {
-                return res.status(500).send({ 'message' : 'An error occured'});
+            if (rows[0].length == 1){
+                return res.status(200).send(rows[0][0]);
             }
+            else{
+                return res.status(200).send(rows[0]);
+                
+            }
+        } else {
+            return res.status(500).send({ 'message' : 'An error occured'});
+        }
     });
 }
  
@@ -210,15 +210,46 @@ exports.getTeamsOnOrganization = (req, res) => {
         req.query.org_id
     ], (err, rows) => {
         if(!err) {
-                if (rows[0].length == 1){
-                    return res.status(200).send(rows[0][0]);
-                }
-                else{
-                    return res.status(200).send(rows[0]);
-                    
-                }
-            } else {
-                return res.status(500).send({ 'message' : 'An error occured'});
+            if (rows[0].length == 1){
+                return res.status(200).send(rows[0][0]);
             }
+            else{
+                return res.status(200).send(rows[0]);
+                
+            }
+        } else {
+            return res.status(500).send({ 'message' : 'An error occured'});
+        }
+    });
+}
+
+exports.getOrganization = (req, res) => {
+    query = "SELECT * from organization where organization_id = ?";
+
+    connection.userType('A').query(query,
+    [
+        req.query.organization_id
+    ], (err, rows) => {
+        if(!err) {
+            console.log(rows[0]);
+            return res.status(200).send(rows[0]);
+        } else {
+            return res.status(500).send({ 'message' : 'An error occured'});
+        }
+    });
+}
+
+exports.getGamesInOrganization = (req, res) => {
+    query = "select * from game join organization_in_game where game.game_id = organization_in_game.game_id and organization_id = ?";
+
+    connection.userType('A').query(query,
+    [
+        req.query.organization_id
+    ], (err, rows) => {
+        if(!err) {
+            return res.status(200).send(rows);
+        } else {
+            return res.status(500).send({ 'message' : 'An error occured'});
+        }
     });
 }

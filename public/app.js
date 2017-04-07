@@ -75,13 +75,13 @@
             })
             .when('/organizations', {
                 'templateUrl': 'views/organizations.html',
-                'caseInsensitiveMatch': true,
-                'controller': 'OrganizationController'
+                'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
             .when('/organization', {
                 'templateUrl': 'views/organization-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'OrganizationController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/search', {
