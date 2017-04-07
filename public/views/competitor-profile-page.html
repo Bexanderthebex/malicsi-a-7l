@@ -182,29 +182,29 @@
 
         </div>
 
-        <div id="teams-managed-div" class="col s12">
+        <div id="teams-managed-div" class="col s12" ng-init="getCoachedTeam()">
             <div class="row container">
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
-                <ul class="collapsible" data-collapsible="accordion">
+                <ul class="collapsible" data-collapsible="accordion" ng-repeat="cteam in coachedteam">
                     <li>
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
-                                <div class="col l3 m3 s3"><b>New York Knicks</b></div>
-                                <div class="col l5 m5 s5">National Basketball Association</div>
-                                <div class="col l3 m3 s3">Basketball</div>
+                                <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
+                                <div class="col l5 m5 s5">{{cteam.team_organization}}</div>
+                                <div class="col l3 m3 s3">{{cteam.sport_name}}</div>
                                 <div class="col l1 m1 s1 center-block">
                                     <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="collapsible-body">
-                            <span class="telegrafico">Members</span>
+                            <span class="telegrafico">Max Members: {{cteam.max_members}}</span>
                             <div class="chips chips-initial"></div>
                         </div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3"><b>Real Madrid</b></div>
@@ -235,7 +235,7 @@
                             <span class="telegrafico">Members</span>
                             <div class="chips chips-initial"></div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

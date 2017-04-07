@@ -11,6 +11,7 @@
     function CompetitorController($scope, $window, CompetitorService, UserService) {
         $scope.competitor = {};
         $scope.competitorteams = {};
+        $scope.coachedteam = {};
 
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
@@ -18,7 +19,7 @@
         $scope.editCompetitor = editCompetitor;
         $scope.editCompetitorBio = editCompetitorBio;
         $scope.createTeam = createTeam;
-
+        $scope.getCoachedTeam = getCoachedTeam;
 
         function searchCompetitor(id){
             CompetitorService
@@ -46,7 +47,7 @@
                 .getCompetitorTeams()
                 .then(function(res) {
                     $scope.competitorteams = res.data;
-                    console.log($scope.competitorteams);
+                    // console.log($scope.competitorteams);
                 }, function(err) {
                     console.log(err);
                 })
@@ -81,6 +82,17 @@
                 .then(function (res){
                     Materialize.toast('Successfully created a team!', 3000);
                     //$window.location.href = '/#/competitor/profile';
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function getCoachedTeam(){
+            CompetitorService
+                .getCoachedTeam()
+                .then(function (res){
+                    // console.log(res.data);
+                    $scope.coachedteam = res.data;
                 }, function(err) {
                     console.log(err);
                 })

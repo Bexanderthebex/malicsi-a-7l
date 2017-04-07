@@ -204,13 +204,16 @@ exports.getCoachedTeam = (req, res) => {
 
     connection.userType('A').query(query,
     [
-        req.query.id
+        req.session.user.id
     ], (err, rows) => {
         if(!err) {
                 if (rows[0].length == 1){
+                    console.log(rows[0][0]);
                     return res.status(200).send(rows[0][0]);
                 }
                 else{
+                    // console.log("Dito");
+                    console.log(rows[0]);
                     return res.status(200).send(rows[0]);
                     
                 }
