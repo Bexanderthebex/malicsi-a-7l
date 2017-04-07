@@ -1,4 +1,4 @@
-<div id="mainHolder" ng-controller="CompetitorController">
+<div id="mainHolder" >
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
     <div id="main" class="">
@@ -74,48 +74,26 @@
                                 </div>  
                             </div>
                         </div>
-
-                        <!--div class="col s12 m12 l12">
-                            <ul>
-                                <li><a class="profile-links century-gothic" data-target="edit-profile-modal"><i class="left tiny material-icons">mode_edit</i>Edit Profile</a></li>
-                                <li><a class="profile-links century-gothic" data-target="pending-requests-modal"><i class="left tiny material-icons">assignment_turned_in</i>Peding Requests</a></li>
-                            </ul>
-                        </div-->
                     </div>
                 </div>
 
-		        <!-- Affiliations -->
-	            <div class="col s12 m7 l8" ng-init="getCompetitorTeams()">
-	                <h5 class="rockwell">Affiliations</h5>
-	                
-	                <ul class="tabs tabs-fixed-width tabs-transparent telegrafico" id="competitor-profile-games">
-	                    <li class="tab col s4"><a class="white-text" href="#competitor-teams">TEAMS</a></li>
-	                    <li class="tab col s4"><a class="white-text" href="#competitor-organizations">ORGANIZATIONS</a></li>
-	                    <div class="indicator white" style="z-index: 1"></div>
-	                </ul>
+                <!-- Affiliations -->
+                <div class="col s12 m7 l8">
+                    <h5 class="rockwell">Affiliations</h5>
+                    
+                    <ul class="tabs tabs-fixed-width tabs-transparent telegrafico" id="competitor-profile-games">
+                        <li class="tab col s4"><a class="white-text" href="#competitor-teams">TEAMS</a></li>
+                        <li class="tab col s4"><a class="white-text" href="#competitor-organizations">ORGANIZATIONS</a></li>
+                        <div class="indicator white" style="z-index: 1"></div>
+                    </ul>
 
-	                <div id="competitor-teams" class="col s12" ng-repeat="team in teams">
+
+	                <div id="competitor-teams" class="col s12" ng-init="getCompetitorTeams()">
 	                    <table class="highlight responsive-table competitor-games-data">
 	                        <tbody>
-	                            <tr class="century-gothic">
-	                                <td>New York Knicks</td>
-	                                <td>Basketball</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>Real Madrid</td>
-	                                <td>Football</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>Mighty Ducks</td>
-	                                <td>Hockey</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>New York Knicks</td>
-	                                <td>Basketball</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>Mighty Ducks</td>
-	                                <td>Hockey</td>
+	                            <tr class="century-gothic" ng-repeat="team in competitorteams">
+	                                <td>{{team.team_name}}</td>
+	                                <td>{{team.sport_name}}</td>
 	                            </tr>
 	                        </tbody>
 	                    </table>
@@ -127,13 +105,13 @@
 	                        </tbody>
 	                    </table>
 	                </div>
-	                <div id="competitor-organizations" class="col s12" ng-repeat="team in teams">
+	                <div id="competitor-organizations" class="col s12">
 	                    <table class="highlight responsive-table competitor-games-data">
 	                        <tbody>
 	                            <tr class="century-gothic">
-	                                <td>National Basketball Association</td>
+	                                <td>{{team.organization}}</td>
 	                            </tr>
-	                            <tr class="century-gothic">
+	                            <!-- <tr class="century-gothic">
 	                                <td>International Federation of Association Football</td>
 	                            </tr>
 	                            <tr class="century-gothic">
@@ -144,7 +122,7 @@
 	                            </tr>
 	                            <tr class="century-gothic">
 	                                <td>Canadian Hockey League</td>
-	                            </tr>
+	                            </tr> -->
 	                        </tbody>
 	                    </table>
 	                    <table class="highlight competitor-showall">
@@ -159,45 +137,36 @@
 	        </div>
 
             <!-- Sports Played -->
-            <div class="row container" ng-init="">
-                <h5 class="rockwell">Sports Played</h5>     
-                <div class="chip">Basketball</div>
-                <div class="chip">Baseball</div>
+            <div class="row container" ng-init="getCompetitorTeams()">
+                <h5 class="rockwell">Sports Played</h5><br>    
+                <div class="chip" ng-repeat="sport in competitorteams">{{sport.sport_name}}</div>
+                <!-- <div class="chip">Baseball</div>
                 <div class="chip">Football</div>
                 <div class="chip">Swimming</div>
-                <div class="chip">Hockey</div>
+                <div class="chip">Hockey</div> -->
             </div><br>
 
-            <div class="divider"></div>
+            <div class="divider container"></div><br>
 
             <!-- Games Participated-->
             <div class="row container" ng-init="">
-                <h5 class="rockwell left-align">Games Participated</h5>     
-                <div id="competitor-games-played">
-                    <a class="game-item" href="">
-                        <img src="assets/img/1.jpg" class="competitor-game-img hover">
-                        <p class="game-desc">
-                            <b>Sea Games</b><br>19 August 2017<br>Kuala Lumpur, Malaysia
-                        </p>
-                    </a>
-                    <a class="game-item" href="">
-                        <img src="assets/img/3.jpg" class="competitor-game-img hover">
-                        <p class="game-desc">
-                            <b>Winter Olympics</b><br>31 March 2018<br>PyeongChang, S. Korea
-                        </p>
-                    </a>
-                    <a class="game-item" href="">
-                        <img src="assets/img/1.jpg" class="competitor-game-img hover">
-                        <p class="game-desc">
-                            <b>Sea Games</b><br>19 August 2017<br>Kuala Lumpur, Malaysia
-                        </p>
-                    </a>
-                    <a class="game-item" href="">
-                        <img src="assets/img/3.jpg" class="competitor-game-img hover">
-                        <p class="game-desc">
-                            <b>Winter Olympics</b><br>31 March 2018<br>PyeongChang, S. Korea
-                        </p>
-                    </a>
+                <h5 class="rockwell left-align">Games Participated</h5><br>    
+                <div class="row">
+                    <div class="col s3 m3 l3 center-align recent-games-card">
+                        <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                        <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+                    </div>
+                    <div class="col s3 m3 l3 center-align recent-games-card">
+                        <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                        <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+                    </div>
+                    <div class="col s3 m3 l3 center-align recent-games-card">
+                        <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                        <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+                    </div>
+                    <div class="col s3 m3 l2 center-align recent-games-card see-more">
+                        <button href="" data-target="organization-allgames-modal" class="minimalist-button"> See more </button>
+                    </div>
                 </div>
             </div><br>
 
@@ -213,29 +182,29 @@
 
         </div>
 
-        <div id="teams-managed-div" class="col s12">
+        <div id="teams-managed-div" class="col s12" ng-init="getCoachedTeam()">
             <div class="row container">
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
-                <ul class="collapsible" data-collapsible="accordion">
+                <ul class="collapsible" data-collapsible="accordion" ng-repeat="cteam in coachedteam">
                     <li>
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
-                                <div class="col l3 m3 s3"><b>New York Knicks</b></div>
-                                <div class="col l5 m5 s5">National Basketball Association</div>
-                                <div class="col l3 m3 s3">Basketball</div>
+                                <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
+                                <div class="col l5 m5 s5">{{cteam.team_organization}}</div>
+                                <div class="col l3 m3 s3">{{cteam.sport_name}}</div>
                                 <div class="col l1 m1 s1 center-block">
                                     <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="collapsible-body">
-                            <span class="telegrafico">Members</span>
+                            <span class="telegrafico">Max Members: {{cteam.max_members}}</span>
                             <div class="chips chips-initial"></div>
                         </div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3"><b>Real Madrid</b></div>
@@ -266,7 +235,7 @@
                             <span class="telegrafico">Members</span>
                             <div class="chips chips-initial"></div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -413,10 +382,10 @@
                     </div>
                     <div class="input-field col l4 m4 s12">
                         <span class="telegrafico">Sex</span><br>
-                        <span><input id="male" type="radio" name="gender" value="male" class="with-gap">
-                        <label class="black-text telegrafico" for="male" ng-model="">Male</label></span>
-                        <span><input id="female" type="radio" name="gender" value="female" class="with-gap">
-                        <label class="black-text telegrafico" for="female" ng-model="">Female</label></span>
+                        <span><input id="male" type="radio" name="gender" value="m" class="with-gap" ng-model="competitor.sex">
+                        <label class="black-text telegrafico" for="male">Male</label></span>
+                        <span><input id="female" type="radio" name="gender" value="f" class="with-gap"  ng-model="competitor.sex">
+                        <label class="black-text telegrafico" for="female">Female</label></span>
                     </div>
                 </div>
             </form>
@@ -445,10 +414,10 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" ng-init="getCompetitor()">
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="competitor-bio" class="materialize-textarea" data-length="150"></textarea>
+                        <textarea id="competitor-bio" class="materialize-textarea" data-length="150" ng-model="competitor.bio"></textarea>
                         <label for="competitor-bio">Bio</label>
                     </div>
                 </div>
@@ -458,7 +427,7 @@
     <div class="divider"></div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">check</i>Update</a>
+        <a class="modal-action modal-close waves-effect btn-flat telegrafico" ng-click="editCompetitorBio()"><i class="material-icons left">check</i>Update</a>
     </div>
 </div>
 
@@ -526,6 +495,60 @@
     <div class="modal-footer">
         <a data-target="cancel-team-prompt" class="modal-action modal-close waves-effect btn-flat telegrafico modal-trigger"><i class="material-icons left">close</i>Cancel</a>
         <a data-target="create-team-prompt" class="modal-action modal-close waves-effect btn-flat telegrafico modal-trigger"><i class="material-icons left">check</i>Create</a>
+    </div>
+</div>
+
+<!--All games participated modal-->
+<div id="organization-allgames-modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="row">
+            <h4 class="rockwell strong palette-text-3 center">Games Participated</h4>
+        </div>
+        <div class="row">
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button href="" class="modal-action modal-close waves-effect waves-green btn-flat">Close</button>
     </div>
 </div>
 

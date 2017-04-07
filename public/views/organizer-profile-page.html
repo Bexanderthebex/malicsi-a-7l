@@ -8,9 +8,9 @@
                 <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
 
-            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getOrganizer()">
+            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCurrentUser()">
             <!-- ng-init -> ito muna yung tatawagin para makuha yung organizer na kailangan
-            yung irereturn ng getOrganizer() ay isang organizer, which is yung $scope.organizer
+            yung irereturn ng getCurrentUser() ay isang organizer, which is yung $scope.organizer
             accessible yung values ng attributes ng organizer by enclosing it sa {{ }} -->
                 <h3 class="rockwell">{{ organizer.name }} <a id="organizer-profile-edit" data-target="organizer-profile-edit-modal"><i class="material-icons">edit</i></a></h3>
                 <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
@@ -220,7 +220,7 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <form class="col s12" ng-init="getOrganizer()">
+            <form class="col s12" ng-init="getCurrentUser()">
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="first_name" type="text" class="validate" ng-model="organizer.name">

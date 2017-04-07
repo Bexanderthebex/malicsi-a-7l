@@ -8,16 +8,17 @@
     config.$inject = ['$routeProvider','$locationProvider'];
 
     function config($routeProvider, $locationProvider){
-        $locationProvider.html5Mode({
-            enabled: true
-        });
+        // $locationProvider.html5Mode({
+        //     enabled: true
+        // });
 
-        $locationProvider.hashPrefix('');
+        // $locationProvider.hashPrefix('');
 
         $routeProvider
             .when('/', {
                 'templateUrl': 'views/home-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'LandingCtrl'
                 // 'access': { requiredAuthentication: false }
             })
             .when('/login', {
@@ -45,7 +46,8 @@
             })
             .when('/competitor/profile/:id', {
                 'templateUrl': 'views/competitor-visited-profile-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'CompetitorController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/help', {
@@ -63,35 +65,39 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/game', {
+
+            .when('/game/:gameId', {
                 'templateUrl': 'views/game-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'GameController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/game/feed', {
+            .when('/game', {
                 'templateUrl': 'views/gamefeed.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
             .when('/organizations', {
                 'templateUrl': 'views/organizations.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
+            .when('/organization/:id', {
+                'templateUrl': 'views/organization-page.html',
                 'caseInsensitiveMatch': true,
                 'controller': 'OrganizationController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/organization', {
-                'templateUrl': 'views/organization-page.html',
-                'caseInsensitiveMatch': true
-                // 'access': { requiredAuthentication: true }
-            })
             .when('/search', {
                 'templateUrl': 'views/search-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'SearchController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/sports', {
+            .when('/sports/:id', {
                 'templateUrl': 'views/sports-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'SportController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/adminpanel', {

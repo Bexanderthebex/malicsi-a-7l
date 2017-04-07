@@ -15,11 +15,11 @@ let logController = require("../controllers/log-controller");
 let competitorController = require("../controllers/competitor-controller");
 let organizerController = require("../controllers/organizer-controller");
 let teamController = require("../controllers/team-controller");
+let organizationController = require("../controllers/organization-controller");
 
 function sha256Hash(req, res, next) {
     console.log(req.body);
     if (req.body.password == undefined) {
-        console.log("Hello");
         res.status(404).send({ 'message' : 'Incorrect credentials'});
     } else {
         console.log("Hi");
@@ -59,6 +59,7 @@ function checkUser(type) {
 router.post('/login', sha256Hash, userController.login);
 router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.post('/register/createOrganizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
+router.post('/register/createAdmin', checkUser('A'), sha256Hash, bcryptHash, adminController.createAdmin);
 router.get('/logout', userController.logout);
 router.get('/user/:id', userController.getUserInfo);
 router.put('/user/update', sha256Hash, bcryptHash, userController.update);
@@ -73,6 +74,7 @@ router.put('/competitor/editCompetitor', competitorController.editCompetitor);
 router.get('/competitor/getCompetitorTeams', competitorController.getCompetitorTeams);
 router.get('/competitor/getCompetitor', competitorController.getCompetitor);
 router.put('/competitor/editCompetitorBio', competitorController.editCompetitorBio);
+router.get('/competitor/getCompetitorRanking', competitorController.getCompetitorRanking);
 
 //organizer routers
 router.get('/organizer/searchOrganizer', organizerController.searchOrganizer);
@@ -81,14 +83,18 @@ router.get('/organizer/findSport',organizerController.findSport);
 router.get('/organizer/findTeam',organizerController.findTeam);
 router.put('/organizer/editOrganizer', organizerController.editOrganizer);
 router.get('/organizer/getRequest', organizerController.getRequest);
-// //////////////////
 router.put('/organizer/processRequest', organizerController.processRequest);
 router.get('/organizer/getPendingParticipation', organizerController.getPendingParticipation);
 router.get('/organizer/findGames',organizerController.findGames);
 router.get('/organizer/getOrganizer',organizerController.getOrganizer);
 router.delete('/organizer/deleteTeam',organizerController.deleteTeam);
 
-//team routers
+// organization
+router.get('/organization/getOrganization',teamController.getOrganization);
+router.get('/organization/getGamesInOrganization',teamController.getGamesInOrganization);
+router.get('/organization/search',organizationController.searchOrganization);
+
+// team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
 router.post('/team/createTeam',teamController.createTeam);
 router.delete('/team/deleteTeam',teamController.deleteTeam);
@@ -105,15 +111,21 @@ router.get('/team/getOrganizationRankings',teamController.getOrganizationRanking
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
-router.get('/game/viewAllMatchesInGame', gameController.viewAllMatchesInGame);
+router.get('/game/viewAllPastMatchesInGame', gameController.viewAllPastMatchesInGame);
+router.get('/game/viewAllOngoingMatchesInGame', gameController.viewAllOngoingMatchesInGame);
+router.get('/game/viewAllUpcomingMatchesInGame', gameController.viewAllUpcomingMatchesInGame);
 router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
 router.get('/game/viewAllSportsInGame/:gameId', gameController.viewAllSportsInGame);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
+router.get('/game/ranks/:gameId', gameController.retrieveOrgRankings);
 router.post('/game/createGame',  gameController.createGame);
 router.put('/game/updateGame',  gameController.updateGame);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 
 // sponsor routers
+router.get('/game/viewSponsor',  sponsorController.viewSponsor);
+router.get('/game/viewSponsorInSport',  sponsorController.viewSponsorInSport);
+router.get('/game/viewSponsorInGame',  sponsorController.viewSponsorInGame);
 router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
 router.put('/game/editSponsor',  sponsorController.editSponsorDetails);
 router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);

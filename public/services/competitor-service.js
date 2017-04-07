@@ -14,8 +14,10 @@
         const service = {
             searchCompetitor: searchCompetitor,
             editCompetitor: editCompetitor,
+            editCompetitorBio: editCompetitorBio,
             getCompetitor: getCompetitor,
-            getCompetitorTeams: getCompetitorTeams
+            getCompetitorTeams: getCompetitorTeams,
+            getCoachedTeam: getCoachedTeam
         }
 
         return service;
@@ -25,8 +27,8 @@
 
             $http({
                 method: 'GET',
-                params: { "competitorId": id },
-                url: '/competitor/: competitorId',
+                params: { "search": id },
+                url: '/competitor/getCompetitor',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
@@ -44,6 +46,23 @@
                 method: 'PUT',
                 data: $.param(competitor),
                 url: '/competitor/editCompetitor',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function editCompetitorBio(competitor){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'PUT',
+                data: $.param(competitor),
+                url: '/competitor/editCompetitorBio',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
@@ -75,6 +94,23 @@
             $http({
                 method: 'GET',
                 url: '/competitor/getCompetitorTeams',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function getCoachedTeam(){
+            let deferred = $q.defer();
+
+            console.log('here service');
+            $http({
+                method: 'GET',
+                url: '/team/getCoachedTeams',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);

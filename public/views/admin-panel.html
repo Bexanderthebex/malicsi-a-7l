@@ -12,6 +12,7 @@
 				<div id="admin-buttons">
 					<!-- ADMIN BUTTONS -->
 					<button id="admin-admins-btn">ADMINS</button>
+
 					<!-- <div id="admin-admins-functions" style="width: 100%;">
 						<ul id="admin-admins" style="width: 100%; margin: 0;">
 					        <li class="admin-hidden-item valign-wrapper">
@@ -98,7 +99,29 @@
 			<div id="admin-main" class="col s9 offset-s3 admin-padding-left admin-padding-right">
 				<!-- Admins -->
 				<div id="admin-adminscrud" class="admin-view" style="display: none;">
+
 					<h4 class="rockwell">Admins</h4>
+					<div class="col s6">
+						<h6 class="century-gothic strong">ADD ADMIN:</h6>
+						<input ng-model="adminUsername"  placeholder="Username" id="name" type="text" class="validate">
+						<input ng-model="adminPassword" placeholder="Password" id="password" type="password" class="validate">
+						<input ng-model="adminEmail" placeholder="Email" id="email" type="email" class="validate">
+						<input ng-model="adminContact" placeholder="Contact" id="contact" type="text" class="validate">
+					</div>
+					<div class="col s1">
+						<button ng-click="addAdmin()" class="minimalist-button"> SUBMIT </button>
+					</div>
+					<div class="row center">
+						<div class="col s12">
+							<form id="adminpanel-game-search-bar">
+								<input type="search" >
+							</form>
+							<a class="waves-effect waves-light btn palette-2">Search</a>
+						</div>
+						<!--<div class="col s6">
+
+						</div>-->
+					</div>
 					<table>
 		            	<thead>
 		            		<tr class="telegrafico">
@@ -128,6 +151,29 @@
 				<!-- Organizer -->
 				<div class="admin-view" id="admin-organizerscrud" style="display: none;">
 					<h4 class="rockwell">Organizer</h4>
+					<div class="col s6">
+						<h6 class="century-gothic strong">ADD ORGANIZER:</h6>
+						<input ng-model="organizerUsername" placeholder="Username" id="name" type="text" class="validate">
+						<input ng-model="organizerPassword" placeholder="Password" id="password" type="password" class="validate">
+						<input ng-model="organizerEmail" placeholder="Email" id="email" type="email" class="validate">
+						<input ng-model="organizerContact" placeholder="Contact" id="contact" type="text" class="validate">
+						<input ng-model="organizerName" placeholder="Name" id="org-name" type="text" class="validate">
+						<input ng-model="organizerDescription" placeholder="Description" id="description" type="text" class="validate">
+					</div>
+					<div class="col s1">
+						<button ng-click="addOrganizer()" class="minimalist-button"> SUBMIT </button>
+					</div>
+					<div class="row center">
+						<div class="col s12">
+							<form id="adminpanel-game-search-bar">
+								<input type="search" >
+							</form>
+							<a class="waves-effect waves-light btn palette-2">Search</a>
+						</div>
+						<!--<div class="col s6">
+
+						</div>-->
+					</div>
 					<table>
 		            	<thead>
 		            		<tr class="telegrafico">
@@ -182,6 +228,27 @@
 				<!-- Users -->
 				<div class="admin-view" id="admin-userscrud" style="display: none;">
 					<h4 class="rockwell">Users</h4>
+					<div class="col s6">
+						<h6 class="century-gothic strong">ADD USER:</h6>
+						<input placeholder="Username" id="name" type="text" class="validate">
+						<input placeholder="Password" id="password" type="password" class="validate">
+						<input placeholder="Email address" id="email-address" type="email" class="validate">
+						<input placeholder="Contact number" id="contact-number" type="text" class="validate">
+					</div>
+					<div class="col s1">
+						<button class="minimalist-button"> SUBMIT </button>
+					</div>
+					<div class="row center">
+						<div class="col s12">
+							<form id="adminpanel-game-search-bar">
+								<input type="search" >
+							</form>
+							<a class="waves-effect waves-light btn palette-2">Search</a>
+						</div>
+						<!--<div class="col s6">
+
+						</div>-->
+					</div>
 					<table>
 		            	<thead>
 		            		<tr class="telegrafico">
@@ -253,6 +320,17 @@
 				<!-- Logs -->
 				<div class="admin-view" id="admin-logsview" style="display: none;">
 					<h4 class="rockwell">Logs</h4>
+					<div class="row center">
+						<div class="col s12">
+							<form id="adminpanel-game-search-bar">
+								<input type="search" >
+							</form>
+							<a class="waves-effect waves-light btn palette-2">Search</a>
+						</div>
+						<!--<div class="col s6">
+
+						</div>-->
+					</div>
 					<table>
 		            	<thead>
 		            		<tr class="telegrafico">

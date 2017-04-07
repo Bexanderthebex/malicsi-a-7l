@@ -6,10 +6,13 @@
         .module('app')
         .controller('OrganizerController', OrganizerController);
 
-    OrganizerController.$inject = ['$scope', '$window', 'OrganizerService', 'UserService'];
+    OrganizerController.$inject = ['$scope', '$window', '$routeParams', 'OrganizerService', 'UserService'];
 
-    function OrganizerController($scope, $window, OrganizerService, UserService) {
+    function OrganizerController($scope, $window, $routeParams, OrganizerService, UserService) {
         //"declare" functions para magamit sa view
+        $scope.thisOrganizer = {
+            orgID: $routeParams.id
+        };
         $scope.addGame = addGame;
         $scope.retrieveGame = retrieveGame;
         $scope.deleteGame = deleteGame;
@@ -129,12 +132,11 @@
         }
 
         function getOrganizer() {
-            getCurrentUser();
             OrganizerService
-                .getOrganizer($scope.organizer.id) //$scope.organizer.id
+                .getOrganizer($scope.thisOrganizer.orgID) //$scope.getCurrentUser.id
                 .then(function(res) {
                     console.log(res.data);
-                    $scope.organizer = res.data;
+                    $scope.thisOrganizer = res.data;
                 }, function(err) {
                     Materialize.toast('Error retrieving organizer!', 3000);
                 })
