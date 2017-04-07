@@ -78,7 +78,7 @@
                 </div>
 
                 <!-- Affiliations -->
-                <div class="col s12 m7 l8" ng-init="getCompetitorTeams()">
+                <div class="col s12 m7 l8">
                     <h5 class="rockwell">Affiliations</h5>
                     
                     <ul class="tabs tabs-fixed-width tabs-transparent telegrafico" id="competitor-profile-games">
@@ -88,29 +88,13 @@
                     </ul>
 
 
-	                <div id="competitor-teams" class="col s12" ng-repeat="team in teams">
+	                <div id="competitor-teams" class="col s12" ng-init="getCompetitorTeams()">
 	                    <table class="highlight responsive-table competitor-games-data">
 	                        <tbody>
-	                            <tr class="century-gothic">
-	                                <td>{{team.name}}</td>
-	                                <td>{{team.sport}}</td>
+	                            <tr class="century-gothic" ng-repeat="team in competitorteams">
+	                                <td>{{team.team_name}}</td>
+	                                <td>{{team.sport_name}}</td>
 	                            </tr>
-	                            <!-- <tr class="century-gothic">
-	                                <td>Real Madrid</td>
-	                                <td>Football</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>Mighty Ducks</td>
-	                                <td>Hockey</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>New York Knicks</td>
-	                                <td>Basketball</td>
-	                            </tr>
-	                            <tr class="century-gothic">
-	                                <td>Mighty Ducks</td>
-	                                <td>Hockey</td>
-	                            </tr> -->
 	                        </tbody>
 	                    </table>
 	                    <table class="highlight competitor-showall">
@@ -121,7 +105,7 @@
 	                        </tbody>
 	                    </table>
 	                </div>
-	                <div id="competitor-organizations" class="col s12" ng-repeat="team in teams">
+	                <div id="competitor-organizations" class="col s12">
 	                    <table class="highlight responsive-table competitor-games-data">
 	                        <tbody>
 	                            <tr class="century-gothic">
@@ -153,13 +137,13 @@
 	        </div>
 
             <!-- Sports Played -->
-            <div class="row container" ng-init="">
+            <div class="row container" ng-init="getCompetitorTeams()">
                 <h5 class="rockwell">Sports Played</h5><br>    
-                <div class="chip">Basketball</div>
-                <div class="chip">Baseball</div>
+                <div class="chip" ng-repeat="sport in competitorteams">{{sport.sport_name}}</div>
+                <!-- <div class="chip">Baseball</div>
                 <div class="chip">Football</div>
                 <div class="chip">Swimming</div>
-                <div class="chip">Hockey</div>
+                <div class="chip">Hockey</div> -->
             </div><br>
 
             <div class="divider container"></div><br>
@@ -198,29 +182,29 @@
 
         </div>
 
-        <div id="teams-managed-div" class="col s12">
+        <div id="teams-managed-div" class="col s12" ng-init="getCoachedTeam()">
             <div class="row container">
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
-                <ul class="collapsible" data-collapsible="accordion">
+                <ul class="collapsible" data-collapsible="accordion" ng-repeat="cteam in coachedteam">
                     <li>
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
-                                <div class="col l3 m3 s3"><b>New York Knicks</b></div>
-                                <div class="col l5 m5 s5">National Basketball Association</div>
-                                <div class="col l3 m3 s3">Basketball</div>
+                                <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
+                                <div class="col l5 m5 s5">{{cteam.team_organization}}</div>
+                                <div class="col l3 m3 s3">{{cteam.sport_name}}</div>
                                 <div class="col l1 m1 s1 center-block">
                                     <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="collapsible-body">
-                            <span class="telegrafico">Members</span>
+                            <span class="telegrafico">Max Members: {{cteam.max_members}}</span>
                             <div class="chips chips-initial"></div>
                         </div>
                     </li>
-                    <li>
+                    <!-- <li>
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3"><b>Real Madrid</b></div>
@@ -251,7 +235,7 @@
                             <span class="telegrafico">Members</span>
                             <div class="chips chips-initial"></div>
                         </div>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -398,10 +382,10 @@
                     </div>
                     <div class="input-field col l4 m4 s12">
                         <span class="telegrafico">Sex</span><br>
-                        <span><input id="male" type="radio" name="gender" value="male" class="with-gap">
-                        <label class="black-text telegrafico" for="male" ng-model="">Male</label></span>
-                        <span><input id="female" type="radio" name="gender" value="female" class="with-gap">
-                        <label class="black-text telegrafico" for="female" ng-model="">Female</label></span>
+                        <span><input id="male" type="radio" name="gender" value="m" class="with-gap" ng-model="competitor.sex">
+                        <label class="black-text telegrafico" for="male">Male</label></span>
+                        <span><input id="female" type="radio" name="gender" value="f" class="with-gap"  ng-model="competitor.sex">
+                        <label class="black-text telegrafico" for="female">Female</label></span>
                     </div>
                 </div>
             </form>

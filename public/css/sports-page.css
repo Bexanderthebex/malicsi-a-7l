@@ -81,7 +81,7 @@
 }
 
 #sports-details{
-	min-height: 400px;
+	max-height: 400px;
 	background-image: url('/assets/basketball2.jpg')!important;
 	background-size: cover;
 }

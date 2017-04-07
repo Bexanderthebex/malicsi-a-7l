@@ -22,8 +22,8 @@ exports.login = (req, res) => {
 						console.log(req.session.user.type);
 						return res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
-						console.log('hello')
-						res.json({ 'message' : 'Incorrect credentials', 'userdata' : rows[0]}).status(401);
+						// console.log('hello')
+						return res.json({ 'message' : 'Incorrect credentials', 'userdata' : rows[0]}).status(401);
 						//console.log(res);
 					}
 				});
@@ -69,7 +69,7 @@ exports.register = (req, res) => {
 						var returnObject = rows[0];
 
 						req.session.user = {
-							id: rows.insertId,
+							id: returnObject.id,
 							username: req.body.username,
 							type: req.body.type
 						};
@@ -223,6 +223,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 		res.status(200).send(null);
 	} else {
 		let currentUser = req.session.user;
+		// console.log("id: " + currentUser.id);
 		connection.userType('A').query('SELECT * FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
 				let returnObject = rows;

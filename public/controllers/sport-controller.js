@@ -32,6 +32,7 @@
         function retrieveSport() {
             SportService
                 .retrieveSport($scope.thisSport.sport_id) //parameter is sport id
+
                 .then(function (res){
                     console.log("retrieved sport");
                     $scope.sport = res.data;

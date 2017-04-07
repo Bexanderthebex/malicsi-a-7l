@@ -65,9 +65,11 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/game/:id', {
+
+            .when('/game/:gameId', {
                 'templateUrl': 'views/game-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'GameController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/game', {
@@ -88,7 +90,8 @@
             })
             .when('/search', {
                 'templateUrl': 'views/search-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'SearchController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/sports/:id', {

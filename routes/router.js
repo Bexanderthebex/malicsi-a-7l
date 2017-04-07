@@ -15,6 +15,7 @@ let logController = require("../controllers/log-controller");
 let competitorController = require("../controllers/competitor-controller");
 let organizerController = require("../controllers/organizer-controller");
 let teamController = require("../controllers/team-controller");
+let organizationController = require("../controllers/organization-controller");
 
 function sha256Hash(req, res, next) {
     console.log(req.body);
@@ -91,6 +92,7 @@ router.delete('/organizer/deleteTeam',organizerController.deleteTeam);
 // organization
 router.get('/organization/getOrganization',teamController.getOrganization);
 router.get('/organization/getGamesInOrganization',teamController.getGamesInOrganization);
+router.get('/organization/search',organizationController.searchOrganization);
 
 // team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
@@ -109,10 +111,13 @@ router.get('/team/getOrganizationRankings',teamController.getOrganizationRanking
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
-router.get('/game/viewAllMatchesInGame', gameController.viewAllMatchesInGame);
+router.get('/game/viewAllPastMatchesInGame', gameController.viewAllPastMatchesInGame);
+router.get('/game/viewAllOngoingMatchesInGame', gameController.viewAllOngoingMatchesInGame);
+router.get('/game/viewAllUpcomingMatchesInGame', gameController.viewAllUpcomingMatchesInGame);
 router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
 router.get('/game/viewAllSportsInGame/:gameId', gameController.viewAllSportsInGame);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
+router.get('/game/ranks/:gameId', gameController.retrieveOrgRankings);
 router.post('/game/createGame',  gameController.createGame);
 router.put('/game/updateGame',  gameController.updateGame);
 router.delete('/game/deleteGame/',  gameController.deleteGame);

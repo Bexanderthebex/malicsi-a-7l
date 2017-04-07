@@ -54,7 +54,7 @@ DROP PROCEDURE IF EXISTS view_all_sports_in_game;
 delimiter //
 CREATE PROCEDURE view_all_sports_in_game(in in_game_id int)
 BEGIN
-	select sport_name, mechanics, winner,time_start, time_end, start_date, end_date, scoring_system from sport where game_id = in_game_id;
+	select * from sport where game_id = in_game_id;
 END;
 //
 delimiter ;
@@ -90,10 +90,63 @@ DROP PROCEDURE IF EXISTS search_for_game_by_keyword;
 DELIMITER //
 CREATE PROCEDURE search_for_game_by_keyword(in keyword varchar(50))
 BEGIN
-	select game.name, start_date, end_date, game.description, organizer.name as organizer_name from game,organizer where game.name like keyword or game.description like keyword or organizer.name like keyword;
+	select * from game where game.name like keyword;
 END;
 //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_matches_in_game;
+DELIMITER //
+CREATE PROCEDURE view_all_matches_in_game(in game_id_input INT)
+BEGIN
+	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date 
+	FROM (((game JOIN sport using (game_id)) 
+		JOIN sport_match using (sport_id)) 
+		JOIN team_in_match using (match_id))
+        JOIN team using (team_id)
+	WHERE game_id = game_id_input;
+END; //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_ongoing_matches_in_game;
+DELIMITER //
+CREATE PROCEDURE view_all_ongoing_matches_in_game(in game_id_input INT)
+BEGIN
+	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date 
+	FROM (((game JOIN sport using (game_id)) 
+		JOIN sport_match using (sport_id)) 
+		JOIN team_in_match using (match_id))
+        JOIN team using (team_id)
+	WHERE game_id = game_id_input and sport_match.match_date = curdate();
+END; //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_past_matches_in_game;
+DELIMITER //
+CREATE PROCEDURE view_all_past_matches_in_game(in game_id_input INT)
+BEGIN
+	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date 
+	FROM (((game JOIN sport using (game_id)) 
+		JOIN sport_match using (sport_id)) 
+		JOIN team_in_match using (match_id))
+        JOIN team using (team_id)
+	WHERE game_id = game_id_input and sport_match.match_date < curdate();
+END; //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_upcoming_matches_in_game;
+DELIMITER //
+CREATE PROCEDURE view_all_upcoming_matches_in_game(in game_id_input INT)
+BEGIN
+	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date 
+	FROM (((game JOIN sport using (game_id)) 
+		JOIN sport_match using (sport_id)) 
+		JOIN team_in_match using (match_id))
+        JOIN team using (team_id)
+	WHERE game_id = game_id_input and sport_match.match_date > now();
+END; //
+DELIMITER ;
+
 
 -- create game
 GRANT EXECUTE ON PROCEDURE create_game TO organizer;
@@ -143,3 +196,27 @@ GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO organizer;
 GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO competitor;
 GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO administrator;
 GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO guest;
+
+-- view all matches in game
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO guest;
+
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO guest;
+
+
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO guest;
+
+
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO guest;
+
