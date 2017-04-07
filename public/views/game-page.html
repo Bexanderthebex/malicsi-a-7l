@@ -5,7 +5,7 @@
 
 	<div class="row">
 		<div class="col s3 game-sidebar palette-5 game-fixed-sidebar white-text">
-			<div id="game-update-section" class="col s12">
+<!--			<div id="game-update-section" class="col s12">
 				<h5 class="rockwell right-align">Updates</h5>
 				<div class="game-type-matches" style="width: 100%; max-height: 85%; overflow-y: scroll; margin-right: 5px; right: 10px;">
 					<div class="game-line-update"></div>
@@ -82,11 +82,11 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<div id="game-rank-section" class="col s12">
 				<h5 class="rockwell right-align">Ranking</h5>
-				<div class="game-type-matches" style="width: 100%; max-height: 70%; overflow-y: scroll; margin-right: 5px; right: 10px;">
-					<div class="game-line-rank" ng-init=viewOrgRankings()></div>
+				<div class="game-type-matches" style="width: 100%; max-height: 100%; overflow-y: ; margin-right: 5px; right: 10px;">
+					<div class="game-line-rank" ng-init=viewOrgRankings() ng-hide="checkRankings()"></div>
 					<div class="row right-align">
 						<div ng-repeat = "organization in organizations">
 							<p class="col s10 game-rank-title truncate century-gothic" >{{organization.org_name}}</p>
@@ -94,7 +94,7 @@
 								<h5 class="rockwell game-position-rank">{{organization.org_rank}}</h5>
 							</div>
 						</div>
-						<p class="col s10 game-rank-title truncate century-gothic">Organization 3</p>
+<!--						<p class="col s10 game-rank-title truncate century-gothic">Organization 3</p>
 						<div class="col s1 game-circle-update palette-4">
 							<h5 class="rockwell game-position-rank">3</h5>
 						</div>
@@ -128,8 +128,11 @@
 						<div class="col s1 game-circle-update palette-4">
 							<h5 class="rockwell game-position-rank">9</h5>
 						</div>
-
+-->
 					</div>
+				</div>
+				<div ng-show="checkRankings()" class="col s12">
+					<h5 class="rockwell">Organization Rankings not available.</h5>
 				</div>
 			</div>
 		</div>
@@ -148,7 +151,7 @@
 				<div class="slider game-slider-background grey lighten-3" id="game-slider">
 					<ul class="slides game-slider-background grey lighten-3" id="game-slides">
 						<li>
-							<div class="row" ng-init="retrieveMatchesInGame()">
+							<div class="row" ng-init="retrieveMatchesInGame()" ng-hide="checkPastMatches()">
 								<div id="game-past-match" class="col s12 m3" ng-repeat="pastMatch in pastMatches.slice(0,4)">
 									<div class="game-match palette-border-5">
 										<!-- MATCH TITLE -->
@@ -160,7 +163,7 @@
 											<div class="row">
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">{{pastMatch.team1_name}}</div>
+														<div class="center century-gothic truncate">{{pastMatch.team1_name}}</div>
 													</div>
 												</div>
 												<div class="col s12 m12">
@@ -170,7 +173,7 @@
 												</div>
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">{{pastMatch.team2_name}}</div>
+														<div class="center century-gothic truncate">{{pastMatch.team2_name}}</div>
 													</div>
 												</div>
 											</div>
@@ -186,10 +189,13 @@
 								</div>
 
 							</div>
+							<div class="row" ng-show="checkPastMatches()">
+									<h5 class="rockwell center">No past matches.</h5>
+							</div>
 						</li>
 						<li>
-							<div class="row">
-								<div id="game-ongoing-match" class="col s12 m3" >
+							<div class="row" ng-hide = "checkOngoingMatches()">
+								<div id="game-ongoing-match" class="col s12 m3" ng-repeat="ongoingMatch in ongoingMatches.slice(0,4)" >
 									<div class="game-match palette-border-4">
 										<!-- MATCH TITLE -->
 										<div class="game-padding-left game-padding-right palette-4 center game-match-header">
@@ -200,7 +206,7 @@
 											<div class="row">
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
+														<div class="center century-gothic truncate">{{ongoingMatch.team1_name}}</div>
 													</div>
 												</div>
 												<div class="col s12 m12">
@@ -210,42 +216,7 @@
 												</div>
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="game-ongoing-match" class="col s12 m3" ng-repeat="ongoingMatch in ongoingMatches.slice(0,4)">
-									<div class="game-match palette-border-4">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-4 center game-match-header">
-											<h5 class="telegrafico white-text">Ongoing</h5>
-										</div>
-
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">{{ongoingMatch.team1_name}}</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">{{ongoingMatch.team2_name}}</div>
+														<div class="center century-gothic truncate">{{ongoingMatch.team2_name}}</div>
 													</div>
 												</div>
 											</div>
@@ -258,12 +229,15 @@
 											</div>
 										</div>
 									</div>
+										</div>
+								</div>
+								<div class="row" ng-show="checkOngoingMatches()">
+										<h5 class="rockwell center">No ongoing matches.</h5>
 								</div>		
-							</div>
 						</li>
 						<li>
-							<div class="row">
-									<div id="game-upcoming-match" class="col s12 m3">
+							<div class="row" ng-hide="checkUpcomingMatches()">
+								<div id="game-upcoming-match" class="col s12 m3" ng-repeat= "upcomingMatch in upcomingMatches">
 									<div class="game-match palette-border-3">
 										<!-- MATCH TITLE -->
 										<div class="game-padding-left game-padding-right palette-3 center game-match-header">
@@ -274,7 +248,7 @@
 											<div class="row">
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
+														<div class="center century-gothic truncate">{{upcomingMatch.team1_name}}</div>
 													</div>
 												</div>
 												<div class="col s12 m12">
@@ -284,42 +258,7 @@
 												</div>
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="game-upcoming-match" class="col s12 m3">
-									<div class="game-match palette-border-3" ng-repeat= "upcomingMatch in upcomingMatches">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-3 center game-match-header">
-											<h5 class="telegrafico white-text">Upcoming</h5>
-										</div>
-
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">{{upcomingMatch.team1_name}}</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">{{upcomingMatch.team2_name}}</div>
+														<div class="center century-gothic truncate">{{upcomingMatch.team2_name}}</div>
 													</div>
 												</div>
 											</div>
@@ -334,6 +273,10 @@
 									</div>
 								</div>
 							</div>
+							<div class="row" ng-show="checkUpcomingMatches()">
+									<h5 class="rockwell center">No upcoming matches. </h5>
+							</div>
+						</li>	
 					</ul>
 				</div>
 			</div>

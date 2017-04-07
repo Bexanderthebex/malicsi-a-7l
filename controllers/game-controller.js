@@ -75,7 +75,6 @@ exports.viewGameDetails = (req, res) => {
 			console.log(err.code);
 			res.status(500).send("An error occurred.");
 		}
-
 	});
 
 	}
@@ -120,7 +119,7 @@ exports.viewAllSportsInGame = (req, res) => {
 					return res.status(200).send(rows[0]);
 				}
 				else if (rows[0].length==0){
-					res.status(404).send("Sports not found. The game doesn't have sports yet, or the game doesn't exist yet.");
+					res.status(200).send([]);
 				}		
 				else{
 					console.log(err.code);
@@ -211,7 +210,7 @@ exports.viewAllPastMatchesInGame = (req, res) => {
 			if(!err && rows[0].length != 0){
 				return res.status(200).send(rows[0]);
 
-			}else if(rows[0].length ==0 ){
+			}else if(rows[0].length == 0 ){
 				res.status(200).send([]);
 			}
 			else{

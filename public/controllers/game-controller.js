@@ -26,6 +26,10 @@
         $scope.viewUpcomingMatchesInGame = viewUpcomingMatchesInGame;
         $scope.retrieveMatchesInGame = retrieveMatchesInGame;
         $scope.viewOrgRankings = viewOrgRankings;
+        $scope.checkRankings = checkRankings;
+        $scope.checkPastMatches = checkPastMatches;
+        $scope.checkOngoingMatches = checkOngoingMatches;
+        $scope.checkUpcomingMatches = checkUpcomingMatches;
         $scope.sport = {};
         $scope.sports = [];
         $scope.sportCopy = {};
@@ -94,6 +98,23 @@
                 i = "0" + i;
             }
             return i;
+        }
+
+        function checkRankings(){
+            if($scope.organizations.length == 0 ) return true;
+            else false;
+        }
+        function checkPastMatches(){
+            if($scope.pastMatches.length == 0 ) return true;
+            else false;
+        }
+        function checkOngoingMatches(){
+            if($scope.ongoingMatches.length == 0 ) return true;
+            else false;
+        }
+        function checkUpcomingMatches(){
+            if($scope.upcomingMatches.length == 0 ) return true;
+            else false;
         }
 
 
@@ -181,8 +202,8 @@
                 .viewGameDetails($scope.thisGame.game_id)
                 .then(function(res){
                     console.log("game details retrieved for game#"+ $scope.thisGame.game_id);
-                    console.log(res.data[0]);
-                    $scope.game = res.data[0];
+                    console.log(res.data);
+                    $scope.game = res.data;
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to retrieve game details!', 3000);

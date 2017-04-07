@@ -22,7 +22,7 @@
             viewPastMatchesInGame: viewPastMatchesInGame,
             viewOngoingMatchesInGame: viewOngoingMatchesInGame,
             viewUpcomingMatchesInGame: viewUpcomingMatchesInGame,
-            viewOrgRankings: viewOrgRankings
+            viewOrgRankings: viewOrgRankings,
             viewUpcomingOngoingGames: viewUpcomingOngoingGames
         }
 
@@ -237,6 +237,7 @@
             
             return deferred.promise;
         }
+
         function viewOrgRankings(gameId) {
             let deferred = $q.defer();
             $http({
@@ -248,7 +249,9 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
+            return deferred.promise;
+        }       
         function viewUpcomingOngoingGames() {
             let deferred = $q.defer();
 

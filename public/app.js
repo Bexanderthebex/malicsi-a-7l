@@ -69,7 +69,7 @@
                 'controller': 'GameController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/game/feed', {
+            .when('/game', {
                 'templateUrl': 'views/gamefeed.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
