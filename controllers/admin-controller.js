@@ -53,23 +53,24 @@ exports.changeActivity = (req, res) => {
 	let query = 'CALL update_activity(?, ?)';
 	connection.userType('A').query(query, [req.body.is_active, req.params.id], (err, rows) => {
 		if(!err){
+			console.log(req.params.id)
 			console.log(rows);
 			if(rows.affectedRows == 0) {
-				return res.status(404).send({'message': 'User does not exist.'});
+				return res.status(500).send({'message': 'User does not exist.'});
 			}else{
 				return res.status(200).send({'message': 'User activity status successfully updated.'});
 			}
 		}else{
 			console.log(err);
 			if(err.code == 'ER_BAD_NULL_ERROR') {
-				return res.status(400).send({ 'message' : 'Missing field.' });
+				return res.status(500).send({ 'message' : 'Missing field.' });
 			}
 		}
 	});
 }
 
 exports.getUsersByType = (req, res) => {
-	let query = 'SELECT * FROM user WHERE type = ?';
+	let query = 'SELECT id, username, email, contact, is_active FROM user WHERE type = ?';
 	connection.userType('A').query(query, [
 		req.body.type
 	], (err, rows) => {
@@ -83,7 +84,7 @@ exports.getUsersByType = (req, res) => {
 }
 
 exports.getAllUsers = (req, res) => {
-	let query = 'SELECT * FROM user';
+	let query = 'SELECT id, username, email, contact FROM user';
 	connection.userType('A').query(query, [], (err, rows) => {
 		if(!err){
 			res.status(200).send(rows);

@@ -32,7 +32,7 @@ CREATE PROCEDURE search_admin(
 	in _keyword VARCHAR(100)
 )
 	BEGIN
-		SELECT id, username, email, contact FROM user WHERE (username LIKE _keyword OR email LIKE _keyword) AND type='A';
+		SELECT id, username, email, contact, is_active FROM user WHERE (username LIKE _keyword OR email LIKE _keyword) AND type='A';
 	END;
 //
 DELIMITER //

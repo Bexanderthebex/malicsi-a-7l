@@ -63,6 +63,22 @@
                 console.log(err);
             })
         }
+
+        $scope.setIsActive = (isActive, id, list) => {
+            UserService.setIsActive(isActive, id)
+            .then((res) => {
+                Materialize.toast('User status changed', 2000);
+                for (let a of list) {
+                    if (a.id == id) {
+                        a.is_active = isActive;
+                        break;
+                    }
+                }
+            }, (err) => {
+                Materialize.toast('Something went wrong :\'(', 2000);
+                console.log(err);
+            });
+        }
     }
 })();
 

@@ -128,6 +128,7 @@
 		            			<th>Username</th>
 								<th>Email</th>
 								<th>Contact</th>
+								<th>Active</th>
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
@@ -144,9 +145,15 @@
 		            				<div ng-show="!view">{{a.contact}}</div>
 		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
 		            			</td>
+								<td class="match-player">
+		            				<div ng-show="!view">{{!!a.is_active}}</div>
+		            			</td>
 		            			<td>
-		            				<div class="match-actions">
+		            				<div class="match-actions" ng-show="a.is_active == true" ng-click="setIsActive(false, a.id, admins)">
 		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+									<div class="match-actions" ng-show="a.is_active == false" ng-click="setIsActive(true, a.id, admins)">
+		            					<i class="fa fa-plus-square fa-lg"></i>
 		            				</div>
 		            				<div class="match-actions" ng-click="view = !view">
 		            					<i class="fa fa-pencil-square-o fa-lg"></i>
