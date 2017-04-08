@@ -6,9 +6,12 @@
         .module('app')
         .controller('SportController', SportController);
 
-    SportController.$inject = ['$scope', 'SportService', 'OrganizerService'];
+    SportController.$inject = ['$scope', '$routeParams', 'SportService', 'OrganizerService'];
 
-    function SportController($scope, SportService, OrganizerService) {
+    function SportController($scope, $routeParams, SportService, OrganizerService) {
+        $scope.thisSport = {
+            sport_id: $routeParams.id
+        };
         $scope.addMatch = addMatch;
         $scope.editMatch = editMatch;
         $scope.deleteMatch = deleteMatch;
@@ -28,7 +31,8 @@
 
         function retrieveSport() {
             SportService
-                .retrieveSport('6') //parameter is sport id
+                .retrieveSport($scope.thisSport.sport_id) //parameter is sport id
+
                 .then(function (res){
                     console.log("retrieved sport");
                     $scope.sport = res.data;

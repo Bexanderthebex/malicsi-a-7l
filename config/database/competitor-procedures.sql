@@ -45,10 +45,10 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS get_competitor_teams;
 DELIMITER //
-	CREATE PROCEDURE get_competitor_teams(in id INT)
+	CREATE PROCEDURE get_competitor_teams(in cid INT)
 
 	BEGIN
-		SELECT *  FROM (competitor JOIN competitor_joins_team using (id)) JOIN team using (team_id) where competitor.id = id;
+		SELECT *  FROM competitor JOIN competitor_joins_team using (id) JOIN team using (team_id) JOIN sport using (sport_id) where competitor.id = cid;
 	END;
 
 	//

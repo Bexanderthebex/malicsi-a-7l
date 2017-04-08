@@ -1,4 +1,4 @@
-<div id="mainHolder" ng-controller="visited-competitorController">
+<div id="mainHolder">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main" class="">
@@ -7,13 +7,13 @@
 			<div class="col l3 m5 s12 offset-l2 center">
 				<img id="visited-competitor-profile-img" src="assets/avatar.png" class="pallette-3">
 			</div>
-			<div id="visited-competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getvisited-competitor()">
-				<h3 class="rockwell">{{ visited-competitor.nickname }}</h3>
-				<button id="invite-to-teams-button" data-target="invite-to-teams-modal" class="minimalist-button modal-trigger">Invite to Teams</button>
-				<p class="telegrafico">Name: {{ visited-competitor.firstname }} {{ visited-competitor.lastname }}</p>
-				<p class="telegrafico">Contact: {{ visited-competitor.contact }} | E-mail: {{ visited-competitor.email }}</p>
+			<div id="visited-competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="searchCompetitor()">
+				<h3 class="rockwell">{{ competitor.nickname }}</h3>
+				<!-- <button id="invite-to-teams-button" data-target="invite-to-teams-modal" class="minimalist-button modal-trigger">Invite to Teams</button> -->
+				<p class="telegrafico">Name: {{ competitor.first_name }} {{ competitor.last_name }}</p>
+				<!-- <p class="telegrafico">Contact: {{ competitor.contact }} | E-mail: {{ competitor.email }}</p> -->
 				<p class="telegrafico">
-					{{ visited-competitor.description }}
+					{{ competitor.bio }}
 				</p>
 			</div>
 		</div>

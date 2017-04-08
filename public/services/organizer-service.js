@@ -138,7 +138,7 @@
         
         function getOrganizer(id) {
             let deferred = $q.defer();
-
+            console.log(id);
             $http({
                 method: 'GET',
                 params: { 'search': id },

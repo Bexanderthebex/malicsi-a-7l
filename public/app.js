@@ -17,7 +17,8 @@
         $routeProvider
             .when('/', {
                 'templateUrl': 'views/home-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'LandingCtrl'
                 // 'access': { requiredAuthentication: false }
             })
             .when('/login', {
@@ -45,7 +46,8 @@
             })
             .when('/competitor/profile/:id', {
                 'templateUrl': 'views/competitor-visited-profile-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'CompetitorController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/help', {
@@ -63,6 +65,7 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
+
             .when('/game/:gameId', {
                 'templateUrl': 'views/game-page.html',
                 'caseInsensitiveMatch': true,
@@ -76,10 +79,11 @@
             })
             .when('/organizations', {
                 'templateUrl': 'views/organizations.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'OrganizationsController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/organization', {
+            .when('/organization/:id', {
                 'templateUrl': 'views/organization-page.html',
                 'caseInsensitiveMatch': true,
                 'controller': 'OrganizationController'
@@ -87,10 +91,11 @@
             })
             .when('/search', {
                 'templateUrl': 'views/search-page.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'SearchController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/sports', {
+            .when('/sports/:id', {
                 'templateUrl': 'views/sports-page.html',
                 'caseInsensitiveMatch': true,
                 'controller': 'SportController'

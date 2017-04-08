@@ -183,11 +183,8 @@ exports.searchForSportByKeyword = (req,res) => {
 		(err, results, fields)	=> {
 		console.log(err);
 		console.log(results);
-		if (!err && results[0].length!=0) {
+		if (!err) {
 			res.status(200).send(results[0]);
-		}
-		else if (results[0].length==0){
-			res.status(404).send("Game not found.");
 		}		
 		else{
 			console.log(err.code);
