@@ -106,6 +106,7 @@
                 .then(function (res){
                     console.log("added");
                     Materialize.toast("Successfully added the sport!", 3000);
+                    retrieveAllSports();
                 }, function(err) {
                     console.log(err);
                     Materialize.toast("Failed to add the sport!", 3000);
@@ -383,6 +384,7 @@
                     console.log("added sponsor institution");
                     console.log(res);
                     $scope.sponsors = res;
+                    viewSponsoringInstitutions();
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to add sponsoring institution!', 3000);
@@ -395,6 +397,7 @@
                     console.log("edited sponsor institution#"+ $scope.sponsorCopy.sponsor_id);
                     console.log(res);
                     $scope.sponsors = res;
+                    viewSponsoringInstitutions();
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to edit sponsoring institution!', 3000);
@@ -408,6 +411,7 @@
                     console.log("deleted sponsor insitution#"+ $scope.thisGame.game_id);
                     console.log(res);
                     $scope.sponsors = res;
+                    viewSponsoringInstitutions();
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to delete sponsoring institutions!', 3000);
