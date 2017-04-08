@@ -5,7 +5,7 @@
 
 	<div class="row">
 		<div class="col s3 game-sidebar palette-5 game-fixed-sidebar white-text">
-			<div id="game-update-section" class="col s12">
+<!--			<div id="game-update-section" class="col s12">
 				<h5 class="rockwell right-align">Updates</h5>
 				<div class="game-type-matches" style="width: 100%; max-height: 85%; overflow-y: scroll; margin-right: 5px; right: 10px;">
 					<div class="game-line-update"></div>
@@ -82,23 +82,19 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<div id="game-rank-section" class="col s12">
 				<h5 class="rockwell right-align">Ranking</h5>
-				<div class="game-type-matches" style="width: 100%; max-height: 70%; overflow-y: scroll; margin-right: 5px; right: 10px;">
-					<div class="game-line-rank"></div>
+				<div class="game-type-matches" style="width: 100%; max-height: 100%; overflow-y: ; margin-right: 5px; right: 10px;">
+					<div class="game-line-rank" ng-init=viewOrgRankings() ng-hide="checkRankings()"></div>
 					<div class="row right-align">
-						<p class="col s10 game-rank-title truncate century-gothic">Organization 1</p>
-						<div class="col s1 game-circle-update palette-4">
-							<h5 class="rockwell game-position-rank">1</h5>
+						<div ng-repeat = "organization in organizations">
+							<p class="col s10 game-rank-title truncate century-gothic" >{{organization.org_name}}</p>
+							<div class="col s1 game-circle-update palette-4">
+								<h5 class="rockwell game-position-rank">{{organization.org_rank}}</h5>
+							</div>
 						</div>
-
-						<p class="col s10 game-rank-title truncate century-gothic">Organization 2</p>
-						<div class="col s1 game-circle-update palette-4">
-							<h5 class="rockwell game-position-rank">2</h5>
-						</div>
-
-						<p class="col s10 game-rank-title truncate century-gothic">Organization 3</p>
+<!--						<p class="col s10 game-rank-title truncate century-gothic">Organization 3</p>
 						<div class="col s1 game-circle-update palette-4">
 							<h5 class="rockwell game-position-rank">3</h5>
 						</div>
@@ -132,15 +128,18 @@
 						<div class="col s1 game-circle-update palette-4">
 							<h5 class="rockwell game-position-rank">9</h5>
 						</div>
-
+-->
 					</div>
+				</div>
+				<div ng-show="checkRankings()" class="col s12">
+					<h5 class="rockwell">Organization Rankings not available.</h5>
 				</div>
 			</div>
 		</div>
-		<div class="col s9 game-main-content game-padding-left game-padding-right">
+		<div class="col s9 game-main-content game-padding-left game-padding-right" ng-init="viewGameDetails()">
 				<div id="sports-title" class="rockwell ">
-			<h3 class="white-text">GAME NAME</h3>
-			<h6 class="white-text">Start: 12/23/2007 End: 12/23/2078</h6>
+			<h3 class="white-text">{{game.name}}</h3>
+			<h6 class="white-text">Start: {{game.start_date}} End: {{game.end_date}}</h6>
 		</div>
 			<!-- Do your thing here -->
 
@@ -152,8 +151,8 @@
 				<div class="slider game-slider-background grey lighten-3" id="game-slider">
 					<ul class="slides game-slider-background grey lighten-3" id="game-slides">
 						<li>
-							<div class="row">
-								<div id="game-past-match" class="col s12 m3">
+							<div class="row" ng-init="retrieveMatchesInGame()" ng-hide="checkPastMatches()">
+								<div id="game-past-match" class="col s12 m3" ng-repeat="pastMatch in pastMatches.slice(0,4)">
 									<div class="game-match palette-border-5">
 										<!-- MATCH TITLE -->
 										<div class="game-padding-left game-padding-right palette-5 center game-match-header">
@@ -164,7 +163,7 @@
 											<div class="row">
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
+														<div class="center century-gothic truncate">{{pastMatch.team1_name}}</div>
 													</div>
 												</div>
 												<div class="col s12 m12">
@@ -174,200 +173,29 @@
 												</div>
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
+														<div class="center century-gothic truncate">{{pastMatch.team2_name}}</div>
 													</div>
 												</div>
 											</div>
 
 											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
+												Start: {{pastMatch.time_start}} • End: {{pastMatch.time_end}}
 											</div>
 											<div class="game-match-info">
-												Date: 03/20/2007
+												Date: {{pastMatch.match_date}} ID: {{pastMatch.match_id}}
 											</div>
 										</div>
 									</div>
 								</div>
-								<div id="game-past-match" class="col s12 m3">
-									<div class="game-match palette-border-5">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-5 center game-match-header">
-											<h5 class="telegrafico white-text">Past</h5>
-										</div>
 
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="game-ongoing-match" class="col s12 m3">
-									<div class="game-match palette-border-4">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-4 center game-match-header">
-											<h5 class="telegrafico white-text">Ongoing</h5>
-										</div>
-
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="game-upcoming-match" class="col s12 m3">
-									<div class="game-match palette-border-3">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-3 center game-match-header">
-											<h5 class="telegrafico white-text">Upcoming</h5>
-										</div>
-
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
+							</div>
+							<div class="row" ng-show="checkPastMatches()">
+									<h5 class="rockwell center">No past matches.</h5>
 							</div>
 						</li>
 						<li>
-							<div class="row">
-								<div id="game-past-match" class="col s12 m3">
-									<div class="game-match palette-border-5">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-5 center game-match-header">
-											<h5 class="telegrafico white-text">Past</h5>
-										</div>
-
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="game-past-match" class="col s12 m3">
-									<div class="game-match palette-border-5">
-										<!-- MATCH TITLE -->
-										<div class="game-padding-left game-padding-right palette-5 center game-match-header">
-											<h5 class="telegrafico white-text">Past</h5>
-										</div>
-
-										<div class="game-match-container">
-											<div class="row">
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center telegrafico">VS.</div>
-													</div>
-												</div>
-												<div class="col s12 m12">
-													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
-													</div>
-												</div>
-											</div>
-
-											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
-											</div>
-											<div class="game-match-info">
-												Date: 03/20/2007
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="game-ongoing-match" class="col s12 m3">
+							<div class="row" ng-hide = "checkOngoingMatches()">
+								<div id="game-ongoing-match" class="col s12 m3" ng-repeat="ongoingMatch in ongoingMatches.slice(0,4)" >
 									<div class="game-match palette-border-4">
 										<!-- MATCH TITLE -->
 										<div class="game-padding-left game-padding-right palette-4 center game-match-header">
@@ -378,7 +206,7 @@
 											<div class="row">
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
+														<div class="center century-gothic truncate">{{ongoingMatch.team1_name}}</div>
 													</div>
 												</div>
 												<div class="col s12 m12">
@@ -388,21 +216,28 @@
 												</div>
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
+														<div class="center century-gothic truncate">{{ongoingMatch.team2_name}}</div>
 													</div>
 												</div>
 											</div>
 
 											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
+												Start: {{ongoingMatch.time_start}} • End: {{ongoingMatch.time_end}}
 											</div>
 											<div class="game-match-info">
-												Date: 03/20/2007
+												Date: {{ongoingMatch.match_date}}
 											</div>
 										</div>
 									</div>
+										</div>
 								</div>
-								<div id="game-upcoming-match" class="col s12 m3">
+								<div class="row" ng-show="checkOngoingMatches()">
+										<h5 class="rockwell center">No ongoing matches.</h5>
+								</div>		
+						</li>
+						<li>
+							<div class="row" ng-hide="checkUpcomingMatches()">
+								<div id="game-upcoming-match" class="col s12 m3" ng-repeat= "upcomingMatch in upcomingMatches">
 									<div class="game-match palette-border-3">
 										<!-- MATCH TITLE -->
 										<div class="game-padding-left game-padding-right palette-3 center game-match-header">
@@ -413,7 +248,7 @@
 											<div class="row">
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">Ateneo Blue Eagles</div>
+														<div class="center century-gothic truncate">{{upcomingMatch.team1_name}}</div>
 													</div>
 												</div>
 												<div class="col s12 m12">
@@ -423,22 +258,25 @@
 												</div>
 												<div class="col s12 m12">
 													<div class="game-match-title">
-														<div class="center century-gothic">UP Fighting Maroons</div>
+														<div class="center century-gothic truncate">{{upcomingMatch.team2_name}}</div>
 													</div>
 												</div>
 											</div>
 
 											<div class="game-match-info">
-												Start: 08:00AM • End: 11:00AM
+												Start: {{upcomingMatch.time_start}} • End: {{upcomingMatch.time_end}}
 											</div>
 											<div class="game-match-info">
-												Date: 03/20/2007
+												Date: {{upcomingMatch.match_date}}
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</li>
+							<div class="row" ng-show="checkUpcomingMatches()">
+									<h5 class="rockwell center">No upcoming matches. </h5>
+							</div>
+						</li>	
 					</ul>
 				</div>
 			</div>
@@ -461,7 +299,7 @@
 								</div>
 							</div>
 
-							<div class="row">
+							<div class="row"  ng-init="retrieveAllSports()">
 								<div class="col s4">
 									<div class="game-sport" data-target="game-add-sport">
 										<div class="card game-hovercard">
@@ -474,407 +312,34 @@
 										</div>
 									</div>
 								</div>
-								<div class="col s4">
+								<div class="col s4" ng-repeat = "sport in sports">
 									<div class="game-sport">
 										<div class="card game-hovercard">
 											<div class="center">
 												<img src="assets/badges/badge_archery.png" class="game-adjust-image activator">
 											</div>
 											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Archery</span>
+												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">{{sport.sport_name}}</span>
 											</div>
 											<div class="card-reveal game-arrange-padding grey lighten-2">
 												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
+												<span class="card-title grey-text text-darken-4" ><i class="material-icons right" data-target="game-delete-sport" ng-click="passSport(sport)">delete</i></span>
+												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport" ng-click="passSport(sport)">update</i></span>
 												<div class="telegrafico">Date</div>
 												<div class="game-match-info">
-													Start: 03/20/2007
+													{{sport.start_date}} - {{sport.end_date}}
 												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
+												
 												<div class="telegrafico">Time</div>
 												<div class="game-match-info">
-													Start: 08:00AM
+													{{sport.time_start}} - {{sport.time_end}}
 												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
+												
 												<div class="telegrafico">Teams Remaining</div>
 												<div class="game-match-info">
-													9/10
+													9/{{sport.max_teams}}
 												</div>
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">archery</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_badminton.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Badminton</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">badminton</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_baseball.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Baseball</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">baseball</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_boxing.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Boxing</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">boxing</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_fencing.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Fencing</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">fencing</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_golf.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Golf</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">golf</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_gymnastics.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Gymnastics</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">gymnastics</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_swimming.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Swimming</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">swimming</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_tennis.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Tennis</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">tennis</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_tracknfield.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Track and Field</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">track and field</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_volleyball.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">Volleyball</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-delete-sport">delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport">update</i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													Start: 03/20/2007
-												</div>
-												<div class="game-match-info">
-													End: 03/20/2007
-												</div>
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													Start: 08:00AM
-												</div>
-												<div class="game-match-info">
-													End: 11:00AM
-												</div>
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/10
-												</div>
-
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">volleyball</div>
+												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">{{sport.sport_name | lowercase}}</div>
 											</div>
 										</div>
 									</div>
@@ -1047,17 +512,17 @@
 	<div class="modal-content">
 		<div class="row">
 			<div class="input-field col s6">
-				<input placeholder="Enter sport name" id="name" type="text" class="validate">
+				<input placeholder="Enter sport name" id="addName" type="text" class="validate">
 				<label for="name">Sport Name</label>
 			</div>
 
 			<div class="input-field col s2">
-				<input placeholder="Enter team number limit" id="maxTeams" type="number" class="validate">
+				<input placeholder="Enter team number limit" id="addMaxTeams" type="number" class="validate">
 				<label for="maxTeams">Max Teams</label>
 			</div>
 
 			<div class="input-field col s4">
-				<select>
+				<select id = "addScoringSystem">
 					<option value="" disabled selected>Choose your option</option>
 					<option value="1">Preset system 1</option>
 					<option value="2">Preset system 2</option>
@@ -1076,25 +541,25 @@
 			</div>
 
 			<div class="input-field col s3">
-				<input placeholder="Time started" id="start-time" type="time" class="validate">
+				<input placeholder="Time started" id="addStartTime" type="time" class="validate">
 				<label class="game-adjust-label" for="start-time">Start</label>
 			</div>
 			<div class="input-field col s3">
-				<input placeholder="Time ended" id="end-time" type="time" class="validate">
+				<input placeholder="Time ended" id="addEndTime" type="time" class="validate">
 				<label class="game-adjust-label" for="end-time">End</label>
 			</div>
 
 			<div class="input-field col s3">
-				<input placeholder="Date started" id="start-time" type="date" class="validate">
+				<input placeholder="Date started" id="addStartDate" type="date" class="validate">
 				<label class="game-adjust-label" for="start-time">Start</label>
 			</div>
 			<div class="input-field col s3">
-				<input placeholder="Date ended" id="end-time" type="date" class="validate">
+				<input placeholder="Date ended" id="addEndDate" type="date" class="validate">
 				<label class="game-adjust-label" for="end-time">End</label>
 			</div>
 
 			<div class="input-field col s12">
-				<textarea id="description" class="materialize-textarea"></textarea>
+				<textarea id="addDescription" class="materialize-textarea"></textarea>
 				<label for="description">Mechanics</label>
 			</div>
 
@@ -1108,7 +573,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat">Add</a>
+		<a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-click="addSport()">Add</a>
 	</div>
 </div>
 
@@ -1127,17 +592,17 @@
 	<div class="modal-content">
 		<div class="row">
 			<div class="input-field col s6">
-				<input placeholder="Enter sport name" id="name" type="text" class="validate">
+				<input placeholder="Enter sport name" id="name" type="text" class="validate" ng-model="sportCopy.sport_name">
 				<label for="name">Sport Name</label>
 			</div>
 
 			<div class="input-field col s2">
-				<input placeholder="Enter team number limit" id="maxTeams" type="number" class="validate">
+				<input placeholder="Enter team number limit" id="maxTeams" type="number" class="validate" ng-model="sportCopy.max_teams">
 				<label for="maxTeams">Max Teams</label>
 			</div>
 
 			<div class="input-field col s4">
-				<select>
+				<select ng-model="sportCopy.scoring_system">
 					<option value="" disabled selected>Choose your option</option>
 					<option value="1">Preset system 1</option>
 					<option value="2">Preset system 2</option>
@@ -1156,25 +621,25 @@
 			</div>
 
 			<div class="input-field col s3">
-				<input placeholder="Time started" id="start-time" type="time" class="validate">
-				<label class="game-adjust-label" for="start-time">Start</label>
+				<input placeholder="HH:mm:ss" id="start-time" type="text" class="validate" ng-model="sportCopy.time_start">
+				<label for="start-time">Start</label>
 			</div>
 			<div class="input-field col s3">
-				<input placeholder="Time ended" id="end-time" type="time" class="validate">
-				<label class="game-adjust-label" for="end-time">End</label>
+				<input placeholder="HH:mm:ss" id="end-time" type="text" class="validate" ng-model="sportCopy.time_end">
+				<label for="end-time">End</label>
 			</div>
 
 			<div class="input-field col s3">
-				<input placeholder="Date started" id="start-time" type="date" class="validate">
+				<input placeholder="Date started" id="start-date" class="datepicker validate" ng-model="sportCopy.start_date">
 				<label class="game-adjust-label" for="start-time">Start</label>
 			</div>
 			<div class="input-field col s3">
-				<input placeholder="Date ended" id="end-time" type="date" class="validate">
+				<input placeholder="Date ended" id="end-date" class="datepicker validate" ng-model="sportCopy.end_date">
 				<label class="game-adjust-label" for="end-time">End</label>
 			</div>
 
 			<div class="input-field col s12">
-				<textarea id="description" class="materialize-textarea"></textarea>
+				<textarea id="description" class="materialize-textarea" ng-model="sportCopy.mechanics"></textarea>
 				<label for="description">Mechanics</label>
 			</div>
 			<p class="center">Note: Changes will only reflect on fields which are edited.</p>
@@ -1188,7 +653,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat">Update</a>
+		<a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-click="updateSport(sportCopy)">Update</a>
 	</div>
 </div>
 
@@ -1196,7 +661,6 @@
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-3">
 			<div class="center">
-
 					<div class="card-title white-text center" id="thicken">
 				 		<h5>Delete Sport</h5>
 					</div>
@@ -1208,8 +672,8 @@
 		<p>Are you sure you want to delete this sport?</p>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat">No</a>
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat">Yes</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat">No</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="deleteSport(sportCopy)">Yes</a>
 	</div>
 </div>
 
