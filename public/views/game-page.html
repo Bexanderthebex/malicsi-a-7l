@@ -356,11 +356,13 @@
 								<p class="center game-remove-top">
 									<i class="fa fa-map-marker large"></i>
 								</p>
-								<h5 class="rockwell center white-text">Beijing, Muntinlupa</h5>
+								<h5 class="rockwell center white-text" ng-hide="checkGameLocation()">{{game.location}}</h5>
+								<h5 class="rockwell center white-text" ng-show="checkGameLocation()">No location available.</h5>
 								<div class="row game-remove-bottom">
 									<div class="col s12">
 										<div class="divider divider-color"></div>
-										<p class="white-text century-gothic game-location-description">Tanto network smart--space DIY camera industrial grade jeans soul-delay plastic Tokyo ablative rain receding silent boy. Fluidity DIY footage industrial grade RAF crypto-shanty town Shibuya dissident lights rebar.<a href="#"> read more...</a></p>
+										<p class="white-text century-gothic game-location-description" ng-hide = "checkGameDescription()">{{game.description}}<a href="#"> read more...</a></p>
+										<p class="white-text century-gothic game-location-description" ng-show = "checkGameDescription()">No description available.</p>
 									</div>
 								</div>
 							</div>

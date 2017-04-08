@@ -36,7 +36,8 @@
         $scope.addSponsoringInstitution = addSponsoringInstitution;
         $scope.checkSponsors = checkSponsors;
         $scope.passSponsor = passSponsor;
-        
+        $scope.checkGameDescription = checkGameDescription;
+        $scope.checkGameLocation = checkGameLocation;
 
         $scope.sport = {};
         $scope.sports = [];
@@ -138,6 +139,14 @@
         }
         function checkSponsors(){
             if($scope.sponsors.length == 0 ) return true;
+            else false;
+        }
+        function checkGameDescription(){
+            if($scope.game.description == undefined) return true;
+            else false;
+        }
+        function checkGameLocation(){
+            if($scope.game.location == undefined) return true;
             else false;
         }
 
