@@ -194,44 +194,27 @@
 					<table>
 		            	<thead>
 		            		<tr class="telegrafico">
-		            			<th>Name</th>
-		            			<th>Description</th>
+		            			<th>Username</th>
 		            			<th>Actions</th>
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
-		            		<tr>
+		            		<tr ng-repeat="o in organizers">
 		            			<td class="match-player">
-		            				<div ng-show="!view">Juan Dela Cruz</div>
+		            				<div ng-show="!view">{{o.username}}</div>
 		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new name"></div>
 		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view">We are one we are the world. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, natus ullam voluptatibus, iure odit in aliquam laborum esse quibusdam magni blanditiis officiis corporis dignissimos, quam consequuntur quidem tempore at. Harum!</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
+								<td class="match-player">
+		            				<div ng-show="!view">{{!!o.is_active}}</div>
 		            			</td>
 		            			<td>
-		            				<div class="match-actions">
+									<div class="match-actions" ng-show="o.is_active == true" ng-click="setIsActive(false, o.id, organizers)">
 		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+									<div class="match-actions" ng-show="o.is_active == false" ng-click="setIsActive(true, o.id, organizers)">
+		            					<i class="fa fa-plus-square fa-lg"></i>
 		            				</div>
 		            				<div class="match-actions" ng-click="view = !view">
-		            					<i class="fa fa-pencil-square-o fa-lg"></i>
-		            				</div>
-		            			</td>
-		            		</tr>
-		            		<tr>
-		            			<td class="match-player">
-		            				<div ng-show="!view3">Juan Dela Cruz</div>
-		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new name"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis inventore maiores at mollitia ab unde deleniti, aperiam labore sint distinctio temporibus vel, dignissimos tenetur sapiente similique, voluptatum. Repudiandae, molestiae, dolorum.</div>
-		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new description"></div>
-		            			</td>
-		            			<td>
-		            				<div class="match-actions">
-		            					<i class="fa fa-minus-square fa-lg"></i>
-		            				</div>
-		            				<div class="match-actions" ng-click="view3 = !view3">
 		            					<i class="fa fa-pencil-square-o fa-lg"></i>
 		            				</div>
 		            			</td>

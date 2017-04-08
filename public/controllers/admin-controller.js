@@ -6,10 +6,16 @@
 
     function AdminCtrl($scope, $http, UserService, AdminService, SearchService) {
         $scope.admins = [];
+        $scope.organizers = [];
 
         UserService.getUsersByType('A').then((res) => {
             $scope.admins = res.data;
-            console.log($scope.admins)
+        }, (err) => {
+            console.log(err);
+        });
+
+        UserService.getUsersByType('O').then((res) => {
+            $scope.organizers = res.data;
         }, (err) => {
             console.log(err);
         });
