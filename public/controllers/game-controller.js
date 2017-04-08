@@ -120,19 +120,19 @@
         }
 
         function checkRankings(){
-            if($scope.organizationRanks == undefined ) return true;
+            if($scope.organizationRanks.length == 0 ) return true;
             else false;
         }
         function checkPastMatches(){
-            if($scope.pastMatches == undefined ) return true;
+            if($scope.pastMatches.length == 0 ) return true;
             else false;
         }
         function checkOngoingMatches(){
-            if($scope.ongoingMatches == undefined ) return true;
+            if($scope.ongoingMatches.length == 0 ) return true;
             else false;
         }
         function checkUpcomingMatches(){
-            if($scope.upcomingMatches == undefined ) return true;
+            if($scope.upcomingMatches.length == 0 ) return true;
             else false;
         }
         function checkSponsors(){
