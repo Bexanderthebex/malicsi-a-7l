@@ -26,7 +26,7 @@
 
         function retrieveGame(org_id) {
             let deferred = $q.defer();
-            console.log(gameId);
+
             $http({
                 method: 'GET',
                 params: { 'id': org_id },
@@ -43,7 +43,7 @@
 
         function addGame(game) {
             let deferred = $q.defer();
-            console.log(game);
+
             $http({
                 method: 'POST',
                 data: $.param(game),
@@ -61,7 +61,7 @@
 
         function updateGame(game) {
             let deferred = $q.defer();
-            console.log(game);
+
             $http({
                 method: 'PUT',
                 data: $.param(game), // json
@@ -117,13 +117,9 @@
         function acceptRequests(teamId) {
             let deferred = $q.defer();
 
-            let team = {
-                'team_id': teamId
-            }
-
             $http({ 
                 method: 'POST',
-                data: $.param(team),
+                data: $.param({ 'team_id': teamId }),
                 url: '/organizer/processRequest',
                 headers: headers
             }).then((res) => {
@@ -138,7 +134,7 @@
         
         function getOrganizer(id) {
             let deferred = $q.defer();
-            console.log(id);
+
             $http({
                 method: 'GET',
                 params: { 'search': id },
@@ -156,7 +152,7 @@
 
         function updateOrganizer(organizer) {
             let deferred = $q.defer();
-            console.log(organizer);
+
             $http({
                 method: 'PUT',
                 data: $.param(organizer),

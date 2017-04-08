@@ -15,7 +15,7 @@ DELIMITER //
 
 CREATE PROCEDURE get_competitor (IN search INT) 
 	BEGIN
-	   SELECT * FROM competitor WHERE id = search;
+	   SELECT * FROM user join competitor using(id) where id = search;
 	END; //
 
 DELIMITER ;
