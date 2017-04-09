@@ -15,7 +15,8 @@ DELIMITER //
 
 	CREATE PROCEDURE get_organizer (IN search INT) 
 	BEGIN
-	   SELECT * FROM user join organizer using(id) where id = search;
+	   SELECT user.id, user.username, user.email, user.contact, user.type, user.is_active, organizer.name, organizer.description
+	   FROM user join organizer using(id) where id = search;
 	END; //
 
 DELIMITER ;
