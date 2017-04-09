@@ -20,6 +20,7 @@
         $scope.getRequests = getRequests;
         $scope.getOrganizer = getOrganizer;
         $scope.acceptRequest = acceptRequest;
+        $scope.declineRequest = declineRequest;
         $scope.updateOrganizer = updateOrganizer;
         $scope.copyGame = copyGame;
         $scope.copyRequest = copyRequest;
@@ -135,6 +136,7 @@
                 .getRequests($scope.organizer.id)
                 .then(function(res) {
                     $scope.requests = res.data;
+                    console.log($scope.requests);
                 }, function(err) {
                     Materialize.toast('Error retrieving requests.', 3000);
                 })
@@ -152,11 +154,23 @@
 
         function acceptRequest() {
             OrganizerService
-                .acceptRequests($scope.requestCopy.team_id)
+                .acceptRequest($scope.requestCopy.team_id)
                 .then(function(res) {
                     Materialize.toast('Successfully accepted request!', 3000);
+                    getOrganizerRequests();
                 }, function(err) {
                     Materialize.toast('Failed to accept request!', 3000);
+                })
+        }
+
+        function declineRequest() {
+            OrganizerService
+                .declineRequest($scope.requestCopy.team_id)
+                .then(function(res) {
+                    Materialize.toast('Successfully rejected request!', 3000);
+                    getOrganizerRequests();
+                }, function(err) {
+                    Materialize.toast('Failed to reject request!', 3000);
                 })
         }
 

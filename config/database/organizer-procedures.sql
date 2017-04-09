@@ -76,7 +76,7 @@ DELIMITER //
 
 	CREATE PROCEDURE process_request (IN teamID INT) 
 	BEGIN
-	   UPDATE team SET pending_participation = 1 WHERE team_id = teamID;
+	   UPDATE team SET pending_participation = 0 WHERE team_id = teamID;
 	END; //
 
 DELIMITER ;
@@ -86,7 +86,7 @@ DELIMITER //
 
 	CREATE PROCEDURE delete_team (IN teamID INT) 
 	BEGIN
-	   DELETE team from team WHERE team_id = teamID;
+	   DELETE from team WHERE team_id = teamID;
 	END; //
 
 DELIMITER ;
@@ -96,7 +96,12 @@ DELIMITER //
 
 	CREATE PROCEDURE get_pending_participation (IN id INT) 
 	BEGIN
-	   SELECT * from (sport join game using (game_id)) JOIN team using (sport_id) WHERE pending_participation = 1 AND organizer_id = id;
+	    SELECT *, 
+	    (SELECT COUNT(team_id) FROM team WHERE sport_id = sport.sport_id and pending_participation = 0)team_count 
+	    FROM (sport JOIN game using (game_id)) 
+	    JOIN team using (sport_id) 
+	    WHERE pending_participation = 1 and organizer_id = id;
+
 	END; //
 
 DELIMITER ;
