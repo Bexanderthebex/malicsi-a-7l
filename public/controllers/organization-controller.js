@@ -13,7 +13,6 @@
         $scope.thisOrganization = {
             organization_id: $routeParams.id
         };
-
         $scope.currentUser = [];
         $scope.teams = [];
         $scope.temp = [];
