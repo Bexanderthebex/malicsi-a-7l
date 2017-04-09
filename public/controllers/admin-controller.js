@@ -14,7 +14,7 @@
             console.log(err);
         });
 
-        UserService.getUsersByType('O').then((res) => {
+        SearchService.retrieveOrganizer('').then((res) => {
             $scope.organizers = res.data;
         }, (err) => {
             console.log(err);

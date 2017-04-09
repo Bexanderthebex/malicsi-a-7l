@@ -194,15 +194,21 @@
 					<table>
 		            	<thead>
 		            		<tr class="telegrafico">
-		            			<th>Username</th>
+		            			<th>Name</th>
+								<th>Description</th>
+								<th>Active</th>
 		            			<th>Actions</th>
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
 		            		<tr ng-repeat="o in organizers">
 		            			<td class="match-player">
-		            				<div ng-show="!view">{{o.username}}</div>
+		            				<div ng-show="!view">{{o.name}}</div>
 		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new name"></div>
+		            			</td>
+								<td class="match-player">
+		            				<div ng-show="!view">{{o.description}}</div>
+		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
 		            			</td>
 								<td class="match-player">
 		            				<div ng-show="!view">{{!!o.is_active}}</div>

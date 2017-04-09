@@ -5,7 +5,7 @@ DELIMITER //
 
 	CREATE PROCEDURE search_organizer (IN search VARCHAR(100))
 	BEGIN
-	   SELECT id, username, name, description, is_active FROM user
+	   SELECT user.id, username, name, description, is_active FROM user
 	   JOIN organizer ON user.id = organizer.id
 	   WHERE username LIKE search OR name LIKE search OR description LIKE search;
 	END; //
