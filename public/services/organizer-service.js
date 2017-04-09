@@ -105,7 +105,6 @@
                 url: '/organizer/getPendingParticipation',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
