@@ -162,7 +162,7 @@
         </div>
 
         <!-- Requests -->
-        <div class="row container" ng-init="getRequests()">
+        <div class="row container" ng-init="getOrganizerRequests()">
             <h5 class="rockwell">Requests</h5>
             <table class="highlight responsive-table">
                 <thead>
@@ -178,7 +178,7 @@
                         <td>{{ request.team_name }}</td>
                         <td>{{ request.sport_name }}</td>
                         <td>{{ request.name }} </td>
-                        <td>{{ request.start_date }}</td>
+                        <td>{{ request.team_count}} / {{ request.max_teams }}</td>
                         <td>
                             <div class="organizer-actions" data-target="organizer-profile-accept-modal">
                                 <i class="fa fa-check fa-lg" ng-click="copyRequest(request)"></i>
@@ -363,7 +363,7 @@
     <div class="divider"></div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        <a class="modal-action modal-close waves-effect btn-flat" ng-click="declineRequest()"><i class="material-icons left">check</i>Yes</a>
     </div>
 </div>
 

@@ -19,7 +19,8 @@
             getRequests: getRequests,
             getOrganizer: getOrganizer,
             updateOrganizer: updateOrganizer,
-            acceptRequests: acceptRequests
+            acceptRequest: acceptRequest,
+            declineRequest: declineRequest
         }
 
         return service;
@@ -113,13 +114,31 @@
             return deferred.promise;
         }
 
-        function acceptRequests(teamId) {
+        function acceptRequest(teamId) {
             let deferred = $q.defer();
 
             $http({ 
-                method: 'POST',
+                method: 'PUT',
                 data: $.param({ 'team_id': teamId }),
                 url: '/organizer/processRequest',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function declineRequest(teamId) {
+            let deferred = $q.defer();
+
+            $http({ 
+                method: 'DELETE',
+                data: $.param({ 'team_id': teamId }),
+                url: '/organizer/deleteTeam',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);
