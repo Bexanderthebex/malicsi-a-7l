@@ -183,9 +183,9 @@
 					<div class="row center">
 						<div class="col s12">
 							<form id="adminpanel-game-search-bar">
-								<input type="search" >
+								<input ng-model="organizerSearch" type="search" >
 							</form>
-							<a class="waves-effect waves-light btn palette-2">Search</a>
+							<a ng-click="searchOrganizer()" class="waves-effect waves-light btn palette-2">Search</a>
 						</div>
 						<!--<div class="col s6">
 
@@ -347,32 +347,11 @@
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
-		            		<tr>
-		            			<td>234234</td>
-		            			<td>2322</td>
-		            			<td>Deleted asdf @ asomething</td>
-		            			<td>02-32-2222</td>
-		            		</tr>
-
-							<tr>
-		            			<td>234234</td>
-		            			<td>2322</td>
-		            			<td>Deleted asdf @ asomething</td>
-		            			<td>02-32-2222</td>
-		            		</tr>
-
-		            		<tr>
-		            			<td>234234</td>
-		            			<td>2322</td>
-		            			<td>Deleted asdf @ asomething</td>
-		            			<td>02-32-2222</td>
-		            		</tr>
-
-		            		<tr>
-		            			<td>234234</td>
-		            			<td>2322</td>
-		            			<td>Deleted asdf @ asomething</td>
-		            			<td>02-32-2222</td>
+		            		<tr ng-repeat="l in logs">
+		            			<td>{{l.log_id}}</td>
+		            			<td>{{l.user_id}}</td>
+		            			<td>{{l.log_msg}}</td>
+		            			<td>{{l.date_created}}</td>
 		            		</tr>
 		            	</tbody>
 		            </table>

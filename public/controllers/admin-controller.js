@@ -7,6 +7,7 @@
     function AdminCtrl($scope, $http, UserService, AdminService, SearchService) {
         $scope.admins = [];
         $scope.organizers = [];
+        $scope.logs = [];
 
         UserService.getUsersByType('A').then((res) => {
             $scope.admins = res.data;
@@ -16,6 +17,13 @@
 
         SearchService.retrieveOrganizer('').then((res) => {
             $scope.organizers = res.data;
+        }, (err) => {
+            console.log(err);
+        });
+
+        AdminService.retrieveLog().then((res) => {
+            $scope.logs = res.data;
+            console.log('logs', $scope.logs);
         }, (err) => {
             console.log(err);
         });
@@ -65,6 +73,16 @@
             .then((res) => {
                 $scope.admins = res.data;
                 console.log('admins', $scope.admins)
+            }, (err) => {
+                console.log(err);
+            })
+        }
+
+        $scope.searchOrganizer = () => {
+            SearchService.retrieveOrganizer($scope.organizerSearch)
+            .then((res) => {
+                $scope.organizers =  res.data;
+                console.log('organizers', $scope.organizers);
             }, (err) => {
                 console.log(err);
             })
