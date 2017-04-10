@@ -15,7 +15,8 @@
         const service = {
             getUserInfo: getUserInfo,
             getUsersByType: getUsersByType,
-            setIsActive: setIsActive
+            setIsActive: setIsActive,
+            updateUser: updateUser
         }
 
         return service;
@@ -55,6 +56,24 @@
 
             $http.put(`/user/${id}/active`, {
 				is_active: isActive
+			}).then(function(res){
+				deferred.resolve(res)
+			}, function(err) {
+                console.log(err);
+				deferred.reject(err);
+			});
+
+            return deferred.promise;
+        }
+
+        function updateUser(username, email, contact, id) {
+            let deferred = $q.defer();
+
+            $http.put(`/user/update`, {
+				username: username,
+                email: email,
+                contact: contact,
+                id: id
 			}).then(function(res){
 				deferred.resolve(res)
 			}, function(err) {

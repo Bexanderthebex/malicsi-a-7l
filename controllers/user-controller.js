@@ -123,7 +123,7 @@ exports.register = (req, res) => {
 }
 
 exports.update = (req, res) =>{
-	let update_query = 'CALL update_user(?, ?, ?, ?, ?)';
+	let update_query = 'CALL update_user(?, ?, ?, ?)';
 
 	/*
 		NOTE FOR FRONT END: Must make sure that if a field is empty, pass the old value.
@@ -132,10 +132,26 @@ exports.update = (req, res) =>{
 
 	connection.userType('A').query(update_query, [
 		req.body.username,
-		req.body.password,
 		req.body.email,
 		req.body.contact,
-		req.session.user.id
+		req.body.id !== undefined ? req.body.id : req.session.user.id // was the id included in the request? if not, default to session user id.
+	], function (err, rows) {
+		if(err) return res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
+		else if (rows.affectedRows === 0) {
+			return res.status(404).send({ 'message': 'User was not updated.' });
+		} else {
+			req.session.user.username = req.body.username;
+			return res.status(200).send(rows);
+		}
+	});
+}
+
+exports.updatePassword = (req, res) => {
+	let update_query = 'CALL update_user_password(?, ?)';
+
+	connection.userType('A').query(update_query, [
+		req.body.password,
+		req.body.id !== undefined ? req.body.id : req.session.user.id
 	], function (err, rows) {
 		if(err) return res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
 		else if (rows.affectedRows === 0) {

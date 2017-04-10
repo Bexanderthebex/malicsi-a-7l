@@ -135,15 +135,15 @@
 		            		<tr ng-repeat="a in admins">
 		            			<td class="match-player">
 		            				<div ng-show="!view">{{a.username}}</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
+		            				<div ng-hide="!view"><input ng-model="a.newUsername" type="text" name="" placeholder="Enter new first name:"></div>
 		            			</td>
 								<td class="match-player">
 		            				<div ng-show="!view">{{a.email}}</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
+		            				<div ng-hide="!view"><input ng-model="a.newEmail" type="text" name="" placeholder="Enter new first name:"></div>
 		            			</td>
 								<td class="match-player">
 		            				<div ng-show="!view">{{a.contact}}</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
+		            				<div ng-hide="!view"><input ng-model="a.newContact" type="text" name="" placeholder="Enter new first name:"></div>
 		            			</td>
 								<td class="match-player">
 		            				<div ng-show="!view">{{!!a.is_active}}</div>
@@ -155,7 +155,7 @@
 									<div class="match-actions" ng-show="a.is_active == false" ng-click="setIsActive(true, a.id, admins)">
 		            					<i class="fa fa-plus-square fa-lg"></i>
 		            				</div>
-		            				<div class="match-actions" ng-click="view = !view">
+		            				<div class="match-actions" ng-click="view = !view; editAdmin(a);" ng-attr-id="admin-edit-{{a.id}}" data-is-editing="false">
 		            					<i class="fa fa-pencil-square-o fa-lg"></i>
 		            				</div>
 		            			</td>

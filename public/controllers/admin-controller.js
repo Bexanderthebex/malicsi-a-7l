@@ -85,6 +85,37 @@
                 console.log(err);
             });
         }
+
+        $scope.editAdmin = (admin) => {
+            if ($('#admin-edit-' + admin.id).data('isEditing')) {
+                $('#admin-edit-' + admin.id).data('isEditing', false);
+
+                let username = admin.newUsername === undefined
+                    || admin.newUsername.trim() === ""
+                    ? admin.username : admin.newUsername;
+
+                let email = admin.newEmail === undefined
+                    || admin.newEmail.trim() === ""
+                    ? admin.email : admin.newEmail;
+
+                let contact = admin.newContact === undefined
+                    || admin.newContact.trim() === ""
+                    ? admin.username : admin.newContact;
+
+                UserService.updateUser(username, email, contact, admin.id)
+                .then((res) => {
+                    Materialize.toast('Admin info edited.', 2000);
+                    admin.username = username;
+                    admin.email = email;
+                    admin.contact = contact;
+                }, (err) => {
+                    Materialize.toast('Something went wrong :\'(', 2000);
+                    console.log(err);
+                });
+            } else {
+                $('#admin-edit-' + admin.id).data('isEditing', true);
+            }
+        }
     }
 })();
 
