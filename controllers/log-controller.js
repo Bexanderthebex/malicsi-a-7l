@@ -5,12 +5,11 @@ const connection = require('./../config/db-connection.js');
 exports.viewAllLogs = (req, res) => {
 	query = 'SELECT * FROM log';
 
-	connection.userType('A').query(query, function (err, rows) {
+	connection.userType('A').query(query, (err, rows) => {
 		if(!err) {
-			res.status(200).send(rows);
-			return rows;
+			return res.status(200).send(rows);
 		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
+			return res.status(500).send({'message' : 'Internal Server Error'});
 		}
 	});
 }
@@ -20,10 +19,9 @@ exports.viewLogsByDate = (req, res) => {
 
 	connection.userType('A').query(query, [req.body.startDate, req.body.endDate], function (err, rows) {
 		if(!err) {
-			res.status(200).send(rows);
-			return rows;
+			return res.status(200).send(rows);
 		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
+			return res.status(500).send({'message' : 'Internal Server Error'});
 		}
 	});
 }
