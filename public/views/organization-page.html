@@ -10,9 +10,9 @@
 		<!--Slider-->
 		<div class="slider4" style="box-shadow: 0!important;" >
 			<div class="slide" >
-				<div class="container organization-team-list" data-target="organization-team-info-modal">
+				<div class="container organization-team-list" data-target="organization-team-info-modal" >
 					<div class="row"> 
-						<div class="col s4 m3 l2 organization-team" ng-repeat="team in teams">
+						<div class="col s4 m3 l2 organization-team" ng-repeat="team in teams" ng-click="retrieveTeam(team.team_id)">
 							<img class="valign organization-team-logo" src="assets/team1.png">
 							<h5 class="organization-team-name palette-text-3 rockwell">{{ team.team_name }}</h5>
 							<span class="organization-team-info palette-text-4 rockwell"> GAME(2001) </span>
@@ -25,12 +25,17 @@
 		<div id="organization-team-info-modal" class="modal modal-fixed-footer">
 			<div class="modal-content">
 				<div class="row">
-					<h4 class="center rockwell"> Team 1 </h4>
+					<h4 class="center rockwell"> {{teamModal.team_name}} </h4>
 					<div class="row organization-team-info-mem-label">
 						<h5 class="palette-text-3 leixo">Members </h5>
 					</div> 
 					<div class="row">
-						<div class="col s4 m3 l2 organization-team-member">
+						<div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers">
+							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
+							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
+							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
+						</div>
+						<!-- <div class="col s4 m3 l2 organization-team-member">
 							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
 							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> John Doe </h5>
 							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
@@ -54,12 +59,7 @@
 							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
 							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> John Doe </h5>
 							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
-						</div>
-						<div class="col s4 m3 l2 organization-team-member">
-							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
-							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> John Doe </h5>
-							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
-						</div>
+						</div> -->
 					</div>
 					<div class="row organization-team-info-mem-label">
 						<h5 class="palette-text-3 leixo">Statistics</h5>
@@ -67,13 +67,13 @@
 					<div class="team-statistics">
 						<div class="row center">
 							<div class="col s4 m4 l4">
-								<h1 class="stat-nums rockwell strong"> 3 </h1>
+								<h1 class="stat-nums rockwell strong"> {{teamStats.first}} </h1>
 							</div>
 							<div class="col s4 m4 l4">
-								<h1 class="stat-nums rockwell strong"> 3 </h1>
+								<h1 class="stat-nums rockwell strong"> {{teamStats.second}} </h1>
 							</div>
 							<div class="col s4 m4 l4">
-								<h1 class="stat-nums rockwell strong"> 3 </h1>
+								<h1 class="stat-nums rockwell strong"> {{teamStats.third}} </h1>
 							</div>
 						</div>
 						<div class="row center">
@@ -103,8 +103,14 @@
             <div class="col s12 m12 l5 palette-3">
                 <div class="row center-align" ng-model="OrganizationController">
                     <div class="col s4 m4 l4">
-                        <h1 class="stat-nums rockwell strong"> N/A </h1>
-                    </div>
+						<h1 class="stat-nums rockwell strong"> {{organizationStats.first}} </h1>
+					</div>
+					<div class="col s4 m4 l4">
+						<h1 class="stat-nums rockwell strong"> {{organizationStats.second}} </h1>
+					</div>
+					<div class="col s4 m4 l4">
+						<h1 class="stat-nums rockwell strong"> {{organizationStats.third}} </h1>
+					</div>
              
                 </div>
                 <div class="row center-align">

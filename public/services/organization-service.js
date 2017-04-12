@@ -14,6 +14,8 @@
         const service = {
             retrieveTeams : retrieveTeams,
             joinTeam : joinTeam,
+            retrieveTeam : retrieveTeam,
+            retrieveMembers : retrieveMembers,
             retrieveTeamStatistics : retrieveTeamStatistics,
             getOrganizationRankings: getOrganizationRankings,
             getOrganization: getOrganization,
@@ -47,6 +49,40 @@
                 method: 'GET',
                 params: { "org_id": org_id },
                 url: '/team/getTeamsOnOrganization',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function retrieveTeam(team_id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: { "team_id": team_id },
+                url: '/team/getTeam',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function retrieveMembers(team_id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: { "team_id": team_id },
+                url: '/team/getTeamMembers',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);

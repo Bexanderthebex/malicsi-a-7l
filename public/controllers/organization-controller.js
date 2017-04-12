@@ -16,15 +16,29 @@
         $scope.currentUser = [];
         $scope.teams = [];
         $scope.temp = [];
-        $scope.teamStats = [];
-        $scope.organizationStats = [];
+        $scope.teamStats = {
+            "first" : 0,
+            "second" : 0,
+            "third" : 0,
+            "total" : 0
+        };
+        $scope.organizationStats = {
+            "first" : 0,
+            "second" : 0,
+            "third" : 0,
+            "total" : 0
+        };
         $scope.organization = {};
         $scope.gamesInOrganization = [];
+        $scope.teamModal = {};
+        $scope.teamMembers = [];
         $scope.retrieveTeams = retrieveTeams;
+        $scope.retrieveTeam = retrieveTeam;
         $scope.joinTeam = joinTeam;
         $scope.initPage = initPage;
-        $scope.retrieveTeamStatistics = retrieveTeamStatistics;
-        $scope.retrieveOrganizationStatistics = retrieveOrganizationStatistics;
+        //$scope.retrieveMembers = retrieveMembers;
+        //$scope.retrieveTeamStatistics = retrieveTeamStatistics;
+        //$scope.retrieveOrganizationStatistics = retrieveOrganizationStatistics;
         $scope.retrieveOrganization = retrieveOrganization;
         $scope.retrieveGamesInOrganization = retrieveGamesInOrganization;
         
@@ -46,6 +60,7 @@
                     console.log("Data:");
                     console.log(res.data);
                     $scope.organization = res.data;
+                    retrieveOrganizationStatistics($scope.thisOrganization.organization_id);
                 }, function(err) {
                     console.log(err);
                 })
@@ -73,6 +88,33 @@
                 })
         }
 
+
+        function retrieveTeam(team_id) {
+            OrganizationService
+                .retrieveTeam(team_id)
+                .then(function(res) {
+                    $scope.teamModal = res.data;
+                    console.log(":D");
+                    console.log($scope.teamModal);
+                    retrieveMembers(team_id);
+                    retrieveTeamStatistics(team_id);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function retrieveMembers(team_id) {
+            OrganizationService
+                .retrieveMembers(team_id)
+                .then(function(res) {
+                    $scope.teamMembers = res.data;
+                    console.log(":D");
+                    console.log($scope.teamMembers);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
         function joinTeam(team_id) {
             OrganizationService
                 .joinTeam(1,team_id)
@@ -87,7 +129,24 @@
             OrganizationService
                 .retrieveTeamStatistics(id)
                 .then(function(res) {
-                    $scope.teamStats = res.data;
+                    console.log(res.data);
+                    if (res.data.ranking == null){
+                        $scope.teamStats.first = 0;
+                        $scope.teamStats.second= 0;
+                        $scope.teamStats.third = 0;
+                        $scope.teamStats.total = 0;
+                        console.log("Not Available");
+                    }
+
+                    else{
+                        $scope.teamStats.first = res.data[0];
+                        $scope.teamStats.second= res.data[1];
+                        $scope.teamStats.third = res.data[2];
+                        $scope.teamStats.total = res.data[0] + res.data[1] + res.data[2];
+                    }
+
+
+                    console.log($scope.teamStats);
                 }, function(err) {
                     console.log(err.data);
                 })
@@ -98,7 +157,20 @@
                 .getOrganizationRankings(1)
                 .then(function(res) {
                     console.log(res.data);
-                    $scope.organizationStats = res.data;
+                    if (res.data.ranking == null){
+                        $scope.organizationStats.first = 0;
+                        $scope.organizationStats.second= 0;
+                        $scope.organizationStats.third = 0;
+                        $scope.organizationStats.total = 0;
+                        console.log("Not Available");
+                    }
+                    else{
+                        $scope.organizationStats.first = res.data[0];
+                        $scope.organizationStats.second= res.data[1];
+                        $scope.organizationStats.third = res.data[2];
+                        $scope.organizationStats.total = res.data[0] + res.data[1] + res.data[2];
+                    }
+                    console.log($scope.organizationStats);
                 }, function(err) {
                     console.log(err.data);
                 })

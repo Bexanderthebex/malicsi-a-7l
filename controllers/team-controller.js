@@ -164,13 +164,7 @@ exports.getTeamMembers = (req, res) => {
             req.query.team_id
         ], (err, rows) => {
             if(!err) {
-                if (rows[0].length == 1){
-                    return res.status(200).send(rows[0][0]);
-                }
-                else{
-                    return res.status(200).send(rows[0]);
-                    
-                }
+                return res.status(200).send(rows[0]);
             } else {
                 return res.status(500).send({ 'message' : 'An error occured'});
             }
@@ -186,6 +180,7 @@ exports.getTeam = (req, res) => {
     ], (err, rows) => {
         if(!err) {
             if (rows[0].length == 1){
+                    console.log(rows[0][0]);
                 return res.status(200).send(rows[0][0]);
             }
             else{
