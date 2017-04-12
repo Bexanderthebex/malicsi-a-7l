@@ -96,5 +96,5 @@ grant execute on procedure select_user to administrator;
 grant execute on procedure update_user to administrator;
 grant execute on procedure search_user to administrator;
 
-grant execute on procedure select_user to administrator;
-grant execute on procedure select_user to administrator;
+grant execute on procedure select_user to guest;
+grant execute on procedure select_user to organizer;
