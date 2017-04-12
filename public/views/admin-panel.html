@@ -135,15 +135,15 @@
 		            		<tr ng-repeat="a in admins">
 		            			<td class="match-player">
 		            				<div ng-show="!view">{{a.username}}</div>
-		            				<div ng-hide="!view"><input ng-model="a.newUsername" type="text" name="" placeholder="Enter new first name:"></div>
+		            				<div ng-hide="!view"><input ng-model="a.newUsername" type="text" name="" placeholder="Enter new username:"></div>
 		            			</td>
 								<td class="match-player">
 		            				<div ng-show="!view">{{a.email}}</div>
-		            				<div ng-hide="!view"><input ng-model="a.newEmail" type="text" name="" placeholder="Enter new first name:"></div>
+		            				<div ng-hide="!view"><input ng-model="a.newEmail" type="text" name="" placeholder="Enter new email:"></div>
 		            			</td>
 								<td class="match-player">
 		            				<div ng-show="!view">{{a.contact}}</div>
-		            				<div ng-hide="!view"><input ng-model="a.newContact" type="text" name="" placeholder="Enter new first name:"></div>
+		            				<div ng-hide="!view"><input ng-model="a.newContact" type="text" name="" placeholder="Enter new contact:"></div>
 		            			</td>
 								<td class="match-player">
 		            				<div ng-show="!view">{{!!a.is_active}}</div>
@@ -204,11 +204,11 @@
 		            		<tr ng-repeat="o in organizers">
 		            			<td class="match-player">
 		            				<div ng-show="!view">{{o.name}}</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new name"></div>
+		            				<div ng-hide="!view"><input ng-model="o.newName" type="text" name="" placeholder="Enter new name"></div>
 		            			</td>
 								<td class="match-player">
 		            				<div ng-show="!view">{{o.description}}</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
+		            				<div ng-hide="!view"><input ng-model="o.newDesc" type="text" name="" placeholder="Enter new description"></div>
 		            			</td>
 								<td class="match-player">
 		            				<div ng-show="!view">{{!!o.is_active}}</div>
@@ -220,7 +220,7 @@
 									<div class="match-actions" ng-show="o.is_active == false" ng-click="setIsActive(true, o.id, organizers)">
 		            					<i class="fa fa-plus-square fa-lg"></i>
 		            				</div>
-		            				<div class="match-actions" ng-click="view = !view">
+		            				<div class="match-actions" ng-click="view = !view; editOrganizer(o)" ng-attr-id="organizer-edit-{{o.id}}" data-is-editing="false">
 		            					<i class="fa fa-pencil-square-o fa-lg"></i>
 		            				</div>
 		            			</td>
@@ -247,9 +247,9 @@
 					<div class="row center">
 						<div class="col s12">
 							<form id="adminpanel-game-search-bar">
-								<input type="search" >
+								<input ng-model="userSearch" type="search" >
 							</form>
-							<a class="waves-effect waves-light btn palette-2">Search</a>
+							<a ng-click="searchUser()" class="waves-effect waves-light btn palette-2">Search</a>
 						</div>
 						<!--<div class="col s6">
 
@@ -259,61 +259,41 @@
 		            	<thead>
 		            		<tr class="telegrafico">
 		            			<th>Username</th>
-		            			<th>Password</th>
 		            			<th>Email</th>
 		            			<th>Contact</th>
+		            			<th>Type</th>
+		            			<th>Active</th>
+		            			<th>Actions</th>
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
-		            		<tr>
+		            		<tr ng-repeat="u in users">
 		            			<td class="match-player">
-		            				<div ng-show="!view">jdcruz</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new name"></div>
+		            				<div ng-show="!view">{{u.username}}</div>
+		            				<div ng-hide="!view"><input ng-model="u.newUsername" type="text" name="" placeholder="Enter new name"></div>
 		            			</td>
 		            			<td class="match-player">
-		            				<div ng-show="!view">hailcaesarcypher</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
+		            				<div ng-show="!view">{{u.email}}</div>
+		            				<div ng-hide="!view"><input ng-model="u.newEmail" type="text" name="" placeholder="Enter new description"></div>
 		            			</td>
 		            			<td class="match-player">
-		            				<div ng-show="!view">asdfasdf@yhao.com</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
+		            				<div ng-show="!view">{{u.contact}}</div>
+		            				<div ng-hide="!view"><input ng-model="u.newContact" type="text" name="" placeholder="Enter new description"></div>
 		            			</td>
 		            			<td class="match-player">
-		            				<div ng-show="!view">09352452023</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
+		            				<div ng-show="!view">{{u.type}}</div>
+		            			</td>
+		            			<td class="match-player">
+		            				<div ng-show="!view">{{!!u.is_active}}</div>
 		            			</td>
 		            			<td>
-		            				<div class="match-actions">
+		            				<div class="match-actions" ng-show="u.is_active == true" ng-click="setIsActive(false, u.id, users)">
 		            					<i class="fa fa-minus-square fa-lg"></i>
 		            				</div>
-		            				<div class="match-actions" ng-click="view = !view">
-		            					<i class="fa fa-pencil-square-o fa-lg"></i>
+									<div class="match-actions" ng-show="u.is_active == false" ng-click="setIsActive(true, u.id, users)">
+		            					<i class="fa fa-plus-square fa-lg"></i>
 		            				</div>
-		            			</td>
-		            		</tr>
-
-		            		<tr>
-		            			<td class="match-player">
-		            				<div ng-show="!view1">jdcruz</div>
-		            				<div ng-hide="!view1"><input type="text" name="" placeholder="Enter new name"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view1">hailcaesarcypher</div>
-		            				<div ng-hide="!view1"><input type="text" name="" placeholder="Enter new description"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view1">asdfasdf@yhao.com</div>
-		            				<div ng-hide="!view1"><input type="text" name="" placeholder="Enter new description"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view1">09352452023</div>
-		            				<div ng-hide="!view1"><input type="text" name="" placeholder="Enter new description"></div>
-		            			</td>
-		            			<td>
-		            				<div class="match-actions">
-		            					<i class="fa fa-minus-square fa-lg"></i>
-		            				</div>
-		            				<div class="match-actions" ng-click="view1 = !view1">
+		            				<div class="match-actions" ng-click="view = !view; editUser(u)" ng-attr-id="user-edit-{{u.id}}" data-is-editing="false">
 		            					<i class="fa fa-pencil-square-o fa-lg"></i>
 		            				</div>
 		            			</td>

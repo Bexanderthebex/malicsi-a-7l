@@ -7,8 +7,8 @@ const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
 	var query = 'SELECT id, username, type, password FROM user WHERE username = ?';
-	let type = req.session.user.type;
-	connection.userType(type).query(query, [
+	//let type = req.session.user.type;
+	connection.userType('A').query(query, [
 		req.body.username
 	], function(err, rows) {
 		if(!err) {
@@ -54,8 +54,8 @@ exports.register = (req, res) => {
 	let select_user_query = 'SELECT * FROM user WHERE username = ?';
 	let insert_comp_query = 'CALL create_competitor(?,?,?,?,?,?)';
 
-	let type = req.session.user.type;
-	connection.userType(type).query(insert_user_query,
+	//let type = req.session.user.type;
+	connection.userType('A').query(insert_user_query,
 		[
 			req.body.username,
 			req.body.password,
@@ -64,7 +64,7 @@ exports.register = (req, res) => {
 			req.body.type
 		], (err, rows) => {
 			if(!err){
-				connection.userType(type).query(select_user_query,
+				connection.userType('A').query(select_user_query,
 					[
 						req.body.username
 					], (err, rows) => {
@@ -78,7 +78,7 @@ exports.register = (req, res) => {
 
 						if(returnObject.type == 'C' || returnObject.type == 'A'){
 							if(!err){
-								connection.userType(type).query(insert_comp_query, [
+								connection.userType('A').query(insert_comp_query, [
 									returnObject.id,
 									req.body.birthday,
 									req.body.first_name,
@@ -132,8 +132,8 @@ exports.update = (req, res) =>{
 		Example, use did not provide password. req.body.password must be the user's old password.
 	*/
 
-	let type = req.session.user.type;
-	connection.userType(type).query(update_query, [
+	//let type = req.session.user.type;
+	connection.userType('A').query(update_query, [
 		req.body.username,
 		req.body.email,
 		req.body.contact,
@@ -149,11 +149,31 @@ exports.update = (req, res) =>{
 	});
 }
 
+exports.searchUser = (req, res) => {
+	let query = "CALL search_user(?)";
+
+	connection.userType('A').query(query, 
+		[
+			"%" + req.query.keyword + "%"
+		], (err, rows) => {
+			if(!err){
+				if(rows[0].length == 1) {
+					return res.status(200).send(rows[0]);
+				} else {
+					return res.status(200).send(rows[0]);
+				}
+			} else {
+				return res.status(500).send({'message' : 'Internal Server Error'});
+			}
+		}
+	);
+}
+
 exports.updatePassword = (req, res) => {
 	let update_query = 'CALL update_user_password(?, ?)';
 
-	let type = req.session.user.type;
-	connection.userType(type).query(update_query, [
+	//let type = req.session.user.type;
+	connection.userType('A').query(update_query, [
 		req.body.password,
 		req.body.id !== undefined ? req.body.id : req.session.user.id
 	], function (err, rows) {
@@ -244,13 +264,13 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 	} else {
 		let currentUser = req.session.user;
 		// console.log("id: " + currentUser.id);
-		connection.userType(type).query('SELECT username, contact, email, type FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
+		connection.userType('A').query('SELECT username, contact, email, type FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
 				let returnObject = rows;
 				// console.log("1st: ");
 				// console.log(returnObject[0]);
 				if(currentUser.type == 'C') {
-					connection.userType(type).query('SELECT birthday, sex, first_name, last_name, nickname, bio from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
+					connection.userType('A').query('SELECT birthday, sex, first_name, last_name, nickname, bio from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
 						if(!err) {
 							returnObject[0]['birthday'] = rows[0].birthday;
 							returnObject[0]['sex'] = rows[0].sex;
@@ -267,7 +287,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 						}
 					})
 				} else if (currentUser.type == 'O') {
-					connection.userType(type).query('SELECT name, description from organizer where id = ?', [currentUser.id], function(err, rows, fields) {
+					connection.userType('A').query('SELECT name, description from organizer where id = ?', [currentUser.id], function(err, rows, fields) {
 						if(!err) {
 							returnObject['name'] = rows[0].name;
 							returnObject['description'] = rows[0].description

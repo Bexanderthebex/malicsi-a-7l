@@ -101,14 +101,14 @@ exports.getUsersByType = (req, res) => {
 }
 
 exports.getAllUsers = (req, res) => {
-	let query = 'SELECT id, username, email, contact FROM user';
+	let query = 'SELECT id, username, email, contact, type, is_active FROM user';
 	let type = req.session.user.type;
-	connection.userType(type).query(query, [], (err, rows) => {
+	connection.userType('A').query(query, [], (err, rows) => {
 		if(!err){
-			res.status(200).send(rows);
+			return res.status(200).send(rows);
 		}else{
 			console.log(err);
-			res.status(500).send({ 'message' : 'Internal Server Error.' });
+			return res.status(500).send({ 'message' : 'Internal Server Error.' });
 		}
 	});
 }

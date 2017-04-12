@@ -75,14 +75,26 @@ CREATE PROCEDURE update_user_password(
 //
 DELIMITER ;
 
-grant execute on procedure create_competitor to competitor;
-grant execute on procedure update_user to competitor;
-grant execute on procedure select_user to competitor;
+DROP procedure IF EXISTS search_user;
+DELIMITER //
+CREATE PROCEDURE search_user(
+		in search VARCHAR(30)
+	)
 
-grant execute on procedure create_user to administrator;
-grant execute on procedure create_competitor to administrator;
-grant execute on procedure select_user to administrator;
-grant execute on procedure update_user to administrator;
+	BEGIN
+		SELECT id, username, email, contact, type, is_active FROM user WHERE username LIKE search;
+	END; //
+DELIMITER ;
 
-grant execute on procedure select_user to guest;
-grant execute on procedure select_user to organizer;
+grant execute on procedure create_competitor to 'competitor'@'localhost';
+grant execute on procedure update_user to 'competitor'@'localhost';
+grant execute on procedure select_user to 'competitor'@'localhost';
+
+grant execute on procedure create_user to 'administrator'@'localhost';
+grant execute on procedure create_competitor to 'administrator'@'localhost';
+grant execute on procedure select_user to 'administrator'@'localhost';
+grant execute on procedure update_user to 'administrator'@'localhost';
+grant execute on procedure search_user to 'administrator'@'localhost';
+
+grant execute on procedure select_user to 'guest'@'localhost';
+grant execute on procedure select_user to 'organizer'@'localhost';
