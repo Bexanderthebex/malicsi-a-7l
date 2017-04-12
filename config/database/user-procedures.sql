@@ -41,11 +41,34 @@ CREATE PROCEDURE select_user(
 	)
 
 	BEGIN
-		SELECT * from user WHERE id = _id;
+		SELECT id, username, contact, email, is_active, type from user WHERE id = _id;
 	END;
 //
 DELIMITER ;
 
+DROP procedure IF EXISTS select_user_with_password_from_username;
+DELIMITER //
+CREATE PROCEDURE select_user_with_password_from_username(
+		in _username VARCHAR(50)
+	)
+
+	BEGIN
+		SELECT * FROM user WHERE username = _username;
+	END;
+//
+DELIMITER ;
+
+DROP procedure IF EXISTS select_user_from_username;
+DELIMITER //
+CREATE PROCEDURE select_user_from_username(
+		in _username VARCHAR(50)
+	)
+
+	BEGIN
+		SELECT * FROM user WHERE username = _username;
+	END;
+//
+DELIMITER ;
 
 DROP procedure IF EXISTS update_user;
 DELIMITER //
