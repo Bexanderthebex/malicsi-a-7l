@@ -141,6 +141,17 @@
                     Materialize.toast('Error retrieving requests.', 3000);
                 })
         }
+        
+        function getCurrentUser() {		
+            UserService		
+                .getUserInfo()		
+                .then(function (res){		
+                    $scope.currentUser = res.data;		
+                    console.log($scope.currentUser);		
+                 }, function(err) {		
+                    Materialize.toast('error', 3000);		
+            })		
+        }
 
         function getOrganizer() {
             OrganizerService
