@@ -26,4 +26,15 @@ CREATE PROCEDURE create_organizer(
 //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS search_admin;
+DELIMITER //
+CREATE PROCEDURE search_admin(
+	in _keyword VARCHAR(100)
+)
+	BEGIN
+		SELECT id, username, email, contact, is_active FROM user WHERE (username LIKE _keyword OR email LIKE _keyword) AND type='A';
+	END;
+//
+DELIMITER //
+
 grant execute on procedure update_activity to administrator;

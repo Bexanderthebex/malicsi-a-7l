@@ -16,7 +16,8 @@
             retrieveGame: retrieveGame,
             retrieveOrganization: retrieveOrganization,
             retrieveSport: retrieveSport,
-            retrieveCompetitor: retrieveCompetitor
+            retrieveCompetitor: retrieveCompetitor,
+            retrieveAdmin: retrieveAdmin
         }
 
         return service;
@@ -33,7 +34,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -49,7 +50,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -65,7 +66,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -81,7 +82,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -97,9 +98,25 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
-        
+
+		function retrieveAdmin(search) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: { 'search': search },
+                url: '/user/searchAdmin',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+		}
     }
 })();

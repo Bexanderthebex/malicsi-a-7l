@@ -38,7 +38,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -117,6 +117,7 @@
         function acceptRequest(teamId) {
             let deferred = $q.defer();
 
+
             $http({ 
                 method: 'PUT',
                 data: $.param({ 'team_id': teamId }),
@@ -131,6 +132,7 @@
 
             return deferred.promise;
         }
+
 
         function declineRequest(teamId) {
             let deferred = $q.defer();
@@ -149,7 +151,7 @@
 
             return deferred.promise;
         }
-        
+
         function getOrganizer(id) {
             let deferred = $q.defer();
 
