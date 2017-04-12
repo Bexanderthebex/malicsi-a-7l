@@ -12,6 +12,7 @@
 			<div class="slide" >
 				<div class="container organization-team-list" data-target="organization-team-info-modal" >
 					<div class="row"> 
+						<h5 class="organization-team-name palette-text-3 rockwell" id="emptyOrganization"></h5>
 						<div class="col s4 m3 l2 organization-team" ng-repeat="team in teams" ng-click="retrieveTeam(team.team_id)">
 							<img class="valign organization-team-logo" src="assets/team1.png">
 							<h5 class="organization-team-name palette-text-3 rockwell">{{ team.team_name }}</h5>
@@ -30,6 +31,7 @@
 						<h5 class="palette-text-3 leixo">Members </h5>
 					</div> 
 					<div class="row">
+						<h5 class="organization-team-member-name palette-text-3 century-gothic strong" id="emptyTeam"></h5>
 						<div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers">
 							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
 							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>

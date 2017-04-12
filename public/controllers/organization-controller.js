@@ -82,6 +82,10 @@
                 .retrieveTeams(org_id)
                 .then(function(res) {
                     $scope.teams = res.data;
+                    if($scope.teams.length < 1)
+                        $(emptyOrganization).text('No Teams Yet');
+                    else
+                        $(emptyOrganization).text('');
                     console.log($scope.teams);
                 }, function(err) {
                     console.log(err);
@@ -108,6 +112,10 @@
                 .retrieveMembers(team_id)
                 .then(function(res) {
                     $scope.teamMembers = res.data;
+                    if($scope.teamMembers.length < 1)
+                        $(emptyTeam).text('No Members Yet');
+                    else
+                        $(emptyTeam).text('');
                     console.log(":D");
                     console.log($scope.teamMembers);
                 }, function(err) {
