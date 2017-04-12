@@ -11,7 +11,6 @@ exports.login = (req, res) => {
 		req.body.username
 	], function(err, rows) {
 		if(!err) {
-			console.log(rows[0])
 			if (rows[0].length == 1) {
 				bcrypt.compare(req.body.password, rows[0][0].password, (err, isCorrect) => {
 					if (isCorrect) {
@@ -20,7 +19,7 @@ exports.login = (req, res) => {
 							username: rows[0][0].username,
 							type: rows[0][0].type
 						}
-						console.log(req.session.user.type);
+
 						return res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
 						// console.log('hello')
@@ -45,7 +44,6 @@ exports.login = (req, res) => {
 
 exports.logout = (req, res) => {
 	req.session = null;
-	console.log(req.session);
 	return res.status(200).send({'message': 'Logout successful'});
 }
 
@@ -54,6 +52,7 @@ exports.register = (req, res) => {
 	let select_user_query = 'CALL select_user_from_username(?)';
 	let insert_comp_query = 'CALL create_competitor(?,?,?,?,?,?)';
 
+	//let type = req.session.user.type;
 	connection.userType('A').query(insert_user_query,
 		[
 			req.body.username,
@@ -131,6 +130,7 @@ exports.update = (req, res) =>{
 		Example, use did not provide password. req.body.password must be the user's old password.
 	*/
 
+	//let type = req.session.user.type;
 	connection.userType('A').query(update_query, [
 		req.body.username,
 		req.body.email,
@@ -147,9 +147,30 @@ exports.update = (req, res) =>{
 	});
 }
 
+exports.searchUser = (req, res) => {
+	let query = "CALL search_user(?)";
+
+	connection.userType('A').query(query,
+		[
+			"%" + req.query.keyword + "%"
+		], (err, rows) => {
+			if(!err){
+				if(rows[0].length == 1) {
+					return res.status(200).send(rows[0]);
+				} else {
+					return res.status(200).send(rows[0]);
+				}
+			} else {
+				return res.status(500).send({'message' : 'Internal Server Error'});
+			}
+		}
+	);
+}
+
 exports.updatePassword = (req, res) => {
 	let update_query = 'CALL update_user_password(?, ?)';
 
+	//let type = req.session.user.type;
 	connection.userType('A').query(update_query, [
 		req.body.password,
 		req.body.id !== undefined ? req.body.id : req.session.user.id

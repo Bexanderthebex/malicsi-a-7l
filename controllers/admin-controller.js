@@ -19,13 +19,25 @@ exports.createOrganizer = (req, res) => {
 	let query = 'SELECT id FROM user WHERE username = ?';
 	let insert_query1 = 'CALL create_user(?, ?, ?, ?, ?)';
 	let insert_query2 = 'CALL create_organizer(?, ?, ?)';
-
-	connection.userType('A').query(insert_query1, [req.body.username, req.body.password, req.body.email, req.body.contact, 'O'], function(err, rows){
+	let type = req.session.user.type;
+	connection.userType(type).query(insert_query1, [
+		req.body.username, 
+		req.body.password, 
+		req.body.email, 
+		req.body.contact, 
+		'O'
+	], function(err, rows){
 		if(!err){
-			connection.userType('A').query(query, [req.body.username], function(err, rows){
+			connection.userType(type).query(query, [
+				req.body.username
+			], function(err, rows){
 				if(!err){
 					if(rows.length == 1){
-						connection.userType('A').query(insert_query2, [rows[0].id, req.body.name, req.body.description], function(err, rows){
+						connection.userType(type).query(insert_query2, [
+							rows[0].id, 
+							req.body.name, 
+							req.body.description
+						], function(err, rows){
 							if(!err){
 								return res.status(200).send({'message': 'Successfully created organizer.'});
 							}else{
@@ -51,7 +63,11 @@ exports.createOrganizer = (req, res) => {
 
 exports.changeActivity = (req, res) => {
 	let query = 'CALL update_activity(?, ?)';
-	connection.userType('A').query(query, [req.body.is_active, req.params.id], (err, rows) => {
+	let type = req.session.user.type;
+	connection.userType(type).query(query, [
+		req.body.is_active,
+		req.params.id
+	], (err, rows) => {
 		if(!err){
 			console.log(req.params.id)
 			console.log(rows);
@@ -71,7 +87,8 @@ exports.changeActivity = (req, res) => {
 
 exports.getUsersByType = (req, res) => {
 	let query = 'SELECT id, username, email, contact, is_active FROM user WHERE type = ?';
-	connection.userType('A').query(query, [
+	let type = req.session.user.type;
+	connection.userType(type).query(query, [
 		req.body.type
 	], (err, rows) => {
 		if(!err){
@@ -84,20 +101,22 @@ exports.getUsersByType = (req, res) => {
 }
 
 exports.getAllUsers = (req, res) => {
-	let query = 'SELECT id, username, email, contact FROM user';
+	let query = 'SELECT id, username, email, contact, type, is_active FROM user';
+	let type = req.session.user.type;
 	connection.userType('A').query(query, [], (err, rows) => {
 		if(!err){
-			res.status(200).send(rows);
+			return res.status(200).send(rows);
 		}else{
 			console.log(err);
-			res.status(500).send({ 'message' : 'Internal Server Error.' });
+			return res.status(500).send({ 'message' : 'Internal Server Error.' });
 		}
 	});
 }
 
 exports.createAdmin = (req, res) => {
 	let query = 'call create_user(?, ?, ?, ?, \'A\')';
-	connection.userType('A').query(query, [
+	let type = req.session.user.type;
+	connection.userType(type).query(query, [
 		req.body.username,
 		req.body.password,
 		req.body.email,
@@ -115,7 +134,8 @@ exports.createAdmin = (req, res) => {
 exports.searchAdmin = (req, res) => {
 	let query = 'call search_admin(?)';
 
-	connection.userType('A').query(query, [
+	let type = req.session.user.type;
+	connection.userType(type).query(query, [
 		'%' + req.query.search + '%'
 	], (err, rows) => {
 		if (!err) {
