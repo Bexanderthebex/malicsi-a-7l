@@ -181,7 +181,7 @@ exports.processRequest = (req, res, next) => {
 };
 
 exports.deleteTeam = (req, res, next) => {
-	query1 = "CALL deleteTeam(?)"
+	query1 = "CALL delete_team(?)"
 	query = "CALL get_team(?)"
 
 	connection.userType('A').query(query,

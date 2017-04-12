@@ -8,9 +8,9 @@
                 <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
 
-            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getOrganizer()">
+            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCurrentUser()">
             <!-- ng-init -> ito muna yung tatawagin para makuha yung organizer na kailangan
-            yung irereturn ng getOrganizer() ay isang organizer, which is yung $scope.organizer
+            yung irereturn ng getCurrentUser() ay isang organizer, which is yung $scope.organizer
             accessible yung values ng attributes ng organizer by enclosing it sa {{ }} -->
                 <h3 class="rockwell">{{ organizer.name }} <a id="organizer-profile-edit" data-target="organizer-profile-edit-modal"><i class="material-icons">edit</i></a></h3>
                 <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
@@ -68,17 +68,17 @@
                 <h5 class="rockwell">Games Handled</h5>
                 
                 <ul class="tabs tabs-transparent telegrafico" id="organizer-profile-games">
-                    <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">ONGOING (5)</a></li>
-                    <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">INCOMING (3)</a></li>
-                    <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">PAST (12)</a></li>
+                    <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">ONGOING ({{ games.length }})</a></li>
+                    <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">INCOMING ({{ games.length }})</a></li>
+                    <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">PAST ({{ games.length }})</a></li>
                     <div class="indicator white" style="z-index: 1"></div>
                 </ul>
                 
 
                 <div id="organizer-profile-ongoing" class="col s12">
-                    <table class="highlight responsive-table organizer-games-data" ng-init="retrieveGame()">
+                    <table class="highlight responsive-table organizer-games-data" ng-init="getOrganizerGames()">
                         <tbody class="">
-                            <tr class="century-gothic" ng-repeat="game in games">
+                            <tr class="century-gothic" ng-repeat="game in games | limitTo: 5">
                             <!-- ng-repeat -> itong <tr> na naka repeat ay mauulit ng ilang beses depende sa 
                             kung ilan yung laman ng games na array
                             game represents on element in the array games--> 
@@ -108,7 +108,7 @@
                 <div id="organizer-profile-incoming" class="col s12">
                     <table class="highlight responsive-table organizer-games-data">
                         <tbody>
-                            <tr class="century-gothic" ng-repeat="game in games">
+                            <tr class="century-gothic" ng-repeat="game in games | limitTo: 5">
                                 <td>{{ game.name }}</td>
                                 <td>{{ game.start_date| date:"longDate"}}</td>
                                 <td>{{ game.location }}</td>
@@ -135,7 +135,7 @@
                 <div id="organizer-profile-past" class="col s12">
                     <table class="highlight responsive-table organizer-games-data">
                         <tbody>
-                            <tr class="century-gothic" ng-repeat="game in games">
+                            <tr class="century-gothic" ng-repeat="game in games | limitTo: 5">
                                 <td>{{ game.name }}</td>
                                 <td>{{ game.start_date| date:"longDate"}}</td>
                                 <td>{{ game.location }}</td>
@@ -162,7 +162,7 @@
         </div>
 
         <!-- Requests -->
-        <div class="row container" ng-init="getRequests()">
+        <div class="row container" ng-init="getOrganizerRequests()">
             <h5 class="rockwell">Requests</h5>
             <table class="highlight responsive-table">
                 <thead>
@@ -178,7 +178,7 @@
                         <td>{{ request.team_name }}</td>
                         <td>{{ request.sport_name }}</td>
                         <td>{{ request.name }} </td>
-                        <td>{{ request.start_date }}</td>
+                        <td>{{ request.team_count}} / {{ request.max_teams }}</td>
                         <td>
                             <div class="organizer-actions" data-target="organizer-profile-accept-modal">
                                 <i class="fa fa-check fa-lg" ng-click="copyRequest(request)"></i>
@@ -220,7 +220,7 @@
     </div>  
     <div class="modal-content">
         <div class="row">
-            <form class="col s12" ng-init="getOrganizer()">
+            <form class="col s12" ng-init="getCurrentUser()">
                 <div class="row">
                     <div class="input-field col s6">
                         <input id="first_name" type="text" class="validate" ng-model="organizer.name">
@@ -363,7 +363,7 @@
     <div class="divider"></div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        <a class="modal-action modal-close waves-effect btn-flat" ng-click="declineRequest()"><i class="material-icons left">check</i>Yes</a>
     </div>
 </div>
 
