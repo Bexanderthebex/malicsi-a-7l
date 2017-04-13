@@ -19,17 +19,18 @@
             getRequests: getRequests,
             getOrganizer: getOrganizer,
             updateOrganizer: updateOrganizer,
-            acceptRequests: acceptRequests
+            acceptRequest: acceptRequest,
+            declineRequest: declineRequest
         }
 
         return service;
 
-        function retrieveGame(gameId) {
+        function retrieveGame(org_id) {
             let deferred = $q.defer();
-            console.log(gameId);
+
             $http({
                 method: 'GET',
-                params: { 'id': gameId },
+                params: { 'id': org_id },
                 url: '/organizer/findGames',
                 headers: headers
             }).then((res) => {
@@ -43,7 +44,7 @@
 
         function addGame(game) {
             let deferred = $q.defer();
-            console.log(game);
+
             $http({
                 method: 'POST',
                 data: $.param(game),
@@ -61,7 +62,7 @@
 
         function updateGame(game) {
             let deferred = $q.defer();
-            console.log(game);
+
             $http({
                 method: 'PUT',
                 data: $.param(game), // json
@@ -105,6 +106,24 @@
                 url: '/organizer/getPendingParticipation',
                 headers: headers
             }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function acceptRequest(teamId) {
+            let deferred = $q.defer();
+
+
+            $http({ 
+                method: 'PUT',
+                data: $.param({ 'team_id': teamId }),
+                url: '/organizer/processRequest',
+                headers: headers
+            }).then((res) => {
                 console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
@@ -114,17 +133,14 @@
             return deferred.promise;
         }
 
-        function acceptRequests(teamId) {
+
+        function declineRequest(teamId) {
             let deferred = $q.defer();
 
-            let team = {
-                'team_id': teamId
-            }
-
-            $http({
-                method: 'POST',
-                data: $.param(team),
-                url: '/organizer/processRequest',
+            $http({ 
+                method: 'DELETE',
+                data: $.param({ 'team_id': teamId }),
+                url: '/organizer/deleteTeam',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);
@@ -138,7 +154,7 @@
 
         function getOrganizer(id) {
             let deferred = $q.defer();
-            console.log(id);
+
             $http({
                 method: 'GET',
                 params: { 'search': id },
@@ -156,7 +172,7 @@
 
         function updateOrganizer(organizer) {
             let deferred = $q.defer();
-            console.log(organizer);
+
             $http({
                 method: 'PUT',
                 data: $.param(organizer),

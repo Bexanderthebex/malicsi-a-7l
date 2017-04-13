@@ -11,8 +11,8 @@
 
     function OrganizationController($scope, $routeParams, OrganizationService, UserService) {
         $scope.thisOrganization = {
-            organization_id = $routeParams.id;
-        }
+            organization_id: $routeParams.id
+        };
         $scope.currentUser = [];
         $scope.teams = [];
         $scope.temp = [];
