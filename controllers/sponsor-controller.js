@@ -151,7 +151,7 @@ exports.deleteSponsorFromGame = (req, res) => {
 	var query = 'CALL view_sponsor(?)';
 	let sponsorId = req.body.sponsorId;
 	let gameId = req.body.gameId;
-	connection.query(query, 
+	connection.userType('A').query(query, 
 		[
 			sponsorId
 		], 
@@ -171,7 +171,7 @@ exports.deleteSponsorFromGame = (req, res) => {
 exports.deleteSponsor = (req, res) => {
 	var query = 'CALL view_sponsor(?)';
 	let sponsorId = req.body.sponsorId;
-	connection.query(query, 
+	connection.userType('A').query(query, 
 		[
 			sponsorId
 		], 
