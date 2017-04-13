@@ -31,6 +31,16 @@ BEGIN
 END//
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_sponsors_not_in_game;
+DELIMITER //
+CREATE PROCEDURE view_all_sponsors_not_in_game(IN g_id INT)
+BEGIN
+	select * from sponsor_institution 
+    where sponsor_id not in (select sponsor_id from sponsor_games where game_id = g_id);
+END//
+DELIMITER ;
+
+
 DROP PROCEDURE IF EXISTS view_sponsor_in_sport;
 DELIMITER //
 CREATE PROCEDURE view_sponsor_in_sport(IN s_id INT)
@@ -119,6 +129,12 @@ GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO organizer;
 GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO administrator;
 GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO competitor;
 GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO guest;
+
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO guest;
+
 
 GRANT EXECUTE ON PROCEDURE view_sponsor TO organizer;
 GRANT EXECUTE ON PROCEDURE view_sponsor TO administrator;

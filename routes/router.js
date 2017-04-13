@@ -128,6 +128,7 @@ router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.get('/game/viewSponsor',  sponsorController.viewSponsor);
 router.get('/game/viewSponsorInSport',  sponsorController.viewSponsorInSport);
 router.get('/game/viewSponsorInGame',  sponsorController.viewSponsorInGame);
+router.get('/game/viewSponsorNotInGame', sponsorController.viewSponsorNotInGame);
 router.post('/game/addSponsorToGame',  sponsorController.addSponsorToGame);
 router.delete('/game/deleteSponsorFromGame',  sponsorController.deleteSponsorFromGame);
 

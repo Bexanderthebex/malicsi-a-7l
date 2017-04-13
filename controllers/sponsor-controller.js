@@ -147,6 +147,22 @@ exports.viewSponsorInGame = (req, res) => {
 		});
 }
 
+exports.viewSponsorNotInGame = (req, res) => {
+	let query = 'CALL view_all_sponsors_not_in_game(?)';
+	connection.userType('A').query(query,
+		[
+			req.query.gameId
+		],
+		(err, rows) => {
+			if(!err){
+				return res.status(200).send(rows[0]);
+			} 
+			else{
+				res.status(500).send("Internal Server Error");
+			}
+		});
+}
+
 exports.deleteSponsorFromGame = (req, res) => {
 	var query = 'CALL view_sponsor(?)';
 	let sponsorId = req.body.sponsorId;

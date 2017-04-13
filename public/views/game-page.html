@@ -367,16 +367,15 @@
 								</div>
 							</div>
 
-							<div class="card-panel palette-3 game-remove-padding">
-								<h5 class="white-text game-remove-margin center rockwell">Sponsoring institutions										<i class="fa fa-plus-square sponsor-actions" data-target="game-sponsor-add"></i></h5>
-								<div class="row" ng-init="viewSponsoringInstitutions()" ng-hide="checkSponsors()">
+							<div class="card-panel palette-3 game-remove-padding" ng-init="viewSponsoringInstitutions()">
+								<h5 class="white-text game-remove-margin center rockwell">Sponsoring institutions										<i class="fa fa-plus-square sponsor-actions" data-target="game-sponsor-add" ng-init="viewOtherSponsoringInstitutions()"></i></h5>
+								<div class="row" ng-model="sponsors" ng-hide="checkSponsors()">
 									<div class="col s12 m12">
 										<div ng-repeat="sponsor in sponsors">
 											<p class="telegrafico white-text game-sponsor-title">
-												
 											{{sponsor.name}}
-											<i class="fa fa-pencil-square-o sponsor-actions" data-target="game-sponsor-edit" ng-click="passSponsor(sponsor)"></i>
-											<i class="fa fa-trash sponsor-actions" data-target="game-delete-sponsor" ng-click="passSponsor(sponsor)"></i>
+											<!-- <i class="fa fa-pencil-square-o sponsor-actions" data-target="game-sponsor-edit" ng-click="passSponsor(sponsor)"></i> -->
+											<i class="fa fa-trash sponsor-actions" data-target="game-delete-sponsor" ng-click="passSponsorDelete(sponsor)"></i>
 
 											</p>
 											<p class="game-sponsor-description white-text">{{sponsor.description}} </p>
@@ -416,11 +415,11 @@
 	</div>
 	<div class="modal-footer">
 		<a href="" class="modal-action modal-close waves-effect btn-flat">No</a>
-		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="deleteSponsoringInstitution()">Yes</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="deleteSponsoringInstitution(sponsorCopy)">Yes</a>
 	</div>
 </div>
 
-<div id="game-sponsor-edit" class="modal">
+<!-- <div id="game-sponsor-edit" class="modal">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-3">
 			<div class="center">
@@ -456,13 +455,12 @@
 	<div class="modal-footer">
 		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="editSponsoringInstitution()">Save</a>
 	</div>
-</div>
+</div> -->
 
-<div id="game-sponsor-add" class="modal">
+<div id="game-sponsor-add" class="modal" >
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-3">
 			<div class="center">
-
 					<div class="card-title white-text center" id="thicken">
 				 		<h5>Add Sponsoring Institution</h5>
 					</div>
@@ -473,18 +471,22 @@
 		<div class="row">
 			<div class="col s12">
 				<h6 class="century-gothic strong">Sponsor Name:</h6>
-				<input placeholder="" id="addSponsorName" type="text" class="validate">
+				<!-- <select id ="otherSponsorName" ng-model="sponsorAdd" ng-options="sponsor as sponsor.name for sponsor in otherSponsors track by sponsor.sponsor_id" ></select> -->
+				<select id ="otherSponsorName" ng-model="sponsorAdd" ng-change="passSponsorAdd(sponsorAdd)">
+					<option ng-repeat="sponsor in otherSponsors" value='{"sponsor_id": "{{sponsor.sponsor_id}}", "description": "{{sponsor.description}}", "name":"{{sponsor.name}}" }' >{{sponsor.name}}</option>
+				</select>
+				<h6 class="century-gothic strong">Description:</h6>
+				<p class="center" >{{sponsorAdd.description}}</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col s12">
-				<h6 class="century-gothic strong">Description:</h6>
-				<textarea placeholder="" id="addSponsorDesc" type="text" class="validate"></textarea>
+				
 			</div>
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-click="addSponsorInstitution()">Add</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="addSponsoringInstitution()">Add</a>
 	</div>
 </div>
 
