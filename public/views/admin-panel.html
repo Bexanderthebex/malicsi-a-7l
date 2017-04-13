@@ -114,9 +114,9 @@
 					<div class="row center">
 						<div class="col s12">
 							<form id="adminpanel-game-search-bar">
-								<input type="search" >
+								<input ng-model="adminSearch" type="search" >
 							</form>
-							<a class="waves-effect waves-light btn palette-2">Search</a>
+							<a ng-click="searchAdmin()" class="waves-effect waves-light btn palette-2">Search</a>
 						</div>
 						<!--<div class="col s6">
 
@@ -126,19 +126,36 @@
 		            	<thead>
 		            		<tr class="telegrafico">
 		            			<th>Username</th>
+								<th>Email</th>
+								<th>Contact</th>
+								<th>Active</th>
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
 		            		<tr ng-repeat="a in admins">
 		            			<td class="match-player">
 		            				<div ng-show="!view">{{a.username}}</div>
-		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new first name:"></div>
+		            				<div ng-hide="!view"><input ng-model="a.newUsername" type="text" name="" placeholder="Enter new first name:"></div>
+		            			</td>
+								<td class="match-player">
+		            				<div ng-show="!view">{{a.email}}</div>
+		            				<div ng-hide="!view"><input ng-model="a.newEmail" type="text" name="" placeholder="Enter new first name:"></div>
+		            			</td>
+								<td class="match-player">
+		            				<div ng-show="!view">{{a.contact}}</div>
+		            				<div ng-hide="!view"><input ng-model="a.newContact" type="text" name="" placeholder="Enter new first name:"></div>
+		            			</td>
+								<td class="match-player">
+		            				<div ng-show="!view">{{!!a.is_active}}</div>
 		            			</td>
 		            			<td>
-		            				<div class="match-actions">
+		            				<div class="match-actions" ng-show="a.is_active == true" ng-click="setIsActive(false, a.id, admins)">
 		            					<i class="fa fa-minus-square fa-lg"></i>
 		            				</div>
-		            				<div class="match-actions" ng-click="view = !view">
+									<div class="match-actions" ng-show="a.is_active == false" ng-click="setIsActive(true, a.id, admins)">
+		            					<i class="fa fa-plus-square fa-lg"></i>
+		            				</div>
+		            				<div class="match-actions" ng-click="view = !view; editAdmin(a);" ng-attr-id="admin-edit-{{a.id}}" data-is-editing="false">
 		            					<i class="fa fa-pencil-square-o fa-lg"></i>
 		            				</div>
 		            			</td>
@@ -166,9 +183,9 @@
 					<div class="row center">
 						<div class="col s12">
 							<form id="adminpanel-game-search-bar">
-								<input type="search" >
+								<input ng-model="organizerSearch" type="search" >
 							</form>
-							<a class="waves-effect waves-light btn palette-2">Search</a>
+							<a ng-click="searchOrganizer()" class="waves-effect waves-light btn palette-2">Search</a>
 						</div>
 						<!--<div class="col s6">
 
@@ -178,43 +195,32 @@
 		            	<thead>
 		            		<tr class="telegrafico">
 		            			<th>Name</th>
-		            			<th>Description</th>
+								<th>Description</th>
+								<th>Active</th>
 		            			<th>Actions</th>
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
-		            		<tr>
+		            		<tr ng-repeat="o in organizers">
 		            			<td class="match-player">
-		            				<div ng-show="!view">Juan Dela Cruz</div>
+		            				<div ng-show="!view">{{o.name}}</div>
 		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new name"></div>
 		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view">We are one we are the world. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus, natus ullam voluptatibus, iure odit in aliquam laborum esse quibusdam magni blanditiis officiis corporis dignissimos, quam consequuntur quidem tempore at. Harum!</div>
+								<td class="match-player">
+		            				<div ng-show="!view">{{o.description}}</div>
 		            				<div ng-hide="!view"><input type="text" name="" placeholder="Enter new description"></div>
 		            			</td>
+								<td class="match-player">
+		            				<div ng-show="!view">{{!!o.is_active}}</div>
+		            			</td>
 		            			<td>
-		            				<div class="match-actions">
+									<div class="match-actions" ng-show="o.is_active == true" ng-click="setIsActive(false, o.id, organizers)">
 		            					<i class="fa fa-minus-square fa-lg"></i>
+		            				</div>
+									<div class="match-actions" ng-show="o.is_active == false" ng-click="setIsActive(true, o.id, organizers)">
+		            					<i class="fa fa-plus-square fa-lg"></i>
 		            				</div>
 		            				<div class="match-actions" ng-click="view = !view">
-		            					<i class="fa fa-pencil-square-o fa-lg"></i>
-		            				</div>
-		            			</td>
-		            		</tr>
-		            		<tr>
-		            			<td class="match-player">
-		            				<div ng-show="!view3">Juan Dela Cruz</div>
-		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new name"></div>
-		            			</td>
-		            			<td class="match-player">
-		            				<div ng-show="!view3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis inventore maiores at mollitia ab unde deleniti, aperiam labore sint distinctio temporibus vel, dignissimos tenetur sapiente similique, voluptatum. Repudiandae, molestiae, dolorum.</div>
-		            				<div ng-hide="!view3"><input type="text" name="" placeholder="Enter new description"></div>
-		            			</td>
-		            			<td>
-		            				<div class="match-actions">
-		            					<i class="fa fa-minus-square fa-lg"></i>
-		            				</div>
-		            				<div class="match-actions" ng-click="view3 = !view3">
 		            					<i class="fa fa-pencil-square-o fa-lg"></i>
 		            				</div>
 		            			</td>
@@ -341,32 +347,11 @@
 		            		</tr>
 		            	</thead>
 		            	<tbody class="century-gothic">
-		            		<tr>
-		            			<td>234234</td>
-		            			<td>2322</td>
-		            			<td>Deleted asdf @ asomething</td>
-		            			<td>02-32-2222</td>
-		            		</tr>
-
-							<tr>
-		            			<td>234234</td>
-		            			<td>2322</td>
-		            			<td>Deleted asdf @ asomething</td>
-		            			<td>02-32-2222</td>
-		            		</tr>
-
-		            		<tr>
-		            			<td>234234</td>
-		            			<td>2322</td>
-		            			<td>Deleted asdf @ asomething</td>
-		            			<td>02-32-2222</td>
-		            		</tr>
-
-		            		<tr>
-		            			<td>234234</td>
-		            			<td>2322</td>
-		            			<td>Deleted asdf @ asomething</td>
-		            			<td>02-32-2222</td>
+		            		<tr ng-repeat="l in logs">
+		            			<td>{{l.log_id}}</td>
+		            			<td>{{l.user_id}}</td>
+		            			<td>{{l.log_msg}}</td>
+		            			<td>{{l.date_created}}</td>
 		            		</tr>
 		            	</tbody>
 		            </table>

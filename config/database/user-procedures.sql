@@ -10,7 +10,7 @@ CREATE PROCEDURE create_user(
 		in _type CHAR(1)
 	)
 
-	BEGIN 
+	BEGIN
 		INSERT INTO user (username, password, email, contact, type, is_active) values (_username, _password, _email, _contact, _type, 1);
 	END;
 //
@@ -51,14 +51,26 @@ DROP procedure IF EXISTS update_user;
 DELIMITER //
 CREATE PROCEDURE update_user(
 		in _username VARCHAR(50),
-		in _password VARCHAR(60),
 		in _email VARCHAR(254),
 		in _contact VARCHAR(15),
 		in _id INT
 	)
 
-	BEGIN 
-		UPDATE user SET username = _username, password = _password, email = _email, contact = _contact WHERE id = _id;
+	BEGIN
+		UPDATE user SET username = _username, email = _email, contact = _contact WHERE id = _id;
+	END;
+//
+DELIMITER ;
+
+DROP procedure IF EXISTS update_user_password;
+DELIMITER //
+CREATE PROCEDURE update_user_password(
+		in _password VARCHAR(60),
+		in _id INT
+	)
+
+	BEGIN
+		UPDATE user SET password = _password WHERE id = _id;
 	END;
 //
 DELIMITER ;

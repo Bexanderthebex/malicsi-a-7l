@@ -96,7 +96,7 @@ DROP PROCEDURE IF EXISTS count_teams_in_sport;
 DELIMITER //
 CREATE PROCEDURE count_teams_in_sport ( IN sport_idin INT) 
 	BEGIN
-	   SELECT sport_id, COUNT(team_id) AS team_count FROM team WHERE sport_id = sport_idin GROUP BY sport_id;
+	   SELECT sport_id, COUNT(team_id) AS team_count FROM team WHERE sport_id = sport_idin and pending_participation = 0;
 	END; //	
 
 DELIMITER ;
