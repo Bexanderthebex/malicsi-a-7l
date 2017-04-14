@@ -6,7 +6,7 @@
 			<img class="valign" id="organization-logo" src="assets/team1.png">
 			<h2 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h2>
 		</div>
-		<div class="row org-handler" ng-init="retrieveTeams(1)"><h4 class="organization-team-handler palette-text-3 center rockwell"> Teams Handled </h4></div>
+		<div class="row org-handler" ng-init="retrieveTeams(thisOrganization.organization_id)"><h4 class="organization-team-handler palette-text-3 center rockwell"> Teams Handled </h4></div>
 		<!--Slider-->
 		<div class="slider4" style="box-shadow: 0!important;" >
 			<div class="slide" >
@@ -33,7 +33,7 @@
 					<div class="row">
 						<h5 class="organization-team-member-name palette-text-3 century-gothic strong" id="emptyTeam"></h5>
 						<div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers" >
-							<a class="modal-action modal-close join-team-close" href="#/competitor/profile/{{member.id}} ">
+							<a class="modal-action modal-close" href="#/competitor/profile/{{member.id}} ">
 							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
 							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
 							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
@@ -146,7 +146,7 @@
 			
 		</div>
 		<!--Recent games modal-->
-		<div class="row container" ng-init="retrieveGamesInOrganization(1)">
+		<div class="row container" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
 			<div class="col s3 m3 l3 center-align recent-games-card" ng-repeat="game in gamesInOrganization.slice(0, 3)">
 				<h4 class="rockwell strong palette-text-4">{{game.name}}</h4>
 				<span class="century-gothic secondary-text"> {{ game.description }} </span>
@@ -157,7 +157,7 @@
 		</div>
 		<!--All games modal-->
 		<div id="organization-allgames-modal" class="modal modal-fixed-footer">
-			<div class="modal-content" ng-init="retrieveGamesInOrganization(1)">
+			<div class="modal-content" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
 				<div class="row">
 					<h4 class="rockwell strong palette-text-3 center">Games Participated</h4>
 				</div>
