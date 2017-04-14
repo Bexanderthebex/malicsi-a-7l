@@ -32,10 +32,12 @@
 					</div> 
 					<div class="row">
 						<h5 class="organization-team-member-name palette-text-3 century-gothic strong" id="emptyTeam"></h5>
-						<div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers">
+						<div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers" >
+							<a class="modal-action modal-close join-team-close" href="#/competitor/profile/{{member.id}} ">
 							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
 							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
 							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
+							</a>
 						</div>
 						<!-- <div class="col s4 m3 l2 organization-team-member">
 							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
