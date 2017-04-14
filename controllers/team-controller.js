@@ -159,15 +159,18 @@ exports.countTeamInSports = (req, res) => {
 exports.getTeamMembers = (req, res) => {
     query = "CALL get_members(?)";
     
+    console.log(req.query.team_id);
     connection.userType('A').query(query,
         [
             req.query.team_id
         ], (err, rows) => {
             if(!err) {
                 if (rows[0].length == 1){
+                    console.log(rows[0][0]);
                     return res.status(200).send(rows[0][0]);
                 }
                 else{
+                    console.log(rows[0]);
                     return res.status(200).send(rows[0]);
                     
                 }

@@ -17,7 +17,8 @@
             editCompetitorBio: editCompetitorBio,
             getCompetitor: getCompetitor,
             getCompetitorTeams: getCompetitorTeams,
-            getCoachedTeam: getCoachedTeam
+            getCoachedTeam: getCoachedTeam,
+            getTeamMembers: getTeamMembers
         }
 
         return service;
@@ -111,6 +112,24 @@
             $http({
                 method: 'GET',
                 url: '/team/getCoachedTeams',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function getTeamMembers(id){
+            let deferred = $q.defer();
+
+            console.log('id service: ' + id);
+            $http({
+                method: 'GET',
+                params: {'team_id': id},
+                url: '/team/getTeamMembers',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);

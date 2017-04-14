@@ -17,7 +17,8 @@ DELIMITER //
 
 CREATE PROCEDURE get_coached_team (IN idin INT) 
 	BEGIN
-		SELECT * from team JOIN sport using (sport_id) WHERE id = idin;
+		-- SELECT * from team JOIN sport using (sport_id) WHERE id = idin;
+		SELECT * from team JOIN sport using (sport_id) join organization WHERE id = idin && organization.organization_id = team.team_organization;
 	END; //
 
 DELIMITER ;
