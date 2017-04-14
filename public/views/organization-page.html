@@ -148,8 +148,10 @@
 		<!--Recent games modal-->
 		<div class="row container" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
 			<div class="col s3 m3 l3 center-align recent-games-card" ng-repeat="game in gamesInOrganization.slice(0, 3)">
+				<a href="#/game/{{game.game_id}}">
 				<h4 class="rockwell strong palette-text-4">{{game.name}}</h4>
 				<span class="century-gothic secondary-text"> {{ game.description }} </span>
+				</a>
 			</div>
 			<div class="col s3 m3 l2 center-align recent-games-card see-more">
 				<button href="" data-target="organization-allgames-modal" class="minimalist-button"> See more </button>
@@ -163,10 +165,12 @@
 				</div>
 				<div class="row">
 					<div class="col s4 m4 l4 center-align all-games-card" ng-repeat="game in gamesInOrganization">
+						<a href="#/game/{{game.game_id}}">
 						<h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
 						<span class="century-gothic secondary-text"> {{ game.description }} </span>
 						<p class="century-gothic secondary-text"> {{ game.start_date }} </p>
 						<p class="century-gothic secondary-text"> {{ game.location }} </p>
+						</a>
 					</div>
 				</div>
 			</div>
