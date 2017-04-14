@@ -87,36 +87,6 @@
     font-size: 16px;
 }
 
-#adminpanel-search-bar input::-webkit-search-decoration,
-#adminpanel-search-bar input::-webkit-search-cancel-button {
-    display: none; 
-}
-
-#adminpanel-search-bar input[type=search] {
-    background: white url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-    border: none;
-    padding: 9px 10px 9px 32px;
-    width: 95%;
-    -webkit-border-radius: 10em;
-    -moz-border-radius: 10em;
-    border-radius: 10em;
-    -webkit-transition: all .5s;
-    -moz-transition: all .5s;
-    transition: all .5s;
-}
-
-#adminpanel-search-bar input[type=search] {
-    height: 17px;
-}
-
-#adminpanel-search-bar input:-moz-placeholder {
-    color: transparent;
-}
-
-#adminpanel-search-bar input::-webkit-input-placeholder {
-    color: transparent;
-}
-
 .search-admin input[type=search]{
     /*padding-left: 10px;*/
 }
@@ -136,6 +106,12 @@
     color: white;
 }
 
+.admin-form-edit{
+    border-bottom: 2px solid #00719c;
+    width: 90%;
+    color: #00415a;
+}
+
 #admin-main .switch label input[type=checkbox]:checked+.lever {
   background-color: #00415a;
 }
@@ -144,13 +120,64 @@
   background-color: #00a5d3;
 }
 
-#admin-main td {
+#admin-main td , #admin-main th {
     padding: 0;
-    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 45px;
 }
 
 #admin-main td input{
     margin: 0;
-    height: 30px;
+    height: 28px;
+    margin-bottom: 6px;
     border: none;
+}
+
+.admin-form-edit:disabled{
+    color: black!important;
+    border-bottom: none!important;
+}
+
+.admin-right-view{
+    height: 350px!important;
+    overflow-y: scroll;
+    margin-top: 10px;
+    border: solid 1px #D0D0D0 !important;
+    border-radius: 3px;
+}
+
+.admin-right-view::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+.admin-right-view::-webkit-scrollbar{
+    width: 6px;
+    background-color: transparent;
+}
+
+.admin-right-view::-webkit-scrollbar-thumb{
+    background-color: #00719c;
+    border-radius: 5px;
+}
+
+.admin-form-edit-btn:hover{
+    color: #00719c;
+    cursor: pointer;
+}
+
+.admin-fillup-form{
+    height: 30px!important;
+    border-bottom: 2px solid #00719c!important;
+    color: black!important;
+    margin-bottom: 10px!important;
+}
+
+.admin-fillup-form:focus{
+    border-bottom: 2px solid #00a5d3!important;
+}
+
+.admin-fillup-label{
+    color: #00415a!important;
+    font-family: telegrafico;
 }

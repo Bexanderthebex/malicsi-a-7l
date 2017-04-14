@@ -1,4 +1,8 @@
 $(document).ready(function(){
+  // initializing all forms as disabled
+  $('.admin-form-edit').prop('disabled', false);
+  $('.admin-form-edit').attr('disabled', 'disabled');
+
   $("#admin-admins-btn").mouseover(function() {
       $(this).css("background","#00719c");
   });
@@ -168,6 +172,9 @@ $(document).ready(function(){
     $('#admin-spon-btn').css('background', '#00719c');
 
   });
+
+  
+
 
 
 });
