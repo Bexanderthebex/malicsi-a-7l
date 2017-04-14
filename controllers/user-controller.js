@@ -242,49 +242,24 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 		// console.log("id: " + currentUser.id);
 		connection.userType('A').query('SELECT username, contact, email, type FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
-				let returnObject = rows;
-				// console.log("1st: ");
-				// console.log(returnObject[0]);
 				if(currentUser.type == 'C') {
-					connection.userType('A').query('SELECT birthday, sex, first_name, last_name, nickname, bio from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
+					connection.userType('A').query('call get_competitor(?)', [currentUser.id], function(err, rows, fields){
 						if(!err) {
-							returnObject[0]['birthday'] = rows[0].birthday;
-							returnObject[0]['sex'] = rows[0].sex;
-							returnObject[0]['first_name'] = rows[0].first_name;
-							returnObject[0]['last_name'] = rows[0].last_name;
-							returnObject[0]['nickname'] = rows[0].nickname;
-							returnObject[0]['bio'] = rows[0].bio;
-
-							// console.log("2nd: ")
-							// console.log(returnObject[0]);
-							return res.status(200).send(returnObject[0]);
+							return res.status(200).send(rows[0][0]);
 						} else {
 							console.log(err);
 						}
 					})
 				} else if (currentUser.type == 'O') {
-					connection.userType('A').query('SELECT name, description from organizer where id = ?', [currentUser.id], function(err, rows, fields) {
+					connection.userType('A').query('call get_organizer(?)', [currentUser.id], function(err, rows, fields) {
 						if(!err) {
-							returnObject['name'] = rows[0].name;
-							returnObject['description'] = rows[0].description
-							returnObject.push(
-								{
-									key: "name",
-									value: rows[0].name
-								},
-								{
-									key: "description",
-									value: rows[0].description
-								}
-							);
-
-							return res.status(200).send(returnObject);
+							return res.status(200).send(rows[0][0]);
 						} else {
 							console.log(err);
 						}
 					});
 				} else {
-					return res.status(200).send(returnObject);
+					return res.status(200).send(rows[0][0]);
 				}
 			} else {
 				console.log(err);
