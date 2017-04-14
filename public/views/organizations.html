@@ -1,7 +1,7 @@
 <div id="mainHolder">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
-	<div id="main">
+	<div id="main" ng-init="orgsInit()">
 		<!--ORGANIZATIONS HEADER-->
 		<div class="palette-4" id="gamefeed-extend-header">
 			<div class="row gamefeed-game-container">
@@ -30,57 +30,8 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
-									</div>
-									
+										<a ng-repeat="org in orgsA" href="#/organization/{{org.organization_id}}" class="rockwell"> {{ org.name }}</a>
+									</div>									
 								</div>
 							</div>
 						</div>
@@ -94,7 +45,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -110,7 +61,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -126,7 +77,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -142,7 +93,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -158,7 +109,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -174,7 +125,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -189,7 +140,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -204,7 +155,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -219,7 +170,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -234,7 +185,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -249,7 +200,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -264,7 +215,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -279,7 +230,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -294,7 +245,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -309,7 +260,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -324,7 +275,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a ng-repeat="org in orgsA" href="" class="rockwell"> {{ org.name }}</a>
 									</div>
 									
 								</div>
@@ -339,7 +290,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -354,7 +305,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -369,7 +320,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a ng-repeat="org in orgsT" href="" class="rockwell"> {{ org.name }}</a>
 									</div>
 									
 								</div>
@@ -384,7 +335,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -399,7 +350,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a ng-repeat="org in orgsV" href="" class="rockwell"> {{ org.name }}</a>
 									</div>
 									
 								</div>
@@ -414,7 +365,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a ng-repeat="org in orgsW" href="" class="rockwell"> {{ org.name }}</a>
 									</div>
 									
 								</div>
@@ -429,7 +380,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -444,7 +395,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>
@@ -459,7 +410,7 @@
 								</div>
 								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
 									<div class="row" style="margin: 0!important;">
-										<a href="" class="rockwell"> Organization A </a>
+										<a href="" class="rockwell">  </a>
 									</div>
 									
 								</div>

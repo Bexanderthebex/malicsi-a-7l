@@ -6,9 +6,12 @@
         .module('app')
         .controller('CompetitorController', CompetitorController);
 
-    CompetitorController.$inject = ['$scope', '$window', 'CompetitorService', 'UserService'];
+    CompetitorController.$inject = ['$scope', '$window', '$routeParams', 'CompetitorService', 'UserService'];
 
-    function CompetitorController($scope, $window, CompetitorService, UserService) {
+    function CompetitorController($scope, $window, $routeParams, CompetitorService, UserService) {
+        $scope.thisCompetitor = {
+            competitor_id: $routeParams.id
+        };
         $scope.competitor = {};
         $scope.competitorteams = {};
         $scope.coachedteam = {};
@@ -25,9 +28,10 @@
 
         function searchCompetitor(id){
             CompetitorService
-                .searchCompetitor(id)
+                .searchCompetitor($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
-                    $scope.competitor = res;
+                    console.log(res.data);
+                    $scope.competitor = res.data;
                 }, function(err) {
                     console.log(err);
                 })

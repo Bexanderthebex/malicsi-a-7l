@@ -1,4 +1,4 @@
-<div id="mainHolder" ng-controller="LandingCtrl">
+<div id="mainHolder" ng-init="getGames()">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
@@ -10,8 +10,9 @@
 		      <li ng-repeat="g in games">
 		      	<img class="img-responsive" src="assets/images/1.jpg"> <!-- random image -->
 		        <div class="caption left-align">
-		          <h2><a class="home-caption-head rockwell strong" href="#">{{g.name}}</h2>
-		          <h6 class="light grey-text text-lighten-3 century-gothic">{{g.description}}</h6>
+		          <h2><a class="home-caption-head rockwell strong" href="#/game/{{g.game_id}}" >{{g.name}}</h2>
+				  <h6 style="font-weight: bold" class="light grey-text text-lighten-3 century-gothic">{{g.start_date}} | {{g.location}}</h6>
+				  <h6 class="light grey-text text-lighten-3 century-gothic">{{g.description}}</h6>
 		        </div>
 		      </li>
 

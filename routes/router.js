@@ -15,6 +15,7 @@ let logController = require("../controllers/log-controller");
 let competitorController = require("../controllers/competitor-controller");
 let organizerController = require("../controllers/organizer-controller");
 let teamController = require("../controllers/team-controller");
+let organizationController = require("../controllers/organization-controller");
 
 function sha256Hash(req, res, next) {
     console.log(req.body);
@@ -60,10 +61,12 @@ router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.post('/register/createOrganizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
 router.post('/register/createAdmin', checkUser('A'), sha256Hash, bcryptHash, adminController.createAdmin);
 router.get('/logout', userController.logout);
-router.get('/user/:id', userController.getUserInfo);
-router.put('/user/update', sha256Hash, bcryptHash, userController.update);
-router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 router.get('/user', userController.getUserInfo);
+router.get('/user/searchAdmin', checkUser('A'), adminController.searchAdmin);
+router.get('/user/:id', userController.getUserInfo);
+router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
+router.put('/user/update', userController.update);
+router.put('/user/updatePassword', sha256Hash, bcryptHash, userController.updatePassword);
 router.post('/user/getUsersByType', checkUser('A'), adminController.getUsersByType);
 router.post('/user/getAllUsers', checkUser('A'), adminController.getAllUsers);
 
@@ -91,6 +94,7 @@ router.delete('/organizer/deleteTeam',organizerController.deleteTeam);
 // organization
 router.get('/organization/getOrganization',teamController.getOrganization);
 router.get('/organization/getGamesInOrganization',teamController.getGamesInOrganization);
+router.get('/organization/search',organizationController.searchOrganization);
 
 // team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
@@ -109,10 +113,13 @@ router.get('/team/getOrganizationRankings',teamController.getOrganizationRanking
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
-router.get('/game/viewAllMatchesInGame', gameController.viewAllMatchesInGame);
+router.get('/game/viewAllPastMatchesInGame', gameController.viewAllPastMatchesInGame);
+router.get('/game/viewAllOngoingMatchesInGame', gameController.viewAllOngoingMatchesInGame);
+router.get('/game/viewAllUpcomingMatchesInGame', gameController.viewAllUpcomingMatchesInGame);
 router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
 router.get('/game/viewAllSportsInGame/:gameId', gameController.viewAllSportsInGame);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
+router.get('/game/ranks/:gameId', gameController.retrieveOrgRankings);
 router.post('/game/createGame',  gameController.createGame);
 router.put('/game/updateGame',  gameController.updateGame);
 router.delete('/game/deleteGame/',  gameController.deleteGame);

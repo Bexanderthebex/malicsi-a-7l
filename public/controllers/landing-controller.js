@@ -6,24 +6,29 @@
 
     function LandingCtrl($scope, $http, GameService) {
         $scope.games = [];
+        $scope.getGames = getGames;
 
-        GameService.viewUpcomingOngoingGames()
-        .then((res) => {
-            $scope.games = res;
 
-            // Cheap fix. Seems you have to initialize after retrieving data. 
-            $(document).ready(function () {
-            	$('body').css('overflow', 'hidden');
+        function getGames(argument) {
+            GameService.viewUpcomingOngoingGames()
+            .then((res) => {
+                $scope.games = res;
 
-            	$('.slider').slider({
-                    height: 490,                // adjust height
-                    full_width: false,
-                    interval: 7000,
-                    indicators: true            // set to false to disable circle pagers
+                // Cheap fix. Seems you have to initialize after retrieving data. 
+                $(document).ready(function () {
+                	$('body').css('overflow', 'hidden');
+
+                	$('.slider').slider({
+                        height: 490,                // adjust height
+                        full_width: false,
+                        interval: 7000,
+                        indicators: true            // set to false to disable circle pagers
+                    });
                 });
-            });
-        }, (err) => {
-            console.log(err);
-        })
+            }, (err) => {
+                console.log(err);
+            })
+        }
+
     }
 })();

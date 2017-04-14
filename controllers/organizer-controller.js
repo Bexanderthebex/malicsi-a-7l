@@ -5,13 +5,13 @@ const connection = require('./../config/db-connection.js');
 exports.searchOrganizer = (req, res) => {
 	query = 'CALL search_organizer(?)';
 
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			"%" + req.query.search + "%"
 		], (err, rows) => {
 			if(!err) {
 				if(rows[0].length == 1) {
-					return res.status(200).send(rows[0][0]);
+					return res.status(200).send(rows[0]);
 				} else {
 					return res.status(200).send(rows[0]);
 
@@ -26,7 +26,7 @@ exports.searchOrganizer = (req, res) => {
 exports.getOrganizer = (req, res) => {
 	query = 'CALL get_organizer(?)';
 
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			req.query.search
 		], (err, rows) => {
@@ -44,20 +44,20 @@ exports.editOrganizer = (req,res) => {
 	query = "CALL edit_organizer(?,?,?)";
 	query1 = "CALL get_organizer(?)";
 
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
-			req.body.name, 
-			req.body.description, 
+			req.body.name,
+			req.body.description,
 			req.body.id
 		], (err, rows) => {
 			if(!err) {
-				connection.userType('A').query(query1, 
+				connection.userType('A').query(query1,
 					[
 						req.body.id
 					], (err, rows) => {
 						if(!err) {
 							return res.status(200).send(rows[0]);
-							
+
 						}
 					}
 				);
@@ -70,7 +70,7 @@ exports.editOrganizer = (req,res) => {
 
 exports.findGames = (req,res,next) => {
 	query = "CALL find_game(?)"
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			req.query.id
 		], (err,rows) => {
@@ -85,11 +85,11 @@ exports.findGames = (req,res,next) => {
 			}
 		}
 	);
-};		 
-		 
+};
+
 exports.findSport = (req,res,next) =>{
 	query = "CALL find_sport(?)"
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 		 	req.query.game_id
 		], (err,rows) => {
@@ -108,7 +108,7 @@ exports.findSport = (req,res,next) =>{
 
 exports.findTeam = (req,res,next) =>{
 	query = "CALL find_team(?)"
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			req.query.sport_id
 		], (err,rows) => {
@@ -128,7 +128,7 @@ exports.findTeam = (req,res,next) =>{
 
 exports.getRequest = (req, res, next) => {
 	query = "CALL get_request(?)"
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			req.query.team_id
 		], (err,rows) => {
@@ -150,7 +150,7 @@ exports.processRequest = (req, res, next) => {
 	query = "CALL process_request(?)"
 	query1 = "CALL get_team(?)"
 
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			req.body.team_id
 		], (err,rows) => {
@@ -181,10 +181,10 @@ exports.processRequest = (req, res, next) => {
 };
 
 exports.deleteTeam = (req, res, next) => {
-	query1 = "CALL deleteTeam(?)"
+	query1 = "CALL delete_team(?)"
 	query = "CALL get_team(?)"
 
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			req.body.team_id
 		], (err,rows) => {
@@ -200,7 +200,7 @@ exports.deleteTeam = (req, res, next) => {
 					], (err,rows) => {
 						if(!err){
 							return 200;
-							
+
 						} else {
 							console.log(err);
 							return res.status(500).send({'message' : 'Internal Server Error'});
@@ -216,7 +216,7 @@ exports.deleteTeam = (req, res, next) => {
 
 exports.getPendingParticipation = (req, res, next) => {
 	query = "CALL get_pending_participation(?)"
-	connection.userType('A').query(query, 
+	connection.userType('A').query(query,
 		[
 			req.query.organizer_id
 		], (err,rows) => {

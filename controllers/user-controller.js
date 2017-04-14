@@ -123,7 +123,7 @@ exports.register = (req, res) => {
 }
 
 exports.update = (req, res) =>{
-	let update_query = 'CALL update_user(?, ?, ?, ?, ?)';
+	let update_query = 'CALL update_user(?, ?, ?, ?)';
 
 	/*
 		NOTE FOR FRONT END: Must make sure that if a field is empty, pass the old value.
@@ -132,10 +132,26 @@ exports.update = (req, res) =>{
 
 	connection.userType('A').query(update_query, [
 		req.body.username,
-		req.body.password,
 		req.body.email,
 		req.body.contact,
-		req.session.user.id
+		req.body.id !== undefined ? req.body.id : req.session.user.id // was the id included in the request? if not, default to session user id.
+	], function (err, rows) {
+		if(err) return res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
+		else if (rows.affectedRows === 0) {
+			return res.status(404).send({ 'message': 'User was not updated.' });
+		} else {
+			req.session.user.username = req.body.username;
+			return res.status(200).send(rows);
+		}
+	});
+}
+
+exports.updatePassword = (req, res) => {
+	let update_query = 'CALL update_user_password(?, ?)';
+
+	connection.userType('A').query(update_query, [
+		req.body.password,
+		req.body.id !== undefined ? req.body.id : req.session.user.id
 	], function (err, rows) {
 		if(err) return res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
 		else if (rows.affectedRows === 0) {
@@ -224,51 +240,26 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 	} else {
 		let currentUser = req.session.user;
 		// console.log("id: " + currentUser.id);
-		connection.userType('A').query('SELECT * FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
+		connection.userType('A').query('SELECT username, contact, email, type FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
-				let returnObject = rows;
-				// console.log("1st: ");
-				// console.log(returnObject[0]);
 				if(currentUser.type == 'C') {
-					connection.userType('A').query('SELECT birthday, sex, first_name, last_name, nickname, bio from competitor WHERE id = ?', [currentUser.id], function(err, rows, fields){
+					connection.userType('A').query('call get_competitor(?)', [currentUser.id], function(err, rows, fields){
 						if(!err) {
-							returnObject[0]['birthday'] = rows[0].birthday;
-							returnObject[0]['sex'] = rows[0].sex;
-							returnObject[0]['first_name'] = rows[0].first_name;
-							returnObject[0]['last_name'] = rows[0].last_name;
-							returnObject[0]['nickname'] = rows[0].nickname;
-							returnObject[0]['bio'] = rows[0].bio;
-					
-							// console.log("2nd: ")
-							// console.log(returnObject[0]);
-							return res.status(200).send(returnObject[0]);
+							return res.status(200).send(rows[0][0]);
 						} else {
 							console.log(err);
 						}
 					})
 				} else if (currentUser.type == 'O') {
-					connection.userType('A').query('SELECT name, description from organizer where id = ?', [currentUser.id], function(err, rows, fields) {
+					connection.userType('A').query('call get_organizer(?)', [currentUser.id], function(err, rows, fields) {
 						if(!err) {
-							returnObject['name'] = rows[0].name;
-							returnObject['description'] = rows[0].description
-							returnObject.push(
-								{
-									key: "name",
-									value: rows[0].name
-								},
-								{
-									key: "description",
-									value: rows[0].description
-								}
-							);
-              
-							return res.status(200).send(returnObject);
+							return res.status(200).send(rows[0][0]);
 						} else {
 							console.log(err);
 						}
 					});
 				} else {
-					return res.status(200).send(returnObject);
+					return res.status(200).send(rows[0][0]);
 				}
 			} else {
 				console.log(err);

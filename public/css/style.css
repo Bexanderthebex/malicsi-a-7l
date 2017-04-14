@@ -95,7 +95,7 @@ html, body {
 
 #main{
 	height: 100%;
-	overflow-y: auto;
+	overflow-y: auto!important;
 }
 
 .dark-primary {

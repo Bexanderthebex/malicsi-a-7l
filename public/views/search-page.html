@@ -10,77 +10,86 @@
 			<div class="row center">
 				<div class="col s6 offset-s3">
 					<form id="gamefeed-game-search-bar">
-						<input type="search" >
+						<input type="search" ng-model="searchquery" >
 					</form>
 				</div>
 				<div class="col s6 offset-s3 telegrafico search-searchbtn">
-					<a class="waves-effect waves-light btn palette-2">Search</a>
+					<a class="waves-effect waves-light btn palette-2" ng-click="searchBy(searchquery, gamecheck, orgcheck, sportcheck, competitorcheck, organizercheck)">Search</a>
 				</div>
 			</div>
 			<div class="row center filter-holder">
 				<div class="container telegrafico search-sort-part white-text">
 					<p class="search-sort-adjust">
 						Filter:
-						<input type="checkbox" class="filled-in" id="gamechk" checked="checked" />
+						<input type="checkbox" class="filled-in" id="gamechk" ng-init="gamecheck=true" ng-model="gamecheck" style="margin-right: 20px!important; width:80px!important";" />
 						<label for="gamechk"> Game</label>
 						
-						<input type="checkbox" class="filled-in" id="organization" checked="checked" />
+						<input type="checkbox" class="filled-in" id="organization" ng-init="orgcheck=true" ng-model="orgcheck" style="margin-left: 10px;"/>
 						<label for="organization"> Organization</label>
 						
-						<input type="checkbox" class="filled-in" id="sport" checked="checked" />
+						<input type="checkbox" class="filled-in" id="sport" ng-init="sportcheck=true" ng-model="sportcheck" style="margin-left: 10px;"/>
 						<label for="sport"> Sport</label>
 						
-						<input type="checkbox" class="filled-in" id="competitor" checked="checked" />
+						<input type="checkbox" class="filled-in" id="competitor" ng-init="competitorcheck=true" ng-model="competitorcheck" style="margin-left: 10px;"/>
 						<label for="competitor"> Competitor</label>
 						
-						<input type="checkbox" class="filled-in" id="organizer" checked="checked" />
-						<label for="organizer"> Organizer</label>	
+						<input type="checkbox" class="filled-in" id="organizer" ng-init="organizercheck=true" ng-model="organizercheck" style="margin-left: 10px;"/>
+						<label for="organizer"> Organizer</label>
 					</p>
 				</div>
 			</div>
 		</div>		
 	</div>
 	<div class="container search-results">
-		<a href="">
-		<div class="row center col s12 m12 l8 search-result-card">
+		<!-- COMPETITOR RESULTS -->
+		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="competitor in competitors">
 			<div class="search-header">	
-				<span href="" class="rockwell strong palette-text-4">SEARCH RESULT</span>
+				<a href="#/competitor/profile/{{competitor.id}}" class="rockwell strong palette-text-4">{{ competitor.first_name + " " + competitor.last_name }}</a>
 			</div>
 			<div class="search-result-content">
-				<span class="secondary-text century-gothic"> Classification </span>
+				<a class="secondary-text century-gothic"> Competitor </a>
 			</div>
 		</div>
-		<a href="">
-		<div class="row center col s12 m12 l8 search-result-card">
+
+		<!-- GAME -->
+		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="game in games">
 			<div class="search-header">	
-				<span href="" class="rockwell strong palette-text-4">SEARCH RESULT</span>
+				<a href="#/game/{{game.game_id}}" class="rockwell strong palette-text-4">{{ game.name }}</a>
 			</div>
 			<div class="search-result-content">
-				<span class="secondary-text century-gothic"> Classification </span>
+				<a class="secondary-text century-gothic"> Game </a>
 			</div>
 		</div>
-		</a>
-		<a href="">
-		<div class="row center col s12 m12 l8 search-result-card">
+
+		<!-- ORGANIZATION -->
+		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="organization in organizations">
 			<div class="search-header">	
-				<span href="" class="rockwell strong palette-text-4">SEARCH RESULT</span>
+				<a href="#/organization/{{organization.organization_id}}" class="rockwell strong palette-text-4">{{ organization.name }}</a>
 			</div>
 			<div class="search-result-content">
-				<span class="secondary-text century-gothic"> Classification </span>
+				<a class="secondary-text century-gothic"> Organization </a>
 			</div>
 		</div>
-		</a>
-		</a>
-		<a href="">
-		<div class="row center col s12 m12 l8 search-result-card">
+
+		<!-- SPORT -->
+		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="sport in sports">
 			<div class="search-header">	
-				<span href="" class="rockwell strong palette-text-4">SEARCH RESULT</span>
+				<a href="#/sports/{{sport.sport_id}}" class="rockwell strong palette-text-4">{{ sport.sport_name }}</a>
 			</div>
 			<div class="search-result-content">
-				<span class="secondary-text century-gothic"> Classification </span>
+				<a class="secondary-text century-gothic"> Sport </a>
 			</div>
 		</div>
-		</a>
+
+		<!-- ORGANIZER -->
+		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="organizer in organizers">
+			<div class="search-header">	
+				<a href="#/organizer/{{organizer.id}}" class="rockwell strong palette-text-4">{{ organizer.name }}</a>
+			</div>
+			<div class="search-result-content">
+				<a class="secondary-text century-gothic"> Organizer </a>
+			</div>
+		</div>
 		
 	</div>
 	</div>
@@ -88,5 +97,6 @@
 </div>
 
 <!--Scripts-->
+<script type="text/javascript" src="../controllers/search-controller.js"></script>
 <script src="frontend_modules/js/init.js"></script>
 <script src="frontend_modules/js/materialize.js"></script>
