@@ -240,7 +240,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 	} else {
 		let currentUser = req.session.user;
 		// console.log("id: " + currentUser.id);
-		connection.userType('A').query('SELECT username, contact, email, type FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
+		connection.userType('A').query('CALL select_user(?)', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
 				if(currentUser.type == 'C') {
 					connection.userType('A').query('call get_competitor(?)', [currentUser.id], function(err, rows, fields){
