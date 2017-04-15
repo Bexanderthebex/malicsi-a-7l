@@ -25,7 +25,7 @@
                     $scope.iconUrl = '#/competitor/profile';
                 } else if(result.data.type ==="O") {
                     $scope.iconUrl = '#/organizer/profile';
-                } else if(result.data[0].type === "A") {
+                } else if(result.data.type === "A") {
                     $scope.iconUrl = '#/adminpanel'
                 }
             }

@@ -202,12 +202,65 @@ exports.returnInfo = (req, res) => {
 	});
 }
 
-exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
+exports.registerCompetitor = (req, res) => {
+	var query = 'INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)';
+	connection.query(query, [
+		req.body.id,
+		req.body.birthday,
+		req.body.first_name,
+		req.body.last_name,
+		req.body.nickname,
+		req.body.sex
+	], function(err, rows){
+		if(!err) {
+			req.session.user = {
+				id: req.body,
+				username: req.body.username,
+				type: req.body.type
+			};
+
+			return res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
+			/*returnObject.push(
+				{
+					key: "birthday",
+					value: rows[0].birthday
+				},
+				{
+					key: "sex",
+					value: rows[0].sex
+				},
+				{
+					key: "first_name",
+					value: rows[0].first_name
+				},
+				{
+					key: "last_name",
+					value: rows[0].last_name
+				},
+				{
+					key: "nickname",
+					value: rows[0].nickname
+				}
+			);
+			return returnObject;*/
+		}else{
+			console.log(err);
+			if (err.code == 'ER_BAD_NULL_ERROR') {
+				return res.status(500).send({ 'message' : 'Missing field' });
+			} else if (err.code == 'ER_DUP_ENTRY') {
+				return res.status(500).send({ 'message' : 'Duplicate entry' });
+			} else {
+				return res.status(500).send({ 'message': 'Error inserting new competitor!' });
+			}
+		}
+	});
+}
+
+exports.getUserInfo = (req,res) => {
 	if (req.session == null || req.session.user == undefined) {
 		res.status(200).send(null);
 	} else {
 		let currentUser = req.session.user;
-		// console.log("id: " + currentUser.id);
 		connection.userType('A').query('CALL select_user(?)', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
 				let returnObject = rows[0];
@@ -228,6 +281,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 						}
 					});
 				} else {
+							console.log(rows);
 					return res.status(200).send(rows[0][0]);
 				}
 			} else {
