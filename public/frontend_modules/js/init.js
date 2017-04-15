@@ -1,5 +1,8 @@
 (function($){
 	$(function(){
+		$('button').on('click', function(){
+			$(this).css('background', '#00719c');
+		})
 
 		$('.button-collapse').sideNav();
 		$('.slider').slider();
