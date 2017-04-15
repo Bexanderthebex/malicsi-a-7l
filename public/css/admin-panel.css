@@ -107,9 +107,10 @@
 }
 
 .admin-form-edit{
-    border-bottom: 2px solid #00719c!;
+    border-bottom: 2px solid #00719c!important;
     width: 90%;
     color: #00415a;
+    font-style: strong;
 }
 
 #admin-main .switch label input[type=checkbox]:checked+.lever {
