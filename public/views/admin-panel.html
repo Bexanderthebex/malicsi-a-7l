@@ -64,9 +64,9 @@
 									<td class="match-player" style="width: 20%;">
 										<div class="switch">
 											<label>
-											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="a.is_active">
+											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="!!a.is_active" ng-click="setIsActive(!a.is_active, a.id, admins)">
 											<span class="lever" checked="{{ a.is_active }}"></span>
-									  </label>
+									  		</label>
 										</div>
 									</td>
 									<td style="width: 10%;">
