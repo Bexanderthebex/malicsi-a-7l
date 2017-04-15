@@ -101,7 +101,7 @@ $(document).ready(function(){
     $('#admin-orgscrud').css('display', 'none');
 
     // changing hover property of unselected buttons
-    $("#admin-organizers-btn, #admin-admins-btn, #admin-logs-btn, #admin-spon-btn, #admin-orgs-btn").mouseover(function() {
+    $("#admin-organizers-btn, #admin-admins-btn, #admin-logs-btn, #admin-spon-btn, #admin-orgs-btn ").mouseover(function() {
         $(this).css("background","#00415a");
     }).mouseout(function() {
         $(this).css("background","transparent");
@@ -119,7 +119,7 @@ $(document).ready(function(){
     $('#admin-users-btn').css('background', '#00719c');
     $('#admin-logs-btn').css('background', 'transparent');
     $('#admin-spon-btn').css('background', 'transparent');
-    $('#admin-spon-btn').css('background', 'transparent');
+    $('#admin-orgs-btn').css('background', 'transparent');
 
     
   });
