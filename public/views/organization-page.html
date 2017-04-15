@@ -1,4 +1,4 @@
-<div id="mainHolder" ng-init="initUser()">
+<div id="mainHolder" ng-init="initPage()">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
@@ -9,11 +9,11 @@
 		<div class="row org-handler" ng-init="retrieveTeams(thisOrganization.organization_id)"><h4 class="organization-team-handler palette-text-3 center rockwell"> Teams Handled </h4></div>
 		<!--Slider-->
 		<div class="slider4" style="box-shadow: 0!important;" >
-			<div class="slide" >
+			<div class="slide" ng-repeat="slider in teams">
 				<div class="container organization-team-list" data-target="organization-team-info-modal" >
 					<div class="row"> 
 						<h5 class="organization-team-name palette-text-3 rockwell" id="emptyOrganization"></h5>
-						<div class="col s4 m3 l2 organization-team" ng-repeat="team in teams" ng-click="retrieveTeam(team.team_id)">
+						<div class="col s4 m3 l2 organization-team" ng-repeat="team in slider" ng-click="retrieveTeam(team.team_id)">
 							<img class="valign organization-team-logo" src="assets/team1.png">
 							<h5 class="organization-team-name palette-text-3 rockwell">{{ team.team_name }}</h5>
 							<span class="organization-team-info palette-text-4 rockwell"> GAME(2001) </span>
@@ -39,31 +39,7 @@
 							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
 							</a>
 						</div>
-						<!-- <div class="col s4 m3 l2 organization-team-member">
-							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
-							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> John Doe </h5>
-							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
-						</div>
-						<div class="col s4 m3 l2 organization-team-member">
-							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
-							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> John Doe </h5>
-							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
-						</div>
-						<div class="col s4 m3 l2 organization-team-member">
-							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
-							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> John Doe </h5>
-							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
-						</div>
-						<div class="col s4 m3 l2 organization-team-member">
-							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
-							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> John Doe </h5>
-							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
-						</div>
-						<div class="col s4 m3 l2 organization-team-member">
-							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
-							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> John Doe </h5>
-							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
-						</div> -->
+						
 					</div>
 					<div class="row organization-team-info-mem-label">
 						<h5 class="palette-text-3 leixo">Statistics</h5>
@@ -95,7 +71,7 @@
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button href="" class="right minimalist-button">Join Team</button>
+				<a href="" ng-hide="currenUser.type!='C'" class="right minimalist-button">Join Team</a>
 				<button href="" class="modal-action modal-close right join-team-close minimalist-button">Close</button>
 			</div>
 		</div>
