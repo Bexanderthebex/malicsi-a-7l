@@ -234,12 +234,12 @@ exports.registerCompetitor = (req, res) => {
 	});
 }
 
-exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
+exports.getUserInfo = (req,res) => {
 	if (req.session == null || req.session.user == undefined) {
 		res.status(200).send(null);
 	} else {
 		let currentUser = req.session.user;
-		// console.log("id: " + currentUser.id);
+		
 		connection.userType('A').query('CALL select_user(?)', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
 				if(currentUser.type == 'C') {
@@ -259,6 +259,7 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 						}
 					});
 				} else {
+							console.log(rows);
 					return res.status(200).send(rows[0][0]);
 				}
 			} else {
