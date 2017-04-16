@@ -14,6 +14,7 @@
         $scope.column2 = [];
         $scope.column3 = [];
         $scope.gamefeedInit = gamefeedInit;
+<<<<<<< HEAD
         $scope.statusSort = true;
 
         function gamefeedInit(value){
@@ -29,12 +30,25 @@
 
 
         function retrieveGames(value) {
+=======
+
+        function gamefeedInit(){
+            retrieveGames();
+        }
+
+        function retrieveGames() {
+>>>>>>> 9c95485b035026ef96a9cea66f8a7aacb4e9560c
             GameService
                 .viewAllGames()
                 .then(function(res) {
                     $scope.games = res.data;
+<<<<<<< HEAD
                     sortBy(value);
                     distributeGame();
+=======
+                    sortBy();
+                    
+>>>>>>> 9c95485b035026ef96a9cea66f8a7aacb4e9560c
 
                 }, function(err) {
                     console.log(err);
@@ -59,9 +73,13 @@
                 if(a.name > b.name) return 1;
                 return 0;
             });
+<<<<<<< HEAD
 
             console.log("reflect daw");
             console.log($scope.games);
+=======
+            distributeGame();
+>>>>>>> 9c95485b035026ef96a9cea66f8a7aacb4e9560c
         }
 
         function sortByDate(){
@@ -74,11 +92,11 @@
                 var integerBDate = bDate.getFullYear() * 10000 + bDate.getMonth() * 100 + bDate.getDay();
 
                 return (currentDate - integerADate > currentDate - integerBDate ? a : b);
-            })
+            });
+            distributeGame();
         }
 
         function distributeGame(){
-
             for (var i = 0; i < $scope.games.length; i++) {
                 if(i%3 == 0){
                     $scope.column1.push($scope.games[i]);
