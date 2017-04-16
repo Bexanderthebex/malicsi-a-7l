@@ -473,7 +473,7 @@
 				<h6 class="century-gothic strong">Sponsor Name:</h6>
 				<!-- <select id ="otherSponsorName" ng-model="sponsorAdd" ng-options="sponsor as sponsor.name for sponsor in otherSponsors track by sponsor.sponsor_id" ></select> -->
 				<select id ="otherSponsorName" ng-model="sponsorAdd" ng-change="passSponsorAdd(sponsorAdd)">
-					<option ng-repeat="sponsor in otherSponsors" value='{"sponsor_id": "{{sponsor.sponsor_id}}", "description": "{{sponsor.description}}", "name":"{{sponsor.name}}" }' >{{sponsor.name}}</option>
+					<option ng-repeat="sponsor in otherSponsors track by sponsor.sponsor_id" value='{"sponsor_id": "{{sponsor.sponsor_id}}", "description": "{{sponsor.description}}", "name":"{{sponsor.name}}" }' >{{sponsor.name}}</option>
 				</select>
 				<h6 class="century-gothic strong">Description:</h6>
 				<p class="center" >{{sponsorAdd.description}}</p>

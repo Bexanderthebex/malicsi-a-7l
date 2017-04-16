@@ -420,7 +420,8 @@
                     console.log(res);
                     $scope.sponsorAdd = {};
                     // $scope.otherSponsors = res;
-                    angular.extend($scope.otherSponsors, res);
+                    // console.log(angular.extend($scope.otherSponsors, res));
+                    $scope.otherSponsors = angular.extend([], res);
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to retrieve sponsoring institutions!', 3000);
