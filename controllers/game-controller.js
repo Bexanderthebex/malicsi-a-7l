@@ -189,8 +189,9 @@ exports.viewUpcomingOngoingGames = (req,res) =>{
 				return res.status(200).send(rows[0]);
 			}
 			// else if (rows[0].length==0){
-			// 	res.status(404).send("No upcoming/ongoing games.");
-			// }		
+			// 	res.status(404).send("No upcoming/ongoing games."
+			// }
+			//}
 			else{
 				console.log(err.code);
 				res.status(500).send("An error occurred.");

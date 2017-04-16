@@ -152,6 +152,8 @@ exports.deleteSport = (req, res, next) => {
 exports.retrieveSportRankings = (req, res, next) => {
 	let query = 'CALL retrieve_team_rankings_from_sport(?)';
 	let param = parseInt(req.params.sportId);
+
+	console.log(req.params.sportId);
 	if(!isNaN(param)){
 		connection.userType('A').query(query,
 			[req.params.sportId],

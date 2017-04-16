@@ -17,6 +17,8 @@
         $scope.competitorteams = {};
         $scope.coachedteam = {};
         $scope.pendingRequests = {};
+        $scope.rank = {};
+        $scope.sport_id = {};
 
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
@@ -127,6 +129,26 @@
                 }, function(err) {
                     console.log(err);
                 })
+
+            CompetitorService
+                .getCoachedTeam()
+                .then(function (res){
+                    // console.log(res.data);
+                    $scope.coachedteam = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+
+            // CompetitorService
+            //     .getTeamMembers(id)
+            //     .then(function (res){
+            //         $scope.teammembers = res.data;
+            //        // console.log("members: ");
+            //         //console.log($scope.teammembers);
+            //     }, function(err) {
+            //         console.log(err);
+            //     })
+
         }
 
         function getCoachedTeam(){
@@ -162,14 +184,14 @@
                 })
         }
 
-        function getTeamRankings(sport_id){
-            console.log("getTeamRankings");
-            console.log(sport_id);
+        function getTeamRankings(){
+            // console.log("getTeamRankings");
+            // console.log($scope.sport_id.sport_id);
             CompetitorService
-                .getTeamRankings(sport_id)
+                .getTeamRankings($scope.sport_id.sport_id)
                 .then(function (res){
-                    //console.log(res.data);
-                    $scope.pendingRequests = res.data;
+                    console.log(res.data);
+                    $scope.rank = res.data;
                 }, function(err) {
                     console.log(err);
                 })

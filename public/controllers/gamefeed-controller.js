@@ -15,6 +15,7 @@
         $scope.column3 = [];
         $scope.gamefeedInit = gamefeedInit;
 <<<<<<< HEAD
+<<<<<<< HEAD
         $scope.statusSort = true;
 
         function gamefeedInit(value){
@@ -36,6 +37,13 @@
             retrieveGames();
         }
 
+=======
+
+        function gamefeedInit(){
+            retrieveGames();
+        }
+
+>>>>>>> 5baf23f2eb027b5934ae9df8f91daf6929d15959
         function retrieveGames() {
 >>>>>>> 9c95485b035026ef96a9cea66f8a7aacb4e9560c
             GameService
@@ -43,12 +51,17 @@
                 .then(function(res) {
                     $scope.games = res.data;
 <<<<<<< HEAD
+<<<<<<< HEAD
                     sortBy(value);
                     distributeGame();
 =======
                     sortBy();
                     
 >>>>>>> 9c95485b035026ef96a9cea66f8a7aacb4e9560c
+=======
+                    sortBy();
+                    
+>>>>>>> 5baf23f2eb027b5934ae9df8f91daf6929d15959
 
                 }, function(err) {
                     console.log(err);
@@ -74,12 +87,16 @@
                 return 0;
             });
 <<<<<<< HEAD
+<<<<<<< HEAD
 
             console.log("reflect daw");
             console.log($scope.games);
 =======
             distributeGame();
 >>>>>>> 9c95485b035026ef96a9cea66f8a7aacb4e9560c
+=======
+            distributeGame();
+>>>>>>> 5baf23f2eb027b5934ae9df8f91daf6929d15959
         }
 
         function sortByDate(){
