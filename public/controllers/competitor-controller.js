@@ -18,6 +18,7 @@
         $scope.organization = {};
         $scope.team = {};
         $scope.team2 = {};
+        $scope.teammembers = {};
 
 
         $scope.searchCompetitor = searchCompetitor;
@@ -57,7 +58,7 @@
                 .getCompetitorTeams()
                 .then(function(res) {
                     $scope.competitorteams = res.data;
-                    // console.log($scope.competitorteams);
+                    console.log($scope.competitorteams);
                 }, function(err) {
                     console.log(err);
                 })
@@ -113,9 +114,9 @@
             CompetitorService
                 .getTeamMembers(id)
                 .then(function (res){
-                    console.log("members: ");
-                    console.log(res.data);
                     $scope.teammembers = res.data;
+                    console.log("members: ");
+                    console.log($scope.teammembers);
                 }, function(err) {
                     console.log(err);
                 })

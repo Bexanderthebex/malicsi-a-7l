@@ -187,7 +187,7 @@
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
-                <ul class="collapsible" data-collapsible="accordion" ng-repeat="cteam in coachedteam">
+                <ul class="collapsible" data-collapsible="accordion" ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id)">
                     <li>
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
@@ -200,8 +200,8 @@
                             </div>
                         </div>
                         <div class="collapsible-body">
-                            <span class="telegrafico">Members: {{cteam.max_members}}</span>
-                            <div class="chips chips-initial"></div>
+                            <span class="telegrafico">Max Members: {{cteam.max_members}}</span>
+                            <div class="chip" ng-repeat="member in teammembers">{{member.first_name}} {{member.last_name}}<i class="close material-icons">close</i></div>
                         </div>
                     </li>
                     <!-- <li>
