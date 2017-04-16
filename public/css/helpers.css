@@ -1,0 +1,33 @@
+.margin-down-10{
+	margin-bottom: 10px;
+}
+
+.margin-down-20{
+	margin-bottom: 20px;
+}
+
+
+.margin-down-40{
+	margin-bottom: 40px;
+}
+
+.padding-override-0{
+	padding: 0!important;
+}
+
+.margin-override-0{
+	margin: 0!important;
+}
+
+.input-box-style{
+	/*background-color: #eeeeee!important;*/
+	font-family: century-gothic;
+	padding-left: 10px!important;
+	border: solid 1px #D0D0D0 !important;
+	border-radius: 3px!important;
+}
+
+.input-box-style:focus{
+	outline: none;
+	box-shadow: 0 0 10px #00719c;
+}

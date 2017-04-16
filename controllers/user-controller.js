@@ -234,12 +234,11 @@ exports.registerCompetitor = (req, res) => {
 	});
 }
 
-exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
+exports.getUserInfo = (req,res) => {
 	if (req.session == null || req.session.user == undefined) {
 		res.status(200).send(null);
 	} else {
 		let currentUser = req.session.user;
-		// console.log("id: " + currentUser.id);
 		connection.userType('A').query('SELECT username, contact, email, type FROM user WHERE user.id = ?', [currentUser.id], function(err, rows, fields) {
 			if(!err) {
 				if(currentUser.type == 'C') {
@@ -259,7 +258,8 @@ exports.getUserInfo = (req,res) => {	//beili paayos nung return mechanism nito
 						}
 					});
 				} else {
-					return res.status(200).send(rows[0][0]);
+							console.log(rows);
+					return res.status(200).send(rows[0]);
 				}
 			} else {
 				console.log(err);
