@@ -28,9 +28,10 @@ exports.createTeam = (req, res) => {
 exports.deleteTeam = (req, res) => {
     query = "CALL delete_team(?)";
    
+    console.log("teamid: " + req.body.team_id);   
     connection.userType('A').query(query, 
         [
-            req.body.team_id
+            req.query.team_id
         ], (err, rows) => {
             if(!err) {
                 return res.status(200).send({ 'message' : 'Sucessfully deleted team'}); 

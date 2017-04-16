@@ -18,7 +18,8 @@
             getCompetitor: getCompetitor,
             getCompetitorTeams: getCompetitorTeams,
             getCoachedTeam: getCoachedTeam,
-            getTeamMembers: getTeamMembers
+            getTeamMembers: getTeamMembers,
+            deleteTeam: deleteTeam
         }
 
         return service;
@@ -130,6 +131,24 @@
                 method: 'GET',
                 params: {'team_id': id},
                 url: '/team/getTeamMembers',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function deleteTeam(id){
+            let deferred = $q.defer();
+
+            console.log('teamid service: ' + id);
+            $http({
+                method: 'DELETE',
+                params: {'team_id': id},
+                url: '/team/deleteTeam',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
