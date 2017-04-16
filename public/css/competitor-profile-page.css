@@ -304,38 +304,3 @@ border: 2px solid black !important;
 input[type="radio"].with-gap:checked+label:after {
 background-color: #00415a !important;
 }
-
-.file-button{
-  background: #00719c!important;
-  /*color: white;*/
-  font-family: telegrafico!important;
-  letter-spacing: 1px!important;
-  box-shadow: none!important;
-  /*padding: 10px;*/
-}
-
-.file-button span{
-  cursor: pointer!important;
-}
-
-.file-button:hover{
-  background: #00b8ff!important;
-  color: #00719c!important;
-  cursor: pointer!important;
-}
-
-.file-title{
-  font-size: 13px;
-  color: #9e9e9e
-}
-
-.inverted-minimalist-btn{
-  background: #00719c;
-  color: white;
-}
-
-.inverted-minimalist-btn:hover{
-  background: #00b8ff;
-  color: #00415a;
-  border-color: #00b8ff;
-}
