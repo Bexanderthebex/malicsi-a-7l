@@ -23,7 +23,8 @@
             createTeam: createTeam,
             deleteTeam: deleteTeam,
             getPendingRequests: getPendingRequests,
-            getTeamRankings: getTeamRankings
+            getTeamRankings: getTeamRankings,
+            listAllGames: listAllGames,
         }
 
         return service;
@@ -112,8 +113,6 @@
 
         function getCompetitorOrganization(){
             let deferred = $q.defer();
-
-            console.log("Here mam");
             $http({
                 method: 'GET',
                 url: '/competitor/getCompetitorOrganization',
@@ -130,7 +129,6 @@
         function getCoachedTeam(){
             let deferred = $q.defer();
 
-            console.log('here service');
             $http({
                 method: 'GET',
                 url: '/team/getCoachedTeams',
@@ -147,7 +145,6 @@
         function getTeamMembers(id){
             let deferred = $q.defer();
 
-            console.log('id service: ' + id);
             $http({
                 method: 'GET',
                 params: {'team_id': id},
@@ -214,10 +211,42 @@
             return deferred.promise;
         }
 
-        function getTeamRankings(sport_id){
+        function listAllGames(){
             let deferred = $q.defer();
 
-            console.log(sport_id);
+            $http({
+                method: 'GET',
+                url: '/game/viewAllGames',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        // function listAllSports(){
+        //     let deferred = $q.defer();
+
+        //     $http({
+        //         method: 'GET',
+        //         url: '/sport/viewAllSports',
+        //         headers: headers
+        //     }).then((res) => {
+        //         deferred.resolve(res);
+        //     }, (err) => {
+        //         deferred.reject(err);
+        //     });
+
+        //     return deferred.promise;
+        // }
+
+
+        function getTeamRankings(sport_id){
+            let deferred = $q.defer();
+            
             $http({
                 method: 'GET',
                 url: '/sport/ranks/'+sport_id,
