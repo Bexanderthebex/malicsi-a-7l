@@ -23,7 +23,11 @@
             viewOngoingMatchesInGame: viewOngoingMatchesInGame,
             viewUpcomingMatchesInGame: viewUpcomingMatchesInGame,
             viewOrgRankings: viewOrgRankings,
-            viewUpcomingOngoingGames: viewUpcomingOngoingGames
+            viewUpcomingOngoingGames: viewUpcomingOngoingGames,
+            viewSponsoringInstitutions: viewSponsoringInstitutions,
+            viewOtherSponsoringInstitutions: viewOtherSponsoringInstitutions,
+            addSponsoringInstitution: addSponsoringInstitution,
+            deleteSponsoringInstitution: deleteSponsoringInstitution
         }
 
         return service;
@@ -98,7 +102,7 @@
             });
 
             return deferred.promise;
-        }
+        } 
 
         function updateSport(sport) {
             let deferred = $q.defer();
@@ -267,5 +271,94 @@
 
             return deferred.promise;
         }
+
+        function addSponsoringInstitution(sponsor_id, game_id) {
+            let deferred = $q.defer();
+
+
+            let sponsor = {
+                sponsorId: sponsor_id,
+                gameId: game_id
+            }
+            console.log(sponsor);
+            $http({
+                method: 'POST',
+                data: $.param(sponsor),
+                url: '/game/addSponsorToGame',
+                headers: headers
+            }).then((res) => {
+                console.log(res);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        } 
+
+
+        function viewSponsoringInstitutions(game_id){
+            let deferred = $q.defer(); 
+            let game = {
+                gameId: game_id
+            }
+
+            $http({
+                method: 'GET',
+                params: game,
+                url: 'game/viewSponsorInGame',
+                headers:headers
+            }).then((res) =>{
+                deferred.resolve(res.data);
+            }, (err) => {
+                deferred.reject(err);
+           });
+
+            return deferred.promise;
+        }
+  
+        function viewOtherSponsoringInstitutions(game_id){
+            let deferred = $q.defer(); 
+            let game = {
+                gameId: game_id
+            }
+
+            $http({
+                method: 'GET',
+                params: game,
+                url: 'game/viewSponsorNotInGame',
+                headers:headers
+            }).then((res) =>{
+                deferred.resolve(res.data);
+            }, (err) => {
+                deferred.reject(err);
+           });
+
+            return deferred.promise;
+        }
+  
+        function deleteSponsoringInstitution(sponsor_id, game_id) {
+            let deferred = $q.defer();
+
+            let sponsor = {
+                sponsorId: sponsor_id,
+                gameId: game_id
+            }
+
+            $http({
+                method: 'DELETE',
+                data: $.param(sponsor),
+                url: '/game/deleteSponsorFromGame',
+                headers: headers
+            }).then((res) => {
+                console.log(res);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
     }
 })();
