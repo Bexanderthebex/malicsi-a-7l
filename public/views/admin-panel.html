@@ -14,7 +14,7 @@
 					<button class="ad-btn" id="admin-admins-btn" style="background:#00719c;"><div style="width: 90%; float: left;">ADMINS</div> <i class="fa fa-chevron-right"></i></button>
 					<button class="ad-btn" id="admin-organizers-btn"><div style="width: 90%; float: left;">ORGANIZERS</div> <i class="fa fa-chevron-right"></i></button>
 					<button class="ad-btn" id="admin-orgs-btn"><div style="width: 90%; float: left;">ORGANIZATIONS</div> <i class="fa fa-chevron-right"></i></button>
-					<button class="ad-btn" id="admin-users-btn"><div style="width: 90%; float: left;">USERS</div> <i class="fa fa-chevron-right"></i></button>		
+					<button class="ad-btn" id="admin-users-btn"><div style="width: 90%; float: left;">USERS</div> <i class="fa fa-chevron-right"></i></button>
 					<button class="ad-btn" id="admin-logs-btn"><div style="width: 90%; float: left;">LOGS</div> <i class="fa fa-chevron-right"></i></button>
 					<button class="ad-btn" id="admin-spon-btn"><div style="width: 90%; float: left;">SPONSORS</div> <i class="fa fa-chevron-right"></i></button>
 				</div>
@@ -41,50 +41,46 @@
 
 					<!-- View Admins -->
 					<div class="admin-right-view">
-					<table class="striped">
-          	<thead>
-          		<tr class="telegrafico">
-          			<th>Username</th>
-          			<th>Password</th>
-								<th>Email</th>
-								<th>Contact</th>
-								<th>Inactive / Active</th>
-          		</tr>
-          	</thead>
-          	<tbody class="century-gothic">
-          		<tr ng-repeat="a in admins">
-          			<td class="match-player"  style="width: 13%;">
-          				<input class="admin-form-edit" type="text" ng-model="a.username" ng-init="a.username">
-          			</td style="width: 12%;">
-          			<td class="match-player">
-          				<input class="admin-form-edit" type="text" ng-model="a.password" ng-init="a.password">
-          			</td>
-								<td class="match-player" style="width: 25%;">
-		            	<input class="admin-form-edit" type="text" ng-model="a.email" ng-init="a.email">
-		            </td>
-								<td class="match-player" style="width: 20%;">
-									<input class="admin-form-edit" type="text" ng-model="a.contact" ng-init="a.contact">		            				
-          			</td>
-								<td class="match-player" style="width: 20%;">
-		            		<div class="switch">
-										<label>
-											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="a.is_active">
+						<table class="striped">
+							<thead>
+								<tr class="telegrafico">
+									<th>Username</th>
+									<th>Email</th>
+									<th>Contact</th>
+									<th>Inactive / Active</th>
+								</tr>
+							</thead>
+							<tbody class="century-gothic">
+								<tr ng-repeat="a in admins">
+									<td class="match-player" style="width: 13%;">
+										<input class="admin-form-edit" type="text" ng-model="a.username" ng-init="a.username">
+									</td style="width: 12%;">
+									<td class="match-player" style="width: 25%;">
+										<input class="admin-form-edit" type="text" ng-model="a.email" ng-init="a.email">
+									</td>
+									<td class="match-player" style="width: 20%;">
+										<input class="admin-form-edit" type="text" ng-model="a.contact" ng-init="a.contact">
+									</td>
+									<td class="match-player" style="width: 20%;">
+										<div class="switch">
+											<label>
+											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="!!a.is_active" ng-click="setIsActive(!a.is_active, a.id, admins)">
 											<span class="lever" checked="{{ a.is_active }}"></span>
-									  </label>
+									  		</label>
 										</div>
-		            </td>
-		            <td style="width: 10%;">
-		            	<div>
-		            		<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
-		            		<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
-		            	</div>
-		            </td>
-		          </tr>
-		        </tbody>
-		      </table>
-		      </div>
+									</td>
+									<td style="width: 10%;">
+										<div>
+											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
+											<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-		      <!-- Add Admin -->
+					<!-- Add Admin -->
 					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD ADMIN</h6>
 					<div class="row padding-override-0">
 						<div class="col s6 padding-override-0">
@@ -102,13 +98,12 @@
 							<input ng-model="adminContact" placeholder="09XXXXXXXXX" id="contact" type="text" class="validate admin-fillup-form">
 						</div>
 					</div>
-					
+
 					<div class="row padding-override-0">
 						<div class="col s1 padding-override-0">
 							<button ng-click="addAdmin()" class="minimalist-button"> SUBMIT </button>
 						</div>
 					</div>
-
 				</div>
 
 				<!-- Organizer -->
@@ -130,42 +125,42 @@
 
 					<!-- View Organizers -->
 					<div class="admin-right-view">
-					<table class="striped">
-          	<thead>
-          		<tr class="telegrafico">
-          			<th>Name</th>
-								<th>Description</th>
-								<th>Inactive / Active</th>
-          		</tr>
-          	</thead>
-          	<tbody class="century-gothic">
-          		<tr ng-repeat="o in organizers">
-								<td class="match-player">
-		            	<input class="admin-form-edit" type="text" ng-model="o.name" ng-init="o.name">
-		            </td>
-								<td class="match-player">
-									<input class="admin-form-edit" type="text" ng-model="o.description" ng-init="o.description">		            				
-          			</td>
-								<td class="match-player">
-		            		<div class="switch">
-										<label>
+						<table class="striped">
+							<thead>
+								<tr class="telegrafico">
+									<th>Name</th>
+									<th>Description</th>
+									<th>Inactive / Active</th>
+								</tr>
+							</thead>
+							<tbody class="century-gothic">
+								<tr ng-repeat="o in organizers">
+									<td class="match-player">
+										<input class="admin-form-edit" type="text" ng-model="o.name" ng-init="o.name">
+									</td>
+									<td class="match-player">
+										<input class="admin-form-edit" type="text" ng-model="o.description" ng-init="o.description">
+									</td>
+									<td class="match-player">
+										<div class="switch">
+											<label>
 											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="a.is_active">
 											<span class="lever" checked="{{ a.is_active }}"></span>
 									  </label>
 										</div>
-		            </td>
-		            <td>
-		            	<div>
-		            		<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
-		            		<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
-		            	</div>
-		            </td>
-		          </tr>
-		        </tbody>
-		      </table>
-		      </div>
+									</td>
+									<td>
+										<div>
+											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
+											<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-		      <!-- Add Organizer -->
+					<!-- Add Organizer -->
 					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD ORGANIZER</h6>
 					<div class="row padding-override-0">
 						<div class="col s6 padding-override-0">
@@ -176,10 +171,10 @@
 							<!-- Description -->
 							<label class="admin-fillup-label">Description</label>
 							<input ng-model="organizerDescription" type="text" class="validate admin-fillup-form">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="row padding-override-0">
 						<div class="col s1 padding-override-0">
 							<button ng-click="addOrganizer()" class="minimalist-button"> SUBMIT </button>
@@ -207,47 +202,47 @@
 
 					<!-- View Organizations -->
 					<div class="admin-right-view">
-					<table class="striped">
-          	<thead>
-          		<tr class="telegrafico">
-          			<th>Name</th>
-								<th>Inactive / Active</th>
-          		</tr>
-          	</thead>
-          	<tbody class="century-gothic">
-          		<tr >
-								<td class="match-player">
-		            	<input class="admin-form-edit" type="text" ng-model="" ng-init="">
-		            </td>
-								<td class="match-player">
-		            		<div class="switch">
-										<label>
+						<table class="striped">
+							<thead>
+								<tr class="telegrafico">
+									<th>Name</th>
+									<th>Inactive / Active</th>
+								</tr>
+							</thead>
+							<tbody class="century-gothic">
+								<tr>
+									<td class="match-player">
+										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+									</td>
+									<td class="match-player">
+										<div class="switch">
+											<label>
 											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="a.is_active">
 											<span class="lever" checked="{{ a.is_active }}"></span>
 									  </label>
 										</div>
-		            </td>
-		            <td>
-		            	<div>
-		            		<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
-		            		<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
-		            	</div>
-		            </td>
-		          </tr>
-		        </tbody>
-		      </table>
-		      </div>
+									</td>
+									<td>
+										<div>
+											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
+											<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-		      <!-- Add Organization -->
+					<!-- Add Organization -->
 					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD ORGANIZER</h6>
 					<div class="row padding-override-0">
 						<div class="col s6 padding-override-0">
 							<!-- Name -->
 							<label class="admin-fillup-label">Name</label>
-							<input ng-model="organizerName" type="text" class="validate admin-fillup-form">							
+							<input ng-model="organizerName" type="text" class="validate admin-fillup-form">
 						</div>
 					</div>
-					
+
 					<div class="row padding-override-0">
 						<div class="col s1 padding-override-0">
 							<button ng-click="addOrganizer()" class="minimalist-button"> SUBMIT </button>
@@ -272,53 +267,48 @@
 							<button style="height: 100%;" ng-click="searchUser()" class="waves-effect waves-light search-admin-button"><i class="fa fa-search"></i></button>
 						</div>
 					</div>
-
 					<!-- View Users -->
 					<div class="admin-right-view">
-					<table class="striped">
-          	<thead>
-          		<tr class="telegrafico">
-          			<th>Username</th>
-								<th>Password</th>
-								<th>Email Address</th>
-								<th>Contact No.</th>
-								<th>Inactive / Active</th>
-          		</tr>
-          	</thead>
-          	<tbody class="century-gothic">
-          		<tr ng-repeat="">
-          			<td class="match-player"  style="width: 13%;">
-          				<input class="admin-form-edit" type="text" ng-model="" ng-init="">
-          			</td style="width: 12%;">
-          			<td class="match-player">
-          				<input class="admin-form-edit" type="text" ng-model="" ng-init="">
-          			</td>
-								<td class="match-player" style="width: 25%;">
-		            	<input class="admin-form-edit" type="text" ng-model="" ng-init="">
-		            </td>
-								<td class="match-player" style="width: 20%;">
-									<input class="admin-form-edit" type="text" ng-model="" ng-init="">		            				
-          			</td>
-								<td class="match-player" style="width: 20%;">
-		            		<div class="switch">
-										<label>
+						<table class="striped">
+							<thead>
+								<tr class="telegrafico">
+									<th>Username</th>
+									<th>Email Address</th>
+									<th>Contact No.</th>
+									<th>Inactive / Active</th>
+								</tr>
+							</thead>
+							<tbody class="century-gothic">
+								<tr ng-repeat="">
+									<td class="match-player" style="width: 13%;">
+										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+									</td style="width: 12%;">
+									<td class="match-player" style="width: 25%;">
+										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+									</td>
+									<td class="match-player" style="width: 20%;">
+										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+									</td>
+									<td class="match-player" style="width: 20%;">
+										<div class="switch">
+											<label>
 											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="a.is_active">
 											<span class="lever" checked="{{ a.is_active }}"></span>
 									  </label>
 										</div>
-		            </td>
-		            <td style="width: 10%;">
-		            	<div>
-		            		<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
-		            		<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
-		            	</div>
-		            </td>
-		          </tr>
-		        </tbody>
-		      </table>
-		      </div>
+									</td>
+									<td style="width: 10%;">
+										<div>
+											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
+											<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-		      <!-- Add User -->
+					<!-- Add User -->
 					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD ORGANIZER</h6>
 					<div class="row padding-override-0">
 						<div class="col s6 padding-override-0">
@@ -334,10 +324,10 @@
 							<!-- Contact -->
 							<label class="admin-fillup-label">Contact No.</label>
 							<input ng-model="adminContact" placeholder="09XXXXXXXXX" id="contact" type="text" class="validate admin-fillup-form">
-							
+
 						</div>
 					</div>
-					
+
 					<div class="row padding-override-0">
 						<div class="col s1 padding-override-0">
 							<button ng-click="addOrganizer()" class="minimalist-button"> SUBMIT </button>
@@ -369,7 +359,7 @@
 					<div class="row search-admin" style="height: 40px; margin-bottom: 0;">
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
-								<input  type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
+								<input type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
 							</form>
 						</div>
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
@@ -394,25 +384,25 @@
 
 					<!-- View Logs -->
 					<div class="admin-right-view">
-					<table class="striped">
-          	<thead>
-          		<tr class="telegrafico">
-          			<th>Log Id</th>
-								<th>ID</th>
-								<th>Content</th>
-								<th>Date Created</th>
-          		</tr>
-          	</thead>
-          	<tbody class="century-gothic">
-          		<tr ng-repeat="l in logs">
-          			<td>{{l.log_id}}</td>
-			    			<td>{{l.user_id}}</td>
-			    			<td>{{l.log_msg}}</td>
-			    			<td>{{l.date_created}}</td>
-		          </tr>
-		        </tbody>
-		      </table>
-		      </div>
+						<table class="striped">
+							<thead>
+								<tr class="telegrafico">
+									<th>Log Id</th>
+									<th>ID</th>
+									<th>Content</th>
+									<th>Date Created</th>
+								</tr>
+							</thead>
+							<tbody class="century-gothic">
+								<tr ng-repeat="l in logs">
+									<td>{{l.log_id}}</td>
+									<td>{{l.user_id}}</td>
+									<td>{{l.log_msg}}</td>
+									<td>{{l.date_created}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 
 				<!-- Sponsors -->
@@ -433,42 +423,42 @@
 
 					<!-- View Sponsors -->
 					<div class="admin-right-view">
-					<table class="striped">
-          	<thead>
-          		<tr class="telegrafico">
-          			<th>Name</th>
-								<th>Description</th>
-								<th>Inactive / Active</th>
-          		</tr>
-          	</thead>
-          	<tbody class="century-gothic">
-          		<tr ng-repeat="">
-								<td class="match-player">
-		            	<input class="admin-form-edit" type="text" ng-model="" ng-init="">
-		            </td>
-								<td class="match-player">
-									<input class="admin-form-edit" type="text" ng-model="" ng-init="">		            				
-          			</td>
-								<td class="match-player">
-		            		<div class="switch">
-										<label>
+						<table class="striped">
+							<thead>
+								<tr class="telegrafico">
+									<th>Name</th>
+									<th>Description</th>
+									<th>Inactive / Active</th>
+								</tr>
+							</thead>
+							<tbody class="century-gothic">
+								<tr ng-repeat="">
+									<td class="match-player">
+										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+									</td>
+									<td class="match-player">
+										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+									</td>
+									<td class="match-player">
+										<div class="switch">
+											<label>
 											<input class="admin-lever" type="checkbox" ng-init="" ng-model="">
 											<span class="lever" checked=""></span>
 									  </label>
 										</div>
-		            </td>
-		            <td>
-		            	<div>
-		            		<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
-		            		<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
-		            	</div>
-		            </td>
-		          </tr>
-		        </tbody>
-		      </table>
-		      </div>
+									</td>
+									<td>
+										<div>
+											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
+											<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 
-		      <!-- Add Sponsor -->
+					<!-- Add Sponsor -->
 					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD SPONSOR</h6>
 					<div class="row padding-override-0">
 						<div class="col s6 padding-override-0">
@@ -478,11 +468,11 @@
 
 							<!-- Description -->
 							<label class="admin-fillup-label">Description</label>
-							<input ng-model="sponsorDescription"  type="text" class="validate admin-fillup-form">
-							
+							<input ng-model="sponsorDescription" type="text" class="validate admin-fillup-form">
+
 						</div>
 					</div>
-					
+
 					<div class="row padding-override-0">
 						<div class="col s1 padding-override-0">
 							<button ng-click="addOrganizer()" class="minimalist-button"> SUBMIT </button>
