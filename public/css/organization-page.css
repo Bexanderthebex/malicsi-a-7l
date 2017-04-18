@@ -156,6 +156,14 @@
 
 .stat-nums {
   font-size: 1000%;
+  /*margin-left: 60%;*/
+  text-align: center;
+}
+
+
+.right-stat {
+  margin-top: 1.7%;
+  border-left: 3px solid #001f2b;
 }
 
 .join-team-close {
