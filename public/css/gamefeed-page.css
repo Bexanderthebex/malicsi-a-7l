@@ -236,3 +236,14 @@
 .gamefeed-textarea-label-color-change{
     color: #00415a;   
 }
+
+.gamefeed-radio-button [type="radio"]:checked + label:after,
+.gamefeed-radio-button [type="radio"].with-gap:checked + label:before,
+.gamefeed-radio-button [type="radio"].with-gap:checked + label:after {
+  border: 2px solid #00415a;
+}
+
+.gamefeed-radio-button [type="radio"]:checked + label:after,
+.gamefeed-radio-button [type="radio"].with-gap:checked + label:after {
+  background-color: #00415a;
+}
