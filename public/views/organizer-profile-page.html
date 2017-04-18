@@ -43,30 +43,30 @@
                         <div class="row">
                             <div class="input-field col s12" style="margin-top: -5px;">
                                 <span class="telegrafico">Game Name</span>
-                                <input placeholder="Enter game name" id="name" type="text" class="validate" ng-model="newGame.gameName">
+                                <input placeholder="Enter game name" id="name" type="text" class="organizer-input-style validate" ng-model="newGame.gameName">
                                 <!-- ng-model -> para makuha yung value na iiinput ng user as name ng bagong game -->
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12 organizer-add-form">
                                 <span class="telegrafico">Location</span>
-                                <input placeholder="Enter location" id="location" type="text" class="validate" ng-model="newGame.locat">
+                                <input placeholder="Enter location" id="location" type="text" class="organizer-input-style validate" ng-model="newGame.locat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s6 organizer-add-form">
                                 <span class="telegrafico">Start Date</span>
-                                <input id="start-date" class="validate" type="date" ng-model="newGame.startDate">
+                                <input id="start-date" class="organizer-input-style validate" type="date" ng-model="newGame.startDate">
                             </div>
                             <div class="input-field col s6 organizer-add-form">
                                 <span class="telegrafico">End Date</span>
-                                <input id="end-date" class="validate" type="date" ng-model="newGame.endDate">
+                                <input id="end-date" class="organizer-input-style validate" type="date" ng-model="newGame.endDate">
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12 organizer-add-form">
                                 <span class="telegrafico">Description</span>
-                                <textarea id="description" class="materialize-textarea" ng-model="newGame.descrip"></textarea>
+                                <textarea id="description" class="organizer-input-style materialize-textarea" ng-model="newGame.descrip"></textarea>
                             </div>
                         </div>
                         <div class="row">
@@ -212,7 +212,7 @@
 
 
 
-        <div class="row organizer-footer black">
+        <!-- <div class="row organizer-footer black">
             <div class="black">
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#"> Help </a></li>
@@ -220,7 +220,7 @@
                     <li>All Rights Reserved</li>
                 </ul>
             </div>
-        </div>
+        </div> -->
     </div>
 
 </div>
@@ -243,33 +243,33 @@
             <div class="row">
                 <div class="input-field col l6 m6 s12" style="margin-top: 0px;">
                     <span class="telegrafico">Username</span>
-                    <input placeholder="Enter Name" id="username" type="text" class="validate" ng-model="organizer.username">
+                    <input placeholder="Enter Name" id="username" type="text" class="organizer-input-style validate" ng-model="organizer.username">
                 </div>
                 <div class="input-field col l6 m6 s12" style="margin-top: 0px;">
                     <span class="telegrafico">Password</span>
-                    <input placeholder="Enter Password" id="password" type="password" class="validate" ng-model="organizer.password">
+                    <input placeholder="Enter Password" id="password" type="password" class="organizer-input-style validate" ng-model="organizer.password">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col l6 m6 s12 organizer-update-form">
                     <span class="telegrafico">Name</span>
-                    <input placeholder="Enter Name" id="name" type="text" class="validate" ng-model="organizer.name">
+                    <input placeholder="Enter Name" id="name" type="text" class="organizer-input-style validate" ng-model="organizer.name">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col l6 m6 s12 organizer-update-form">
                     <span class="telegrafico">Contact Number</span>
-                    <input placeholder="Enter Contact Number" id="contact" type="text" class="validate" ng-model="organizer.contact">
+                    <input placeholder="Enter Contact Number" id="contact" type="text" class="organizer-input-style validate" ng-model="organizer.contact">
                 </div>
                 <div class="input-field col l6 m6 s12 organizer-update-form">
                     <span class="telegrafico">Email</span>
-                    <input placeholder="Enter Email" id="email" type="text" class="validate" ng-model="organizer.email">
+                    <input placeholder="Enter Email" id="email" type="text" class="organizer-input-style validate" ng-model="organizer.email">
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 organizer-update-form">
                     <span class="telegrafico">Description</span>
-                    <textarea id="textarea1" class="materialize-textarea" ng-model="organizer.description"></textarea>
+                    <textarea id="textarea1" class="organizer-input-style materialize-textarea" ng-model="organizer.description"></textarea>
                 </div>
             </div>
         </form>
@@ -299,29 +299,29 @@
                 <div class="row">
                     <div class="input-field col s12" style="margin-top: 0px;">
                         <span class="telegrafico">Game Name</span>
-                        <input placeholder="Enter game name" id="name" type="text" class="validate" ng-model="gameCopy.name">
+                        <input placeholder="Enter game name" id="name" type="text" class="organizer-input-style validate" ng-model="gameCopy.name">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 organizer-update-form">
                         <span class="telegrafico">Location</span>
-                        <input placeholder="Enter location" id="location" type="text" class="validate" ng-model="gameCopy.location">
+                        <input placeholder="Enter location" id="location" type="text" class="organizer-input-style validate" ng-model="gameCopy.location">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col l6 s6 organizer-update-form">
                         <span class="telegrafico">Start Date</span>
-                        <input id="start-date" class="datepicker validate" ng-model="gameCopy.startDate">
+                        <input id="start-date" class="organizer-input-style datepicker validate" ng-model="gameCopy.startDate">
                     </div>
                     <div class="input-field col l6 s6 organizer-update-form">
                         <span class="telegrafico">End Date</span>
-                        <input id="end-date" class="datepicker validate" ng-model="gameCopy.endDate">
+                        <input id="end-date" class="organizer-input-style datepicker validate" ng-model="gameCopy.endDate">
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 organizer-update-form">
                         <span class="telegrafico">Description</span>
-                        <textarea id="description" class="materialize-textarea" ng-model="gameCopy.description"></textarea>
+                        <textarea id="description" class="organizer-input-style materialize-textarea" ng-model="gameCopy.description"></textarea>
                     </div>
                 </div>
             </form>

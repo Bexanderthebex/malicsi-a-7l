@@ -4,122 +4,102 @@
     <div id="main" class="">
         <!-- Organizer Basic Info -->
         <div class="row palette-3 organizer-profile-info">
-            <div class="col l3 m5 s12 offset-l2 center">
+            <div class="col l3 m5 s12 offset-l1 center">
                 <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
 
-            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getOrganizer()">
-                <h3 class="rockwell">{{ organizer.name }} <!-- <a id="organizer-profile-edit" data-target="organizer-profile-edit-modal"><i class="material-icons">edit</i></a> --></h3>
+            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCurrentUser()">
+            <!-- ng-init -> ito muna yung tatawagin para makuha yung organizer na kailangan
+            yung irereturn ng getCurrentUser() ay isang organizer, which is yung $scope.organizer
+            accessible yung values ng attributes ng organizer by enclosing it sa {{ }} -->
+                <h3 class="rockwell">{{ organizer.name }}</h3>
                 <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
                 <p class="telegrafico">
                     {{ organizer.description }}
                 </p>
             </div>
+            <div class="col l1 m1 s12"></div>
         </div>
 
-        <div class="row container">
-        <!-- Games Handled -->
-            <div class="col s12">
-                <h5 class="rockwell">Games Handled</h5>
-                
-                <ul class="tabs tabs-transparent telegrafico" id="organizer-profile-games">
-                    <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">ONGOING (5)</a></li>
-                    <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">INCOMING (3)</a></li>
-                    <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">PAST (12)</a></li>
-                    <div class="indicator white" style="z-index: 1"></div>
-                </ul>
-                
+        <div id="org-profile-div" class="col s12">
+            <div class="row container">
+            <!-- Games Handled -->
+                <div class="col s12">
+                    <h5 class="rockwell">Games Handled</h5>
+                    
+                    <ul class="tabs tabs-transparent telegrafico" id="organizer-profile-games">
+                        <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">ONGOING ({{ games.length }})</a></li>
+                        <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">INCOMING ({{ games.length }})</a></li>
+                        <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">PAST ({{ games.length }})</a></li>
+                        <div class="indicator white" style="z-index: 1"></div>
+                    </ul>
+                    
 
-                <div id="organizer-profile-ongoing" class="col s12">
-                    <table class="highlight responsive-table organizer-games-data" ng-init="retrieveGame()">
-                        <tbody class="">
-
-                            <tr ng-repeat="game in games" class="century-gothic">
-                                <td>{{ game.name }}</td>
-                                <td>{{ game.start_date }}</td>
-                                <td>{{ game.location}}</td>
-                            </tr>
-
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 1, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                
-                            </tr>
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 1, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                    <table class="highlight organizer-showall">
-                        <tbody>
-                            <tr>
-                                <td class="center-align century-gothic white-text palette-3" id="organizer-ongoing-showall" data-target="organizer-ongoing-modal">Show All</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div id="organizer-profile-incoming" class="col s12">
-                    <table class="highlight responsive-table organizer-games-data">
-                        <tbody>
-                            <tr class="century-gothic" ng-repeat="game in games">
-                                <td>{{ game.name }}</td>
-                                <td>{{ game.start_date}}</td>
-                                <td>{{ game.location }}</td>
-                            </tr>
-
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 1, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="highlight organizer-showall">
-                        <tbody>
-                            <tr>
-                                <td class="center-align century-gothic white-text palette-3" id="organizer-incoming-showall" data-target="organizer-ongoing-modal">Show All</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div id="organizer-profile-past" class="col s12">
-                    <table class="highlight responsive-table organizer-games-data">
-                        <tbody>
-
-                            <tr class="century-gothic" ng-repeat="game in games">
-                                 <td>{{ game.name }}</td>
-                                <td>{{ game.start_date}}</td>
-                                <td>{{ game.location }}</td>
-                            </tr>
-
-                            <tr class="century-gothic">
-                                <td>PalICSihan 2017</td>
-                                <td>April 1, 2017</td>
-                                <td>Freedom Park, UPLB</td>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table class="highlight organizer-showall">
-                        <tbody>
-                            <tr>
-                                <td class="center-align century-gothic palette-3" id="organizer-ongoing-showall" data-target="organizer-past-modal">Show All</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div id="organizer-profile-ongoing" class="col s12">
+                        <table class="highlight responsive-table organizer-games-data" ng-init="getOrganizerGames()">
+                            <tbody class="">
+                                <tr class="century-gothic" ng-repeat="game in games | limitTo: 5">
+                                <!-- ng-repeat -> itong <tr> na naka repeat ay mauulit ng ilang beses depende sa 
+                                kung ilan yung laman ng games na array
+                                game represents on element in the array games--> 
+                                    <td>{{ game.name }}</td>
+                                    <td>{{ game.start_date| date:"longDate" }}</td>
+                                    <td>{{ game.location }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="highlight organizer-showall">
+                            <tbody>
+                                <tr>
+                                    <td class="center-align century-gothic white-text palette-3" id="organizer-ongoing-showall" data-target="organizer-ongoing-modal">Show All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="organizer-profile-incoming" class="col s12">
+                        <table class="highlight responsive-table organizer-games-data">
+                            <tbody>
+                                <tr class="century-gothic" ng-repeat="game in games | limitTo: 5">
+                                    <td>{{ game.name }}</td>
+                                    <td>{{ game.start_date| date:"longDate"}}</td>
+                                    <td>{{ game.location }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="highlight organizer-showall">
+                            <tbody>
+                                <tr>
+                                    <td class="center-align century-gothic white-text palette-3" id="organizer-incoming-showall" data-target="organizer-ongoing-modal">Show All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="organizer-profile-past" class="col s12">
+                        <table class="highlight responsive-table organizer-games-data">
+                            <tbody>
+                                <tr class="century-gothic" ng-repeat="game in games | limitTo: 5">
+                                    <td>{{ game.name }}</td>
+                                    <td>{{ game.start_date| date:"longDate"}}</td>
+                                    <td>{{ game.location }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="highlight organizer-showall">
+                            <tbody>
+                                <tr>
+                                    <td class="center-align century-gothic palette-3" id="organizer-ongoing-showall" data-target="organizer-past-modal">Show All</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="row organizer-footer black">
+
+        <!-- <div class="row organizer-footer black">
             <div class="black">
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#"> Help </a></li>
@@ -127,9 +107,120 @@
                     <li>All Rights Reserved</li>
                 </ul>
             </div>
-        </div>
+        </div> -->
     </div>
 
+</div>
+
+<!-- Ongoing Games Modal -->
+<div id="organizer-ongoing-modal" class="modal modal-fixed-footer">
+    <div class="row organizer-modal-style">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right palette-5">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center rockwell">
+                            <h5>Ongoing Games</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div> 
+        <table class="highlight responsive-table" ng-init="retrieveGame()">
+            <tbody>
+                <tr class="century-gothic" ng-repeat="game in games">
+                    <td> {{ game.name }}</td>
+                    <td> {{ game.start_date| date:"longDate" }}</td>
+                    <td> {{ game.location }}</td>
+                    <td>
+                                <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                    <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
+                                </div>
+                                <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                    <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
+                                </div>
+                            </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
+    </div>
+</div>
+
+<!-- Incoming Games Modal -->
+<div id="organizer-incoming-modal" class="modal modal-fixed-footer">
+    <div class="row organizer-modal-style">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right palette-5">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center rockwell">
+                            <h5>Incoming Games</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <table class="highlight responsive-table" ng-init="retrieveGame()">
+            <tbody>
+                <tr class="century-gothic" ng-repeat="game in games">
+                    <td> {{ game.name }}</td>
+                    <td> {{ game.start_date| date:"longDate" }}</td>
+                    <td> {{ game.location }}</td>
+                    <td>
+                                <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                    <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
+                                </div>
+                                <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                    <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
+                                </div>
+                            </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
+    </div>
+</div>
+
+<!-- Past Games Modal -->
+<div id="organizer-past-modal" class="modal modal-fixed-footer">
+    <div class="row organizer-modal-style">
+        <div class="row remove-bottom">
+            <div class="col s12 padding-left padding-right palette-5">
+                <div class="center">
+                    <br>
+                        <div class="card-title white-text center rockwell">
+                            <h5>Past Games</h5>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <table class="highlight responsive-table" ng-init="retrieveGame()">
+            <tbody>
+                <tr class="century-gothic" ng-repeat="game in games">
+                    <td> {{ game.name }}</td>
+                    <td> {{ game.start_date| date:"longDate" }}</td>
+                    <td> {{ game.location }}</td>
+                    <td>
+                                <div class="organizer-actions" data-target="organizer-update-game-modal">
+                                    <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
+                                </div>
+                                <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                                    <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
+                                </div>
+                            </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
+    </div>
 </div>
 
 <!--  Scripts-->
