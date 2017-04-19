@@ -233,3 +233,10 @@
 .all-games-card:hover h4, .all-games-card:hover span {
   color: white!important;
 }
+
+#games-header {
+  background-color: #001f2b;
+  width: 100%;
+  height: 23%;
+  padding-top: 3.2%;
+}

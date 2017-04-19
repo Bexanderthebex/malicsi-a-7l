@@ -149,9 +149,11 @@
 		</div>
 		<!--All games modal-->
 		<div id="organization-allgames-modal" class="modal modal-fixed-footer">
-			<div class="modal-content" ng-init="retrieveGamesInOrganization(1)">
-				<div class="row">
-					<h4 class="rockwell strong palette-text-3 center">Games Participated</h4>
+			<div class="modal-content game-header-fill" ng-init="retrieveGamesInOrganization(1)">
+				<div id="games-header">
+					<div class="row">
+						<h4 class="rockwell strong white-text center">Games Participated</h4>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col s4 m4 l4 center-align all-games-card" ng-repeat="game in gamesInOrganization">
