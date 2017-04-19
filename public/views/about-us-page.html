@@ -1,19 +1,22 @@
 <div id="mainHolder" ng-controller="competitorController">
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
-    <div id="main" class="">
+    <div id="main" class="parallax-container">
         <!-- competitor Basic Info -->
+        <div class="parallax">
+            <img src="assets/images/4.jpg">
+        </div>
         <div class="row container center">
-            <div id="about-us-img-1" class="cover-photo row hide-on-small-only">&nbsp;</div>
-            <div id="about-us-img-1s" class="cover-photo row container hide-on-med-and-up">&nbsp;</div>
+           <!--  <div id="about-us-img-1" class="cover-photo row hide-on-small-only">&nbsp;</div>
+            <div id="about-us-img-1s" class="cover-photo row container hide-on-med-and-up">&nbsp;</div> -->
             <div class="row"><h3 class="rockwell center"><a href="#about-us" class="scrollspy black-text">About Us</a></h3></div>
             <div id="about-us" class="row">
                 <div class="row">
-                    <h1 class="script-mt">
+                    <h1 class="sansation">
                         &#8220; Insert our slogan/tagline here. &#8221;
                     </h1>
                 </div>
-                <div class="row">
+                <div id="details-div" class="row">
                     <div class="col l4 m4 s12">
                         <h5 class="telegrafico">Header</h5>
                         <p class="century-gothic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -42,214 +45,104 @@
                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     </div>
                 </div>
-            </div>
-            <div class="container">
-                <img src="assets/dev-team-photo.png" class="responsive-img">
             </div>
             <div class="row">
                 <div class="row"><h3 class="rockwell">Meet the Developers</h3></div>
-                <!--div class="row">
-                    <div class="col l4 m4 s12">
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                    </div>
-                    <div class="col l4 m4 s12">
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                    </div>
-                    <div class="col l4 m4 s12">
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
+                <div class="row center">
+                    <div class="col l4 m4 s12 offset-l4 offset-m4">
+                         <div class="dev-member-card center bordered-div">
+                            <h5 class="telegrafico">Claizel Coubeili Cepe</h5>
+                            <p class="century-gothic">Project Manager</p>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col l4 m4 s12 offset-l2 offset-m2">
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                    </div>
-                    <div class="col l4 m4 s12">
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                    </div>
-                </div-->
                 <div id="dev-team" class="row center">
-                    <div class="col l2 m2 s12 offset-l1 offset-m1">
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                    <div class="col l3 m3 s12 ">
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">Blessy Salvania</h5>
+                            <p class="century-gothic">Team Leader<br>Front-end Developer</p>
+                            <p class="century-gothic"></p>
+                        </div><br>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">Jourish Abasolo</h5>
                             <p class="century-gothic">Front-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">Kenichii Ana</h5>
                             <p class="century-gothic">Front-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">Meika Lei Dane</h5>
                             <p class="century-gothic">Front-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">Carol Tolentino</h5>
                             <p class="century-gothic">Front-end Developer</p>
                         </div><br>
                     </div>
-                    <div class="col-margin-remove col l2 m2 s12">
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                    <div class="col-margin-remove col l3 m3 s12">
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">Emy Cabarles</h5>
+                            <p class="century-gothic">Team Leader<br>Back-end Developer</p>
+                        </div><br>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                    </div>
-                    <div class="col-margin-remove col l2 m2 s12">
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
                     </div>
-                    <div class="col-margin-remove col l2 m2 s12">
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                    <div class="col-margin-remove col l3 m3 s12">
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">Ralph Reyes</h5>
+                            <p class="century-gothic">Team Leader<br>Back-end Developer</p>
+                        </div><br>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
                     </div>
-                    <div class="col-margin-remove col l2 m2 s12">
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                    <div class="col-margin-remove col l3 m3 s12">
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">Anton Rufino</h5>
+                            <p class="century-gothic">Team Leader<br>Back-end Developer</p>
+                        </div><br>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card bordered-div left-align">
-                            <h5 class="telegrafico">John Doe</h5>
+                        <div class="dev-member-card center bordered-div left-align">
+                            <h5 class="telegrafico">_______________</h5>
                             <p class="century-gothic">Back-end Developer</p>
                         </div><br>
                     </div>
@@ -261,4 +154,9 @@
 
 <!--  Scripts-->
 <script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>
+<script>
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+</script>
 <!--script type="text/javascript" src="../js/competitor-profile-page.js"></script-->

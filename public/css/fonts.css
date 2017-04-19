@@ -9,6 +9,13 @@
 }
 
 @font-face {
+	font-family: 'sansation';
+	src:url('/fonts/Sansation_Light.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
 	font-family: 'leixo';
 	src:url('/fonts/leixo/LEIXO-DEMO.ttf');
 	font-weight: normal;
@@ -41,6 +48,10 @@
 
 .telegrafico{
 	font-family: "telegrafico";
+}
+
+.sansation{
+	font-family: "sansation";
 }
 
 .leixo {
