@@ -63,6 +63,7 @@ router.post('/register/createAdmin', checkUser('A'), sha256Hash, bcryptHash, adm
 router.get('/logout', userController.logout);
 router.get('/user', userController.getUserInfo);
 router.get('/user/searchAdmin', checkUser('A'), adminController.searchAdmin);
+router.get('/user/searchUser', userController.searchUser);
 router.get('/user/:id', userController.getUserInfo);
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 router.put('/user/update', userController.update);

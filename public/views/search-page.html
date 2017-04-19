@@ -2,8 +2,8 @@
 <!-- Do not put anything inside main holder -->
 <!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
-	<div class="palette-4" id="gamefeed-extend-header">
-		<div class="row gamefeed-game-container">
+	<div class="palette-4" id="search-extend-header">
+		<div class="row search-game-container">
 			<div class="col s12">
 				<h2 class="center white-text rockwell">Search</h2>
 			</div>
@@ -20,7 +20,7 @@
 			<div class="row center filter-holder">
 				<div class="container telegrafico search-sort-part white-text">
 					<p class="search-sort-adjust">
-						Filter:
+						Filter By: 
 						<input type="checkbox" class="filled-in" id="gamechk" ng-init="gamecheck=true" ng-model="gamecheck" style="margin-right: 20px!important; width:80px!important";" />
 						<label for="gamechk"> Game</label>
 						
@@ -41,53 +41,143 @@
 		</div>		
 	</div>
 	<div class="container search-results">
-		<!-- COMPETITOR RESULTS -->
-		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="competitor in competitors">
-			<div class="search-header">	
-				<a href="#/competitor/profile/{{competitor.id}}" class="rockwell strong palette-text-4">{{ competitor.first_name + " " + competitor.last_name }}</a>
-			</div>
-			<div class="search-result-content">
-				<a class="secondary-text century-gothic"> Competitor </a>
-			</div>
+		<div class="row center">
+			<h4 class="rockwell">25 Results</h4>
 		</div>
+		<div class="row center">		
+			<!-- COMPETITOR RESULTS -->
+			<div class="col s12 m4 l4" ng-repeat="competitor in competitors">
+				<div class="search-match palette-border-5">
+					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
+						<h4 class="telegrafico white-text"><a href="#/competitor/profile/{{competitor.id}}" class="white-text">{{ competitor.first_name + " " + competitor.last_name }}</a></h4>
+					</div>
 
-		<!-- GAME -->
-		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="game in games">
-			<div class="search-header">	
-				<a href="#/game/{{game.game_id}}" class="rockwell strong palette-text-4">{{ game.name }}</a>
+					<div class="row">
+						<div class="col s12">
+							<div class="search-description search-remove-bottom">
+								<div class="center century-gothic">Competitor</div>
+							</div>
+						</div>
+					</div>
+					<div class="search-match-container">
+						<div class="search-padding-down">
+							<div data-target="search-update-game" class="col s1 offset-s9">
+								<i class="fa fa-pencil search-adjust-icons" aria-hidden="true"></i>
+							</div>
+							<div data-target="search-delete-game" class="col s1">
+								<i class="fa fa-close search-adjust-icons" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="search-result-content">
-				<a class="secondary-text century-gothic"> Game </a>
-			</div>
-		</div>
 
-		<!-- ORGANIZATION -->
-		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="organization in organizations">
-			<div class="search-header">	
-				<a href="#/organization/{{organization.organization_id}}" class="rockwell strong palette-text-4">{{ organization.name }}</a>
-			</div>
-			<div class="search-result-content">
-				<a class="secondary-text century-gothic"> Organization </a>
-			</div>
-		</div>
+			<!-- GAME -->
+			<div class="col s12 m4 l4" ng-repeat="game in games">
+				<div class="search-match palette-border-5">
+					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
+						<h4 class="telegrafico white-text"><a href="#/game/{{game.game_id}}" class="white-text">{{ game.name }}</a></h4>
+					</div>
 
-		<!-- SPORT -->
-		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="sport in sports">
-			<div class="search-header">	
-				<a href="#/sports/{{sport.sport_id}}" class="rockwell strong palette-text-4">{{ sport.sport_name }}</a>
+					<div class="row">
+						<div class="col s12">
+							<div class="search-description search-remove-bottom">
+								<div class="center century-gothic">Game</div>
+							</div>
+						</div>
+					</div>
+					<div class="search-match-container">
+						<div class="search-padding-down">
+							<div data-target="search-update-game" class="col s1 offset-s9">
+								<i class="fa fa-pencil search-adjust-icons" aria-hidden="true"></i>
+							</div>
+							<div data-target="search-delete-game" class="col s1">
+								<i class="fa fa-close search-adjust-icons" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="search-result-content">
-				<a class="secondary-text century-gothic"> Sport </a>
-			</div>
-		</div>
 
-		<!-- ORGANIZER -->
-		<div class="row center col s12 m12 l8 search-result-card" ng-repeat="organizer in organizers">
-			<div class="search-header">	
-				<a href="#/organizer/{{organizer.id}}" class="rockwell strong palette-text-4">{{ organizer.name }}</a>
+			<!-- ORGANIZATION -->
+			<div class="col s12 m4 l4" ng-repeat="organization in organizations">
+				<div class="search-match palette-border-5">
+					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
+						<h4 class="telegrafico white-text"><a href="#/organization/{{organization.organization_id}}" class="white-text">{{ organization.name }}</a></h4>
+					</div>
+
+					<div class="row">
+						<div class="col s12">
+							<div class="search-description search-remove-bottom">
+								<div class="center century-gothic">Organization</div>
+							</div>
+						</div>
+					</div>
+					<div class="search-match-container">
+						<div class="search-padding-down">
+							<div data-target="search-update-game" class="col s1 offset-s9">
+								<i class="fa fa-pencil search-adjust-icons" aria-hidden="true"></i>
+							</div>
+							<div data-target="search-delete-game" class="col s1">
+								<i class="fa fa-close search-adjust-icons" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="search-result-content">
-				<a class="secondary-text century-gothic"> Organizer </a>
+
+			<!-- SPORT -->
+			<div class="col s12 m4 l4" ng-repeat="sport in sports">
+				<div class="search-match palette-border-5">
+					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
+						<h4 class="telegrafico white-text"><a href="#/sports/{{sport.sport_id}}" class="white-text">{{ sport.sport_name }}</a></h4>
+					</div>
+
+					<div class="row">
+						<div class="col s12">
+							<div class="search-description search-remove-bottom">
+								<div class="center century-gothic">Sport</div>
+							</div>
+						</div>
+					</div>
+					<div class="search-match-container">
+						<div class="search-padding-down">
+							<div data-target="search-update-game" class="col s1 offset-s9">
+								<i class="fa fa-pencil search-adjust-icons" aria-hidden="true"></i>
+							</div>
+							<div data-target="search-delete-game" class="col s1">
+								<i class="fa fa-close search-adjust-icons" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ORGANIZER -->
+			<div class="col s12 m4 l4" ng-repeat="organizer in organizers">
+				<div class="search-match palette-border-5">
+					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
+						<h4 class="telegrafico white-text"><a href="#/organizer/{{organizer.id}}" class="white-text">{{ organizer.name }}</a></h4>
+					</div>
+
+					<div class="row">
+						<div class="col s12">
+							<div class="search-description search-remove-bottom">
+								<div class="center century-gothic">Organizer</div>
+							</div>
+						</div>
+					</div>
+					<div class="search-match-container">
+						<div class="search-padding-down">
+							<div data-target="search-update-game" class="col s1 offset-s9">
+								<i class="fa fa-pencil search-adjust-icons" aria-hidden="true"></i>
+							</div>
+							<div data-target="search-delete-game" class="col s1">
+								<i class="fa fa-close search-adjust-icons" aria-hidden="true"></i>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		
