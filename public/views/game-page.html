@@ -4,7 +4,7 @@
 
 	<div class="row">
 		<div class="col s3 game-sidebar palette-5 game-fixed-sidebar white-text">
-			<div id="game-update-section" class="col s12 game-sidebar-remove-left-padding">
+			<!-- <div id="game-update-section" class="col s12 game-sidebar-remove-left-padding">
 				<h5 class="rockwell right-align">Updates</h5>
 				<div class="game-type-matches" style="width: 100%; max-height: 85%; overflow-y: scroll; margin-right: 5px; right: 10px;">
 					<div class="game-line-update"></div>
@@ -91,9 +91,9 @@
 
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div id="game-rank-section" class="col s12 game-sidebar-remove-left-padding">
-				<h5 class="rockwell right-align">Ranking</h5>
+				<h5 class="rockwell right-align">Organization Ranking</h5>
 				<div class="game-type-matches" style="width: 100%; max-height: 100%; overflow-y: ; margin-right: 5px; right: 10px;">
 					<div class="game-line-rank" ng-init=viewOrgRankings() ng-hide="checkRankings()"></div>
 					<div class="row right-align">
@@ -319,38 +319,6 @@
 										</div>
 									</div>
 								</div>
-								<div class="col s4">
-									<div class="game-sport">
-										<div class="card game-hovercard">
-											<div class="center">
-												<img src="assets/badges/badge_archery.png" class="game-adjust-image activator">
-											</div>
-											<div class="card-content game-game-name">
-												<span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">{,mnasd.fsf}</span>
-											</div>
-											<div class="card-reveal game-arrange-padding grey lighten-2">
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4" ><i class="fa fa-trash right" data-target="game-delete-sport" ng-click="passSport(sport)"></i></span>
-												<span class="card-title grey-text text-darken-4"><i class="fa fa-pencil right" data-target="game-update-sport" ng-click="passSport(sport)"></i></span>
-												<div class="telegrafico">Date</div>
-												<div class="game-match-info">
-													{{sport.start_date}} - {{sport.end_date}}
-												</div>
-												
-												<div class="telegrafico">Time</div>
-												<div class="game-match-info">
-													{{sport.time_start}} - {{sport.time_end}}
-												</div>
-												
-												<div class="telegrafico">Teams Remaining</div>
-												<div class="game-match-info">
-													9/{{sport.max_teams}}
-												</div>
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">{{sport.sport_name | lowercase}}</div>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 
@@ -377,39 +345,36 @@
 							</div>
 
 
-							<div class="card-panel palette-3 game-remove-padding">
+							<div class="card-panel palette-3 game-remove-padding" ng-init = "viewSponsoringInstitutions()">
 								<h5 class="game-remove-margin center rockwell">Sponsoring institutions</h5><br>
 								<div class="row">
-									<div class="col s12 m12">
+									<div class="col s12 m12" ng-hide="checkSponsors()">
 										
 										<!-- editing view -->
-										<span class="telegrafico game-checkbox-change-color">
+										<!-- <span class="telegrafico game-checkbox-change-color" ng-repeat = "sponsor in sponsors">
 											<input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
 											<label for="filled-in-box">
 												<p class="game-sponsor-title">
-													maligo ka na, inc.
+													{{sponsor.name}}
 													<i class="fa fa-pencil sponsor-actions" data-target="game-sponsor-edit"></i>
 												</p>
-												<p class="game-sponsor-description century-gothic">Engine cartel media A.I. systema alcohol jeans table film augmented reality knife vehicle car 3D-printed garage corporation. Legba order-flow media industrial grade spook girl engine tube tank-traps rebar knife nodal point systemic hotdog neural. Boy singularity alcohol pistol tube saturation point A.I. beef noodles rebar artisanal monofilament meta-denim corrupted wristwatch BASE jump smart. </p>
+												<p class="game-sponsor-description century-gothic">{{sponsor.description}} </p>
 											</label>
-										</span>
-
-										<span class="telegrafico game-checkbox-change-color">
-											<input type="checkbox" class="filled-in" id="filled-in-box-2" checked="checked" />
-											<label for="filled-in-box-2">
-												<p class="game-sponsor-title">	
-													maligo ka na, inc.
-													<i class="fa fa-pencil sponsor-actions" data-target="game-sponsor-edit"></i>
-												</p>
-												<p class="game-sponsor-description century-gothic">Engine cartel media A.I. systema alcohol jeans table film augmented reality knife vehicle car 3D-printed garage corporation. Legba order-flow media industrial grade spook girl engine tube tank-traps rebar knife nodal point systemic hotdog neural. Boy singularity alcohol pistol tube saturation point A.I. beef noodles rebar artisanal monofilament meta-denim corrupted wristwatch BASE jump smart. </p>
-											</label>
-										</span>
+										</span> -->
 
 										<!-- presentation view -->
-										<!-- <p class="telegrafico game-sponsor-title">
-										Palicsihan
+										<div ng-repeat="sponsor in sponsors">
+											<p class="telegrafico game-sponsor-title" >
+											{{sponsor.name}}
+											</p>
+											<p class="game-sponsor-description century-gothic">{{sponsor.description}} </p>
+										</div>
+										
+									</div>
+									<div class="col s12 m12" ng-show="checkSponsors()">
+										<p class="telegrafico game-sponsor-title">
+											No sponsors here yet!
 										</p>
-										<p class="game-sponsor-description">Into crypto-city towards garage hotdog soul-delay weathered corporation geodesic numinous vinyl alcohol. Pre-camera claymore mine sensory weathered tiger-team gang film soul-delay. </p> -->
 									</div>
 								</div>
 								<button href="" class="modal-action modal-close minimalist-button" data-target="game-sponsor-add">ADD</button>
@@ -495,7 +460,7 @@
 	</div>
 </div> -->
 
-<div id="game-sponsor-add" class="modal" >
+<div id="game-sponsor-add" style="overflow-y:hidden;" class="modal" ng-init="viewOtherSponsoringInstitutions()">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-3">
 			<div class="center">
@@ -506,21 +471,26 @@
 		</div>
 	</div>
 	<div class="modal-content">
-		<div class="row">
+		<!--<div class="row">
 			<div class="col s12">
 				<h6 class="century-gothic strong">Sponsor Name:</h6>
-				<!-- <select id ="otherSponsorName" ng-model="sponsorAdd" ng-options="sponsor as sponsor.name for sponsor in otherSponsors track by sponsor.sponsor_id" ></select> -->
+				<select id ="otherSponsorName" ng-model="sponsorAdd" ng-options="sponsor as sponsor.name for sponsor in otherSponsors track by sponsor.sponsor_id" ></select>
 				<select id ="otherSponsorName" ng-model="sponsorAdd" ng-change="passSponsorAdd(sponsorAdd)">
 					<option ng-repeat="sponsor in otherSponsors track by sponsor.sponsor_id" value='{"sponsor_id": "{{sponsor.sponsor_id}}", "description": "{{sponsor.description}}", "name":"{{sponsor.name}}" }' >{{sponsor.name}}</option>
 				</select>
 				<h6 class="century-gothic strong">Description:</h6>
 				<p class="center" >{{sponsorAdd.description}}</p>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col s12">
-				
-			</div>
+		</div> -->
+
+		<div class="row" ng-repeat="sponsor in otherSponsors">
+			<span class="telegrafico game-checkbox-change-color" >
+				<input type="checkbox" class="filled-in" id="{{sponsor.sponsorId}}" ng-model="sponsor.checked"/>
+				<label for="{{sponsor.sponsorId}}">
+					<p class="game-sponsor-title">{{sponsor.name}}</p>
+				</label>
+			</span>
+
 		</div>
 	</div>
 	<div class="modal-footer">
@@ -623,22 +593,23 @@
 		</div>	
 		<div class="row game-modal-container game-modal-content">
 
-				<div class="input-field col s6 game-input-color-change" ng-model="sportCopy.sport_name">
-					<input placeholder=" " id="addName" type="text" class="validate">
+				<div class="input-field col s6 game-input-color-change">
+					<input placeholder=" " id="addName" type="text" class="validate" ng-model="sportCopy.sport_name">
 					<label for="name">Sport Name</label>
 				</div>
 
-				<div class="input-field col s2 game-input-color-change" ng-model="sportCopy.max_teams">
-					<input placeholder=" " id="addMaxTeams" type="number" class="validate">
+				<div class="input-field col s2 game-input-color-change">
+					<input placeholder=" " id="addMaxTeams" type="number" class="validate" ng-model="sportCopy.max_teams">
 					<label for="maxTeams">Max Teams</label>
 				</div>
 
 				<div class="input-field col s4 game-input-color-change">
-					<select ng-model="sportCopy.scoring_system">
-						<option value="" disabled selected>Choose your option</option>
-						<option value="1">Preset system 1</option>
-						<option value="2">Preset system 2</option>
-						<option value="3">None</option>
+					<select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" >
+						<!-- <option value="" disabled selected>Choose your option</option>
+						<option value="Tally Score">Tally Score</option>
+						<option value="Round Robin">Round Robin</option>
+						<option value="None">None</option> -->
+						<option value="" selected hidden>None</option>
 					</select>
 					<label>Scoring system</label>
 				</div>
@@ -651,12 +622,12 @@
 				</div>
 
 				<div class="input-field col s3 game-input-color-change">
-					<input placeholder="hh:mm:ss" id="start-time" type="text" class="validate" ng-model="sportCopy.time_start">
-					<label for="start-time">Start</label>
+					<input placeholder="" id="start-time" type="time" class="validate" ng-model="sportCopy.time_start">
+					<label for="start-time" class="game-adjust-label">Start</label>
 				</div>
 				<div class="input-field col s3 game-input-color-change">
-					<input placeholder="hh:mm:ss" id="end-time" type="text" class="validate" ng-model="sportCopy.time_end">
-					<label for="end-time">End</label>
+					<input placeholder="" id="end-time" type="time" class="validate" ng-model="sportCopy.time_end">
+					<label for="end-time" class="game-adjust-label">End</label>
 				</div>
 
 				<div class="input-field col s3 game-input-color-change">
