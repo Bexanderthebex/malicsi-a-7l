@@ -88,7 +88,7 @@
 				<div class="game-type-matches" style="width: 100%; max-height: 100%; overflow-y: ; margin-right: 5px; right: 10px;">
 					<div class="game-line-rank" ng-init=viewOrgRankings() ng-hide="checkRankings()"></div>
 					<div class="row right-align">
-						<div ng-repeat = "organization in organizations">
+						<div ng-repeat = "organization in organizationRanks">
 							<p class="col s10 game-rank-title truncate century-gothic" >{{organization.org_name}}</p>
 							<div class="col s1 game-circle-update palette-4">
 								<h5 class="rockwell game-position-rank">{{organization.org_rank}}</h5>
@@ -356,46 +356,34 @@
 								<p class="center game-remove-top">
 									<i class="fa fa-map-marker large"></i>
 								</p>
-								<h5 class="rockwell center white-text">Beijing, Muntinlupa</h5>
+								<h5 class="rockwell center white-text" ng-hide="checkGameLocation()">{{game.location}}</h5>
+								<h5 class="rockwell center white-text" ng-show="checkGameLocation()">No location available.</h5>
 								<div class="row game-remove-bottom">
 									<div class="col s12">
 										<div class="divider divider-color"></div>
-										<p class="white-text century-gothic game-location-description">Tanto network smart--space DIY camera industrial grade jeans soul-delay plastic Tokyo ablative rain receding silent boy. Fluidity DIY footage industrial grade RAF crypto-shanty town Shibuya dissident lights rebar.<a href="#"> read more...</a></p>
+										<p class="white-text century-gothic game-location-description" ng-hide = "checkGameDescription()">{{game.description}}<a href="#"> read more...</a></p>
+										<p class="white-text century-gothic game-location-description" ng-show = "checkGameDescription()">No description available.</p>
 									</div>
 								</div>
 							</div>
 
-							<div class="card-panel palette-3 game-remove-padding">
-								<h5 class="white-text game-remove-margin center rockwell">Sponsoring institutions										<i class="fa fa-plus-square sponsor-actions" data-target="game-sponsor-add"></i></h5>
-								<div class="row">
+							<div class="card-panel palette-3 game-remove-padding" ng-init="viewSponsoringInstitutions()">
+								<h5 class="white-text game-remove-margin center rockwell">Sponsoring institutions										<i class="fa fa-plus-square sponsor-actions" data-target="game-sponsor-add" ng-init="viewOtherSponsoringInstitutions()"></i></h5>
+								<div class="row" ng-model="sponsors" ng-hide="checkSponsors()">
 									<div class="col s12 m12">
-										<p class="telegrafico white-text game-sponsor-title">
-											
-										maligo ka na, inc.
-										<i class="fa fa-pencil-square-o sponsor-actions" data-target="game-sponsor-edit"></i>
-										<i class="fa fa-trash sponsor-actions" data-target="game-delete-sponsor"></i>
+										<div ng-repeat="sponsor in sponsors">
+											<p class="telegrafico white-text game-sponsor-title">
+											{{sponsor.name}}
+											<!-- <i class="fa fa-pencil-square-o sponsor-actions" data-target="game-sponsor-edit" ng-click="passSponsor(sponsor)"></i> -->
+											<i class="fa fa-trash sponsor-actions" data-target="game-delete-sponsor" ng-click="passSponsorDelete(sponsor)"></i>
 
-										</p>
-										<p class="game-sponsor-description white-text">Engine cartel media A.I. systema alcohol jeans table film augmented reality knife vehicle car 3D-printed garage corporation. Legba order-flow media industrial grade spook girl engine tube tank-traps rebar knife nodal point systemic hotdog neural. Boy singularity alcohol pistol tube saturation point A.I. beef noodles rebar artisanal monofilament meta-denim corrupted wristwatch BASE jump smart. </p>
-										<p class="telegrafico white-text game-sponsor-title">
-
-										Olympics Japan
-										<i class="fa fa-pencil-square-o sponsor-actions" data-target="game-sponsor-edit"></i>
-										<i class="fa fa-trash sponsor-actions" data-target="game-delete-sponsor"></i>
-
-										</p>
-										<p class="game-sponsor-description white-text">Footage gang realism franchise corporation shoes bridge carbon convenience store wristwatch decay 3D-printed rebar shanty town. Boy pistol render-farm claymore mine sign sub-orbital corrupted drone. Rain monofilament DIY assault apophenia vinyl kanji realism marketing pre-drone fluidity weathered physical 3D-printed. </p>
-										<p class="telegrafico white-text game-sponsor-title">
-
-										Palicsihan
-										<i class="fa fa-pencil-square-o sponsor-actions" data-target="game-sponsor-edit"></i>
-										<i class="fa fa-trash sponsor-actions" data-target="game-delete-sponsor"></i>
-
-										</p>
-
-
-										<p class="game-sponsor-description white-text">Into crypto-city towards garage hotdog soul-delay weathered corporation geodesic numinous vinyl alcohol. Pre-camera claymore mine sensory weathered tiger-team gang film soul-delay. </p>
+											</p>
+											<p class="game-sponsor-description white-text">{{sponsor.description}} </p>
+										</div>
 									</div>
+								</div>
+								<div class="row" ng-show="checkSponsors()">
+									<p class = "telegrafico white-text game-sponsor-title"> No sponsors yet. </p>
 								</div>
 							</div>
 
@@ -408,7 +396,7 @@
 	</div>
 </div>
 
-<div id="game-delete-sponsor" class="modal">
+<div id="game-delete-sponsor" class="modal" >
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-3">
 			<div class="center">
@@ -422,14 +410,16 @@
 	</div>
 	<div class="modal-content">
 		<p>Are you sure you want to delete this sponsor?</p>
+		<p>Sponsor Name: {{sponsorCopy.name}}</p>
+		<p>Description: {{sponsorCopy.description}}</p>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat">No</a>
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat">Yes</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat">No</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="deleteSponsoringInstitution(sponsorCopy)">Yes</a>
 	</div>
 </div>
 
-<div id="game-sponsor-edit" class="modal">
+<!-- <div id="game-sponsor-edit" class="modal">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-3">
 			<div class="center">
@@ -444,7 +434,7 @@
 		<div class="row">
 			<div class="col s6">
 				<h6 class="century-gothic strong">Current Sponsor Name:</h6>
-				<p class="century-gothic">Palicsihan 2017</p>
+				<p class="century-gothic">{{sponsorCopy.name}}</p>
 			</div>
 			<div class="col s6">
 				<h6 class="century-gothic strong">New Sponsor Name:</h6>
@@ -454,7 +444,7 @@
 		<div class="row">
 			<div class="col s6">
 				<h6 class="century-gothic strong">Current Description:</h6>
-				<p class="century-gothic">Palicsihan 2017</p>
+				<p class="century-gothic">{{sponsorCopy.description}}</p>
 			</div>
 			<div class="col s6">
 				<h6 class="century-gothic strong">New Description:</h6>
@@ -463,15 +453,14 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat">Save</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="editSponsoringInstitution()">Save</a>
 	</div>
-</div>
+</div> -->
 
-<div id="game-sponsor-add" class="modal">
+<div id="game-sponsor-add" class="modal" >
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-3">
 			<div class="center">
-
 					<div class="card-title white-text center" id="thicken">
 				 		<h5>Add Sponsoring Institution</h5>
 					</div>
@@ -482,18 +471,22 @@
 		<div class="row">
 			<div class="col s12">
 				<h6 class="century-gothic strong">Sponsor Name:</h6>
-				<input placeholder="" id="name" type="text" class="validate">
+				<!-- <select id ="otherSponsorName" ng-model="sponsorAdd" ng-options="sponsor as sponsor.name for sponsor in otherSponsors track by sponsor.sponsor_id" ></select> -->
+				<select id ="otherSponsorName" ng-model="sponsorAdd" ng-change="passSponsorAdd(sponsorAdd)">
+					<option ng-repeat="sponsor in otherSponsors track by sponsor.sponsor_id" value='{"sponsor_id": "{{sponsor.sponsor_id}}", "description": "{{sponsor.description}}", "name":"{{sponsor.name}}" }' >{{sponsor.name}}</option>
+				</select>
+				<h6 class="century-gothic strong">Description:</h6>
+				<p class="center" >{{sponsorAdd.description}}</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col s12">
-				<h6 class="century-gothic strong">Description:</h6>
-				<textarea placeholder="" id="name" type="text" class="validate"></textarea>
+				
 			</div>
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat">Add</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="addSponsoringInstitution()">Add</a>
 	</div>
 </div>
 
@@ -573,7 +566,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-click="addSport()">Add</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="addSport()">Add</a>
 	</div>
 </div>
 
@@ -653,7 +646,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a href="#!" class="modal-action modal-close waves-effect btn-flat" ng-click="updateSport(sportCopy)">Update</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="updateSport(sportCopy)">Update</a>
 	</div>
 </div>
 
