@@ -34,16 +34,6 @@ DELIMITER //
 	//
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS edit_competitor_details;
-DELIMITER //
-	CREATE PROCEDURE edit_competitor_details(IN usernamein VARCHAR(50), IN passwordin VARCHAR(60), IN emailin VARCHAR(15), IN cid INT)
-
-	BEGIN
-		UPDATE user SET  username = usernamein, password = passwordin, email = emailin, contact = contactin WHERE id = cid;
-	END;
-
-	//
-DELIMITER ;
 
 DROP PROCEDURE IF EXISTS edit_competitor_bio;
 DELIMITER //
@@ -55,6 +45,7 @@ DELIMITER //
 
 	//
 DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS get_competitor_teams;
 DELIMITER //

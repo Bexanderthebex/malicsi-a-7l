@@ -85,35 +85,6 @@ exports.editCompetitor = (req,res) => {
 	);
 }
 
-exports.editCompetitorDetails = (req,res) => {
-	currentUser = req.session.user;
-	query = "CALL edit_competitor_details(?,?,?,?,?)";
-
-	connection.userType('A').query(query,
-		[
-			req.body.username,
-			req.body.password,
-			req.body.email,
-			req.body.contact,
-			currentUser.id
-		], (err, rows) => {
-			if(!err) {
-				connection.userType('A').query(query1,
-					[
-						currentUser.id
-					], (err, rows) => {
-						if(!err) {
-							return res.status(200).send(rows[0][0]);
-						}
-					}
-				);
-			} else {
-				return res.status(501).send({ 'message' : 'Error'});
-			}
-		}
-	);
-}
-
 exports.editCompetitorBio = (req,res) => {
 	currentUser = req.session.user;
 	query = "CALL edit_competitor_bio(?,?)";
