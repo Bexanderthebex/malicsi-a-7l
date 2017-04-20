@@ -182,7 +182,6 @@
             if($scope.game.location == undefined) return true;
             else false;
         }
-<<<<<<< HEAD
         function checkOrganization(){
             if($scope.checkOrganization.length == 0) return true;
             else false;
@@ -199,7 +198,6 @@
                     console.log(err);
                     Materialize.toast("Failed to add the Organization!", 3000);
                 }) 
-=======
         function checkValidSponsorAdd(){
             var countAdd=0;
             for(var i = 0; i<$scope.otherSponsors.length; i++){
@@ -215,7 +213,6 @@
             }
             if(countDel>0) $scope.validSponsorDel=true;
             else $scope.validSponsorDel=false;
->>>>>>> 90e30fbae9fda956863596695ff69d7525824204
         }
 
 
@@ -543,8 +540,16 @@
                 .viewSponsoringInstitutions($scope.thisGame.game_id)
                 .then(function(res){
                     console.log("sponsoring institutions retrieved for game#"+ $scope.thisGame.game_id);
-                    console.log(res);
-                    $scope.sponsors = res;
+                    for (var i = 0; i< res.length; i++){
+                        $scope.newSponsorGame = {
+                            sponsorId: res[i].sponsor_id,
+                            gameId: $scope.thisGame.game_id,
+                            name: res[i].name,
+                            description: res[i].description,
+                            checked: false
+                        };
+
+                        $scope.sponsors.push($scope.newSponsorGame);
 
                 }, function(err){
                     console.log(err.data);
@@ -579,34 +584,6 @@
                 })
         }
 
-<<<<<<< HEAD
-        function addSponsoringInstitution(sponsor_id){
-            GameService
-                .addSponsoringInstitution(sponsor_id, $scope.thisGame.game_id)
-                .then(function(res){
-                    console.log("added sponsor institution");
-                    console.log(res);
-                }, function(err){
-                    console.log(err.data);
-                    Materialize.toast('Failed to add sponsoring institution!', 3000);
-                })
-        }
-
-        function deleteSponsoringInstitution(sponsor){
-            GameService
-                .deleteSponsoringInstitution(sponsor.sponsor_id, sponsor.game_id)
-                .then(function(res){
-                    console.log("deleted sponsor insitution#"+ $scope.thisGame.game_id);
-                    console.log(res);
-                    $scope.sponsors = res;
-                    viewSponsoringInstitutions();
-                    viewOtherSponsoringInstitutions();
-                }, function(err){
-                    console.log(err.data);
-                    Materialize.toast('Failed to delete sponsoring institutions!', 3000);
-                })
-        }
-=======
         // function addSponsoringInstitution(sponsor_id){
         //     GameService
         //         .addSponsoringInstitution(sponsor_id, $scope.thisGame.game_id)
@@ -631,8 +608,6 @@
         //         })
         // }
 
-
->>>>>>> 90e30fbae9fda956863596695ff69d7525824204
         function showCheckedSponsors(){
             for(var i=0; i<$scope.otherSponsors.length; i++){
                 if($scope.otherSponsors[i].checked==true){
@@ -643,24 +618,10 @@
         }
 
         function addMultipleSponsors(){
-<<<<<<< HEAD
             console.log("adding multiple sponsors:")
-            
-=======
->>>>>>> 90e30fbae9fda956863596695ff69d7525824204
             for(var i=0; i<$scope.otherSponsors.length; i++){
                 if($scope.otherSponsors[i].checked==true) $scope.checkedSponsorsAdd.push($scope.otherSponsors[i])
             }
-<<<<<<< HEAD
-            $scope.otherSponsors = [];
-            viewSponsoringInstitutions();
-            viewOtherSponsoringInstitutions();
-            $scope.otherSponsors.pop();
-
-            console.log("done adding");
-        }
-
-=======
             GameService
                 .addMultipleSponsoringInstitutions($scope.checkedSponsorsAdd)
                 .then(function(res){
@@ -697,6 +658,6 @@
                     Materialize.toast('Failed to delete sponsoring institutions!', 3000);
                 })
         }
->>>>>>> 90e30fbae9fda956863596695ff69d7525824204
+
     }
 })();
