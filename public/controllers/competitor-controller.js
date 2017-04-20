@@ -22,7 +22,7 @@
         $scope.getCompetitorTeams = getCompetitorTeams;
         $scope.editCompetitor = editCompetitor;
         $scope.editCompetitorBio = editCompetitorBio;
-        $scope.createTeam = createTeam;
+        // $scope.createTeam = createTeam;
         $scope.getCoachedTeam = getCoachedTeam;
         $scope.getPendingRequests = getPendingRequests;
         
