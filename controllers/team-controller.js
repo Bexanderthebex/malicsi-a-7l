@@ -105,7 +105,8 @@ exports.displayPendingMembershipRequest = (req, res) => {
             currentUser.id
         ], (err, rows) => {
                 if(!err) {
-                    return res.status(200).send({ 'message' : 'Sucessfully accepted request'});
+
+                    return res.status(200).send(rows[0]);
                 } else {
                     return res.status(500).send({ 'message' : 'An error occured'});
                 }
