@@ -60,11 +60,6 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/error', {
-                'templateUrl': 'views/error-404-page.html',
-                'caseInsensitiveMatch': true
-                // 'access': { requiredAuthentication: true }
-            })
 
             .when('/game/:gameId', {
                 'templateUrl': 'views/game-page.html',
@@ -106,6 +101,13 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
+            .when('/error', {
+                'templateUrl': 'views/error-404-page.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
+            .otherwise({'templateUrl': 'views/error-404-page.html'})
+
     }
 
 })();
