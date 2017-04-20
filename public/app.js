@@ -55,7 +55,7 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/about', {
+            .when('/aboutus', {
                 'templateUrl': 'views/about-us-page.html',
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
