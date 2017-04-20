@@ -124,53 +124,111 @@ BEGIN
 END; //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_ongoing_matches_in_sport;
+DELIMITER //
+CREATE PROCEDURE view_all_ongoing_matches_in_sport(in sport_id_input INT)
+BEGIN
+	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date 
+    FROM sport s, sport_match m, team_in_match tm, team t 
+    WHERE s.sport_id = m.sport_id 
+        AND m.match_id = tm.match_id 
+        AND tm.team_id = t.team_id 
+        AND s.sport_id = sport_id_input 
+        AND m.match_date = curdate();
+END; //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_past_matches_in_sport;
+DELIMITER //
+CREATE PROCEDURE view_all_past_matches_in_sport(in sport_id_input INT)
+BEGIN
+	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date 
+    FROM sport s, sport_match m, team_in_match tm, team t 
+    WHERE s.sport_id = m.sport_id 
+        AND m.match_id = tm.match_id 
+        AND tm.team_id = t.team_id 
+        AND s.sport_id = sport_id_input 
+        AND m.match_date < curdate();
+END; //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_upcoming_matches_in_sport;
+DELIMITER //
+CREATE PROCEDURE view_all_upcoming_matches_in_sport(in sport_id_input INT)
+BEGIN
+	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date 
+    FROM sport s, sport_match m, team_in_match tm, team t 
+    WHERE s.sport_id = m.sport_id 
+        AND m.match_id = tm.match_id 
+        AND tm.team_id = t.team_id 
+        AND s.sport_id = sport_id_input 
+        AND m.match_date > curdate();
+END; //
+DELIMITER ;
+
 
 -- create sport
-GRANT EXECUTE ON PROCEDURE create_sport TO organizer;
-GRANT EXECUTE ON PROCEDURE create_sport TO administrator;
+GRANT EXECUTE ON PROCEDURE create_sport TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE create_sport TO administrator@localhost;
 
 -- view sport
-GRANT EXECUTE ON PROCEDURE view_sport TO organizer;
-GRANT EXECUTE ON PROCEDURE view_sport TO administrator;
-GRANT EXECUTE ON PROCEDURE view_sport TO competitor;
-GRANT EXECUTE ON PROCEDURE view_sport TO guest;
+GRANT EXECUTE ON PROCEDURE view_sport TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_sport TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE view_sport TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE view_sport TO guest@localhost;
 
 -- view last inserted sport
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sport TO organizer;
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sport TO administrator;
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sport TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sport TO administrator@localhost;
 
 -- edit sport
-GRANT EXECUTE ON PROCEDURE edit_sport to organizer;
-GRANT EXECUTE ON PROCEDURE edit_sport to administrator;
+GRANT EXECUTE ON PROCEDURE edit_sport to organizer@localhost;
+GRANT EXECUTE ON PROCEDURE edit_sport to administrator@localhost;
 
 -- add winner
-GRANT EXECUTE ON PROCEDURE add_winner_sport to organizer;
-GRANT EXECUTE ON PROCEDURE add_winner_sport to administrator;
+GRANT EXECUTE ON PROCEDURE add_winner_sport to organizer@localhost;
+GRANT EXECUTE ON PROCEDURE add_winner_sport to administrator@localhost;
 
 -- delete sport
-GRANT EXECUTE ON PROCEDURE delete_sport to organizer;
-GRANT EXECUTE ON PROCEDURE delete_sport to administrator;
+GRANT EXECUTE ON PROCEDURE delete_sport to organizer@localhost;
+GRANT EXECUTE ON PROCEDURE delete_sport to administrator@localhost;
 
 -- count sport 
-GRANT EXECUTE ON PROCEDURE count_sport_by_game TO organizer;
-GRANT EXECUTE ON PROCEDURE count_sport_by_game TO administrator;
-GRANT EXECUTE ON PROCEDURE count_sport_by_game TO competitor;
-GRANT EXECUTE ON PROCEDURE count_sport_by_game TO guest;
+GRANT EXECUTE ON PROCEDURE count_sport_by_game TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE count_sport_by_game TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE count_sport_by_game TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE count_sport_by_game TO guest@localhost;
 
 -- retrieve team rankings from sport
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO organizer;
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO administrator;
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO competitor;
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO guest;
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO guest@localhost;
 
 -- search all sport by keyword
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO organizer;
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO administrator;
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO competitor;
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO guest;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO guest@localhost;
 
 -- retrieve org rankings from game
-GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO organizer;
-GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO administrator;
-GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO competitor;
-GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO guest;
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO guest@localhost;
+
+-- retrieve matches from sport
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO guest@localhost;
+
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO guest@localhost;
+
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO guest@localhost;

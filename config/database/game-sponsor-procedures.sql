@@ -111,32 +111,32 @@ DELIMITER ;
 
 
 
-GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO organizer;
-GRANT EXECUTE ON PROCEDURE add_sponsor TO administrator;
+GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE add_sponsor TO administrator@localhost;
 
-GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO administrator;
+GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO administrator@localhost;
 
-GRANT EXECUTE ON PROCEDURE delete_sponsor_from_game TO organizer;
-GRANT EXECUTE ON PROCEDURE delete_sponsor TO administrator;
+GRANT EXECUTE ON PROCEDURE delete_sponsor_from_game TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE delete_sponsor TO administrator@localhost;
 
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO organizer;
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO administrator;
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO administrator@localhost;
 
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor_to_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor_to_game TO administrator;
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor_to_game TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor_to_game TO administrator@localhost;
 
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO guest@localhost;
 
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO guest@localhost;
 
 
-GRANT EXECUTE ON PROCEDURE view_sponsor TO organizer;
-GRANT EXECUTE ON PROCEDURE view_sponsor TO administrator;
-GRANT EXECUTE ON PROCEDURE view_sponsor TO competitor;
-GRANT EXECUTE ON PROCEDURE view_sponsor TO guest;
+GRANT EXECUTE ON PROCEDURE view_sponsor TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_sponsor TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE view_sponsor TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE view_sponsor TO guest@localhost;

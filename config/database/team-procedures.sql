@@ -119,29 +119,29 @@ CREATE PROCEDURE get_teams_on_organization (IN org_id INT)
 	END; //
 DELIMITER ;
 
-GRANT EXECUTE ON procedure create_team TO competitor;
-GRANT EXECUTE ON procedure delete_team TO competitor;
-GRANT EXECUTE ON procedure team_membership_request TO competitor;
-GRANT EXECUTE ON procedure accept_membership_request TO competitor;
-GRANT EXECUTE ON procedure rankings TO competitor;
-GRANT EXECUTE ON procedure count_teams_in_sport TO competitor;
-GRANT EXECUTE ON procedure get_members TO competitor;
-GRANT EXECUTE ON procedure organization_rankings TO competitor;
-GRANT EXECUTE ON procedure get_teams_on_organization TO competitor;
+GRANT EXECUTE ON procedure create_team TO competitor@localhost;
+GRANT EXECUTE ON procedure delete_team TO competitor@localhost;
+GRANT EXECUTE ON procedure team_membership_request TO competitor@localhost;
+GRANT EXECUTE ON procedure accept_membership_request TO competitor@localhost;
+GRANT EXECUTE ON procedure rankings TO competitor@localhost;
+GRANT EXECUTE ON procedure count_teams_in_sport TO competitor@localhost;
+GRANT EXECUTE ON procedure get_members TO competitor@localhost;
+GRANT EXECUTE ON procedure organization_rankings TO competitor@localhost;
+GRANT EXECUTE ON procedure get_teams_on_organization TO competitor@localhost;
 
-GRANT EXECUTE ON procedure create_team TO administrator;
-GRANT EXECUTE ON procedure delete_team TO administrator;
-GRANT EXECUTE ON procedure team_membership_request TO administrator;
-GRANT EXECUTE ON procedure accept_membership_request TO administrator;
-GRANT EXECUTE ON procedure rankings TO administrator;
-GRANT EXECUTE ON procedure count_teams_in_sport TO administrator;
-GRANT EXECUTE ON procedure get_members TO administrator;
-GRANT EXECUTE ON procedure organization_rankings TO administrator;
-GRANT EXECUTE ON procedure get_teams_on_organization TO administrator;
+GRANT EXECUTE ON procedure create_team TO administrator@localhost;
+GRANT EXECUTE ON procedure delete_team TO administrator@localhost;
+GRANT EXECUTE ON procedure team_membership_request TO administrator@localhost;
+GRANT EXECUTE ON procedure accept_membership_request TO administrator@localhost;
+GRANT EXECUTE ON procedure rankings TO administrator@localhost;
+GRANT EXECUTE ON procedure count_teams_in_sport TO administrator@localhost;
+GRANT EXECUTE ON procedure get_members TO administrator@localhost;
+GRANT EXECUTE ON procedure organization_rankings TO administrator@localhost;
+GRANT EXECUTE ON procedure get_teams_on_organization TO administrator@localhost;
 
-GRANT EXECUTE ON procedure rankings TO guest;
-GRANT EXECUTE ON procedure count_teams_in_sport TO guest;
-GRANT EXECUTE ON procedure get_members TO guest;
-GRANT EXECUTE ON procedure organization_rankings TO guest;
-GRANT EXECUTE ON procedure get_teams_on_organization TO guest;
+GRANT EXECUTE ON procedure rankings TO guest@localhost;
+GRANT EXECUTE ON procedure count_teams_in_sport TO guest@localhost;
+GRANT EXECUTE ON procedure get_members TO guest@localhost;
+GRANT EXECUTE ON procedure organization_rankings TO guest@localhost;
+GRANT EXECUTE ON procedure get_teams_on_organization TO guest@localhost;
 

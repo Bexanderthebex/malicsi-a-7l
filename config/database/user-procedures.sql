@@ -109,15 +109,15 @@ CREATE PROCEDURE search_user(
 	END; //
 DELIMITER ;
 
-grant execute on procedure create_competitor to competitor;
-grant execute on procedure update_user to competitor;
-grant execute on procedure select_user to competitor;
+grant execute on procedure create_competitor to competitor@localhost;
+grant execute on procedure update_user to competitor@localhost;
+grant execute on procedure select_user to competitor@localhost;
 
-grant execute on procedure create_user to administrator;
-grant execute on procedure create_competitor to administrator;
-grant execute on procedure select_user to administrator;
-grant execute on procedure update_user to administrator;
-grant execute on procedure search_user to administrator;
+grant execute on procedure create_user to administrator@localhost;
+grant execute on procedure create_competitor to administrator@localhost;
+grant execute on procedure select_user to administrator@localhost;
+grant execute on procedure update_user to administrator@localhost;
+grant execute on procedure search_user to administrator@localhost;
 
-grant execute on procedure select_user to guest;
-grant execute on procedure select_user to organizer;
+grant execute on procedure select_user to guest@localhost;
+grant execute on procedure select_user to organizer@localhost;

@@ -97,36 +97,36 @@ END //
 DELIMITER ;
 
 -- view matches in a sport
-GRANT EXECUTE ON PROCEDURE view_match_sport TO administrator;
-GRANT EXECUTE ON PROCEDURE view_match_sport TO organizer;
-GRANT EXECUTE ON PROCEDURE view_match_sport TO competitor;
-GRANT EXECUTE ON PROCEDURE view_match_sport TO guest;
+GRANT EXECUTE ON PROCEDURE view_match_sport TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE view_match_sport TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_match_sport TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE view_match_sport TO guest@localhost;
 
 -- view  match details
-GRANT EXECUTE ON PROCEDURE view_match_details TO administrator;
-GRANT EXECUTE ON PROCEDURE view_match_details TO organizer;
-GRANT EXECUTE ON PROCEDURE view_match_details TO competitor;
-GRANT EXECUTE ON PROCEDURE view_match_details TO guest;
+GRANT EXECUTE ON PROCEDURE view_match_details TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE view_match_details TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_match_details TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE view_match_details TO guest@localhost;
 
 -- view all matches
-GRANT EXECUTE ON PROCEDURE view_all_match TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_match TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_match TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_match TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_match TO administrator@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_match TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_match TO competitor@localhost;
+GRANT EXECUTE ON PROCEDURE view_all_match TO guest@localhost;
 
 -- add match
-GRANT EXECUTE ON PROCEDURE add_match TO organizer;
-GRANT EXECUTE ON PROCEDURE add_match TO administrator;
+GRANT EXECUTE ON PROCEDURE add_match TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE add_match TO administrator@localhost;
 
 -- edit match
-GRANT EXECUTE ON PROCEDURE edit_match TO organizer;
-GRANT EXECUTE ON PROCEDURE edit_match TO administrator;
+GRANT EXECUTE ON PROCEDURE edit_match TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE edit_match TO administrator@localhost;
 
 -- edit team ranking
-GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO organizer;
-GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO administrator;
+GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO administrator@localhost;
 
 -- delete match
-GRANT EXECUTE ON PROCEDURE delete_match TO organizer;
-GRANT EXECUTE ON PROCEDURE delete_match TO administrator;
+GRANT EXECUTE ON PROCEDURE delete_match TO organizer@localhost;
+GRANT EXECUTE ON PROCEDURE delete_match TO administrator@localhost;
 
