@@ -48,13 +48,14 @@ exports.teamMembershipRequest = (req, res) => {
     
     connection.userType('A').query(query, 
             [
-                req.body.id,
+                currentUser.id,
                 req.body.team_id
             ], (err, rows) => {
                 if(!err) {
                     return res.status(200).send({ 'message' : 'Sucessfully sent request'});
                 } else {
-                    return res.status(500).send({ 'message' : 'An error occured'});
+                    if(err.code == 'ER_DUP_ENTRY') return res.status(493).send({ 'message' : 'Duplicate entry'});
+                    else return res.status(500).send({ 'message' : 'An error occured'});
                 }
         }
     );
@@ -164,13 +165,7 @@ exports.getTeamMembers = (req, res) => {
             req.query.team_id
         ], (err, rows) => {
             if(!err) {
-                if (rows[0].length == 1){
-                    return res.status(200).send(rows[0][0]);
-                }
-                else{
-                    return res.status(200).send(rows[0]);
-                    
-                }
+                return res.status(200).send(rows[0]);
             } else {
                 return res.status(500).send({ 'message' : 'An error occured'});
             }
@@ -186,6 +181,7 @@ exports.getTeam = (req, res) => {
     ], (err, rows) => {
         if(!err) {
             if (rows[0].length == 1){
+                    console.log(rows[0][0]);
                 return res.status(200).send(rows[0][0]);
             }
             else{
