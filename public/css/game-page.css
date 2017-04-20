@@ -127,6 +127,15 @@
     width: 30%;
 }
 
+#game-delete-sponsor {
+    margin-top: 10%;
+    width: 30%;
+}
+
+#game-sponsor-edit {
+    margin-top: 3%;
+}
+
 .game-icon-adjust {
     margin-top: -12px !important;
 }
@@ -173,26 +182,21 @@
     height: 50%;
 }
 
-
 .game-type-matches{
-    /*margin-right: -10px !important;*/
     margin-left: 10px !important;
 }
 
 .game-type-matches::-webkit-scrollbar-track{
     background: transparent;
-    /*-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);*/
-    /*background-color: #F5F5F5;*/
 }
 
 .game-type-matches::-webkit-scrollbar{
     width: 4px;
-    /*background-color: white;*/
 }
 
 .game-type-matches::-webkit-scrollbar-thumb{
-    background-color: white;
-    border-radius: 5px;
+    background-color: #00719c;
+    /*border-radius: 5px;*/ 
 }
 
 .game-match{
@@ -255,6 +259,7 @@
     border-radius: 50% !important;
     margin-top: 5px;
     z-index: 10;
+    margin-left: -16px;
 }
 
 .game-line-update {
@@ -262,7 +267,7 @@
     background-color: white;
     width: 2px;
     position: absolute;
-    left: 87%;
+    left: 83%;
     z-index: -5;
 }
 
@@ -271,23 +276,24 @@
     background-color: white;
     width: 2px;
     position: absolute;
-    left: 87%;
+    left: 83%;
     z-index: -5;
 }
 
 .game-update-title{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 800;
+    margin-left: -24px;
 }
 
 .game-update-date{
     font-size: 10px;
-    margin-bottom: -20px;
+    margin-bottom: -15px;
 }
 
 .game-icon-update{
     margin-top: 8px !important;
-    margin-left: -3px !important;
+    margin-right: 7px !important;
 }
 
 .game-position-rank{
@@ -302,12 +308,17 @@
 }
 
 .game-sponsor-title {
-    font-size: 18px;
+    font-size: 20px;
+    color: black;
+    margin: 0px !important;
+    margin-top: -10px;
 }
 
 .game-sponsor-description{
     font-size: 10px;
-    margin-top: -20px;
+    margin-top: -5px;
+    line-height: 14px !important;
+    color: black;
 }
 
 .game-location-description{
@@ -407,14 +418,13 @@
 }
 
 .game-sidebar {
-    width: 25% !important;
+    width: 18% !important;
 }
 
 .game-main-content{
-    margin-left: 25% !important;
-    width: 75% !important;
+    margin-left: 18% !important;
+    width: 82% !important;
 }
-
 
 .sponsor-actions{
     margin-left: 10px;
@@ -423,4 +433,74 @@
 .sponsor-actions:hover{
     color: black;
     cursor: pointer!important;
+}
+
+.game-sidebar-remove-left-padding {
+    padding-left: 0px !important;
+}
+
+
+.game-header-fill{
+    padding: 0px !important;
+}
+
+.game-modal-container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+}
+
+.game-remove-bottom-modal {
+    margin-bottom: 0px !important;
+}
+
+.game-adjust-icons {
+    font-size: 1.5em !important;
+}
+
+.game-add-modal-content {
+    margin-top: 20px;
+}
+
+#game-fab-palette-4 {
+    background-color: #00415a !important;
+}
+
+.game-input-color-change input:not([type]):focus:not([readonly]),
+.game-input-color-change input[type=text]:focus:not([readonly]),
+.game-input-color-change input[type=date]:focus:not([readonly]),
+.game-input-color-change input[type=number]:focus:not([readonly]),
+.game-input-color-change textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #00415a;
+  box-shadow: 0 1px 0 0 #00415a;
+}
+
+.game-input-color-change input:not([type]):focus:not([readonly]) + label,
+.game-input-color-change input[type=text]:focus:not([readonly]) + label,
+.game-input-color-change input[type=date]:focus:not([readonly]) + label,
+.game-input-color-change input[type=number]:focus:not([readonly]) + label,
+.game-input-color-change textarea.materialize-textarea:focus:not([readonly]) + label.game-textarea-label-color-change {
+  color: #00415a;
+}
+
+.game-textarea-label-color-change{
+    color: #00415a;   
+}
+
+.game-modal-content{
+    margin-top: 20px;
+}
+
+.game-modal-title {
+    font-weight: 800;
+}
+
+.game-sponsor-description-modal{
+    font-size: 14px;
+    margin-top: -20px;
+}
+
+.game-checkbox-change-color [type="checkbox"].filled-in:checked + label:after {
+  border: 2px solid #00415a;
+  background-color: #00415a;
 }

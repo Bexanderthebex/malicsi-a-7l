@@ -16,6 +16,7 @@ let competitorController = require("../controllers/competitor-controller");
 let organizerController = require("../controllers/organizer-controller");
 let teamController = require("../controllers/team-controller");
 let organizationController = require("../controllers/organization-controller");
+let uploadController = require("../controllers/upload-controller");
 
 function sha256Hash(req, res, next) {
     console.log(req.body);
@@ -110,10 +111,12 @@ router.get('/team/getTeam',teamController.getTeam);
 router.get('/team/getCoachedTeams',teamController.getCoachedTeam);
 router.get('/team/getTeamsOnOrganization',teamController.getTeamsOnOrganization);
 router.get('/team/getOrganizationRankings',teamController.getOrganizationRankings);
+router.get('/team/displayPendingMembershipRequest',teamController.displayPendingMembershipRequest);
 
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
+router.get('/game/viewAllGames',  gameController.viewAllGames);
 router.get('/game/viewAllPastMatchesInGame', gameController.viewAllPastMatchesInGame);
 router.get('/game/viewAllOngoingMatchesInGame', gameController.viewAllOngoingMatchesInGame);
 router.get('/game/viewAllUpcomingMatchesInGame', gameController.viewAllUpcomingMatchesInGame);
@@ -161,5 +164,10 @@ router.delete('/sport/match/deleteMatch', matchController.deleteMatch);
 // log routers
 router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
 router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
+router.get('/log/viewUserLogs',logController.viewUserLogs);
+router.post('/log/createLog',logController.createLog);
+
+//upload router
+router.post('/uploadImg',uploadController.imageUpload);
 
 module.exports = router;

@@ -29,7 +29,6 @@ exports.getCompetitor = (req, res) => {
 			req.query.search
 		], (err, rows) => {
 		    if(!err) {
-				// console.log(rows[0][0]);
 				return res.status(200).send(rows[0][0]);
 
 			} else {
@@ -60,20 +59,19 @@ exports.editCompetitor = (req,res) => {
 	query = "CALL edit_competitor(?,?,?,?,?,?)";
 	query1 = "CALL get_competitor(?)";
 
-	console.log(req.body.id);
 	connection.userType('A').query(query,
 		[
-			req.body.birthday,
-			req.body.first_name,
-			req.body.last_name,
+			req.body.birthdate,
+			req.body.first-name,
+			req.body.last-name,
 			req.body.nickname,
 			req.body.sex,
-			req.body.id
+			currentUser.id
 		], (err, rows) => {
 			if(!err) {
 				connection.userType('A').query(query1,
 					[
-						req.body.id
+						currentUser.id
 					], (err, rows) => {
 						if(!err) {
 							return res.status(200).send(rows[0][0]);
@@ -88,28 +86,25 @@ exports.editCompetitor = (req,res) => {
 }
 
 exports.editCompetitorBio = (req,res) => {
+	currentUser = req.session.user;
 	query = "CALL edit_competitor_bio(?,?)";
 	query1 = "CALL get_competitor(?)";
 
-	console.log("id: " + req.body.id);
-	console.log("bio: " + req.body.bio);
 	connection.userType('A').query(query,
 		[
 			req.body.bio,
-			req.body.id
+			currentUser.id
 		], (err, rows) => {
 			if(!err) {
 				connection.userType('A').query(query1,
 					[
-						req.body.id
+						currentUserid
 					], (err, rows) => {
 						if(!err) {
-							// console.log('Here');
-							// console.log(rows[0][0]);
 							return res.status(200).send(rows[0][0]);
 						}
 						else{
-							// console.log(err);
+							console.log(err);
 							return res.status(500).send({'message' : 'Internal Server Error'});
 						}
 					}
@@ -131,7 +126,6 @@ exports.getCompetitorRanking = (req, res) => {
 			req.query.id
 		], (err, rows) => {
 		    if(!err) {
-				// console.log(rows[0][0]);
 				return res.status(200).send(rows[0][0]);
 
 			} else {
