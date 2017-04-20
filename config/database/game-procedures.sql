@@ -156,6 +156,15 @@ END;
 //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_organization_in_game;
+DELIMITER //
+CREATE PROCEDURE view_all_organization_in_game(in game_id_in int(11))
+BEGIN
+	select * from organization where organization_id in (select organization_id from organization_in_game where game_id = game_id_in);
+END;
+//
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS add_organization_to_game;
 DELIMITER //
 CREATE PROCEDURE add_organization_to_game(in org_id_in int(11), in game_id_in int(11))
@@ -173,6 +182,7 @@ BEGIN
 END 
 //
 DELIMITER ;
+
 
 
 --  check organization

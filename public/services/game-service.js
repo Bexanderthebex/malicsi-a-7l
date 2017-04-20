@@ -293,6 +293,27 @@
             
             return deferred.promise;
         }
+
+         function viewAllOrganiationsForGame(game_id){
+            let deferred = $q.defer();
+            let game = {
+                gameId: game_id
+            }
+
+
+            $http({
+                method: 'GET',
+                params: game,
+                url: '/game/viewAllOrganizationInGame',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
         
         function viewUpcomingMatchesInGame(game_id){
             let deferred = $q.defer();

@@ -44,6 +44,7 @@
         $scope.checkGameLocation = checkGameLocation;
         $scope.addOrganizationToGame = addOrganizationToGame;
         $scope.viewAllOrganizationForGame = viewAllOrganizationForGame;
+        $scope.viewAllOrganizationInGame = viewAllOrganizationInGame;
         $scope.showCheckedSponsors = showCheckedSponsors;
         $scope.addMultipleSponsors = addMultipleSponsors;
 
@@ -181,11 +182,10 @@
         function addOrganizationToGame(newOrganizationInGame){
            $scope.newOrganizationInGame.orgId = ("#orgID").val();
            GameService
-                .addSport(newOrganizationInGame)
+                .addOrganizationToGame(newOrganizationInGame)
                 .then(function (res){
-                    console.log("added");
+                    console.log("added organization to game");
                     Materialize.toast("Successfully added the Organization!", 3000);
-                    retrieveAllSports();
                 }, function(err) {
                     console.log(err);
                     Materialize.toast("Failed to add the Organization!", 3000);
@@ -363,6 +363,23 @@
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to retrieve Available Organizations!', 3000);
+                })
+        }
+
+        function viewAllOrganizationForGame(){
+            GameService
+                .viewAllOrganizationInGame($scope.thisGame.game_id)
+                .then(function(res){
+                    console.log("Organizations In Game Retrieved"+ $scope.thisGame.game_id);
+                    console.log(res.data);
+                    $scope.temp = res.data;
+                    for (var i = scope.temp.length -1; i>= 0; i--){
+                        $scope.availableOrg = $scope.temp[i].name;
+                        $scope.push($scope.orgInGame);
+                    }
+                }, function(err){
+                    console.log(err.data);
+                    Materialize.toast('Failed to retrieve Organizations in Game!', 3000);
                 })
         }
 

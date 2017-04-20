@@ -291,6 +291,18 @@ exports.viewAllOrganizationForGame = (req, res) => {
 	})
 }
 
+exports.viewAllOrganizationInGame = (req, res) => {
+	connection.userType('A').query('CALL view_all_organization_in_game(?)', 
+		[req.body.gameId], 
+		(err, rows) => {
+		if (!err) {
+			return res.status(200).send(rows[0]);		
+		}else{
+			res.status(500).send("Internal Server Error");
+		}
+	})
+}
+
 exports.addOrganizationToGame = (req, res) =>{
 	connection.userType('A').query('CALL add_organization_to_game(?, ?)', 
 		[req.body.orgId, req.body.gameId], 
@@ -318,6 +330,8 @@ exports.deleteOrganizationFromGame = (req, res) =>{
 
 	})
 }
+
+
 
 
 
