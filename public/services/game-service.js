@@ -1,4 +1,4 @@
-f'use strict';
+'use strict';
 
 (() => {
     angular.module('app')
@@ -27,7 +27,6 @@ f'use strict';
             viewSponsoringInstitutions: viewSponsoringInstitutions,
             viewOtherSponsoringInstitutions: viewOtherSponsoringInstitutions,
             addSponsoringInstitution: addSponsoringInstitution,
-            updateSponsoringInstitution: updateSponsoringInstitution,
             deleteSponsoringInstitution: deleteSponsoringInstitution,
             addOrganizationToGame: addOrganizationToGame,
             deleteOrganizationFromGame: deleteOrganizationFromGame,
@@ -276,7 +275,7 @@ f'use strict';
             return deferred.promise;
         }
 
-        function viewAllOrganiationsForGame(game_id){
+        function viewAllOrganizationForGame(game_id){
             let deferred = $q.defer();
             let game = {
                 gameId: game_id
@@ -297,7 +296,7 @@ f'use strict';
             return deferred.promise;
         }
 
-         function viewAllOrganiationsForGame(game_id){
+         function viewAllOrganizationInGame(game_id){
             let deferred = $q.defer();
             let game = {
                 gameId: game_id

@@ -18,7 +18,7 @@
         $scope.retrieveSport = retrieveSport;
         $scope.deleteSport = deleteSport;
         $scope.deleteOrganizationFromGame = deleteOrganizationFromGame;
-        $scope.updateSport = updateSport;
+        $scope.frt = updateSport;
         $scope.updateWinner = updateWinner;
         $scope.retrieveAllSports = retrieveAllSports;
         $scope.passSport = passSport;
@@ -198,6 +198,8 @@
                     console.log(err);
                     Materialize.toast("Failed to add the Organization!", 3000);
                 }) 
+        }
+                
         function checkValidSponsorAdd(){
             var countAdd=0;
             for(var i = 0; i<$scope.otherSponsors.length; i++){
@@ -389,7 +391,7 @@
                 })
         }
 
-        function viewAllOrganizationForGame(){
+        function viewAllOrganizationInGame(){
             GameService
                 .viewAllOrganizationInGame($scope.thisGame.game_id)
                 .then(function(res){
@@ -548,7 +550,7 @@
                             description: res[i].description,
                             checked: false
                         };
-
+                    }
                         $scope.sponsors.push($scope.newSponsorGame);
 
                 }, function(err){
@@ -659,5 +661,6 @@
                 })
         }
 
+    
     }
 })();
