@@ -54,6 +54,22 @@ exports.getCompetitorTeams = (req, res) => {
 	});
 }
 
+exports.getCompetitorOrganization = (req, res) => {
+	query = 'CALL get_competitor_organization(?)';
+
+	console.log(req.session.user.id);
+	connection.userType('A').query(query,
+		[
+			req.session.user.id
+		], (err, rows) => {
+		    if(!err) {
+				return res.status(200).send(rows[0]);
+			} else {
+				return res.status(500).send({'message' : 'Internal Server Error'});
+			}
+	});
+}
+
 exports.editCompetitor = (req,res) => {
 	currentUser = req.session.user;
 	query = "CALL edit_competitor(?,?,?,?,?,?)";

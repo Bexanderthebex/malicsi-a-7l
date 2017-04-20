@@ -16,7 +16,8 @@
             getUserInfo: getUserInfo,
             getUsersByType: getUsersByType,
             setIsActive: setIsActive,
-            updateUser: updateUser
+            updateUser: updateUser,
+            updateUserPassword: updateUserPassword
         }
 
         return service;
@@ -68,7 +69,7 @@
 
         function updateUser(competitor) {
             let deferred = $q.defer();
-            console.log("pasok sa updateuser");
+            // console.log("pasok sa updateuser");
             $http.put(`/user/update`, 
                 competitor
             ).then(function(res){
@@ -77,6 +78,21 @@
                 console.log(err);
 				deferred.reject(err);
 			});
+
+            return deferred.promise;
+        }
+
+        function updateUserPassword(competitor) {
+            let deferred = $q.defer();
+            // console.log("pasok sa updateuserpassword");
+            $http.put(`/user/updatePassword`, 
+                competitor
+            ).then(function(res){
+                deferred.resolve(res)
+            }, function(err) {
+                console.log(err);
+                deferred.reject(err);
+            });
 
             return deferred.promise;
         }

@@ -20,6 +20,7 @@
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
         $scope.getCompetitorTeams = getCompetitorTeams;
+        $scope.getCompetitorOrganization = getCompetitorOrganization;
         $scope.editCompetitor = editCompetitor;
         // $scope.editCompetitorBio = editCompetitorBio;
         // $scope.createTeam = createTeam;
@@ -60,6 +61,18 @@
                 })
         }
 
+        function getCompetitorOrganization(){
+            CompetitorService
+                .getCompetitorOrganization()
+                .then(function(res) {
+                    $scope.competitororgs = res.data;
+                    console.log($scope.competitororgs);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+
         function editCompetitor(){
             CompetitorService
                 .editCompetitor($scope.competitor)
@@ -70,9 +83,17 @@
                     console.log(err);
                 })
 
-            console.log($scope.competitor);
             UserService
                 .updateUser($scope.competitor)
+                .then(function (res){
+                    Materialize.toast('Successfully edited!', 3000);
+                    // $window.location.href = '/#/competitor/profile';
+                }, function(err) {
+                    console.log(err);
+                })
+
+            UserService
+                .updateUserPassword($scope.competitor)
                 .then(function (res){
                     Materialize.toast('Successfully edited!', 3000);
                     // $window.location.href = '/#/competitor/profile';
@@ -130,7 +151,8 @@
 
         function getPendingRequests(){
             CompetitorService
-                .getPendingRequests().then(function (res){
+                .getPendingRequests()
+                .then(function (res){
                     console.log(res.data);
                     $scope.pendingRequests = res.data;
                 }, function(err) {

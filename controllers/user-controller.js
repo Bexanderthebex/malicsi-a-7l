@@ -131,7 +131,7 @@ exports.update = (req, res) =>{
 	*/
 
 	//let type = req.session.user.type;
-	console.log(req.body);
+	// console.log(req.body);
 	connection.userType('A').query(update_query, [
 		req.body.username,
 		req.body.email,
@@ -174,6 +174,7 @@ exports.updatePassword = (req, res) => {
 	let update_query = 'CALL update_user_password(?, ?)';
 
 	//let type = req.session.user.type;
+	// console.log("pw: " +req.body.password);
 	connection.userType('A').query(update_query, [
 		req.body.password,
 		req.body.id !== undefined ? req.body.id : req.session.user.id
