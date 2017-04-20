@@ -7,8 +7,9 @@
                 <img id="competitor-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
 
-            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCurrentUser()">
-                <h3 class="rockwell">{{ competitor.name }}</h3>
+            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCompetitor()">
+                <h3 class="rockwell">{{ competitor.nickname }}</h3>
+                <p class="telegrafico">{{ competitor.first_name }} {{ competitor.last_name }}</p>
                 <p class="telegrafico">Contact: {{ competitor.contact }} | E-mail: {{ competitor.email }}</p>
                 <p class="telegrafico">
                     {{ competitor.description }}

@@ -47,7 +47,7 @@
                 .getUserInfo()
                 .then(function(res) {
                     $scope.competitor = res.data;
-                    // console.log(res.data);
+                    console.log($scope.competitor);
                 }, function(err) {
                     console.log(err);
                 })

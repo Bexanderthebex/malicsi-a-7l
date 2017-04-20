@@ -61,9 +61,9 @@ exports.editCompetitor = (req,res) => {
 
 	connection.userType('A').query(query,
 		[
-			req.body.birthday,
-			req.body.first_name,
-			req.body.last_name,
+			req.body.birthdate,
+			req.body.first-name,
+			req.body.last-name,
 			req.body.nickname,
 			req.body.sex,
 			currentUser.id
