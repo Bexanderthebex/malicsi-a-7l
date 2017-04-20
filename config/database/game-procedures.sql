@@ -147,6 +147,48 @@ BEGIN
 END; //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_organization;
+DELIMITER //
+CREATE PROCEDURE check_organization(in game_id_in int(11))
+BEGIN
+	select * from organization where organization_id not in (select organization_id from organization_in_game where game_id = game_id_in);
+END;
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS add_organization_to_game;
+DELIMITER //
+CREATE PROCEDURE add_organization_to_game(in org_id_in int(11), in game_id_in int(11))
+BEGIN
+	insert into organization_in_game(game_id, organization_id) values(game_id_in, org_id_in);
+END;
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS delete_organization_from_game;
+DELIMITER //
+CREATE PROCEDURE delete_organization_from_game(IN org_id_in INT(11), IN game_id_in int(11))
+BEGIN
+	DELETE FROM organization_in_game WHERE game_id = game_id_in and organization_id = org_id_in;
+END 
+//
+DELIMITER ;
+
+
+--  check organization
+GRANT EXECUTE ON PROCEDURE view_all_organization TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_organization TO administrator;
+
+-- add organization to game
+
+GRANT EXECUTE ON PROCEDURE add_organization_to_game TO organizer;
+GRANT EXECUTE ON PROCEDURE add_organization_to_game TO administrator;
+
+-- delete organization from game
+
+GRANT EXECUTE ON PROCEDURE delete_organization_from_game TO organizer;
+GRANT EXECUTE ON PROCEDURE delete_organization_from_game TO administrator;
+
 
 -- create game
 GRANT EXECUTE ON PROCEDURE create_game TO organizer;

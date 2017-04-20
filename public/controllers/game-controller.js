@@ -16,6 +16,7 @@
         $scope.addSport = addSport;
         $scope.retrieveSport = retrieveSport;
         $scope.deleteSport = deleteSport;
+        $scope.deleteOrganizationFromGame = deleteOrganizationFromGame;
         $scope.updateSport = updateSport;
         $scope.updateWinner = updateWinner;
         $scope.retrieveAllSports = retrieveAllSports;
@@ -38,6 +39,8 @@
         $scope.passSponsor = passSponsor;
         $scope.checkGameDescription = checkGameDescription;
         $scope.checkGameLocation = checkGameLocation;
+        $scope.addOrganizationToGame = addOrganizationToGame;
+        $scope.checkOrganization = checkOrganization;
 
         $scope.sport = {};
         $scope.sports = [];
@@ -91,6 +94,16 @@
             match_date: undefined,
             match_id: undefined
         }
+
+        $scope.newOrganizationInGame = {
+            orgId: undefined,
+            gameId: $scope.thisGame.game_id
+        }
+
+        $scope.organizationInGame = {
+            orgId: undefined,
+            gameId: $scope.thisGame.game_id
+        };
 
         function addSport() {
             $scope.newSport.sportName = $('#addName').val();
@@ -148,6 +161,24 @@
         function checkGameLocation(){
             if($scope.game.location == undefined) return true;
             else false;
+        }
+        function checkOrganization(){
+            if($scope.checkOrganization.length == 0) return true;
+            else false;
+        }
+
+        function addOrganizationToGame(newOrganizationInGame){
+           $scope.newOrganizationInGame.orgId = ("#orgID").val();
+           GameService
+                .addSport(newOrganizationInGame)
+                .then(function (res){
+                    console.log("added");
+                    Materialize.toast("Successfully added the Organization!", 3000);
+                    retrieveAllSports();
+                }, function(err) {
+                    console.log(err);
+                    Materialize.toast("Failed to add the Organization!", 3000);
+                }) 
         }
 
 
@@ -211,6 +242,19 @@
                 }, function(err) {
                     console.log(err.data);
                     Materialize.toast('Failed to delete sport!', 3000);
+                })
+        }
+
+        function deleteOrganizationFromGame(organizationInGame) {
+            console.log("To delete organization " + organizationInGame);
+            GameService
+                .deleteOrganizationFromGame($scope.thisGame.game_id, organizationInGame)
+                .then(function(res) {
+                    console.log("deleted");
+                    Materialize.toast('Successfully deleted the organization from current game!', 3000);
+                }, function(err) {
+                    console.log(err.data);
+                    Materialize.toast('Failed to delete organization!', 3000);
                 })
         }
 
