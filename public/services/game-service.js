@@ -27,7 +27,8 @@
             viewSponsoringInstitutions: viewSponsoringInstitutions,
             viewOtherSponsoringInstitutions: viewOtherSponsoringInstitutions,
             addSponsoringInstitution: addSponsoringInstitution,
-            deleteSponsoringInstitution: deleteSponsoringInstitution
+            deleteSponsoringInstitution: deleteSponsoringInstitution,
+            deleteMultipleSponsoringInstitutions: deleteMultipleSponsoringInstitutions
         }
 
         return service;
@@ -280,14 +281,14 @@
                 sponsorId: sponsor_id,
                 gameId: game_id
             }
-            console.log(sponsor);
+            // console.log(sponsor);
             $http({
                 method: 'POST',
                 data: $.param(sponsor),
                 url: '/game/addSponsorToGame',
                 headers: headers
             }).then((res) => {
-                console.log(res);
+                // console.log(res);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -351,7 +352,7 @@
                 url: '/game/deleteSponsorFromGame',
                 headers: headers
             }).then((res) => {
-                console.log(res);
+                // console.log(res);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -359,6 +360,32 @@
 
             return deferred.promise;
         }
+
+        function deleteMultipleSponsoringInstitutions(sponsors) {
+            let deferred = $q.defer();
+
+            for (var i = 0; i<sponsors.length; i++){
+                let sponsor = {
+                    sponsorId: sponsors[i].sponsorId,
+                    gameId: sponsors[i].gameId
+                }
+
+                $http({
+                    method: 'DELETE',
+                    data: $.param(sponsor),
+                    url: '/game/deleteSponsorFromGame',
+                    headers: headers
+                }).then((res) => {
+                    // console.log(res);
+                    deferred.resolve(res);
+                }, (err) => {
+                    deferred.reject(err);
+                });
+            }
+
+            return deferred.promise;
+        }
+
 
     }
 })();
