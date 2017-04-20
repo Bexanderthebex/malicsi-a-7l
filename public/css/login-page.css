@@ -1,3 +1,14 @@
+#login-panel{
+	height: 100%;
+	padding: 20px;
+}
+
+#signup-panel{
+	min-height: 100%;
+	padding: 20px;
+
+}
+
 #signup-panel .row{
 	height: 50px!important;
 }
@@ -15,10 +26,13 @@
 }
 
 #login-card{
-	height: 500px;
+	/*border-radius: 10px;*/
+	height: 100%;
 	width: 100%;
-	padding: 20px;
 	padding-right: 25px;
+	/*background: black;*/
+	opacity: .75;
+	overflow-y: auto;
 }
 
 #login-card .row{
@@ -62,7 +76,7 @@
 }
 
 .log-in-btn-up:hover{
-	background: #00415a!important;
+	background: #00b8ff!important;
 	color: white;
 }
 
@@ -73,7 +87,7 @@
 }
 
 .log-in-btn-down:hover{
-	background: #00b8ff!important;
+	background: #00719c!important;
 	color: black;
 }
 
@@ -82,11 +96,11 @@
 	/*padding: 5px!important;*/
 	width: 150px;
 	height: 50px;
-	margin-left: 5px;
-	margin-right: 5px;
+	/*margin-left: 5px;*/
+	/*margin-right: 5px;*/
 	border: none;
-	background: #00415a;
-	color: white;
+	/*background: #00415a;*/
+	color: black;
 }
 
 .sign-up-btn:hover{
@@ -115,19 +129,51 @@
 }*/
 
 #login-container input::-webkit-input-placeholder{
-	color: black!important;
-	font-family: century-gothic!important;
+	color: white!important;
+	font-family: telegrafico!important;
 	letter-spacing: 1px!important;
 	font-style: bold;
-	font-size: 12px!important;
+	font-size: 14px!important;
 	line-height: 12px!important;
 }
 
 #login-container .input-field input[type=text]{
-	border-bottom: 3px solid #00415a!important;
+	border-bottom: 3px solid #00719c!important;
+	font-family: century-gothic!important;
+	letter-spacing: 1px!important;
+	font-style: bold;
+	font-size: 14px!important;
+	line-height: 12px!important;
+	color: white!important;
+}
+
+#login-container .input-field input[type=radio]{
+	color: #00b8ff;
+}
+
+#login-container .input-field input[type=text]:focus,
+#login-container .input-field input[type=password]:focus
+{
+	border-bottom: 3px solid white!important;
+	color: #00b8ff!important;
 }
 
 #login-container .input-field input[type=password]{
-	border-bottom: 3px solid #00415a!important;
+	border-bottom: 3px solid #00719c!important;
+	font-family: century-gothic!important;
+	/*letter-spacing: 1px!important;*/
+	font-style: bold;
+	font-size: 16px!important;
+	line-height: 12px!important;
+	color: white!important;
  /*color: #00415a;*/
+}
+
+#login-container{
+	background: url('/assets/login.jpg');
+	background-size: cover;
+}
+
+#login-card{
+
 }

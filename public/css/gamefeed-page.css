@@ -136,6 +136,7 @@
     border-radius: 8px;
     min-height: 100px;
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .gamefeed-match-title, .gamefeed-match-players{
@@ -189,4 +190,60 @@
     font-size: 12px;
     font-family: "century-gothic";
     letter-spacing: 1px;
+}
+
+.gamefeed-header-fill{
+    padding: 0px !important;
+}
+
+.gamefeed-modal-container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+}
+
+.gamefeed-remove-bottom-modal {
+    margin-bottom: 0px !important;
+}
+
+.gamefeed-adjust-icons {
+    font-size: 1.5em !important;
+}
+
+.gamefeed-add-modal-content {
+    margin-top: 20px;
+}
+
+#gamefeed-fab-palette-4 {
+    background-color: #00415a !important;
+}
+
+.gamefeed-input-color-change input:not([type]):focus:not([readonly]),
+.gamefeed-input-color-change input[type=text]:focus:not([readonly]),
+.gamefeed-input-color-change input[type=date]:focus:not([readonly]),
+.gamefeed-input-color-change textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #00415a;
+  box-shadow: 0 1px 0 0 #00415a;
+}
+
+.gamefeed-input-color-change input:not([type]):focus:not([readonly]) + label,
+.gamefeed-input-color-change input[type=text]:focus:not([readonly]) + label,
+.gamefeed-input-color-change input[type=date]:focus:not([readonly]) + label,
+.gamefeed-input-color-change textarea.materialize-textarea:focus:not([readonly]) + label.gamefeed-textarea-label-color-change {
+  color: #00415a;
+}
+
+.gamefeed-textarea-label-color-change{
+    color: #00415a;   
+}
+
+.gamefeed-radio-button [type="radio"]:checked + label:after,
+.gamefeed-radio-button [type="radio"].with-gap:checked + label:before,
+.gamefeed-radio-button [type="radio"].with-gap:checked + label:after {
+  border: 2px solid #00415a;
+}
+
+.gamefeed-radio-button [type="radio"]:checked + label:after,
+.gamefeed-radio-button [type="radio"].with-gap:checked + label:after {
+  background-color: #00415a;
 }
