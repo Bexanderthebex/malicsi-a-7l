@@ -16,6 +16,7 @@ let competitorController = require("../controllers/competitor-controller");
 let organizerController = require("../controllers/organizer-controller");
 let teamController = require("../controllers/team-controller");
 let organizationController = require("../controllers/organization-controller");
+let uploadController = require("../controllers/upload-controller");
 
 function sha256Hash(req, res, next) {
     console.log(req.body);
@@ -63,6 +64,7 @@ router.post('/register/createAdmin', checkUser('A'), sha256Hash, bcryptHash, adm
 router.get('/logout', userController.logout);
 router.get('/user', userController.getUserInfo);
 router.get('/user/searchAdmin', checkUser('A'), adminController.searchAdmin);
+router.get('/user/searchUser', userController.searchUser);
 router.get('/user/:id', userController.getUserInfo);
 router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 router.put('/user/update', userController.update);
@@ -113,6 +115,7 @@ router.get('/team/getOrganizationRankings',teamController.getOrganizationRanking
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
+router.get('/game/viewAllGames',  gameController.viewAllGames);
 router.get('/game/viewAllPastMatchesInGame', gameController.viewAllPastMatchesInGame);
 router.get('/game/viewAllOngoingMatchesInGame', gameController.viewAllOngoingMatchesInGame);
 router.get('/game/viewAllUpcomingMatchesInGame', gameController.viewAllUpcomingMatchesInGame);
@@ -124,13 +127,18 @@ router.post('/game/createGame',  gameController.createGame);
 router.put('/game/updateGame',  gameController.updateGame);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 
-// sponsor routers
+// game-sponsor routers
 router.get('/game/viewSponsor',  sponsorController.viewSponsor);
 router.get('/game/viewSponsorInSport',  sponsorController.viewSponsorInSport);
 router.get('/game/viewSponsorInGame',  sponsorController.viewSponsorInGame);
-router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
-router.put('/game/editSponsor',  sponsorController.editSponsorDetails);
-router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
+router.get('/game/viewSponsorNotInGame', sponsorController.viewSponsorNotInGame);
+router.post('/game/addSponsorToGame',  sponsorController.addSponsorToGame);
+router.delete('/game/deleteSponsorFromGame',  sponsorController.deleteSponsorFromGame);
+
+// sponsor routers
+router.put('/sponsor/editSponsor',  sponsorController.editSponsorDetails);
+router.post('/sponsor/addSponsor', sponsorController.addSponsor);
+router.delete('/sponsor/deleteSponsor', sponsorController.deleteSponsor);
 
 //sport routers
 router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);
@@ -155,5 +163,10 @@ router.delete('/sport/match/deleteMatch', matchController.deleteMatch);
 // log routers
 router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
 router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
+router.get('/log/viewUserLogs',logController.viewUserLogs);
+router.post('/log/createLog',logController.createLog);
+
+//upload router
+router.post('/uploadImg',uploadController.imageUpload);
 
 module.exports = router;

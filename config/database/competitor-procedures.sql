@@ -34,6 +34,7 @@ DELIMITER //
 	//
 DELIMITER ;
 
+
 DROP PROCEDURE IF EXISTS edit_competitor_bio;
 DELIMITER //
 	CREATE PROCEDURE edit_competitor_bio(IN bio_in TEXT, IN cid INT)
@@ -45,12 +46,13 @@ DELIMITER //
 	//
 DELIMITER ;
 
+
 DROP PROCEDURE IF EXISTS get_competitor_teams;
 DELIMITER //
 	CREATE PROCEDURE get_competitor_teams(in cid INT)
 
 	BEGIN
-		SELECT *  FROM competitor JOIN competitor_joins_team using (id) JOIN team using (team_id) JOIN sport using (sport_id) where competitor.id = cid;
+		SELECT * FROM competitor JOIN competitor_joins_team using (id) JOIN team using (team_id) JOIN sport using (sport_id) JOIN game using (game_id) where competitor.id = cid;
 	END;
 
 	//
@@ -63,6 +65,18 @@ DELIMITER //
 
 	BEGIN
 		SELECT ranking, COUNT(ranking) AS rankCount FROM team JOIN team_in_match using (team_id) WHERE id = id_in GROUP BY ranking;
+	END;
+
+	//
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS get_competitor_organization;
+DELIMITER //
+	CREATE PROCEDURE get_competitor_organization(in id_in INT)
+
+	BEGIN
+		SELECT * FROM competitor JOIN competitor_joins_team using (id) JOIN team using (team_id) JOIN organization using (organization_id) where competitor.id = cid;
 	END;
 
 	//
