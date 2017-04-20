@@ -279,28 +279,28 @@
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
-								<tr ng-repeat="">
+								<tr ng-repeat="u in users">
 									<td class="match-player" style="width: 13%;">
-										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+										<input class="admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.username" ng-init="u.username">
 									</td style="width: 12%;">
 									<td class="match-player" style="width: 25%;">
-										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+										<input class="admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.email" ng-init="u.email">
 									</td>
 									<td class="match-player" style="width: 20%;">
-										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+										<input class="admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.contact" ng-init="u.contact">
 									</td>
 									<td class="match-player" style="width: 20%;">
 										<div class="switch">
 											<label>
-											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="a.is_active">
-											<span class="lever" checked="{{ a.is_active }}"></span>
-									  </label>
+												<input class="admin-lever" type="checkbox" ng-init="u.is_active" ng-model="!!u.is_active" ng-click="setIsActive(!u.is_active, u.id, users)">
+												<span class="lever" checked="{{ u.is_active }}"></span>
+											</label>
 										</div>
 									</td>
 									<td style="width: 10%;">
 										<div>
-											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
-											<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
+											<i ng-attr-id="user-edit-{{u.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editUser(u)"></i>
+											<i ng-attr-id="user-cancel-edit-{{u.id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditUser(u)"></i>
 										</div>
 									</td>
 								</tr>
@@ -309,7 +309,7 @@
 					</div>
 
 					<!-- Add User -->
-					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD ORGANIZER</h6>
+					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD USER</h6>
 					<div class="row padding-override-0">
 						<div class="col s6 padding-override-0">
 							<!-- Username -->

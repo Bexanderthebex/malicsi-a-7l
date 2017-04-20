@@ -6,6 +6,7 @@
 
     function AdminCtrl($scope, $http, UserService, AdminService, SearchService, OrganizerService) {
         let adminCache = {};
+        let userCache = {};
 
         $scope.admins = [];
         $scope.users = [];
@@ -189,35 +190,38 @@
         }
 
         $scope.editUser = (user) => {
-            console.log("pasok sa edit user");
             if ($('#user-edit-' + user.id).data('isEditing')) {
                 $('#user-edit-' + user.id).data('isEditing', false);
+				$('#user-cancel-edit-' + user.id).hide();
+                $('.user-form-edit-' + user.id).prop('disabled', true);
 
-                let username = user.newUsername === undefined
-                    || user.newUsername.trim() === ""
-                    ? user.username : user.newUsername;
-
-                let email = user.newEmail === undefined
-                    || user.newEmail.trim() === ""
-                    ? user.email : user.newEmail;
-
-                let contact = user.newContact === undefined
-                    || user.newContact.trim() === ""
-                    ? user.contact : user.newContact;
-
-                UserService.updateUser(username, email, contact, user.id)
+                UserService.updateUser(user.username, user.email, user.contact, user.id)
                 .then((res) => {
-                    Materialize.toast('User info edited.', 2000);
-                    user.username = username;
-                    user.email = email;
-                    user.contact = contact;
+                    Materialize.toast('Admin info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
                     console.log(err);
                 });
             } else {
                 $('#user-edit-' + user.id).data('isEditing', true);
+                $('#user-cancel-edit-' + user.id).show();
+                $('.user-form-edit-' + user.id).prop('disabled', false);
+
+                userCache[user.id] = {}
+                userCache[user.id].username = user.username;
+                userCache[user.id].email = user.email;
+                userCache[user.id].contact = user.contact;
             }
+        }
+
+        $scope.cancelEditUser = (user) => {
+            $('#user-edit-' + user.id).data('isEditing', false);
+            $('#user-cancel-edit-' + user.id).hide();
+            $('.user-form-edit-' + user.id).prop('disabled', true);
+
+            user.username = userCache[user.id].username;
+            user.email = userCache[user.id].email;
+            user.contact = userCache[user.id].contact;
         }
     }
 })();
