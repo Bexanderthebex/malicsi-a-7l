@@ -57,7 +57,6 @@ BEGIN
 END; //
 DELIMITER ;
 
-
 DROP PROCEDURE IF EXISTS view_all_sports_in_game;
 delimiter //
 CREATE PROCEDURE view_all_sports_in_game(in in_game_id int)
