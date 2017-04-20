@@ -37,4 +37,4 @@ CREATE PROCEDURE search_admin(
 //
 DELIMITER //
 
-grant execute on procedure update_activity to administrator;
+grant execute on procedure update_activity to 'administrator'@'localhost';

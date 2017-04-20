@@ -62,14 +62,14 @@
         }
 
         $scope.newSport = {
-            sportName: undefined, 
+            sportName: undefined,
             mechanics: undefined,
             timeStart: undefined,
             timeEnd: undefined,
             startDate: undefined,
-            endDate: undefined, 
-            maxTeams: undefined, 
-            scoringSystem: undefined, 
+            endDate: undefined,
+            maxTeams: undefined,
+            scoringSystem: undefined,
             gameID: $scope.thisGame.game_id
         };
 
@@ -91,7 +91,7 @@
             team2_id: undefined,
             team2_name: undefined,
             time_start: undefined,
-            time_end: undefined, 
+            time_end: undefined,
             match_date: undefined,
             match_id: undefined
         }
@@ -234,7 +234,7 @@
                 })
         }
 
-        function updateSport(sport) {            
+        function updateSport(sport) {
             console.log(sport);
             GameService
                 .updateSport(sport)
@@ -301,7 +301,7 @@
                             }
                         }
                     }
-                    console.log($scope.pastMatches);                                   
+                    console.log($scope.pastMatches);
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to retrieve past matches!', 3000);
@@ -379,7 +379,7 @@
                     console.log("organization rankings retrieved for game#"+ $scope.thisGame.game_id);
                     console.log(res.data);
                     $scope.tempOrgs = res.data;
-                    for(var i = 0; i<$scope.tempOrgs.length; i++){      
+                    for(var i = 0; i<$scope.tempOrgs.length; i++){
                         $scope.newOrg = {
                             org_name: $scope.tempOrgs[i].org_name,
                             org_rank: i+1
@@ -411,7 +411,7 @@
                     Materialize.toast('Failed to retrieve sponsoring institutions!', 3000);
                 })
         }
-        
+
         function viewOtherSponsoringInstitutions(){
             GameService
                 .viewOtherSponsoringInstitutions($scope.thisGame.game_id)
