@@ -114,6 +114,7 @@ router.get('/team/getOrganizationRankings',teamController.getOrganizationRanking
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);
 router.get('/game/viewGame',  gameController.viewGameDetails);
+router.get('/game/viewAllGames',  gameController.viewAllGames);
 router.get('/game/viewAllPastMatchesInGame', gameController.viewAllPastMatchesInGame);
 router.get('/game/viewAllOngoingMatchesInGame', gameController.viewAllOngoingMatchesInGame);
 router.get('/game/viewAllUpcomingMatchesInGame', gameController.viewAllUpcomingMatchesInGame);

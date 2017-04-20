@@ -58,6 +58,22 @@ exports.updateGame = (req, res) => {
 	});
 }
 
+exports.viewAllGames = (req, res) => {
+	console.log(req.body);
+	let query = 'CALL view_all_games();';
+	connection.userType('A').query(query,  
+	    (err, results) => {
+			if(!err){
+				return res.status(200).send(results[0]);
+			}
+			else{
+				console.log(err);
+				res.status(500).send(err);
+
+			}
+	});
+}
+
 exports.viewGameDetails = (req, res) => {
 	let query = 'call view_game_details(?);';
 	let param = parseInt(req.query.gameId);	
