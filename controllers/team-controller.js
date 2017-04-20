@@ -28,9 +28,10 @@ exports.createTeam = (req, res) => {
 exports.deleteTeam = (req, res) => {
     query = "CALL delete_team(?)";
    
+    console.log("teamid: " + req.body.team_id);   
     connection.userType('A').query(query, 
         [
-            req.body.team_id
+            req.query.team_id
         ], (err, rows) => {
             if(!err) {
                 return res.status(200).send({ 'message' : 'Sucessfully deleted team'}); 
@@ -160,6 +161,7 @@ exports.countTeamInSports = (req, res) => {
 exports.getTeamMembers = (req, res) => {
     query = "CALL get_members(?)";
     
+    console.log(req.query.team_id);
     connection.userType('A').query(query,
         [
             req.query.team_id
@@ -205,7 +207,7 @@ exports.getCoachedTeam = (req, res) => {
         if(!err) {
                 if (rows[0].length == 1){
                     console.log(rows[0][0]);
-                    return res.status(200).send(rows[0][0]);
+                    return res.status(200).send(rows[0]);
                 }
                 else{
                     // console.log("Dito");
