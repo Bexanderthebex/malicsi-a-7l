@@ -41,7 +41,7 @@ CREATE PROCEDURE select_user(
 	)
 
 	BEGIN
-		SELECT id, username, contact, email, is_active, type from user WHERE id = _id;
+		SELECT id, username, password, contact, email, is_active, type from user WHERE id = _id;
 	END;
 //
 DELIMITER ;

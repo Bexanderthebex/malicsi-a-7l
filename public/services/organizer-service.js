@@ -172,7 +172,7 @@
 
         function updateOrganizer(organizer) {
             let deferred = $q.defer();
-
+            console.log(organizer);
             $http({
                 method: 'PUT',
                 data: $.param(organizer),
