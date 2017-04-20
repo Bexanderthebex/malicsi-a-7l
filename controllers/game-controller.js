@@ -279,12 +279,12 @@ exports.addOrganizationToGame = (req, res) =>{
 }
 **/
 
-exports.viewAllOrganization = (req, res) => {
-	connection.userType('A').query('CALL view_all_organization(?)', 
+exports.viewAllOrganizationForGame = (req, res) => {
+	connection.userType('A').query('CALL view_all_organization_for_game(?)', 
 		[req.body.gameId], 
 		(err, rows) => {
 		if (!err) {
-			return res.status(200).send(rows);		
+			return res.status(200).send(rows[0]);		
 		}else{
 			res.status(500).send("Internal Server Error");
 		}

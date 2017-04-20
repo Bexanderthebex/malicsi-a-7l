@@ -42,13 +42,10 @@
         $scope.passSponsorDelete = passSponsorDelete;
         $scope.checkGameDescription = checkGameDescription;
         $scope.checkGameLocation = checkGameLocation;
-<<<<<<< HEAD
         $scope.addOrganizationToGame = addOrganizationToGame;
-        $scope.checkOrganization = checkOrganization;
-=======
+        $scope.viewAllOrganizationForGame = viewAllOrganizationForGame;
         $scope.showCheckedSponsors = showCheckedSponsors;
         $scope.addMultipleSponsors = addMultipleSponsors;
->>>>>>> 282923073285213d92c4d1ca071f8efd6760bcd6
 
         $scope.sport = {};
         $scope.sports = [];
@@ -105,7 +102,6 @@
             match_id: undefined
         }
 
-<<<<<<< HEAD
         $scope.newOrganizationInGame = {
             orgId: undefined,
             gameId: $scope.thisGame.game_id
@@ -115,10 +111,9 @@
             orgId: undefined,
             gameId: $scope.thisGame.game_id
         };
-=======
+
         $scope.selectedScoring = undefined;
         $scope.scoringSystemPresets = ["Tally Score", "Round Robin", "Elimination"];
->>>>>>> 282923073285213d92c4d1ca071f8efd6760bcd6
 
         function addSport() {
             $scope.newSport.sportName = $('#addName').val();
@@ -353,6 +348,25 @@
                     Materialize.toast('Failed to retrieve game details!', 3000);
                 })
         }
+
+        function viewAllOrganizationForGame(){
+            GameService
+                .viewAllOrganizationForGame($scope.thisGame.game_id)
+                .then(function(res){
+                    console.log("Available organizations retrieved for game#"+ $scope.thisGame.game_id);
+                    console.log(res.data);
+                    $scope.temp = res.data;
+                    for (var i = scope.temp.length -1; i>= 0; i--){
+                        $scope.availableOrg = $scope.temp[i].name;
+                        $scope.push($scope.availableOrg);
+                    }
+                }, function(err){
+                    console.log(err.data);
+                    Materialize.toast('Failed to retrieve Available Organizations!', 3000);
+                })
+        }
+
+
         function retrieveMatchesInGame(){
             viewPastMatchesInGame();
             viewOngoingMatchesInGame();

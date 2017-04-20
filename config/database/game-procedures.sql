@@ -12,7 +12,7 @@ CREATE PROCEDURE create_game(
 	)
 BEGIN
 	INSERT INTO game(organizer_id, name, start_date, end_date, location, description, overall_winner) values(organizer_id_in, name_in, start_date_in, end_date_in, location_in, description_in, NULL);
-END
+END 
 //
 DELIMITER ;
 
@@ -27,7 +27,7 @@ CREATE PROCEDURE update_game(
 	IN descr_in TEXT)
 BEGIN
 	UPDATE game SET name = name_in, start_date = start_in, end_date = end_in, location = location_in, description = descr_in WHERE game_id = game_id_in;
-END
+END 
 //
 DELIMITER ;
 
@@ -44,7 +44,7 @@ DROP PROCEDURE IF EXISTS view_last_inserted_game;
 DELIMITER //
 CREATE PROCEDURE view_last_inserted_game()
 BEGIN
-	SELECT * FROM game
+	SELECT * FROM game 
 	WHERE game_id = (SELECT LAST_INSERT_ID());
 END; //
 DELIMITER ;
@@ -63,9 +63,7 @@ DROP PROCEDURE IF EXISTS view_all_upcoming_ongoing_games;
 delimiter //
 CREATE PROCEDURE view_all_upcoming_ongoing_games()
 BEGIN
-	select * from game where (start_date <= now() and end_date >= now()) or (start_date >= now() and end_date >= now())
-	order by start_date desc
-	limit 4;
+	select * from game where (start_date <= now() and end_date >= now()) or (start_date >= now() and end_date >= now());
 END//
 delimiter ;
 
@@ -84,7 +82,7 @@ DELIMITER //
 CREATE PROCEDURE delete_game(IN game_id_in INT)
 BEGIN
 	DELETE FROM game WHERE game_id = game_id_in;
-END
+END 
 //
 DELIMITER ;
 
@@ -101,9 +99,9 @@ DROP PROCEDURE IF EXISTS view_all_matches_in_game;
 DELIMITER //
 CREATE PROCEDURE view_all_matches_in_game(in game_id_input INT)
 BEGIN
-	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
-	FROM (((game JOIN sport using (game_id))
-		JOIN sport_match using (sport_id))
+	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date 
+	FROM (((game JOIN sport using (game_id)) 
+		JOIN sport_match using (sport_id)) 
 		JOIN team_in_match using (match_id))
         JOIN team using (team_id)
 	WHERE game_id = game_id_input;
@@ -114,9 +112,9 @@ DROP PROCEDURE IF EXISTS view_all_ongoing_matches_in_game;
 DELIMITER //
 CREATE PROCEDURE view_all_ongoing_matches_in_game(in game_id_input INT)
 BEGIN
-	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
-	FROM (((game JOIN sport using (game_id))
-		JOIN sport_match using (sport_id))
+	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date 
+	FROM (((game JOIN sport using (game_id)) 
+		JOIN sport_match using (sport_id)) 
 		JOIN team_in_match using (match_id))
         JOIN team using (team_id)
 	WHERE game_id = game_id_input and sport_match.match_date = curdate();
@@ -127,9 +125,9 @@ DROP PROCEDURE IF EXISTS view_all_past_matches_in_game;
 DELIMITER //
 CREATE PROCEDURE view_all_past_matches_in_game(in game_id_input INT)
 BEGIN
-	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
-	FROM (((game JOIN sport using (game_id))
-		JOIN sport_match using (sport_id))
+	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date 
+	FROM (((game JOIN sport using (game_id)) 
+		JOIN sport_match using (sport_id)) 
 		JOIN team_in_match using (match_id))
         JOIN team using (team_id)
 	WHERE game_id = game_id_input and sport_match.match_date < curdate();
@@ -140,18 +138,18 @@ DROP PROCEDURE IF EXISTS view_all_upcoming_matches_in_game;
 DELIMITER //
 CREATE PROCEDURE view_all_upcoming_matches_in_game(in game_id_input INT)
 BEGIN
-	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
-	FROM (((game JOIN sport using (game_id))
-		JOIN sport_match using (sport_id))
+	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date 
+	FROM (((game JOIN sport using (game_id)) 
+		JOIN sport_match using (sport_id)) 
 		JOIN team_in_match using (match_id))
         JOIN team using (team_id)
 	WHERE game_id = game_id_input and sport_match.match_date > now();
 END; //
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS view_all_organization;
+DROP PROCEDURE IF EXISTS view_all_organization_for_game;
 DELIMITER //
-CREATE PROCEDURE check_organization(in game_id_in int(11))
+CREATE PROCEDURE view_all_organization_for_game(in game_id_in int(11))
 BEGIN
 	select * from organization where organization_id not in (select organization_id from organization_in_game where game_id = game_id_in);
 END;
@@ -263,3 +261,4 @@ GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO organizer;
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO administrator;
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO competitor;
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO guest;
+

@@ -283,7 +283,7 @@
             $http({
                 method: 'GET',
                 params: game,
-                url: '/game/viewAllOrganization',
+                url: '/game/viewAllOrganizationForGame',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);

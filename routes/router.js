@@ -124,7 +124,7 @@ router.get('/game/ranks/:gameId', gameController.retrieveOrgRankings);
 router.post('/game/createGame',  gameController.createGame);
 router.put('/game/updateGame',  gameController.updateGame);
 router.post('/game/addOrganizationToGame', gameController.addOrganizationToGame);
-router.get('/game/viewAllOrganization', gameController.viewAllOrganization);
+router.get('/game/viewAllOrganizationForGame', gameController.viewAllOrganizationForGame);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteOrganizationFromGame', gameController.deleteOrganizationFromGame)
 
