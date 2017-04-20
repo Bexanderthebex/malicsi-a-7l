@@ -17,6 +17,7 @@
         $scope.clearNewSport = clearNewSport;
         $scope.retrieveSport = retrieveSport;
         $scope.deleteSport = deleteSport;
+        $scope.deleteOrganizationFromGame = deleteOrganizationFromGame;
         $scope.updateSport = updateSport;
         $scope.updateWinner = updateWinner;
         $scope.retrieveAllSports = retrieveAllSports;
@@ -41,11 +42,15 @@
         $scope.passSponsorDelete = passSponsorDelete;
         $scope.checkGameDescription = checkGameDescription;
         $scope.checkGameLocation = checkGameLocation;
+        $scope.addOrganizationToGame = addOrganizationToGame;
+        $scope.viewAllOrganizationForGame = viewAllOrganizationForGame;
+        $scope.viewAllOrganizationInGame = viewAllOrganizationInGame;
         $scope.showCheckedSponsors = showCheckedSponsors;
         $scope.addMultipleSponsors = addMultipleSponsors;
         $scope.deleteMultipleSponsors = deleteMultipleSponsors;
         $scope.checkValidSponsorAdd = checkValidSponsorAdd;
         $scope.checkValidSponsorDel = checkValidSponsorDel;
+
 
         $scope.sport = {};
         $scope.sports = [];
@@ -105,6 +110,16 @@
             match_date: undefined,
             match_id: undefined
         }
+
+        $scope.newOrganizationInGame = {
+            orgId: undefined,
+            gameId: $scope.thisGame.game_id
+        }
+
+        $scope.organizationInGame = {
+            orgId: undefined,
+            gameId: $scope.thisGame.game_id
+        };
 
         $scope.selectedScoring = undefined;
         $scope.scoringSystemPresets = ["Tally Score", "Round Robin", "Elimination"];
@@ -167,6 +182,22 @@
             if($scope.game.location == undefined) return true;
             else false;
         }
+        function checkOrganization(){
+            if($scope.checkOrganization.length == 0) return true;
+            else false;
+        }
+
+        function addOrganizationToGame(newOrganizationInGame){
+           $scope.newOrganizationInGame.orgId = ("#orgID").val();
+           GameService
+                .addOrganizationToGame(newOrganizationInGame)
+                .then(function (res){
+                    console.log("added organization to game");
+                    Materialize.toast("Successfully added the Organization!", 3000);
+                }, function(err) {
+                    console.log(err);
+                    Materialize.toast("Failed to add the Organization!", 3000);
+                }) 
         function checkValidSponsorAdd(){
             var countAdd=0;
             for(var i = 0; i<$scope.otherSponsors.length; i++){
@@ -286,6 +317,19 @@
                 })
         }
 
+        function deleteOrganizationFromGame(organizationInGame) {
+            console.log("To delete organization " + organizationInGame);
+            GameService
+                .deleteOrganizationFromGame($scope.thisGame.game_id, organizationInGame)
+                .then(function(res) {
+                    console.log("deleted");
+                    Materialize.toast('Successfully deleted the organization from current game!', 3000);
+                }, function(err) {
+                    console.log(err.data);
+                    Materialize.toast('Failed to delete organization!', 3000);
+                })
+        }
+
         function updateSport(sport) {
             sport.time_start = sport.time_start.getHours()+":"+sport.time_start.getMinutes() +":"+ sport.time_start.getSeconds();
             sport.time_end = sport.time_end.getHours()+ ":" +sport.time_end.getMinutes() + ":" + sport.time_end.getSeconds();
@@ -327,6 +371,42 @@
                     Materialize.toast('Failed to retrieve game details!', 3000);
                 })
         }
+
+        function viewAllOrganizationForGame(){
+            GameService
+                .viewAllOrganizationForGame($scope.thisGame.game_id)
+                .then(function(res){
+                    console.log("Available organizations retrieved for game#"+ $scope.thisGame.game_id);
+                    console.log(res.data);
+                    $scope.temp = res.data;
+                    for (var i = scope.temp.length -1; i>= 0; i--){
+                        $scope.availableOrg = $scope.temp[i].name;
+                        $scope.push($scope.availableOrg);
+                    }
+                }, function(err){
+                    console.log(err.data);
+                    Materialize.toast('Failed to retrieve Available Organizations!', 3000);
+                })
+        }
+
+        function viewAllOrganizationForGame(){
+            GameService
+                .viewAllOrganizationInGame($scope.thisGame.game_id)
+                .then(function(res){
+                    console.log("Organizations In Game Retrieved"+ $scope.thisGame.game_id);
+                    console.log(res.data);
+                    $scope.temp = res.data;
+                    for (var i = scope.temp.length -1; i>= 0; i--){
+                        $scope.availableOrg = $scope.temp[i].name;
+                        $scope.push($scope.orgInGame);
+                    }
+                }, function(err){
+                    console.log(err.data);
+                    Materialize.toast('Failed to retrieve Organizations in Game!', 3000);
+                })
+        }
+
+
         function retrieveMatchesInGame(){
             viewPastMatchesInGame();
             viewOngoingMatchesInGame();
@@ -460,8 +540,6 @@
                 .viewSponsoringInstitutions($scope.thisGame.game_id)
                 .then(function(res){
                     console.log("sponsoring institutions retrieved for game#"+ $scope.thisGame.game_id);
-                    
-
                     for (var i = 0; i< res.length; i++){
                         $scope.newSponsorGame = {
                             sponsorId: res[i].sponsor_id,
@@ -472,8 +550,7 @@
                         };
 
                         $scope.sponsors.push($scope.newSponsorGame);
-                    }
-                    console.log($scope.sponsors);
+
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to retrieve sponsoring institutions!', 3000);
@@ -531,7 +608,6 @@
         //         })
         // }
 
-
         function showCheckedSponsors(){
             for(var i=0; i<$scope.otherSponsors.length; i++){
                 if($scope.otherSponsors[i].checked==true){
@@ -542,6 +618,7 @@
         }
 
         function addMultipleSponsors(){
+            console.log("adding multiple sponsors:")
             for(var i=0; i<$scope.otherSponsors.length; i++){
                 if($scope.otherSponsors[i].checked==true) $scope.checkedSponsorsAdd.push($scope.otherSponsors[i])
             }
@@ -581,7 +658,6 @@
                     Materialize.toast('Failed to delete sponsoring institutions!', 3000);
                 })
         }
+
     }
 })();
-
-
