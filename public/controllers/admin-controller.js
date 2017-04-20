@@ -12,6 +12,7 @@
         $scope.users = [];
         $scope.organizers = [];
         $scope.logs = [];
+        $scope.sponsors = [];
 
         UserService.getUsersByType('A').then((res) => {
             $scope.admins = res.data;
@@ -24,6 +25,16 @@
         }, (err) => {
             console.log(err);
         });
+
+
+
+        SearchService.retrieveSponsor('').then((res) => {
+            $scope.sponsors = res.data;
+        }, (err) => {
+            console.log(err);
+        });
+
+
 
         AdminService.retrieveLog().then((res) => {
             $scope.logs = res.data;

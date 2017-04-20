@@ -402,25 +402,25 @@
 								<tr class="telegrafico">
 									<th>Name</th>
 									<th>Description</th>
-									<th>Inactive / Active</th>
+									<!-- <th>Inactive / Active</th> -->
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
-								<tr ng-repeat="">
+								<tr ng-repeat="s in sponsors">
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+										<input class="admin-form-edit" type="text" ng-model="s.name" ng-init="s.name">
 									</td>
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+										<input class="admin-form-edit" type="text" ng-model="s.description" ng-init="s.description">
 									</td>
-									<td class="match-player">
+									<!-- <td class="match-player">
 										<div class="switch">
 											<label>
 											<input class="admin-lever" type="checkbox" ng-init="" ng-model="">
 											<span class="lever" checked=""></span>
 									  </label>
 										</div>
-									</td>
+									</td> -->
 									<td>
 										<div>
 											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>

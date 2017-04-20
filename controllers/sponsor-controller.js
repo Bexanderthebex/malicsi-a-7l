@@ -147,6 +147,24 @@ exports.viewSponsorInGame = (req, res) => {
 		});
 }
 
+
+
+exports.viewAllSponsor = (req, res) => {
+	let query = 'CALL view_all_sponsor()';
+	connection.userType('A').query(query,
+		[],
+		(err, rows) => {
+			if(!err){
+				return res.status(200).send(rows[0]);
+			} 
+			else{
+				res.status(500).send("Internal Server Error");
+			}
+		});
+}
+
+
+
 exports.viewSponsorNotInGame = (req, res) => {
 	let query = 'CALL view_all_sponsors_not_in_game(?)';
 	connection.userType('A').query(query,

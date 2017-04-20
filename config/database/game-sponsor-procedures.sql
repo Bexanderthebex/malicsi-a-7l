@@ -61,6 +61,23 @@ BEGIN
 END//
 DELIMITER ;
 
+
+
+
+DROP PROCEDURE IF EXISTS view_all_sponsor;
+DELIMITER //
+CREATE PROCEDURE view_all_sponsor()
+BEGIN
+	SELECT * FROM sponsor_institution;
+END//
+DELIMITER ;
+
+
+
+
+
+
+
 DROP PROCEDURE IF EXISTS edit_sponsor_details;
 DELIMITER //
 CREATE PROCEDURE edit_sponsor_details(IN spon_id INT, IN in_name VARCHAR(100), IN descr TEXT)
