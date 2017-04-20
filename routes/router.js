@@ -111,6 +111,7 @@ router.get('/team/getTeam',teamController.getTeam);
 router.get('/team/getCoachedTeams',teamController.getCoachedTeam);
 router.get('/team/getTeamsOnOrganization',teamController.getTeamsOnOrganization);
 router.get('/team/getOrganizationRankings',teamController.getOrganizationRankings);
+router.get('/team/displayPendingMembershipRequest',teamController.displayPendingMembershipRequest);
 
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);

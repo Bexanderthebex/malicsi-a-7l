@@ -11,7 +11,7 @@ exports.createTeam = (req, res) => {
     connection.userType('A').query(query,
         [
             req.body.team_name,
-            req.body.id, 
+            currentUser.id,
             req.body.sport_id, 
             req.body.team_organization, 
             req.body.max_members
@@ -28,9 +28,10 @@ exports.createTeam = (req, res) => {
 exports.deleteTeam = (req, res) => {
     query = "CALL delete_team(?)";
    
+    console.log("teamid: " + req.body.team_id);   
     connection.userType('A').query(query, 
         [
-            req.body.team_id
+            req.query.team_id
         ], (err, rows) => {
             if(!err) {
                 return res.status(200).send({ 'message' : 'Sucessfully deleted team'}); 
@@ -90,6 +91,24 @@ exports.acceptMembershipRequest = (req, res) => {
         ], (err, rows) => {
                 if(!err) {
                     return res.status(200).send({ 'message' : 'Sucessfully accepted request'});
+                } else {
+                    return res.status(500).send({ 'message' : 'An error occured'});
+                }
+        }
+     );
+}
+
+exports.displayPendingMembershipRequest = (req, res) => {
+    currentUser = req.session.user;
+    query = "CALL display_pending_membership_request(?)";
+    
+    connection.userType('A').query(query, 
+        [
+            currentUser.id
+        ], (err, rows) => {
+                if(!err) {
+
+                    return res.status(200).send(rows[0]);
                 } else {
                     return res.status(500).send({ 'message' : 'An error occured'});
                 }
@@ -160,6 +179,7 @@ exports.countTeamInSports = (req, res) => {
 exports.getTeamMembers = (req, res) => {
     query = "CALL get_members(?)";
     
+    console.log(req.query.team_id);
     connection.userType('A').query(query,
         [
             req.query.team_id
@@ -205,7 +225,7 @@ exports.getCoachedTeam = (req, res) => {
         if(!err) {
                 if (rows[0].length == 1){
                     console.log(rows[0][0]);
-                    return res.status(200).send(rows[0][0]);
+                    return res.status(200).send(rows[0]);
                 }
                 else{
                     // console.log("Dito");
