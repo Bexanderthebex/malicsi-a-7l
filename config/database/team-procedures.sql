@@ -120,6 +120,17 @@ CREATE PROCEDURE get_teams_on_organization (IN org_id INT)
 	END; //
 DELIMITER ;
 
+
+DROP procedure IF EXISTS display_pending_membership_request;
+DELIMITER //
+
+CREATE PROCEDURE display_pending_membership_request(IN team_idin INT)
+	BEGIN
+		SELECT * FROM competitor_joins_team WHERE team_id = team_idin AND is_member = 0;
+	END; //
+DELIMITER ;
+
+GRANT EXECUTE ON procedure display_pending_membership_request TO competitor;
 GRANT EXECUTE ON procedure create_team TO competitor;
 GRANT EXECUTE ON procedure delete_team TO competitor;
 GRANT EXECUTE ON procedure team_membership_request TO competitor;
