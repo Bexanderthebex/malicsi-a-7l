@@ -50,8 +50,6 @@
                 $scope.adminPassword = "";
                 $scope.adminEmail = "";
                 $scope.adminContact = "";
-
-                console.log('add admin', res.data);
             }, (err) => {
                 console.log(err);
             });
@@ -197,7 +195,7 @@
 
                 UserService.updateUser(user.username, user.email, user.contact, user.id)
                 .then((res) => {
-                    Materialize.toast('Admin info edited.', 2000);
+                    Materialize.toast('User info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
                     console.log(err);
