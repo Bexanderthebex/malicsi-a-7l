@@ -54,6 +54,23 @@ exports.getCompetitorTeams = (req, res) => {
 	});
 }
 
+exports.getCompetitorOrganization = (req, res) => {
+	query = 'CALL get_competitor_organization(?)';
+
+	console.log("Dito back");
+	console.log(req.session.user.id);
+	connection.userType('A').query(query,
+		[
+			req.session.user.id
+		], (err, rows) => {
+		    if(!err) {
+				return res.status(200).send(rows[0]);
+			} else {
+				return res.status(500).send({'message' : 'Internal Server Error'});
+			}
+	});
+}
+
 exports.editCompetitor = (req,res) => {
 	currentUser = req.session.user;
 	query = "CALL edit_competitor(?,?,?,?,?,?)";
@@ -61,9 +78,9 @@ exports.editCompetitor = (req,res) => {
 
 	connection.userType('A').query(query,
 		[
-			req.body.birthdate,
-			req.body.first-name,
-			req.body.last-name,
+			req.body.birthday,
+			req.body.first_name,
+			req.body.last_name,
 			req.body.nickname,
 			req.body.sex,
 			currentUser.id
@@ -79,6 +96,7 @@ exports.editCompetitor = (req,res) => {
 					}
 				);
 			} else {
+				console.log(err);
 				return res.status(501).send({ 'message' : 'Not implemented'});
 			}
 		}

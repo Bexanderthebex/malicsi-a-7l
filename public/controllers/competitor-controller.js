@@ -24,6 +24,7 @@
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
         $scope.getCompetitorTeams = getCompetitorTeams;
+        $scope.getCompetitorOrganization = getCompetitorOrganization;
         $scope.editCompetitor = editCompetitor;
         $scope.editCompetitorBio = editCompetitorBio;
         // $scope.createTeam = createTeam;
@@ -64,7 +65,21 @@
                 })
         }
 
+        function getCompetitorOrganization(){
+            console.log("Here");
+            CompetitorService
+                .getCompetitorOrganization()
+                .then(function(res) {
+                    $scope.competitororgs = res.data;
+                    console.log($scope.competitororgs);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
         function editCompetitor(){
+            $scope.competitor.birthday = $scope.bday.getFullYear()+"-"+($scope.bday.getMonth()+1)+"-"+$scope.bday.getDate();
+            // console.log($scope.competitor.birthday);
             CompetitorService
                 .editCompetitor($scope.competitor)
                 .then(function (res){
@@ -110,13 +125,13 @@
         }
 
         function getTeamMembers(id){
-            console.log("id: " + id);
+            // console.log("id: " + id);
             CompetitorService
                 .getTeamMembers(id)
                 .then(function (res){
                     $scope.teammembers = res.data;
-                    console.log("members: ");
-                    console.log($scope.teammembers);
+                    // console.log("members: ");
+                    // console.log($scope.teammembers);
                 }, function(err) {
                     console.log(err);
                 })

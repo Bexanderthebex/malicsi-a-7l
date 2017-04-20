@@ -111,11 +111,11 @@
                             </tbody>
                         </table>
 	                </div>
-	                <div id="competitor-organizations" class="col s12" ng-init="getCompetitorTeams()">
+	                <div id="competitor-organizations" class="col s12" ng-init="getCompetitorOranization()">
 	                    <table class="highlight responsive-table competitor-games-data">
 	                        <tbody>
-	                            <tr class="century-gothic" ng-repeat="team in competitorteams">
-	                                <td>{{team.organization}}</td>
+	                            <tr class="century-gothic" ng-repeat="org in competitororgs">
+	                                <td>{{org.name}}</td>
 	                            </tr>
 	                            <!-- <tr class="century-gothic">
 	                                <td>International Federation of Association Football</td>
@@ -349,7 +349,7 @@
 
 
 <!-- Edit Profile Modal -->
-<div id="edit-profile-modal" class="modal">
+<!-- <div id="edit-profile-modal" class="modal">
     <div class="row remove-bottom">
         <div class="col s12 padding-left padding-right palette-5">
             <div class="center">
@@ -399,7 +399,7 @@
         <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
         <a class="modal-action modal-close waves-effect btn-flat telegrafico" ng-click="editCompetitor()"><i class="material-icons left">check</i>Update</a>
     </div>
-</div>
+</div> -->
 
 <!-- Edit Profile Modal -->
 <div id="edit-profile-modal" class="modal modal-fixed-footer">
@@ -417,46 +417,46 @@
         </div>  
         <div class="row competitor-modal-container  competitor-add-modal-content">
             <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="first-name" type="text" class="validate ">
+                <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
                 <label for="first-name">First Name</label>
             </div>
             <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="last-name" type="text" class="validate ">
+                <input placeholder=" " id="last-name" type="text" class="validate" ng-model="competitor.last_name">
                 <label for="last-name">Last Name</label>
             </div>
             <div class="input-field col s4 competitor-input-color-change">
-                <input placeholder=" " id="nickname" type="text" class="validate ">
+                <input placeholder=" " id="nickname" type="text" class="validate" ng-model="competitor.nickname">
                 <label for="nickname">Nickname</label>
             </div>
             <div class="input-field col s4 competitor-input-color-change">
-                <input id="birthdate" type="date" class="validate ">
+                <input id="birthdate" type="date" class="validate" ng-model="bday">
                 <label for="birthdate" class="competitor-adjust-label">Birthdate</label>
             </div>
             <div class="input-field col s4">
                 <label class="competitor-adjust-label">Sex</label><br>
-                <span><input id="male" type="radio" name="gender" value="m" class="with-gap" ng-model="competitor.sex">
+                <span><input id="male" type="radio" name="gender" value="M" class="with-gap" ng-model="competitor.sex">
                 <label class="competitor-adjust-label" for="male">Male</label></span>
-                <span><input id="female" type="radio" name="gender" value="f" class="with-gap"  ng-model="competitor.sex">
+                <span><input id="female" type="radio" name="gender" value="F" class="with-gap"  ng-model="competitor.sex">
                 <label class="competitor-adjust-label" for="female">Female</label></span>
             </div>
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="contact" type="text" class="validate ">
+            <div class="input-field col s6 competitor-input-color-change" >
+                <input placeholder=" " id="contact" type="text" class="validate" ng-model="competitor.contact">
                 <label for="contact">Contact</label>
             </div>
             <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="email" type="email" class="validate ">
+                <input placeholder=" " id="email" type="email" class="validate" ng-model="competitor.email">
                 <label for="email">Email</label>
             </div>
             <div class="input-field col s12 competitor-input-color-change">
-                <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140"></textarea>
+                <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
                 <label for="description" class="competitor-textarea-label-color-change">Description</label>
             </div>
             <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="first-name" type="text" class="validate ">
+                <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
                 <label for="first-name">Username</label>
             </div>
             <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="last-name" type="password" class="validate ">
+                <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
                 <label for="last-name">Password</label>
             </div>
             
@@ -472,7 +472,7 @@
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Profile Updated', 3000)">UPDATE</button>
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor()">UPDATE</button>
     </div>
 </div>
 

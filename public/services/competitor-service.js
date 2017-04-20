@@ -17,6 +17,7 @@
             editCompetitorBio: editCompetitorBio,
             getCompetitor: getCompetitor,
             getCompetitorTeams: getCompetitorTeams,
+            getCompetitorOrganization: getCompetitorOrganization,
             getCoachedTeam: getCoachedTeam,
             getTeamMembers: getTeamMembers,
             deleteTeam: deleteTeam
@@ -96,6 +97,22 @@
             $http({
                 method: 'GET',
                 url: '/competitor/getCompetitorTeams',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function getCompetitorOrganization(){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/competitor/getCompetitorOrganization',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
