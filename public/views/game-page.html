@@ -94,7 +94,7 @@
 			</div> -->
 			<div id="game-rank-section" class="col s12 game-sidebar-remove-left-padding">
 				<h5 class="rockwell right-align">Organization Ranking</h5>
-				<div class="game-type-matches" style="width: 100%; max-height: 100%; overflow-y: ; margin-right: 5px; right: 10px;">
+				<div class="game-type-matches" style="width: 100%; max-height: 100%; overflow-y: scroll; margin-right: 5px; right: 10px;">
 					<div class="game-line-rank" ng-init=viewOrgRankings() ng-hide="checkRankings()"></div>
 					<div class="row right-align">
 						<div ng-repeat = "organization in organizationRanks">
@@ -363,7 +363,7 @@
 										</span> -->
 
 										<!-- presentation view -->
-										<div ng-repeat="sponsor in sponsors">
+										<div ng-repeat="sponsor in sponsors" style="overflow-y:auto;">
 											<p class="telegrafico game-sponsor-title" >
 											{{sponsor.name}}
 											</p>
@@ -524,11 +524,8 @@
 				</div>
 
 				<div class="input-field col s4 game-input-color-change">
-					<select id = "addScoringSystem">
-						<option value="" disabled selected>Choose your option</option>
-						<option value="1">Preset system 1</option>
-						<option value="2">Preset system 2</option>
-						<option value="3">None</option>
+					<select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" >
+						<option value="" selected hidden>None</option>
 					</select>
 					<label>Scoring system</label>
 				</div>

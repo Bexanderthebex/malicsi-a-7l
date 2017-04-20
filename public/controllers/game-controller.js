@@ -14,6 +14,7 @@
         };
         $scope.addZero = addZero;
         $scope.addSport = addSport;
+        $scope.clearNewSport = clearNewSport;
         $scope.retrieveSport = retrieveSport;
         $scope.deleteSport = deleteSport;
         $scope.updateSport = updateSport;
@@ -106,13 +107,14 @@
             $scope.newSport.endDate = $('#addEndDate').val();
             $scope.newSport.mechanics = $('#addDescription').val();
             $scope.newSport.maxTeams = $('#addMaxTeams').val();
-            $scope.newSport.scoringSystem = $('#addScoringSystem').val();
+            $scope.newSport.scoringSystem = $scope.selectedScoring;
             console.log($scope.newSport);
             GameService
                 .addSport($scope.newSport)
                 .then(function (res){
                     console.log("added");
                     Materialize.toast("Successfully added the sport!", 3000);
+                    clearNewSport();
                     retrieveAllSports();
                 }, function(err) {
                     console.log(err);
@@ -198,6 +200,27 @@
             console.log($scope.sponsorCopy);
         }
 
+
+        function clearNewSport(){
+            $scope.newSport = {
+                sportName: undefined, 
+                mechanics: undefined,
+                timeStart: undefined,
+                timeEnd: undefined,
+                startDate: undefined,
+                endDate: undefined, 
+                maxTeams: undefined, 
+                scoringSystem: undefined, 
+                gameID: $scope.thisGame.game_id
+            };
+            $('#addName').val("");
+            $('#addStartTime').val("");
+            $('#addEndTime').val("");
+            $('#addStartDate').val("");
+            $('#addEndDate').val("");
+            $('#addDescription').val("");
+            $('#addMaxTeams').val("");
+        }
 
         function retrieveSport() {
             GameService
