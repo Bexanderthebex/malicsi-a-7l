@@ -82,16 +82,16 @@
                 })
         }
 
-        function createTeam(){
-            CompetitorService
-                .createTeam($scope.competitor)
-                .then(function (res){
-                    Materialize.toast('Successfully created a team!', 3000);
-                    //$window.location.href = '/#/competitor/profile';
-                }, function(err) {
-                    console.log(err);
-                })
-        }
+        // function createTeam(){
+        //     CompetitorService
+        //         .createTeam($scope.competitor)
+        //         .then(function (res){
+        //             Materialize.toast('Successfully created a team!', 3000);
+        //             //$window.location.href = '/#/competitor/profile';
+        //         }, function(err) {
+        //             console.log(err);
+        //         })
+        // }
 
         function getCoachedTeam(){
             CompetitorService
