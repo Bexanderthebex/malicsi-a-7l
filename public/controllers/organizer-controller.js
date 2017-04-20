@@ -194,7 +194,6 @@
         }
 
         function updateOrganizer() {
-            console.log($scope.organizer);
             OrganizerService
                 .updateOrganizer($scope.organizer)
                 .then(function(res) {
