@@ -5,55 +5,68 @@
   <!-- Do your thing here -->
 
   <div id="login-container" class="row palette-4" ng-controller="UserCtrl" class="valign-wrapper">
-    <div class="col s12 m12 l4 offset-l4">
-      <div id="login-card" class="palette-3 valign-wrapper">
-        <div id="signup-panel" class="row" style="display: none; top: -50px!important;">
+    <div class="col s12 m12 l4 offset-l4" style="height: 100%;">
+      <div id="login-card" class="valign-wrapper">
+        <div id="signup-panel" class="palette-4 row" style="display: none; top: -50px!important;">
+          <div class="col s12 row rockwell palette-text-3" style="height: 20px!important; margin-top: 20px!important;">
+            <div class="input-field col s12 letter-spacing-1" style="">
+              ACCOUNT CREDENTIALS
+            </div>
+          </div>
           <!-- USER NAME & PASSWORD -->
           <div class="col s12 row">
-            <div class="input-field col s6">
-              <input placeholder="Username" id="signup-uname" type="text" ng-model="suname" class="validate" data-length="20" required>
+            <div class="input-field col s10">
+              <input placeholder="Username" id="signup-uname" type="text" ng-model="suname" class="  " data-length="20" required>
             </div>
-            <div class="col s6 right-align">
-              <h4 class="rockwell white-text">Gear up.</h4>
-            </div>
+            
           </div>
 
           <div class="col s12 row">
             <div class="input-field col s6">
-              <input placeholder="Password" id="signup-password" type="password" ng-model="spword" class="validate" data-length="20">
+              <input placeholder="Password" id="signup-password" type="password" ng-model="spword" class=" " data-length="20">
             </div>
             <div class="input-field col s6">
-              <input placeholder="Confirm Password" id="signup-confirm-password" type="password" class="validate">
+              <input placeholder="Confirm Password" id="signup-confirm-password" type="password" class=" ">
             </div>
           </div>
 
+
+          <div class="col s12 row rockwell palette-text-3" style="height: 20px!important; margin-top: 20px!important;">
+            <div class="input-field col s12 letter-spacing-1">
+              PERSONAL INFORMATION
+            </div>
+          </div>
           <!-- NAME -->
           <div class="col s12 row">
-            <div class="input-field col s4 ">
-              <input placeholder="First Name" id="signup-fname" type="text" ng-model="fname" class="validate">
+            <div class="input-field col s10 ">
+              <input placeholder="First Name" id="signup-fname" type="text" ng-model="fname" class=" ">
             </div>
-
-            <div class="input-field col s4 ">
-              <input placeholder="Last Name" id="signup-lname" type="text" ng-model="lname" class="validate">
+          </div>
+          <div class="col s12 row">
+            <div class="input-field col s10 ">
+              <input placeholder="Last Name" id="signup-lname" type="text" ng-model="lname" class=" ">
             </div>
-
-            <div class="input-field col s4 ">
-              <input placeholder="Nickname" id="signup-nname" type="text" ng-model="nname" class="validate">
+          </div>
+          <div class="col s12 row">
+            <div class="input-field col s10">
+              <input placeholder="Nickname" id="signup-nname" type="text" ng-model="nname" class=" ">
             </div>
           </div>
 
           <!-- BIRTHDAY & SEX -->
           <div class="col s12 row">
-            <div class="input-field col s6 ">
-              <input placeholder="Birthday" id="signup-bday" type="date" ng-model="bday" class="datepicker validate">
+            <div class="input-field col s7 ">
+              <input placeholder="Birthday" id="signup-bday" type="date" ng-model="bday" class="datepicker  ">
             </div>
-            
-            <div class="col s6 valign-wrapper" style="height: 100%;">
+          <!-- </div>
+          <div class="col s12 row"> -->
+            <div class="col s5 valign-wrapper" style="height: 100%;">
               <form action="#">
-                  <input name="signup-sex" type="radio" id="signup-sex-female" />
-                  <label for="signup-sex-female">Female</label>
-                  <input name="signup-sex" type="radio" id="signup-sex-male" />
-                  <label for="signup-sex-male">Male</label>
+                  <input name="signup-sex" type="radio" id="signup-sex-female" class="with-gap" />
+                  <label class="white-text telegrafico" for="signup-sex-female">Female</label>
+                  <label style="width: 20px!important;"></label>
+                  <input style="margin-left:20px!important;" name="signup-sex" type="radio" id="signup-sex-male" class="with-gap"/>
+                  <label class="white-text telegrafico" for="signup-sex-male">Male</label>
               </form>
               
             </div>
@@ -63,12 +76,13 @@
 
           <!-- EMAIL & CONTACT NUMBER-->
           <div class="col s12 row">
-            <div class="input-field col s7 ">
-              <input placeholder="Email" id="signup-email" type="text" ng-model="email" class="validate">
+            <div class="input-field col s10 ">
+              <input placeholder="Email" id="signup-email" type="text" ng-model="email" class=" ">
             </div>
-
-            <div class="input-field col s5 ">
-              <input placeholder="Contact Number" id="signup-cnum" type="text" ng-model="contactNum" class="validate">
+          </div>
+          <div class="col s12 row">
+            <div class="input-field col s10">
+              <input placeholder="Contact Number" id="signup-cnum" type="text" ng-model="contactNum" class=" ">
             </div>
           </div>
 
@@ -78,12 +92,17 @@
               <a class="waves-effect waves-light btn left black" ng-click="signUp(fname, lname, nname, suname, sex, spword, bday, email, contactNum);">Sign Up</a>
             </div> -->
 
-            <div class="login-buttons col s12 center">
+            <div class="login-buttons row col s12 center">
+              <div class="col s6">
                 <button id="backtologin" class="sign-up-btn waves-effect"><i class="fa fa-angle-double-left"></i> Back to login </button>
+                
+              </div>
+              <div class="col s6">
 
-                <button class="sign-up-btn waves-effect" ng-click="signUp(fname, lname, nname, suname, sex, spword, bday, email, contactNum);">Sign Up</button>
+                <button class="palette-1 sign-up-btn waves-effect" ng-click="signUp(fname, lname, nname, suname, sex, spword, bday, email, contactNum);">Sign Up</button>
 
                 <!-- <a class="log-in-btn log-in-btn-down waves-effect" id="signup">SIGN UP <i class="fa fa-angle-double-right"></i></a> -->
+              </div>
             </div>
 
           </div>
@@ -91,34 +110,38 @@
 
         </div>
 
-        <div id="login-panel" class="row" style="display: inline;">
-          <div class="row">
-            <div class="col s12 center">
-              <h4 class="rockwell white-text">Jump in.</h4>
-            </div>
-          </div>
-
-          <!-- USERNAME -->
-          <div class="col s12 row">
-            <div class="input-field col s10 offset-s1">
-              <input placeholder="Username" id="login-username" type="text" ng-model="uname" class="validate">
-            </div>
-          </div>
-
-          <!-- PASSWORD -->
-          <div class="col s12 row">
-            <div class="input-field col s10 offset-s1">
-              <input placeholder="Password" id="login-password" type="password" ng-model="pword" class="validate">
-            </div>
-          </div>
-
-          <!-- BUTTONS -->
-          <div class="col s12 row" style="margin-top: 20px!important;">
-            <div class="login-buttons col s10 offset-s1">
-              <div class="row center">
-                <button class="log-in-btn log-in-btn-up waves-effect" ng-click="logAccount()" >Log In</button>
-                <button class="log-in-btn log-in-btn-down waves-effect" id="signup">SIGN UP <i class="fa fa-angle-double-right"></i></button>
+        <div id="login-panel" class="valign-wrapper palette-5 row" style="display: inline;">
+          <div>
+            <div class="row">
+              <div class="col s12 center">
+                <h4 class="rockwell palette-text-1">Jump in.</h4>
               </div>
+            </div>
+
+            <!-- USERNAME -->
+            <div class="col s12 row">
+              <div class="input-field col s10 offset-s1">
+                <input tabindex="1" placeholder="Username" id="login-username" type="text" ng-model="uname" class="  login-input">
+              </div>
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="col s12 row">
+              <div class="input-field col s10 offset-s1">
+                <input tabindex="2" placeholder="Password" id="login-password" type="password" ng-model="pword" class=" ">
+              </div>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="col s12 row" style="margin-top: 20px!important;">
+              <div class="login-buttons col s10 offset-s1">
+                <div class="row center">
+                  <button tabindex="3" class="log-in-btn log-in-btn-up waves-effect" ng-click="logAccount()" >Log In</button>
+                </div>
+                <div class="row center">
+                  <button tabindex="4" class="palette-3 log-in-btn log-in-btn-down waves-effect" id="signup">SIGN UP <i class="fa fa-angle-double-right"></i></button>
+                </div>
+                </div>
               </div>
             </div>
           </div>

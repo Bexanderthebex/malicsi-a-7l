@@ -9,8 +9,16 @@
   overflow-y: auto;
 }
 
+#details-div {
+  background-color: rgba(255,255,255,0.3);
+}
+
+#project-manager-card {
+  width: 
+}
+
 .dev-member-card {
-  padding-left: 10px;
+  background-color: rgba(255,255,255,0.3);
 }
 
 .col-margin-remove {

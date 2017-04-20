@@ -68,7 +68,7 @@
 
         function updateUser(username, email, contact, id) {
             let deferred = $q.defer();
-
+            console.log("pasok sa updateuser");
             $http.put(`/user/update`, {
 				username: username,
                 email: email,

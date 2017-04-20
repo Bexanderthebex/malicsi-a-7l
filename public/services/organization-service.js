@@ -129,7 +129,6 @@
 
         function joinTeam(team_id) {
             let deferred = $q.defer();
-            console.log(game);
             $http({
                 method: 'POST',
                 data: $.param({'team_id' : team_id}),

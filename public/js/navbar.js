@@ -10,4 +10,9 @@ $(document).ready(function(){
       stopPropagation: false // Stops event propagation
     }
   );
+
+  $('.navbtns').on('click', function(){
+    $('.navbtns').css('color', '#00719c');
+    $(this).css('color', '#00b8ff');
+  });
 });

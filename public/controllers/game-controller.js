@@ -30,6 +30,17 @@
         $scope.checkPastMatches = checkPastMatches;
         $scope.checkOngoingMatches = checkOngoingMatches;
         $scope.checkUpcomingMatches = checkUpcomingMatches;
+        $scope.viewSponsoringInstitutions = viewSponsoringInstitutions;
+        $scope.deleteSponsoringInstitution = deleteSponsoringInstitution;
+        $scope.addSponsoringInstitution = addSponsoringInstitution;
+        $scope.viewOtherSponsoringInstitutions = viewOtherSponsoringInstitutions;
+        $scope.initializeSponsoringInstitutions = initializeSponsoringInstitutions;
+        $scope.checkSponsors = checkSponsors;
+        $scope.passSponsorAdd = passSponsorAdd;
+        $scope.passSponsorDelete = passSponsorDelete;
+        $scope.checkGameDescription = checkGameDescription;
+        $scope.checkGameLocation = checkGameLocation;
+
         $scope.sport = {};
         $scope.sports = [];
         $scope.sportCopy = {};
@@ -39,9 +50,12 @@
         $scope.upcomingMatches = [];
         $scope.temp = [];
         $scope.match_id_tracker = [];
-        $scope.organizations = [];
+        $scope.organizationRanks = [];
         $scope.tempOrgs = [];
-
+        $scope.sponsors = [];
+        $scope.otherSponsors = [];
+        $scope.sponsorAdd = {};
+        $scope.sponsorCopy = {};
         $scope.newOrg = {
             org_name: undefined,
             org_rank: undefined
@@ -58,6 +72,17 @@
             scoringSystem: undefined, 
             gameID: $scope.thisGame.game_id
         };
+
+        //add existing sponsor to game
+        $scope.newSponsorGame = {
+            sponsorId: undefined,
+            gameId: undefined
+        }
+
+        $scope.newSponsorInstitution = {
+            name: undefined,
+            description: undefined
+        }
 
         $scope.mergedMatch = {
             team1_id: undefined,
@@ -86,11 +111,11 @@
                 .then(function (res){
                     console.log("added");
                     Materialize.toast("Successfully added the sport!", 3000);
+                    retrieveAllSports();
                 }, function(err) {
                     console.log(err);
                     Materialize.toast("Failed to add the sport!", 3000);
                 })
-                // $route.reload();
         }
 
         function addZero(i) {
@@ -101,7 +126,7 @@
         }
 
         function checkRankings(){
-            if($scope.organizations.length == 0 ) return true;
+            if($scope.organizationRanks.length == 0 ) return true;
             else false;
         }
         function checkPastMatches(){
@@ -114,6 +139,18 @@
         }
         function checkUpcomingMatches(){
             if($scope.upcomingMatches.length == 0 ) return true;
+            else false;
+        }
+        function checkSponsors(){
+            if($scope.sponsors.length == 0 ) return true;
+            else false;
+        }
+        function checkGameDescription(){
+            if($scope.game.description == undefined) return true;
+            else false;
+        }
+        function checkGameLocation(){
+            if($scope.game.location == undefined) return true;
             else false;
         }
 
@@ -134,6 +171,30 @@
             };
             console.log(sport);
         }
+
+        function passSponsorAdd(sponsor){
+            console.log(JSON.parse(sponsor));
+            let parsed = JSON.parse(sponsor);
+            $scope.sponsorAdd = {
+                name: parsed.name,
+                description: parsed.description,
+                sponsor_id: parsed.sponsor_id
+            }
+            console.log($scope.sponsorAdd);
+        }
+
+        function passSponsorDelete(sponsor){
+            console.log(sponsor);
+            
+            $scope.sponsorCopy = {
+                name: sponsor.name,
+                description: sponsor.description,
+                sponsor_id: sponsor.sponsor_id,
+                game_id: $scope.thisGame.game_id
+            }
+            console.log($scope.sponsorCopy);
+        }
+
 
         function retrieveSport() {
             GameService
@@ -323,17 +384,78 @@
                             org_name: $scope.tempOrgs[i].org_name,
                             org_rank: i+1
                         }
-                        $scope.organizations.push($scope.newOrg);
+                        $scope.organizationRanks.push($scope.newOrg);
                     }
-                    console.log($scope.organizations);
+                    console.log($scope.organizationRanks);
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to retrieve organization rankings!', 3000);
                 })
         }
+
+        function initializeSponsoringInstitutions(){
+            viewSponsoringInstitutions();
+            viewOtherSponsoringInstitutions();
+        }
+
+        function viewSponsoringInstitutions(){
+            GameService
+                .viewSponsoringInstitutions($scope.thisGame.game_id)
+                .then(function(res){
+                    console.log("sponsoring institutions retrieved for game#"+ $scope.thisGame.game_id);
+                    console.log(res);
+                    $scope.sponsors = res;
+
+                }, function(err){
+                    console.log(err.data);
+                    Materialize.toast('Failed to retrieve sponsoring institutions!', 3000);
+                })
+        }
         
+        function viewOtherSponsoringInstitutions(){
+            GameService
+                .viewOtherSponsoringInstitutions($scope.thisGame.game_id)
+                .then(function(res){
+                    console.log("other sponsoring institutions retrieved for game#"+ $scope.thisGame.game_id);
+                    console.log(res);
+                    $scope.sponsorAdd = {};
+                    // $scope.otherSponsors = res;
+                    // console.log(angular.extend($scope.otherSponsors, res));
+                    $scope.otherSponsors = angular.extend([], res);
+                }, function(err){
+                    console.log(err.data);
+                    Materialize.toast('Failed to retrieve sponsoring institutions!', 3000);
+                })
+        }
 
+        function addSponsoringInstitution(){
+            GameService
+                .addSponsoringInstitution($scope.sponsorAdd.sponsor_id, $scope.thisGame.game_id)
+                .then(function(res){
+                    console.log("added sponsor institution");
+                    console.log(res);
+                    viewSponsoringInstitutions();
+                    viewOtherSponsoringInstitutions();
+                }, function(err){
+                    console.log(err.data);
+                    Materialize.toast('Failed to add sponsoring institution!', 3000);
+                })
+        }
 
+        function deleteSponsoringInstitution(sponsor){
+            GameService
+                .deleteSponsoringInstitution(sponsor.sponsor_id, sponsor.game_id)
+                .then(function(res){
+                    console.log("deleted sponsor insitution#"+ $scope.thisGame.game_id);
+                    console.log(res);
+                    $scope.sponsors = res;
+                    viewSponsoringInstitutions();
+                    viewOtherSponsoringInstitutions();
+                }, function(err){
+                    console.log(err.data);
+                    Materialize.toast('Failed to delete sponsoring institutions!', 3000);
+                })
+        }
 
     }
 })();

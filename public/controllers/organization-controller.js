@@ -128,12 +128,16 @@
 
         function joinTeam(team_id) {
             OrganizationService
-                .joinTeam(1,team_id)
+                .joinTeam(team_id)
                 .then(function(res) {
                     Materialize.toast('Sucessfully joined team');
                 }, function(err) {
-                    Materialize.toast('Error loading details');
-                    console.log(err.data);
+                    if(err.data.message.valueOf()=='Duplicate entry') {
+                        Materialize.toast('Already sent request');
+                    } else {
+                        Materialize.toast('Error');
+                        console.log(err.data.message);
+                    }
                 })
         }
 
