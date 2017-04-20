@@ -31,6 +31,14 @@ END
 //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_games;
+DELIMITER //
+CREATE PROCEDURE view_all_games()
+BEGIN
+	SELECT * FROM game;
+END; //
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS view_game_details;
 DELIMITER //
 CREATE PROCEDURE view_game_details(IN game_id_in INT)
@@ -48,7 +56,6 @@ BEGIN
 	WHERE game_id = (SELECT LAST_INSERT_ID());
 END; //
 DELIMITER ;
-
 
 DROP PROCEDURE IF EXISTS view_all_sports_in_game;
 delimiter //
@@ -208,6 +215,11 @@ GRANT EXECUTE ON PROCEDURE create_game TO administrator;
 GRANT EXECUTE ON PROCEDURE update_game TO organizer;
 GRANT EXECUTE ON PROCEDURE update_game TO administrator;
 
+-- view all games
+GRANT EXECUTE ON PROCEDURE view_all_games TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_games TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_games TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_games TO guest;
 
 -- view last inserted game
 GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO organizer;

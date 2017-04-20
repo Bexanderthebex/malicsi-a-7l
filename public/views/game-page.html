@@ -338,36 +338,23 @@
 								<div class="row game-remove-bottom">
 									<div class="col s12">
 										<div class="divider divider-color"></div>
-										<p class="white-text century-gothic game-location-description" ng-hide = "checkGameDescription()">{{game.description}}<a href="#"> read more...</a></p>
+										<p class="white-text century-gothic game-location-description" ng-hide = "checkGameDescription()">{{game.description}}</p>
 										<p class="white-text century-gothic game-location-description" ng-show = "checkGameDescription()">No description available.</p>
 									</div>
 								</div>
 							</div>
 
 
-							<div class="card-panel palette-3 game-remove-padding" ng-init = "viewSponsoringInstitutions()">
-								<h5 class="game-remove-margin center rockwell">Sponsoring institutions</h5><br>
+							<div class="card-panel palette-4 game-remove-padding" ng-init = "viewSponsoringInstitutions()">
+								<h5 class="game-remove-margin center rockwell white-text">Sponsoring institutions</h5><br>
 								<div class="row">
 									<div class="col s12 m12" ng-hide="checkSponsors()">
-										
-										<!-- editing view -->
-										<!-- <span class="telegrafico game-checkbox-change-color" ng-repeat = "sponsor in sponsors">
-											<input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
-											<label for="filled-in-box">
-												<p class="game-sponsor-title">
-													{{sponsor.name}}
-													<i class="fa fa-pencil sponsor-actions" data-target="game-sponsor-edit"></i>
-												</p>
-												<p class="game-sponsor-description century-gothic">{{sponsor.description}} </p>
-											</label>
-										</span> -->
-
 										<!-- presentation view -->
 										<div ng-repeat="sponsor in sponsors" style="overflow-y:auto;">
-											<p class="telegrafico game-sponsor-title" >
+											<p class="telegrafico game-sponsor-title white-text" >
 											{{sponsor.name}}
 											</p>
-											<p class="game-sponsor-description century-gothic">{{sponsor.description}} </p>
+											<p class="game-sponsor-description century-gothic white-text">{{sponsor.description}} </p>
 										</div>
 										
 									</div>
@@ -377,12 +364,11 @@
 										</p>
 									</div>
 								</div>
-								<button href="" class="modal-action modal-close minimalist-button" data-target="game-sponsor-add">ADD</button>
-								<button href="" class="modal-action modal-close minimalist-button" data-target="game-delete-sponsor">DELETE</button>
-
+								<div class="row center">
+									<button href="" class="modal-action modal-close minimalist-button" data-target="game-sponsor-add">ADD</button>
+									<button href="" class="modal-action modal-close minimalist-button" data-target="game-delete-sponsor">DELETE</button>
+								</div>
 							</div>
-
-							
 						</div>
 					</div>
 				</div>
@@ -392,21 +378,20 @@
 </div>
 
 
-<div id="game-delete-sponsor" class="modal">
-	<div class="modal-content game-header-fill century-gothic	">
+<div id="game-delete-sponsor" class="modal" style="overflow-y: hidden;">
+	<div class="modal-content game-header-fill century-gothic">
 		<div class="row game-remove-bottom">
-			<div class="col s12 game-padding-left game-padding-right">
-				<div class="center palette-5">
-					<br>
+			<div class="col s12 game-padding-left game-padding-right palette-5">
+				<div class="center">
 						<div class="card-title white-text center telegrafico" id="thicken">
-					 		<h4 class="game-remove-bottom-modal">Delete Sponsor(s)</h4>
+					 		<h5>Delete Sponsor(s) From Game</h5>
 						</div>
-					<br>
 				</div>
+			</div>	
 				<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
 					<div class="row" ng-repeat="sponsor in sponsors" >
 						<span class="telegrafico game-checkbox-change-color" >
-							<input type="checkbox" class="filled-in" id="{{sponsor.sponsorId}}" ng-model="sponsor.checked"/>
+							<input type="checkbox" class="filled-in" ng-click="checkValidSponsorDel()" id="{{sponsor.sponsorId}}" ng-model="sponsor.checked"/>
 							<label for="{{sponsor.sponsorId}}">
 								<p class="game-sponsor-title">{{sponsor.name}}</p><p>{{sponsor.description}}  </p>
 							</label>
@@ -414,18 +399,18 @@
 
 					</div>
 				</div>				
-			</div>
+			
 		</div>	
 		
 	</div>
 	<div class="modal-footer palette-5 right-align">
-		<button href="" class="modal-action modal-close minimalist-button" data-target="game-sponsor-delete-2">Next</button>	
+		<button href="" class="modal-action modal-close btn-flat waves-effect" ng-disabled="!validSponsorDel" data-target="game-sponsor-delete-2">Next</button>	
 	</div>
 </div>
 
 
 <div id="game-sponsor-delete-2" class="modal">
-	<div class="mdoal-content game-header-fill century-gothic">
+	<div class="modal-content game-header-fill century-gothic">
 		<div class="row game-remove-bottom">
 			<div class="col s12 game-padding-left game-padding-right">
 				<div class="center palette-5">
@@ -447,7 +432,7 @@
 	</div>
 </div>
 
-<div id="game-sponsor-edit" class="modal modal-fixed-footer">
+<!-- <div id="game-sponsor-edit" class="modal modal-fixed-footer">
 	<div class="modal-content game-header-fill century-gothic	">
 		<div class="row game-remove-bottom">
 			<div class="col s12 game-padding-left game-padding-right">
@@ -466,7 +451,7 @@
 
 				<div class="col s6">
 					<h5 class="telegrafico strong">maligo ka na, inc.</h5>
-					<!-- <p class="telegrafico game-sponsor-title">maligo ka na, inc.</p> -->
+					<p class="telegrafico game-sponsor-title">maligo ka na, inc.</p>
 				</div>
 
 				<div class="input-field col s6 game-input-color-change">
@@ -493,10 +478,10 @@
 
 <div id="game-sponsor-add" style="overflow:hidden;" class="modal" ng-init="viewOtherSponsoringInstitutions()">
 	<div class="row game-remove-bottom">
-		<div class="col s12 game-padding-left game-padding-right palette-3">
+		<div class="col s12 game-padding-left game-padding-right palette-5">
 			<div class="center">
-					<div class="card-title white-text center" id="thicken">
-				 		<h5>Add Sponsoring Institution</h5>
+					<div class="card-title white-text center telegrafico" id="thicken">
+				 		<h5>Add Sponsor(s) To Game</h5>
 					</div>
 			</div>
 		</div>
@@ -504,7 +489,7 @@
 	<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
 		<div class="row" ng-repeat="newSponsor in otherSponsors" >
 			<span class="telegrafico game-checkbox-change-color" >
-				<input type="checkbox" class="filled-in" id="{{newSponsor.sponsorId}}" ng-model="newSponsor.checked"/>
+				<input type="checkbox" class="filled-in" ng-click="checkValidSponsorAdd()" id="{{newSponsor.sponsorId}}" ng-model="newSponsor.checked"/>
 				<label for="{{newSponsor.sponsorId}}">
 					<p class="game-sponsor-title">{{newSponsor.name}}</p><p>{{newSponsor.description}}  </p>
 				</label>
@@ -513,7 +498,7 @@
 		</div>
 	</div>
 	<div class="modal-footer" >
-		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="addMultipleSponsors()">Add</a>
+		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-disabled="!validSponsorAdd" ng-click="addMultipleSponsors()">Add</a>
 	</div>
 </div>
 

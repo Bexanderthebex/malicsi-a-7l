@@ -33,7 +33,8 @@ f'use strict';
             deleteOrganizationFromGame: deleteOrganizationFromGame,
             viewAllOrganizationForGame: viewAllOrganizationForGame,
             viewAllOrganizationInGame: viewAllOrganizationInGame,
-            deleteMultipleSponsoringInstitutions: deleteMultipleSponsoringInstitutions
+            deleteMultipleSponsoringInstitutions: deleteMultipleSponsoringInstitutions,
+            addMultipleSponsoringInstitutions: addMultipleSponsoringInstitutions
         }
 
         return service;
@@ -387,6 +388,32 @@ f'use strict';
             }, (err) => {
                 deferred.reject(err);
             });
+
+            return deferred.promise;
+        } 
+
+        function addMultipleSponsoringInstitutions(sponsors) {
+            let deferred = $q.defer();
+
+            for (var i = 0; i<sponsors.length; i++){
+                let sponsor = {
+                    sponsorId: sponsors[i].sponsorId,
+                    gameId: sponsors[i].gameId
+                }
+                // console.log(sponsor);
+                $http({
+                    method: 'POST',
+                    data: $.param(sponsor),
+                    url: '/game/addSponsorToGame',
+                    headers: headers
+                }).then((res) => {
+                    // console.log(res);
+                    deferred.resolve(res);
+                }, (err) => {
+                    deferred.reject(err);
+                });
+            }
+            
 
             return deferred.promise;
         } 
