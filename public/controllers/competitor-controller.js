@@ -15,11 +15,7 @@
         $scope.competitor = {};
         $scope.competitorteams = {};
         $scope.coachedteam = {};
-        $scope.organization = {};
-        $scope.team = {};
-        $scope.team2 = {};
-        $scope.teammembers = {};
-
+        $scope.pendingRequests = {};
 
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
@@ -27,11 +23,10 @@
         $scope.getCompetitorOrganization = getCompetitorOrganization;
         $scope.editCompetitor = editCompetitor;
         $scope.editCompetitorBio = editCompetitorBio;
-        // $scope.createTeam = createTeam;
+        $scope.createTeam = createTeam;
         $scope.getCoachedTeam = getCoachedTeam;
-        $scope.getTeamMembers = getTeamMembers;
-        $scope.deleteTeam = deleteTeam;
-
+        $scope.getPendingRequests = getPendingRequests;
+        
         function searchCompetitor(id){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
@@ -48,7 +43,7 @@
                 .getUserInfo()
                 .then(function(res) {
                     $scope.competitor = res.data;
-                    console.log($scope.competitor);
+                    // console.log(res.data);
                 }, function(err) {
                     console.log(err);
                 })
@@ -59,7 +54,7 @@
                 .getCompetitorTeams()
                 .then(function(res) {
                     $scope.competitorteams = res.data;
-                    console.log($scope.competitorteams);
+                    // console.log($scope.competitorteams);
                 }, function(err) {
                     console.log(err);
                 })
@@ -101,16 +96,16 @@
                 })
         }
 
-        // function createTeam(){
-        //     CompetitorService
-        //         .createTeam($scope.competitor)
-        //         .then(function (res){
-        //             Materialize.toast('Successfully created a team!', 3000);
-        //             //$window.location.href = '/#/competitor/profile';
-        //         }, function(err) {
-        //             console.log(err);
-        //         })
-        // }
+        function createTeam(){
+            CompetitorService
+                .createTeam($scope.competitor)
+                .then(function (res){
+                    Materialize.toast('Successfully created a team!', 3000);
+                    //$window.location.href = '/#/competitor/profile';
+                }, function(err) {
+                    console.log(err);
+                })
+        }
 
         function getCoachedTeam(){
             CompetitorService
@@ -136,24 +131,15 @@
                 })
         }
 
-        function deleteTeam(team_id){
-            console.log("team_id: " + team_id);
+        function getPendingRequests(){
             CompetitorService
-                .deleteTeam(team_id)
-                .then(function (res){
-                    console.log(res);
-                    Materialize.toast('Successfully deleted team!', 3000);
-                    getCoachedTeam();
+                .getPendingRequests().then(function (res){
+                    console.log(res.data);
+                    $scope.pendingRequests = res.data;
                 }, function(err) {
                     console.log(err);
                 })
-
         }
-
-    
-
-
-
 
     }
 })();
