@@ -41,6 +41,8 @@
         $scope.passSponsorDelete = passSponsorDelete;
         $scope.checkGameDescription = checkGameDescription;
         $scope.checkGameLocation = checkGameLocation;
+        $scope.showCheckedSponsors = showCheckedSponsors;
+        $scope.addMultipleSponsors = addMultipleSponsors;
 
         $scope.sport = {};
         $scope.sports = [];
@@ -55,6 +57,7 @@
         $scope.tempOrgs = [];
         $scope.sponsors = [];
         $scope.otherSponsors = [];
+        $scope.checkedSponsors = [];
         $scope.sponsorAdd = {};
         $scope.sponsorCopy = {};
         $scope.newOrg = {
@@ -470,14 +473,12 @@
                 })
         }
 
-        function addSponsoringInstitution(){
+        function addSponsoringInstitution(sponsor_id){
             GameService
-                .addSponsoringInstitution($scope.sponsorAdd.sponsor_id, $scope.thisGame.game_id)
+                .addSponsoringInstitution(sponsor_id, $scope.thisGame.game_id)
                 .then(function(res){
                     console.log("added sponsor institution");
                     console.log(res);
-                    viewSponsoringInstitutions();
-                    viewOtherSponsoringInstitutions();
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to add sponsoring institution!', 3000);
@@ -497,6 +498,28 @@
                     console.log(err.data);
                     Materialize.toast('Failed to delete sponsoring institutions!', 3000);
                 })
+        }
+        function showCheckedSponsors(){
+            for(var i=0; i<$scope.otherSponsors.length; i++){
+                if($scope.otherSponsors[i].checked==true){
+                    $scope.checkedSponsors.push ($scope.otherSponsors[i].sponsorId);
+                }
+            }
+            console.log($scope.checkedSponsors);
+        }
+
+        function addMultipleSponsors(){
+            console.log("adding multiple sponsors:")
+            
+            for(var i=0; i<$scope.otherSponsors.length; i++){
+                if($scope.otherSponsors[i].checked==true) addSponsoringInstitution($scope.otherSponsors[i].sponsorId);
+            }
+            $scope.otherSponsors = [];
+            viewSponsoringInstitutions();
+            viewOtherSponsoringInstitutions();
+            $scope.otherSponsors.pop();
+
+            console.log("done adding");
         }
 
     }
