@@ -16,7 +16,9 @@
             retrieveGame: retrieveGame,
             retrieveOrganization: retrieveOrganization,
             retrieveSport: retrieveSport,
-            retrieveCompetitor: retrieveCompetitor
+            retrieveCompetitor: retrieveCompetitor,
+            retrieveAdmin: retrieveAdmin,
+            retrieveUser: retrieveUser
         }
 
         return service;
@@ -33,7 +35,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -49,7 +51,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -65,7 +67,23 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
+            return deferred.promise;
+        }
+
+        function retrieveUser(search) {
+            let deferred = $q.defer();
+            $http({
+                method: 'GET',
+                params: {'keyword': search},
+                url: '/user/searchUser',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
             return deferred.promise;
         }
 
@@ -81,7 +99,7 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
 
@@ -97,9 +115,25 @@
             }, (err) => {
                 deferred.reject(err);
             });
-            
+
             return deferred.promise;
         }
-        
+
+		function retrieveAdmin(search) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: { 'search': search },
+                url: '/user/searchAdmin',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+		}
     }
 })();

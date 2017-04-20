@@ -1,4 +1,18 @@
 $(document).ready(function(){
+  // initializing all forms as disabled
+  $('.admin-form-edit').prop('disabled', false);
+  $('.admin-form-edit').attr('disabled', 'disabled');
+
+  $("#admin-admins-btn").mouseover(function() {
+      $(this).css("background","#00719c");
+  });
+
+  $("#admin-organizers-btn, #admin-users-btn, #admin-logs-btn, #admin-spon-btn, #admin-orgs-btn").mouseover(function() {
+      $(this).css("background","#00415a");
+  }).mouseout(function() {
+      $(this).css("background","transparent");
+  });
+
   $('.dropdown-button').dropdown({
       inDuration: 300,
       outDuration: 225,
@@ -12,57 +26,196 @@ $(document).ready(function(){
   );
 
   $('#admin-admins-btn').on('click', function(){
+    // showing off proper card on view panel
     $('#admin-adminscrud').css('display', 'inline');
     $('#admin-organizerscrud').css('display', 'none');
     $('#admin-userscrud').css('display', 'none');
     $('#admin-logsview').css('display', 'none');
+    $('#admin-sponsview').css('display', 'none');
+    $('#admin-orgscrud').css('display', 'none');
 
-    $('#admin-adminscrud').css('background', '#00719c');
-    $('#admin-organizerscrud').css('background', 'transparent');
-    $('#admin-userscrud').css('background', 'transparent');
-    $('#admin-logsview').css('background', 'transparent');    
-    // $('#admin-admins-functions').toggle();
+    // changing hover property of unselected buttons
+    $("#admin-organizers-btn, #admin-users-btn, #admin-logs-btn, #admin-spon-btn, #admin-orgs-btn").mouseover(function() {
+        $(this).css("background","#00415a");
+    }).mouseout(function() {
+        $(this).css("background","transparent");
+    });
 
+    // setting own hover property to not change
+    $("#admin-admins-btn").mouseover(function() {
+      $(this).css("background","#00719c");
+    }).mouseout(function() {
+      $(this).css("background","#00719c");
+    });
+
+    // setting background property of unselected buttons
+    $('#admin-admins-btn').css('background', '#00719c');
+    $('#admin-organizers-btn').css('background', 'transparent');
+    $('#admin-users-btn').css('background', 'transparent');
+    $('#admin-logs-btn').css('background', 'transparent');
+    $('#admin-spon-btn').css('background', 'transparent');
+    $('#admin-orgs-btn').css('background', 'transparent');
+
+        
   });
 
   $('#admin-organizers-btn').on('click', function(){
-    // $('#admin-organizers-functions').toggle();
     $('#admin-adminscrud').css('display', 'none');
     $('#admin-organizerscrud').css('display', 'inline');
     $('#admin-userscrud').css('display', 'none');
     $('#admin-logsview').css('display', 'none');
+    $('#admin-sponsview').css('display', 'none');
+    $('#admin-orgscrud').css('display', 'none');
 
-    $('#admin-adminscrud').css('background', 'transparent');
-    $('#admin-organizerscrud').css('background', '#00719c');
-    $('#admin-userscrud').css('background', 'transparent');
-    $('#admin-logsview').css('background', 'transparent');    
+    // changing hover property of unselected buttons
+    $("#admin-admins-btn, #admin-users-btn, #admin-logs-btn, #admin-spon-btn, #admin-orgs-btn").mouseover(function() {
+        $(this).css("background","#00415a");
+    }).mouseout(function() {
+        $(this).css("background","transparent");
+    });
+
+    // setting own hover property to not change
+    $("#admin-organizers-btn").mouseover(function() {
+      $(this).css("background","#00719c");
+    }).mouseout(function() {
+      $(this).css("background","#00719c");
+    });
+
+    // setting background property of unselected buttons
+    $('#admin-admins-btn').css('background', 'transparent');
+    $('#admin-organizers-btn').css('background', '#00719c');
+    $('#admin-users-btn').css('background', 'transparent');
+    $('#admin-logs-btn').css('background', 'transparent');
+    $('#admin-spon-btn').css('background', 'transparent');
+    $('#admin-orgs-btn').css('background', 'transparent');
+
+    
   });
 
   $('#admin-users-btn').on('click', function(){
-    // $('#admin-users-functions').toggle();
     $('#admin-adminscrud').css('display', 'none');
     $('#admin-organizerscrud').css('display', 'none');
     $('#admin-userscrud').css('display', 'inline');
     $('#admin-logsview').css('display', 'none');
+    $('#admin-sponsview').css('display', 'none');
+    $('#admin-orgscrud').css('display', 'none');
 
-    $('#admin-adminscrud').css('background', 'transparent');
-    $('#admin-organizerscrud').css('background', 'transparent');
-    $('#admin-userscrud').css('background', '#00719c');
-    $('#admin-logsview').css('background', 'transparent');    
+    // changing hover property of unselected buttons
+    $("#admin-organizers-btn, #admin-admins-btn, #admin-logs-btn, #admin-spon-btn, #admin-orgs-btn ").mouseover(function() {
+        $(this).css("background","#00415a");
+    }).mouseout(function() {
+        $(this).css("background","transparent");
+    });
+
+    // setting own hover property to not change
+    $("#admin-users-btn").mouseover(function() {
+      $(this).css("background","#00719c");
+    }).mouseout(function() {
+      $(this).css("background","#00719c");
+    });
+
+    $('#admin-admins-btn').css('background', 'transparent');
+    $('#admin-organizers-btn').css('background', 'transparent');
+    $('#admin-users-btn').css('background', '#00719c');
+    $('#admin-logs-btn').css('background', 'transparent');
+    $('#admin-spon-btn').css('background', 'transparent');
+    $('#admin-orgs-btn').css('background', 'transparent');
+
+    
   });
 
   $('#admin-logs-btn').on('click', function(){
-    // $('#admin-logs-functions').toggle();
     $('#admin-adminscrud').css('display', 'none');
     $('#admin-organizerscrud').css('display', 'none');
     $('#admin-userscrud').css('display', 'none');
     $('#admin-logsview').css('display', 'inline');
+    $('#admin-sponsview').css('display', 'none');
+    $('#admin-orgscrud').css('display', 'none');
 
-    $('#admin-adminscrud').css('background', 'transparent');
-    $('#admin-organizerscrud').css('background', 'transparent');
-    $('#admin-userscrud').css('background', 'transparent');
-    $('#admin-logsview').css('background', '#00719c');    
+    $("#admin-organizers-btn, #admin-admins-btn, #admin-users-btn, #admin-spon-btn, #admin-orgs-btn").mouseover(function() {
+        $(this).css("background","#00415a");
+    }).mouseout(function() {
+        $(this).css("background","transparent");
+    });
+
+    $("#admin-logs-btn").mouseover(function() {
+      $(this).css("background","#00719c");
+    }).mouseout(function() {
+      $(this).css("background","#00719c");
+    });
+
+    $('#admin-admins-btn').css('background', 'transparent');
+    $('#admin-organizers-btn').css('background', 'transparent');
+    $('#admin-users-btn').css('background', 'transparent');
+    $('#admin-logs-btn').css('background', '#00719c');
+    $('#admin-spon-btn').css('background', 'transparent');
+    $('#admin-orgs-btn').css('background', 'transparent');
+
+    
   });
+
+  $('#admin-spon-btn').on('click', function(){
+    $('#admin-adminscrud').css('display', 'none');
+    $('#admin-organizerscrud').css('display', 'none');
+    $('#admin-userscrud').css('display', 'none');
+    $('#admin-logsview').css('display', 'none');
+    $('#admin-sponsview').css('display', 'inline');
+    $('#admin-orgscrud').css('display', 'none');
+
+    $("#admin-organizers-btn, #admin-admins-btn, #admin-logs-btn, #admin-users-btn, #admin-orgs-btn").mouseover(function() {
+        $(this).css("background","#00415a");
+    }).mouseout(function() {
+        $(this).css("background","transparent");
+    });
+
+    $("#admin-spon-btn").mouseover(function() {
+      $(this).css("background","#00719c");
+    }).mouseout(function() {
+      $(this).css("background","#00719c");
+    });
+
+    $('#admin-admins-btn').css('background', 'transparent');
+    $('#admin-organizers-btn').css('background', 'transparent');
+    $('#admin-users-btn').css('background', 'transparent');
+    $('#admin-logs-btn').css('background', 'transparent');
+    $('#admin-spon-btn').css('background', '#00719c');
+    $('#admin-orgs-btn').css('background', 'transparent');
+
+  });
+
+  $('#admin-orgs-btn').on('click', function(){
+    $('#admin-adminscrud').css('display', 'none');
+    $('#admin-organizerscrud').css('display', 'none');
+    $('#admin-userscrud').css('display', 'none');
+    $('#admin-logsview').css('display', 'none');
+    $('#admin-sponsview').css('display', 'none');
+    $('#admin-orgscrud').css('display', 'inline');
+
+    $("#admin-organizers-btn, #admin-admins-btn, #admin-logs-btn, #admin-users-btn, #admin-spon-btn").mouseover(function() {
+        $(this).css("background","#00415a");
+    }).mouseout(function() {
+        $(this).css("background","transparent");
+    });
+
+    $("#admin-orgs-btn").mouseover(function() {
+      $(this).css("background","#00719c");
+    }).mouseout(function() {
+      $(this).css("background","#00719c");
+    });
+
+    $('#admin-admins-btn').css('background', 'transparent');
+    $('#admin-organizers-btn').css('background', 'transparent');
+    $('#admin-users-btn').css('background', 'transparent');
+    $('#admin-logs-btn').css('background', 'transparent');
+    $('#admin-spon-btn').css('background', 'transparent');
+    $('#admin-orgs-btn').css('background', '#00719c');
+
+  });
+
+
+  $('.admin-form-edit').attr('disabled', 'disabled');
+  
+
 
 
 });

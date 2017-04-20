@@ -10,7 +10,7 @@ CREATE PROCEDURE create_user(
 		in _type CHAR(1)
 	)
 
-	BEGIN 
+	BEGIN
 		INSERT INTO user (username, password, email, contact, type, is_active) values (_username, _password, _email, _contact, _type, 1);
 	END;
 //
@@ -41,26 +41,72 @@ CREATE PROCEDURE select_user(
 	)
 
 	BEGIN
-		SELECT * from user WHERE id = _id;
+		SELECT id, username, contact, email, is_active, type from user WHERE id = _id;
 	END;
 //
 DELIMITER ;
 
+DROP procedure IF EXISTS select_user_with_password_from_username;
+DELIMITER //
+CREATE PROCEDURE select_user_with_password_from_username(
+		in _username VARCHAR(50)
+	)
+
+	BEGIN
+		SELECT * FROM user WHERE username = _username;
+	END;
+//
+DELIMITER ;
+
+DROP procedure IF EXISTS select_user_from_username;
+DELIMITER //
+CREATE PROCEDURE select_user_from_username(
+		in _username VARCHAR(50)
+	)
+
+	BEGIN
+		SELECT * FROM user WHERE username = _username;
+	END;
+//
+DELIMITER ;
 
 DROP procedure IF EXISTS update_user;
 DELIMITER //
 CREATE PROCEDURE update_user(
 		in _username VARCHAR(50),
-		in _password VARCHAR(60),
 		in _email VARCHAR(254),
 		in _contact VARCHAR(15),
 		in _id INT
 	)
 
-	BEGIN 
-		UPDATE user SET username = _username, password = _password, email = _email, contact = _contact WHERE id = _id;
+	BEGIN
+		UPDATE user SET username = _username, email = _email, contact = _contact WHERE id = _id;
 	END;
 //
+DELIMITER ;
+
+DROP procedure IF EXISTS update_user_password;
+DELIMITER //
+CREATE PROCEDURE update_user_password(
+		in _password VARCHAR(60),
+		in _id INT
+	)
+
+	BEGIN
+		UPDATE user SET password = _password WHERE id = _id;
+	END;
+//
+DELIMITER ;
+
+DROP procedure IF EXISTS search_user;
+DELIMITER //
+CREATE PROCEDURE search_user(
+		in search VARCHAR(30)
+	)
+
+	BEGIN
+		SELECT id, username, email, contact, type, is_active FROM user WHERE username LIKE search;
+	END; //
 DELIMITER ;
 
 grant execute on procedure create_competitor to competitor;
@@ -71,6 +117,7 @@ grant execute on procedure create_user to administrator;
 grant execute on procedure create_competitor to administrator;
 grant execute on procedure select_user to administrator;
 grant execute on procedure update_user to administrator;
+grant execute on procedure search_user to administrator;
 
 grant execute on procedure select_user to guest;
 grant execute on procedure select_user to organizer;

@@ -25,6 +25,7 @@
             viewOrgRankings: viewOrgRankings,
             viewUpcomingOngoingGames: viewUpcomingOngoingGames,
             viewSponsoringInstitutions: viewSponsoringInstitutions,
+            viewOtherSponsoringInstitutions: viewOtherSponsoringInstitutions,
             addSponsoringInstitution: addSponsoringInstitution,
             updateSponsoringInstitution: updateSponsoringInstitution,
             deleteSponsoringInstitution: deleteSponsoringInstitution,
@@ -343,14 +344,19 @@
             return deferred.promise;
         }
 
-        function addSponsoringInstitution(sponsor) {
+        function addSponsoringInstitution(sponsor_id, game_id) {
             let deferred = $q.defer();
-            console.log(sponsor);
 
+
+            let sponsor = {
+                sponsorId: sponsor_id,
+                gameId: game_id
+            }
+            console.log(sponsor);
             $http({
                 method: 'POST',
-                data: $.param(sport),
-                url: '/game/addSponsor',
+                data: $.param(sponsor),
+                url: '/game/addSponsorToGame',
                 headers: headers
             }).then((res) => {
                 console.log(res);
@@ -383,46 +389,43 @@
             return deferred.promise;
         }
   
-        function deleteSponsoringInstitution(id) {
+        function viewOtherSponsoringInstitutions(game_id){
+            let deferred = $q.defer(); 
+            let game = {
+                gameId: game_id
+            }
+
+            $http({
+                method: 'GET',
+                params: game,
+                url: 'game/viewSponsorNotInGame',
+                headers:headers
+            }).then((res) =>{
+                deferred.resolve(res.data);
+            }, (err) => {
+                deferred.reject(err);
+           });
+
+            return deferred.promise;
+        }
+  
+        function deleteSponsoringInstitution(sponsor_id, game_id) {
             let deferred = $q.defer();
 
             let sponsor = {
-                sponsor_id: id
+                sponsorId: sponsor_id,
+                gameId: game_id
             }
 
             $http({
                 method: 'DELETE',
                 data: $.param(sponsor),
-                url: '/game/deleteSponsor',
+                url: '/game/deleteSponsorFromGame',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
+                console.log(res);
                 deferred.resolve(res);
             }, (err) => {
-                deferred.reject(err);
-            });
-
-            return deferred.promise;
-        }
-
-        function updateSponsoringInstitution(sponsor) {
-            let deferred = $q.defer();
-
-            let editedSponsor = {
-                sponsor_id: sponsor.sponsor_id,
-                description: sponsor.description
-            }
-            console.log(editedSponsor);
-            $http({
-                method: 'PUT',
-                data: $.param(editedSponsor), // json
-                url: '/game/editSponsor',
-                headers: headers
-            }).then((res) => {
-                console.log(res.data);
-                deferred.resolve(res);
-            }, (err) => {
-                console.log(err);
                 deferred.reject(err);
             });
 

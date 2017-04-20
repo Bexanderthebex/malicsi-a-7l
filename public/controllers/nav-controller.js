@@ -18,13 +18,14 @@
             } else {
                 $scope.user = result.data;
                 $scope.hide = true;
-                console.log(result.data);
+                console.log($scope.user);
                 console.log($scope.hide);
                 if (result.data.type === "C") {
+                    console.log("pasok sa competitor profile")
                     $scope.iconUrl = '#/competitor/profile';
                 } else if(result.data.type ==="O") {
                     $scope.iconUrl = '#/organizer/profile';
-                } else if(result.data[0].type === "A") {
+                } else if(result.data.type === "A") {
                     $scope.iconUrl = '#/adminpanel'
                 }
             }

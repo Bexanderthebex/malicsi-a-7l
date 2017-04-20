@@ -19,7 +19,8 @@
 			retrieveUser: retrieveUser, // User
 			retrieveLog: retrieveLog, // Log
 			addAdmin: addAdmin,
-			addOrganizer: addOrganizer
+			addOrganizer: addOrganizer,
+			searchAdmin: searchAdmin
 
 			//deleteAdmin: deleteAdmin,
 			//addOrganizer: addOrganizer,
@@ -162,6 +163,23 @@
 				headers: headers
 			}).then((res) => {
 				console.log(res);
+				deferred.resolve(res);
+			}, (err) => {
+				deferred.reject(err);
+			});
+
+			return deferred.promise;
+		}
+
+		function searchAdmin(keyword) {
+			let deferred = $q.defer();
+
+			$http({
+				method: 'GET',
+				url: '/user/searchAdmin',
+				params: {'keyword': keyword},
+				headers: headers
+			}).then((res) => {
 				deferred.resolve(res);
 			}, (err) => {
 				deferred.reject(err);

@@ -11,13 +11,8 @@
 
     function OrganizationController($scope, $routeParams, OrganizationService, UserService) {
         $scope.thisOrganization = {
-<<<<<<< HEAD
-            organization_id = $routeParams.id;
-        }
-=======
             organization_id: $routeParams.id
         };
->>>>>>> e3dff278838012ef9539ee6a2ccdf0e9b95cf905
         $scope.currentUser = [];
         $scope.teams = [];
         $scope.temp = [];

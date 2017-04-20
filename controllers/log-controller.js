@@ -1,3 +1,5 @@
+'use strict'
+
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
@@ -5,12 +7,13 @@ const connection = require('./../config/db-connection.js');
 exports.viewAllLogs = (req, res) => {
 	query = 'SELECT * FROM log';
 
-	connection.query(query, function (err, rows) {
+	let type = req.session.user.type;
+	connection.userType(type).query(query, (err, rows) => {
 		if(!err) {
 			res.status(200).send(rows);
 			return rows;
 		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
+			return res.status(500).send({'message' : 'Internal Server Error'});
 		}
 	});
 }
@@ -18,12 +21,18 @@ exports.viewAllLogs = (req, res) => {
 exports.viewLogsByDate = (req, res) => {
 	query = 'SELECT * FROM log WHERE date_created BETWEEN ? AND ?';
 
-	connection.query(query, [req.body.startDate, req.body.endDate], function (err, rows) {
-		if(!err) {
-			res.status(200).send(rows);
-			return rows;
-		} else {
-			res.status(500).send({'message' : 'Internal Server Error'});
+	let type = req.session.user.type;
+	connection.userType(type).query(query,
+		[
+			req.body.startDate,
+			req.body.endDate
+		], (err, rows) => {
+			if(!err) {
+				res.status(200).send(rows);
+				return rows;
+			} else {
+				return res.status(500).send({'message' : 'Internal Server Error'});
+			}
 		}
-	});
+	);
 }

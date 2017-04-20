@@ -61,10 +61,13 @@ router.post('/register', sha256Hash, bcryptHash, userController.register);
 router.post('/register/createOrganizer', checkUser('A'), sha256Hash, bcryptHash, adminController.createOrganizer);
 router.post('/register/createAdmin', checkUser('A'), sha256Hash, bcryptHash, adminController.createAdmin);
 router.get('/logout', userController.logout);
-router.get('/user/:id', userController.getUserInfo);
-router.put('/user/update', sha256Hash, bcryptHash, userController.update);
-router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
 router.get('/user', userController.getUserInfo);
+router.get('/user/searchAdmin', checkUser('A'), adminController.searchAdmin);
+router.get('/user/searchUser', userController.searchUser);
+router.get('/user/:id', userController.getUserInfo);
+router.put('/user/:id/active', checkUser('A'), adminController.changeActivity);
+router.put('/user/update', userController.update);
+router.put('/user/updatePassword', sha256Hash, bcryptHash, userController.updatePassword);
 router.post('/user/getUsersByType', checkUser('A'), adminController.getUsersByType);
 router.post('/user/getAllUsers', checkUser('A'), adminController.getAllUsers);
 
@@ -125,13 +128,18 @@ router.get('/game/viewAllOrganization', gameController.viewAllOrganization);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteOrganizationFromGame', gameController.deleteOrganizationFromGame)
 
-// sponsor routers
+// game-sponsor routers
 router.get('/game/viewSponsor',  sponsorController.viewSponsor);
 router.get('/game/viewSponsorInSport',  sponsorController.viewSponsorInSport);
 router.get('/game/viewSponsorInGame',  sponsorController.viewSponsorInGame);
-router.post('/game/addSponsor',  sponsorController.addSponsorToGame);
-router.put('/game/editSponsor',  sponsorController.editSponsorDetails);
-router.delete('/game/deleteSponsor',  sponsorController.deleteSponsorFromGame);
+router.get('/game/viewSponsorNotInGame', sponsorController.viewSponsorNotInGame);
+router.post('/game/addSponsorToGame',  sponsorController.addSponsorToGame);
+router.delete('/game/deleteSponsorFromGame',  sponsorController.deleteSponsorFromGame);
+
+// sponsor routers
+router.put('/sponsor/editSponsor',  sponsorController.editSponsorDetails);
+router.post('/sponsor/addSponsor', sponsorController.addSponsor);
+router.delete('/sponsor/deleteSponsor', sponsorController.deleteSponsor);
 
 //sport routers
 router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);

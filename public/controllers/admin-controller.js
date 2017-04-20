@@ -2,13 +2,36 @@
     angular.module('app')
         .controller('AdminCtrl', AdminCtrl);
 
-    AdminCtrl.$inject = ['$scope', '$http', 'UserService', 'AdminService'];
+    AdminCtrl.$inject = ['$scope', '$http', 'UserService', 'AdminService', 'SearchService', 'OrganizerService'];
 
-    function AdminCtrl($scope, $http, UserService, AdminService) {
+    function AdminCtrl($scope, $http, UserService, AdminService, SearchService, OrganizerService) {
         $scope.admins = [];
+        $scope.users = [];
+        $scope.organizers = [];
+        $scope.logs = [];
 
         UserService.getUsersByType('A').then((res) => {
             $scope.admins = res.data;
+        }, (err) => {
+            console.log(err);
+        });
+
+        SearchService.retrieveOrganizer('').then((res) => {
+            $scope.organizers = res.data;
+        }, (err) => {
+            console.log(err);
+        });
+
+        AdminService.retrieveLog().then((res) => {
+            $scope.logs = res.data;
+            console.log('logs', $scope.logs);
+        }, (err) => {
+            console.log(err);
+        });
+
+        AdminService.retrieveUser().then((res) => {
+            $scope.users = res.data;
+            console.log('users', $scope.users);
         }, (err) => {
             console.log(err);
         });
@@ -45,12 +68,148 @@
                 $scope.organizerEmail = "";
                 $scope.organizerContact = "";
                 $scope.organizerName = "";
-                $scope.organizerEmail = "";
+                $scope.organizerDescription = "";
 
                 console.log('add organizer', res.data);
             }, (err) => {
 
+            });
+        }
+
+        $scope.searchAdmin = () => {
+            SearchService.retrieveAdmin($scope.adminSearch)
+            .then((res) => {
+                $scope.admins = res.data;
+                console.log('admins', $scope.admins)
+            }, (err) => {
+                console.log(err);
             })
+        }
+
+        $scope.searchOrganizer = () => {
+            SearchService.retrieveOrganizer($scope.organizerSearch)
+            .then((res) => {
+                $scope.organizers =  res.data;
+                console.log('organizers', $scope.organizers);
+            }, (err) => {
+                console.log(err);
+            })
+        }
+
+        $scope.searchUser = () => {
+            SearchService.retrieveUser($scope.userSearch)
+            .then((res) => {
+                $scope.users = res.data;
+                console.log('users', $scope.users);
+            }, (err) => {
+                console.log(err);
+            })
+        }
+
+        $scope.setIsActive = (isActive, id, list) => {
+            UserService.setIsActive(isActive, id)
+            .then((res) => {
+                Materialize.toast('User status changed', 2000);
+                for (let a of list) {
+                    if (a.id == id) {
+                        a.is_active = isActive;
+                        break;
+                    }
+                }
+            }, (err) => {
+                Materialize.toast('Something went wrong :\'(', 2000);
+                console.log(err);
+            });
+        }
+
+        $scope.editAdmin = (admin) => {
+            if ($('#admin-edit-' + admin.id).data('isEditing')) {
+                $('#admin-edit-' + admin.id).data('isEditing', false);
+
+                let username = admin.newUsername === undefined
+                    || admin.newUsername.trim() === ""
+                    ? admin.username : admin.newUsername;
+
+                let email = admin.newEmail === undefined
+                    || admin.newEmail.trim() === ""
+                    ? admin.email : admin.newEmail;
+
+                let contact = admin.newContact === undefined
+                    || admin.newContact.trim() === ""
+                    ? admin.contact : admin.newContact;
+
+                UserService.updateUser(username, email, contact, admin.id)
+                .then((res) => {
+                    Materialize.toast('Admin info edited.', 2000);
+                    admin.username = username;
+                    admin.email = email;
+                    admin.contact = contact;
+                }, (err) => {
+                    Materialize.toast('Something went wrong :\'(', 2000);
+                    console.log(err);
+                });
+            } else {
+                $('#admin-edit-' + admin.id).data('isEditing', true);
+            }
+        }
+
+        $scope.editOrganizer = (organizer) => {
+            if($('#organizer-edit-' +organizer.id).data('isEditing')) {
+               $('#organizer-edit-' +organizer.id).data('isEditing', false);
+
+                let name = organizer.newName === undefined
+                    || organizer.newName.trim() === ""
+                    ? organizer.name : organizer.newName;
+
+                let description = organizer.newDesc === undefined
+                    || organizer.newDesc.trim() === ""
+                    ? organizer.description : organizer.newDesc;
+
+                organizer.name = name;
+                organizer.description = description;
+
+                OrganizerService.updateOrganizer(organizer)
+                .then((res) =>{
+                    Materialize.toast('Organizer info updated.', 2000);
+                }, (err) =>{
+                    Materialize.toast('Something went wrong :\'(', 2000);
+                    console.log(err);
+                });
+            } else {
+                $('#organizer-edit-' +organizer.id).data('isEditing', true);
+            }
+        }
+
+        $scope.editUser = (user) => {
+            console.log("pasok sa edit user");
+            if ($('#user-edit-' + user.id).data('isEditing')) {
+                $('#user-edit-' + user.id).data('isEditing', false);
+
+                let username = user.newUsername === undefined
+                    || user.newUsername.trim() === ""
+                    ? user.username : user.newUsername;
+
+                let email = user.newEmail === undefined
+                    || user.newEmail.trim() === ""
+                    ? user.email : user.newEmail;
+
+                let contact = user.newContact === undefined
+                    || user.newContact.trim() === ""
+                    ? user.contact : user.newContact;
+
+                UserService.updateUser(username, email, contact, user.id)
+                .then((res) => {
+                    Materialize.toast('User info edited.', 2000);
+                    user.username = username;
+                    user.email = email;
+                    user.contact = contact;
+                }, (err) => {
+                    Materialize.toast('Something went wrong :\'(', 2000);
+                    console.log(err);
+                });
+            } else {
+                $('#user-edit-' + user.id).data('isEditing', true);
+            }
         }
     }
 })();

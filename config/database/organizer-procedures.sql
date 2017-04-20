@@ -3,9 +3,11 @@ USE malicsi;
 DROP procedure IF EXISTS search_organizer;
 DELIMITER //
 
-	CREATE PROCEDURE search_organizer (IN search VARCHAR(100)) 
+	CREATE PROCEDURE search_organizer (IN search VARCHAR(100))
 	BEGIN
-	   SELECT * FROM organizer where name like search or description like search;
+	   SELECT user.id, username, name, description, is_active FROM user
+	   JOIN organizer ON user.id = organizer.id
+	   WHERE username LIKE search OR name LIKE search OR description LIKE search;
 	END; //
 
 DELIMITER ;
@@ -13,9 +15,10 @@ DELIMITER ;
 DROP procedure IF EXISTS get_organizer;
 DELIMITER //
 
-	CREATE PROCEDURE get_organizer (IN search INT) 
+	CREATE PROCEDURE get_organizer (IN search INT)
 	BEGIN
-	   SELECT * FROM user join organizer using(id) where id = search;
+	   SELECT user.id, user.username, user.email, user.contact, user.type, user.is_active, organizer.name, organizer.description
+	   FROM user join organizer using(id) where id = search;
 	END; //
 
 DELIMITER ;
@@ -23,7 +26,7 @@ DELIMITER ;
 DROP procedure IF EXISTS edit_organizer;
 DELIMITER //
 
-	CREATE PROCEDURE edit_organizer (IN nme VARCHAR(50), IN descr VARCHAR(100), IN ido INT) 
+	CREATE PROCEDURE edit_organizer (IN nme VARCHAR(50), IN descr VARCHAR(100), IN ido INT)
 	BEGIN
 	   UPDATE organizer SET name = nme, description = descr WHERE id = ido;
 	END; //
@@ -33,7 +36,7 @@ DELIMITER ;
 DROP procedure IF EXISTS find_game;
 DELIMITER //
 
-	CREATE PROCEDURE find_game (IN userID INT) 
+	CREATE PROCEDURE find_game (IN userID INT)
 	BEGIN
 	   SELECT * from game WHERE game.organizer_id = userID;
 	END; //
@@ -43,7 +46,7 @@ DELIMITER ;
 DROP procedure IF EXISTS find_sport;
 DELIMITER //
 
-	CREATE PROCEDURE find_sport (IN gameID INT) 
+	CREATE PROCEDURE find_sport (IN gameID INT)
 	BEGIN
 	   SELECT * from sport WHERE sport.game_id = gameID;
 	END; //
@@ -53,7 +56,7 @@ DELIMITER ;
 DROP procedure IF EXISTS find_team;
 DELIMITER //
 
-	CREATE PROCEDURE find_team (IN teamID INT) 
+	CREATE PROCEDURE find_team (IN teamID INT)
 	BEGIN
 	   SELECT * from team WHERE team.sport_id = teamID;
 	END; //
@@ -63,7 +66,7 @@ DELIMITER ;
 DROP procedure IF EXISTS get_request;
 DELIMITER //
 
-	CREATE PROCEDURE get_request (IN teamID INT) 
+	CREATE PROCEDURE get_request (IN teamID INT)
 	BEGIN
 	   SELECT * from team WHERE team_id = teamID;
 	END; //
@@ -73,9 +76,9 @@ DELIMITER ;
 DROP procedure IF EXISTS process_request;
 DELIMITER //
 
-	CREATE PROCEDURE process_request (IN teamID INT) 
+	CREATE PROCEDURE process_request (IN teamID INT)
 	BEGIN
-	   UPDATE team SET pending_participation = 1 WHERE team_id = teamID;
+	   UPDATE team SET pending_participation = 0 WHERE team_id = teamID;
 	END; //
 
 DELIMITER ;
@@ -83,9 +86,9 @@ DELIMITER ;
 DROP procedure IF EXISTS delete_team;
 DELIMITER //
 
-	CREATE PROCEDURE delete_team (IN teamID INT) 
+	CREATE PROCEDURE delete_team (IN teamID INT)
 	BEGIN
-	   DELETE team from team WHERE team_id = teamID;
+	   DELETE from team WHERE team_id = teamID;
 	END; //
 
 DELIMITER ;
@@ -93,9 +96,14 @@ DELIMITER ;
 DROP procedure IF EXISTS get_pending_participation;
 DELIMITER //
 
-	CREATE PROCEDURE get_pending_participation (IN id INT) 
+	CREATE PROCEDURE get_pending_participation (IN id INT)
 	BEGIN
-	   SELECT * from (sport join game using (game_id)) JOIN team using (sport_id) WHERE pending_participation = 1 AND organizer_id = id;
+	    SELECT *, 
+	    (SELECT COUNT(team_id) FROM team WHERE sport_id = sport.sport_id and pending_participation = 0)team_count 
+	    FROM (sport JOIN game using (game_id)) 
+	    JOIN team using (sport_id) 
+	    WHERE pending_participation = 1 and organizer_id = id;
+
 	END; //
 
 DELIMITER ;
