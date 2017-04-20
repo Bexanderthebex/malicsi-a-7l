@@ -66,15 +66,12 @@
             return deferred.promise;
         }
 
-        function updateUser(username, email, contact, id) {
+        function updateUser(competitor) {
             let deferred = $q.defer();
             console.log("pasok sa updateuser");
-            $http.put(`/user/update`, {
-				username: username,
-                email: email,
-                contact: contact,
-                id: id
-			}).then(function(res){
+            $http.put(`/user/update`, 
+                competitor
+            ).then(function(res){
 				deferred.resolve(res)
 			}, function(err) {
                 console.log(err);

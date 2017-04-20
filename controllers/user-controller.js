@@ -131,14 +131,17 @@ exports.update = (req, res) =>{
 	*/
 
 	//let type = req.session.user.type;
+	console.log(req.body);
 	connection.userType('A').query(update_query, [
 		req.body.username,
 		req.body.email,
 		req.body.contact,
 		req.body.id !== undefined ? req.body.id : req.session.user.id // was the id included in the request? if not, default to session user id.
 	], function (err, rows) {
-		if(err) return res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
-		else if (rows.affectedRows === 0) {
+		if(err) {
+			console.log(err);
+			return res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
+		} else if (rows.affectedRows === 0) {
 			return res.status(404).send({ 'message': 'User was not updated.' });
 		} else {
 			req.session.user.username = req.body.username;

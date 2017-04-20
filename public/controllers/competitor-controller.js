@@ -21,9 +21,10 @@
         $scope.getCompetitor = getCompetitor;
         $scope.getCompetitorTeams = getCompetitorTeams;
         $scope.editCompetitor = editCompetitor;
-        $scope.editCompetitorBio = editCompetitorBio;
+        // $scope.editCompetitorBio = editCompetitorBio;
         // $scope.createTeam = createTeam;
         $scope.getCoachedTeam = getCoachedTeam;
+        $scope.getTeamMembers = getTeamMembers;
         $scope.getPendingRequests = getPendingRequests;
         
         function searchCompetitor(id){
@@ -68,19 +69,29 @@
                 }, function(err) {
                     console.log(err);
                 })
-        }
 
-
-        function editCompetitorBio(){
-            CompetitorService
-                .editCompetitorBio($scope.competitor)
+            console.log($scope.competitor);
+            UserService
+                .updateUser($scope.competitor)
                 .then(function (res){
-                    Materialize.toast('Successfully edited bio!', 3000);
-                    //$window.location.href = '/#/competitor/profile';
+                    Materialize.toast('Successfully edited!', 3000);
+                    // $window.location.href = '/#/competitor/profile';
                 }, function(err) {
                     console.log(err);
                 })
         }
+
+
+        // function editCompetitorBio(){
+        //     CompetitorService
+        //         .editCompetitorBio($scope.competitor)
+        //         .then(function (res){
+        //             Materialize.toast('Successfully edited bio!', 3000);
+        //             //$window.location.href = '/#/competitor/profile';
+        //         }, function(err) {
+        //             console.log(err);
+        //         })
+        // }
 
         // function createTeam(){
         //     CompetitorService
@@ -99,6 +110,19 @@
                 .then(function (res){
                     // console.log(res.data);
                     $scope.coachedteam = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function getTeamMembers(id){
+            console.log("id: " + id);
+            CompetitorService
+                .getTeamMembers(id)
+                .then(function (res){
+                    $scope.teammembers = res.data;
+                    console.log("members: ");
+                    console.log($scope.teammembers);
                 }, function(err) {
                     console.log(err);
                 })
