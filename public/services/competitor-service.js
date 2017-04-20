@@ -110,6 +110,7 @@
         function getCompetitorOrganization(){
             let deferred = $q.defer();
 
+            console.log("Here mam");
             $http({
                 method: 'GET',
                 url: '/competitor/getCompetitorOrganization',

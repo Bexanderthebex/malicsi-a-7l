@@ -66,12 +66,11 @@
         }
 
         function getCompetitorOrganization(){
-            console.log("Here");
             CompetitorService
                 .getCompetitorOrganization()
                 .then(function(res) {
                     $scope.competitororgs = res.data;
-                    console.log($scope.competitororgs);
+                    console.log(res.data);
                 }, function(err) {
                     console.log(err);
                 })
