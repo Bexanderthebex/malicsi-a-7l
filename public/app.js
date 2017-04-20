@@ -74,7 +74,8 @@
             })
             .when('/game', {
                 'templateUrl': 'views/gamefeed.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'GameFeedController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/organizations', {
