@@ -1,7 +1,7 @@
 $(document).ready(function(){
   // initializing all forms as disabled
-  $('.admin-form-edit').prop('disabled', false);
-  $('.admin-form-edit').attr('disabled', 'disabled');
+
+  // $('.admin-form-edit').attr('disabled', 'disabled');
 
   $("#admin-admins-btn").mouseover(function() {
       $(this).css("background","#00719c");
@@ -56,7 +56,7 @@ $(document).ready(function(){
     $('#admin-spon-btn').css('background', 'transparent');
     $('#admin-orgs-btn').css('background', 'transparent');
 
-        
+
   });
 
   $('#admin-organizers-btn').on('click', function(){
@@ -89,7 +89,7 @@ $(document).ready(function(){
     $('#admin-spon-btn').css('background', 'transparent');
     $('#admin-orgs-btn').css('background', 'transparent');
 
-    
+
   });
 
   $('#admin-users-btn').on('click', function(){
@@ -121,7 +121,7 @@ $(document).ready(function(){
     $('#admin-spon-btn').css('background', 'transparent');
     $('#admin-orgs-btn').css('background', 'transparent');
 
-    
+
   });
 
   $('#admin-logs-btn').on('click', function(){
@@ -151,7 +151,7 @@ $(document).ready(function(){
     $('#admin-spon-btn').css('background', 'transparent');
     $('#admin-orgs-btn').css('background', 'transparent');
 
-    
+
   });
 
   $('#admin-spon-btn').on('click', function(){
@@ -213,8 +213,8 @@ $(document).ready(function(){
   });
 
 
-  $('.admin-form-edit').attr('disabled', 'disabled');
-  
+  // $('.admin-form-edit').attr('disabled', 'disabled');
+  $('.admin-form-edit').prop('disabled', true);
 
 
 

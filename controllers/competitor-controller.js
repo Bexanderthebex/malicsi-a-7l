@@ -41,7 +41,6 @@ exports.getCompetitor = (req, res) => {
 exports.getCompetitorTeams = (req, res) => {
 	query = 'CALL get_competitor_teams(?)';
 
-	console.log(req.session.user.id);
 	connection.userType('A').query(query,
 		[
 			req.session.user.id

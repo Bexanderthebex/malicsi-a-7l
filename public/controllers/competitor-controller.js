@@ -43,7 +43,9 @@
                 .getUserInfo()
                 .then(function(res) {
                     $scope.competitor = res.data;
-                    // console.log(res.data);
+                    if($scope.competitor == []) {
+                        $window.location.href = '/';
+                    }
                 }, function(err) {
                     console.log(err);
                 })

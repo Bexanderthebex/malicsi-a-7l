@@ -21,6 +21,10 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 // place other routing stuff
 app.use(routes);
 
+app.get('*', function(req, res) {
+  res.redirect('/')
+})
+
 app.listen(3000, function(){
 	console.log('Server running at localhost:3000');
 });
