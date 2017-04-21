@@ -325,10 +325,7 @@
 					<!-- Filter logs -->
 					<div class="row search-admin" style="height: 20px; margin-top: 20px; margin-bottom: 0;">
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
-							<label for="" class="century-gothic palette-text-4 strong">ID</label>
-						</div>
-						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
-							<label for="" class="century-gothic palette-text-4 strong">Content</label>
+							<label for="" class="century-gothic palette-text-4 strong">Username</label>
 						</div>
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<label for="" class="century-gothic palette-text-4 strong">Start Date</label>
@@ -340,11 +337,6 @@
 						</div>
 					</div>
 					<div class="row search-admin" style="height: 40px; margin-bottom: 0;">
-						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
-							<form style="width: 100%;">
-								<input type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
-							</form>
-						</div>
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
 								<input type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
@@ -371,7 +363,7 @@
 							<thead>
 								<tr class="telegrafico">
 									<th>Log Id</th>
-									<th>ID</th>
+									<th>Username</th>
 									<th>Content</th>
 									<th>Date Created</th>
 								</tr>
@@ -379,7 +371,7 @@
 							<tbody class="century-gothic">
 								<tr ng-repeat="l in logs">
 									<td>{{l.log_id}}</td>
-									<td>{{l.user_id}}</td>
+									<td>{{l.username}}</td>
 									<td>{{l.log_msg}}</td>
 									<td>{{l.date_created}}</td>
 								</tr>
