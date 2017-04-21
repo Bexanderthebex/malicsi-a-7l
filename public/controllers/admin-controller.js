@@ -351,6 +351,21 @@
                 Materialize.toast("An error occured.");
             });
         }
+
+        $scope.deleteSponsor = (id) => {
+            AdminService.deleteSponsor(id).then((res) => {
+                Materialize.toast("Sponsor deleted");
+                for (let i = 0; i < $scope.sponsors.length; ++i) {
+                    if ($scope.sponsors[i].sponsor_id === id) {
+                        $scope.sponsors.splice(i, 1);
+                        break;
+                    }
+                }
+            }, (err) => {
+                console.log(err);
+                Materialize.toast("An error occured.");
+            });
+        }
     }
 })();
 

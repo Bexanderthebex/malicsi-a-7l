@@ -22,7 +22,8 @@
 			addOrganizer: addOrganizer,
 			searchAdmin: searchAdmin,
 			addSponsor: addSponsor,
-			addOrganization: addOrganization
+			addOrganization: addOrganization,
+			deleteSponsor: deleteSponsor
 
 			//deleteAdmin: deleteAdmin,
 			//addOrganizer: addOrganizer,
@@ -216,6 +217,23 @@
 				method: 'POST',
 				url: '/sponsor/addSponsor',
 				data: $.param(sponsor),
+				headers: headers
+			}).then((res)=> {
+				deferred.resolve(res);
+			}, (err) => {
+				deferred.reject(err);
+			});
+
+			return deferred.promise;
+		}
+
+		function deleteSponsor(sponsorId) {
+			let deferred = $q.defer();
+
+			$http({
+				method: 'DELETE',
+				url: '/sponsor/deleteSponsor',
+				data: $.param({sponsorId: sponsorId}),
 				headers: headers
 			}).then((res)=> {
 				deferred.resolve(res);
