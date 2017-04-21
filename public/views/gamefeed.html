@@ -1,9 +1,9 @@
-<div id="mainHolder">
+<div id="mainHolder" ng-init="gamefeedInit()">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 		<div id="main">
 
-			<div class="palette-2" id="gamefeed-extend-header">
+			<div class="palette-3" id="gamefeed-extend-header">
 				<div class="row gamefeed-game-container">
 					<div class="col s12">
 						<h2 class="center white-text rockwell">Games</h2>
@@ -16,45 +16,45 @@
 					</div>
 					<div class="col s4 offset-s5 telegrafico gamefeed-sort-part white-text">
 						<p class="gamefeed-sort-adjust gamefeed-radio-button">Sort by:
-							<input class="with-gap" name="group3" type="radio" id="Name" checked />
+							<input ng-model="gfnameChecked" class="with-gap" name="group3" type="radio" id="Name" checked />
 							<label for="Name" class="white-text">Name</label>
-							<input class="with-gap" name="group3" type="radio" id="Date"/>
+							<input ng-model="gfdateChecked" class="with-gap" name="group3" type="radio" id="Date"/>
 							<label for="Date" class="white-text">Date</label>
 						</p>
 					</div>
-				</div>		
+				</div>
 			</div>
-			
+
 			<!-- Do your thing here -->
 			<div class="gamefeed-game-container">
 				<div class="row">
 
 								<div id="gamefeed-game-title" class="col s12 m4 gamefeed-padding-left gamefeed-padding-right">
 
-									<div class="row gamefeed-padding-left gamefeed-padding-right">
+									<div class="row gamefeed-padding-left gamefeed-padding-right" >
 
-										<div class="col s12">
+										<div class="col s12" ng-repeat="x in column1">
 											<div class="gamefeed-match palette-border-5 ">
 												<!-- MATCH TITLE -->
 												<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-													<h4 class="telegrafico white-text">Game title</h4>
+													<h4 class="telegrafico white-text">{{ x.name }}</h4>
 												</div>
 
 												<div class="row">
 													<div class="col s12">
 														<div class="gamefeed-description gamefeed-remove-bottom">
-															<div class="center century-gothic">Construct human post-singularity warehouse dead footage grenade city. Dissident neon construct RAF tanto monofilament otaku order-flow spook realism sub-orbital plastic media Chiba convenience store fluidity tube. Systemic monofilament pistol papier-mache franchise drone dead market rebar. Knife courier tube kanji cyber-stimulate man bridge alcohol silent receding industrial grade euro-pop. Towards city bomb refrigerator dead drugs wonton soup digital systema assault sprawl market decay semiotics corporation.</div>
+															<div class="center century-gothic">{{ x.description }}</div>
 														</div>
 													</div>
 												</div>
 												<div class="gamefeed-match-container">
 													<div class="telegrafico center">Date</div>
 													<div class="gamefeed-match-info center">
-														Start: 03/20/2007 | End: 03/20/2007
+														Start: {{ x.start_date }} | End: {{ x.end_date }}
 													</div>
 													<div class="telegrafico center">Location</div>
 													<div class="gamefeed-match-info center">
-														Santa Cruz, Laguna
+														{{ location }}
 													</div>
 													<div class="gamefeed-padding-down">
 														<div data-target="gamefeed-update-game" class="col s1 offset-s10">
@@ -64,201 +64,6 @@
 															<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
 														</div>
 													</div>
-												</div>
-
-											</div>
-										</div>
-										<div class="col s12">
-											<div class="gamefeed-match palette-border-5">
-												<!-- MATCH TITLE -->
-												<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-													<h4 class="telegrafico white-text">Game title</h4>
-												</div>
-
-												<div class="row">
-													<div class="col s12">
-														<div class="gamefeed-description gamefeed-remove-bottom">
-															<div class="center century-gothic">Pen paranoid systemic engine franchise assassin corporation. Singularity marketing smart-face forwards disposable nodality wonton soup footage physical fetishism lights.</div>
-														</div>
-													</div>
-												</div>
-												<div class="gamefeed-match-container">
-													<div class="telegrafico center">Date</div>
-													<div class="gamefeed-match-info center">
-														Start: 03/20/2007 | End: 03/20/2007
-													</div>
-													<div class="telegrafico center">Location</div>
-													<div class="gamefeed-match-info center">
-														Santa Cruz, Laguna
-													</div>
-													<div class="gamefeed-padding-down">
-														<div data-target="gamefeed-update-game" class="col s1 offset-s10">
-															<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-														<div data-target="gamefeed-delete-game" class="col s1">
-															<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-													</div>
-
-
-												</div>
-
-											</div>
-										</div>
-										<div class="col s12">
-											<div class="gamefeed-match palette-border-5">
-												<!-- MATCH TITLE -->
-												<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-													<h4 class="telegrafico white-text">Game title</h4>
-												</div>
-
-												<div class="row">
-													<div class="col s12">
-														<div class="gamefeed-description gamefeed-remove-bottom">
-															<div class="center century-gothic">Plastic claymore mine Shibuya physical meta-pistol assassin sentient footage bridge girl uplink courier media convenience store. 3D-printed jeans long-chain hydrocarbons systema weathered human marketing courier wristwatch paranoid tattoo knife. Claymore mine film knife narrative saturation point savant decay skyscraper denim tank-traps. Vehicle DIY systemic meta-Kowloon franchise warehouse computer urban papier-mache fetishism rifle lights sentient city. Render-farm 8-bit pen A.I. crypto-rebar disposable 3D-printed claymore mine franchise plastic drone film j-pop. Cardboard tower neural tiger-team corporation sensory skyscraper range-rover tube rebar apophenia. Silent advert wristwatch denim garage nodal point construct voodoo god otaku pen sub-orbital alcohol disposable tanto tank-traps papier-mache sensory. </div>
-														</div>
-													</div>
-												</div>
-												<div class="gamefeed-match-container">
-													<div class="telegrafico center">Date</div>
-													<div class="gamefeed-match-info center">
-														Start: 03/20/2007 | End: 03/20/2007
-													</div>
-													<div class="telegrafico center">Location</div>
-													<div class="gamefeed-match-info center">
-														Santa Cruz, Laguna
-													</div>
-													<div class="gamefeed-padding-down">
-														<div data-target="gamefeed-update-game" class="col s1 offset-s10">
-															<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-														<div data-target="gamefeed-delete-game" class="col s1">
-															<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-													</div>
-
-
-												</div>
-
-											</div>
-										</div>
-
-									</div>
-
-								</div>
-						
-
-								<div id="gamefeed-game-title" class="col s12 m4 gamefeed-padding-left gamefeed-padding-right">
-
-									<div class="row gamefeed-padding-left gamefeed-padding-right">
-
-										<div class="col s12">
-											<div class="gamefeed-match palette-border-5 ">
-												<!-- MATCH TITLE -->
-												<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-													<h4 class="telegrafico white-text">Game title</h4>
-												</div>
-
-												<div class="row">
-													<div class="col s12">
-														<div class="gamefeed-description gamefeed-remove-bottom">
-															<div class="center century-gothic">Refrigerator numinous pistol Tokyo disposable shrine fluidity carbon jeans skyscraper. Cardboard smart-spook weathered tattoo receding garage fluidity skyscraper.</div>
-														</div>
-													</div>
-												</div>
-												<div class="gamefeed-match-container">
-													<div class="telegrafico center">Date</div>
-													<div class="gamefeed-match-info center">
-														Start: 03/20/2007 | End: 03/20/2007
-													</div>
-													<div class="telegrafico center">Location</div>
-													<div class="gamefeed-match-info center">
-														Santa Cruz, Laguna
-													</div>
-													<div class="gamefeed-padding-down">
-														<div data-target="gamefeed-update-game" class="col s1 offset-s10">
-															<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-														<div data-target="gamefeed-delete-game" class="col s1">
-															<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-													</div>
-
-
-												</div>
-
-											</div>
-										</div>
-										<div class="col s12">
-											<div class="gamefeed-match palette-border-5">
-												<!-- MATCH TITLE -->
-												<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-													<h4 class="telegrafico white-text">Game title</h4>
-												</div>
-
-												<div class="row">
-													<div class="col s12">
-														<div class="gamefeed-description gamefeed-remove-bottom">
-															<div class="center century-gothic">Pre-youtube alcohol courier silent sprawl bicycle boy. Lights knife tanto physical narrative corrupted geodesic. Office singularity youtube sentient Legba face forwards pistol narrative DIY garage media bicycle sign euro-pop pre-shanty town. Sprawl hacker corrupted saturation point wonton soup assassin 8-bit modem courier city geodesic grenade dissident RAF ablative. Weathered post-office denim singularity pen silent savant nodality range-rover beef noodles shanty town network dolphin order-flow systemic geodesic. Render-farm modem corporation refrigerator-space savant beef noodles. Tube modem fluidity tanto kanji fetishism-ware cartel denim footage claymore mine nodality otaku physical alcohol. Boy vinyl saturation point boat industrial grade futurity katana shoes jeans cardboard skyscraper Kowloon bridge silent realism disposable meta. </div>
-														</div>
-													</div>
-												</div>
-												<div class="gamefeed-match-container">
-													<div class="telegrafico center">Date</div>
-													<div class="gamefeed-match-info center">
-														Start: 03/20/2007 | End: 03/20/2007
-													</div>
-													<div class="telegrafico center">Location</div>
-													<div class="gamefeed-match-info center">
-														Santa Cruz, Laguna
-													</div>
-													<div class="gamefeed-padding-down">
-														<div data-target="gamefeed-update-game" class="col s1 offset-s10">
-															<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-														<div data-target="gamefeed-delete-game" class="col s1">
-															<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-													</div>
-
-
-												</div>
-
-											</div>
-										</div>
-										<div class="col s12">
-											<div class="gamefeed-match palette-border-5">
-												<!-- MATCH TITLE -->
-												<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-													<h4 class="telegrafico white-text">Game title</h4>
-												</div>
-
-												<div class="row">
-													<div class="col s12">
-														<div class="gamefeed-description gamefeed-remove-bottom">
-															<div class="center century-gothic">DIY fluidity voodoo god camera jeans fetishism tank-traps nano-katana dome cartel.</div>
-														</div>
-													</div>
-												</div>
-												<div class="gamefeed-match-container">
-													<div class="telegrafico center">Date</div>
-													<div class="gamefeed-match-info center">
-														Start: 03/20/2007 | End: 03/20/2007
-													</div>
-													<div class="telegrafico center">Location</div>
-													<div class="gamefeed-match-info center">
-														Santa Cruz, Laguna
-													</div>
-													<div class="gamefeed-padding-down">
-														<div data-target="gamefeed-update-game" class="col s1 offset-s10">
-															<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-														<div data-target="gamefeed-delete-game" class="col s1">
-															<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-													</div>
-
-
 												</div>
 
 											</div>
@@ -273,28 +78,28 @@
 
 									<div class="row gamefeed-padding-left gamefeed-padding-right">
 
-										<div class="col s12">
+										<div class="col s12" ng-repeat="x in column2">
 											<div class="gamefeed-match palette-border-5 ">
 												<!-- MATCH TITLE -->
 												<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-													<h4 class="telegrafico white-text">Game title</h4>
+													<h4 class="telegrafico white-text">{{ x.name }}</h4>
 												</div>
 
 												<div class="row">
 													<div class="col s12">
 														<div class="gamefeed-description gamefeed-remove-bottom">
-															<div class="center century-gothic">Motion futurity denim fetishism geodesic pre-boy media engine pistol fluidity nodality industrial grade tiger-team voodoo god-ware. Boat otaku tattoo refrigerator boy Tokyo pistol network RAF garage silent realism jeans 3D-printed girl. Shoes computer boy sensory tattoo j-pop cartel fetishism vehicle gang fluidity 8-bit nodality warehouse 3D-printed. Youtube BASE jump RAF cartel j-pop hacker industrial grade 8-bit concrete human otaku vinyl sentient corrupted tank-traps. Denim computer gang refrigerator sentient claymore mine long-chain hydrocarbons systemic voodoo god shoes numinous-space wristwatch hacker semiotics tank-traps math. Engine motion beef noodles rain bridge tiger-team shoes-space meta-tattoo sign computer physical franchise BASE jump pen. Dome advert artisanal footage 3D-printed smart-lights.</div>
+															<div class="center century-gothic">{{ x.description }}</div>
 														</div>
 													</div>
 												</div>
 												<div class="gamefeed-match-container">
 													<div class="telegrafico center">Date</div>
 													<div class="gamefeed-match-info center">
-														Start: 03/20/2007 | End: 03/20/2007
+														Start: {{ x.start_date }} | End: {{ x.end_date }}
 													</div>
 													<div class="telegrafico center">Location</div>
 													<div class="gamefeed-match-info center">
-														Santa Cruz, Laguna
+														{{ location }}
 													</div>
 													<div class="gamefeed-padding-down">
 														<div data-target="gamefeed-update-game" class="col s1 offset-s10">
@@ -304,80 +109,6 @@
 															<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
 														</div>
 													</div>
-
-
-												</div>
-
-											</div>
-										</div>
-										<div class="col s12">
-											<div class="gamefeed-match palette-border-5">
-												<!-- MATCH TITLE -->
-												<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-													<h4 class="telegrafico white-text">Game title</h4>
-												</div>
-
-												<div class="row">
-													<div class="col s12">
-														<div class="gamefeed-description gamefeed-remove-bottom">
-															<div class="center century-gothic">Camera human weathered lights plastic apophenia j-pop girl paranoid papier-mache A.I. wristwatch assault jeans order-flow. Apophenia corporation smart-receding chrome voodoo god rain uplink sub-orbital. Franchise ablative knife 3D-printed youtube office stimulate silent woman tank-traps. Tube nano-convenience store motion sentient apophenia render-farm.</div>
-														</div>
-													</div>
-												</div>
-												<div class="gamefeed-match-container">
-													<div class="telegrafico center">Date</div>
-													<div class="gamefeed-match-info center">
-														Start: 03/20/2007 | End: 03/20/2007
-													</div>
-													<div class="telegrafico center">Location</div>
-													<div class="gamefeed-match-info center">
-														Santa Cruz, Laguna
-													</div>
-													<div class="gamefeed-padding-down">
-														<div data-target="gamefeed-update-game" class="col s1 offset-s10">
-															<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-														<div data-target="gamefeed-delete-game" class="col s1">
-															<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-													</div>
-
-												</div>
-
-											</div>
-										</div>
-										<div class="col s12">
-											<div class="gamefeed-match palette-border-5">
-												<!-- MATCH TITLE -->
-												<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-													<h4 class="telegrafico white-text">Game title</h4>
-												</div>
-
-												<div class="row">
-													<div class="col s12">
-														<div class="gamefeed-description gamefeed-remove-bottom">
-															<div class="center century-gothic">Network soul-delay construct jeans rifle sunglasses sensory BASE jump franchise tower papier-mache tattoo dome bomb marketing tanto. Soul-delay rebar man pre-engine Tokyo carbon warehouse j-pop euro-pop footage silent sign saturation point stimulate bicycle. J-pop boat tanto chrome kanji singularity into drugs market free-market weathered futurity vehicle math-uplink towards computer. Tokyo sub-orbital sensory corporation dissident augmented reality smart-order-flow pistol weathered boat. Camera crypto-cartel corrupted construct concrete market augmented reality realism order-flow 3D-printed human computer A.I.. Jeans corrupted render-farm A.I. drugs fluidity systemic crypto-warehouse modem-ware concrete advert table disposable. Marketing sensory gang sentient meta-office franchise fluidity range-rover. Beef noodles tattoo into motion pistol market bicycle apophenia wristwatch digital plastic order-flow realism silent rebar cartel spook.	</div>
-														</div>
-													</div>
-												</div>
-												<div class="gamefeed-match-container">
-													<div class="telegrafico center">Date</div>
-													<div class="gamefeed-match-info center">
-														Start: 03/20/2007 | End: 03/20/2007
-													</div>
-													<div class="telegrafico center">Location</div>
-													<div class="gamefeed-match-info center">
-														Santa Cruz, Laguna
-													</div>
-													<div class="gamefeed-padding-down">
-														<div data-target="gamefeed-update-game" class="col s1 offset-s10">
-															<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-														<div data-target="gamefeed-delete-game" class="col s1">
-															<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-														</div>
-													</div>
-
 												</div>
 
 											</div>
@@ -385,7 +116,52 @@
 
 									</div>
 
-								</div>		
+								</div>
+
+
+								<div id="gamefeed-game-title" class="col s12 m4 gamefeed-padding-left gamefeed-padding-right">
+
+									<div class="row gamefeed-padding-left gamefeed-padding-right">
+
+										<div class="col s12" ng-repeat="x in column3">
+											<div class="gamefeed-match palette-border-5 ">
+												<!-- MATCH TITLE -->
+												<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
+													<h4 class="telegrafico white-text">{{ x.name }}</h4>
+												</div>
+
+												<div class="row">
+													<div class="col s12">
+														<div class="gamefeed-description gamefeed-remove-bottom">
+															<div class="center century-gothic">{{ x.description }}</div>
+														</div>
+													</div>
+												</div>
+												<div class="gamefeed-match-container">
+													<div class="telegrafico center">Date</div>
+													<div class="gamefeed-match-info center">
+														Start: {{ x.start_date }} | End: {{ x.end_date }}
+													</div>
+													<div class="telegrafico center">Location</div>
+													<div class="gamefeed-match-info center">
+														{{ location }}
+													</div>
+													<div class="gamefeed-padding-down">
+														<div data-target="gamefeed-update-game" class="col s1 offset-s10">
+															<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
+														</div>
+														<div data-target="gamefeed-delete-game" class="col s1">
+															<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+
+									</div>
+
+								</div>
 				</div>
 			</div>
 		</div>
@@ -409,7 +185,7 @@
 					<br>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<div class="row gamefeed-modal-container">
 			<p>Are you sure you want to delete this game?</p>
 		</div>
@@ -433,7 +209,7 @@
 					<br>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<div class="row gamefeed-modal-container  gamefeed-add-modal-content">
 			<div class="input-field col s6 gamefeed-input-color-change">
 				<input placeholder=" " id="name" type="text" class="validate ">
@@ -457,7 +233,7 @@
 				<textarea placeholder=" " id="description" class="materialize-textarea" data-length="140"></textarea>
 				<label for="description" class="gamefeed-textarea-label-color-change">Description</label>
 			</div>
-			
+
 			<!--
 			organizer_id:req.body.orgId,
 			name : req.body.gameName,
@@ -486,7 +262,7 @@
 					<br>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<div class="row gamefeed-modal-container">
 			<div class="input-field col s6 gamefeed-input-color-change">
 				<input placeholder=" " id="name" type="text" class="validate">
@@ -512,7 +288,7 @@
 			</div>
 
 			<p class="center">Note: Changes will only reflect on fields which are edited.</p>
-			
+
 			<!--
 			organizer_id:req.body.orgId,
 			name : req.body.gameName,
