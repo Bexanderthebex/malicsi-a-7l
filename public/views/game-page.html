@@ -1,4 +1,4 @@
-<div id="mainHolder" ng-init=NavCtrl()>
+<div id="mainHolder" ng-init="NavCtrl()">
 
 	<div id="main">
 
@@ -285,7 +285,7 @@
 							</div>
 
 							<div class="row"	ng-init="retrieveAllSports()">
-								<div class="col s4" ng-hide='{{NavCtrl.user.type!="O"}}'>
+								<div class="col s4" ng-hide='{{user.type!="O"}}'>
 									<div class="game-sport" data-target="game-add-sport" >
 										<div class="card game-hovercard">
 											<div class="center">
@@ -308,8 +308,8 @@
 											</div>
 											<div class="card-reveal game-arrange-padding grey lighten-2">
 												<span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-												<span class="card-title grey-text text-darken-4" ><i class="material-icons right" data-target="game-delete-sport" ng-click="passSport(sport)" ng-hide='{{NavCtrl.user.type!="O"}}'>delete</i></span>
-												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport" ng-click="passSport(sport)" ng-hide='{{NavCtrl.user.type!="O"}}'>update</i></span>
+												<span class="card-title grey-text text-darken-4" ><i class="material-icons right" data-target="game-delete-sport" ng-click="passSport(sport)" ng-hide='{{user.type!="O"}}'>delete</i></span>
+												<span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport" ng-click="passSport(sport)" ng-hide='{{user.type!="O"}}'>update</i></span>
 												<div class="telegrafico">Date</div>
 												<div class="game-match-info">
 													{{sport.start_date}} - {{sport.end_date}}
@@ -335,7 +335,7 @@
 						<div class="col s12 m4">
 
 							<div class="row center">
-								<button href="" class="center modal-action modal-close minimalist-button" data-target="game-modify-org" ng-hide='{{NavCtrl.user.type!="O"}}'>Modify Organization</button>
+								<button href="" class="center modal-action modal-close minimalist-button" data-target="game-modify-org" ng-hide='{{user.type!="O"}}'>Modify Organization</button>
 
 							</div>
 
@@ -375,8 +375,8 @@
 									</div>
 								</div>
 								<div class="row center">
-									<button href="" class="modal-action modal-close minimalist-button" ng-hide='{{NavCtrl.user.type!="O"}}' data-target="game-sponsor-add">ADD</button>
-									<button href="" class="modal-action modal-close minimalist-button" data-target="game-delete-sponsor" ng-hide='{{NavCtrl.user.type!="O"}}'>DELETE</button>
+									<button href="" class="modal-action modal-close minimalist-button" ng-hide='{{user.type!="O"}}' data-target="game-sponsor-add">ADD</button>
+									<button href="" class="modal-action modal-close minimalist-button" data-target="game-delete-sponsor" ng-hide='{{user.type!="O"}}'>DELETE</button>
 								</div>
 							</div>
 						</div>
