@@ -18,6 +18,7 @@
         $scope.retrieveMatches = retrieveMatches;
         $scope.retrieveSport = retrieveSport;
         $scope.retrieveSportRankings = retrieveSportRankings;
+        $scope.retrieveSponsors = retrieveSponsors;
         $scope.checkRankings = checkRankings;
         $scope.viewPastMatchesInSport = viewPastMatchesInSport;
         $scope.viewOngoingMatchesInSport = viewOngoingMatchesInSport;
@@ -34,6 +35,8 @@
         $scope.upcomingMatches = [];
         $scope.temp = [];
         $scope.match_id_tracker = [];
+        $scope.sponsors = [];
+
         $scope.newMatch = {
             timeStart: undefined,
             timeEnd: undefined,
@@ -57,7 +60,6 @@
         function retrieveSport() {
             SportService
                 .retrieveSport($scope.thisSport.sport_id) //parameter is sport id
-
                 .then(function (res){
                     console.log("retrieved sport");
                     $scope.sport = res.data;
@@ -65,6 +67,7 @@
                     console.log($scope.sport.game_id);
                     retrieveGame($scope.sport.game_id);
                     retrieveSportRankings($scope.sport.sport_id);
+                    retrieveSponsors($scope.sport.sport_id);
                 }, function(err) {
                     console.log("sport not retrieved");
                 })
@@ -92,6 +95,18 @@
                     console.log(res.data);
                 }, function(err) {
                     console.log("rankings not retrieved");
+                })
+        }
+
+        function retrieveSponsors(sport_id) {
+            SportService
+                .retrieveSponsors(sport_id) //parameter is sport id
+                .then(function (res){
+                    console.log("retrieved sponsors");
+                    $scope.sponsors = res.data;
+                    console.log(res.data);
+                }, function(err) {
+                    console.log("sponsors not retrieved");
                 })
         }
 

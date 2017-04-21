@@ -156,6 +156,14 @@
 
 .stat-nums {
   font-size: 1000%;
+  /*margin-left: 60%;*/
+  text-align: center;
+}
+
+
+.right-stat {
+  margin-top: 1.7%;
+  border-left: 3px solid #001f2b;
 }
 
 .join-team-close {
@@ -224,4 +232,11 @@
 
 .all-games-card:hover h4, .all-games-card:hover span {
   color: white!important;
+}
+
+#games-header {
+  background-color: #001f2b;
+  width: 100%;
+  height: 23%;
+  padding-top: 3.2%;
 }

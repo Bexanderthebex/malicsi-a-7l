@@ -8,7 +8,7 @@
 			<!-- Add fullscreen after "slider" to make the slider a fullscreen slider -->
 		    <ul class="slides">
 		      <li ng-repeat="g in games">
-		      	<img class="img-responsive" src="assets/images/1.jpg"> <!-- random image -->
+		      	<img class="img-responsive" ng-src="assets/images/{{$index+1}}.jpg"> <!-- random image -->
 		        <div class="caption left-align">
 		          <h2><a class="home-caption-head rockwell strong" href="#/game/{{g.game_id}}" >{{g.name}}</h2>
 				  <h6 style="font-weight: bold" class="light grey-text text-lighten-3 century-gothic">{{g.start_date}} | {{g.location}}</h6>
@@ -25,10 +25,11 @@
 			<ul class="right hide-on-med-and-down">
 				<li><a class="telegrafico" href="#/help"> Help </a></li>
 				<li><a class-"telegrafico" href="#/aboutus" style="font-family:telegrafico !important"> About Us </a></li>
-				<li class="telegrafico">All Rights Reserved</li>
+				<li class="rockwell copyright" style="font-size: 12px !important;">Copyright © 2017 CMSC 128 A-7L The Betels</li>
 			</ul>
 		</div>
 	</div>
 </div>
 
+<script src="frontend_modules/js/materialize.js"></script>
 <script type="text/javascript" src="../js/home-slider.js"></script>

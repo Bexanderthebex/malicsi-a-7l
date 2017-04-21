@@ -19,7 +19,8 @@
             retrieveSport: retrieveSport,
             retrieveGame: retrieveGame,
             retrieveSportRankings: retrieveSportRankings,
-            checkRankings: checkRankings
+            checkRankings: checkRankings,
+            retrieveSponsors: retrieveSponsors
         }
 
         return service;
@@ -194,6 +195,23 @@
                 method: 'GET',
                 // params: { 'gameId':game_id },
                 url: '/sport/ranks/' + sport_id,
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+        function retrieveSponsors(sport_id) {
+            let deferred = $q.defer();
+            console.log(sport_id);
+            $http({
+                method: 'GET',
+                params: { 'sportId':sport_id },
+                url: '/game/viewSponsorInSport',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
