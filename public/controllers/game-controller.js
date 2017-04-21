@@ -6,9 +6,9 @@
         .module('app')
         .controller('GameController', GameController);
 
-    GameController.$inject = ['$scope', '$routeParams', 'GameService'];
+    GameController.$inject = ['$scope', '$routeParams', 'GameService', 'UserService'];
 
-    function GameController($scope, $routeParams,  GameService) {
+    function GameController($scope, $routeParams,  GameService, UserService) {
         $scope.thisGame = {
             game_id: $routeParams.gameId
         };
@@ -50,8 +50,10 @@
         $scope.deleteMultipleSponsors = deleteMultipleSponsors;
         $scope.checkValidSponsorAdd = checkValidSponsorAdd;
         $scope.checkValidSponsorDel = checkValidSponsorDel;
+        $scope.getUserDetails = getUserDetails;
+        $scope.checkIfOrganizer = checkIfOrganizer;
 
-
+        $scope.user = {};
         $scope.sport = {};
         $scope.sports = [];
         $scope.sportCopy = {};
@@ -106,6 +108,20 @@
             match_id: undefined,
             team2_id: undefined,
             team2_name: undefined,
+            time_start: undefined,
+            time_end: undefined,
+            match_date: undefined,
+            match_id: undefined
+        }
+
+        $scope.teams = {
+            name: undefined,
+            description: undefined
+        }
+
+        $scope.mergedMatchBeta = {
+            teams: [],
+            match_id: undefined,
             time_start: undefined,
             time_end: undefined,
             match_date: undefined,
@@ -188,9 +204,24 @@
             else false;
         }
 
-        // function checkIfOrganizer(){
-        //     if()
-        // }
+        function checkIfOrganizer(){
+            if($scope.user.type=="O") return true;
+            else return false;
+        }
+
+        function getUserDetails(){
+            UserService
+                .getUserInfo()
+                .then(function(res){
+                    console.log("user details retrieved");
+                    // console.log(res);
+                    $scope.user = res.data;
+                }, function(err){
+                    console.log(err);
+                    Materialize.toast("Failed to get user details!", 3000);
+                })
+        }
+
 
         function addOrganizationToGame(newOrganizationInGame){
            $scope.newOrganizationInGame.orgId = ("#orgID").val();
