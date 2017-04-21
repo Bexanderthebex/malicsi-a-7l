@@ -23,7 +23,8 @@
 			searchAdmin: searchAdmin,
 			addSponsor: addSponsor,
 			addOrganization: addOrganization,
-			deleteSponsor: deleteSponsor
+			deleteSponsor: deleteSponsor,
+			editSponsor: editSponsor
 
 			//deleteAdmin: deleteAdmin,
 			//addOrganizer: addOrganizer,
@@ -242,6 +243,20 @@
 			});
 
 			return deferred.promise;
+		}
+
+		function editSponsor(sponsor) {
+			let deferred = $q.defer();
+
+            $http.put(`/sponsor/editSponsor`,
+                sponsor
+            ).then(function(res){
+              deferred.resolve(res)
+            }, function(err) {
+              deferred.reject(err);
+            });
+
+            return deferred.promise;
 		}
 	}
 })();

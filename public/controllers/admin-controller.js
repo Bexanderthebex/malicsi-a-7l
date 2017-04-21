@@ -9,6 +9,7 @@
         let userCache = {};
         let organizerCache = {};
         let organizationCache = {};
+        let sponsorCache = {};
 
         $scope.admins = [];
         $scope.users = [];
@@ -365,6 +366,39 @@
                 console.log(err);
                 Materialize.toast("An error occured.");
             });
+        }
+
+        $scope.editSponsor = (sponsor) => {
+            if ($('#sponsor-edit-' + sponsor.sponsor_id).data('isEditing')) {
+                $('#sponsor-edit-' + sponsor.sponsor_id).data('isEditing', false);
+				$('#sponsor-cancel-edit-' + sponsor.sponsor_id).hide();
+                $('.sponsor-form-edit-' + sponsor.sponsor_id).prop('disabled', true);
+
+                AdminService.editSponsor(sponsor)
+                .then((res) => {
+                    Materialize.toast('Sponsor info edited.', 2000);
+                }, (err) => {
+                    Materialize.toast('Something went wrong :\'(', 2000);
+                    console.log(err);
+                });
+            } else {
+                $('#sponsor-edit-' + sponsor.sponsor_id).data('isEditing', true);
+                $('#sponsor-cancel-edit-' + sponsor.sponsor_id).show();
+                $('.sponsor-form-edit-' + sponsor.sponsor_id).prop('disabled', false);
+
+                sponsorCache[sponsor.sponsor_id] = {}
+                sponsorCache[sponsor.sponsor_id].name = sponsor.name;
+                sponsorCache[sponsor.sponsor_id].description = sponsor.description;
+            }
+        }
+
+        $scope.cancelEditSponsor = (sponsor) => {
+            $('#sponsor-edit-' + sponsor.sponsor_id).data('isEditing', false);
+            $('#sponsor-cancel-edit-' + sponsor.sponsor_id).hide();
+            $('.sponsor-form-edit-' + sponsor.sponsor_id).prop('disabled', true);
+
+            sponsor.name = sponsorCache[sponsor.sponsor_id].name;
+            sponsor.description = sponsorCache[sponsor.sponsor_id].description;
         }
     }
 })();

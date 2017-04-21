@@ -417,10 +417,10 @@
 							<tbody class="century-gothic">
 								<tr ng-repeat="s in sponsors">
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="s.name" ng-init="s.name">
+										<input disabled class="admin-form-edit sponsor-form-edit-{{s.sponsor_id}}" type="text" ng-model="s.name" ng-init="s.name">
 									</td>
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="s.description" ng-init="s.description">
+										<input disabled class="admin-form-edit sponsor-form-edit-{{s.sponsor_id}}" type="text" ng-model="s.description" ng-init="s.description">
 									</td>
 									<td class="match-player">
 
@@ -444,8 +444,8 @@
 									</td>
 									<td>
 										<div>
-											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
-											<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
+											<i ng-attr-id="sponsor-edit-{{s.sponsor_id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editSponsor(s)"></i>
+											<i ng-attr-id="sponsor-cancel-edit-{{s.sponsor_id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditSponsor(s)"></i>
 										</div>
 									</td>
 								</tr>
