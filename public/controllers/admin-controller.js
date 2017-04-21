@@ -203,7 +203,7 @@
 				$('#admin-cancel-edit-' + admin.id).hide();
                 $('.admin-form-edit-' + admin.id).prop('disabled', true);
 
-                UserService.updateUser(admin.username, admin.email, admin.contact, admin.id)
+                UserService.updateUser(admin)
                 .then((res) => {
                     Materialize.toast('Admin info edited.', 2000);
                 }, (err) => {
