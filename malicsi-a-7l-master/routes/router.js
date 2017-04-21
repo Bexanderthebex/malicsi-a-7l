@@ -154,7 +154,7 @@ router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
 router.get('/sport/match/viewAllMatch', matchController.viewAllMatch);
 router.get('/sport/match/viewCurrentMatch', matchController.viewCurrentMatch);  //[x]
 router.get('/sport/match/viewPastMatch', matchController.viewPastMatch);        //[]
-router.get('/sport/match/viewUpcomingMatch', matchController.viewUpcomingMatch);//[]
+router.get('/sport/match/viewUpcomingMatch', matchController.viewFutureMatch);//[]
 router.get('/sport/match/viewMatchDetails', matchController.viewMatchDetails);
 router.post('/sport/match/addMatch',  matchController.addMatch);
 router.put('/sport/match/editMatch', matchController.editMatch);
