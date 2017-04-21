@@ -194,9 +194,13 @@ DELIMITER ;
 
 
 
---  check organization
-GRANT EXECUTE ON PROCEDURE view_all_organization TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_organization TO administrator;
+--  orgs in game
+GRANT EXECUTE ON PROCEDURE view_all_organization_in_game TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_organization_in_game TO administrator;
+
+-- available orgs for game
+GRANT EXECUTE ON PROCEDURE view_all_organization_for_game TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_organization_for_game TO administrator;
 
 -- add organization to game
 
