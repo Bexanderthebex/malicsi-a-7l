@@ -107,7 +107,7 @@
             let deferred = $q.defer();
             $http({
                 method: 'GET',
-                params: { 'search': search },
+                params: { 'keyword': search },
                 url: '/competitor/searchCompetitor',
                 headers: headers
             }).then((res) => {
