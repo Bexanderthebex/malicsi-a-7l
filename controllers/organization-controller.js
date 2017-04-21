@@ -16,7 +16,6 @@ exports.searchOrganization = (req, res) => {
 			}
 		}
 	);
-<<<<<<< HEAD
 }
 
 exports.editOrganization = (req, res) => {
