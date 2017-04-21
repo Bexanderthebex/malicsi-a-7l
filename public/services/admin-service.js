@@ -20,7 +20,11 @@
 			retrieveLog: retrieveLog, // Log
 			addAdmin: addAdmin,
 			addOrganizer: addOrganizer,
-			searchAdmin: searchAdmin
+			searchAdmin: searchAdmin,
+			addSponsor: addSponsor,
+			addOrganization: addOrganization,
+			deleteSponsor: deleteSponsor,
+			editSponsor: editSponsor
 
 			//deleteAdmin: deleteAdmin,
 			//addOrganizer: addOrganizer,
@@ -171,6 +175,25 @@
 			return deferred.promise;
 		}
 
+		function addOrganization(organization){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                data: $.param(organization),
+                url: '/organization/addOrganization',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                deferred.resolve(res);
+            }, (err) => {
+                console.log(err);
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
 		function searchAdmin(keyword) {
 			let deferred = $q.defer();
 
@@ -186,6 +209,54 @@
 			});
 
 			return deferred.promise;
+		}
+
+		function addSponsor(sponsor) {
+			let deferred = $q.defer();
+
+			$http({
+				method: 'POST',
+				url: '/sponsor/addSponsor',
+				data: $.param(sponsor),
+				headers: headers
+			}).then((res)=> {
+				deferred.resolve(res);
+			}, (err) => {
+				deferred.reject(err);
+			});
+
+			return deferred.promise;
+		}
+
+		function deleteSponsor(sponsorId) {
+			let deferred = $q.defer();
+
+			$http({
+				method: 'DELETE',
+				url: '/sponsor/deleteSponsor',
+				data: $.param({sponsorId: sponsorId}),
+				headers: headers
+			}).then((res)=> {
+				deferred.resolve(res);
+			}, (err) => {
+				deferred.reject(err);
+			});
+
+			return deferred.promise;
+		}
+
+		function editSponsor(sponsor) {
+			let deferred = $q.defer();
+
+            $http.put(`/sponsor/editSponsor`,
+                sponsor
+            ).then(function(res){
+              deferred.resolve(res)
+            }, function(err) {
+              deferred.reject(err);
+            });
+
+            return deferred.promise;
 		}
 	}
 })();

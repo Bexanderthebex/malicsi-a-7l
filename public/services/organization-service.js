@@ -19,7 +19,8 @@
             retrieveTeamStatistics : retrieveTeamStatistics,
             getOrganizationRankings: getOrganizationRankings,
             getOrganization: getOrganization,
-            getGamesInOrganization: getGamesInOrganization
+            getGamesInOrganization: getGamesInOrganization,
+            updateOrganization: updateOrganization
         }
 
         return service;
@@ -178,7 +179,24 @@
             return deferred.promise;
         }
 
+        function updateOrganization(organization){
+            let deferred = $q.defer();
 
+            $http({
+                method: 'PUT',
+                data: $.param(organization),
+                url: '/organization/editOrganization',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                deferred.resolve(res);
+            }, (err) => {
+                console.log(err);
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
 
         
     }

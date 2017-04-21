@@ -16,7 +16,7 @@ DELIMITER //
 	CREATE PROCEDURE get_user_logs(in cid INT)
 
 	BEGIN
-		SELECT *  FROM log user_id = cid;
+		SELECT log_id, user_id, username, log_msg, date_created FROM log JOIN user ON user.id = log.user_id WHERE user_id = cid;
 	END;
 
 	//
@@ -25,10 +25,10 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS get_logs;
 DELIMITER //
-	CREATE PROCEDURE get_logs(in cid INT)
+	CREATE PROCEDURE get_logs()
 
 	BEGIN
-		SELECT *  FROM log;
+		SELECT log_id, user_id, username, log_msg, date_created FROM log JOIN user ON user.id = log.user_id;
 	END;
 
 	//
