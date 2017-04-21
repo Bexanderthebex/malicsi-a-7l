@@ -129,3 +129,4 @@ GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO 'administrator'@'localh
 -- delete match
 GRANT EXECUTE ON PROCEDURE delete_match TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE delete_match TO 'administrator'@'localhost';
+

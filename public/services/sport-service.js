@@ -19,6 +19,7 @@
             retrieveSport: retrieveSport,
             retrieveGame: retrieveGame,
             retrieveSportRankings: retrieveSportRankings,
+            checkRankings: checkRankings,
             retrieveSponsors: retrieveSponsors
         }
 
@@ -82,6 +83,67 @@
                 method: 'GET',
                 params: { 'sportId':sport_id },
                 url: '/sport/match/viewMatchInSport',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+        function viewPastMatchesInSport(sport_id){
+            let deferred = $q.defer();
+            let sport = {
+                sportId: sport_id
+            }
+
+            $http({
+                method: 'GET',
+                params: sport,
+                url: '/game/viewAllPastMatchesInSport',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+        function viewOngoingMatchesInSport(sport_id){
+            let deferred = $q.defer();
+            let sport = {
+                sportId: sport_id
+            }
+
+
+            $http({
+                method: 'GET',
+                params: sport,
+                url: '/game/viewAllOngoingMatchesInSport',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+        
+        function viewUpcomingMatchesInGame(sport_id){
+            let deferred = $q.defer();
+            let sport = {
+                sportId: sport_id
+            }
+
+            $http({
+                method: 'GET',
+                params: game, 
+                url: '/game/viewAllUpcomingMatchesInSport',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);

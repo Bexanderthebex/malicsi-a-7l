@@ -172,6 +172,7 @@ GRANT EXECUTE ON PROCEDURE view_all_games TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_games TO 'guest'@'localhost';
 
 -- view last inserted game
+
 GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO 'competitor'@'localhost';
@@ -233,3 +234,4 @@ GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'organizer'@'loc
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'guest'@'localhost';
+

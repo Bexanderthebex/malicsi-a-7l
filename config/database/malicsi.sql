@@ -204,3 +204,4 @@ GRANT SELECT ON malicsi.* to 'administrator'@'localhost';
 GRANT SELECT ON malicsi.* to 'competitor'@'localhost';
 GRANT SELECT ON malicsi.* to 'organizer'@'localhost';
 GRANT SELECT ON malicsi.* to 'guest'@'localhost';
+

@@ -82,10 +82,6 @@ DELIMITER //
 	//
 DELIMITER ;
 
-
-
-
-
 GRANT EXECUTE ON PROCEDURE search_competitor TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE search_competitor TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE search_competitor TO 'guest'@'localhost';
