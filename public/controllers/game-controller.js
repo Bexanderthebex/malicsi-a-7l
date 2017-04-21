@@ -550,9 +550,10 @@
                             description: res[i].description,
                             checked: false
                         };
-                    }
                         $scope.sponsors.push($scope.newSponsorGame);
-
+                    }
+                        
+                    console.log($scope.sponsors);
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to retrieve sponsoring institutions!', 3000);
@@ -575,6 +576,7 @@
                             name: res[i].name,
                             description: res[i].description,
                             checked: false
+                            
                         };
 
                         $scope.otherSponsors.push($scope.newSponsorGame);

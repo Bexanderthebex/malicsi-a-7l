@@ -2,7 +2,7 @@ USE malicsi;
 
 DROP PROCEDURE IF EXISTS check_organization;
 DELIMITER //
-CREATE PROCEDURE get_organization(in org_Name CHAR(50))
+CREATE PROCEDURE check_organization(in org_Name CHAR(50))
 BEGIN
 	select * from organization where name = org_Name;
 END;
@@ -19,8 +19,8 @@ END;
 DELIMITER ;
 
 --  check organization
-GRANT EXECUTE ON PROCEDURE create_organization TO organizer;
-GRANT EXECUTE ON PROCEDURE create_organization TO administrator;
+GRANT EXECUTE ON PROCEDURE check_organization TO organizer;
+GRANT EXECUTE ON PROCEDURE check_organization TO administrator;
 
 -- add organization
 
