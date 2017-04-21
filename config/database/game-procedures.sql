@@ -156,80 +156,121 @@ BEGIN
 END; //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_ongoing_games;
+DELIMITER //
+CREATE PROCEDURE view_all_ongoing_games()
+BEGIN
+	SELECT * FROM game WHERE start_date <= NOW() AND end_date >= NOW();
+END;
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_upcoming_games;
+DELIMITER //
+CREATE PROCEDURE view_all_upcoming_games()
+BEGIN
+	SELECT * FROM game WHERE start_date > NOW();
+END;
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_recent_games;
+DELIMITER //
+CREATE PROCEDURE view_all_recent_games()
+BEGIN
+	SELECT * FROM game WHERE end_date > NOW();
+END;
+//
+DELIMITER ;
 
 -- create game
-GRANT EXECUTE ON PROCEDURE create_game TO organizer;
-GRANT EXECUTE ON PROCEDURE create_game TO administrator;
+GRANT EXECUTE ON PROCEDURE create_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE create_game TO 'administrator'@'localhost';
 
 -- update game
-GRANT EXECUTE ON PROCEDURE update_game TO organizer;
-GRANT EXECUTE ON PROCEDURE update_game TO administrator;
+GRANT EXECUTE ON PROCEDURE update_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE update_game TO 'administrator'@'localhost';
 
 -- view all games
-GRANT EXECUTE ON PROCEDURE view_all_games TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_games TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_games TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_games TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_games TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_games TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_games TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_games TO 'guest'@'localhost';
 
 -- view last inserted game
-GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO guest;
+GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_last_inserted_game TO 'guest'@'localhost';
 
 -- view game details
-GRANT EXECUTE ON PROCEDURE view_game_details TO organizer;
-GRANT EXECUTE ON PROCEDURE view_game_details TO administrator;
-GRANT EXECUTE ON PROCEDURE view_game_details TO competitor;
-GRANT EXECUTE ON PROCEDURE view_game_details TO guest;
+GRANT EXECUTE ON PROCEDURE view_game_details TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_game_details TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_game_details TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_game_details TO 'guest'@'localhost';
 
 -- view all sports in game
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_sports_in_game TO 'guest'@'localhost';
 
 -- view all upcoming and ongoing games
-GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO 'guest'@'localhost';
 
 -- count game organizer
-GRANT EXECUTE ON PROCEDURE count_game_organizer TO organizer;
-GRANT EXECUTE ON PROCEDURE count_game_organizer TO administrator;
-GRANT EXECUTE ON PROCEDURE count_game_organizer TO competitor;
-GRANT EXECUTE ON PROCEDURE count_game_organizer TO guest;
+GRANT EXECUTE ON PROCEDURE count_game_organizer TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE count_game_organizer TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE count_game_organizer TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE count_game_organizer TO 'guest'@'localhost';
 
 --  delete game
-GRANT EXECUTE ON PROCEDURE delete_game TO organizer;
-GRANT EXECUTE ON PROCEDURE delete_game TO administrator;
+GRANT EXECUTE ON PROCEDURE delete_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE delete_game TO 'administrator'@'localhost';
 
 -- search for game by keyword
-GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO organizer;
-GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO competitor;
-GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO administrator;
-GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO guest;
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_for_game_by_keyword TO 'guest'@'localhost';
 
 -- view all matches in game
-GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_matches_in_game TO 'guest'@'localhost';
 
-GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO guest;
-
-
-GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_game TO 'guest'@'localhost';
 
 
-GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO 'guest'@'localhost';
+
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_games TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_games TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_games TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_games TO guest;
+
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_games TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_games TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_games TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_games TO guest;
+
+GRANT EXECUTE ON PROCEDURE view_all_recent_games TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_recent_games TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_recent_games TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_recent_games TO guest;
+
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'guest'@'localhost';
+

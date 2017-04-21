@@ -18,7 +18,6 @@
             setIsActive: setIsActive,
             updateUser: updateUser,
             updateUserPassword: updateUserPassword
-
         }
 
         return service;
@@ -70,7 +69,7 @@
 
         function updateUser(competitor) {
             let deferred = $q.defer();
-            // console.log("pasok sa updateuser");
+
             $http.put(`/user/update`, 
                 competitor
             ).then(function(res){
@@ -92,6 +91,23 @@
                 deferred.resolve(res)
             }, function(err) {
                 console.log(err);
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function updatePassword(user) {
+            let deferred = $q.defer();
+            console.log(user);
+            $http({
+                method: 'PUT',
+                url: '/user/updatePassword',
+                data: $.param(user),
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
                 deferred.reject(err);
             });
 
