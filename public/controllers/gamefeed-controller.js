@@ -16,12 +16,8 @@
         $scope.gamefeedInit = gamefeedInit;
 
         function gamefeedInit(){
-            console.log("asdf");
             retrieveGames();
-
         }
-
-
 
         function retrieveGames() {
             GameService
@@ -29,7 +25,7 @@
                 .then(function(res) {
                     $scope.games = res.data;
                     sortBy();
-                    distributeGame();
+                    
 
                 }, function(err) {
                     console.log(err);
@@ -51,7 +47,8 @@
                 if(a.name < b.name) return -1;
                 if(a.name > b.name) return 1;
                 return 0;
-            })
+            });
+            distributeGame();
         }
 
         function sortByDate(){
@@ -64,11 +61,11 @@
                 var integerBDate = bDate.getFullYear() * 10000 + bDate.getMonth() * 100 + bDate.getDay();
 
                 return (currentDate - integerADate > currentDate - integerBDate ? a : b);
-            })
+            });
+            distributeGame();
         }
 
         function distributeGame(){
-
             for (var i = 0; i < $scope.games.length; i++) {
                 if(i%3 == 0){
                     $scope.column1.push($scope.games[i]);

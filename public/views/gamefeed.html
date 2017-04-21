@@ -16,9 +16,9 @@
 					</div>
 					<div class="col s4 offset-s5 telegrafico gamefeed-sort-part white-text">
 						<p class="gamefeed-sort-adjust gamefeed-radio-button">Sort by:
-							<input ng-model="gfnameChecked" class="with-gap" name="group3" type="radio" id="Name" checked />
+							<input ng-click="gamefeedInit()" ng-model="gfnameChecked" class="with-gap" name="group3" type="radio" id="Name" checked />
 							<label for="Name" class="white-text">Name</label>
-							<input ng-model="gfdateChecked" class="with-gap" name="group3" type="radio" id="Date"/>
+							<input ng-click="gamefeedInit()" ng-model="gfdateChecked" class="with-gap" name="group3" type="radio" id="Date"/>
 							<label for="Date" class="white-text">Date</label>
 						</p>
 					</div>
