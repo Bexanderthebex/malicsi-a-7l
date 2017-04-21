@@ -7,7 +7,11 @@ exports.createTeam = (req, res) => {
     currentUser = req.session.user;
     query = "CALL create_team(?, ?, ?, ?, ?)";
     query1 = "CALL get_team(?)"
-
+    console.log('current user: '+currentUser.id);
+    console.log(req.body.team_name);
+    console.log(req.body.sport_id); 
+    console.log(req.body.team_organization);
+    console.log(req.body.max_members);
     connection.userType('A').query(query,
         [
             req.body.team_name,
@@ -55,6 +59,7 @@ exports.teamMembershipRequest = (req, res) => {
                 if(!err) {
                     return res.status(200).send({ 'message' : 'Sucessfully sent request'});
                 } else {
+                    console.log(err);
                     if(err.code == 'ER_DUP_ENTRY') return res.status(493).send({ 'message' : 'Duplicate entry'});
                     else return res.status(500).send({ 'message' : 'An error occured'});
                 }
