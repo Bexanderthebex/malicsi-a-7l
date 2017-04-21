@@ -20,7 +20,10 @@
             retrieveGame: retrieveGame,
             retrieveSportRankings: retrieveSportRankings,
             checkRankings: checkRankings,
-            retrieveSponsors: retrieveSponsors
+            retrieveSponsors: retrieveSponsors,
+            viewCurrentMatch: viewCurrentMatch,
+            viewPastMatch: viewPastMatch,
+            viewFutureMatch: viewFutureMatch
         }
 
         return service;
@@ -90,6 +93,57 @@
                 deferred.reject(err);
             });
             
+            return deferred.promise;
+        }
+        
+        function viewCurrentMatch(sport_id){
+            let deferred = $q.defer();
+            console.log(sport_id);
+            $http({
+                method: 'GET',
+                params: {'sportId':sport_id},
+                url: '/sport/match/viewCurrentMatch',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function viewPastMatch(sport_id){
+            let deferred = $q.defer();
+            console.log(sport_id);
+            $http({
+                method: 'GET',
+                params: {'sportId':sport_id},
+                url: '/sport/match/viewPastMatch',
+                headers: headers
+            }).then((res) =>{
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function viewFutureMatch(sport_id){
+            let deferred = $q.defer();
+            console.log(sport_id);
+            $http({
+                method: 'GET',
+                params: {'sportID':sport_id}.
+                url: '/sport/match/viewFutureMatch',
+                headers: headers
+            }).then((res) =>{
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
             return deferred.promise;
         }
 
