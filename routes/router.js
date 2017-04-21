@@ -96,6 +96,8 @@ router.delete('/organizer/deleteTeam',organizerController.deleteTeam);
 router.get('/organization/getOrganization',teamController.getOrganization);
 router.get('/organization/getGamesInOrganization',teamController.getGamesInOrganization);
 router.get('/organization/search',organizationController.searchOrganization);
+router.put('/organization/editOrganization', organizationController.editOrganization);
+router.post('/organization/addOrganization', organizationController.addOrganization);
 
 // team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
