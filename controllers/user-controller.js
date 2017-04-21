@@ -131,14 +131,17 @@ exports.update = (req, res) =>{
 	*/
 
 	//let type = req.session.user.type;
+	// console.log(req.body);
 	connection.userType('A').query(update_query, [
 		req.body.username,
 		req.body.email,
 		req.body.contact,
 		req.body.id !== undefined ? req.body.id : req.session.user.id // was the id included in the request? if not, default to session user id.
 	], function (err, rows) {
-		if(err) return res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
-		else if (rows.affectedRows === 0) {
+		if(err) {
+			console.log(err);
+			return res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
+		} else if (rows.affectedRows === 0) {
 			return res.status(404).send({ 'message': 'User was not updated.' });
 		} else {
 			req.session.user.username = req.body.username;
@@ -171,6 +174,7 @@ exports.updatePassword = (req, res) => {
 	let update_query = 'CALL update_user_password(?, ?)';
 
 	//let type = req.session.user.type;
+	// console.log("pw: " +req.body.password);
 	connection.userType('A').query(update_query, [
 		req.body.password,
 		req.body.id !== undefined ? req.body.id : req.session.user.id
@@ -220,29 +224,6 @@ exports.registerCompetitor = (req, res) => {
 			};
 
 			return res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
-			/*returnObject.push(
-				{
-					key: "birthday",
-					value: rows[0].birthday
-				},
-				{
-					key: "sex",
-					value: rows[0].sex
-				},
-				{
-					key: "first_name",
-					value: rows[0].first_name
-				},
-				{
-					key: "last_name",
-					value: rows[0].last_name
-				},
-				{
-					key: "nickname",
-					value: rows[0].nickname
-				}
-			);
-			return returnObject;*/
 		}else{
 			console.log(err);
 			if (err.code == 'ER_BAD_NULL_ERROR') {
@@ -281,7 +262,6 @@ exports.getUserInfo = (req,res) => {
 						}
 					});
 				} else {
-							console.log(rows);
 					return res.status(200).send(rows[0][0]);
 				}
 			} else {
