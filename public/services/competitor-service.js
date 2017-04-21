@@ -20,6 +20,7 @@
             getCompetitorOrganization: getCompetitorOrganization,
             getCoachedTeam: getCoachedTeam,
             getTeamMembers: getTeamMembers,
+            createTeam: createTeam,
             deleteTeam: deleteTeam,
             getPendingRequests: getPendingRequests
         }
@@ -168,6 +169,24 @@
                 method: 'DELETE',
                 params: {'team_id': id},
                 url: '/team/deleteTeam',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function createTeam(team){
+            let deferred = $q.defer();
+
+            console.log(team);
+            $http({
+                method: 'POST',
+                data: $.param(team),
+                url: '/team/createTeam',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);

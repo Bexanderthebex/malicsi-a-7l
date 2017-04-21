@@ -7,7 +7,11 @@ exports.createTeam = (req, res) => {
     currentUser = req.session.user;
     query = "CALL create_team(?, ?, ?, ?, ?)";
     query1 = "CALL get_team(?)"
-
+    console.log('current user: '+currentUser.id);
+    console.log(req.body.team_name);
+    console.log(req.body.sport_id); 
+    console.log(req.body.team_organization);
+    console.log(req.body.max_members);
     connection.userType('A').query(query,
         [
             req.body.team_name,

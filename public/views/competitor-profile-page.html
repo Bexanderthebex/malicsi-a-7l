@@ -495,86 +495,54 @@
                 <div class="row">
                     <div class="input-field col l6 m6 s12">
                         <span class="telegrafico">Team Name</span>
-                        <input placeholder="" id="teamName" type="text" class="validate" ng-model="team.tname">
+                        <input placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name">
                     </div>
                     <div class="input-field col l6 m6 s12">
                         <span class="telegrafico">Game</span>
-                        <select class="browser-default">
+                        <select class="browser-default" ng-model="team.game_id" ng-selected="team.game_id">
                             <option selected disabled class="white black-text" value="">&nbsp;</option>
-                            <option class="white black-text" value="">PalICSihan</option>
-                            <option class="white black-text" value="">Palarong UPLB</option>
-                            <option class="white black-text" value="">Summer Olympics 2020</option>
+                            <option class="white black-text" value="1" ng-selected="team.game_id">Palarong UPLB 2015</option>
+                            <option class="white black-text" value="2" ng-selected="team.game_id">PalICsihan 2015</option>
+                            <option class="white black-text" value="3" ng-selected="team.game_id">PalICsihan 2016</option>
+                            <option class="white black-text" value="4" ng-selected="team.game_id">Engineering Meet 2016</option>
+                            <option class="white black-text" value="5" ng-selected="team.game_id">Palarong UPLB 2016</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col l6 m6 s12">
                         <span class="telegrafico">Sports</span>
-                        <select class="browser-default">
+                        <select class="browser-default" ng-model="team.sport_id" ng-selected="team.sport_id">
                             <option selected disabled class="white black-text" value="">&nbsp;</option>
-                            <option class="" value="">Basketball</option>
-                            <option class="" value="">Baseball</option>
-                            <option class="" value="">Football</option>
-                            <option class="" value="">Swimming</option>
-                            <option class="" value="">Hockey</option>
+                            <option class="" value="1" ng-selected="team.sport_id">Basketball</option>
+                            <option class="" value="2" ng-selected="team.sport_id">Volleyball</option>
+                            <option class="" value="3" ng-selected="team.sport_id">Baseball</option>
+                            <option class="" value="4" ng-selected="team.sport_id">100-meter dash</option>
+                            <option class="" value="5" ng-selected="team.sport_id">Tug of war</option>
                         </select>
                     </div>
                     <div class="input-field col l6 m6 s12">
                         <span class="telegrafico">Organization</span>
-                        <select class="browser-default">
+                        <select class="browser-default" ng-model="team.team_organization" ng-selected="team.team_organization">
                             <option selected disabled class="white black-text" value="">&nbsp;</option>
-                            <option class="white black-text" value="">Institute of Computer Science</option>
-                            <option class="white black-text" value="">College of Arts and Sciences</option>
-                            <option class="white black-text" value="">Philippines</option>
+                            <option class="white black-text" value="1" ng-selected="team.team_organization">College of Sciences</option>
+                            <option class="white black-text" value="2" ng-selected="team.team_organization">College of Arts</option>
+                            <option class="white black-text" value="3" ng-selected="team.team_organization">College of Music</option>
                         </select>
                     </div>
+                   <div class="input-field col l6 m6 s12">
+                        <span class="telegrafico">Max Members</span>
+                        <input placeholder="" id="max_members" type="text" class="validate" ng-model="team.max_members">
+                    </div>
                 </div>
+                <!-- 
                 <div class="row">
                     <span class="telegrafico">Add Members</span>
                     <div class="chips chips-autocomplete"></div>
-    <div class="modal-content competitor-header-fill century-gothic">
-        <div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Create a Team</h4>
-                        </div>
-                    <br>
-                </div>
-            </div>
-        </div>  
-        <div class="row competitor-modal-container  competitor-add-modal-content">
-            <div class="input-field col s5 competitor-input-color-change">
-                <input placeholder=" " id="team-name" type="text" class="validate ">
-                <label for="team-name">Team Name</label>
-            </div>
-            <div class="input-field col s5 competitor-input-color-change">
-                <input placeholder=" " id="organization" type="text" class="validate ">
-                <label for="organization">Organization</label>
-            </div>
-            <div class="input-field col s2 competitor-input-color-change">
-                <input placeholder=" " id="max-members" type="text" class="validate ">
-                <label for="max-members">Max Members</label>
-            </div>
-            <div class="col s12">
-                <label>Add Members</label>
-                <div class="chips chips-autocomplete competitor-input-color-change"></div>
-            </div>
-            
-            <!--
-            organizer_id:req.body.orgId,
-            name : req.body.gameName,
-            start_date : req.body.startDate,
-            end_date : req.body.endDate,
-            location    : req.body.location,
-            description : req.body.description,
-            overall_winner : req.body.gameWinner
-            -->
-        </div>
+                -->
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Team Created', 3000)">CREATE</button>
+        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Team Created', 3000)" ng-click="createTeam()">CREATE</button>
     </div>
 </div>
 
