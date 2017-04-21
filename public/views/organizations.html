@@ -1,0 +1,428 @@
+<div id="mainHolder">
+	<!-- Do not put anything inside main holder -->
+	<!-- Main holder just keeps the main below the navbar -->
+	<div id="main" ng-init="orgsInit()">
+		<!--ORGANIZATIONS HEADER-->
+		<div class="palette-3" id="gamefeed-extend-header">
+			<div class="row gamefeed-game-container">
+				<div class="col s12">
+					<h2 class="center white-text rockwell">Organizations</h2>
+				</div>
+				<div class="col s12 telegrafico gamefeed-sort-part white-text center-align">
+					<p class="orgfeed-sort-adjust">Sort by:
+						<input class="with-gap" name="group3" type="radio" id="Ascending" checked />
+						<label for="Ascending" class="white-text">A-Z</label>
+						<input class="with-gap" name="group3" type="radio" id="Descending" checked />
+						<label for="Descending" class="white-text">Z-A</label>
+					</p>
+				</div>
+			</div>		
+		</div>
+		<!--ORGANIZATIONS HEADER END-->
+		<div class="orgfeed-game-container">
+			<div class="row">
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">A</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a ng-repeat="org in orgsA" href="#/organization/{{org.organization_id}}" class="rockwell"> {{ org.name }}</a>
+									</div>									
+								</div>
+							</div>
+						</div>
+
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">B</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">C</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">D</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">E</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">F</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">G</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">H</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">I</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">J</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">K</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">L</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">M</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">N</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">O</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">P</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">Q</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a ng-repeat="org in orgsA" href="" class="rockwell"> {{ org.name }}</a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">R</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">S</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">T</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a ng-repeat="org in orgsT" href="" class="rockwell"> {{ org.name }}</a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">U</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">V</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a ng-repeat="org in orgsV" href="" class="rockwell"> {{ org.name }}</a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">W</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a ng-repeat="org in orgsW" href="" class="rockwell"> {{ org.name }}</a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">X</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">Y</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						<div class="col s3" >
+							<div class="orgfeed-match palette-border-5">
+								<!-- MATCH TITLE -->
+								<!--ROW 1-->
+								<div class="palette-5 center orgfeed-match-header">
+									<h4 class="telegrafico white-text">Z</h4>
+								</div>
+								<div class="orgfeed-orglist center" style="margin: 0!important; padding-bottom: 15px;">
+									<div class="row" style="margin: 0!important;">
+										<a href="" class="rockwell">  </a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>			
+		
+
+<!--Scripts-->
+<script src="frontend_modules/js/init.js"></script>

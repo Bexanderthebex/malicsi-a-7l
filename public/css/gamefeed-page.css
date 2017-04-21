@@ -1,73 +1,249 @@
-.game-container {
+.gamefeed-game-container {
     margin: 0 auto;
     max-width: 1280px;
-    width: 95%;
+    width: 80%;
 }
 
-.search {
+.gamefeed-game-search {
     padding-left: 0 !important;
     padding-right: 0 !important;
     position: inherit !important;
 }
 
-.padding-right {
+.gamefeed-padding-right {
     padding-right: 0rem !important;
 }
 
-.padding-left {
+.gamefeed-padding-left {
     padding-left: 0rem !important;
 }
 
-.small-action {
-    height: 10px;
-}
-
-.smaller-pic {
+.gamefeed-smaller-pic {
     width: 5em;
     height: 5em;
 }
 
-.halfway-fab {
+.gamefeed-fab-adjust {
     bottom: -40px !important;
 }
 
-.extra-padding {
-    padding-top: 20% !important;   
+.gamefeed-padding-down {
+    /*padding-top: 10px;*/
+    padding-bottom: 26px;
+    padding-right: 10px;
 }
 
-.padding-down {
-    padding-bottom: 5% !important;
-}
-
-.deletion {
-    width: 30%;
-}
-
-.addition {
-    width: 40%;
-    /*height: 60%;*/
-}
-
-.remove-bottom {
+.gamefeed-remove-bottom {
   margin-bottom: 0px !important;
 }
 
-.btn-height {
+.gamefeed-btn-height {
     height: 36px !important;
 }
 
-.search-adjust {
+.gamefeed-search-adjust {
     margin-top: -13px;
 }
 
-.sort-adjust {
-    margin-top: 9px !important;
+.gamefeed-sort-adjust {
+    margin-top: 5px !important;
 }
 
-#delete-modal_1 {
+#gamefeed-delete-game {
     margin-top: 10%;
+    width: 30%;
 }
 
-#add-modal {
-    margin-top: 5%;
+#gamefeed-add-game {
+    margin-top: 3%;
+}
+
+#gamefeed-update-game {
+    margin-top: 3%;
+}
+
+#gamefeed-extend-header {
+    height: 12%;
+    padding-top: 25px;
+}
+
+.gamefeed-adjust-label {
+    top: -14px !important;
+    font-size: 0.8rem !important;
+}
+
+#gamefeed-give-padding {
+    padding-right: 10px;
+}
+
+.gamefeed-textarea-color {
+    background-color: white !important;
+}
+
+
+#gamefeed-game-search input{
+    margin: 0;
+}
+
+#gamefeed-game-search-bar input {
+    outline: none;
+}
+
+#gamefeed-game-search-bar input[type=search] {
+    -webkit-appearance: textfield;
+    -webkit-box-sizing: content-box;
+    font-family: "telegrafico";
+    font-size: 16px;
+}
+
+#gamefeed-game-search-bar input::-webkit-search-decoration,
+#gamefeed-game-search-bar input::-webkit-search-cancel-button {
+    display: none; 
+}
+
+#gamefeed-game-search-bar input[type=search] {
+    background: white url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+    border: none;
+    padding: 9px 10px 9px 32px;
+    width: 95%;
+    -webkit-border-radius: 10em;
+    -moz-border-radius: 10em;
+    border-radius: 10em;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+#gamefeed-game-search-bar input[type=search] {
+    height: 17px;
+}
+
+#gamefeed-game-search-bar input:-moz-placeholder {
+    color: transparent;
+}
+
+#gamefeed-game-search-bar input::-webkit-input-placeholder {
+    color: transparent;
+}
+
+.gamefeed-sort-part {
+    width: 100%;
+}
+
+
+.gamefeed-match{
+    border: solid 2.5px;
+    border-radius: 8px;
+    min-height: 100px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.gamefeed-match-title, .gamefeed-match-players{
+    margin: 0 !important;
+}
+
+.gamefeed-match-title div, .gamefeed-match-players div{
+    padding: 0 !important;
+}
+
+.gamefeed-description{
+    font-size: 10px;
+    font-family: "century-gothic";
+    letter-spacing: 1px;
+}
+
+.gamefeed-match-container{
+    padding-left: 10px; 
+    padding-right: 10px; 
+    padding-bottom: 10px; 
+}
+
+.gamefeed-match-header {
+    margin-top: -18px !important;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+#gamefeed-game-title .gamefeed-match:hover {
+    border-color: #001f2b;
+    color: white !important;
+    transition: background-color 0.5s;
+    background: #001f2b;
+}
+
+#game-ongoing-match .gamefeed-match:hover {
+    border-color: #00415a;
+    color: white !important;
+    background: #00415a;
+    transition: background-color 0.5s;
+}
+
+#game-upcoming-match .gamefeed-match:hover {
+    border-color: #00719c;
+    color: white !important;
+    transition: background-color 0.5s;
+    background: #00719c;
+}
+
+.gamefeed-match-info{
+    font-size: 12px;
+    font-family: "century-gothic";
+    letter-spacing: 1px;
+}
+
+.gamefeed-header-fill{
+    padding: 0px !important;
+}
+
+.gamefeed-modal-container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+}
+
+.gamefeed-remove-bottom-modal {
+    margin-bottom: 0px !important;
+}
+
+.gamefeed-adjust-icons {
+    font-size: 1.5em !important;
+}
+
+.gamefeed-add-modal-content {
+    margin-top: 20px;
+}
+
+#gamefeed-fab-palette-4 {
+    background-color: #00415a !important;
+}
+
+.gamefeed-input-color-change input:not([type]):focus:not([readonly]),
+.gamefeed-input-color-change input[type=text]:focus:not([readonly]),
+.gamefeed-input-color-change input[type=date]:focus:not([readonly]),
+.gamefeed-input-color-change textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #00415a;
+  box-shadow: 0 1px 0 0 #00415a;
+}
+
+.gamefeed-input-color-change input:not([type]):focus:not([readonly]) + label,
+.gamefeed-input-color-change input[type=text]:focus:not([readonly]) + label,
+.gamefeed-input-color-change input[type=date]:focus:not([readonly]) + label,
+.gamefeed-input-color-change textarea.materialize-textarea:focus:not([readonly]) + label.gamefeed-textarea-label-color-change {
+  color: #00415a;
+}
+
+.gamefeed-textarea-label-color-change{
+    color: #00415a;   
+}
+
+.gamefeed-radio-button [type="radio"]:checked + label:after,
+.gamefeed-radio-button [type="radio"].with-gap:checked + label:before,
+.gamefeed-radio-button [type="radio"].with-gap:checked + label:after {
+  border: 2px solid #00415a;
+}
+
+.gamefeed-radio-button [type="radio"]:checked + label:after,
+.gamefeed-radio-button [type="radio"].with-gap:checked + label:after {
+  background-color: #00415a;
 }

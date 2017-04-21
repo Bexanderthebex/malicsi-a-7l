@@ -1,35 +1,36 @@
 #sports-title{
-	height: 150px;
+	height: 180px;
 	width: 100%;
-	background-image: url("assets/basketball.jpg");
+	background-image: url('/assets/basketball.jpg')!important;
+	background-size: cover;
+	/*background-color:rgba(0,0,0,0.1)!important;*/
 	background-color: #BDBDBD;
 }
 
-#sports-title h4{
+#sports-title h3{
 	letter-spacing: 3px;
-	padding-top: 50px;
+	padding-top: 45px;
 	margin-top: 0;
+	margin-bottom: 0;
 	text-align: center;
+	text-shadow: 2px 2px 3px black;
 }
 
-.sports-details{
-	padding-top: 20px;
+#sports-title h6{
+	letter-spacing: 1px;
 	text-align: center;
-	padding-bottom: 20px;
-}
-
-#sports-details h6{
-	font-style: bold;
-	letter-spacing: 3px;
+	text-shadow: 2px 2px 3px black;
 }
 
 #sports-ranking{
-	margin: 0!important;
-	padding: 0!important;
-	padding-top: 10px!important;
+	margin: 0;
+	padding-left: 0!important;
+	padding-right: 0!important;
+	padding-top: 50px;
+	padding-bottom: 50px;
 	/*background: yellow;*/
 	width: 100%;
-	height: 250px;
+	/*height: 250px;*/
 }
 
 #sports-ranking-title{
@@ -40,7 +41,8 @@
 
 #sports-ranking-body{
 	/*background: blue;*/
-	padding-left: 20px;
+	/*padding-left: 20px!important;*/
+	padding-right: 40px!important;
 	/*padding: 0*/
 	
 }
@@ -56,19 +58,172 @@
 	width: 100%;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	float: left;
+	/*background: blue;*/
 }
 
 #sports-ranking-body > div > div > h5 {
+	font-family: "telegrafico";
 	margin: 0;
 	/*float: left;*/
 }
 
 #sports-ranking-body > div > div > h6 {
+	font-family: "century-gothic";
 	margin: 0;
 	/*float: left;*/
 }
 
 
-#sports-ranking-body > div > div > h3{
+.rank h3{
+	font-family: "rockwell";
 	margin-top: 0;
+}
+
+#sports-details{
+	max-height: 400px;
+	background-image: url('/assets/basketball2.jpg')!important;
+	background-size: cover;
+}
+
+#sports-scoring{
+	text-align: right;
+}
+
+#sports-mechanics, #sports-scoring{
+	margin: 0!important;
+}
+
+.sports-details{
+	background: white;
+	padding: 30px!important;
+	font-size: 12px;
+	opacity: 0.8;
+}
+
+#sports-ranking-view-all{
+	margin-top: 20px;
+	width: 200px;
+	padding: 15px;
+	color: white;
+	font-size: 16px;
+	text-align: center;
+	cursor: pointer!important;
+}
+
+#sports-ranking-view-all:hover{
+	cursor: pointer!important;
+	box-shadow: 1px 1px 5px #212121;
+}
+
+.sports-details-title{
+	font-size: 18px!important;
+}
+
+#sports-matches{
+	margin-bottom: 30px;
+}
+
+.sports-match{
+	border: solid 2.5px;
+	border-radius: 8px;
+	min-height: 100px;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+
+.sports-match-title, .sports-match-players{
+	margin: 0!important;
+}
+
+.sports-match-title div, .sports-match-players div{
+	padding: 0!important;
+}
+
+.sports-match-info{
+	font-size: 10px;
+	font-family: "century-gothic";
+	letter-spacing: 1px;
+}
+
+.sports-match:hover{
+	cursor: pointer!important;
+}
+
+#sports-past-matches .sports-match:hover {
+	background: #001f2b;
+	color: white!important;
+	transition: background 0.5s;
+}
+
+#sports-ongoing-matches .sports-match:hover {
+	background: #00719c;
+	color: white!important;
+	transition: background 0.5s;
+}
+
+#sports-upcoming-matches .sports-match:hover {
+	background: #00415a;
+	color: white!important;
+	transition: background 0.5s;
+}
+
+.sports-type-matches{
+	padding-right: 5px;
+}
+
+.sports-type-matches::-webkit-scrollbar-track
+{
+	background: transparent;
+	/*-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);*/
+	/*background-color: #F5F5F5;*/
+}
+
+.sports-type-matches::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: transparent;
+}
+
+.sports-type-matches::-webkit-scrollbar-thumb
+{
+	background-color: #00719c;
+	border-radius: 5px;
+}
+
+#sports-sponsors{
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+.match-actions{
+	float: left;
+	margin-right: 10px;
+}
+
+.match-actions:hover{
+	color: #00719c;
+	cursor: pointer!important;
+	transition: color 0.3s;
+}
+
+.minimalist-button{
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 3px;
+	border: solid 2px #00719c;
+	color: #00719c;
+	font-weight: bold;
+	background: white;
+	letter-spacing: 1px;
+	font-size: 12px;
+	font-family: telegrafico;
+}
+
+.minimalist-button:hover{
+	background: #00719c;
+	color: white;
+	transition: background 0.3s;
 }

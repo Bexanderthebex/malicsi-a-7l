@@ -1,0 +1,746 @@
+<div id="mainHolder" >
+    <!-- Do not put anything inside main holder -->
+    <!-- Main holder just keeps the main below the navbar -->
+    <div id="main" class="">
+        <div class="row palette-3 competitor-profile-info">
+            <div class="col l3 m5 s12 offset-l1 center">
+                <img id="competitor-profile-img" src="assets/avatar.png" class="pallette-3">
+            </div>
+
+            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCurrentUser()">
+                <h3 class="rockwell">{{ competitor.name }}</h3>
+                <p class="telegrafico">Contact: {{ competitor.contact }} | E-mail: {{ competitor.email }}</p>
+                <p class="telegrafico">
+                    {{ competitor.description }}
+                </p>
+                <div class="row">
+                    <div class="col l3 m2 s12 offset-l9">
+                        <button class="minimalist-button-org" id="edit-profile-button" data-target="edit-profile-modal">EDIT PROFILE</button>
+                    </div>
+                </div>
+            </div>        
+        </div>
+
+        <div class="container col s12">
+            <ul id="competitor-profile-tabs" class="tabs">
+                <li class="tab col s3"><a class="blue-text darken-3 telegrafico active" href="#profile-div">Profile</a></li>
+                <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#teams-managed-div">Teams Managed</a></li>
+                <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#pending-requests-div">Pending Requests</a></li>
+            </ul>
+        </div>
+        <div id="profile-div" class="col s12">
+            <div class="row container">
+                <div class="col s12 m5 l4">
+                    <!-- Statistics -->
+                    <h5 class="rockwell">Statistics</h5>
+                    <div class="row palette-border-5" id="competitor-profile-add-game">
+                        <div id="competitor-stats-panel" class="grey lighten-2 col l12 m12 s12">
+                            <div class="row">
+                                <br>
+                                <div id="stats-panel" class="container">
+                                    <div id="wins-badge" class="circle container valign-wrapper">
+                                        <div class="valign center-block">
+                                            <div id="wins-stat" class="center-align">9</div>
+                                            <div class="telegrafico">FIRST</div>
+                                        </div>
+                                    </div>
+                                    <div class="row center-block margin-bottom-0">
+                                        <div class="col l6 m6 s6 center-block">
+                                            <div id="draws-badge" class="stats-badge circle container valign-wrapper">
+                                                <div class="valign center-block">
+                                                    <div class="stats-num center-align">4</div>
+                                                    <div class="stat-desc telegrafico">SECOND</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col l6 m6 s6 center-block">
+                                            <div id="losses-badge" class="stats-badge circle container valign-wrapper">
+                                                <div class="valign center-block">
+                                                    <div class="stats-num center-align">4</div>
+                                                    <div class="stat-desc telegrafico">THIRD</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                            <div class="row center">
+                                <div class="input-field col l6 m6 s6 offset-l3 offset-m3 offset-s3">
+                                    <select class="browser-default minimalist-button">
+                                        <option value="" selected disabled>Sports</option>
+                                        <option class="white black-text" value="">Basketball</option>
+                                        <option class="white black-text" value="">Baseball</option>
+                                        <option class="white black-text" value="">Football</option>
+                                        <option class="white black-text" value="">Swimming</option>
+                                        <option class="white black-text" value="">Hockey</option>
+                                    </select>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Affiliations -->
+                <div class="col s12 m7 l8">
+                    <h5 class="rockwell">Affiliations</h5>
+                    
+                    <ul class="tabs tabs-fixed-width telegrafico" id="competitor-profile-games">
+                        <li class="tab col s4"><a class="white-text" href="#competitor-teams">TEAMS</a></li>
+                        <li class="tab col s4"><a class="white-text" href="#competitor-organizations">ORGANIZATIONS</a></li>
+                        <!--div class="indicator white" style="z-index: 1"></div-->
+                    </ul>
+
+	                <div id="competitor-teams" class="col s12 affiliation-div" ng-init="getCompetitorTeams()">
+                        <div class="tablewrapper">
+                            <table class="highlight responsive-table competitor-games-data">
+    	                        <tbody>
+    	                            <tr class="century-gothic" ng-repeat="team in competitorteams">
+    	                                <td>{{team.team_name}}</td>
+    	                                <td>{{team.sport_name}}</td>
+    	                            </tr>
+    	                        </tbody>
+    	                    </table>
+                        </div> 
+                        <table class="highlight organizer-showall">
+                            <tbody>
+                                <tr>
+                                    <td class="center-align century-gothic white-text palette-3" id="organizer-ongoing-showall" data-target="organizer-ongoing-modal">&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+	                </div>
+	                <div id="competitor-organizations" class="col s12 affiliation-div">
+	                    <div class="tablewrapper">
+                            <table class="highlight responsive-table competitor-games-data">
+    	                        <tbody>
+    	                            <tr class="century-gothic">
+    	                                <!--td>{{team.organization}}</td-->
+    	                            </tr>
+    	                        </tbody>
+    	                    </table>
+                        </div>
+                        <table class="highlight organizer-showall">
+                            <tbody>
+                                <tr>
+                                    <td class="center-align century-gothic white-text palette-3" id="organizer-ongoing-showall" data-target="organizer-ongoing-modal">&nbsp;</td>
+                                </tr>
+                            </tbody>
+                        </table>
+	                </div>
+	            </div>
+	        </div>
+
+            <!-- Sports Played -->
+            <div class="row container" ng-init="getCompetitorTeams()">
+                <h5 class="rockwell">Sports Played</h5><br>    
+                <div class="chip" ng-repeat="sport in competitorteams">{{sport.sport_name}}</div>
+                <!-- <div class="chip">Baseball</div>
+                <div class="chip">Football</div>
+                <div class="chip">Swimming</div>
+                <div class="chip">Hockey</div> -->
+            </div><br>
+
+            <div class="divider container"></div><br>
+
+            <!-- Games Participated-->
+            <div class="row container" ng-init="">
+                <h5 class="rockwell left-align">Games Participated</h5><br>    
+                <div class="row">
+                    <div class="col s3 m3 l2 push-s9 push-m9 push-l10 center-align recent-games-card see-more">
+                        <button href="" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
+                    </div>
+                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card">
+                        <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                        <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+                    </div>
+                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card">
+                        <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                        <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+                    </div>
+                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card">
+                        <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                        <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="row competitor-footer black">
+                <div class="black">
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="#"> Help </a></li>
+                        <li><a href="#"> About Us </a></li>
+                        <li>All Rights Reserved</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="teams-managed-div" class="col s12" ng-init="getCoachedTeam()">
+            <div class="row container">
+                <br>
+                <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
+
+                <ul class="collapsible" data-collapsible="accordion" ng-repeat="cteam in coachedteam">
+                    <li>
+                        <div class="collapsible-header active">
+                            <div class="row remove-bottom century-gothic">
+                                <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
+                                <div class="col l5 m5 s5">{{cteam.team_organization}}</div>
+                                <div class="col l3 m3 s3">{{cteam.sport_name}}</div>
+                                <div class="col l1 m1 s1 center-block">
+                                    <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-body">
+                            <span class="telegrafico">Max Members: {{cteam.max_members}}</span>
+                            <div class="chips chips-initial"></div>
+                        </div>
+                    </li>
+                    <!-- <li>
+                        <div class="collapsible-header active">
+                            <div class="row remove-bottom century-gothic">
+                                <div class="col l3 m3 s3"><b>Real Madrid</b></div>
+                                <div class="col l5 m5 s5">International Federation of Association Football</div>
+                                <div class="col l3 m3 s3">Football</div>
+                                <div class="col l1 m1 s1 center-block">
+                                    <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-body">
+                            <span class="telegrafico">Members</span>
+                            <div class="chips chips-initial"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header active">
+                            <div class="row remove-bottom century-gothic">
+                                <div class="col l3 m3 s3"><b>Mighty Ducks</b></div>
+                                <div class="col l5 m5 s5">Canadian Hockey League</div>
+                                <div class="col l3 m3 s3">Hockey</div>
+                                <div class="col l1 m1 s1 center-block">
+                                    <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapsible-body">
+                            <span class="telegrafico">Members</span>
+                            <div class="chips chips-initial"></div>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+
+        <div id="pending-requests-div" class="col s12">
+            <div class="row container">
+                <div class="col s12 bottom-margin">
+                    <h5 class="rockwell">Applications</h5>
+                    <table class="highlight responsive-table">
+                        <tbody>
+                            <tr class="century-gothic">
+                                <td class="bold">Jane Doe</td>
+                                <td>Team-You-Created</td>
+                                <td>Basketball</td>
+                                <td>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Applicant" data-target="competitor-accept-applicant-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Applicant" data-target="competitor-decline-applicant-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="century-gothic">
+                                <td class="bold">Jean Doe</td>
+                                <td>Team-You-Created</td>
+                                <td>Football</td>
+                                <td>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Applicant" data-target="competitor-accept-applicant-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Applicant" data-target="competitor-decline-applicant-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="century-gothic">
+                                <td class="bold">Joan Doe</td>
+                                <td>Team-You-Created</td>
+                                <td>Hockey</td>
+                                <td>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Applicant" data-target="competitor-accept-applicant-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Applicant" data-target="competitor-decline-applicant-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container divider"></div>
+                <div class="col s12">
+                    <h5 class="rockwell">Invites</h5>
+                    <table class="highlight responsive-table">
+                        <tbody>
+                            <tr class="century-gothic">
+                                <td class="bold">Jane Mare</td>
+                                <td>Team-You-Are-Invited-To</td>
+                                <td>Basketball</td>
+                                <td>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="century-gothic">
+                                <td class="bold">Jean Mare</td>
+                                <td>Team-You-Are-Invited-To</td>
+                                <td>Football</td>
+                                <td>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="century-gothic">
+                                <td class="bold">Joan Mare</td>
+                                <td>Team-You-Are-Invited-To</td>
+                                <td>Hockey</td>
+   
+                                <td>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
+                                        <i class="fa fa-check fa-lg"></i>
+                                    </div>
+                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
+                                        <i class="fa fa-times fa-lg"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+<!-- Edit Profile Modal -->
+<div id="edit-profile-modal" class="modal">
+    <div class="row remove-bottom">
+        <div class="col s12 padding-left padding-right palette-5">
+            <div class="center">
+                <br>
+                    <div class="card-title white-text center rockwell">
+                        <h5><i class="material-icons">mode_edit</i> Edit Profile</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>  
+    <div class="modal-content">
+        <div class="row">
+            <form class="col s12" ng-init="getCompetitor()">
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <span class="telegrafico">First Name</span>
+                        <input id="firstName" type="text" class="validate" ng-model="competitor.first_name">
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <span class="telegrafico">Last Name</span>
+                        <input id="lastName" type="text" class="validate" ng-model="competitor.last_name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l4 m4 s12">
+                        <span class="telegrafico">Nickname</span>
+                        <input id="nickname" type="text" class="validate" ng-model="competitor.nickname">
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <span class="telegrafico">Birthdate</span>
+                        <input id="birthdate" class="datepicker validate" ng-model="competitor.birthday">
+                    </div>
+                    <div class="input-field col l4 m4 s12">
+                        <span class="telegrafico">Sex</span><br>
+                        <span><input id="male" type="radio" name="gender" value="m" class="with-gap" ng-model="competitor.sex">
+                        <label class="black-text telegrafico" for="male">Male</label></span>
+                        <span><input id="female" type="radio" name="gender" value="f" class="with-gap"  ng-model="competitor.sex">
+                        <label class="black-text telegrafico" for="female">Female</label></span>
+                    </div>
+                </div>
+
+                
+            </form>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
+        <a class="modal-action modal-close waves-effect btn-flat telegrafico" ng-click="editCompetitor()"><i class="material-icons left">check</i>Update</a>
+    </div>
+</div>
+
+<!-- Edit Profile Modal -->
+<div id="edit-profile-modal" class="modal modal-fixed-footer">
+    <div class="modal-content competitor-header-fill century-gothic">
+        <div class="row competitor-remove-bottom">
+            <div class="col s12 competitor-padding-left competitor-padding-right">
+                <div class="center palette-5">
+                    <br>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="competitor-remove-bottom-modal">Edit Profile</h4>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="row competitor-modal-container  competitor-add-modal-content">
+            <div class="input-field col s6 competitor-input-color-change">
+                <input placeholder=" " id="first-name" type="text" class="validate ">
+                <label for="first-name">First Name</label>
+            </div>
+            <div class="input-field col s6 competitor-input-color-change">
+                <input placeholder=" " id="last-name" type="text" class="validate ">
+                <label for="last-name">Last Name</label>
+            </div>
+            <div class="input-field col s4 competitor-input-color-change">
+                <input placeholder=" " id="nickname" type="text" class="validate ">
+                <label for="nickname">Nickname</label>
+            </div>
+            <div class="input-field col s4 competitor-input-color-change">
+                <input id="birthdate" type="date" class="validate ">
+                <label for="birthdate" class="competitor-adjust-label">Birthdate</label>
+            </div>
+            <div class="input-field col s4">
+                <label class="competitor-adjust-label">Sex</label><br>
+                <span><input id="male" type="radio" name="gender" value="m" class="with-gap" ng-model="competitor.sex">
+                <label class="competitor-adjust-label" for="male">Male</label></span>
+                <span><input id="female" type="radio" name="gender" value="f" class="with-gap"  ng-model="competitor.sex">
+                <label class="competitor-adjust-label" for="female">Female</label></span>
+            </div>
+            <div class="input-field col s6 competitor-input-color-change">
+                <input placeholder=" " id="contact" type="text" class="validate ">
+                <label for="contact">Contact</label>
+            </div>
+            <div class="input-field col s6 competitor-input-color-change">
+                <input placeholder=" " id="email" type="email" class="validate ">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field col s12 competitor-input-color-change">
+                <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140"></textarea>
+                <label for="description" class="competitor-textarea-label-color-change">Description</label>
+            </div>
+            <div class="input-field col s6 competitor-input-color-change">
+                <input placeholder=" " id="first-name" type="text" class="validate ">
+                <label for="first-name">Username</label>
+            </div>
+            <div class="input-field col s6 competitor-input-color-change">
+                <input placeholder=" " id="last-name" type="password" class="validate ">
+                <label for="last-name">Password</label>
+            </div>
+
+            <div class="row">
+                <div class="file-title col s12 century-gothic valign-wrapper">
+                    Profile Picture
+                </div>
+
+                <div class="col s12">
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn file-button">
+                                <span>File</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!--
+            organizer_id:req.body.orgId,
+            name : req.body.gameName,
+            start_date : req.body.startDate,
+            end_date : req.body.endDate,
+            location    : req.body.location,
+            description : req.body.description,
+            overall_winner : req.body.gameWinner
+            -->
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-close minimalist-button " >CANCEL</button>
+        <button href="" class="modal-action modal-close minimalist-button inverted-minimalist-btn" onclick="Materialize.toast('Profile Updated', 3000)">UPDATE</button>
+    </div>
+</div>
+
+<!-- Create Team Modal -->
+<div id="create-team-modal" class="modal modal-fixed-footer">
+    <div class="modal-content competitor-header-fill century-gothic">
+        <div class="row competitor-remove-bottom">
+            <div class="col s12 competitor-padding-left competitor-padding-right">
+                <div class="center palette-5">
+                    <br>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="competitor-remove-bottom-modal">Create a Team</h4>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="row competitor-modal-container  competitor-add-modal-content">
+            <div class="input-field col s5 competitor-input-color-change">
+                <input placeholder=" " id="team-name" type="text" class="validate ">
+                <label for="team-name">Team Name</label>
+            </div>
+            <div class="input-field col s5 competitor-input-color-change">
+                <input placeholder=" " id="organization" type="text" class="validate ">
+                <label for="organization">Organization</label>
+            </div>
+            <div class="input-field col s2 competitor-input-color-change">
+                <input placeholder=" " id="max-members" type="text" class="validate ">
+                <label for="max-members">Max Members</label>
+            </div>
+            <div class="col s12">
+                <label>Add Members</label>
+                <div class="chips chips-autocomplete competitor-input-color-change"></div>
+            </div>
+            
+            <!--
+            organizer_id:req.body.orgId,
+            name : req.body.gameName,
+            start_date : req.body.startDate,
+            end_date : req.body.endDate,
+            location    : req.body.location,
+            description : req.body.description,
+            overall_winner : req.body.gameWinner
+            -->
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Team Created', 3000)">CREATE</button>
+    </div>
+</div>
+
+<!--All games participated modal-->
+<div id="competitor-allgames-modal" class="modal modal-fixed-footer">
+    <div class="modal-content competitor-header-fill century-gothic">
+        <div class="row competitor-remove-bottom">
+                <div class="col s12 competitor-padding-left competitor-padding-right">
+                    <div class="center palette-5">
+                        <br>
+                            <div class="card-title white-text center telegrafico" id="thicken">
+                                <h4 class="competitor-remove-bottom-modal">Games Participated</h4>
+                            </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+            <div class="col s4 m4 l4 center-align all-games-card">
+                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
+                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
+    </div>
+</div>
+
+<!-- Accept Applicant Modal -->
+<div id="competitor-accept-applicant-modal" class="modal competitor-prompt">
+    <div class="modal-content competitor-header-fill century-gothic   ">
+        <div class="row competitor-remove-bottom">
+            <div class="col s12 competitor-padding-left competitor-padding-right">
+                <div class="center palette-5">
+                    <br>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="competitor-remove-bottom-modal">Accept Applicant</h4>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="row competitor-modal-container">
+            <p>Are you sure you want to accept [APPLICANT NAME]'s request to join [TEAM NAME]?</p>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Application Accepted', 4000)">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button>
+    </div>
+</div>
+
+<!-- Decline Applicant Modal -->
+<div id="competitor-decline-applicant-modal" class="modal competitor-prompt">
+    <div class="modal-content competitor-header-fill century-gothic   ">
+        <div class="row competitor-remove-bottom">
+            <div class="col s12 competitor-padding-left competitor-padding-right">
+                <div class="center palette-5">
+                    <br>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="competitor-remove-bottom-modal">Decline Applicant</h4>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="row competitor-modal-container">
+            <p>Are you sure you want to decline [APPLICANT NAME]'s request to join [TEAM NAME]?</p>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Application Declined', 4000)">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button>
+    </div>
+</div>
+
+<!-- Accept Invitation Modal -->
+<div id="competitor-accept-invitation-modal" class="modal competitor-prompt">
+    <div class="modal-content competitor-header-fill century-gothic   ">
+        <div class="row competitor-remove-bottom">
+            <div class="col s12 competitor-padding-left competitor-padding-right">
+                <div class="center palette-5">
+                    <br>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="competitor-remove-bottom-modal">Accept Invitation</h4>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="row competitor-modal-container">
+            <p>Are you sure you want to accept [INVITEE NAME]'s request to join [TEAM NAME]?</p>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Invitation Accepted', 4000)">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button>
+    </div>
+</div>
+
+<!-- Decline Invitation Modal -->
+<div id="competitor-decline-invitation-modal" class="modal competitor-prompt">
+    <div class="modal-content competitor-header-fill century-gothic   ">
+        <div class="row competitor-remove-bottom">
+            <div class="col s12 competitor-padding-left competitor-padding-right">
+                <div class="center palette-5">
+                    <br>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="competitor-remove-bottom-modal">Decline Invitation</h4>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="row competitor-modal-container">
+            <p>Are you sure you want to decline [INVITEE NAME]'s request to join [TEAM NAME]?</p>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Invitation Declined', 4000)">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button>
+    </div>
+</div>
+
+<!-- Delete Team Modal -->
+<div id="competitor-delete-team-modal" class="modal competitor-prompt">
+    <div class="modal-content competitor-header-fill century-gothic   ">
+        <div class="row competitor-remove-bottom">
+            <div class="col s12 competitor-padding-left competitor-padding-right">
+                <div class="center palette-5">
+                    <br>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="competitor-remove-bottom-modal">Delete Team</h4>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="row competitor-modal-container">
+            <p>Are you sure you want to delete [TEAM NAME]?</p>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Team Deleted', 3000)">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button>
+    </div>
+</div>
+
+<!-- Delete Team Member Modal -->
+<div id="competitor-remove-member" class="modal">
+    <div class="row remove-bottom">
+        <div class="col s12 padding-left padding-right palette-5">
+            <div class="center">
+                <br>
+                    <div class="card-title white-text center rockwell">
+                        <h5>Remove Team Member</h5>
+                    </div>
+                <br>
+            </div>
+        </div>
+    </div>  
+    <div class="modal-content telegrafico">
+        <p>Are you sure you want to remove [TEAM MEMBER] from the [TEAM NAME]?</p>
+    </div>
+    <div class="divider"></div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect btn-flat" onclick="Materialize.toast('Member Removed', 3000)"><i class="material-icons left">close</i>No</a>
+        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+    </div>
+</div>
+
+<!--  Scripts-->
+<script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>
+<script type="text/javascript" src="../js/competitor-profile-page.js"></script>

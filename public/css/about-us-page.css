@@ -1,0 +1,51 @@
+.cover-photo {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+#dev-team {
+  height: 255px;
+  overflow-y: auto;
+}
+
+#details-div {
+  background-color: rgba(255,255,255,0.3);
+}
+
+#project-manager-card {
+  width: 
+}
+
+.dev-member-card {
+  background-color: rgba(255,255,255,0.3);
+}
+
+.col-margin-remove {
+  margin-left: 0 !important;
+}
+
+.bordered-div {
+  border: 2px solid #00415a;
+  border-radius: 5px;
+}
+
+#about-us-img-1 {
+  background-image: url('/assets/dev-team-photo-3.jpg');
+  height: 500px;
+}
+
+#about-us-img-2 {
+  background-image: url('/assets/dev-team-photo.png');
+  height: 500px;
+}
+
+#about-us-img-1s {
+  background-image: url('/assets/dev-team-photo-3.jpg');
+  height: 250px;
+}
+
+#about-us-img-2s {
+  background-image: url('/assets/dev-team-photo.png');
+  height: 250px;
+}

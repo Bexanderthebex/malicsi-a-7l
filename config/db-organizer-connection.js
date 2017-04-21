@@ -5,13 +5,15 @@ const connection = mysql.createConnection({
   host : 'localhost',
   user : 'organizer',
   password : 'password3',
-  db : 'malicsi'
+  db : 'malicsi',
+  dateStrings: true
 });
 
 connection.connect((err) => {
     if (!err) {
         console.log("Organizer database connected!");
     } else {
+    	console.log(err);
         console.log("Error in database connection!");
     }
 });

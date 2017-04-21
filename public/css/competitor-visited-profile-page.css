@@ -1,0 +1,307 @@
+.visited-competitor-profile-info {
+    height: 250px;
+    background-color: #00719c;;
+    /*background-image: url('/assets/basketball.jpg')!important;*/
+}
+
+#visited-competitor-profile-img {
+  max-width: auto;
+  max-height: 250px;
+}
+
+#visited-competitor-profile-right-panel {
+    position: relative;
+    margin-left: 25%;
+    width: 75%;
+}
+
+#create-team-button {
+}
+
+.bottom-margin {
+  margin-bottom: 20px;
+}
+
+.slide-item {
+    margin-bottom: 0px !important;
+}
+
+table.highlight tbody tr:hover {
+    /*background-color: #00719c !important;*/
+    /*color: white;*/
+    cursor: pointer!important;
+}
+
+#update-bio-icon {
+  cursor: pointer!important;
+}
+
+.profile-links:hover {
+  cursor: pointer!important;
+  text-decoration: underline !important;
+}
+
+
+#visited-competitor-profile-tabs .indicator {
+  background-color: #00a5d3;
+}
+
+#requests-tabs .indicator {
+  background-color: #00a5d3;
+}
+
+#requests-tabs {
+  background-color: transparent !important;
+}
+
+#visited-competitor-teams, #visited-competitor-organizations {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  height: 260px !important;
+
+}
+
+div.tablewrapper {
+  height: 260px;
+  overflow-y: hidden;
+  border-left: 3px solid #00719c;
+  border-right: 3px solid #00719c;
+}
+
+div.tablewrapper table tbody tr {
+  
+}
+
+#visited-competitor-ongoing-showall {
+    color: white !important;
+}
+
+.visited-competitor-showall {
+    border: solid 2.5px;
+    border-color: #00719c;
+    border-radius: 0px 0px 8px 8px !important;
+}
+
+#visited-competitor-profile-games {
+    background-color: #00719c; 
+    border-radius: 8px 8px 0px 0px;
+}
+
+#visited-competitor-profile-games .indicator {
+  background-color: #00b8ff;
+}
+
+.visited-competitor-games-data {
+    border-left: solid 2.5px;
+    border-right: solid 2.5px;
+    border-color: #00719c;
+}
+
+#visited-competitor-profile-add-game {
+    border: solid 2.5px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.visited-competitor-footer {  
+  /*background-color: red;*/
+  /*position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;*/
+  /*padding: 1rem;*/
+  background-color: black !important;
+  text-align: center;
+  height: 6%;
+  margin-bottom: 0px;
+  /*float:left;*/
+}
+
+.visited-competitor-footer ul li {
+  display: inline;
+  color: grey;
+  font-size: 12px!important;    
+  letter-spacing: 2px!important;
+}
+
+.visited-competitor-footer div {
+  margin-top: -0.5%;
+  margin-right: 1%;
+}
+
+/*************************************************************************************************************************/
+
+#stats {
+    margin-top: 0px;
+}
+
+#wins-badge {
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    line-height: normal;
+    background-color: #00b8ff;
+}
+
+#wins-stat {
+    font-size: 30pt;
+    font-weight: bold;
+}
+
+#losses-badge {
+    background-color: #00719c;
+}
+
+#draws-badge {
+    background-color: #00a5d3;
+}
+
+#stats-panel {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.stats-badge {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    line-height: normal;
+}
+
+.stats-num {
+    font-size: 22pt;
+    font-weight: bold;
+}
+
+.stat-desc {
+    font-size: 9pt;
+}
+
+/*************************************************************************************************************************/
+
+#visited-competitor-games-played {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+#visited-competitor-games-played a { 
+  display: inline-block;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none; 
+  position: relative;
+  cursor: pointer;
+}
+
+.visited-competitor-game-img {
+  width: 200px;
+  border-radius: 5px;
+}
+
+.game-desc {
+  background-color: rgba(0, 0, 0, .7);
+  color: black;
+  border-radius: 5px;
+  padding-left: 3px;
+  position: absolute;
+  text-align: left;
+  font-size: 10pt;
+  display: none;
+  color: #fff;
+  top: 0;
+}
+
+/*************************************************************************************************************************/
+
+.bold {
+  font-weight: bold;
+}
+
+.visited-competitor-actions{
+    float: left;
+    margin-right: 10px;
+}
+
+.visited-competitor-actions:hover{
+    color: #00719c;
+    cursor: pointer!important;
+    transition: color 0.3s;
+}
+
+/*************************************************************************************************************************/
+
+.collapsible-body {
+/*  padding-top: 0;
+  padding-bottom: 0; */
+}
+
+.member-img {
+  width: 95px;
+}
+
+/*************************************************************************************************************************/
+
+.visited-competitor-modal-container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+}
+
+.visited-competitor-header-fill{
+    padding: 0px !important;
+}
+
+.visited-competitor-remove-bottom-modal {
+    margin-bottom: 0px !important;
+}
+
+.visited-competitor-padding-right {
+    padding-right: 0rem !important;
+}
+
+.visited-competitor-padding-left {
+    padding-left: 0rem !important;
+}
+
+.visited-competitor-adjust-label {
+    top: -14px !important;
+    font-size: 0.8rem !important;
+}
+
+.visited-competitor-prompt {
+    margin-top: 10%;
+    width: 30%;
+}
+
+.visited-competitor-input-color-change input:not([type]):focus:not([readonly]),
+.visited-competitor-input-color-change input[type=text]:focus:not([readonly]),
+.visited-competitor-input-color-change input[type=email]:focus:not([readonly]),
+.visited-competitor-input-color-change input[type=password]:focus:not([readonly]),
+.visited-competitor-input-color-change input[type=date]:focus:not([readonly]),
+.visited-competitor-input-color-change textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #00415a;
+  box-shadow: 0 1px 0 0 #00415a;
+}
+
+.visited-competitor-input-color-change input:not([type]):focus:not([readonly]) + label,
+.visited-competitor-input-color-change input[type=text]:focus:not([readonly]) + label,
+.visited-competitor-input-color-change input[type=email]:focus:not([readonly]) + label,
+.visited-competitor-input-color-change input[type=password]:focus:not([readonly]) + label,
+.visited-competitor-input-color-change input[type=date]:focus:not([readonly]) + label,
+.visited-competitor-input-color-change textarea.materialize-textarea:focus:not([readonly]) + label.visited-competitor-textarea-label-color-change {
+  color: #00415a;
+}
+
+.visited-competitor-textarea-label-color-change{
+    color: #00415a;   
+}
+
+.checkbox-blue[type="checkbox"] + label:before{
+    background: transparent;
+}
+.checkbox-blue[type="checkbox"]:checked + label:before{
+    border: 2px solid transparent;
+    border-bottom: 2px solid #00719c;
+    border-right: 2px solid #00719c;
+    background: transparent;
+}

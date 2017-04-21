@@ -1,9 +1,17 @@
 $(document).ready(function(){
-	$('.slider6').bxSlider({
-		slideWidth: 300,
-		minSlides: 2,
-		maxSlides: 2,
-		moveSlides: 2,
-		slideMargin: 6
+	$("#signup").on('click', function(){
+		$("#login-panel").css("display", "none");
+		$("#signup-panel").css("display", "inline");
 	});
+
+	$("#backtologin").on('click', function(){
+		$("#login-panel").css("display", "inline");
+		$("#signup-panel").css("display", "none");
+	});
+
+	$('.datepicker').pickadate({
+		format: 'yyyy-mm-dd',
+		selectMonths: true,
+		selectYear: 120
+	})
 });
