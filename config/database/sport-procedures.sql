@@ -124,6 +124,48 @@ BEGIN
 END; //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_ongoing_matches_in_sport;
+DELIMITER //
+CREATE PROCEDURE view_all_ongoing_matches_in_sport(in sport_id_input INT)
+BEGIN
+	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date 
+    FROM sport s, sport_match m, team_in_match tm, team t 
+    WHERE s.sport_id = m.sport_id 
+        AND m.match_id = tm.match_id 
+        AND tm.team_id = t.team_id 
+        AND s.sport_id = sport_id_input 
+        AND m.match_date = curdate();
+END; //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_past_matches_in_sport;
+DELIMITER //
+CREATE PROCEDURE view_all_past_matches_in_sport(in sport_id_input INT)
+BEGIN
+	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date 
+    FROM sport s, sport_match m, team_in_match tm, team t 
+    WHERE s.sport_id = m.sport_id 
+        AND m.match_id = tm.match_id 
+        AND tm.team_id = t.team_id 
+        AND s.sport_id = sport_id_input 
+        AND m.match_date < curdate();
+END; //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_upcoming_matches_in_sport;
+DELIMITER //
+CREATE PROCEDURE view_all_upcoming_matches_in_sport(in sport_id_input INT)
+BEGIN
+	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date 
+    FROM sport s, sport_match m, team_in_match tm, team t 
+    WHERE s.sport_id = m.sport_id 
+        AND m.match_id = tm.match_id 
+        AND tm.team_id = t.team_id 
+        AND s.sport_id = sport_id_input 
+        AND m.match_date > curdate();
+END; //
+DELIMITER ;
+
 
 -- create sport
 GRANT EXECUTE ON PROCEDURE create_sport TO 'organizer'@'localhost';
@@ -174,3 +216,4 @@ GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'organizer'@'local
 GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'guest'@'localhost';
+
