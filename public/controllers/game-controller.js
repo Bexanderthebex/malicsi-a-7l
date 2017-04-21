@@ -77,6 +77,7 @@
             org_rank: undefined
         }
 
+
         $scope.newSport = {
             sportName: undefined,
             mechanics: undefined,
@@ -186,6 +187,10 @@
             if($scope.checkOrganization.length == 0) return true;
             else false;
         }
+
+        // function checkIfOrganizer(){
+        //     if()
+        // }
 
         function addOrganizationToGame(newOrganizationInGame){
            $scope.newOrganizationInGame.orgId = ("#orgID").val();
@@ -576,7 +581,7 @@
                             name: res[i].name,
                             description: res[i].description,
                             checked: false
-                            
+
                         };
 
                         $scope.otherSponsors.push($scope.newSponsorGame);
