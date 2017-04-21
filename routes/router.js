@@ -134,6 +134,7 @@ router.post('/game/addSponsorToGame',  sponsorController.addSponsorToGame);
 router.delete('/game/deleteSponsorFromGame',  sponsorController.deleteSponsorFromGame);
 
 // sponsor routers
+router.get('/sponsor/viewAll', sponsorController.viewAllSponsor);
 router.put('/sponsor/editSponsor',  sponsorController.editSponsorDetails);
 router.post('/sponsor/addSponsor', sponsorController.addSponsor);
 router.delete('/sponsor/deleteSponsor', sponsorController.deleteSponsor);

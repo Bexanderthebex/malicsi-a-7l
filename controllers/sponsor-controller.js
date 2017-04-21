@@ -113,6 +113,18 @@ exports.viewSponsor = (req, res) => {
 		});
 }
 
+exports.viewAllSponsor = (req, res) => {
+	let query = 'SELECT * FROM sponsor_institution';
+	connection.userType('A').query(query, [], (err, rows) => {
+		if(!err){
+			return res.status(200).send(rows);
+		}else{
+			console.log(err)
+			res.status(500).send("Internal Server Error");	
+		}
+	});
+}
+
 exports.viewSponsorInSport = (req, res) => {
 	let query = 'CALL view_sponsor_in_sport(?)';
 	connection.userType('A').query(query,
@@ -182,6 +194,25 @@ exports.deleteSponsorFromGame = (req, res) => {
 			res.status(404).send("Unable to delete sponsor from game!");
 	})
 }
+
+
+/*
+exports.viewSponsor = (req, res) => {
+	let query = 'CALL view_sponsor(?,?)';
+	connection.userType('A').query(query,
+		[
+			req.query.sponsorId
+		],
+		(err, rows) => {
+			if(!err){
+				return res.status(200).send(rows[0]);
+			} 
+			else{
+				res.status(500).send("Internal Server Error");
+			}
+		});
+}
+*/
 
 
 exports.deleteSponsor = (req, res) => {

@@ -402,23 +402,35 @@
 								<tr class="telegrafico">
 									<th>Name</th>
 									<th>Description</th>
-									<th>Inactive / Active</th>
+									<th>Delete Sponsor</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
-								<tr ng-repeat="">
+								<tr ng-repeat="s in sponsors">
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+										<input class="admin-form-edit" type="text" ng-model="s.name" ng-init="s.name">
 									</td>
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+										<input class="admin-form-edit" type="text" ng-model="s.description" ng-init="s.description">
 									</td>
 									<td class="match-player">
-										<div class="switch">
+
+
+
+										<div>
+										<!-- 	<div class="switch">
 											<label>
-											<input class="admin-lever" type="checkbox" ng-init="" ng-model="">
-											<span class="lever" checked=""></span>
-									  </label>
+											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="!!a.is_active" ng-click="setIsActive(!a.is_active, a.id, admins)">
+											<span class="lever" checked="{{ a.is_active }}"></span>
+									  		</label>
+										</div>
+
+
+										<i ng-attr-id="admin-cancel-edit-{{a.id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditAdmin(a)"></i>
+ -->
+
+
+											<i class="admin-form-edit-btn fa fa-close fa-lg" ng-init="a.sponsorId" ng-click="deleteSponsor(a.id)"></i>
 										</div>
 									</td>
 									<td>
@@ -449,7 +461,7 @@
 
 					<div class="row padding-override-0">
 						<div class="col s1 padding-override-0">
-							<button ng-click="addOrganizer()" class="minimalist-button"> SUBMIT </button>
+							<button ng-click="addSponsor()" class="minimalist-button"> SUBMIT </button>
 						</div>
 					</div>
 

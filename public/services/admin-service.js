@@ -20,7 +20,8 @@
 			retrieveLog: retrieveLog, // Log
 			addAdmin: addAdmin,
 			addOrganizer: addOrganizer,
-			searchAdmin: searchAdmin
+			searchAdmin: searchAdmin,
+			addSponsor: addSponsor
 
 			//deleteAdmin: deleteAdmin,
 			//addOrganizer: addOrganizer,
@@ -181,6 +182,23 @@
 				headers: headers
 			}).then((res) => {
 				deferred.resolve(res);
+			}, (err) => {
+				deferred.reject(err);
+			});
+
+			return deferred.promise;
+		}
+
+		function addSponsor(sponsor) {
+			let deferred = $q.defer();
+
+			$http({
+				method: 'POST',
+				url: '/sponsor/addSponsor',
+				data: $.param(sponsor),
+				headers: headers
+			}).then((res)=> {
+				deferred.resove(res);
 			}, (err) => {
 				deferred.reject(err);
 			});

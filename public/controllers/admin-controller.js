@@ -12,6 +12,7 @@
         $scope.users = [];
         $scope.organizers = [];
         $scope.logs = [];
+        $scope.sponsors = [];
 
         UserService.getUsersByType('A').then((res) => {
             $scope.admins = res.data;
@@ -24,6 +25,13 @@
         }, (err) => {
             console.log(err);
         });
+
+        SearchService.retrieveSponsor().then((res) => {
+            $scope.sponsors = res.data;
+            console.log("sponsors", $scope.sponsors);
+        }, (err) => {
+            console.log(err);
+        });        
 
         AdminService.retrieveLog().then((res) => {
             $scope.logs = res.data;
@@ -123,6 +131,23 @@
             });
         }
 
+       /* $scope.setIsActive = (isActive, id, list) => {
+            UserService.setIsActive(isActive, id)
+            .then((res) => {
+                Materialize.toast('User status changed', 2000);
+                for (let a of list) {
+                    if (a.id == id) {
+                        a.is_active = isActive;
+                        break;
+                    }
+                }
+            }, (err) => {
+                Materialize.toast('Something went wrong :\'(', 2000);
+                console.log(err);
+            });
+        }*/
+
+
         $scope.editAdmin = (admin) => {
             if ($('#admin-edit-' + admin.id).data('isEditing')) {
                 $('#admin-edit-' + admin.id).data('isEditing', false);
@@ -220,6 +245,19 @@
             user.username = userCache[user.id].username;
             user.email = userCache[user.id].email;
             user.contact = userCache[user.id].contact;
+        }
+
+        $scope.addSponsor = () => {
+            let sponsor = {
+                name: $scope.sponsorName,
+                description: $scope.sponsorDescription
+            };
+            AdminService.addSponsor(sponsor).then((res) => {
+                Materialize.toast("Sponsor added");
+            }, (err) => {
+                console.log(err);
+                Materialize.toast("An error occured.");
+            });
         }
     }
 })();
