@@ -2,15 +2,18 @@
     angular.module('app')
         .controller('AdminCtrl', AdminCtrl);
 
-    AdminCtrl.$inject = ['$scope', '$http', 'UserService', 'AdminService', 'SearchService', 'OrganizerService'];
+    AdminCtrl.$inject = ['$scope', '$http', 'UserService', 'AdminService', 'SearchService', 'OrganizerService', 'OrganizationService'];
 
-    function AdminCtrl($scope, $http, UserService, AdminService, SearchService, OrganizerService) {
+    function AdminCtrl($scope, $http, UserService, AdminService, SearchService, OrganizerService, OrganizationService) {
         let adminCache = {};
         let userCache = {};
+        let organizerCache = {};
+        let organizationCache = {};
 
         $scope.admins = [];
         $scope.users = [];
         $scope.organizers = [];
+        $scope.organizations = [];
         $scope.logs = [];
         $scope.sponsors = [];
 
@@ -32,6 +35,13 @@
         }, (err) => {
             console.log(err);
         });        
+
+        SearchService.retrieveOrganization('').then((res) => {
+            $scope.organizations = res.data;
+            console.log('organizations', $scope.organizations);
+        }, (err) => {
+            console.log(err);
+        });
 
         AdminService.retrieveLog().then((res) => {
             $scope.logs = res.data;
@@ -64,25 +74,49 @@
         }
 
         $scope.addOrganizer = () => {
-            AdminService.addOrganizer({
-                username: $scope.organizerUsername,
-                password: $scope.organizerPassword,
-                email: $scope.organizerEmail,
-                contact: $scope.organizerContact,
-                name: $scope.organizerName,
-                description: $scope.organizerDescription
-            }).then((res) => {
-                $scope.organizerUsername = "";
-                $scope.organizerPassword = "";
-                $scope.organizerEmail = "";
-                $scope.organizerContact = "";
-                $scope.organizerName = "";
-                $scope.organizerDescription = "";
+            if($scope.organizerUsername === undefined || $scope.organizerPassword == undefined || $scope.organizerEmail === undefined || $scope.organizerContact === undefined || $scope.organizerName === undefined || $scope.organizerDescription === undefined){
+                Materialize.toast('Error. Missing text filed.', 2000);
+            }else{
+                AdminService.addOrganizer({
+                    username: $scope.organizerUsername,
+                    password: $scope.organizerPassword,
+                    email: $scope.organizerEmail,
+                    contact: $scope.organizerContact,
+                    name: $scope.organizerName,
+                    description: $scope.organizerDescription
+                }).then((res) => {
+                    $scope.organizerUsername = "";
+                    $scope.organizerPassword = "";
+                    $scope.organizerEmail = "";
+                    $scope.organizerContact = "";
+                    $scope.organizerName = "";
+                    $scope.organizerDescription = "";
 
-                console.log('add organizer', res.data);
-            }, (err) => {
+                    console.log('add organizer', res.data);
 
-            });
+                    Materialize.toast('Successfully created organizer.', 2000);
+                }, (err) => {
+                    console.log('Add organizer', err);
+                });
+            }
+        }
+
+        $scope.addOrganization = () => {
+            if($scope.organizationName === undefined){
+                Materialize.toast('Error. Missing text filed.', 2000);
+            }else{
+                AdminService.addOrganization({
+                    name: $scope.organizationName,
+                }).then((res) => {
+                    $scope.organizationName = "";
+
+                    console.log('add organization', res.data);
+
+                    Materialize.toast('Successfully created organization..', 2000);
+                }, (err) => {
+                    console.log('Add organizer', err);
+                });
+            }
         }
 
         $scope.searchAdmin = () => {
@@ -105,6 +139,16 @@
             })
         }
 
+        $scope.searchOrganization = () => {
+            SearchService.retrieveOrganization($scope.organizationSearch)
+            .then((res) => {
+                $scope.organizations =  res.data;
+                console.log('organizations', $scope.organizations);
+            }, (err) => {
+                console.log(err);
+            })
+        }
+
         $scope.searchUser = () => {
             SearchService.retrieveUser($scope.userSearch)
             .then((res) => {
@@ -113,6 +157,10 @@
             }, (err) => {
                 console.log(err);
             })
+        }
+
+        $scope.searchLog = (startDate) => {
+            console.log('startDAte', startDate.getFullYear());
         }
 
         $scope.setIsActive = (isActive, id, list) => {
@@ -186,31 +234,75 @@
         }
 
         $scope.editOrganizer = (organizer) => {
-            if($('#organizer-edit-' +organizer.id).data('isEditing')) {
-               $('#organizer-edit-' +organizer.id).data('isEditing', false);
+            if ($('#organizer-edit-' + organizer.id).data('isEditing')) {
+                $('#organizer-edit-' + organizer.id).data('isEditing', false);
+                $('#organizer-cancel-edit-' + organizer.id).hide();
+                $('.organizer-form-edit-' + organizer.id).prop('disabled', true);
 
-                let name = organizer.newName === undefined
-                    || organizer.newName.trim() === ""
-                    ? organizer.name : organizer.newName;
-
-                let description = organizer.newDesc === undefined
-                    || organizer.newDesc.trim() === ""
-                    ? organizer.description : organizer.newDesc;
-
-                organizer.name = name;
-                organizer.description = description;
-
-                OrganizerService.updateOrganizer(organizer)
-                .then((res) =>{
-                    Materialize.toast('Organizer info updated.', 2000);
-                }, (err) =>{
+                 OrganizerService.updateOrganizer(organizer)
+                .then((res) => {
+                    Materialize.toast('Organizer info edited.', 2000);
+                }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
                     console.log(err);
                 });
             } else {
-                $('#organizer-edit-' +organizer.id).data('isEditing', true);
+                $('#organizer-edit-' + organizer.id).data('isEditing', true);
+                $('#organizer-cancel-edit-' + organizer.id).show();
+                $('.organizer-form-edit-' + organizer.id).prop('disabled', false);
+
+                organizerCache[organizer.id] = {}
+                organizerCache[organizer.id].name = organizer.name;
+                organizerCache[organizer.id].description = organizer.description;
             }
         }
+
+        $scope.cancelEditOrganizer = (organizer) => {
+            $('#organizer-edit-' + organizer.id).data('isEditing', false);
+            $('#organizer-cancel-edit-' + organizer.id).hide();
+            $('.organizer-form-edit-' + organizer.id).prop('disabled', true);
+
+            console.log(organizerCache)
+
+            organizer.name = organizerCache[organizer.id].name;
+            organizer.description = organizerCache[organizer.id].description;
+        }
+
+        $scope.editOrganization = (organization) => {
+            console.log('pasok sa editOrganization');
+            console.log('id', organization.organization_id);
+            if ($('#organization-edit-' + organization.organization_id).data('isEditing')) {
+                $('#organization-edit-' + organization.organization_id).data('isEditing', false);
+                $('#organization-cancel-edit-' + organization.organization_id).hide();
+                $('.organization-form-edit-' + organization.organization_id).prop('disabled', true);
+
+                 OrganizationService.updateOrganization(organization)
+                .then((res) => {
+                    Materialize.toast('Organization info edited.', 2000);
+                }, (err) => {
+                    Materialize.toast('Something went wrong :\'(', 2000);
+                    console.log(err);
+                });
+            } else {
+                $('#organization-edit-' + organization.organization_id).data('isEditing', true);
+                $('#organization-cancel-edit-' + organization.organization_id).show();
+                $('.organization-form-edit-' + organization.organization_id).prop('disabled', false);
+
+                organizationCache[organization.organization_id] = {}
+                organizationCache[organization.organization_id].name = organization.name;
+            }
+        }
+
+        $scope.cancelEditOrganization = (organization) => {
+            $('#organization-edit-' + organization.organization_id).data('isEditing', false);
+            $('#organization-cancel-edit-' + organization.organization_id).hide();
+            $('.organization-form-edit-' + organization.organization_id).prop('disabled', true);
+
+            console.log(organizationCache)
+
+            organization.name = organizationCache[organization.organization_id].name;
+        }
+
 
         $scope.editUser = (user) => {
             if ($('#user-edit-' + user.id).data('isEditing')) {
