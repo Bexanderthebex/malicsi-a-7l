@@ -135,7 +135,7 @@
             console.log(sport_id);
             $http({
                 method: 'GET',
-                params: {'sportID':sport_id}.
+                params: {'sportID':sport_id},
                 url: '/sport/match/viewFutureMatch',
                 headers: headers
             }).then((res) =>{
