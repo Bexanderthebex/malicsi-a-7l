@@ -44,13 +44,13 @@
 				<h4 class="rockwell center strong" style="margin: 0!important;">Matches
 
 				<!-- ADD MATCH BUTTON -->
-					<i class="fa fa-plus-square match-actions" data-target="match-add-modal"></i>
+					<i class="fa fa-plus match-actions" data-target="match-add-modal"></i>
 				</h4>
 			</div>
 			<div class="row">
 
 				<!-- P A S T MATCHES -->
-				<div id="sports-past-matches" class="col s4">
+				<div id="sports-past-matches" class="col s4" ng-init="viewPastMatchesInSport()" ng-hide="checkPastMatches()">
 					<h5 class="telegrafico center">PAST MATCHES</h5>
 
 					<!-- LIST OF MATCHES -->
@@ -66,108 +66,21 @@
 							<div style="margin-bottom: 10px;">
 								<!-- One player -->
 								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
+									<div class="col s9 century-gothic">{{ pastMatch.team1_name }}</div>
 									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
 								</div>
 								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
+									<div class="col s9 century-gothic">{{ pastMatch.team2_name }}</div>
 									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
 								</div>
 							</div>
 
 							<!-- MATCH INFO -->
 							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
+								Start: {{ pastMatch.time_start }} • End: {{ pastMatch.timeEnd }}
 							</div>
 							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-5">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-5">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-5">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
+								Date: {{ pastMatch.match_date }}
 							</div>
 						</div>
 					</div>
@@ -190,108 +103,21 @@
 							<div style="margin-bottom: 10px;">
 								<!-- One player -->
 								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
+									<div class="col s9 century-gothic">{{Ateneo Blue Eagles}}</div>
 									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
 								</div>
 								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
+									<div class="col s9 century-gothic">{{UP Fighting Maroons}}</div>
 									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
 								</div>
 							</div>
 
 							<!-- MATCH INFO -->
 							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
+								Start: {{08:00AM}} • End: {{11:00AM}}
 							</div>
 							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-3">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-3">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-3">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
+								Date: {{03/20/2007}}
 							</div>
 						</div>
 					</div>
@@ -314,224 +140,17 @@
 							<div style="margin-bottom: 10px;">
 								<!-- One player -->
 								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-4">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
+									<div class="col s9 century-gothic">{{Teams here}}</div>
 									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
 								</div>
 							</div>
 
 							<!-- MATCH INFO -->
 							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
+								Start: {{08:00AM}} • End: {{11:00AM}}
 							</div>
 							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-4">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-4">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-4">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-4">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-4">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
-							</div>
-						</div>
-
-						<div data-target="match-edit-modal" class="sports-match palette-border-4">
-							<!-- MATCH TITLE -->
-							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
-							</div>
-
-							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;">
-								<!-- One player -->
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">Ateneo Blue Eagles</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
-								</div>
-								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">UP Fighting Maroons</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
-								</div>
-							</div>
-
-							<!-- MATCH INFO -->
-							<div class="sports-match-info">
-								Start: 08:00AM • End: 11:00AM
-							</div>
-							<div class="sports-match-info">
-								Date: 03/20/2007
+								Date: {{03/20/2007}}
 							</div>
 						</div>
 					</div>
@@ -562,7 +181,7 @@
 		<div id="sports-sponsors" class="palette-5">
 			<h5 class="rockwell center white-text">Sponsors</h5>
 			<div class="row palette-text-3" style="padding-left: 200px; padding-right: 200px; text-align: center;">
-				<div class="col s3">Yakult</div>
+				<!-- <div class="col s3">Yakult</div>
 				<div class="col s3">Bear Brand</div>
 				<div class="col s3">Meralco</div>
 				<div class="col s3">Rain or Shine</div>
@@ -574,17 +193,26 @@
 				<div class="col s3">Golden cubes</div>
 				<div class="col s3">Chepar</div>
 				<div class="col s3">Something</div>
-				<div class="col s3">PLDT</div>
+				<div class="col s3">PLDT</div> -->
+				<div class="col s3" ng-repeat="spon in sponsors">{{ spon.name }}</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- RANKINGS MODAL -->
 	<div id="rankings-view-all-modal" class="modal modal-fixed-footer">
-        <div class="modal-content container">
-            <div class="row">
-                <h4 class="rockwell center">Rankings</h4>
-            </div>
+        <div class="row center organizer-modal-style">
+            <div class="row remove-bottom">
+	            <div class="col s12 padding-left padding-right palette-5">
+	                <div class="center">
+	                    <br>
+	                        <div class="card-title white-text center telegrafico">
+	                            <h4>Rankings</h4>
+	                        </div>
+	                    <br>
+	                </div>
+	            </div>
+	        </div>  
             <table>
             	<thead>
             		<tr>
@@ -619,24 +247,32 @@
 
 	<!-- EDIT MATCH MODAL -->
     <div id="match-edit-modal" class="modal modal-fixed-footer">
-        <div class="modal-content container">
-            <div class="row">
-                <h4 class="rockwell center">Edit Match</h4>
-            </div>
+        <div class="row center organizer-modal-style">
+            <div class="row remove-bottom">
+	            <div class="col s12 padding-left padding-right palette-5">
+	                <div class="center">
+	                    <br>
+	                        <div class="card-title white-text center telegrafico">
+	                            <h4>Edit Match</h4>
+	                        </div>
+	                    <br>
+	                </div>
+	            </div>
+	        </div>  
 
             <!-- EDIT MATCH INFO -->
             <div class="row">
             	<div class="input-field col s4">
             		<span class="telegrafico">Start Time</span>
-                    <input id="match-start-time" class="timepicker" type="time">
+                    <input id="match-start-time" class="organizer-input-style timepicker" type="time">
                 </div>
                 <div class="input-field col s4">
                 	<span class="telegrafico">End Time</span>
-                    <input id="match-end-time" class="timepicker" type="time">
+                    <input id="match-end-time" class="organizer-input-style timepicker" type="time">
                 </div>
                 <div class="input-field col s4">
                 	<span class="telegrafico">Date</span>
-                	<input type="date" class="datepicker">
+                	<input type="date" class="organizer-input-style">
                 </div>
             </div>
 
@@ -661,11 +297,11 @@
             				<div ng-hide="!view"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
             			</td>
             			<td>
-            				<div class="match-actions">
-            					<i class="fa fa-minus-square fa-lg"></i>
-            				</div>
             				<div class="match-actions" ng-click="view = !view">
-            					<i class="fa fa-pencil-square-o fa-lg"></i>
+            					<i class="fa fa-pencil fa-lg"></i>
+            				</div>
+            				<div class="match-actions">
+            					<i class="fa fa-minus fa-lg"></i>
             				</div>
             			</td>
             		</tr>
@@ -675,11 +311,11 @@
             				<div ng-hide="!view2"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
             			</td>
             			<td>
-            				<div class="match-actions">
-            					<i class="fa fa-minus-square fa-lg"></i>
-            				</div>
             				<div class="match-actions" ng-click="view2 = !view2">
-            					<i class="fa fa-pencil-square-o fa-lg"></i>
+            					<i class="fa fa-pencil fa-lg"></i>
+            				</div>
+            				<div class="match-actions">
+            					<i class="fa fa-minus fa-lg"></i>
             				</div>
             			</td>
             		</tr>
@@ -689,11 +325,11 @@
             				<div ng-hide="!view3"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
             			</td>
             			<td>
-            				<div class="match-actions">
-            					<i class="fa fa-minus-square fa-lg"></i>
-            				</div>
             				<div class="match-actions" ng-click="view3 = !view3">
-            					<i class="fa fa-pencil-square-o fa-lg"></i>
+            					<i class="fa fa-pencil fa-lg"></i>
+            				</div>
+            				<div class="match-actions">
+            					<i class="fa fa-minus fa-lg"></i>
             				</div>
             			</td>
             		</tr>
@@ -740,7 +376,7 @@
 	        <div class="row" style="margin: 0; margin-top: 10px;"><span class="telegrafico">Add Player</span></div>
             <div class="row">
 	            <div class="input-field col s4" style="margin: 0!important;">
-	            	<input type="text" placeholder="Team Name">
+	            	<input type="text" placeholder="Team Name" class="organizer-input-style">
 	            </div>
 	            <div class="col s4 center">
             		<button class="minimalist-button">ADD</button>
@@ -754,26 +390,34 @@
 
 	<!-- ADD MATCH MODAL -->
     <div id="match-add-modal" class="modal modal-fixed-footer">
-        <div class="modal-content container">
-            <div class="row">
-                <h4 class="rockwell center">Add Match</h4>
-            </div>
+        <div class="row center organizer-modal-style">
+            <div class="row remove-bottom">
+	            <div class="col s12 padding-left padding-right palette-5">
+	                <div class="center">
+	                    <br>
+	                        <div class="card-title white-text center telegrafico">
+	                            <h4>Add Match</h4>
+	                        </div>
+	                    <br>
+	                </div>
+	            </div>
+	        </div>  
 
             <!-- EDIT MATCH INFO -->
             <div class="row">
             	<div class="input-field col s6">
             		<span class="telegrafico">Start Time</span>
-                    <input id="match-start-time" class="timepicker" type="time" ng-model="timeStart">
+                    <input id="match-start-time" class="organizer-input-style timepicker" type="time" ng-model="timeStart">
                 </div>
                 <div class="input-field col s6">
                 	<span class="telegrafico">End Time</span>
-                    <input id="match-end-time" class="timepicker" type="time" ng-model="timeEnd">
+                    <input id="match-end-time" class="organizer-input-style timepicker" type="time" ng-model="timeEnd">
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col l6 s12">
                 	<span class="telegrafico">Date</span>
-                	<input class="datepicker" id="matchdate" ng-model="newMatch.date">
+                	<input class="organizer-input-style " id="matchdate" type="date" ng-model="newMatch.date">
                 </div>
             </div>
 

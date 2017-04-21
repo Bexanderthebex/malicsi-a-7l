@@ -13,18 +13,32 @@
         $scope.thisOrganization = {
             organization_id: $routeParams.id
         };
-        $scope.currentUser = [];
+        $scope.currentUser = {};
         $scope.teams = [];
         $scope.temp = [];
-        $scope.teamStats = [];
-        $scope.organizationStats = [];
+        $scope.teamStats = {
+            "first" : 0,
+            "second" : 0,
+            "third" : 0,
+            "total" : 0
+        };
+        $scope.organizationStats = {
+            "first" : 0,
+            "second" : 0,
+            "third" : 0,
+            "total" : 0
+        };
         $scope.organization = {};
         $scope.gamesInOrganization = [];
+        $scope.teamModal = {};
+        $scope.teamMembers = [];
         $scope.retrieveTeams = retrieveTeams;
+        $scope.retrieveTeam = retrieveTeam;
         $scope.joinTeam = joinTeam;
         $scope.initPage = initPage;
-        $scope.retrieveTeamStatistics = retrieveTeamStatistics;
-        $scope.retrieveOrganizationStatistics = retrieveOrganizationStatistics;
+        //$scope.retrieveMembers = retrieveMembers;
+        //$scope.retrieveTeamStatistics = retrieveTeamStatistics;
+        //$scope.retrieveOrganizationStatistics = retrieveOrganizationStatistics;
         $scope.retrieveOrganization = retrieveOrganization;
         $scope.retrieveGamesInOrganization = retrieveGamesInOrganization;
         
@@ -32,7 +46,6 @@
             UserService
                 .getUserInfo()
                 .then(function(res) {
-                    console.log(res.data);
                     $scope.currentUser = res.data;
                 }, function(err) {
                     console.log(err.data);
@@ -43,10 +56,10 @@
             OrganizationService
                 .getOrganization($scope.thisOrganization.organization_id)
                 .then(function(res) {
-                    console.log("Data:");
-                    console.log(res.data);
                     $scope.organization = res.data;
+                    retrieveOrganizationStatistics($scope.thisOrganization.organization_id);
                 }, function(err) {
+                    Materialize.toast('Error loading organization');
                     console.log(err);
                 })
         }
@@ -55,9 +68,9 @@
             OrganizationService
                 .getGamesInOrganization(org_id)
                 .then(function(res) {
-                    console.log(res.data);
                     $scope.gamesInOrganization = res.data;
                 }, function(err) {
+                    Materialize.toast('Error loading games');
                     console.log(err);
                 })
         }
@@ -66,20 +79,64 @@
             OrganizationService
                 .retrieveTeams(org_id)
                 .then(function(res) {
-                    $scope.teams = res.data;
-                    console.log($scope.teams);
+                    var teamTemp = res.data;
+                    var outer = [];
+                    
+                    if(teamTemp.length < 1)
+                        $('#emptyOrganization').text('No Teams Yet');
+                    else{
+                        $('#emptyOrganization').text('');
+                        while(teamTemp.length) outer.push(teamTemp.splice(0,6));
+                        
+                    }
+                    $scope.teams = outer;
                 }, function(err) {
+                    Materialize.toast('Error loading teams');
+                    console.log(err);
+                })
+        }
+
+
+        function retrieveTeam(team_id) {
+            OrganizationService
+                .retrieveTeam(team_id)
+                .then(function(res) {
+                    $scope.teamModal = res.data;
+                    retrieveMembers(team_id);
+                    retrieveTeamStatistics(team_id);
+                }, function(err) {
+                    Materialize.toast('Error loading details');
+                    console.log(err);
+                })
+        }
+
+        function retrieveMembers(team_id) {
+            OrganizationService
+                .retrieveMembers(team_id)
+                .then(function(res) {
+                    $scope.teamMembers = res.data;
+                    if($scope.teamMembers.length < 1)
+                        $('#emptyTeam').text('No Members Yet');
+                    else
+                        $('#emptyTeam').text('');
+                }, function(err) {
+                    Materialize.toast('Error loading details');
                     console.log(err);
                 })
         }
 
         function joinTeam(team_id) {
             OrganizationService
-                .joinTeam(1,team_id)
+                .joinTeam(team_id)
                 .then(function(res) {
-                    console.log("Joined");
+                    Materialize.toast('Sucessfully joined team');
                 }, function(err) {
-                    console.log(err.data);
+                    if(err.data.message.valueOf()=='Duplicate entry') {
+                        Materialize.toast('Already sent request');
+                    } else {
+                        Materialize.toast('Error');
+                        console.log(err.data.message);
+                    }
                 })
         }
 
@@ -87,8 +144,23 @@
             OrganizationService
                 .retrieveTeamStatistics(id)
                 .then(function(res) {
-                    $scope.teamStats = res.data;
+                    console.log(res.data);
+                    if (res.data.ranking == null){
+                        $scope.teamStats.first = 0;
+                        $scope.teamStats.second= 0;
+                        $scope.teamStats.third = 0;
+                        $scope.teamStats.total = 0;
+                        console.log("Not Available");
+                    }
+
+                    else{
+                        $scope.teamStats.first = res.data[0];
+                        $scope.teamStats.second= res.data[1];
+                        $scope.teamStats.third = res.data[2];
+                        $scope.teamStats.total = res.data[0] + res.data[1] + res.data[2];
+                    }
                 }, function(err) {
+                    Materialize.toast('Error loading details');
                     console.log(err.data);
                 })
         }
@@ -97,9 +169,21 @@
             OrganizationService
                 .getOrganizationRankings(1)
                 .then(function(res) {
-                    console.log(res.data);
-                    $scope.organizationStats = res.data;
+                    if (res.data.ranking == null){
+                        $scope.organizationStats.first = 0;
+                        $scope.organizationStats.second= 0;
+                        $scope.organizationStats.third = 0;
+                        $scope.organizationStats.total = 0;
+                        console.log("Not Available");
+                    }
+                    else{
+                        $scope.organizationStats.first = res.data[0];
+                        $scope.organizationStats.second= res.data[1];
+                        $scope.organizationStats.third = res.data[2];
+                        $scope.organizationStats.total = res.data[0] + res.data[1] + res.data[2];
+                    }
                 }, function(err) {
+                    Materialize.toast('Error loading details');
                     console.log(err.data);
                 })
         }

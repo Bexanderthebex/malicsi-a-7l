@@ -29,7 +29,6 @@ exports.getCompetitor = (req, res) => {
 			req.query.search
 		], (err, rows) => {
 		    if(!err) {
-				// console.log(rows[0][0]);
 				return res.status(200).send(rows[0][0]);
 
 			} else {
@@ -41,6 +40,21 @@ exports.getCompetitor = (req, res) => {
 
 exports.getCompetitorTeams = (req, res) => {
 	query = 'CALL get_competitor_teams(?)';
+
+	connection.userType('A').query(query,
+		[
+			req.session.user.id
+		], (err, rows) => {
+		    if(!err) {
+				return res.status(200).send(rows[0]);
+			} else {
+				return res.status(500).send({'message' : 'Internal Server Error'});
+			}
+	});
+}
+
+exports.getCompetitorOrganization = (req, res) => {
+	query = 'CALL get_competitor_organization(?)';
 
 	console.log(req.session.user.id);
 	connection.userType('A').query(query,
@@ -60,7 +74,6 @@ exports.editCompetitor = (req,res) => {
 	query = "CALL edit_competitor(?,?,?,?,?,?)";
 	query1 = "CALL get_competitor(?)";
 
-	console.log(req.body.id);
 	connection.userType('A').query(query,
 		[
 			req.body.birthday,
@@ -68,12 +81,12 @@ exports.editCompetitor = (req,res) => {
 			req.body.last_name,
 			req.body.nickname,
 			req.body.sex,
-			req.body.id
+			currentUser.id
 		], (err, rows) => {
 			if(!err) {
 				connection.userType('A').query(query1,
 					[
-						req.body.id
+						currentUser.id
 					], (err, rows) => {
 						if(!err) {
 							return res.status(200).send(rows[0][0]);
@@ -81,6 +94,7 @@ exports.editCompetitor = (req,res) => {
 					}
 				);
 			} else {
+				console.log(err);
 				return res.status(501).send({ 'message' : 'Not implemented'});
 			}
 		}
@@ -88,28 +102,25 @@ exports.editCompetitor = (req,res) => {
 }
 
 exports.editCompetitorBio = (req,res) => {
+	currentUser = req.session.user;
 	query = "CALL edit_competitor_bio(?,?)";
 	query1 = "CALL get_competitor(?)";
 
-	console.log("id: " + req.body.id);
-	console.log("bio: " + req.body.bio);
 	connection.userType('A').query(query,
 		[
 			req.body.bio,
-			req.body.id
+			currentUser.id
 		], (err, rows) => {
 			if(!err) {
 				connection.userType('A').query(query1,
 					[
-						req.body.id
+						currentUserid
 					], (err, rows) => {
 						if(!err) {
-							// console.log('Here');
-							// console.log(rows[0][0]);
 							return res.status(200).send(rows[0][0]);
 						}
 						else{
-							// console.log(err);
+							console.log(err);
 							return res.status(500).send({'message' : 'Internal Server Error'});
 						}
 					}
@@ -131,7 +142,6 @@ exports.getCompetitorRanking = (req, res) => {
 			req.query.id
 		], (err, rows) => {
 		    if(!err) {
-				// console.log(rows[0][0]);
 				return res.status(200).send(rows[0][0]);
 
 			} else {

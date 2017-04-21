@@ -62,10 +62,10 @@
           <div class="col s12 row"> -->
             <div class="col s5 valign-wrapper" style="height: 100%;">
               <form action="#">
-                  <input name="signup-sex" type="radio" id="signup-sex-female" class="with-gap" />
+                  <input name="signup-sex" type="radio" id="signup-sex-female" class="with-gap" value="f"/>
                   <label class="white-text telegrafico" for="signup-sex-female">Female</label>
                   <label style="width: 20px!important;"></label>
-                  <input style="margin-left:20px!important;" name="signup-sex" type="radio" id="signup-sex-male" class="with-gap"/>
+                  <input style="margin-left:20px!important;" name="signup-sex" type="radio" id="signup-sex-male" class="with-gap" value="m"/>
                   <label class="white-text telegrafico" for="signup-sex-male">Male</label>
               </form>
               
@@ -115,6 +115,7 @@
             <div class="row">
               <div class="col s12 center">
                 <h4 class="rockwell palette-text-1">Jump in.</h4>
+                <p id="loginError" style="color:red;"></p>
               </div>
             </div>
 
