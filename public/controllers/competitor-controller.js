@@ -15,22 +15,18 @@
         $scope.competitor = {};
         $scope.competitorteams = {};
         $scope.coachedteam = {};
-        $scope.organization = {};
-        $scope.team = {};
-        $scope.team2 = {};
-        $scope.teammembers = {};
-
+        $scope.pendingRequests = {};
 
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
         $scope.getCompetitorTeams = getCompetitorTeams;
+        $scope.getCompetitorOrganization = getCompetitorOrganization;
         $scope.editCompetitor = editCompetitor;
         $scope.editCompetitorBio = editCompetitorBio;
-        // $scope.createTeam = createTeam;
+        $scope.createTeam = createTeam;
         $scope.getCoachedTeam = getCoachedTeam;
-        $scope.getTeamMembers = getTeamMembers;
-        $scope.deleteTeam = deleteTeam;
-
+        $scope.getPendingRequests = getPendingRequests;
+        
         function searchCompetitor(id){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
@@ -58,13 +54,26 @@
                 .getCompetitorTeams()
                 .then(function(res) {
                     $scope.competitorteams = res.data;
-                    console.log($scope.competitorteams);
+                    // console.log($scope.competitorteams);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function getCompetitorOrganization(){
+            CompetitorService
+                .getCompetitorOrganization()
+                .then(function(res) {
+                    $scope.competitororgs = res.data;
+                    console.log(res.data);
                 }, function(err) {
                     console.log(err);
                 })
         }
 
         function editCompetitor(){
+            $scope.competitor.birthday = $scope.bday.getFullYear()+"-"+($scope.bday.getMonth()+1)+"-"+$scope.bday.getDate();
+            // console.log($scope.competitor.birthday);
             CompetitorService
                 .editCompetitor($scope.competitor)
                 .then(function (res){
@@ -87,16 +96,16 @@
                 })
         }
 
-        // function createTeam(){
-        //     CompetitorService
-        //         .createTeam($scope.competitor)
-        //         .then(function (res){
-        //             Materialize.toast('Successfully created a team!', 3000);
-        //             //$window.location.href = '/#/competitor/profile';
-        //         }, function(err) {
-        //             console.log(err);
-        //         })
-        // }
+        function createTeam(){
+            CompetitorService
+                .createTeam($scope.competitor)
+                .then(function (res){
+                    Materialize.toast('Successfully created a team!', 3000);
+                    //$window.location.href = '/#/competitor/profile';
+                }, function(err) {
+                    console.log(err);
+                })
+        }
 
         function getCoachedTeam(){
             CompetitorService
@@ -110,36 +119,27 @@
         }
 
         function getTeamMembers(id){
-            console.log("id: " + id);
+            // console.log("id: " + id);
             CompetitorService
                 .getTeamMembers(id)
                 .then(function (res){
                     $scope.teammembers = res.data;
-                    console.log("members: ");
-                    console.log($scope.teammembers);
+                    // console.log("members: ");
+                    // console.log($scope.teammembers);
                 }, function(err) {
                     console.log(err);
                 })
         }
 
-        function deleteTeam(team_id){
-            console.log("team_id: " + team_id);
+        function getPendingRequests(){
             CompetitorService
-                .deleteTeam(team_id)
-                .then(function (res){
-                    console.log(res);
-                    Materialize.toast('Successfully deleted team!', 3000);
-                    getCoachedTeam();
+                .getPendingRequests().then(function (res){
+                    console.log(res.data);
+                    $scope.pendingRequests = res.data;
                 }, function(err) {
                     console.log(err);
                 })
-
         }
-
-    
-
-
-
 
     }
 })();

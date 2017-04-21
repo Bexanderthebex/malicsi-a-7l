@@ -17,9 +17,11 @@
             editCompetitorBio: editCompetitorBio,
             getCompetitor: getCompetitor,
             getCompetitorTeams: getCompetitorTeams,
+            getCompetitorOrganization: getCompetitorOrganization,
             getCoachedTeam: getCoachedTeam,
             getTeamMembers: getTeamMembers,
-            deleteTeam: deleteTeam
+            deleteTeam: deleteTeam,
+            getPendingRequests: getPendingRequests
         }
 
         return service;
@@ -106,6 +108,23 @@
             return deferred.promise;
         }
 
+        function getCompetitorOrganization(){
+            let deferred = $q.defer();
+
+            console.log("Here mam");
+            $http({
+                method: 'GET',
+                url: '/competitor/getCompetitorOrganization',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
         function getCoachedTeam(){
             let deferred = $q.defer();
 
@@ -159,6 +178,21 @@
             return deferred.promise;
         }
 
+        function getPendingRequests(){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/team/displayPendingMembershipRequest',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
         
     }
 })();
