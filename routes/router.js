@@ -76,6 +76,7 @@ router.post('/user/getAllUsers', checkUser('A'), adminController.getAllUsers);
 router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
 router.put('/competitor/editCompetitor', competitorController.editCompetitor);
 router.get('/competitor/getCompetitorTeams', competitorController.getCompetitorTeams);
+router.get('/competitor/getCompetitorOrganization', competitorController.getCompetitorOrganization);
 router.get('/competitor/getCompetitor', competitorController.getCompetitor);
 router.put('/competitor/editCompetitorBio', competitorController.editCompetitorBio);
 router.get('/competitor/getCompetitorRanking', competitorController.getCompetitorRanking);
@@ -111,6 +112,7 @@ router.get('/team/getTeam',teamController.getTeam);
 router.get('/team/getCoachedTeams',teamController.getCoachedTeam);
 router.get('/team/getTeamsOnOrganization',teamController.getTeamsOnOrganization);
 router.get('/team/getOrganizationRankings',teamController.getOrganizationRankings);
+router.get('/team/displayPendingMembershipRequest',teamController.displayPendingMembershipRequest);
 
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);

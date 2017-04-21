@@ -16,7 +16,8 @@
             getUserInfo: getUserInfo,
             getUsersByType: getUsersByType,
             setIsActive: setIsActive,
-            updateUser: updateUser
+            updateUser: updateUser,
+            updatePassword: updatePassword
         }
 
         return service;
@@ -68,7 +69,7 @@
 
         function updateUser(username, email, contact, id) {
             let deferred = $q.defer();
-            console.log("pasok sa updateuser");
+
             $http.put(`/user/update`, {
 				username: username,
                 email: email,
@@ -80,6 +81,23 @@
                 console.log(err);
 				deferred.reject(err);
 			});
+
+            return deferred.promise;
+        }
+
+        function updatePassword(user) {
+            let deferred = $q.defer();
+            console.log(user);
+            $http({
+                method: 'PUT',
+                url: '/user/updatePassword',
+                data: $.param(user),
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
 
             return deferred.promise;
         }

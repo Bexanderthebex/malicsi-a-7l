@@ -220,29 +220,6 @@ exports.registerCompetitor = (req, res) => {
 			};
 
 			return res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
-			/*returnObject.push(
-				{
-					key: "birthday",
-					value: rows[0].birthday
-				},
-				{
-					key: "sex",
-					value: rows[0].sex
-				},
-				{
-					key: "first_name",
-					value: rows[0].first_name
-				},
-				{
-					key: "last_name",
-					value: rows[0].last_name
-				},
-				{
-					key: "nickname",
-					value: rows[0].nickname
-				}
-			);
-			return returnObject;*/
 		}else{
 			console.log(err);
 			if (err.code == 'ER_BAD_NULL_ERROR') {
@@ -281,7 +258,6 @@ exports.getUserInfo = (req,res) => {
 						}
 					});
 				} else {
-							console.log(rows);
 					return res.status(200).send(rows[0][0]);
 				}
 			} else {
