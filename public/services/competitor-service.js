@@ -20,6 +20,7 @@
             getCompetitorOrganization: getCompetitorOrganization,
             getCoachedTeam: getCoachedTeam,
             getTeamMembers: getTeamMembers,
+            createTeam: createTeam,
             deleteTeam: deleteTeam,
             getPendingRequests: getPendingRequests
         }
@@ -178,6 +179,24 @@
             return deferred.promise;
         }
 
+        function createTeam(team){
+            let deferred = $q.defer();
+
+            console.log(team);
+            $http({
+                method: 'POST',
+                data: $.param(team),
+                url: '/team/createTeam',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
         function getPendingRequests(){
             let deferred = $q.defer();
 
@@ -193,6 +212,24 @@
 
             return deferred.promise;
         }
+
+        function getTeamRankings(sport_id){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/sport/ranks/'+sport_id,
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+
         
     }
 })();

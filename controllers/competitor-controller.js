@@ -62,10 +62,8 @@ exports.getCompetitorOrganization = (req, res) => {
 			req.session.user.id
 		], (err, rows) => {
 		    if(!err) {
-		    	console.log("Dito back\n");
-		    	return res.status(200).send(rows[0]);
+				return res.status(200).send(rows[0]);
 			} else {
-				console.log(err);
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 	});
