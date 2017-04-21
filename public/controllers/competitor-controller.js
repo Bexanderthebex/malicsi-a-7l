@@ -27,7 +27,8 @@
         $scope.getCoachedTeam = getCoachedTeam;
         $scope.getTeamMembers = getTeamMembers;
         $scope.getPendingRequests = getPendingRequests;
-        
+        $scope.getTeamRankings = getTeamRankings;
+
         function searchCompetitor(id){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
@@ -55,7 +56,7 @@
                 .getCompetitorTeams()
                 .then(function(res) {
                     $scope.competitorteams = res.data;
-                    // console.log($scope.competitorteams);
+                    console.log($scope.competitorteams);
                 }, function(err) {
                     console.log(err);
                 })
@@ -152,6 +153,19 @@
         function getPendingRequests(){
             CompetitorService
                 .getPendingRequests()
+                .then(function (res){
+                    console.log(res.data);
+                    $scope.pendingRequests = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function getTeamRankings(sport_id){
+            console.log("getTeamRankings");
+            console.log(sport_id);
+            CompetitorService
+                .getTeamRankings(sport_id)
                 .then(function (res){
                     console.log(res.data);
                     $scope.pendingRequests = res.data;

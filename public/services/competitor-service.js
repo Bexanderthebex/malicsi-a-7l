@@ -193,6 +193,24 @@
 
             return deferred.promise;
         }
+
+        function getTeamRankings(sport_id){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/sport/ranks/'+sport_id,
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+
         
     }
 })();
