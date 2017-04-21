@@ -34,7 +34,7 @@
             console.log("sponsors", $scope.sponsors);
         }, (err) => {
             console.log(err);
-        });        
+        });
 
         SearchService.retrieveOrganization('').then((res) => {
             $scope.organizations = res.data;

@@ -218,7 +218,7 @@
 				data: $.param(sponsor),
 				headers: headers
 			}).then((res)=> {
-				deferred.resove(res);
+				deferred.resolve(res);
 			}, (err) => {
 				deferred.reject(err);
 			});
