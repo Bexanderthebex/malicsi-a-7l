@@ -15,15 +15,18 @@
         $scope.competitor = {};
         $scope.competitorteams = {};
         $scope.coachedteam = {};
+        $scope.pendingRequests = {};
 
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
         $scope.getCompetitorTeams = getCompetitorTeams;
+        $scope.getCompetitorOrganization = getCompetitorOrganization;
         $scope.editCompetitor = editCompetitor;
         $scope.editCompetitorBio = editCompetitorBio;
         $scope.createTeam = createTeam;
         $scope.getCoachedTeam = getCoachedTeam;
-
+        $scope.getPendingRequests = getPendingRequests;
+        
         function searchCompetitor(id){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
@@ -59,7 +62,20 @@
                 })
         }
 
+        function getCompetitorOrganization(){
+            CompetitorService
+                .getCompetitorOrganization()
+                .then(function(res) {
+                    $scope.competitororgs = res.data;
+                    console.log(res.data);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
         function editCompetitor(){
+            $scope.competitor.birthday = $scope.bday.getFullYear()+"-"+($scope.bday.getMonth()+1)+"-"+$scope.bday.getDate();
+            // console.log($scope.competitor.birthday);
             CompetitorService
                 .editCompetitor($scope.competitor)
                 .then(function (res){
@@ -97,8 +113,31 @@
             CompetitorService
                 .getCoachedTeam()
                 .then(function (res){
-                    // console.log(res.data);
+                    console.log(res.data);
                     $scope.coachedteam = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function getTeamMembers(id){
+            // console.log("id: " + id);
+            CompetitorService
+                .getTeamMembers(id)
+                .then(function (res){
+                    $scope.teammembers = res.data;
+                    // console.log("members: ");
+                    // console.log($scope.teammembers);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function getPendingRequests(){
+            CompetitorService
+                .getPendingRequests().then(function (res){
+                    console.log(res.data);
+                    $scope.pendingRequests = res.data;
                 }, function(err) {
                     console.log(err);
                 })

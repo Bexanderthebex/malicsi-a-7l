@@ -76,7 +76,7 @@ DELIMITER //
 	CREATE PROCEDURE get_competitor_organization(in id_in INT)
 
 	BEGIN
-		SELECT * FROM competitor JOIN competitor_joins_team using (id) JOIN team using (team_id) JOIN organization using (organization_id) where competitor.id = cid;
+		SELECT * FROM competitor JOIN competitor_joins_team using (id) JOIN team using (team_id) JOIN organization where competitor.id = id_in && organization_id=team_organization;
 	END;
 
 	//

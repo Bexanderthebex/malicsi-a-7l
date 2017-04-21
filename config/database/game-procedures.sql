@@ -156,6 +156,32 @@ BEGIN
 END; //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_all_ongoing_games;
+DELIMITER //
+CREATE PROCEDURE view_all_ongoing_games()
+BEGIN
+	SELECT * FROM game WHERE start_date <= NOW() AND end_date >= NOW();
+END;
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_upcoming_games;
+DELIMITER //
+CREATE PROCEDURE view_all_upcoming_games()
+BEGIN
+	SELECT * FROM game WHERE start_date > NOW();
+END;
+//
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_all_recent_games;
+DELIMITER //
+CREATE PROCEDURE view_all_recent_games()
+BEGIN
+	SELECT * FROM game WHERE end_date > NOW();
+END;
+//
+DELIMITER ;
 
 -- create game
 GRANT EXECUTE ON PROCEDURE create_game TO 'organizer'@'localhost';
@@ -228,8 +254,23 @@ GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO 'administrator'@'
 GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_game TO 'guest'@'localhost';
 
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_games TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_games TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_games TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_games TO guest;
+
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_games TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_games TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_games TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_games TO guest;
+
+GRANT EXECUTE ON PROCEDURE view_all_recent_games TO organizer;
+GRANT EXECUTE ON PROCEDURE view_all_recent_games TO administrator;
+GRANT EXECUTE ON PROCEDURE view_all_recent_games TO competitor;
+GRANT EXECUTE ON PROCEDURE view_all_recent_games TO guest;
 
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'guest'@'localhost';
+
