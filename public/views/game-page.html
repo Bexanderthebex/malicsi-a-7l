@@ -333,11 +333,9 @@
 						</div>
 
 						<div class="col s12 m4">
-
-							<div class="row center">
+							<!-- <div class="row center">
 								<button href="" class="center modal-action modal-close minimalist-button" data-target="game-modify-org" ng-show='checkIfOrganizer()'>Modify Organization</button>
-
-							</div>
+							</div> -->
 
 							<div class="card-panel palette-4 game-remove-padding">
 								<p class="center game-remove-top">
@@ -354,17 +352,50 @@
 								</div>
 							</div>
 
-
+							<div class="card-panel palette-4 game-remove-padding" ng-init = "viewAllOrganizationInGame()">
+								<h5 class="game-remove-margin center rockwell white-text">Organizations</h5><br>
+								<div class="row">
+									<div class="col s12 m12" ng-hide="checkParticipatingOrganizations()">
+										<!-- presentation view -->
+										<div ng-repeat="organization in participatingOrgs" style="overflow-y:auto;">
+											<p class="telegrafico game-sponsor-title white-text center" >
+											{{organization.name}}
+											</p>
+										</div>
+										
+									</div>
+									<div class="col s12 m12" ng-show="checkParticipatingOrganizations()">
+										<p class="telegrafico game-sponsor-title white-text center">
+											No organizations here yet!
+										</p>
+									</div>
+								</div>
+								<div class="row center">
+									<button href="" class="modal-action modal-close minimalist-button" ng-show='checkIfOrganizer()' data-target="game-organization-add" >ADD</button>
+									<button href="" class="modal-action modal-close minimalist-button" data-target="game-delete-organization" ng-show='checkIfOrganizer()'>DELETE</button>
+								</div>
+							</div>
 							<div class="card-panel palette-4 game-remove-padding" ng-init = "viewSponsoringInstitutions()">
 								<h5 class="game-remove-margin center rockwell white-text">Sponsoring institutions</h5><br>
 								<div class="row">
 									<div class="col s12 m12" ng-hide="checkSponsors()">
+										<!-- editing view -->
+ -										<!-- <span class="telegrafico game-checkbox-change-color" ng-repeat = "sponsor in sponsors">
+ -											<input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
+ -											<label for="filled-in-box">
+ -												<p class="game-sponsor-title">
+ -													{{sponsor.name}}
+ -													<i class="fa fa-pencil sponsor-actions" data-target="game-sponsor-edit"></i>
+ -												</p>
+ -												<p class="game-sponsor-description century-gothic">{{sponsor.description}} </p>
+ -											</label>
+ -										</span> -->
 										<!-- presentation view -->
 										<div ng-repeat="sponsor in sponsors" style="overflow-y:auto;">
-											<p class="telegrafico game-sponsor-title white-text" >
+											<p class="telegrafico game-sponsor-title white-text center" >
 											{{sponsor.name}}
 											</p>
-											<p class="game-sponsor-description century-gothic white-text">{{sponsor.description}} </p>
+											<p class="game-sponsor-description century-gothic white-text center">{{sponsor.description}} </p>
 										</div>
 										
 									</div>
@@ -388,6 +419,7 @@
 </div>
 
 
+<!-- DELETE SPONSOR MODAL -->
 <div id="game-delete-sponsor" class="modal" style="overflow-y: hidden;">
 	<div class="modal-content game-header-fill century-gothic">
 		<div class="row game-remove-bottom">
@@ -414,12 +446,12 @@
 		
 	</div>
 	<div class="modal-footer palette-5 right-align">
-		<button href="" class="modal-action modal-close btn-flat waves-effect" ng-disabled="!validSponsorDel" data-target="game-sponsor-delete-2">Next</button>	
+		<button href="" class="modal-action modal-close btn-flat waves-effect" ng-disabled="!validSponsorDel" data-target="game-delete-sponsor-2">Next</button>	
 	</div>
 </div>
 
-
-<div id="game-sponsor-delete-2" class="modal">
+<!-- DELETE SPONSOR CONFIRM MODAL -->
+<div id="game-delete-sponsor-2" class="modal">
 	<div class="modal-content game-header-fill century-gothic">
 		<div class="row game-remove-bottom">
 			<div class="col s12 game-padding-left game-padding-right">
@@ -438,6 +470,59 @@
 	</div>
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button" ng-click="deleteMultipleSponsors()">YES</button>
+		<button href="" class="modal-action modal-close minimalist-button" data-target="game-delete-sponsor">NO</button>
+	</div>
+</div>
+
+<!-- DELETE ORGANIZATION MODAL -->
+<div id="game-delete-organization" class="modal" style="overflow-y: hidden;">
+	<div class="modal-content game-header-fill century-gothic">
+		<div class="row game-remove-bottom">
+			<div class="col s12 game-padding-left game-padding-right palette-5">
+				<div class="center">
+						<div class="card-title white-text center telegrafico" id="thicken">
+					 		<h5>Delete Organization(s) From Game</h5>
+						</div>
+				</div>
+			</div>	
+				<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
+					<div class="row" ng-repeat="organization in participatingOrgs" >
+						<span class="telegrafico game-checkbox-change-color" >
+							<input type="checkbox" class="filled-in" ng-click="checkValidOrgDel()" id="org{{organization.orgId}}" ng-model="organization.checked"/>
+							<label for="org{{organization.orgId}}">
+								<p class="game-sponsor-title">{{organization.name}}</p>
+							</label>
+						</span>
+					</div>
+				</div>				
+		</div>	
+		
+	</div>
+	<div class="modal-footer palette-5 right-align">
+		<button href="" class="modal-action modal-close btn-flat waves-effect" ng-disabled="!validOrgDel" data-target="game-delete-organization-2">Next</button>	
+	</div>
+</div>
+
+<!-- DELETE SPONSOR CONFIRM MODAL -->
+<div id="game-delete-organization-2" class="modal">
+	<div class="modal-content game-header-fill century-gothic">
+		<div class="row game-remove-bottom">
+			<div class="col s12 game-padding-left game-padding-right">
+				<div class="center palette-5">
+					<br>
+						<div class="card-title white-text center telegrafico" id="thicken">
+					 		<h4 class="game-remove-bottom-modal">Confirm delete</h4>
+						</div>
+					<br>
+				</div>
+			</div>
+		</div>
+		<div class="row game-modal-container">
+			<p>Are you sure you want to delete the following organization(s)?</p>
+		</div>
+	</div>
+	<div class="modal-footer palette-5 right-align">
+		<button href="" class="modal-action modal-close minimalist-button" ng-click="deleteMultipleOrganizations()">YES</button>
 		<button href="" class="modal-action modal-close minimalist-button" data-target="game-delete-sponsor">NO</button>
 	</div>
 </div>
@@ -486,6 +571,7 @@
 	</div>
 </div> -->
 
+<!-- ADD SPONSOR MODAL -->
 <div id="game-sponsor-add" style="overflow:hidden;" class="modal" ng-init="viewOtherSponsoringInstitutions()">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-5">
@@ -511,6 +597,34 @@
 	</div>
 </div>
 
+<!-- ADD ORGANIZATION MODAL -->
+<div id="game-organization-add" style="overflow:hidden;" class="modal" ng-init="viewAllOrganizationForGame()">
+	<div class="row game-remove-bottom">
+		<div class="col s12 game-padding-left game-padding-right palette-5">
+			<div class="center">
+					<div class="card-title white-text center telegrafico" id="thicken">
+				 		<h5>Add Organization(s) To Game</h5>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
+		<div class="row" ng-repeat="newOrg in availableOrgs" >
+			<span class="telegrafico game-checkbox-change-color" >
+				<input type="checkbox" class="filled-in" ng-click="checkValidOrgAdd()" id="newOrg{{newOrg.orgId}}" ng-model="newOrg.checked"/>
+				<label for="newOrg{{newOrg.orgId}}">
+					<p class="game-sponsor-title">{{newOrg.name}}</p>
+				</label>
+			</span>
+		</div>
+	</div>
+	<div class="modal-footer" >
+		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-disabled="!validOrgAdd" ng-click="addMultipleOrganizations()">Add</a>
+	</div>
+</div>
+
+
+<!-- ADD SPORT MODAL -->
 <div id="game-add-sport" class="modal modal-fixed-footer">
 	<div class="modal-content game-header-fill century-gothic	">
 		<div class="row game-remove-bottom">
@@ -588,6 +702,8 @@
 	</div>
 </div>
 
+
+<!-- UPDATE SPORT MODAL -->
 <div id="game-update-sport" class="modal modal-fixed-footer">
 	<div class="modal-content game-header-fill century-gothic	">
 		<div class="row game-remove-bottom">
@@ -672,6 +788,7 @@
 	</div>
 </div>
 
+<!-- DELETE SPORT MODAL-->
 <div id="game-delete-sport" class="modal">
 	<div class="modal-content game-header-fill century-gothic	">
 		<div class="row game-remove-bottom">
@@ -712,11 +829,12 @@
 	</div>
 	<div class="modal-footer">
 		<a href="#!" class="modal-action modal-close waves-effect btn-flat">No</a>
+
 		<a href="#!" class="modal-action modal-close waves-effect btn-flat">Yes</a>
 	</div>
 </div> -->
 
-<div id="game-modify-org" class="modal modal-fixed-footer">
+<!-- <div id="game-modify-org" class="modal modal-fixed-footer">
 	<div class="modal-content game-header-fill century-gothic">
 		<div class="row game-remove-bottom">
 			<div class="col s12 game-padding-left game-padding-right">
@@ -740,7 +858,7 @@
 				<tbody class="century-gothic">
 					<tr ng-repeat="organization in organizations">
 						<td class="match-player">
-							<div ng-show="!view">UP Fighting Maroons</div>
+							<div ng-show="!view">{{organization.name}}</div>
 							<div ng-hide="!view"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
 						</td>
 						<td>
@@ -760,7 +878,7 @@
 							</div>
 						</td>
 					</tr>
-					<!-- <tr>
+					<tr>
 						<td class="match-player">
 							<div ng-show="!view3">UP Fighting Maroons</div>
 							<div ng-hide="!view3"><input type="text" name="" placeholder="UP Fighting Maroons"></div>
@@ -770,7 +888,7 @@
 								<i class="fa fa-minus-square fa-lg"></i>
 							</div>
 						</td>
-					</tr> -->
+					</tr>
 					</tbody>
 			</table>
 
@@ -795,7 +913,7 @@
 		<button href="" class="modal-action modal-close minimalist-button">MODIFY</button>
 	</div>
 </div>
-
+ -->
 <!--Scripts-->
 <script src="frontend_modules/js/init.js"></script>
 <script src="frontend_modules/js/materialize.js"></script>
