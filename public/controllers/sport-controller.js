@@ -23,6 +23,9 @@
         $scope.viewPastMatchesInSport = viewPastMatchesInSport;
         $scope.viewOngoingMatchesInSport = viewOngoingMatchesInSport;
         $scope.viewUpcomingMatchesInSport = viewUpcomingMatchesInSport;
+        $scope.viewCurrentMatch = viewCurrentMatch;         //newly added function
+        $scope.viewPastMatch = viewPastMatch;               //newly added function
+        $scope.viewFutureMatch = viewFutureMatch;           //newly added function
         $scope.checkPastMatches = checkPastMatches;
         $scope.checkOngoingMatches = checkOngoingMatches;
         $scope.checkUpcomingMatches = checkUpcomingMatches;
