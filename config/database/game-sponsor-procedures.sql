@@ -25,8 +25,8 @@ CREATE PROCEDURE view_all_sponsors_in_game(IN g_id INT)
 BEGIN
 	SELECT *
 	FROM  sponsor_institution AS spon
-	JOIN sponsor_games AS spon_game 
-	ON spon.sponsor_id = spon_game.sponsor_id 
+	JOIN sponsor_games AS spon_game
+	ON spon.sponsor_id = spon_game.sponsor_id
 	WHERE spon_game.game_id = g_id;
 END//
 DELIMITER ;
@@ -35,7 +35,7 @@ DROP PROCEDURE IF EXISTS view_all_sponsors_not_in_game;
 DELIMITER //
 CREATE PROCEDURE view_all_sponsors_not_in_game(IN g_id INT)
 BEGIN
-	select * from sponsor_institution 
+	select * from sponsor_institution
     where sponsor_id not in (select sponsor_id from sponsor_games where game_id = g_id);
 END//
 DELIMITER ;
@@ -46,9 +46,9 @@ DELIMITER //
 CREATE PROCEDURE view_sponsor_in_sport(IN s_id INT)
 BEGIN
 	SELECT spon.name
-	FROM  sponsor_institution AS spon 
-	JOIN sport JOIN sponsor_games AS spon_game 
-	ON spon.sponsor_id = spon_game.sponsor_id AND sport.game_id = spon_game.game_id 
+	FROM  sponsor_institution AS spon
+	JOIN sport JOIN sponsor_games AS spon_game
+	ON spon.sponsor_id = spon_game.sponsor_id AND sport.game_id = spon_game.game_id
 	WHERE sport.sport_id = s_id AND spon_game.game_id = sport.game_id;
 END//
 DELIMITER ;
@@ -99,11 +99,11 @@ DROP PROCEDURE IF EXISTS view_last_inserted_sponsor_to_game;
 DELIMITER //
 CREATE PROCEDURE view_last_inserted_sponsor_to_game()
 BEGIN
-	SELECT sponsor_institution.sponsor_id, 
-    sponsor_institution.name as sponsor_name, 
-    sponsor_institution.description as sponsor_description, 
-    game.game_id, 
-    game.name as game_name 
+	SELECT sponsor_institution.sponsor_id,
+    sponsor_institution.name as sponsor_name,
+    sponsor_institution.description as sponsor_description,
+    game.game_id,
+    game.name as game_name
     FROM sponsor_games, sponsor_institution, game
 	WHERE sponsor_games.sponsor_id = (SELECT LAST_INSERT_ID()) and sponsor_institution.sponsor_id = sponsor_games.sponsor_id and game.game_id = sponsor_games.game_id;
 END; //
@@ -111,32 +111,32 @@ DELIMITER ;
 
 
 
-GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO organizer;
-GRANT EXECUTE ON PROCEDURE add_sponsor TO administrator;
+GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE add_sponsor TO 'administrator'@'localhost';
 
-GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO administrator;
+GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO 'administrator'@'localhost';
 
-GRANT EXECUTE ON PROCEDURE delete_sponsor_from_game TO organizer;
-GRANT EXECUTE ON PROCEDURE delete_sponsor TO administrator;
+GRANT EXECUTE ON PROCEDURE delete_sponsor_from_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE delete_sponsor TO 'administrator'@'localhost';
 
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO organizer;
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO administrator;
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO 'administrator'@'localhost';
 
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor_to_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor_to_game TO administrator;
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor_to_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor_to_game TO 'administrator'@'localhost';
 
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_in_game TO 'guest'@'localhost';
 
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO organizer;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO administrator;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO competitor;
-GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO guest;
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO 'guest'@'localhost';
 
 
-GRANT EXECUTE ON PROCEDURE view_sponsor TO organizer;
-GRANT EXECUTE ON PROCEDURE view_sponsor TO administrator;
-GRANT EXECUTE ON PROCEDURE view_sponsor TO competitor;
-GRANT EXECUTE ON PROCEDURE view_sponsor TO guest;
+GRANT EXECUTE ON PROCEDURE view_sponsor TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_sponsor TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_sponsor TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_sponsor TO 'guest'@'localhost';
