@@ -46,7 +46,9 @@
                 .getUserInfo()
                 .then(function(res) {
                     $scope.competitor = res.data;
-                    // console.log(res.data);
+                    if($scope.competitor == []) {
+                        $window.location.href = '/';
+                    }
                 }, function(err) {
                     console.log(err);
                 })
@@ -68,14 +70,14 @@
                 .getCompetitorOrganization()
                 .then(function(res) {
                     $scope.competitororgs = res.data;
-                    //console.log($scope.competitororgs);
                 }, function(err) {
                     console.log(err);
                 })
         }
 
-
         function editCompetitor(){
+            $scope.competitor.birthday = $scope.bday.getFullYear()+"-"+($scope.bday.getMonth()+1)+"-"+$scope.bday.getDate();
+            // console.log($scope.competitor.birthday);
             CompetitorService
                 .editCompetitor($scope.competitor)
                 .then(function (res){
@@ -131,7 +133,7 @@
             CompetitorService
                 .getCoachedTeam()
                 .then(function (res){
-                    // console.log(res.data);
+                    console.log(res.data);
                     $scope.coachedteam = res.data;
                 }, function(err) {
                     console.log(err);
@@ -144,8 +146,6 @@
                 .getTeamMembers(id)
                 .then(function (res){
                     $scope.teammembers = res.data;
-                   // console.log("members: ");
-                    //console.log($scope.teammembers);
                 }, function(err) {
                     console.log(err);
                 })

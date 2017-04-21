@@ -46,7 +46,6 @@
             UserService
                 .getUserInfo()
                 .then(function(res) {
-                    console.log(res.data);
                     $scope.currentUser = res.data;
                 }, function(err) {
                     console.log(err.data);

@@ -18,20 +18,16 @@
 				username : $scope.uname,
 				password : $scope.pword,
 			}).then(function(result){
-				// if (result.message == 'Successfully logged in') {
-				// console.log(result.data);
+				Materialize.toast("Sucessfully logged in!", 2000);
 				$window.location.href = '/';
-				// }else {
-				// 	$scope.uname = '';
-				// 	$scope.pword = '';
-				// }
 			}, function(err) {
+				Materialize.toast("Incorrect credentials", 2000);
+				$('#loginError').text("Incorrect username or password");
 				console.log(err);
 			});
 		}
 
 		$scope.signUp = function(fname, lname, nname, uname, sex, pword, bday, email, contactNum){
-			console.log(bday);
 
 			$http.post('/register', {
 				username: uname,
@@ -58,15 +54,8 @@
 		$scope.logOut = function(){
 			$http.get('/logout')
 			.then(function(result){
-				//if (result.message == 'Successfully logged in') {
-				//console.log(result.data);
+				Materialize.toast("Successfully logged out", 5000);
 				$window.location.href = '/';
-				// $scope.user = {};
-				console.log(result);
-				//}else {
-				//	$scope.uname = '';
-				//	$scope.pword = '';
-				//}
 			}, function(err) {
 				console.log(err);
 			});	

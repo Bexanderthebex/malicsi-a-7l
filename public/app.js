@@ -60,11 +60,6 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/error', {
-                'templateUrl': 'views/error-404-page.html',
-                'caseInsensitiveMatch': true
-                // 'access': { requiredAuthentication: true }
-            })
 
             .when('/game/:gameId', {
                 'templateUrl': 'views/game-page.html',
@@ -74,7 +69,8 @@
             })
             .when('/game', {
                 'templateUrl': 'views/gamefeed.html',
-                'caseInsensitiveMatch': true
+                'caseInsensitiveMatch': true,
+                'controller': 'GameFeedController'
                 // 'access': { requiredAuthentication: true }
             })
             .when('/organizations', {
@@ -106,6 +102,13 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
+            .when('/error', {
+                'templateUrl': 'views/error-404-page.html',
+                'caseInsensitiveMatch': true
+                // 'access': { requiredAuthentication: true }
+            })
+            .otherwise({'templateUrl': 'views/error-404-page.html'})
+
     }
 
 })();

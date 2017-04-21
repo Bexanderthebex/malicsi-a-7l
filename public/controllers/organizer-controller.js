@@ -155,7 +155,9 @@
                 .getUserInfo()		
                 .then(function (res){		
                     $scope.currentUser = res.data;		
-                    console.log($scope.currentUser);		
+                    if($scope.competitor == []) {
+                        $window.location.href = '/';
+                    }		
                  }, function(err) {		
                     Materialize.toast('error', 3000);		
                 })		
