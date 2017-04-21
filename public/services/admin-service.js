@@ -20,6 +20,7 @@
 			retrieveLog: retrieveLog, // Log
 			addAdmin: addAdmin,
 			addOrganizer: addOrganizer,
+			addOrganization: addOrganization,
 			searchAdmin: searchAdmin
 
 			//deleteAdmin: deleteAdmin,
@@ -170,6 +171,25 @@
 
 			return deferred.promise;
 		}
+
+		function addOrganization(organization){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                data: $.param(organization),
+                url: '/organization/addOrganization',
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                deferred.resolve(res);
+            }, (err) => {
+                console.log(err);
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
 
 		function searchAdmin(keyword) {
 			let deferred = $q.defer();
