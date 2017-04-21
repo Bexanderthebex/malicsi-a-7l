@@ -96,6 +96,60 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_current_match;
+DELIMITER //
+CREATE PROCEDURE view_current_match
+(IN sportId INT
+)
+BEGIN
+	SELECT team_id, team_name, time_start, time_end, match_date FROM
+	(sport_match join team_in_match using (match_id) join team using (team_id)) WHERE
+	sport_match.sport_id = sportId AND CURDATE() = match_date;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_past_match;
+DELIMITER //
+CREATE PROCEDURE view_past_match
+(IN sportId INT
+)
+BEGIN 
+	SELECT team_id, team_name, time_start, time_end, match_date FROM
+	(sport_match join team_in_match using (match_id) join team using (team_id)) WHERE
+	sport_match.sport_id = sportId AND CURDATE() > match_date;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS view_future_match;
+DELIMITER //
+CREATE PROCEDURE view_future_match
+(IN sportId INT
+)
+BEGIN 
+	SELECT team_id, team_name, time_start, time_end, match_date FROM
+	(sport_match join team_in_match using (match_id) join team using (team_id)) WHERE
+	sport_match.sport_id = sportId AND CURDATE() < match_date;
+END //
+DELIMITER ;
+
+-- view future match in sport
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'guest'@'localhost';
+
+-- view past match in sport
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'guest'@'localhost';
+
+-- view current match in sport
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'guest'@'localhost';
+
 -- view matches in a sport
 GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
@@ -129,3 +183,4 @@ GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO 'administrator'@'localh
 -- delete match
 GRANT EXECUTE ON PROCEDURE delete_match TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE delete_match TO 'administrator'@'localhost';
+

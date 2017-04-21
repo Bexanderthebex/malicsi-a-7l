@@ -192,7 +192,57 @@ exports.searchForSportByKeyword = (req,res) => {
 		}
 		
 	});
-	
+
+exports.viewAllOngoingMatchesInSport = (req, res) => {
+	let query = 'CALL view_all_ongoing_matches_in_sport(?)';
+	connection.userType('A').query(query,
+		[
+			req.query.sportId
+		], (err, rows, fields) => {
+			if(!err && rows[0].length != 0){
+				return res.status(200).send(rows[0]);
+			}else if(rows[0].length ==0 ){
+				res.status(200).send([]);
+			}else{
+				res.status(500).send("Internal Server Error Occured");
+			}
+		});
+}
+
+exports.viewAllPastMatchesInSport = (req, res) => {
+	let query = 'CALL view_all_past_matches_in_sport(?)';
+	connection.userType('A').query(query,
+		[
+			req.query.sportId
+		], (err, rows, fields) => {
+			if(!err && rows[0].length != 0){
+				return res.status(200).send(rows[0]);
+
+			}else if(rows[0].length == 0 ){
+				res.status(200).send([]);
+			}
+			else{
+				res.status(500).send("Internal Server Error Occured");
+			}
+		});
+}
+
+exports.viewAllUpcomingMatchesInSport = (req, res) => {
+	let query = 'CALL view_all_upcoming_matches_in_sport(?)';
+	connection.userType('A').query(query,
+		[
+			req.query.sportId
+		], (err, rows, fields) => {
+			if(!err && rows[0].length != 0){
+				return res.status(200).send(rows[0]);
+			}else if(rows[0].length ==0 ){
+				res.status(200).send([]);
+			}else{
+				res.status(500).send("Internal Server Error Occured");
+			}
+		});
+}	
+
 }
 
 

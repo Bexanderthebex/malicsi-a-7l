@@ -119,6 +119,7 @@ exports.viewAllMatch = (req, res) => {
 			}
 		});
 }
+
 exports.deleteMatch = (req, res) => {
 	let query = 'CALL view_match_details(?);';
 	let matchId = req.body.matchId
@@ -137,6 +138,55 @@ exports.deleteMatch = (req, res) => {
 			}
 		}else{
 			res.status(500).send("Internal Server Error");
+		}
+	});
+}
+
+
+exports.viewCurrentMatch = (req, res) => {
+	let query = 'CALL view_current_match(?)';
+
+	connection.userType('A').query(query,
+		[req.query.sportId],
+		(err, rows, fields) => {
+		if(!err){
+			return res.status(200).send(rows[0]);
+		}else if(rows.length > 0){
+			res.status(404).send("There are no current matches");
+		}else{
+			res.status(500).send("Internal server error occurred");
+		}
+	});
+}
+
+exports.viewPastMatch = (req, res) => {
+	let query = 'CALL view_past_match(?)';
+
+	connection.userType('A').query(query,
+		[req.query.sportId],
+		(err, rows, fields) => {
+		if(!err){
+			return res.status(200).send(rows[0]);
+		}else if(rows.length > 0){
+			res.status(404).send("There are no current matches");
+		}else{
+			res.status(500).send("Internal server error occurred");
+		}
+	});
+}
+
+exports.viewFutureMatch = (req, res) => {
+	let query = 'CALL view_future_match(?)';
+
+	connection.userType('A').query(query,
+		[req.query.sportId],
+		(err, rows, fields) => {
+		if(!err){
+			return res.status(200).send(rows[0]);
+		}else if(rows.length > 0){
+			res.status(404).send("There are no current matches");
+		}else{
+			res.status(500).send("Internal server error occurred");
 		}
 	});
 }
