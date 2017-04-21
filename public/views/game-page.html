@@ -218,7 +218,7 @@
 								</div>
 								<div class="row" ng-show="checkOngoingMatches()">
 										<h5 class="rockwell center">No ongoing matches.</h5>
-								</div>		
+								</div>
 						</li>
 						<li>
 							<div class="row" ng-hide="checkUpcomingMatches()">
@@ -261,7 +261,7 @@
 							<div class="row" ng-show="checkUpcomingMatches()">
 									<h5 class="rockwell center">No upcoming matches. </h5>
 							</div>
-						</li>	
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -314,12 +314,12 @@
 												<div class="game-match-info">
 													{{sport.start_date}} - {{sport.end_date}}
 												</div>
-												
+
 												<div class="telegrafico">Time</div>
 												<div class="game-match-info">
 													{{sport.time_start}} - {{sport.time_end}}
 												</div>
-												
+
 												<div class="telegrafico">Teams Remaining</div>
 												<div class="game-match-info">
 													9/{{sport.max_teams}}
@@ -328,15 +328,15 @@
 											</div>
 										</div>
 									</div>
-								</div>
+                </div>
 							</div>
 						</div>
 
 						<div class="col s12 m4">
-							
+
 							<div class="row center">
 								<button href="" class="center modal-action modal-close minimalist-button" data-target="game-modify-org">Modify Organization</button>
-								
+
 							</div>
 
 							<div class="card-panel palette-4 game-remove-padding">
@@ -454,7 +454,7 @@
 					<br>
 				</div>
 			</div>
-		</div>	
+		</div>
 
 		<div class="row game-modal-container game-modal-content">
 
@@ -504,7 +504,6 @@
 					<p class="game-sponsor-title">{{newSponsor.name}}</p><p>{{newSponsor.description}}  </p>
 				</label>
 			</span>
-
 		</div>
 	</div>
 	<div class="modal-footer" >
@@ -524,7 +523,7 @@
 					<br>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<div class="row game-modal-container game-modal-content">
 
 				<div class="input-field col s6 game-input-color-change">
@@ -601,7 +600,7 @@
 					<br>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<div class="row game-modal-container game-modal-content">
 
 				<div class="input-field col s6 game-input-color-change">
@@ -685,7 +684,7 @@
 					<br>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<div class="row game-modal-container">
 			<p>Are you sure you want to delete this game?</p>
 		</div>
@@ -729,7 +728,7 @@
 					<br>
 				</div>
 			</div>
-		</div>	
+		</div>
 		<div class="row game-modal-container">
 			<table>
 				<thead>
@@ -777,9 +776,14 @@
 
 			<div class="row" style="margin: 0; margin-top: 10px;"><span class="telegrafico">Add Organization</span></div>
 			<div class="row">
-					<div class="input-field col s10 game-input-color-change" style="margin: 0!important;">
-						<input type="text" placeholder="Organization Name">
-					</div>
+				<div class="input-field col s10 game-input-color-change">
+					<select>
+						<option value="" disabled selected>Choose your option</option>
+						<option value="1">Preset system 1</option>
+						<option value="2">Preset system 2</option>
+						<option value="3">None</option>
+					</select>
+				</div>
 					<div class="col s2 center">
 					<button class="minimalist-button">ADD</button>
 				</div>

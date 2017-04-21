@@ -3,7 +3,7 @@ USE malicsi;
 DROP PROCEDURE IF EXISTS search_competitor;
 DELIMITER //
 
-	CREATE PROCEDURE search_competitor (IN search VARCHAR(30)) 
+	CREATE PROCEDURE search_competitor (IN search VARCHAR(30))
 	BEGIN
 	   SELECT * FROM competitor WHERE first_name LIKE search OR last_name LIKE search OR nickname LIKE search;
 	END; //
@@ -13,9 +13,9 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS get_competitor;
 DELIMITER //
 
-CREATE PROCEDURE get_competitor (IN search INT) 
+CREATE PROCEDURE get_competitor (IN search INT)
 	BEGIN
-	   SELECT user.id, user.username, user.email, user.contact, user.type, user.is_active, 
+	   SELECT user.id, user.username, user.email, user.contact, user.type, user.is_active,
 	   competitor.birthday, competitor.first_name, competitor.last_name, competitor.nickname, competitor.sex, competitor.bio
 	   FROM user join competitor using(id) where id = search;
 	END; //
@@ -82,28 +82,22 @@ DELIMITER //
 	//
 DELIMITER ;
 
-
-
-
-
-GRANT EXECUTE ON PROCEDURE search_competitor TO competitor;
-GRANT EXECUTE ON PROCEDURE search_competitor TO administrator;
-GRANT EXECUTE ON PROCEDURE search_competitor TO guest;
-GRANT EXECUTE ON PROCEDURE get_competitor TO competitor;
-GRANT EXECUTE ON PROCEDURE get_competitor TO organizer;
-GRANT EXECUTE ON PROCEDURE get_competitor TO administrator;
-GRANT EXECUTE ON PROCEDURE get_competitor TO guest;
-GRANT EXECUTE ON PROCEDURE edit_competitor TO competitor;
-GRANT EXECUTE ON PROCEDURE edit_competitor TO administrator;
-GRANT EXECUTE ON PROCEDURE get_competitor_teams TO administrator;
-GRANT EXECUTE ON PROCEDURE get_competitor_teams TO organizer;
-GRANT EXECUTE ON PROCEDURE get_competitor_teams TO competitor;
-GRANT EXECUTE ON PROCEDURE get_competitor_teams TO guest;
-GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO administrator;
-GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO competitor;
-GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO competitor;
-GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO administrator;
-GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO organizer;
-GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO guest;
-
-
+GRANT EXECUTE ON PROCEDURE search_competitor TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_competitor TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_competitor TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE edit_competitor TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE edit_competitor TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor_teams TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'guest'@'localhost';

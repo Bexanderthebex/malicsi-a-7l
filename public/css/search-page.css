@@ -84,3 +84,25 @@
 .search-adjust-icons {
     font-size: 1.5em !important;
 }
+
+.minimalist-button-search{
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 3px;
+  border: solid 2px white;
+  color: white;
+  font-weight: bold;
+  background: #00415a;
+  letter-spacing: 1px;
+  font-size: 12px;
+  font-family: telegrafico;
+}
+
+.minimalist-button-search:hover{
+  background: white;
+  color: #00719c;
+  transition: background 0.3s;
+  cursor: pointer;
+}
