@@ -135,29 +135,13 @@
         }
 
         $scope.searchLog = () => {
-            if(($scope.username != undefined && $scope.startDate != undefined && $scope.endDate != undefined) || ($scope.username === undefined && $scope.startDate != undefined && $scope.endDate != undefined)){
-                let month1 = ($scope.startDate.getMonth() + 1);
-                let month2 = ($scope.endDate.getMonth() + 1);
-
-                SearchService.retrieveLogByDateAndUsername($scope.username, $scope.startDate.getFullYear()+"-"+month1+"-"+$scope.startDate.getDate(), $scope.endDate.getFullYear()+"-"+month2+"-"+$scope.endDate.getDate())
-                .then((res) => {
-                    $scope.logs = res.data;
-                    console.log('logs', $scope.logs);
-                }, (err) => {
-                    console.log(err);
-                })
-            }else if($scope.username != undefined && $scope.startDate === undefined && $scope.endDate === undefined){
-                SearchService.retrieveLogByDateAndUsername($scope.username, $scope.startDate, $scope.endDate)
-                .then((res) => {
-                    $scope.logs = res.data;
-                    console.log('logs', $scope.logs);
-                }, (err) => {
-                    console.log(err);
-                })
-            }else{
-                if($scope.username === undefined && $scope.startDate === undefined && $scope.endDate === undefined) Materialize.toast('Error. No input.', 2000);
-                    else Materialize.toast('Error. Missing start date or end date.', 2000);
-            }
+            SearchService.retrieveLogByDateAndUsername($scope.username, $scope.startDate, $scope.endDate)
+            .then((res) => {
+                $scope.logs = res.data;
+                console.log('logs', $scope.logs);
+            }, (err) => {
+                console.log(err);
+            })
         }
 
         $scope.searchOrganizer = () => {
