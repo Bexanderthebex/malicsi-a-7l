@@ -139,10 +139,6 @@
                 let month1 = ($scope.startDate.getMonth() + 1);
                 let month2 = ($scope.endDate.getMonth() + 1);
 
-                console.log('huhuhuhu', $scope.username);
-                console.log('startDate', $scope.startDate.getFullYear()+"-"+month1+"-"+$scope.startDate.getDate());
-                console.log('endDate',$scope.endDate.getFullYear()+"-"+month2+"-"+$scope.endDate.getDate());
-
                 SearchService.retrieveLogByDateAndUsername($scope.username, $scope.startDate.getFullYear()+"-"+month1+"-"+$scope.startDate.getDate(), $scope.endDate.getFullYear()+"-"+month2+"-"+$scope.endDate.getDate())
                 .then((res) => {
                     $scope.logs = res.data;
