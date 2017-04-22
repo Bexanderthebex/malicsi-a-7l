@@ -41,12 +41,12 @@
             return deferred.promise;
         }
 
-        function retrieveSponsor() {
+        function retrieveSponsor(search) {
             let deferred = $q.defer();
             $http({
                 method: 'GET',
-                //params: { 'search': search },
-                url: '/sponsor/viewAll',
+                url: '/sponsor/searchSponsor',
+				params: {search: search},
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);

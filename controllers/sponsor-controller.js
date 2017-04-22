@@ -113,6 +113,22 @@ exports.viewSponsor = (req, res) => {
 		});
 }
 
+exports.searchSponsor = (req, res) => {
+	let query = 'CALL search_sponsor(?)';
+	connection.userType('A').query(query,
+		[
+			'%' + req.query.search + '%'
+		],
+		(err, rows) => {
+			if(!err){
+				return res.status(200).send(rows[0]);
+			}
+			else{
+				res.status(500).send("Internal Server Error");
+			}
+		});
+}
+
 exports.viewAllSponsor = (req, res) => {
 	let query = 'SELECT * FROM sponsor_institution';
 	connection.userType('A').query(query, [], (err, rows) => {

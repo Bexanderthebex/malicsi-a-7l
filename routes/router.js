@@ -100,6 +100,7 @@ router.get('/organization/getGamesInOrganization',teamController.getGamesInOrgan
 router.get('/organization/search',organizationController.searchOrganization);
 router.put('/organization/editOrganization', organizationController.editOrganization);
 router.post('/organization/addOrganization', organizationController.addOrganization);
+router.delete('/organization/deleteOrganization', organizationController.deleteOrganization)
 
 // team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
@@ -147,6 +148,7 @@ router.delete('/game/deleteSponsorFromGame',  sponsorController.deleteSponsorFro
 
 // sponsor routers
 router.get('/sponsor/viewAll', sponsorController.viewAllSponsor);
+router.get('/sponsor/searchSponsor', sponsorController.searchSponsor);
 router.put('/sponsor/editSponsor',  sponsorController.editSponsorDetails);
 router.post('/sponsor/addSponsor', sponsorController.addSponsor);
 router.delete('/sponsor/deleteSponsor', sponsorController.deleteSponsor);

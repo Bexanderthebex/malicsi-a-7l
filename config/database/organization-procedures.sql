@@ -18,11 +18,23 @@ END;
 //
 DELIMITER ;
 
---  check organization
+DROP PROCEDURE IF EXISTS delete_organization;
+DELIMITER //
+CREATE PROCEDURE delete_organization(in orgId int(11))
+BEGIN
+	delete from organization where organization_id = orgId;
+END;
+//
+DELIMITER ;
+
+-- check organization
 GRANT EXECUTE ON PROCEDURE check_organization TO organizer;
 GRANT EXECUTE ON PROCEDURE check_organization TO administrator;
 
 -- add organization
-
 GRANT EXECUTE ON PROCEDURE add_organization TO organizer;
 GRANT EXECUTE ON PROCEDURE add_organization TO administrator;
+
+-- delete organization
+GRANT EXECUTE ON PROCEDURE delete_organization TO organizer;
+GRANT EXECUTE ON PROCEDURE delete_organization TO administrator;

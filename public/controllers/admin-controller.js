@@ -30,7 +30,7 @@
             console.log(err);
         });
 
-        SearchService.retrieveSponsor().then((res) => {
+        SearchService.retrieveSponsor('').then((res) => {
             $scope.sponsors = res.data;
             console.log("sponsors", $scope.sponsors);
         }, (err) => {
@@ -168,6 +168,16 @@
             SearchService.retrieveUser($scope.userSearch)
             .then((res) => {
                 $scope.users = res.data;
+                console.log('users', $scope.users);
+            }, (err) => {
+                console.log(err);
+            })
+        }
+
+        $scope.searchSponsor = () => {
+            SearchService.retrieveSponsor($scope.sponsorSearch)
+            .then((res) => {
+                $scope.sponsors = res.data;
                 console.log('users', $scope.users);
             }, (err) => {
                 console.log(err);
@@ -314,6 +324,19 @@
             organization.name = organizationCache[organization.organization_id].name;
         }
 
+        $scope.deleteOrganization = (orgId) => {
+            OrganizationService.deleteOrganization(orgId)
+            .then((res) => {
+                Materialize.toast('Organization deleted', 2000);
+                for (let i = 0; i < $scope.organizations.length; ++i) {
+                    if ($scope.organizations[i].organization_id === orgId) {
+                        $scope.organizations.splice(i, 1);
+                    }
+                }
+            }, (err) => {
+                Materialize.toast('An error occured.', 2000);
+            });
+        }
 
         $scope.editUser = (user) => {
             if ($('#user-edit-' + user.id).data('isEditing')) {
