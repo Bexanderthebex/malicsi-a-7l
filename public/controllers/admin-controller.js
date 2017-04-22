@@ -60,7 +60,7 @@
 
         $scope.addAdmin = () => {
            if($scope.adminUsername === undefined || $scope.adminPassword == undefined || $scope.adminEmail === undefined || $scope.adminContact === undefined){
-                Materialize.toast('Error. Missing text feild(s).', 2000);
+                Materialize.toast('Error. Missing text field(s).', 2000);
             }else{
                 AdminService.addAdmin({
                     username: $scope.adminUsername,
@@ -80,7 +80,7 @@
 
         $scope.addOrganizer = () => {
             if($scope.organizerUsername === undefined || $scope.organizerPassword == undefined || $scope.organizerEmail === undefined || $scope.organizerContact === undefined || $scope.organizerName === undefined || $scope.organizerDescription === undefined){
-                Materialize.toast('Error. Missing text feild(s).', 2000);
+                Materialize.toast('Error. Missing text field(s).', 2000);
             }else{
                 AdminService.addOrganizer({
                     username: $scope.organizerUsername,
@@ -108,7 +108,7 @@
 
         $scope.addOrganization = () => {
             if($scope.organizationName === undefined){
-                Materialize.toast('Error. Missing text feild(s).', 2000);
+                Materialize.toast('Error. Missing text field(s).', 2000);
             }else{
                 AdminService.addOrganization({
                     name: $scope.organizationName,

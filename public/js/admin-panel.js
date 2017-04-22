@@ -219,12 +219,12 @@ $(document).ready(function(){
   $('#datepicker1').pickadate({
     format: 'yyyy-mm-dd',
     selectMonths: true,
-    selectYear: 120
+    selectYears: true
   });
 
   $('#datepicker2').pickadate({
     format: 'yyyy-mm-dd',
     selectMonths: true,
-    selectYear: 120
+    selectYears: true
   });
 });

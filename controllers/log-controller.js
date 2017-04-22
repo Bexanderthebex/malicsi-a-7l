@@ -61,8 +61,6 @@ exports.searchLog = (req, res) => {
 	let query3 = 'select * from log where user_id = ? and date_created between ? and ?';
 	let query4 = 'select id from user where username = ?'
 
-	console.log(req.query);
-
 	if(req.query.username === undefined){
 		connection.userType('A').query(query1, 
 			[
