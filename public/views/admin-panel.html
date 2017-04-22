@@ -222,7 +222,7 @@
 							<thead>
 								<tr class="telegrafico">
 									<th>Name</th>
-									<th>Inactive / Active</th>
+									
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
@@ -339,21 +339,21 @@
 					<div class="row search-admin" style="height: 40px; margin-bottom: 0;">
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
-								<input type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
+								<input type="search" ng-model="username" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
 							</form>
 						</div>
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
-								<input type="date" ng-model="" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
+								<input type="date" ng-model="startDate" id="datepicker1" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
 							</form>
 						</div>
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
-								<input type="date" ng-model="" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
+								<input type="date" ng-model="endDate" id="datepicker2" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
 							</form>
 						</div>
 						<div class="col s3 padding-override-0 margin-override-0" style="height: 100%;">
-							<button style="height: 100%;" ng-click="searchLog()" class="waves-effect waves-light search-admin-button"><i class="fa fa-filter"></i></button>
+							<button style="height: 100%;" ng-click="searchLog($scope.userName, $scope.startDate, $scope.endDate)" class="waves-effect waves-light search-admin-button"><i class="fa fa-filter"></i></button>
 						</div>
 					</div>
 
@@ -371,7 +371,7 @@
 							<tbody class="century-gothic">
 								<tr ng-repeat="l in logs">
 									<td>{{l.log_id}}</td>
-									<td>{{l.username}}</td>
+									<td>{{l.user_id}}</td>
 									<td>{{l.log_msg}}</td>
 									<td>{{l.date_created}}</td>
 								</tr>

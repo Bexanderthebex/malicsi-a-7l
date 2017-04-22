@@ -179,6 +179,7 @@ router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
 router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
 router.get('/log/viewUserLogs',logController.viewUserLogs);
 router.post('/log/createLog',logController.createLog);
+router.get('/log/searchLog', checkUser('A'), logController.searchLog);
 
 //upload router
 router.post('/uploadImg',uploadController.imageUpload);
