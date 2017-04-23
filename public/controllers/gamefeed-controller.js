@@ -14,21 +14,26 @@
         $scope.column2 = [];
         $scope.column3 = [];
         $scope.gamefeedInit = gamefeedInit;
+        $scope.statusSort = true;
 
-        function gamefeedInit(){
+        function gamefeedInit(value){
+            $scope.statusSort = value;
+            $scope.games = [];
+            $scope.column1 = [];
+            $scope.column2 = [];
+            $scope.column3 = [];
             console.log("asdf");
-            retrieveGames();
-
+            retrieveGames(value);
         }
 
 
 
-        function retrieveGames() {
+        function retrieveGames(value) {
             GameService
                 .viewAllGames()
                 .then(function(res) {
                     $scope.games = res.data;
-                    sortBy();
+                    sortBy(value);
                     distributeGame();
 
                 }, function(err) {
@@ -37,9 +42,11 @@
                 })
         }
 
-        function sortBy(){
+        function sortBy(value){
+            console.log("joiurishs")
+            console.log(value)
             // sort the games
-            if($scope.gfnameChecked){
+            if(value == "true"){
                 sortByName();
             }else{
                 sortByDate();
@@ -51,7 +58,10 @@
                 if(a.name < b.name) return -1;
                 if(a.name > b.name) return 1;
                 return 0;
-            })
+            });
+
+            console.log("reflect daw");
+            console.log($scope.games);
         }
 
         function sortByDate(){
@@ -82,9 +92,6 @@
             }
         }
 
-        function sortByDate(){
-
-        }
 
         function searchGame() {
             SearchService
@@ -97,6 +104,16 @@
                 })
         }
 
+        function searchGame(search){
+            SearchService
+                .retrieveGame(search)
+                .then(function(res){
+                    $scope.games = res.data;
+                    retrieveGames("false");
+                }, function(err){
+                    
+                })
+        }
 
     }
 })();
