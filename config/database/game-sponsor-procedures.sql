@@ -109,8 +109,6 @@ BEGIN
 END; //
 DELIMITER ;
 
-
-
 GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE add_sponsor TO 'administrator'@'localhost';
 
