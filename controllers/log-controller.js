@@ -55,6 +55,25 @@ exports.viewLogsByDate = (req, res) => {
 	);
 }
 
+exports.searchLog = (req, res) => {
+	let query = 'call search_logs(?, ?, ?)';
+	let type = req.session.user.type;
+    connection.userType(type).query(query,
+        [
+            '%' + req.query.username + '%',
+			new Date(req.query.startDate),
+			new Date(req.query.endDate)
+        ], (err, rows) => {
+            if(!err) {
+				console.log(rows);
+                return res.status(200).send(rows[0]);
+            } else {
+                return res.status(500).send({ 'message' : 'An error occured'});
+            }
+        }
+    );
+}
+
 exports.createLog = (req, res) => {
     currentUser = req.session.user;
     query = "CALL create_log(?, ?)";
@@ -63,8 +82,8 @@ exports.createLog = (req, res) => {
 	let type = req.session.user.type;
     connection.userType(type).query(query,
         [
-            req.body.id, 
-            req.body.message 
+            req.body.id,
+            req.body.message
         ], (err, rows) => {
             if(!err) {
                 return res.status(200).send({ 'message' : 'Sucessfully created log'});
