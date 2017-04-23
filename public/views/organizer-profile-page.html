@@ -49,11 +49,11 @@
 
                         <!-- P A S T GAMES -->
                         <div id="sports-past-matches" class="col s4">
-                            <h5 class="telegrafico center">PAST GAMES ({{ games.length }})</h5>
+                            <h5 class="telegrafico center">PAST GAMES ({{ pastGames.length }})</h5>
 
                             <!-- LIST OF GAMES -->
-                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;">
-                                <div class="sports-match palette-border-5" ng-repeat="game in games">
+                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerPastGames()">
+                                <div class="sports-match palette-border-5" ng-repeat="game in pastGames">
                                     <!-- GAME TITLE -->
                                     <div class="sports-match-title row">
                                         <div class="telegrafico col s10">{{ game.name }}</div>
@@ -79,11 +79,11 @@
 
                         <!-- O N  G O I N G GAMES -->
                         <div id="sports-ongoing-matches" class="col s4">
-                            <h5 class="telegrafico center">ON-GOING GAMES ({{ games.length }})</h5>
+                            <h5 class="telegrafico center">ON-GOING GAMES ({{ ongoingGames.length }})</h5>
 
                             <!-- LIST OF GAMES -->
-                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;">
-                                <div class="sports-match palette-border-3" ng-repeat="game in games">
+                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerOngoingGames()">
+                                <div class="sports-match palette-border-3" ng-repeat="game in ongoingGames">
                                     <!-- GAME TITLE -->
                                     <div class="sports-match-title row">
                                         <div class="telegrafico col s10">{{ game.name }}</div>
@@ -109,11 +109,11 @@
 
                         <!-- U P C O M I N G GAMES -->
                         <div id="sports-upcoming-matches" class="col s4">
-                            <h5 class="telegrafico center">UPCOMING GAMES ({{ games.length }})</h5>
+                            <h5 class="telegrafico center">UPCOMING GAMES ({{ upcomingGames.length }})</h5>
 
                             <!-- LIST OF GAMES -->
-                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;">
-                                <div class="sports-match palette-border-4" ng-repeat="game in games">
+                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerUpcomingGames()">
+                                <div class="sports-match palette-border-4" ng-repeat="game in upcomingGames">
                                     <!-- GAME TITLE -->
                                     <div class="sports-match-title row">
                                         <div class="telegrafico col s10">{{ game.name }}</div>
@@ -443,11 +443,11 @@
             <div class="row">
                 <div class="input-field col s6 organizer-add-form">
                     <span class="telegrafico">Start Date</span>
-                    <input id="start-date" class="organizer-input-style validate" type="date" ng-model="newGame.startDate">
+                    <input id="game-start-date" class="datepicker organizer-input-style validate" ng-model="newGame.startDate">
                 </div>
                 <div class="input-field col s6 organizer-add-form">
                     <span class="telegrafico">End Date</span>
-                    <input id="end-date" class="organizer-input-style validate" type="date" ng-model="newGame.endDate">
+                    <input id="game-end-date" class="datepicker organizer-input-style validate" ng-model="newGame.endDate">
                 </div>
             </div>
             <div class="row">
@@ -460,7 +460,7 @@
     </div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico" ng-click="updateGame()"><i class="material-icons left">check</i>Add</a>
+        <a class="modal-action modal-close waves-effect btn-flat telegrafico" ng-click="addGame()"><i class="material-icons left">check</i>Add</a>
     </div>
 </div>
 
@@ -478,7 +478,7 @@
                 </div>
             </div>
         </div> 
-        <table class="highlight responsive-table" ng-init="retrieveGame()">
+        <table class="highlight responsive-table">
             <tbody>
                 <tr class="century-gothic" ng-repeat="game in games">
                     <td> {{ game.name }}</td>
@@ -515,7 +515,7 @@
                 </div>
             </div>
         </div>  
-        <table class="highlight responsive-table" ng-init="retrieveGame()">
+        <table class="highlight responsive-table">
             <tbody>
                 <tr class="century-gothic" ng-repeat="game in games">
                     <td> {{ game.name }}</td>
@@ -552,7 +552,7 @@
                 </div>
             </div>
         </div>  
-        <table class="highlight responsive-table" ng-init="retrieveGame()">
+        <table class="highlight responsive-table">
             <tbody>
                 <tr class="century-gothic" ng-repeat="game in games">
                     <td> {{ game.name }}</td>

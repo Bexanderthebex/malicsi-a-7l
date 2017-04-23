@@ -158,27 +158,27 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS view_all_ongoing_games;
 DELIMITER //
-CREATE PROCEDURE view_all_ongoing_games()
+CREATE PROCEDURE view_all_ongoing_games(IN id INT)
 BEGIN
-	SELECT * FROM game WHERE start_date <= NOW() AND end_date >= NOW();
+	SELECT * FROM game WHERE (start_date <= NOW() AND end_date >= NOW()) AND organizer_id = id;
 END;
 //
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS view_all_upcoming_games;
 DELIMITER //
-CREATE PROCEDURE view_all_upcoming_games()
+CREATE PROCEDURE view_all_upcoming_games(IN id INT)
 BEGIN
-	SELECT * FROM game WHERE start_date > NOW();
+	SELECT * FROM game WHERE start_date > NOW() AND organizer_id = id;
 END;
 //
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS view_all_recent_games;
 DELIMITER //
-CREATE PROCEDURE view_all_recent_games()
+CREATE PROCEDURE view_all_recent_games(IN id INT)
 BEGIN
-	SELECT * FROM game WHERE end_date > NOW();
+	SELECT * FROM game WHERE end_date < NOW() AND organizer_id = id;
 END;
 //
 DELIMITER ;

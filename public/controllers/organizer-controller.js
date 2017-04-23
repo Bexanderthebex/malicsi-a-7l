@@ -9,12 +9,10 @@
     OrganizerController.$inject = ['$scope', '$window', '$routeParams', 'OrganizerService', 'UserService'];
 
     function OrganizerController($scope, $window, $routeParams, OrganizerService, UserService) {
-        //"declare" functions para magamit sa view
         $scope.thisOrganizer = {
             orgID: $routeParams.id
         };
         $scope.addGame = addGame;
-        $scope.retrieveGame = retrieveGame;
         $scope.deleteGame = deleteGame;
         $scope.updateGame = updateGame;
         $scope.getRequests = getRequests;
@@ -24,14 +22,14 @@
         $scope.updateOrganizer = updateOrganizer;
         $scope.copyGame = copyGame;
         $scope.copyRequest = copyRequest;
-        $scope.getOrganizerGames = getOrganizerGames;
+        $scope.getOrganizerPastGames = getOrganizerPastGames;
+        $scope.getOrganizerOngoingGames = getOrganizerOngoingGames;
+        $scope.getOrganizerUpcomingGames = getOrganizerUpcomingGames;
         $scope.getOrganizerRequests = getOrganizerRequests;
 
-        //kumabaga "declare" or "initialize" "variables" para mag-access sa front-end yung mga data
         $scope.organizer = {};
         $scope.game = {};
         $scope.requests = [];
-        $scope.games = [];
         $scope.newGame = {
             orgID: undefined,
             gameName: undefined,
@@ -61,10 +59,10 @@
         }
 
         function addGame() {
-            $scope.newGame.startDate = $('#start-date').val();
-            $scope.newGame.endDate = $('#end-date').val();
+            $scope.newGame.startDate = $('#game-start-date').val();
+            $scope.newGame.endDate = $('#game-end-date').val();
             $scope.newGame.orgID = $scope.organizer.id;
-
+            console.log($scope.newGame);
             OrganizerService
                 .addGame($scope.newGame) //calls addGame function in OrganizerService
                 .then(function (res){ //function block when success sa OrganizerService
@@ -77,18 +75,63 @@
                         locat: undefined,
                         descrip: undefined
                     };
-                    retrieveGame(); //to update contents of $scope.games at mareflect sa ng-repeat ng games
+                    getOrganizerPastGames();
+                    getOrganizerOngoingGames();
+                    getOrganizerUpcomingGames();
                 }, function(err) { //function block when nag-fail yung dapat gawin sa OrganizerService
                     Materialize.toast('New game not added!', 3000);
                 })
         }
 
-        function getOrganizerGames() {
+        function getOrganizerPastGames() {
             UserService
                 .getUserInfo()
                 .then(function (res){
                     $scope.organizer = res.data;
-                    retrieveGame();
+                    OrganizerService
+                        .retrievePastGames($scope.organizer.id)
+                        .then(function(res) {
+                            $scope.pastGames = res.data;
+                            console.log($scope.pastGames);
+                        }, function(err) { 
+                            Materialize.toast('Games not retrieved.', 3000);
+                        })
+                }, function(err) {
+                    Materialize.toast('error', 3000);
+                })
+        }
+
+        function getOrganizerOngoingGames() {
+            UserService
+                .getUserInfo()
+                .then(function (res){
+                    $scope.organizer = res.data;
+                    OrganizerService
+                        .retrieveOngoingGames($scope.organizer.id)
+                        .then(function(res) {
+                            $scope.ongoingGames = res.data;
+                            console.log($scope.ongoingGames);
+                        }, function(err) { 
+                            Materialize.toast('Games not retrieved.', 3000);
+                        })
+                }, function(err) {
+                    Materialize.toast('error', 3000);
+                })
+        }
+
+        function getOrganizerUpcomingGames() {
+            UserService
+                .getUserInfo()
+                .then(function (res){
+                    $scope.organizer = res.data;
+                    OrganizerService
+                        .retrieveUpcomingGames($scope.organizer.id)
+                        .then(function(res) {
+                            $scope.upcomingGames = res.data;
+                            console.log($scope.upcomingGames);
+                        }, function(err) { 
+                            Materialize.toast('Games not retrieved.', 3000);
+                        })
                 }, function(err) {
                     Materialize.toast('error', 3000);
                 })
@@ -102,18 +145,6 @@
                     getRequests();
                 }, function(err) {
                     Materialize.toast('error', 3000);
-                })
-        }
-
-        function retrieveGame() {
-            OrganizerService
-                .retrieveGame($scope.organizer.id) //parameters depend on kung ano kailangan ng back-end controllers
-                .then(function(res) { //function block when success in service
-                    $scope.games = res.data; //ilalagay sa $scope.games yung res na nakuha sa back-end
-                    //$scope para ma-access siya sa frontend
-                    //accessible sa front-end yung mga $scope using ng-model
-                }, function(err) { //function block when failed
-                    Materialize.toast('Games not retrieved.', 3000);
                 })
         }
 
@@ -144,7 +175,6 @@
                 .getRequests($scope.organizer.id)
                 .then(function(res) {
                     $scope.requests = res.data;
-                    console.log($scope.requests);
                 }, function(err) {
                     Materialize.toast('Error retrieving requests.', 3000);
                 })
@@ -200,15 +230,18 @@
                 .updateOrganizer($scope.organizer)
                 .then(function(res) {
                     UserService
-                        .updateUser($scope.organizer.username, $scope.organizer.email, $scope.organizer.contact, $scope.organizer.id)
+                        .updateUser($scope.organizer)
                         .then(function(res) {
-                            UserService
-                                .updatePassword($scope.organizer)
-                                .then(function(res) {
-                                    Materialize.toast('Successfully updated organizer!', 3000);
-                                }, function(err) {
-                                    Materialize.toast('Failed to update organizer!', 3000);
-                                })
+                            console.log($scope.organizer.password);
+                            if($scope.organizer.password) {
+                                UserService
+                                    .updatePassword($scope.organizer)
+                                    .then(function(res) {
+                                        Materialize.toast('Successfully updated organizer!', 3000);
+                                    }, function(err) {
+                                        Materialize.toast('Failed to update organizer!', 3000);
+                                    })
+                            } else Materialize.toast('Successfully updated organizer!', 3000);
                         }, function(err) {
                             Materialize.toast('Failed to update organizer!', 3000);
                         })
