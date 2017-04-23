@@ -6,10 +6,10 @@
         .module('app')
         .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', '$routeParams', 'OrganizationService', 'UserService'];
+    OrganizationController.$inject = ['$scope', '$routeParams', 'OrganizationService', 'UserService', '$window'];
 
 
-    function OrganizationController($scope, $routeParams, OrganizationService, UserService) {
+    function OrganizationController($scope, $routeParams, OrganizationService, UserService, $window) {
         $scope.thisOrganization = {
             organization_id: $routeParams.id
         };
@@ -59,7 +59,7 @@
                     $scope.organization = res.data;
                     retrieveOrganizationStatistics($scope.thisOrganization.organization_id);
                 }, function(err) {
-                    Materialize.toast('Error loading organization');
+                    $window.location.href = '/#/error';
                     console.log(err);
                 })
         }
@@ -75,6 +75,7 @@
                 })
         }
 
+        
         function retrieveTeams(org_id) {
             OrganizationService
                 .retrieveTeams(org_id)
