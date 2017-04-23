@@ -216,6 +216,15 @@ $(document).ready(function(){
   // $('.admin-form-edit').attr('disabled', 'disabled');
   $('.admin-form-edit').prop('disabled', true);
 
+  $('#datepicker1').pickadate({
+    format: 'yyyy-mm-dd',
+    selectMonths: true,
+    selectYears: true
+  });
 
-
+  $('#datepicker2').pickadate({
+    format: 'yyyy-mm-dd',
+    selectMonths: true,
+    selectYears: true
+  });
 });
