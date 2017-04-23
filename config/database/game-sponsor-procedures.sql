@@ -109,6 +109,14 @@ BEGIN
 END; //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS search_sponsor;
+DELIMITER //
+CREATE PROCEDURE search_sponsor(in _name VARCHAR(100))
+BEGIN
+	SELECT * FROM sponsor_institution WHERE name LIKE _name;
+END; //
+DELIMITER ;
+
 GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE add_sponsor TO 'administrator'@'localhost';
 
@@ -133,8 +141,12 @@ GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO 'administrator'@'loc
 GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_sponsors_not_in_game TO 'guest'@'localhost';
 
-
 GRANT EXECUTE ON PROCEDURE view_sponsor TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_sponsor TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_sponsor TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_sponsor TO 'guest'@'localhost';
+
+GRANT EXECUTE ON PROCEDURE search_sponsor TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_sponsor TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_sponsor TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_sponsor TO 'guest'@'localhost';
