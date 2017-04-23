@@ -23,7 +23,10 @@
             createTeam: createTeam,
             deleteTeam: deleteTeam,
             getPendingRequests: getPendingRequests,
-            getTeamRankings: getTeamRankings
+            getTeamRankings: getTeamRankings,
+            listAllGames: listAllGames,
+            //listAllSports: listAllSports,
+            //listAllOrganization: listAllOrganization
         }
 
         return service;
@@ -213,6 +216,39 @@
 
             return deferred.promise;
         }
+
+        function listAllGames(){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/game/viewAllGames',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        // function listAllSports(){
+        //     let deferred = $q.defer();
+
+        //     $http({
+        //         method: 'GET',
+        //         url: '/sport/viewAllSports',
+        //         headers: headers
+        //     }).then((res) => {
+        //         deferred.resolve(res);
+        //     }, (err) => {
+        //         deferred.reject(err);
+        //     });
+
+        //     return deferred.promise;
+        // }
+
 
         function getTeamRankings(sport_id){
             let deferred = $q.defer();
