@@ -12,7 +12,9 @@
 
     function OrganizerService($http, $q) {
         const service = {
-            retrieveGame: retrieveGame,
+            retrievePastGames: retrievePastGames,
+            retrieveOngoingGames: retrieveOngoingGames,
+            retrieveUpcomingGames: retrieveUpcomingGames,
             addGame: addGame,
             updateGame: updateGame,
             deleteGame: deleteGame,
@@ -25,13 +27,47 @@
 
         return service;
 
-        function retrieveGame(org_id) {
+        function retrievePastGames(org_id) {
             let deferred = $q.defer();
 
             $http({
                 method: 'GET',
-                params: { 'id': org_id },
-                url: '/organizer/findGames',
+                params: { organizer_id: org_id },
+                url: '/game/viewAllRecentGames',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function retrieveOngoingGames(org_id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: { organizer_id: org_id },
+                url: '/game/viewAllOngoingGames',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function retrieveUpcomingGames(org_id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: { organizer_id: org_id },
+                url: '/game/viewAllUpcomingGames',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
@@ -179,7 +215,6 @@
                 url: '/organizer/editOrganizer',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
