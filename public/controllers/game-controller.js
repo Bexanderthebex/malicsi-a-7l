@@ -6,9 +6,9 @@
         .module('app')
         .controller('GameController', GameController);
 
-    GameController.$inject = ['$scope', '$routeParams', 'GameService'];
+    GameController.$inject = ['$scope', '$routeParams', 'GameService', 'UserService'];
 
-    function GameController($scope, $routeParams,  GameService) {
+    function GameController($scope, $routeParams,  GameService, UserService) {
         $scope.thisGame = {
             game_id: $routeParams.gameId
         };
@@ -17,8 +17,7 @@
         $scope.clearNewSport = clearNewSport;
         $scope.retrieveSport = retrieveSport;
         $scope.deleteSport = deleteSport;
-        $scope.deleteOrganizationFromGame = deleteOrganizationFromGame;
-        $scope.frt = updateSport;
+        $scope.updateSport = updateSport;
         $scope.updateWinner = updateWinner;
         $scope.retrieveAllSports = retrieveAllSports;
         $scope.passSport = passSport;
@@ -42,16 +41,24 @@
         $scope.passSponsorDelete = passSponsorDelete;
         $scope.checkGameDescription = checkGameDescription;
         $scope.checkGameLocation = checkGameLocation;
-        $scope.addOrganizationToGame = addOrganizationToGame;
+        $scope.addMultipleOrganizations =  addMultipleOrganizations;
+        $scope.deleteMultipleOrganizations =  deleteMultipleOrganizations;
         $scope.viewAllOrganizationForGame = viewAllOrganizationForGame;
         $scope.viewAllOrganizationInGame = viewAllOrganizationInGame;
+        $scope.checkAvailableOrganizations = checkAvailableOrganizations;
+        $scope.checkParticipatingOrganizations = checkParticipatingOrganizations;
+        $scope.checkValidOrgAdd = checkValidOrgAdd;
+        $scope.checkValidOrgDel = checkValidOrgDel;
         $scope.showCheckedSponsors = showCheckedSponsors;
         $scope.addMultipleSponsors = addMultipleSponsors;
         $scope.deleteMultipleSponsors = deleteMultipleSponsors;
         $scope.checkValidSponsorAdd = checkValidSponsorAdd;
         $scope.checkValidSponsorDel = checkValidSponsorDel;
+        $scope.getUserDetails = getUserDetails;
+        $scope.checkIfOrganizer = checkIfOrganizer;
 
 
+        $scope.user = {};
         $scope.sport = {};
         $scope.sports = [];
         $scope.sportCopy = {};
@@ -62,7 +69,11 @@
         $scope.temp = [];
         $scope.match_id_tracker = [];
         $scope.organizationRanks = [];
+        $scope.availableOrgs = [];
+        $scope.participatingOrgs = [];
         $scope.tempOrgs = [];
+        $scope.validOrgAdd = false;
+        $scope.validOrgDel = false;
         $scope.sponsors = [];
         $scope.otherSponsors = [];
         $scope.checkedSponsors = [];
@@ -76,6 +87,7 @@
             org_name: undefined,
             org_rank: undefined
         }
+
 
         $scope.newSport = {
             sportName: undefined,
@@ -99,6 +111,8 @@
         }
 
 
+
+
         $scope.mergedMatch = {
             team1_id: undefined,
             team1_name: undefined,
@@ -111,9 +125,25 @@
             match_id: undefined
         }
 
+        $scope.teams = {
+            name: undefined,
+            description: undefined
+        }
+
+        $scope.mergedMatchBeta = {
+            teams: [],
+            match_id: undefined,
+            time_start: undefined,
+            time_end: undefined,
+            match_date: undefined,
+            match_id: undefined
+        }
+
         $scope.newOrganizationInGame = {
             orgId: undefined,
-            gameId: $scope.thisGame.game_id
+            gameId: $scope.thisGame.game_id,
+            name: undefined,
+            checked: false
         }
 
         $scope.organizationInGame = {
@@ -182,24 +212,21 @@
             if($scope.game.location == undefined) return true;
             else false;
         }
-        function checkOrganization(){
-            if($scope.checkOrganization.length == 0) return true;
+        function checkAvailableOrganizations(){
+            if($scope.availableOrgs.length == 0) return true;
             else false;
         }
 
-        function addOrganizationToGame(newOrganizationInGame){
-           $scope.newOrganizationInGame.orgId = ("#orgID").val();
-           GameService
-                .addOrganizationToGame(newOrganizationInGame)
-                .then(function (res){
-                    console.log("added organization to game");
-                    Materialize.toast("Successfully added the Organization!", 3000);
-                }, function(err) {
-                    console.log(err);
-                    Materialize.toast("Failed to add the Organization!", 3000);
-                }) 
+        function checkParticipatingOrganizations(){
+            if($scope.participatingOrgs.length == 0) return true;
+            else false;
         }
-                
+        function checkIfOrganizer(){
+            if($scope.user.type=="O") return true;
+            else return false;
+        }
+
+
         function checkValidSponsorAdd(){
             var countAdd=0;
             for(var i = 0; i<$scope.otherSponsors.length; i++){
@@ -208,6 +235,9 @@
             if(countAdd>0) $scope.validSponsorAdd=true;
             else $scope.validSponsorAdd=false;
         }
+
+
+
         function checkValidSponsorDel(){
             var countDel=0;
             for(var i = 0; i<$scope.sponsors.length; i++){
@@ -217,6 +247,59 @@
             else $scope.validSponsorDel=false;
         }
 
+        function checkValidOrgAdd(){
+            var countAdd=0;
+            for(var i = 0; i<$scope.availableOrgs.length; i++){
+                if($scope.availableOrgs[i].checked==true) countAdd++;
+            }
+            if(countAdd>0) $scope.validOrgAdd=true;
+            else $scope.validOrgAdd=false;
+        }
+
+        function checkValidOrgDel(){
+            var countAdd=0;
+            for(var i = 0; i<$scope.participatingOrgs.length; i++){
+                if($scope.participatingOrgs[i].checked==true) countAdd++;
+            }
+            if(countAdd>0) $scope.validOrgDel=true;
+            else $scope.validOrgDel=false;
+        }
+        
+        function getUserDetails(){
+            UserService
+                .getUserInfo()
+                .then(function(res){
+                    console.log("user details retrieved");
+                    // console.log(res);
+                    $scope.user = res.data;
+                }, function(err){
+                    console.log(err);
+                    Materialize.toast("Failed to get user details!", 3000);
+                })
+        }
+
+
+        function addMultipleOrganizations(){
+           var newOrganizations = [];
+           for(var i = 0; i<$scope.availableOrgs.length; i++){
+                if($scope.availableOrgs[i].checked==true) newOrganizations.push($scope.availableOrgs[i]);
+           }
+           GameService
+                .addMultipleOrganizations(newOrganizations)
+                .then(function (res){
+                    console.log("added organizations to game");
+                    $scope.availableOrgs = [];
+                    $scope.participatingOrgs =[];
+                    viewAllOrganizationForGame();
+                    viewAllOrganizationInGame();
+                    Materialize.toast("Successfully added the organizations!", 3000);
+                }, function(err) {
+                    console.log(err);
+                    Materialize.toast("Failed to add the Organization!", 3000);
+                }) 
+        }
+                
+        
 
         function passSport(sport){
             $scope.sportCopy = {
@@ -319,11 +402,18 @@
                 })
         }
       
-        function deleteOrganizationFromGame(organizationInGame) {
-            console.log("To delete organization " + organizationInGame);
+        function deleteMultipleOrganizations() {
+            var organizations = [];
+            for (var i = 0; i<$scope.participatingOrgs.length; i++){
+                if ($scope.participatingOrgs[i].checked==true) organizations.push($scope.participatingOrgs[i]);
+            }
             GameService
-                .deleteOrganizationFromGame($scope.thisGame.game_id, organizationInGame)
+                .deleteMultipleOrganizations(organizations)
                 .then(function(res) {
+                    $scope.availableOrgs = [];
+                    $scope.participatingOrgs = [];
+                    viewAllOrganizationForGame();
+                    viewAllOrganizationInGame();
                     console.log("deleted");
                     Materialize.toast('Successfully deleted the organization from current game!', 3000);
                 }, function(err) {
@@ -379,12 +469,18 @@
                 .viewAllOrganizationForGame($scope.thisGame.game_id)
                 .then(function(res){
                     console.log("Available organizations retrieved for game#"+ $scope.thisGame.game_id);
-                    console.log(res.data);
-                    $scope.temp = res.data;
-                    for (var i = scope.temp.length -1; i>= 0; i--){
-                        $scope.availableOrg = $scope.temp[i].name;
-                        $scope.push($scope.availableOrg);
+                    $scope.tempOrgs = res.data;
+                    $scope.availableOrgs = [];
+                    for(var i = 0; i<$scope.tempOrgs.length; i++){
+                        $scope.newOrganizationInGame = {
+                            orgId: $scope.tempOrgs[i].organization_id,
+                            name: $scope.tempOrgs[i].name,
+                            gameId: $scope.thisGame.game_id,
+                            checked: false
+                        }
+                        $scope.availableOrgs.push($scope.newOrganizationInGame);
                     }
+                    console.log($scope.availableOrgs);
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to retrieve Available Organizations!', 3000);
@@ -396,12 +492,18 @@
                 .viewAllOrganizationInGame($scope.thisGame.game_id)
                 .then(function(res){
                     console.log("Organizations In Game Retrieved"+ $scope.thisGame.game_id);
-                    console.log(res.data);
-                    $scope.temp = res.data;
-                    for (var i = scope.temp.length -1; i>= 0; i--){
-                        $scope.availableOrg = $scope.temp[i].name;
-                        $scope.push($scope.orgInGame);
+                    $scope.tempOrgs = res.data;
+                    $scope.availableOrgs = [];
+                    for(var i = 0; i<$scope.tempOrgs.length; i++){
+                        $scope.newOrganizationInGame = {
+                            orgId: $scope.tempOrgs[i].organization_id,
+                            name: $scope.tempOrgs[i].name,
+                            gameId: $scope.thisGame.game_id,
+                            checked: false
+                        }
+                        $scope.participatingOrgs.push($scope.newOrganizationInGame);
                     }
+                    console.log($scope.participatingOrgs);
                 }, function(err){
                     console.log(err.data);
                     Materialize.toast('Failed to retrieve Organizations in Game!', 3000);
@@ -576,7 +678,7 @@
                             name: res[i].name,
                             description: res[i].description,
                             checked: false
-                            
+
                         };
 
                         $scope.otherSponsors.push($scope.newSponsorGame);
