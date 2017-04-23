@@ -98,6 +98,9 @@ router.delete('/organizer/deleteTeam',organizerController.deleteTeam);
 router.get('/organization/getOrganization',teamController.getOrganization);
 router.get('/organization/getGamesInOrganization',teamController.getGamesInOrganization);
 router.get('/organization/search',organizationController.searchOrganization);
+router.put('/organization/editOrganization', organizationController.editOrganization);
+router.post('/organization/addOrganization', organizationController.addOrganization);
+router.delete('/organization/deleteOrganization', organizationController.deleteOrganization)
 
 // team routers
 router.get('/team/teamStatistics',teamController.getTeamStatistics);
@@ -145,6 +148,8 @@ router.post('/game/addSponsorToGame',  sponsorController.addSponsorToGame);
 router.delete('/game/deleteSponsorFromGame',  sponsorController.deleteSponsorFromGame);
 
 // sponsor routers
+router.get('/sponsor/viewAll', sponsorController.viewAllSponsor);
+router.get('/sponsor/searchSponsor', sponsorController.searchSponsor);
 router.put('/sponsor/editSponsor',  sponsorController.editSponsorDetails);
 router.post('/sponsor/addSponsor', sponsorController.addSponsor);
 router.delete('/sponsor/deleteSponsor', sponsorController.deleteSponsor);
@@ -163,9 +168,9 @@ router.delete('/sport/deleteSport', sportController.deleteSport);
 router.get('/game/sport/countMatchBySport/:sportID', matchController.countMatchBySport);
 router.get('/sport/match/viewMatchInSport',  matchController.viewMatchInSport);
 router.get('/sport/match/viewAllMatch', matchController.viewAllMatch);
-router.get('/sport/match/viewCurrentMatch', matchController.viewCurrentMatch);  
+router.get('/sport/match/viewCurrentMatch', matchController.viewCurrentMatch);
 router.get('/sport/match/viewPastMatch', matchController.viewPastMatch);
-router.get('/sport/match/viewUpcomingMatch', matchController.viewFutureMatch);		 
+router.get('/sport/match/viewUpcomingMatch', matchController.viewFutureMatch);
 router.get('/sport/match/viewMatchDetails', matchController.viewMatchDetails);
 router.post('/sport/match/addMatch',  matchController.addMatch);
 router.put('/sport/match/editMatch', matchController.editMatch);
@@ -177,6 +182,7 @@ router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);
 router.post('/log/viewLogsByDate', checkUser('A'), logController.viewLogsByDate);
 router.get('/log/viewUserLogs',logController.viewUserLogs);
 router.post('/log/createLog',logController.createLog);
+router.get('/log/searchLog', checkUser('A'), logController.searchLog);
 
 //upload router
 router.post('/uploadImg',uploadController.imageUpload);

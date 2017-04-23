@@ -18,7 +18,9 @@
             retrieveSport: retrieveSport,
             retrieveCompetitor: retrieveCompetitor,
             retrieveAdmin: retrieveAdmin,
-            retrieveUser: retrieveUser
+            retrieveUser: retrieveUser,
+            retrieveSponsor: retrieveSponsor,
+            retrieveLogByDateAndUsername: retrieveLogByDateAndUsername
         }
 
         return service;
@@ -29,6 +31,22 @@
                 method: 'GET',
                 params: { 'search': search },
                 url: '/organizer/searchOrganizer',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function retrieveSponsor(search) {
+            let deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: '/sponsor/searchSponsor',
+				params: {search: search},
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
@@ -135,5 +153,22 @@
 
             return deferred.promise;
 		}
+
+        function retrieveLogByDateAndUsername(username, startDate, endDate) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: {'username': username, 'startDate': startDate, 'endDate': endDate},
+                url: '/log/searchLog',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
     }
 })();
