@@ -9,6 +9,7 @@ mysql -u root malicsi --password=$1 < organizer-procedures.sql;
 mysql -u root malicsi --password=$1 < team-procedures.sql;
 mysql -u root malicsi --password=$1 < user-procedures.sql;
 mysql -u root malicsi --password=$1 < admin-procedures.sql;
+mysql -u root malicsi --password=$1 < log-procedures.sql;
 
 # Append this to file for each procedure.sql file
 # mysql -u root --password=$1 < module-procedures.sql

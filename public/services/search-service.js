@@ -18,7 +18,8 @@
             retrieveSport: retrieveSport,
             retrieveCompetitor: retrieveCompetitor,
             retrieveAdmin: retrieveAdmin,
-            retrieveUser: retrieveUser
+            retrieveUser: retrieveUser,
+            retrieveSponsor: retrieveSponsor
         }
 
         return service;
@@ -29,6 +30,22 @@
                 method: 'GET',
                 params: { 'search': search },
                 url: '/organizer/searchOrganizer',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function retrieveSponsor() {
+            let deferred = $q.defer();
+            $http({
+                method: 'GET',
+                //params: { 'search': search },
+                url: '/sponsor/viewAll',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
