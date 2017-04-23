@@ -108,11 +108,6 @@ DELIMITER //
 
 DELIMITER ;
 
-
-
-
-
-
 grant execute on procedure search_organizer to 'organizer'@'localhost';
 grant execute on procedure search_organizer to 'administrator'@'localhost';
 grant execute on procedure search_organizer to 'competitor'@'localhost';
@@ -152,3 +147,4 @@ grant execute on procedure find_team to 'organizer'@'localhost';
 grant execute on procedure find_team to 'competitor'@'localhost';
 grant execute on procedure find_team to 'administrator'@'localhost';
 grant execute on procedure find_team to 'guest'@'localhost';
+

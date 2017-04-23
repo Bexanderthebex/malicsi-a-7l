@@ -128,8 +128,7 @@
 }
 
 #game-delete-sponsor {
-    margin-top: 10%;
-    width: 30%;
+
 }
 
 #game-sponsor-edit {
@@ -297,8 +296,8 @@
 }
 
 .game-position-rank{
-    margin-top: 7px;
-    margin-right: 2px;
+    margin-top: 7px !important; 
+    margin-right: 2px !important;
 }
 
 .game-rank-title{

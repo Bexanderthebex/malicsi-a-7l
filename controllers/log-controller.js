@@ -6,21 +6,21 @@ const connection = require('./../config/db-connection.js');
 
 
 exports.viewAllLogs = (req, res) => {
-	query = 'CALL get_logs()';
+	let query = 'CALL get_logs()';
 
 	let type = req.session.user.type;
-	connection.userType(type).query(query, (err, rows) => {
+	connection.userType(type).query(query, [], (err, rows) => {
 		if(!err) {
 			res.status(200).send(rows[0]);
 			return rows;
 		} else {
-			return res.status(500).send({'message' : 'Internal Server Error'});
+			return res.status(500).send(err);
 		}
 	});
 }
 
 exports.viewUserLogs = (req, res) => {
-	query = 'CALL get_user_logs(?);';
+	let query = 'CALL get_user_logs(?);';
 
 	let type = req.session.user.type;
 	connection.userType(type).query(query,
@@ -37,7 +37,7 @@ exports.viewUserLogs = (req, res) => {
 }
 
 exports.viewLogsByDate = (req, res) => {
-	query = 'SELECT * FROM log WHERE date_created BETWEEN ? AND ?';
+	let query = 'SELECT * FROM log WHERE date_created BETWEEN ? AND ?';
 
 	let type = req.session.user.type;
 	connection.userType(type).query(query,

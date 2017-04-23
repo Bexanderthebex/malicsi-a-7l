@@ -70,7 +70,7 @@
         function updateUser(competitor) {
             let deferred = $q.defer();
 
-            $http.put(`/user/update`, 
+            $http.put(`/user/update`,
                 competitor
             ).then(function(res){
               deferred.resolve(res)
@@ -81,11 +81,11 @@
 
             return deferred.promise;
         }
-      
+
         function updateUserPassword(competitor) {
             let deferred = $q.defer();
             // console.log("pasok sa updateuserpassword");
-            $http.put(`/user/updatePassword`, 
+            $http.put(`/user/updatePassword`,
                 competitor
             ).then(function(res){
                 deferred.resolve(res)

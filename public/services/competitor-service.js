@@ -252,8 +252,7 @@
 
         function getTeamRankings(sport_id){
             let deferred = $q.defer();
-
-            console.log(sport_id);
+            
             $http({
                 method: 'GET',
                 url: '/sport/ranks/'+sport_id,
