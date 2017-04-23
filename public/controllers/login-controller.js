@@ -48,6 +48,8 @@
 				$scope.pword = "";
 				$scope.bday = "";
 				$scope.ead = "";
+			}, (err) => {
+				Materialize.toast(err.data.message, 2000)
 			})
 		}
 
@@ -58,7 +60,7 @@
 				$window.location.href = '/';
 			}, function(err) {
 				console.log(err);
-			});	
+			});
 		}
 	}
 })();
