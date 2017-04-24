@@ -6,9 +6,9 @@
         .module('app')
         .controller('GameController', GameController);
 
-    GameController.$inject = ['$scope', '$routeParams', 'GameService', 'UserService'];
+    GameController.$inject = ['$scope', '$routeParams', 'GameService', 'UserService', 'SearchService'];
 
-    function GameController($scope, $routeParams,  GameService, UserService) {
+    function GameController($scope, $routeParams,  GameService, UserService, SearchService) {
         $scope.thisGame = {
             game_id: $routeParams.gameId
         };
@@ -20,6 +20,7 @@
         $scope.updateSport = updateSport;
         $scope.updateWinner = updateWinner;
         $scope.retrieveAllSports = retrieveAllSports;
+        $scope.searchSport = searchSport;
         $scope.passSport = passSport;
         $scope.viewGameDetails = viewGameDetails;
         $scope.viewPastMatchesInGame = viewPastMatchesInGame;
@@ -56,10 +57,12 @@
         $scope.checkValidSponsorDel = checkValidSponsorDel;
         $scope.getUserDetails = getUserDetails;
         $scope.checkIfOrganizer = checkIfOrganizer;
+        $scope.checkSports = checkSports;
 
 
         $scope.user = {};
         $scope.sport = {};
+        $scope.query = undefined;
         $scope.sports = [];
         $scope.sportCopy = {};
         $scope.game = {};
@@ -182,6 +185,11 @@
                 i = "0" + i;
             }
             return i;
+        }
+
+        function checkSports(){
+            if($scope.sports.length == 0) return true;
+            else false;
         }
 
         function checkRankings(){
@@ -373,6 +381,23 @@
                     console.log(res.data.data);
                 }, function(err) {
                     //console.log(err);
+                })
+        }
+
+        function searchSport(){
+            SearchService
+                .retrieveSport($scope.query)
+                .then(function(res){
+                    console.log("Sport search success");
+                    $scope.sports = [];
+                    var temp = res.data;
+
+                    for(var i = 0; i<temp.length; i++){
+                        if (temp[i].game_id==$scope.thisGame.game_id) $scope.sports.push(temp[i]);
+                    }
+
+                }, function(err){
+                    Materialize.toast('Failed to search for sports!', 3000);
                 })
         }
 
