@@ -177,7 +177,7 @@
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
-                                <div class="col l5 m5 s5">{{cteam.team_organization}}</div>
+                                <div class="col l5 m5 s5">{{cteam.name}}</div>
                                 <div class="col l3 m3 s3">{{cteam.sport_name}}</div>
                                 <div class="col l1 m1 s1 center-block">
                                      <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team" ng-click="team.team_id=cteam.team_id"></i></div>
@@ -419,7 +419,7 @@
                     </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Team Created', 3000)" ng-click="createTeam()">CREATE</button>
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="createTeam()">CREATE</button>
     </div>
 </div>
 
