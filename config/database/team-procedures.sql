@@ -64,7 +64,6 @@ CREATE PROCEDURE delete_membership_request (IN idin INT, IN team_idin INT)
 
 DELIMITER ;
 
-
 DROP PROCEDURE IF EXISTS accept_membership_request;
 DELIMITER //
 CREATE PROCEDURE accept_membership_request (IN idin INT, IN team_idin INT)
@@ -124,9 +123,10 @@ DELIMITER ;
 DROP procedure IF EXISTS display_pending_membership_request;
 DELIMITER //
 
-CREATE PROCEDURE display_pending_membership_request(IN team_idin INT)
+CREATE PROCEDURE display_pending_membership_request(IN owner_idin INT)
 	BEGIN
-		SELECT * FROM competitor_joins_team WHERE team_id = team_idin AND is_member = 0;
+		SELECT first_name, last_name, team_id, team_name, sport_name FROM competitor, sport s join team JOIN competitor_joins_team using(team_id) 
+		WHERE s.sport_id = team.sport_id AND competitor.id = competitor_joins_team.id AND team.id = owner_idin AND is_member = 0;
 	END; //
 DELIMITER ;
 

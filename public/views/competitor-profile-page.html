@@ -195,11 +195,11 @@
                 <div class="col s12 bottom-margin">
                     <h5 class="rockwell">Applications</h5>
                     <table class="highlight responsive-table">
-                        <tbody>
+                        <tbody ng-repeat="prequests in pendingRequests">
                             <tr class="century-gothic">
-                                <td class="bold">Jane Doe</td>
-                                <td>Team-You-Created</td>
-                                <td>Basketball</td>
+                                <td class="bold">{{ prequests.first_name }} {{ prequests.last_name }}</td>
+                                <td>{{ prequests.team_name }}</td>
+                                <td>{{ prequests.sport_name }}</td>
                                 <td>
                                     <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Applicant" data-target="competitor-accept-applicant-modal">
                                         <i class="fa fa-check fa-lg"></i>
@@ -214,7 +214,7 @@
                 </div>
                 <div class="container divider"></div>
                 <div class="col s12">
-                    <h5 class="rockwell">Invites</h5>
+                    <h5 class="rockwell">Sent Requests</h5>
                     <table class="highlight responsive-table">
                         <tbody>
                             <tr class="century-gothic">

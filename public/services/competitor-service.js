@@ -25,8 +25,6 @@
             getPendingRequests: getPendingRequests,
             getTeamRankings: getTeamRankings,
             listAllGames: listAllGames,
-            //listAllSports: listAllSports,
-            //listAllOrganization: listAllOrganization
         }
 
         return service;
@@ -115,8 +113,6 @@
 
         function getCompetitorOrganization(){
             let deferred = $q.defer();
-
-            console.log("Here mam");
             $http({
                 method: 'GET',
                 url: '/competitor/getCompetitorOrganization',
@@ -133,7 +129,6 @@
         function getCoachedTeam(){
             let deferred = $q.defer();
 
-            console.log('here service');
             $http({
                 method: 'GET',
                 url: '/team/getCoachedTeams',
@@ -150,7 +145,6 @@
         function getTeamMembers(id){
             let deferred = $q.defer();
 
-            console.log('id service: ' + id);
             $http({
                 method: 'GET',
                 params: {'team_id': id},

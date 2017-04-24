@@ -134,7 +134,6 @@
             CompetitorService
                 .getCoachedTeam()
                 .then(function (res){
-                    // console.log(res.data);
                     $scope.coachedteam = res.data;
                 }, function(err) {
                     console.log(err);
@@ -164,7 +163,6 @@
         }
 
         function getTeamMembers(id){
-            console.log("id: " + id);
             CompetitorService
                 .getTeamMembers(id)
                 .then(function (res){
@@ -200,7 +198,6 @@
             CompetitorService
                 .getTeamRankings($scope.sport_id.sport_id)
                 .then(function (res){
-                    console.log(res.data);
                     $scope.rank = res.data;
                 }, function(err) {
                     console.log(err);
