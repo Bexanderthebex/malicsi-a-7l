@@ -34,6 +34,19 @@ DELIMITER //
 	//
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS search_logs;
+DELIMITER //
+	CREATE PROCEDURE search_logs(in _username VARCHAR(50), in _start_date DATETIME, in _end_date DATETIME)
+
+	BEGIN
+		SELECT log_id, user_id, username, log_msg, date_created
+		FROM log JOIN user ON user.id = log.user_id
+		WHERE (_username IS NULL OR username LIKE _username)
+			AND (_start_date IS NULL OR _end_date IS NULL OR date_created BETWEEN _start_date AND _end_date);
+	END;
+
+	//
+DELIMITER ;
 
 GRANT EXECUTE ON PROCEDURE create_log TO organizer;
 GRANT EXECUTE ON PROCEDURE create_log TO administrator;
@@ -50,3 +63,7 @@ GRANT EXECUTE ON PROCEDURE get_logs TO administrator;
 GRANT EXECUTE ON PROCEDURE get_logs TO competitor;
 GRANT EXECUTE ON PROCEDURE get_logs TO guest;
 
+GRANT EXECUTE ON PROCEDURE search_logs TO organizer;
+GRANT EXECUTE ON PROCEDURE search_logs TO administrator;
+GRANT EXECUTE ON PROCEDURE search_logs TO competitor;
+GRANT EXECUTE ON PROCEDURE search_logs TO guest;

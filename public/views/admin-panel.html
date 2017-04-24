@@ -222,7 +222,6 @@
 							<thead>
 								<tr class="telegrafico">
 									<th>Name</th>
-									<th>Inactive / Active</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
@@ -230,6 +229,10 @@
 									<td class="match-player">
 										<input disabled class="admin-form-edit organization-form-edit-{{org.organization_id}}" type="text" ng-model="org.name" ng-init="org.name">
 									</td>
+									<td class="match-player">
+										<div>
+											<i class="admin-form-edit-btn fa fa-close fa-lg" ng-click="deleteOrganization(org.organization_id)"></i>
+										</div>
 									</td>
 									<td>
 										<div>
@@ -339,21 +342,21 @@
 					<div class="row search-admin" style="height: 40px; margin-bottom: 0;">
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
-								<input type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
+								<input type="search" ng-model="username" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
 							</form>
 						</div>
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
-								<input type="date" ng-model="" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
+								<input type="date" ng-model="startDate" id="datepicker1" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
 							</form>
 						</div>
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
-								<input type="date" ng-model="" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
+								<input type="date" ng-model="endDate" id="datepicker2" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
 							</form>
 						</div>
 						<div class="col s3 padding-override-0 margin-override-0" style="height: 100%;">
-							<button style="height: 100%;" ng-click="searchLog()" class="waves-effect waves-light search-admin-button"><i class="fa fa-filter"></i></button>
+							<button style="height: 100%;" ng-click="searchLog($scope.userName, $scope.startDate, $scope.endDate)" class="waves-effect waves-light search-admin-button"><i class="fa fa-filter"></i></button>
 						</div>
 					</div>
 
@@ -388,7 +391,7 @@
 					<div class="row search-admin" style="height: 40px; margin-top: 20px; margin-bottom: 0;">
 						<div class="col s6 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form>
-								<input placeholder="Search using any keyword..." ng-model="adminSearch" type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 100%!important;">
+								<input placeholder="Search using any keyword..." ng-model="sponsorSearch" type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 100%!important;" ng-click="searchSponsor()">
 							</form>
 						</div>
 						<div class="col s4 padding-override-0 margin-override-0" style="height: 100%;">
@@ -415,22 +418,7 @@
 										<input disabled class="admin-form-edit sponsor-form-edit-{{s.sponsor_id}}" type="text" ng-model="s.description" ng-init="s.description">
 									</td>
 									<td class="match-player">
-
-
-
 										<div>
-										<!-- 	<div class="switch">
-											<label>
-											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="!!a.is_active" ng-click="setIsActive(!a.is_active, a.id, admins)">
-											<span class="lever" checked="{{ a.is_active }}"></span>
-									  		</label>
-										</div>
-
-
-										<i ng-attr-id="admin-cancel-edit-{{a.id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditAdmin(a)"></i>
- -->
-
-
 											<i class="admin-form-edit-btn fa fa-close fa-lg" ng-click="deleteSponsor(s.sponsor_id)"></i>
 										</div>
 									</td>
