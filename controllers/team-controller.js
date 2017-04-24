@@ -100,14 +100,19 @@ exports.getMembershipRequest = (req, res) => {
     
     connection.userType('A').query(query, 
         [
-            req.query.id,
+            currentUser.id,
             req.query.team_id
         ], (err, rows) => {
-                if(!err) {
+            if(!err) {
+                if (rows[0].length == 1){
                     return res.status(200).send(rows[0][0]);
-                } else {
-                    return res.status(500).send({ 'message' : 'An error occured'});
                 }
+                else{
+                    return res.status(200).send(rows[0]);
+                }
+            } else {
+                return res.status(500).send({ 'message' : 'An error occured'});
+            }
         }
      );
 }
