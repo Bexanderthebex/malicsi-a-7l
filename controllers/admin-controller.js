@@ -21,10 +21,10 @@ exports.createOrganizer = (req, res) => {
 	let insert_query2 = 'CALL create_organizer(?, ?, ?)';
 	let type = req.session.user.type;
 	connection.userType(type).query(insert_query1, [
-		req.body.username, 
-		req.body.password, 
-		req.body.email, 
-		req.body.contact, 
+		req.body.username,
+		req.body.password,
+		req.body.email,
+		req.body.contact,
 		'O'
 	], function(err, rows){
 		if(!err){
@@ -34,16 +34,16 @@ exports.createOrganizer = (req, res) => {
 				if(!err){
 					if(rows.length == 1){
 						connection.userType(type).query(insert_query2, [
-							rows[0].id, 
-							req.body.name, 
+							rows[0].id,
+							req.body.name,
 							req.body.description
 						], function(err, rows){
 							if(!err){
 								return res.status(200).send({'message': 'Successfully created organizer.'});
 							}else{
 								console.log(err);
-								if(err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({'message':'Missing field.'});
-								else if(err.code == 'ER_DUP_ENTRY') return res.status(400).send({'message':'Duplicate entry.'})
+								if(err.code == 'ER_BAD_NULL_ERROR') return res.status(500).send({'message':'Missing field.'});
+								else if(err.code == 'ER_DUP_ENTRY') return res.status(500).send({'message':'Duplicate user.'})
 								else return res.status(500).send({'message':'Unknown error'});
 							}
 						});
@@ -56,7 +56,9 @@ exports.createOrganizer = (req, res) => {
 			});
 		}else{
 			console.log(err);
-			return res.status(500).send({'message':'Unknown error'});
+			if(err.code == 'ER_BAD_NULL_ERROR') return res.status(500).send({'message':'Missing field.'});
+			else if(err.code == 'ER_DUP_ENTRY') return res.status(500).send({'message':'Duplicate user.'})
+			else return res.status(500).send({'message':'Unknown error'});
 		}
 	});
 }
@@ -124,9 +126,10 @@ exports.createAdmin = (req, res) => {
 	], (err, rows) => {
 		if (!err) {
 			res.status(200).send({'message': 'Successfully created admin'});
-		} else {
-			console.log(err);
-			res.status(500).send({ 'message' : 'Internal Server Error.' });
+		} else if (err.code === 'ER_DUP_ENTRY') {
+			res.status(500).send({ 'message' : 'User exists' });
+		} else if (err.code === 'ER_BAD_NULL_ERROR') {
+			res.status(500).send({ 'message' : 'Missing fields' });
 		}
 	})
 }

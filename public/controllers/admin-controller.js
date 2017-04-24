@@ -73,7 +73,7 @@
                     $scope.adminEmail = "";
                     $scope.adminContact = "";
                 }, (err) => {
-                    console.log(err);
+                    Materialize.toast(err.data.message);
                 });
             }
         }
@@ -101,7 +101,7 @@
 
                     Materialize.toast('Successfully created organizer.', 2000);
                 }, (err) => {
-                    console.log('Add organizer', err);
+                    Materialize.toast(err.data.message)
                 });
             }
         }

@@ -297,7 +297,7 @@ exports.addOrganizationToGame = (req, res) =>{
 
 exports.viewAllOrganizationForGame = (req, res) => {
 	connection.userType('A').query('CALL view_all_organization_for_game(?)', 
-		[req.body.gameId], 
+		[req.query.gameId], 
 		(err, rows) => {
 		if (!err) {
 			return res.status(200).send(rows[0]);		
@@ -309,7 +309,7 @@ exports.viewAllOrganizationForGame = (req, res) => {
 
 exports.viewAllOrganizationInGame = (req, res) => {
 	connection.userType('A').query('CALL view_all_organization_in_game(?)', 
-		[req.body.gameId], 
+		[req.query.gameId], 
 		(err, rows) => {
 		if (!err) {
 			return res.status(200).send(rows[0]);		
