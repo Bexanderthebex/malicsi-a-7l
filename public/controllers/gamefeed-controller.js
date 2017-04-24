@@ -14,27 +14,17 @@
         $scope.column2 = [];
         $scope.column3 = [];
         $scope.gamefeedInit = gamefeedInit;
-        $scope.statusSort = true;
 
-        function gamefeedInit(value){
-            $scope.statusSort = value;
-            $scope.games = [];
-            $scope.column1 = [];
-            $scope.column2 = [];
-            $scope.column3 = [];
-            console.log("asdf");
-            retrieveGames(value);
+        function gamefeedInit(){
+            retrieveGames();
         }
 
-
-
-        function retrieveGames(value) {
+        function retrieveGames() {
             GameService
                 .viewAllGames()
                 .then(function(res) {
                     $scope.games = res.data;
-                    sortBy(value);
-                    distributeGame();
+                    sortBy();
 
                 }, function(err) {
                     console.log(err);
@@ -60,8 +50,7 @@
                 return 0;
             });
 
-            console.log("reflect daw");
-            console.log($scope.games);
+            distributeGame();
         }
 
         function sortByDate(){
@@ -74,11 +63,11 @@
                 var integerBDate = bDate.getFullYear() * 10000 + bDate.getMonth() * 100 + bDate.getDay();
 
                 return (currentDate - integerADate > currentDate - integerBDate ? a : b);
-            })
+            });
+            distributeGame();
         }
 
         function distributeGame(){
-
             for (var i = 0; i < $scope.games.length; i++) {
                 if(i%3 == 0){
                     $scope.column1.push($scope.games[i]);
