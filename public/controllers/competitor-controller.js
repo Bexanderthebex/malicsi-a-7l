@@ -35,7 +35,6 @@
         $scope.getCompetitorTeams = getCompetitorTeams;
         $scope.getCompetitorOrganization = getCompetitorOrganization;
         $scope.editCompetitor = editCompetitor;
-        $scope.editCompetitorBio = editCompetitorBio;
         $scope.createTeam = createTeam;
         $scope.getCoachedTeam = getCoachedTeam;
         $scope.getTeamMembers = getTeamMembers;
@@ -116,17 +115,6 @@
                 })
         }
 
-
-        function editCompetitorBio(){
-            CompetitorService
-                .editCompetitorBio($scope.competitor)
-                .then(function (res){
-                    Materialize.toast('Successfully edited bio!', 3000);
-                }, function(err) {
-                    console.log(err);
-                })
-        }
-
         function createTeam(){
             console.log($scope.team);
             $scope.team.sport_id = $scope.team.sport_id.sport_id;
@@ -136,6 +124,7 @@
                 .createTeam($scope.team)
                 .then(function (res){
                     Materialize.toast('Successfully created a team!', 3000);
+                    $window.location.href = ""
                 }, function(err) {
                     console.log(err);
                 })
@@ -147,15 +136,6 @@
                 }, function(err) {
                     console.log(err);
                 })
-
-            // CompetitorService
-            //     .getTeamMembers(id)
-            //     .then(function (res){
-            //         $scope.teammembers = res.data;
-            //     }, function(err) {
-            //         console.log(err);
-            //     })
-
         }
 
         function getCoachedTeam(){
