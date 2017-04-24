@@ -1,4 +1,4 @@
-<div id="mainHolder" ng-init="gamefeedInit()">
+<div id="mainHolder" ng-init="gamefeedInit(true)">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 		<div id="main">
@@ -11,14 +11,26 @@
 
 					<div class="col s6 offset-s3">
 						<form id="gamefeed-game-search-bar">
-							<input type="search" >
+							<input type="search" ng-model="gamefeed-search">
 						</form>
 					</div>
 					<div class="col s4 offset-s5 telegrafico gamefeed-sort-part white-text">
 						<p class="gamefeed-sort-adjust gamefeed-radio-button">Sort by:
-							<input ng-model="gfnameChecked" class="with-gap" name="group3" type="radio" id="Name" checked />
+<<<<<<< HEAD
+<<<<<<< HEAD
+							<input ng-model="namechck" ng-click="gamefeedInit(namechck)" value="true" class="with-gap" name="group3" type="radio" id="Name" />
 							<label for="Name" class="white-text">Name</label>
-							<input ng-model="gfdateChecked" class="with-gap" name="group3" type="radio" id="Date"/>
+							<input ng-init="checked" ng-click="gamefeedInit(datechck)" class="with-gap"  ng-model="datechck" value="false" name="group3" type="radio" id="Date" checked/>
+=======
+							<input ng-click="gamefeedInit()" ng-model="gfnameChecked" class="with-gap" name="group3" type="radio" id="Name" checked />
+							<label for="Name" class="white-text">Name</label>
+							<input ng-click="gamefeedInit()" ng-model="gfdateChecked" class="with-gap" name="group3" type="radio" id="Date"/>
+>>>>>>> 9c95485b035026ef96a9cea66f8a7aacb4e9560c
+=======
+							<input ng-click="gamefeedInit()" ng-model="gfnameChecked" class="with-gap" name="group3" type="radio" id="Name" checked />
+							<label for="Name" class="white-text">Name</label>
+							<input ng-click="gamefeedInit()" ng-model="gfdateChecked" class="with-gap" name="group3" type="radio" id="Date"/>
+>>>>>>> 5baf23f2eb027b5934ae9df8f91daf6929d15959
 							<label for="Date" class="white-text">Date</label>
 						</p>
 					</div>

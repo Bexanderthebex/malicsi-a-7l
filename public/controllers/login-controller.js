@@ -28,7 +28,7 @@
 		}
 
 		$scope.signUp = function(fname, lname, nname, uname, sex, pword, bday, email, contactNum){
-
+			console.log(bday.getFullYear()+"-"+bday.getMonth()+"-"+bday.getDate());
 			$http.post('/register', {
 				username: uname,
 				password: pword,
@@ -48,6 +48,8 @@
 				$scope.pword = "";
 				$scope.bday = "";
 				$scope.ead = "";
+			}, (err) => {
+				Materialize.toast(err.data.message, 2000)
 			})
 		}
 
@@ -58,7 +60,7 @@
 				$window.location.href = '/';
 			}, function(err) {
 				console.log(err);
-			});	
+			});
 		}
 	}
 })();

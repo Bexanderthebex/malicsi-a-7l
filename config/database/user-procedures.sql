@@ -53,7 +53,7 @@ CREATE PROCEDURE select_user_with_password_from_username(
 	)
 
 	BEGIN
-		SELECT * FROM user WHERE username = _username;
+		SELECT * FROM user WHERE username = _username AND is_active = true;
 	END;
 //
 DELIMITER ;

@@ -30,7 +30,7 @@
             console.log(err);
         });
 
-        SearchService.retrieveSponsor().then((res) => {
+        SearchService.retrieveSponsor('').then((res) => {
             $scope.sponsors = res.data;
             console.log("sponsors", $scope.sponsors);
         }, (err) => {
@@ -59,24 +59,28 @@
         });
 
         $scope.addAdmin = () => {
-            AdminService.addAdmin({
-                username: $scope.adminUsername,
-                password: $scope.adminPassword,
-                email: $scope.adminEmail,
-                contact: $scope.adminContact
-            }).then((res) => {
-                $scope.adminUsername = "";
-                $scope.adminPassword = "";
-                $scope.adminEmail = "";
-                $scope.adminContact = "";
-            }, (err) => {
-                console.log(err);
-            });
+           if($scope.adminUsername === undefined || $scope.adminPassword == undefined || $scope.adminEmail === undefined || $scope.adminContact === undefined){
+                Materialize.toast('Error. Missing text field(s).', 2000);
+            }else{
+                AdminService.addAdmin({
+                    username: $scope.adminUsername,
+                    password: $scope.adminPassword,
+                    email: $scope.adminEmail,
+                    contact: $scope.adminContact
+                }).then((res) => {
+                    $scope.adminUsername = "";
+                    $scope.adminPassword = "";
+                    $scope.adminEmail = "";
+                    $scope.adminContact = "";
+                }, (err) => {
+                    Materialize.toast(err.data.message);
+                });
+            }
         }
 
         $scope.addOrganizer = () => {
             if($scope.organizerUsername === undefined || $scope.organizerPassword == undefined || $scope.organizerEmail === undefined || $scope.organizerContact === undefined || $scope.organizerName === undefined || $scope.organizerDescription === undefined){
-                Materialize.toast('Error. Missing text filed.', 2000);
+                Materialize.toast('Error. Missing text field(s).', 2000);
             }else{
                 AdminService.addOrganizer({
                     username: $scope.organizerUsername,
@@ -97,14 +101,14 @@
 
                     Materialize.toast('Successfully created organizer.', 2000);
                 }, (err) => {
-                    console.log('Add organizer', err);
+                    Materialize.toast(err.data.message)
                 });
             }
         }
 
         $scope.addOrganization = () => {
             if($scope.organizationName === undefined){
-                Materialize.toast('Error. Missing text filed.', 2000);
+                Materialize.toast('Error. Missing text field(s).', 2000);
             }else{
                 AdminService.addOrganization({
                     name: $scope.organizationName,
@@ -125,6 +129,16 @@
             .then((res) => {
                 $scope.admins = res.data;
                 console.log('admins', $scope.admins)
+            }, (err) => {
+                console.log(err);
+            })
+        }
+
+        $scope.searchLog = () => {
+            SearchService.retrieveLogByDateAndUsername($scope.username, $scope.startDate, $scope.endDate)
+            .then((res) => {
+                $scope.logs = res.data;
+                console.log('logs', $scope.logs);
             }, (err) => {
                 console.log(err);
             })
@@ -160,8 +174,14 @@
             })
         }
 
-        $scope.searchLog = (startDate) => {
-            console.log('startDAte', startDate.getFullYear());
+        $scope.searchSponsor = () => {
+            SearchService.retrieveSponsor($scope.sponsorSearch)
+            .then((res) => {
+                $scope.sponsors = res.data;
+                console.log('users', $scope.users);
+            }, (err) => {
+                console.log(err);
+            })
         }
 
         $scope.setIsActive = (isActive, id, list) => {
@@ -304,6 +324,19 @@
             organization.name = organizationCache[organization.organization_id].name;
         }
 
+        $scope.deleteOrganization = (orgId) => {
+            OrganizationService.deleteOrganization(orgId)
+            .then((res) => {
+                Materialize.toast('Organization deleted', 2000);
+                for (let i = 0; i < $scope.organizations.length; ++i) {
+                    if ($scope.organizations[i].organization_id === orgId) {
+                        $scope.organizations.splice(i, 1);
+                    }
+                }
+            }, (err) => {
+                Materialize.toast('An error occured.', 2000);
+            });
+        }
 
         $scope.editUser = (user) => {
             if ($('#user-edit-' + user.id).data('isEditing')) {
@@ -341,21 +374,25 @@
         }
 
         $scope.addSponsor = () => {
-            let sponsor = {
-                name: $scope.sponsorName,
-                description: $scope.sponsorDescription
-            };
-            AdminService.addSponsor(sponsor).then((res) => {
-                Materialize.toast("Sponsor added");
-            }, (err) => {
-                console.log(err);
-                Materialize.toast("An error occured.");
-            });
+            if($scope.sponsorName === undefined || $scope.sponsorDescription === undefined){
+                Materialize.toast("Missing text field(s).", 2000);
+            }else{
+                let sponsor = {
+                    name: $scope.sponsorName,
+                    description: $scope.sponsorDescription
+                };
+                AdminService.addSponsor(sponsor).then((res) => {
+                    Materialize.toast("Sponsor added", 2000);
+                }, (err) => {
+                    console.log(err);
+                    Materialize.toast("An error occured.", 2000);
+                });
+            }
         }
 
         $scope.deleteSponsor = (id) => {
             AdminService.deleteSponsor(id).then((res) => {
-                Materialize.toast("Sponsor deleted");
+                Materialize.toast("Sponsor deleted", 2000);
                 for (let i = 0; i < $scope.sponsors.length; ++i) {
                     if ($scope.sponsors[i].sponsor_id === id) {
                         $scope.sponsors.splice(i, 1);
@@ -364,7 +401,7 @@
                 }
             }, (err) => {
                 console.log(err);
-                Materialize.toast("An error occured.");
+                Materialize.toast("An error occured.", 2000);
             });
         }
 
