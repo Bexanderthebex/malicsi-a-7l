@@ -20,6 +20,9 @@
         $scope.rank = {};
         $scope.sport_id = {};
         $scope.listgames = [];
+        $scope.game = [];
+        $scope.sports = [];
+        $scope.organizations = [];
 
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
@@ -33,6 +36,7 @@
         $scope.getPendingRequests = getPendingRequests;
         $scope.getTeamRankings = getTeamRankings;
         $scope.listAllGames = listAllGames;
+        $scope.listAllSportAndOrganization = listAllSportAndOrganization;
 
         function searchCompetitor(id){
             CompetitorService
@@ -199,6 +203,29 @@
                 .getTeamRankings($scope.sport_id.sport_id)
                 .then(function (res){
                     $scope.rank = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function listAllSportAndOrganization(){
+            console.log("game_id: ");
+            console.log($scope.game.game_id);
+
+            CompetitorService
+                .viewAllSportsInGame($scope.game.game_id)
+                .then(function (res){
+                    $scope.sports = res.data;
+                    console.log($scope.sports);
+                }, function(err) {
+                    console.log(err);
+                })
+
+            CompetitorService
+                .viewAllOrganizationInGame($scope.game.game_id)
+                .then(function (res){
+                    $scope.organizations = res.data;
+                    console.log($scope.organizations);
                 }, function(err) {
                     console.log(err);
                 })

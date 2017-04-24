@@ -195,11 +195,11 @@
                 <div class="col s12 bottom-margin">
                     <h5 class="rockwell">Applications</h5>
                     <table class="highlight responsive-table">
-                        <tbody ng-repeat="prequests in pendingRequests">
+                        <tbody>
                             <tr class="century-gothic">
-                                <td class="bold">{{ prequests.first_name }} {{ prequests.last_name }}</td>
-                                <td>{{ prequests.team_name }}</td>
-                                <td>{{ prequests.sport_name }}</td>
+                                <td class="bold">Jane Doe</td>
+                                <td>Team-You-Created</td>
+                                <td>Basketball</td>
                                 <td>
                                     <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Applicant" data-target="competitor-accept-applicant-modal">
                                         <i class="fa fa-check fa-lg"></i>
@@ -214,7 +214,7 @@
                 </div>
                 <div class="container divider"></div>
                 <div class="col s12">
-                    <h5 class="rockwell">Sent Requests</h5>
+                    <h5 class="rockwell">Invites</h5>
                     <table class="highlight responsive-table">
                         <tbody>
                             <tr class="century-gothic">
@@ -383,7 +383,7 @@
                     </div>
                     <div class="input-field col l6 m6 s12" ng-init="listAllGames()">
                         <span class="telegrafico">Game</span>
-                        <select class="browser-default" ng-model="team.game_id" ng-selected="team.game_id" ng-options="game.name for game in listgames">
+                        <select class="browser-default" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">
                             
                         </select>
                     </div>
@@ -391,22 +391,22 @@
                 <div class="row">
                     <div class="input-field col l6 m6 s12">
                         <span class="telegrafico">Sports</span>
-                        <select class="browser-default" ng-model="team.sport_id" ng-selected="team.sport_id">
+                        <select class="browser-default" ng-model="team.sport_id" ng-options="sport.sport_name for sport in sports">
                             <option selected disabled class="white black-text" value="">&nbsp;</option>
-                            <option class="" value="1" ng-selected="team.sport_id">Basketball</option>
+                            <!-- <option class="" value="1" ng-selected="team.sport_id">Basketball</option>
                             <option class="" value="2" ng-selected="team.sport_id">Volleyball</option>
                             <option class="" value="3" ng-selected="team.sport_id">Baseball</option>
                             <option class="" value="4" ng-selected="team.sport_id">100-meter dash</option>
-                            <option class="" value="5" ng-selected="team.sport_id">Tug of war</option>
+                            <option class="" value="5" ng-selected="team.sport_id">Tug of war</option> -->
                         </select>
                     </div>
                     <div class="input-field col l6 m6 s12">
                         <span class="telegrafico">Organization</span>
-                        <select class="browser-default" ng-model="team.team_organization" ng-selected="team.team_organization">
+                        <select class="browser-default" ng-model="team.team_organization" ng-options="organization.name for organization in organizations">
                             <option selected disabled class="white black-text" value="">&nbsp;</option>
-                            <option class="white black-text" value="1" ng-selected="team.team_organization">College of Sciences</option>
+                            <!-- <option class="white black-text" value="1" ng-selected="team.team_organization">College of Sciences</option>
                             <option class="white black-text" value="2" ng-selected="team.team_organization">College of Arts</option>
-                            <option class="white black-text" value="3" ng-selected="team.team_organization">College of Music</option>
+                            <option class="white black-text" value="3" ng-selected="team.team_organization">College of Music</option> -->
                         </select>
                     </div>
                    <div class="input-field col l6 m6 s12">

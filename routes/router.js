@@ -131,6 +131,7 @@ router.post('/game/createGame',  gameController.createGame);
 router.put('/game/updateGame',  gameController.updateGame);
 router.post('/game/addOrganizationToGame', gameController.addOrganizationToGame);
 router.get('/game/viewAllOrganizationForGame', gameController.viewAllOrganizationForGame);
+router.get('/game/viewAllOrganizationInGame', gameController.viewAllOrganizationInGame);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteOrganizationFromGame', gameController.deleteOrganizationFromGame)
 router.get('/game/viewAllOngoingGames', gameController.viewAllOngoingGames);
