@@ -69,6 +69,14 @@
                 .addGame($scope.newGame) //calls addGame function in OrganizerService
                 .then(function (res){ //function block when success sa OrganizerService
                     Materialize.toast('Successfully added new game!', 3000);
+                    $scope.newGame = {
+                        orgID: undefined,
+                        gameName: undefined,
+                        startDate: undefined,
+                        endDate: undefined,
+                        locat: undefined,
+                        descrip: undefined
+                    };
                     retrieveGame(); //to update contents of $scope.games at mareflect sa ng-repeat ng games
                 }, function(err) { //function block when nag-fail yung dapat gawin sa OrganizerService
                     Materialize.toast('New game not added!', 3000);
@@ -152,7 +160,7 @@
                     }		
                  }, function(err) {		
                     Materialize.toast('error', 3000);		
-            })		
+                })		
         }
 
         function getOrganizer() {
@@ -191,7 +199,19 @@
             OrganizerService
                 .updateOrganizer($scope.organizer)
                 .then(function(res) {
-                    Materialize.toast('Successfully updated organizer!', 3000);
+                    UserService
+                        .updateUser($scope.organizer.username, $scope.organizer.email, $scope.organizer.contact, $scope.organizer.id)
+                        .then(function(res) {
+                            UserService
+                                .updatePassword($scope.organizer)
+                                .then(function(res) {
+                                    Materialize.toast('Successfully updated organizer!', 3000);
+                                }, function(err) {
+                                    Materialize.toast('Failed to update organizer!', 3000);
+                                })
+                        }, function(err) {
+                            Materialize.toast('Failed to update organizer!', 3000);
+                        })
                 }, function(err) {
                     Materialize.toast('Failed to update organizer!', 3000);
                 })

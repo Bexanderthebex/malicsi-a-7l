@@ -28,7 +28,13 @@
             viewSponsoringInstitutions: viewSponsoringInstitutions,
             viewOtherSponsoringInstitutions: viewOtherSponsoringInstitutions,
             addSponsoringInstitution: addSponsoringInstitution,
-            deleteSponsoringInstitution: deleteSponsoringInstitution
+            deleteSponsoringInstitution: deleteSponsoringInstitution,
+            addMultipleOrganizations: addMultipleOrganizations,
+            deleteMultipleOrganizations: deleteMultipleOrganizations,
+            viewAllOrganizationForGame: viewAllOrganizationForGame,
+            viewAllOrganizationInGame: viewAllOrganizationInGame,
+            deleteMultipleSponsoringInstitutions: deleteMultipleSponsoringInstitutions,
+            addMultipleSponsoringInstitutions: addMultipleSponsoringInstitutions
         }
 
         return service;
@@ -121,6 +127,34 @@
             return deferred.promise;
         }
 
+        function addMultipleOrganizations(organizations) {
+            let deferred = $q.defer()
+
+            for(var i = 0; i<organizations.length; i++){
+                let organization = {
+                    gameId : organizations[i].gameId,
+                    orgId : organizations[i].orgId
+                }
+                console.log(organizations);
+                $http({
+                    method: 'POST',
+                    data: $.param(organization),
+                    url: '/game/addOrganizationToGame',
+                    headers: headers
+                }).then((res) => {
+                    console.log(res);
+                    deferred.resolve(res);
+                }, (err) => {
+                    deferred.reject(err);
+                });
+
+
+            }
+            
+
+            return deferred.promise;
+        } 
+
         function updateSport(sport) {
             let deferred = $q.defer();
 
@@ -198,6 +232,31 @@
             return deferred.promise;
         }
 
+        function deleteMultipleOrganizations(organizations) {
+            let deferred = $q.defer();
+            for(var i = 0; i<organizations.length; i++){
+                let organization = {
+                    gameId : organizations[i].gameId,
+                    orgId : organizations[i].orgId
+                }
+                $http({
+                    method: 'DELETE',
+                    data: $.param(organization),
+                    url: '/game/deleteOrganizationFromGame',
+                    headers: headers
+                }).then((res) => {
+                    console.log(res.data);
+                    deferred.resolve(res);
+                }, (err) => {
+                    deferred.reject(err);
+                });    
+            }
+            
+
+            return deferred.promise;
+        }
+
+
         function viewPastMatchesInGame(game_id){
             let deferred = $q.defer();
             let game = {
@@ -239,6 +298,48 @@
             return deferred.promise;
         }
 
+        function viewAllOrganizationForGame(game_id){
+            let deferred = $q.defer();
+            let game = {
+                gameId: game_id
+            }
+
+
+            $http({
+                method: 'GET',
+                params: game,
+                url: '/game/viewAllOrganizationForGame',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+         function viewAllOrganizationInGame(game_id){
+            let deferred = $q.defer();
+            let game = {
+                gameId: game_id
+            }
+
+
+            $http({
+                method: 'GET',
+                params: game,
+                url: '/game/viewAllOrganizationInGame',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+        
         function viewUpcomingMatchesInGame(game_id){
             let deferred = $q.defer();
             let game = {
@@ -297,14 +398,14 @@
                 sponsorId: sponsor_id,
                 gameId: game_id
             }
-            console.log(sponsor);
+            // console.log(sponsor);
             $http({
                 method: 'POST',
                 data: $.param(sponsor),
                 url: '/game/addSponsorToGame',
                 headers: headers
             }).then((res) => {
-                console.log(res);
+                // console.log(res);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -312,6 +413,32 @@
 
             return deferred.promise;
         }
+
+        function addMultipleSponsoringInstitutions(sponsors) {
+            let deferred = $q.defer();
+
+            for (var i = 0; i<sponsors.length; i++){
+                let sponsor = {
+                    sponsorId: sponsors[i].sponsorId,
+                    gameId: sponsors[i].gameId
+                }
+                // console.log(sponsor);
+                $http({
+                    method: 'POST',
+                    data: $.param(sponsor),
+                    url: '/game/addSponsorToGame',
+                    headers: headers
+                }).then((res) => {
+                    // console.log(res);
+                    deferred.resolve(res);
+                }, (err) => {
+                    deferred.reject(err);
+                });
+            }
+            
+
+            return deferred.promise;
+        } 
 
 
         function viewSponsoringInstitutions(game_id){
@@ -368,7 +495,7 @@
                 url: '/game/deleteSponsorFromGame',
                 headers: headers
             }).then((res) => {
-                console.log(res);
+                // console.log(res);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -376,6 +503,32 @@
 
             return deferred.promise;
         }
+
+        function deleteMultipleSponsoringInstitutions(sponsors) {
+            let deferred = $q.defer();
+
+            for (var i = 0; i<sponsors.length; i++){
+                let sponsor = {
+                    sponsorId: sponsors[i].sponsorId,
+                    gameId: sponsors[i].gameId
+                }
+
+                $http({
+                    method: 'DELETE',
+                    data: $.param(sponsor),
+                    url: '/game/deleteSponsorFromGame',
+                    headers: headers
+                }).then((res) => {
+                    // console.log(res);
+                    deferred.resolve(res);
+                }, (err) => {
+                    deferred.reject(err);
+                });
+            }
+
+            return deferred.promise;
+        }
+
 
     }
 })();

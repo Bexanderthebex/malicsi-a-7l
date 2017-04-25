@@ -273,3 +273,120 @@ exports.retrieveOrgRankings = (req, res, next) => {
 	}
 }
 
+/**
+exports.addOrganizationToGame = (req, res) =>{
+	connection.userType('A').query('CALL check_organization(?)', 
+		[req.body.orgName], 
+		(err, rows) => {
+		if (!err && rows.length != 0) {
+			connection.userType('A').query('CALL add_organization_to_game(?, ?)', [req.body.orgId, req.body.gameId], (err, rowers) => {
+				if(!err){
+					return res.status(200).send("Successfully Added");
+				}else{
+					res.status(500).send("Internal Server Error");
+				}
+			})			
+		}else{
+			res.status(401).send("Organization not yet registered, Cannot add to game");
+		}	
+
+
+	})
+}
+**/
+
+exports.viewAllOrganizationForGame = (req, res) => {
+	connection.userType('A').query('CALL view_all_organization_for_game(?)', 
+		[req.query.gameId], 
+		(err, rows) => {
+		if (!err) {
+			return res.status(200).send(rows[0]);		
+		}else{
+			res.status(500).send("Internal Server Error");
+		}
+	})
+}
+
+exports.viewAllOrganizationInGame = (req, res) => {
+	connection.userType('A').query('CALL view_all_organization_in_game(?)', 
+		[req.query.gameId], 
+		(err, rows) => {
+		if (!err) {
+			return res.status(200).send(rows[0]);		
+		}else{
+			res.status(500).send("Internal Server Error");
+		}
+	})
+}
+
+exports.addOrganizationToGame = (req, res) =>{
+	connection.userType('A').query('CALL add_organization_to_game(?, ?)', 
+		[req.body.orgId, req.body.gameId], 
+		(err, rows) => {
+		if (!err) {
+			return res.status(200).send("Successfully Added");		
+		}else{
+			res.status(500).send("Internal Server Error");
+		}	
+
+
+	})
+}
+
+exports.deleteOrganizationFromGame = (req, res) =>{
+	connection.userType('A').query('CALL delete_organization_from_game(?, ?)', 
+		[req.body.orgId, req.body.gameId], 
+		(err, rows) => {
+		if (!err) {
+			return res.status(200).send("Successfully Deleted");		
+		}else{
+			res.status(500).send("Internal Server Error");
+		}	
+
+
+	})
+}
+
+
+exports.viewAllOngoingGames = (req, res) => {
+	let query = 'CALL view_all_ongoing_games()';
+	connection.userType('A').query(query,
+		(err, rows, fields) => {
+			if(!err && rows[0].length != 0){
+				return res.status(200).send(rows[0]);
+			}else if(rows[0].length ==0 ){
+				res.status(200).send([]);
+			}else{
+				res.status(500).send("Internal Server Error Occured");
+			}
+		});
+}
+
+exports.viewAllUpcomingGames = (req, res) => {
+	let query = 'CALL view_all_upcoming_games()';
+	connection.userType('A').query(query,
+		(err, rows, fields) => {
+			if(!err && rows[0].length != 0){
+				return res.status(200).send(rows[0]);
+			}else if(rows[0].length ==0 ){
+				res.status(200).send([]);
+			}else{
+				res.status(500).send("Internal Server Error Occured");
+			}
+		});
+}
+
+exports.viewAllRecentGames = (req, res) => {
+	let query = 'CALL view_all_recent_games()';
+	connection.userType('A').query(query,
+		(err, rows, fields) => {
+			if(!err && rows[0].length != 0){
+				return res.status(200).send(rows[0]);
+			}else if(rows[0].length ==0 ){
+				res.status(200).send([]);
+			}else{
+				res.status(500).send("Internal Server Error Occured");
+			}
+		});
+}
+

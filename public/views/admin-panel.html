@@ -115,7 +115,7 @@
 					<div class="row search-admin" style="height: 40px; margin-top: 20px; margin-bottom: 0;">
 						<div class="col s6 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form>
-								<input placeholder="Search using any keyword..." ng-model="adminSearch" type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 100%!important;">
+								<input placeholder="Search using any keyword..." ng-model="organizerSearch" type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 100%!important;">
 							</form>
 						</div>
 						<div class="col s4 padding-override-0 margin-override-0" style="height: 100%;">
@@ -136,23 +136,23 @@
 							<tbody class="century-gothic">
 								<tr ng-repeat="o in organizers">
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="o.name" ng-init="o.name">
+										<input disabled class="admin-form-edit organizer-form-edit-{{o.id}}" type="text" ng-model="o.name" ng-init="o.name">
 									</td>
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="o.description" ng-init="o.description">
+										<input disabled class="admin-form-edit organizer-form-edit-{{o.id}}" type="text" ng-model="o.description" ng-init="o.description">
 									</td>
 									<td class="match-player">
 										<div class="switch">
-											<label>
-											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="a.is_active">
-											<span class="lever" checked="{{ a.is_active }}"></span>
-									  </label>
+									  		<label>
+											<input class="admin-lever" type="checkbox" ng-init="o.is_active" ng-model="!!o.is_active" ng-click="setIsActive(!o.is_active, o.id, organizers)">
+											<span class="lever" checked="{{ o.is_active }}"></span>
+									  		</label>
 										</div>
 									</td>
 									<td>
 										<div>
-											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
-											<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
+											<i ng-attr-id="organizer-edit-{{o.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganizer(o)"></i>
+											<i ng-attr-id="organizer-cancel-edit-{{o.id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditOrganizer(o)"></i>
 										</div>
 									</td>
 								</tr>
@@ -164,6 +164,22 @@
 					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD ORGANIZER</h6>
 					<div class="row padding-override-0">
 						<div class="col s6 padding-override-0">
+							<!-- Username -->
+							<label class="admin-fillup-label">Username</label>
+							<input ng-model="organizerUsername" type="text" class="validate admin-fillup-form" required>
+
+							<!-- Password -->
+							<label class="admin-fillup-label" data-error="wrong">Password</label>
+							<input ng-model="organizerPassword" type="password" class="validate admin-fillup-form">
+
+							<!-- Email -->
+							<label class="admin-fillup-label">Email Address</label>
+							<input ng-model="organizerEmail" type="text" class="validate admin-fillup-form">
+
+							<!-- Email -->
+							<label class="admin-fillup-label">Contact No.</label>
+							<input ng-model="organizerContact" type="text" placeholder="09XXXXXXXXX" class="validate admin-fillup-form">
+
 							<!-- Name -->
 							<label class="admin-fillup-label">Name</label>
 							<input ng-model="organizerName" type="text" class="validate admin-fillup-form">
@@ -192,7 +208,7 @@
 					<div class="row search-admin" style="height: 40px; margin-top: 20px; margin-bottom: 0;">
 						<div class="col s6 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form>
-								<input placeholder="Search using any keyword..." ng-model="adminSearch" type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 100%!important;">
+								<input placeholder="Search using any keyword..." ng-model="organizationSearch" type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 100%!important;">
 							</form>
 						</div>
 						<div class="col s4 padding-override-0 margin-override-0" style="height: 100%;">
@@ -206,26 +222,22 @@
 							<thead>
 								<tr class="telegrafico">
 									<th>Name</th>
-									<th>Inactive / Active</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
-								<tr>
+								<tr ng-repeat="org in organizations">
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+										<input disabled class="admin-form-edit organization-form-edit-{{org.organization_id}}" type="text" ng-model="org.name" ng-init="org.name">
 									</td>
 									<td class="match-player">
-										<div class="switch">
-											<label>
-											<input class="admin-lever" type="checkbox" ng-init="a.is_active" ng-model="a.is_active">
-											<span class="lever" checked="{{ a.is_active }}"></span>
-									  </label>
+										<div>
+											<i class="admin-form-edit-btn fa fa-close fa-lg" ng-click="deleteOrganization(org.organization_id)"></i>
 										</div>
 									</td>
 									<td>
 										<div>
-											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
-											<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
+											<i ng-attr-id="organization-edit-{{org.organization_id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganization(org)"></i>
+											<i ng-attr-id="organization-cancel-edit-{{org.organization_id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditOrganization(org)"></i>
 										</div>
 									</td>
 								</tr>
@@ -234,18 +246,18 @@
 					</div>
 
 					<!-- Add Organization -->
-					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD ORGANIZER</h6>
+					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD ORGANIZATION</h6>
 					<div class="row padding-override-0">
 						<div class="col s6 padding-override-0">
 							<!-- Name -->
 							<label class="admin-fillup-label">Name</label>
-							<input ng-model="organizerName" type="text" class="validate admin-fillup-form">
+							<input ng-model="organizationName" type="text" class="validate admin-fillup-form">
 						</div>
 					</div>
 
 					<div class="row padding-override-0">
 						<div class="col s1 padding-override-0">
-							<button ng-click="addOrganizer()" class="minimalist-button"> SUBMIT </button>
+							<button ng-click="addOrganization()" class="minimalist-button"> SUBMIT </button>
 						</div>
 					</div>
 
@@ -316,10 +328,7 @@
 					<!-- Filter logs -->
 					<div class="row search-admin" style="height: 20px; margin-top: 20px; margin-bottom: 0;">
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
-							<label for="" class="century-gothic palette-text-4 strong">ID</label>
-						</div>
-						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
-							<label for="" class="century-gothic palette-text-4 strong">Content</label>
+							<label for="" class="century-gothic palette-text-4 strong">Username</label>
 						</div>
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<label for="" class="century-gothic palette-text-4 strong">Start Date</label>
@@ -333,26 +342,21 @@
 					<div class="row search-admin" style="height: 40px; margin-bottom: 0;">
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
-								<input type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
+								<input type="search" ng-model="username" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
 							</form>
 						</div>
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
-								<input type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
+								<input type="date" ng-model="startDate" id="datepicker1" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
 							</form>
 						</div>
 						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form style="width: 100%;">
-								<input type="date" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
-							</form>
-						</div>
-						<div class="col s2 padding-override-0 margin-override-0 " style="height: 100%;">
-							<form style="width: 100%;">
-								<input type="date" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
+								<input type="date" ng-model="endDate" id="datepicker2" class="margin-override-0 input-box-style" style="height: 38px; width: 90%!important;">
 							</form>
 						</div>
 						<div class="col s3 padding-override-0 margin-override-0" style="height: 100%;">
-							<button style="height: 100%;" ng-click="" class="waves-effect waves-light search-admin-button"><i class="fa fa-filter"></i></button>
+							<button style="height: 100%;" ng-click="searchLog($scope.userName, $scope.startDate, $scope.endDate)" class="waves-effect waves-light search-admin-button"><i class="fa fa-filter"></i></button>
 						</div>
 					</div>
 
@@ -362,7 +366,7 @@
 							<thead>
 								<tr class="telegrafico">
 									<th>Log Id</th>
-									<th>ID</th>
+									<th>Username</th>
 									<th>Content</th>
 									<th>Date Created</th>
 								</tr>
@@ -370,7 +374,7 @@
 							<tbody class="century-gothic">
 								<tr ng-repeat="l in logs">
 									<td>{{l.log_id}}</td>
-									<td>{{l.user_id}}</td>
+									<td>{{l.username}}</td>
 									<td>{{l.log_msg}}</td>
 									<td>{{l.date_created}}</td>
 								</tr>
@@ -387,7 +391,7 @@
 					<div class="row search-admin" style="height: 40px; margin-top: 20px; margin-bottom: 0;">
 						<div class="col s6 padding-override-0 margin-override-0 " style="height: 100%;">
 							<form>
-								<input placeholder="Search using any keyword..." ng-model="adminSearch" type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 100%!important;">
+								<input placeholder="Search using any keyword..." ng-model="sponsorSearch" type="search" class="margin-override-0 input-box-style" style="height: 38px; width: 100%!important;" ng-click="searchSponsor()">
 							</form>
 						</div>
 						<div class="col s4 padding-override-0 margin-override-0" style="height: 100%;">
@@ -402,29 +406,26 @@
 								<tr class="telegrafico">
 									<th>Name</th>
 									<th>Description</th>
-									<th>Inactive / Active</th>
+									<th>Delete Sponsor</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
-								<tr ng-repeat="">
+								<tr ng-repeat="s in sponsors">
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+										<input disabled class="admin-form-edit sponsor-form-edit-{{s.sponsor_id}}" type="text" ng-model="s.name" ng-init="s.name">
 									</td>
 									<td class="match-player">
-										<input class="admin-form-edit" type="text" ng-model="" ng-init="">
+										<input disabled class="admin-form-edit sponsor-form-edit-{{s.sponsor_id}}" type="text" ng-model="s.description" ng-init="s.description">
 									</td>
 									<td class="match-player">
-										<div class="switch">
-											<label>
-											<input class="admin-lever" type="checkbox" ng-init="" ng-model="">
-											<span class="lever" checked=""></span>
-									  </label>
+										<div>
+											<i class="admin-form-edit-btn fa fa-close fa-lg" ng-click="deleteSponsor(s.sponsor_id)"></i>
 										</div>
 									</td>
 									<td>
 										<div>
-											<i class="admin-form-edit-btn fa fa-pencil fa-lg"></i>
-											<i class="admin-form-edit-btn fa fa-close fa-lg"></i>
+											<i ng-attr-id="sponsor-edit-{{s.sponsor_id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editSponsor(s)"></i>
+											<i ng-attr-id="sponsor-cancel-edit-{{s.sponsor_id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditSponsor(s)"></i>
 										</div>
 									</td>
 								</tr>
@@ -449,7 +450,7 @@
 
 					<div class="row padding-override-0">
 						<div class="col s1 padding-override-0">
-							<button ng-click="addOrganizer()" class="minimalist-button"> SUBMIT </button>
+							<button ng-click="addSponsor()" class="minimalist-button"> SUBMIT </button>
 						</div>
 					</div>
 

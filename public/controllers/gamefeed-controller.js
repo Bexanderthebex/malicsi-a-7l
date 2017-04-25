@@ -25,17 +25,17 @@
                 .then(function(res) {
                     $scope.games = res.data;
                     sortBy();
-                    
-
                 }, function(err) {
                     console.log(err);
                     // Materialize.toast('', 3000);
                 })
         }
 
-        function sortBy(){
+        function sortBy(value){
+            console.log("joiurishs")
+            console.log(value)
             // sort the games
-            if($scope.gfnameChecked){
+            if(value == "true"){
                 sortByName();
             }else{
                 sortByDate();
@@ -79,9 +79,6 @@
             }
         }
 
-        function sortByDate(){
-
-        }
 
         function searchGame() {
             SearchService
@@ -94,6 +91,16 @@
                 })
         }
 
+        function searchGame(search){
+            SearchService
+                .retrieveGame(search)
+                .then(function(res){
+                    $scope.games = res.data;
+                    retrieveGames("false");
+                }, function(err){
+                    
+                })
+        }
 
     }
 })();

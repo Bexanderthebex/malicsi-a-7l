@@ -16,7 +16,8 @@
             getUserInfo: getUserInfo,
             getUsersByType: getUsersByType,
             setIsActive: setIsActive,
-            updateUser: updateUser
+            updateUser: updateUser,
+            updateUserPassword: updateUserPassword
         }
 
         return service;
@@ -41,12 +42,12 @@
             let deferred = $q.defer();
 
             $http.post('/user/getUsersByType', {
-				type : type
-			}).then(function(res){
-				deferred.resolve(res)
-			}, function(err) {
-				deferred.reject(err);
-			});
+              type : type
+            }).then(function(res){
+              deferred.resolve(res)
+            }, function(err) {
+              deferred.reject(err);
+            });
 
             return deferred.promise;
         }
@@ -55,31 +56,60 @@
             let deferred = $q.defer();
 
             $http.put(`/user/${id}/active`, {
-				is_active: isActive
-			}).then(function(res){
-				deferred.resolve(res)
-			}, function(err) {
-                console.log(err);
-				deferred.reject(err);
-			});
+              is_active: isActive
+            }).then(function(res){
+              deferred.resolve(res)
+            }, function(err) {
+                      console.log(err);
+              deferred.reject(err);
+            });
 
             return deferred.promise;
         }
 
-        function updateUser(username, email, contact, id) {
+        function updateUser(competitor) {
             let deferred = $q.defer();
-            console.log("pasok sa updateuser");
-            $http.put(`/user/update`, {
-				username: username,
-                email: email,
-                contact: contact,
-                id: id
-			}).then(function(res){
-				deferred.resolve(res)
-			}, function(err) {
+
+            $http.put(`/user/update`,
+                competitor
+            ).then(function(res){
+              deferred.resolve(res)
+            }, function(err) {
+                      console.log(err);
+              deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function updateUserPassword(competitor) {
+            let deferred = $q.defer();
+            // console.log("pasok sa updateuserpassword");
+            $http.put(`/user/updatePassword`,
+                competitor
+            ).then(function(res){
+                deferred.resolve(res)
+            }, function(err) {
                 console.log(err);
-				deferred.reject(err);
-			});
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function updatePassword(user) {
+            let deferred = $q.defer();
+            console.log(user);
+            $http({
+                method: 'PUT',
+                url: '/user/updatePassword',
+                data: $.param(user),
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
 
             return deferred.promise;
         }
