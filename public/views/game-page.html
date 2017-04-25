@@ -123,10 +123,12 @@
 		</div>
 
 		<div class="col s9 game-main-content game-padding-left game-padding-right" ng-init="viewGameDetails()">
-				<div id="sports-title" class="rockwell ">
-			<h3 class="white-text">{{game.name}}</h3>
-			<h6 class="white-text">Start: {{game.start_date}} End: {{game.end_date}}</h6>
-		</div>
+			<div id="sports-title" class="rockwell ">
+				<h3 class="white-text">{{game.name}}</h3>
+				<h6 class="white-text">Start: {{game.start_date}} End: {{game.end_date}}</h6>
+				<h6 class="white-text" ng-hide="checkGameLocation()">{{game.location}}</h6>
+				<h6 class="white-text" ng-show="checkGameLocation()">No location available.</h6>
+			</div>
 
 		<div class="row grey lighten-3">
 			<div class="col s12">
@@ -340,19 +342,31 @@
 							<!-- <div class="row center">
 								<button href="" class="center modal-action modal-close minimalist-button" data-target="game-modify-org" ng-show='checkIfOrganizer()'>Modify Organization</button>
 							</div> -->
-
 							<div class="card-panel palette-4 game-remove-padding">
-								<p class="center game-remove-top">
-									<i class="fa fa-map-marker large"></i>
-								</p>
-								<h5 class="rockwell center white-text" ng-hide="checkGameLocation()">{{game.location}}</h5>
-								<h5 class="rockwell center white-text" ng-show="checkGameLocation()">No location available.</h5>
 								<div class="row game-remove-bottom">
-									<div class="col s12">
-										<div class="divider divider-color"></div>
+									<div class="col s12 center">
 										<p class="white-text century-gothic game-location-description" ng-hide = "checkGameDescription()">{{game.description}}</p>
 										<p class="white-text century-gothic game-location-description" ng-show = "checkGameDescription()">No description available.</p>
 									</div>
+
+									<!-- lois diane ito -->
+									<h5 class="game-remove-margin center rockwell white-text">Organizer</h5><br>
+									<div class="col s12 m12" ng-hide="<checkOrganizer()>">
+										<!-- presentation view -->
+										<div ng-repeat="<organizer in organizers>" style="overflow-y:auto;">
+											<p class="telegrafico game-sponsor-title white-text center" >
+											{{organizer.name}}
+											</p>
+											<p class="game-sponsor-description century-gothic white-text center">{{organizer.description}}</p>
+										</div>
+									</div>
+									<div class="col s12 m12" ng-show="<checkOrganizer()>">
+										<p class="telegrafico game-sponsor-title white-text center">
+											No organizers here yet!
+										</p>
+									</div>
+									<!-- lois diane ito -->
+									
 								</div>
 							</div>
 

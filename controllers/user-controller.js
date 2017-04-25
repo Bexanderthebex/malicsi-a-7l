@@ -110,9 +110,9 @@ exports.register = (req, res) => {
 			}else{
 				console.log(err);
 				if (err.code == 'ER_BAD_NULL_ERROR') {
-					return res.status(500).send({ 'message' : 'Missing field' });
+					return res.status(500).send({ 'message' : 'Missing field'});
 				} else if (err.code == 'ER_DUP_ENTRY') {
-					return res.status(500).send({ 'message' : 'Duplicate entry' });
+					return res.status(500).send({ 'message' : 'Duplicate user' });
 				} else {
 					return res.status(500).send({ 'message': 'Unknown' });
 				}
