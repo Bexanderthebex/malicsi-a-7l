@@ -13,13 +13,23 @@
             competitor_id: $routeParams.id
         };
         $scope.competitor = {};
-        $scope.team = {};
-        $scope.competitorteams = {};
-        $scope.coachedteam = {};
-        $scope.pendingRequests = {};
-        $scope.rank = {};
-        $scope.sport_id = {};
+
+        $scope.team = {
+            team_name: null,
+            sport_id: null,
+            organization_id: null,
+            max_members: 0
+
+        };
+        $scope.competitorteams = [];
+        $scope.coachedteam = [];
+        $scope.pendingRequests = [];
+        $scope.rank = [];
+        $scope.sport_id = [];
         $scope.listgames = [];
+        $scope.game = [];
+        $scope.sports = [];
+        $scope.organizations = [];
 
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
@@ -33,7 +43,7 @@
         $scope.getPendingRequests = getPendingRequests;
         $scope.getTeamRankings = getTeamRankings;
         $scope.listAllGames = listAllGames;
-
+        $scope.listAllSportAndOrganization = listAllSportAndOrganization;
         function searchCompetitor(id){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
@@ -85,7 +95,6 @@
                 .editCompetitor($scope.competitor)
                 .then(function (res){
                     Materialize.toast('Successfully edited!', 3000);
-                    // $window.location.href = '/#/competitor/profile';
                 }, function(err) {
                     console.log(err);
                 })
@@ -93,8 +102,7 @@
             UserService
                 .updateUser($scope.competitor)
                 .then(function (res){
-                    Materialize.toast('Successfully edited!', 3000);
-                    // $window.location.href = '/#/competitor/profile';
+                    // Materialize.toast('Successfully edited!', 3000);
                 }, function(err) {
                     console.log(err);
                 })
@@ -103,12 +111,10 @@
                 .updateUserPassword($scope.competitor)
                 .then(function (res){
                     Materialize.toast('Successfully edited!', 3000);
-                    // $window.location.href = '/#/competitor/profile';
                 }, function(err) {
                     console.log(err);
                 })
         }
-
 
         function editCompetitorBio(){
             CompetitorService
@@ -122,11 +128,23 @@
         }
 
         function createTeam(){
+            console.log($scope.team);
+            $scope.team.sport_id = $scope.team.sport_id.sport_id;
+            $scope.team.team_organization = $scope.team.team_organization.organization_id;
+            
             CompetitorService
                 .createTeam($scope.team)
                 .then(function (res){
                     Materialize.toast('Successfully created a team!', 3000);
-                    //$window.location.href = '/#/competitor/profile';
+                    $window.location.href = ""
+                }, function(err) {
+                    console.log(err);
+                })
+
+            CompetitorService
+                .getCoachedTeam()
+                .then(function (res){
+                    $scope.coachedteam = res.data;
                 }, function(err) {
                     console.log(err);
                 })
@@ -156,7 +174,6 @@
             CompetitorService
                 .getCoachedTeam()
                 .then(function (res){
-                    console.log(res.data);
                     $scope.coachedteam = res.data;
                 }, function(err) {
                     console.log(err);
@@ -164,7 +181,6 @@
         }
 
         function getTeamMembers(id){
-            console.log("id: " + id);
             CompetitorService
                 .getTeamMembers(id)
                 .then(function (res){
@@ -178,7 +194,7 @@
             CompetitorService
                 .getPendingRequests()
                 .then(function (res){
-                    console.log(res.data);
+                    // console.log(res.data);
                     $scope.pendingRequests = res.data;
                 }, function(err) {
                     console.log(err);
@@ -189,7 +205,6 @@
             CompetitorService
                 .listAllGames()
                 .then(function (res){
-                    console.log(res.data);
                     $scope.listgames = res.data;
                 }, function(err) {
                     console.log(err);
@@ -200,8 +215,27 @@
             CompetitorService
                 .getTeamRankings($scope.sport_id.sport_id)
                 .then(function (res){
-                    console.log(res.data);
                     $scope.rank = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function listAllSportAndOrganization(){
+            CompetitorService
+                .viewAllSportsInGame($scope.game.game_id)
+                .then(function (res){
+                    $scope.sports = res.data;
+                    // console.log($scope.sports);
+                }, function(err) {
+                    console.log(err);
+                })
+
+            CompetitorService
+                .viewAllOrganizationInGame($scope.game.game_id)
+                .then(function (res){
+                    $scope.organizations = res.data;
+                    // console.log($scope.organizations);
                 }, function(err) {
                     console.log(err);
                 })

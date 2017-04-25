@@ -224,6 +224,7 @@ DELIMITER ;
 --  orgs in game
 GRANT EXECUTE ON PROCEDURE view_all_organization_in_game TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_organization_in_game TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_organization_in_game TO 'competitor'@'localhost';
 
 -- available orgs for game
 GRANT EXECUTE ON PROCEDURE view_all_organization_for_game TO 'organizer'@'localhost';
