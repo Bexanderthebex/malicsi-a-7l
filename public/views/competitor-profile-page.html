@@ -69,7 +69,7 @@
                                 
                             <div class="row center">
                                 <div class="input-field col l6 m6 s6 offset-l3 offset-m3 offset-s3">
-                                     <select class="browser-default minimalist-button" value="Sport" ng-model="sport_id" ng-options="sport.sport_name for sport in competitorteams" ng-click="getTeamRankings()">
+                                    <select class="browser-default minimalist-button" value="Sport" ng-model="sport_id" ng-options="sport.sport_name for sport in competitorteams" ng-click="getTeamRankings()">
                                         <option value="" selected disabled>Sports</option>
                                         <!-- <option class="white black-text" value="{{ sport.sport_id }}"  ng-repeat="sport in competitorteams" ng-click="getTeamRankings(competitorteams.sport_id)">{{sport.sport_name}}</option> -->
                                     </select>
@@ -296,7 +296,7 @@
                 <label for="nickname">Nickname</label>
             </div>
             <div class="input-field col s4 competitor-input-color-change">
-                <input id="birthdate" type="date" class="validate" ng-model="bday">
+                <input id="birthdate" type="date" class="datepicker validate" ng-model="bday">
                 <label for="birthdate" class="competitor-adjust-label">Birthdate</label>
             </div>
             <div class="input-field col s4">
@@ -315,8 +315,8 @@
                 <label for="email">Email</label>
             </div>
             <div class="input-field col s12 competitor-input-color-change">
-                <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
-                <label for="description" class="competitor-textarea-label-color-change">Description</label>
+                <textarea placeholder=" " id="bio" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
+                <label for="Bio" class="competitor-textarea-label-color-change">Bio</label>
             </div>
             <div class="input-field col s6 competitor-input-color-change">
                 <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
@@ -387,8 +387,7 @@
                     </div>
                     <div class="input-field col l6 m6 s12" ng-init="listAllGames()">
                         <span class="telegrafico">Game</span>
-                        <select class="browser-default" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">
-                            
+                        <select class="browser-default" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">                            
                         </select>
                     </div>
                 </div>

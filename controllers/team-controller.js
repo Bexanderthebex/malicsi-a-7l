@@ -97,6 +97,28 @@ exports.acceptMembershipRequest = (req, res) => {
         }
      );
 }
+exports.getMembershipRequest = (req, res) => {
+    currentUser = req.session.user;
+    query = "CALL get_membership_request(?,?)";
+    
+    connection.userType('A').query(query, 
+        [
+            currentUser.id,
+            req.query.team_id
+        ], (err, rows) => {
+            if(!err) {
+                if (rows[0].length == 1){
+                    return res.status(200).send(rows[0][0]);
+                }
+                else{
+                    return res.status(200).send(rows[0]);
+                }
+            } else {
+                return res.status(500).send({ 'message' : 'An error occured'});
+            }
+        }
+     );
+}
 
 exports.displayPendingMembershipRequest = (req, res) => {
     currentUser = req.session.user;

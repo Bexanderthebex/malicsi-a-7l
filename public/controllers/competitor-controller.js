@@ -13,6 +13,7 @@
             competitor_id: $routeParams.id
         };
         $scope.competitor = {};
+
         $scope.team = {
             team_name: null,
             sport_id: null,
@@ -35,6 +36,7 @@
         $scope.getCompetitorTeams = getCompetitorTeams;
         $scope.getCompetitorOrganization = getCompetitorOrganization;
         $scope.editCompetitor = editCompetitor;
+        $scope.editCompetitorBio = editCompetitorBio;
         $scope.createTeam = createTeam;
         $scope.getCoachedTeam = getCoachedTeam;
         $scope.getTeamMembers = getTeamMembers;
@@ -42,7 +44,6 @@
         $scope.getTeamRankings = getTeamRankings;
         $scope.listAllGames = listAllGames;
         $scope.listAllSportAndOrganization = listAllSportAndOrganization;
-
         function searchCompetitor(id){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
@@ -115,6 +116,17 @@
                 })
         }
 
+        function editCompetitorBio(){
+            CompetitorService
+                .editCompetitorBio($scope.competitor)
+                .then(function (res){
+                    Materialize.toast('Successfully edited bio!', 3000);
+                    //$window.location.href = '/#/competitor/profile';
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
         function createTeam(){
             console.log($scope.team);
             $scope.team.sport_id = $scope.team.sport_id.sport_id;
@@ -136,6 +148,26 @@
                 }, function(err) {
                     console.log(err);
                 })
+
+            CompetitorService
+                .getCoachedTeam()
+                .then(function (res){
+                    // console.log(res.data);
+                    $scope.coachedteam = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+
+            // CompetitorService
+            //     .getTeamMembers(id)
+            //     .then(function (res){
+            //         $scope.teammembers = res.data;
+            //        // console.log("members: ");
+            //         //console.log($scope.teammembers);
+            //     }, function(err) {
+            //         console.log(err);
+            //     })
+
         }
 
         function getCoachedTeam(){
@@ -173,7 +205,6 @@
             CompetitorService
                 .listAllGames()
                 .then(function (res){
-                    // console.log(res.data);
                     $scope.listgames = res.data;
                 }, function(err) {
                     console.log(err);
