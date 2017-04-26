@@ -23,8 +23,11 @@
         $scope.copyGame = copyGame;
         $scope.copyRequest = copyRequest;
         $scope.getOrganizerPastGames = getOrganizerPastGames;
+        $scope.getPublicOrganizerPastGames = getPublicOrganizerPastGames;
         $scope.getOrganizerOngoingGames = getOrganizerOngoingGames;
+        $scope.getPublicOrganizerOngoingGames = getPublicOrganizerOngoingGames;
         $scope.getOrganizerUpcomingGames = getOrganizerUpcomingGames;
+        $scope.getPublicOrganizerUpcomingGames = getPublicOrganizerUpcomingGames;
         $scope.getOrganizerRequests = getOrganizerRequests;
 
         $scope.organizer = {};
@@ -80,6 +83,39 @@
                     getOrganizerUpcomingGames();
                 }, function(err) { //function block when nag-fail yung dapat gawin sa OrganizerService
                     Materialize.toast('New game not added!', 3000);
+                })
+        }
+
+        function getPublicOrganizerPastGames() {
+            OrganizerService
+                .retrievePastGames($scope.thisOrganizer.orgID)
+                .then(function(res) {
+                    $scope.pastGames = res.data;
+                    console.log($scope.pastGames);
+                }, function(err) { 
+                    Materialize.toast('Games not retrieved.', 3000);
+                })
+        }
+
+        function getPublicOrganizerOngoingGames() {
+            OrganizerService
+                .retrieveOngoingGames($scope.thisOrganizer.orgID)
+                .then(function(res) {
+                    $scope.ongoingGames = res.data;
+                    console.log($scope.ongoingGames);
+                }, function(err) { 
+                    Materialize.toast('Games not retrieved.', 3000);
+                })
+        }
+
+        function getPublicOrganizerUpcomingGames() {
+            OrganizerService
+                .retrieveUpcomingGames($scope.thisOrganizer.orgID)
+                .then(function(res) {
+                    $scope.upcomingGames = res.data;
+                    console.log($scope.upcomingGames);
+                }, function(err) { 
+                    Materialize.toast('Games not retrieved.', 3000);
                 })
         }
 

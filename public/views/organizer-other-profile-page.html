@@ -8,14 +8,11 @@
                 <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
 
-            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCurrentUser()">
-            <!-- ng-init -> ito muna yung tatawagin para makuha yung organizer na kailangan
-            yung irereturn ng getCurrentUser() ay isang organizer, which is yung $scope.organizer
-            accessible yung values ng attributes ng organizer by enclosing it sa {{ }} -->
-                <h3 class="rockwell">{{ organizer.name }}</h3>
-                <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
+            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getOrganizer()">
+                <h3 class="rockwell">{{ thisOrganizer.name }}</h3>
+                <p class="telegrafico">Contact: {{ thisOrganizer.contact }} | E-mail: {{ thisOrganizer.email }}</p>
                 <p class="telegrafico">
-                    {{ organizer.description }}
+                    {{ thisOrganizer.description }}
                 </p>
             </div>
             <div class="col l1 m1 s12"></div>
@@ -28,17 +25,17 @@
                     <h5 class="rockwell">Games Handled</h5>
                     
                     <ul class="tabs tabs-transparent telegrafico" id="organizer-profile-games">
-                        <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">ONGOING ({{ games.length }})</a></li>
-                        <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">INCOMING ({{ games.length }})</a></li>
-                        <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">PAST ({{ games.length }})</a></li>
+                        <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">ONGOING ( {{ ongoingGames.length }} )</a></li>
+                        <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">INCOMING ( {{ upcomingGames.length }} )</a></li>
+                        <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">PAST ( {{ pastGames.length }} )</a></li>
                         <div class="indicator white" style="z-index: 1"></div>
                     </ul>
                     
 
                     <div id="organizer-profile-ongoing" class="col s12">
-                        <table class="highlight responsive-table organizer-games-data" ng-init="getOrganizerGames()">
+                        <table class="highlight responsive-table organizer-games-data" ng-init="getPublicOrganizerOngoingGames()">
                             <tbody class="">
-                                <tr class="century-gothic" ng-repeat="game in games | limitTo: 5">
+                                <tr class="century-gothic" ng-repeat="game in ongoingGames | limitTo: 5">
                                 <!-- ng-repeat -> itong <tr> na naka repeat ay mauulit ng ilang beses depende sa 
                                 kung ilan yung laman ng games na array
                                 game represents on element in the array games--> 
@@ -58,9 +55,9 @@
                     </div>
                     
                     <div id="organizer-profile-incoming" class="col s12">
-                        <table class="highlight responsive-table organizer-games-data">
+                        <table class="highlight responsive-table organizer-games-data" ng-init="getPublicOrganizerUpcomingGames()">
                             <tbody>
-                                <tr class="century-gothic" ng-repeat="game in games | limitTo: 5">
+                                <tr class="century-gothic" ng-repeat="game in upcomingGames | limitTo: 5">
                                     <td>{{ game.name }}</td>
                                     <td>{{ game.start_date| date:"longDate"}}</td>
                                     <td>{{ game.location }}</td>
@@ -70,16 +67,16 @@
                         <table class="highlight organizer-showall">
                             <tbody>
                                 <tr>
-                                    <td class="center-align century-gothic white-text palette-3" id="organizer-incoming-showall" data-target="organizer-ongoing-modal">Show All</td>
+                                    <td class="center-align century-gothic white-text palette-3" id="organizer-incoming-showall" data-target="organizer-incoming-modal">Show All</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     
                     <div id="organizer-profile-past" class="col s12">
-                        <table class="highlight responsive-table organizer-games-data">
+                        <table class="highlight responsive-table organizer-games-data" ng-init="getPublicOrganizerPastGames()">
                             <tbody>
-                                <tr class="century-gothic" ng-repeat="game in games | limitTo: 5">
+                                <tr class="century-gothic" ng-repeat="game in pastGames | limitTo: 5">
                                     <td>{{ game.name }}</td>
                                     <td>{{ game.start_date| date:"longDate"}}</td>
                                     <td>{{ game.location }}</td>
@@ -126,20 +123,20 @@
                 </div>
             </div>
         </div> 
-        <table class="highlight responsive-table" ng-init="retrieveGame()">
+        <table class="highlight responsive-table">
             <tbody>
-                <tr class="century-gothic" ng-repeat="game in games">
+                <tr class="century-gothic" ng-repeat="game in ongoingGames">
                     <td> {{ game.name }}</td>
                     <td> {{ game.start_date| date:"longDate" }}</td>
                     <td> {{ game.location }}</td>
-                    <td>
-                                <div class="organizer-actions" data-target="organizer-update-game-modal">
-                                    <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
-                                </div>
-                                <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                    <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
-                                </div>
-                            </td>
+                    <!-- <td>
+                        <div class="organizer-actions" data-target="organizer-update-game-modal">
+                            <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
+                        </div>
+                        <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                            <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
+                        </div>
+                    </td> -->
                 </tr>
             </tbody>
         </table>
@@ -163,20 +160,20 @@
                 </div>
             </div>
         </div>  
-        <table class="highlight responsive-table" ng-init="retrieveGame()">
+        <table class="highlight responsive-table">
             <tbody>
-                <tr class="century-gothic" ng-repeat="game in games">
+                <tr class="century-gothic" ng-repeat="game in upcomingGames">
                     <td> {{ game.name }}</td>
                     <td> {{ game.start_date| date:"longDate" }}</td>
                     <td> {{ game.location }}</td>
-                    <td>
-                                <div class="organizer-actions" data-target="organizer-update-game-modal">
-                                    <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
-                                </div>
-                                <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                    <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
-                                </div>
-                            </td>
+                    <!-- <td>
+                        <div class="organizer-actions" data-target="organizer-update-game-modal">
+                            <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
+                        </div>
+                        <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                            <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
+                        </div>
+                    </td> -->
                 </tr>
             </tbody>
         </table>
@@ -200,20 +197,20 @@
                 </div>
             </div>
         </div>  
-        <table class="highlight responsive-table" ng-init="retrieveGame()">
+        <table class="highlight responsive-table">
             <tbody>
-                <tr class="century-gothic" ng-repeat="game in games">
+                <tr class="century-gothic" ng-repeat="game in pastGames">
                     <td> {{ game.name }}</td>
                     <td> {{ game.start_date| date:"longDate" }}</td>
                     <td> {{ game.location }}</td>
-                    <td>
-                                <div class="organizer-actions" data-target="organizer-update-game-modal">
-                                    <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
-                                </div>
-                                <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                                    <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
-                                </div>
-                            </td>
+                    <!-- <td>
+                        <div class="organizer-actions" data-target="organizer-update-game-modal">
+                            <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
+                        </div>
+                        <div class="organizer-actions" data-target="organizer-delete-game-modal">
+                            <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
+                        </div>
+                    </td> -->
                 </tr>
             </tbody>
         </table>
