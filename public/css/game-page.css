@@ -128,11 +128,49 @@
 }
 
 #game-delete-sponsor {
+    overflow-y: hidden;
+    max-height:100%;
+}
 
+#game-delete-sponsor .modal-content{
+    max-height: 50vh;
+    overflow-y:auto;
+    z-index:99;
 }
 
 #game-sponsor-edit {
     margin-top: 3%;
+}
+
+#game-sponsor-add {
+    overflow-y:hidden;
+    max-height:100%;
+}
+
+#game-sponsor-add .modal-content{
+    max-height: 50vh;
+    overflow-y:auto;
+    z-index:99;
+}
+
+#game-delete-organization{
+    overflow-y: hidden;
+}
+
+#game-delete-organization .modal-content{
+    overflow-y:auto;
+    max-height:50vh; 
+    z-index:99;
+}
+
+#game-add-organization{
+    overflow:hidden;
+}
+
+#game-add-organization .modal-content{
+    overflow-y:auto;
+    max-height:50vh; 
+    z-index:99;
 }
 
 .game-icon-adjust {
@@ -323,6 +361,10 @@
 .game-location-description{
     font-size: 14px;
     /*margin-top: -20px; */
+}
+
+.game-organizer-description{
+    font-size: 14px;
 }
 
 .game-center-sport-logo{

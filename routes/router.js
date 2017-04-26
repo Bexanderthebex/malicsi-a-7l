@@ -124,6 +124,12 @@ router.get('/game/ranks/:gameId', gameController.retrieveOrgRankings);
 router.post('/game/createGame',  gameController.createGame);
 router.put('/game/updateGame',  gameController.updateGame);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
+router.delete('/game/deleteOrganizationFromGame', gameController.deleteOrganizationFromGame)
+router.get('/game/viewAllOngoingGames', gameController.viewAllOngoingGames);
+router.get('/game/viewAllUpcomingGames', gameController.viewAllUpcomingGames);
+router.get('/game/viewAllRecentGames', gameController.viewAllRecentGames);
+router.get('/game/viewGameOrganizerDetails', gameController.viewGameOrganizerDetails);
+
 
 // game-sponsor routers
 router.get('/game/viewSponsor',  sponsorController.viewSponsor);

@@ -221,6 +221,15 @@ END;
 //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS view_game_organizer_details;
+DELIMITER //
+CREATE PROCEDURE view_game_organizer_details(IN in_game_id INT(11))
+BEGIN
+	SELECT organizer.name, organizer.description, user.email, user.contact FROM user,organizer,game where user.id = organizer.id and game.organizer_id = organizer.id and game.game_id = in_game_id;
+END;
+//
+DELIMITER ;    
+
 --  orgs in game
 GRANT EXECUTE ON PROCEDURE view_all_organization_in_game TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_organization_in_game TO 'administrator'@'localhost';
@@ -330,4 +339,12 @@ GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'organizer'@'loc
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_game TO 'guest'@'localhost';
+
+-- view game organizer details
+
+GRANT EXECUTE ON PROCEDURE view_game_organizer_details TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_game_organizer_details TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_game_organizer_details TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_game_organizer_details TO 'guest'@'localhost';
+
 

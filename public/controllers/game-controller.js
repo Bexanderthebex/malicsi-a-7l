@@ -23,6 +23,7 @@
         $scope.searchSport = searchSport;
         $scope.passSport = passSport;
         $scope.viewGameDetails = viewGameDetails;
+        $scope.viewGameOrganizerDetails = viewGameOrganizerDetails;
         $scope.viewPastMatchesInGame = viewPastMatchesInGame;
         $scope.viewOngoingMatchesInGame = viewOngoingMatchesInGame;
         $scope.viewUpcomingMatchesInGame = viewUpcomingMatchesInGame;
@@ -66,6 +67,7 @@
         $scope.sports = [];
         $scope.sportCopy = {};
         $scope.game = {};
+        $scope.gameOrganizer = {};
         $scope.pastMatches = [];
         $scope.ongoingMatches = [];
         $scope.upcomingMatches = [];
@@ -489,6 +491,18 @@
                 })
         }
 
+        function viewGameOrganizerDetails(){
+            GameService
+                .viewGameOrganizerDetails($scope.thisGame.game_id)
+                .then(function(res){
+                    console.log("game organizer details retrieved for game#"+ $scope.thisGame.game_id);
+                    console.log(res.data);
+                    $scope.gameOrganizer = res.data[0];
+                }, function(err){
+                    console.log(err.data);
+                    Materialize.toast('Failed to retrieve game details!', 3000);
+                })
+        }
         function viewAllOrganizationForGame(){
             GameService
                 .viewAllOrganizationForGame($scope.thisGame.game_id)
