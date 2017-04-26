@@ -17,18 +17,22 @@
         $scope.competitorteams = {};
         $scope.coachedteam = {};
         $scope.pendingRequests = {};
+        $scope.rank = {};
+        $scope.sport_id = {};
+        $scope.listgames = [];
 
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
         $scope.getCompetitorTeams = getCompetitorTeams;
         $scope.getCompetitorOrganization = getCompetitorOrganization;
         $scope.editCompetitor = editCompetitor;
-        // $scope.editCompetitorBio = editCompetitorBio;
+        $scope.editCompetitorBio = editCompetitorBio;
         $scope.createTeam = createTeam;
         $scope.getCoachedTeam = getCoachedTeam;
         $scope.getTeamMembers = getTeamMembers;
         $scope.getPendingRequests = getPendingRequests;
         $scope.getTeamRankings = getTeamRankings;
+        $scope.listAllGames = listAllGames;
 
         function searchCompetitor(id){
             CompetitorService
@@ -59,7 +63,6 @@
                 .getCompetitorTeams()
                 .then(function(res) {
                     $scope.competitorteams = res.data;
-                    //console.log($scope.competitorteams);
                 }, function(err) {
                     console.log(err);
                 })
@@ -77,7 +80,7 @@
 
         function editCompetitor(){
             $scope.competitor.birthday = $scope.bday.getFullYear()+"-"+($scope.bday.getMonth()+1)+"-"+$scope.bday.getDate();
-            // console.log($scope.competitor.birthday);
+            
             CompetitorService
                 .editCompetitor($scope.competitor)
                 .then(function (res){
@@ -107,16 +110,16 @@
         }
 
 
-        // function editCompetitorBio(){
-        //     CompetitorService
-        //         .editCompetitorBio($scope.competitor)
-        //         .then(function (res){
-        //             Materialize.toast('Successfully edited bio!', 3000);
-        //             //$window.location.href = '/#/competitor/profile';
-        //         }, function(err) {
-        //             console.log(err);
-        //         })
-        // }
+        function editCompetitorBio(){
+            CompetitorService
+                .editCompetitorBio($scope.competitor)
+                .then(function (res){
+                    Materialize.toast('Successfully edited bio!', 3000);
+                    //$window.location.href = '/#/competitor/profile';
+                }, function(err) {
+                    console.log(err);
+                })
+        }
 
         function createTeam(){
             CompetitorService
@@ -127,6 +130,26 @@
                 }, function(err) {
                     console.log(err);
                 })
+
+            CompetitorService
+                .getCoachedTeam()
+                .then(function (res){
+                    // console.log(res.data);
+                    $scope.coachedteam = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+
+            // CompetitorService
+            //     .getTeamMembers(id)
+            //     .then(function (res){
+            //         $scope.teammembers = res.data;
+            //        // console.log("members: ");
+            //         //console.log($scope.teammembers);
+            //     }, function(err) {
+            //         console.log(err);
+            //     })
+
         }
 
         function getCoachedTeam(){
@@ -162,14 +185,23 @@
                 })
         }
 
-        function getTeamRankings(sport_id){
-            console.log("getTeamRankings");
-            console.log(sport_id);
+        function listAllGames(){
             CompetitorService
-                .getTeamRankings(sport_id)
+                .listAllGames()
                 .then(function (res){
-                    //console.log(res.data);
-                    $scope.pendingRequests = res.data;
+                    console.log(res.data);
+                    $scope.listgames = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function getTeamRankings(){
+            CompetitorService
+                .getTeamRankings($scope.sport_id.sport_id)
+                .then(function (res){
+                    console.log(res.data);
+                    $scope.rank = res.data;
                 }, function(err) {
                     console.log(err);
                 })

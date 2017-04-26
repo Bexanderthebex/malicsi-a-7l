@@ -74,6 +74,15 @@ CREATE PROCEDURE accept_membership_request (IN idin INT, IN team_idin INT)
 
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS get_membership_request;
+DELIMITER //
+CREATE PROCEDURE get_membership_request (IN idin INT, IN team_idin INT)
+	BEGIN
+	  SELECT * from competitor_joins_team where id = idin AND team_id = team_idin;
+	END; //
+
+DELIMITER ;
+
 DROP PROCEDURE IF EXISTS rankings;
 DELIMITER //
 CREATE PROCEDURE rankings ( IN team_idin INT)
@@ -116,7 +125,7 @@ DELIMITER //
 
 CREATE PROCEDURE get_teams_on_organization (IN org_id INT)
 	BEGIN
-	   SELECT * FROM team  WHERE team_organization = org_id;
+	   SELECT * FROM team join sport on team.sport_id = sport.sport_id WHERE team_organization = org_id;
 	END; //
 DELIMITER ;
 
@@ -156,3 +165,8 @@ GRANT EXECUTE ON procedure count_teams_in_sport TO 'guest'@'localhost';
 GRANT EXECUTE ON procedure get_members TO 'guest'@'localhost';
 GRANT EXECUTE ON procedure organization_rankings TO 'guest'@'localhost';
 GRANT EXECUTE ON procedure get_teams_on_organization TO 'guest'@'localhost';
+
+GRANT EXECUTE ON procedure get_membership_request TO 'administrator'@'localhost';
+GRANT EXECUTE ON procedure get_membership_request TO 'competitor'@'localhost';
+GRANT EXECUTE ON procedure get_membership_request TO 'organizer'@'localhost';
+GRANT EXECUTE ON procedure get_membership_request TO 'guest'@'localhost';

@@ -7,11 +7,6 @@ exports.createTeam = (req, res) => {
     currentUser = req.session.user;
     query = "CALL create_team(?, ?, ?, ?, ?)";
     query1 = "CALL get_team(?)"
-    console.log('current user: '+currentUser.id);
-    console.log(req.body.team_name);
-    console.log(req.body.sport_id); 
-    console.log(req.body.team_organization);
-    console.log(req.body.max_members);
     connection.userType('A').query(query,
         [
             req.body.team_name,
@@ -30,9 +25,7 @@ exports.createTeam = (req, res) => {
 }
 
 exports.deleteTeam = (req, res) => {
-    query = "CALL delete_team(?)";
-   
-    console.log("teamid: " + req.body.team_id);   
+    query = "CALL delete_team(?)"; 
     connection.userType('A').query(query, 
         [
             req.query.team_id
@@ -59,7 +52,6 @@ exports.teamMembershipRequest = (req, res) => {
                 if(!err) {
                     return res.status(200).send({ 'message' : 'Sucessfully sent request'});
                 } else {
-                    console.log(err);
                     if(err.code == 'ER_DUP_ENTRY') return res.status(493).send({ 'message' : 'Duplicate entry'});
                     else return res.status(500).send({ 'message' : 'An error occured'});
                 }
@@ -99,6 +91,28 @@ exports.acceptMembershipRequest = (req, res) => {
                 } else {
                     return res.status(500).send({ 'message' : 'An error occured'});
                 }
+        }
+     );
+}
+exports.getMembershipRequest = (req, res) => {
+    currentUser = req.session.user;
+    query = "CALL get_membership_request(?,?)";
+    
+    connection.userType('A').query(query, 
+        [
+            currentUser.id,
+            req.query.team_id
+        ], (err, rows) => {
+            if(!err) {
+                if (rows[0].length == 1){
+                    return res.status(200).send(rows[0][0]);
+                }
+                else{
+                    return res.status(200).send(rows[0]);
+                }
+            } else {
+                return res.status(500).send({ 'message' : 'An error occured'});
+            }
         }
      );
 }
@@ -184,7 +198,6 @@ exports.countTeamInSports = (req, res) => {
 exports.getTeamMembers = (req, res) => {
     query = "CALL get_members(?)";
     
-    console.log(req.query.team_id);
     connection.userType('A').query(query,
         [
             req.query.team_id
@@ -206,7 +219,6 @@ exports.getTeam = (req, res) => {
     ], (err, rows) => {
         if(!err) {
             if (rows[0].length == 1){
-                    console.log(rows[0][0]);
                 return res.status(200).send(rows[0][0]);
             }
             else{
@@ -229,12 +241,9 @@ exports.getCoachedTeam = (req, res) => {
     ], (err, rows) => {
         if(!err) {
                 if (rows[0].length == 1){
-                    console.log(rows[0][0]);
                     return res.status(200).send(rows[0]);
                 }
                 else{
-                    // console.log("Dito");
-                    console.log(rows[0]);
                     return res.status(200).send(rows[0]);
                     
                 }
@@ -273,7 +282,6 @@ exports.getOrganization = (req, res) => {
         req.query.organization_id
     ], (err, rows) => {
         if(!err) {
-            console.log(rows[0]);
             return res.status(200).send(rows[0]);
         } else {
             return res.status(500).send({ 'message' : 'An error occured'});
