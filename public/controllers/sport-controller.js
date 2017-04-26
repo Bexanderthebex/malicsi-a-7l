@@ -93,7 +93,7 @@
                 .then(function (res){
                     console.log("Past match retrieved");
                     $scope.pastMatch = res.data;
-                    console.log(res.data);
+                        console.log(res.data);
                 }), function(err){
                     console.log("matches not retrieved");
                 }
