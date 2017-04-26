@@ -67,7 +67,7 @@
 								<!-- One player -->
 								<div class="sports-match-players row">
 									<div class="col s9 century-gothic">{{ match.team_name }}</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div>
+									<div class="col s3" style="height: 21px;" ng-show="match.ranking == 1"><i class="material-icons" style="font-size: 21px;">done</i></div>
 								</div>
 							</div>
 
@@ -133,7 +133,7 @@
 								<!-- One player -->
 								<div class="sports-match-players row" ng-repeat="match in value>
 									<div class="col s9 century-gothic">{{ match.team_name }}</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
+									<div class="col s3" style="height: 21px;" ><i class="material-icons" style="font-size: 21px;" ></i></div>
 								</div>
 							</div>
 
