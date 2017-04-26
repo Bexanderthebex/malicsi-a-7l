@@ -199,10 +199,10 @@
                     <h5 class="rockwell">Applications</h5>
                     <table class="highlight responsive-table">
                         <tbody>
-                            <tr class="century-gothic">
-                                <td class="bold">Jane Doe</td>
-                                <td>Team-You-Created</td>
-                                <td>Basketball</td>
+                            <tr class="century-gothic" ng-repeat="pr in pendingRequests">
+                                <td class="bold">{{ pr.first_name }} {{ pr.last_name }}</td>
+                                <td>{{ pr.sport_name }}</td>
+                                <td>{{ pr.team_name }}</td>
                                 <td>
                                     <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Applicant" data-target="competitor-accept-applicant-modal">
                                         <i class="fa fa-check fa-lg"></i>
@@ -216,7 +216,7 @@
                     </table>
                 </div>
                 <div class="container divider"></div>
-                <div class="col s12">
+                <!-- <div class="col s12">
                     <h5 class="rockwell">Invites</h5>
                     <table class="highlight responsive-table">
                         <tbody>
@@ -262,7 +262,7 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -296,7 +296,7 @@
                 <label for="nickname">Nickname</label>
             </div>
             <div class="input-field col s4 competitor-input-color-change">
-                <input id="birthdate" type="date" class="datepicker validate" ng-model="bday">
+                <input id="birthdate" type="date" class="validate" ng-model="bday">
                 <label for="birthdate" class="competitor-adjust-label">Birthdate</label>
             </div>
             <div class="input-field col s4">
@@ -358,7 +358,7 @@
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor(); editCompetitorBio()">UPDATE</button>
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor()">UPDATE</button>
     </div>
 </div>
 
@@ -595,11 +595,11 @@
             </div>
         </div>  
         <div class="row competitor-modal-container">
-            <p>Are you sure you want to delete [TEAM NAME]?</p>
+            <p>Are you sure you want to delete {{ team.team_name }}?</p>
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Team Deleted', 3000)">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="deleteTeam()">YES</button>
         <button href="" class="modal-action modal-close minimalist-button">NO</button>
     </div>
 </div>

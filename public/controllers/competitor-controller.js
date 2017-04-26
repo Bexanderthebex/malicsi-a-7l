@@ -21,6 +21,7 @@
             max_members: 0
 
         };
+
         $scope.competitorteams = [];
         $scope.coachedteam = [];
         $scope.pendingRequests = [];
@@ -44,6 +45,8 @@
         $scope.getTeamRankings = getTeamRankings;
         $scope.listAllGames = listAllGames;
         $scope.listAllSportAndOrganization = listAllSportAndOrganization;
+        $scope.deleteTeam = deleteTeam;
+        
         function searchCompetitor(id){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
@@ -90,12 +93,14 @@
 
         function editCompetitor(){
             $scope.competitor.birthday = $scope.bday.getFullYear()+"-"+($scope.bday.getMonth()+1)+"-"+$scope.bday.getDate();
-            
+           
+            console.log($scope.competitor);
             CompetitorService
                 .editCompetitor($scope.competitor)
                 .then(function (res){
-                    Materialize.toast('Successfully edited!', 3000);
+                    // Materialize.toast('Successfully edited!', 3000);
                 }, function(err) {
+                    Materialize.toast('Unsuccessful edit!', 3000);
                     console.log(err);
                 })
 
@@ -104,6 +109,7 @@
                 .then(function (res){
                     // Materialize.toast('Successfully edited!', 3000);
                 }, function(err) {
+                    Materialize.toast('Unsuccessful edit!', 3000);
                     console.log(err);
                 })
 
@@ -112,6 +118,7 @@
                 .then(function (res){
                     Materialize.toast('Successfully edited!', 3000);
                 }, function(err) {
+                    Materialize.toast('Unsuccessful edit!', 3000);
                     console.log(err);
                 })
         }
@@ -175,6 +182,7 @@
                 .getCoachedTeam()
                 .then(function (res){
                     $scope.coachedteam = res.data;
+                    console.log($scope.coachedteam);
                 }, function(err) {
                     console.log(err);
                 })
@@ -194,8 +202,8 @@
             CompetitorService
                 .getPendingRequests()
                 .then(function (res){
-                    // console.log(res.data);
                     $scope.pendingRequests = res.data;
+                    console.log($scope.pendingRequests);
                 }, function(err) {
                     console.log(err);
                 })
@@ -236,6 +244,16 @@
                 .then(function (res){
                     $scope.organizations = res.data;
                     // console.log($scope.organizations);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function deleteTeam(){
+            CompetitorService
+                .deleteTeam($scope.team.team_id)
+                .then(function (res){
+                    $scope.rank = res.data;
                 }, function(err) {
                     console.log(err);
                 })
