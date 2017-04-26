@@ -82,6 +82,7 @@ exports.viewMatchInSport = (req, res) => {
 		if (!err){
 			return res.status(200).send(rows[0]);
 		}else{
+			console.log(err);
 			res.status(500).send("Internal Server Error");
 		}
 	})
@@ -118,6 +119,7 @@ exports.viewAllMatch = (req, res) => {
 			}
 		});
 }
+
 exports.deleteMatch = (req, res) => {
 	let query = 'CALL view_match_details(?);';
 	let matchId = req.body.matchId
@@ -140,7 +142,7 @@ exports.deleteMatch = (req, res) => {
 	});
 }
 
-//start of new added controllers
+
 exports.viewCurrentMatch = (req, res) => {
 	let query = 'CALL view_current_match(?)';
 
