@@ -21,75 +21,92 @@
         <div id="org-profile-div" class="col s12">
             <div class="row container">
             <!-- Games Handled -->
-                <div class="col s12">
-                    <h5 class="rockwell">Games Handled</h5>
-                    
-                    <ul class="tabs tabs-transparent telegrafico" id="organizer-profile-games">
-                        <li class="tab col s4"><a class="active white-text" href="#organizer-profile-ongoing">ONGOING ( {{ ongoingGames.length }} )</a></li>
-                        <li class="tab col s4"><a class="white-text" href="#organizer-profile-incoming">INCOMING ( {{ upcomingGames.length }} )</a></li>
-                        <li class="tab col s4"><a class="white-text" href="#organizer-profile-past">PAST ( {{ pastGames.length }} )</a></li>
-                        <div class="indicator white" style="z-index: 1"></div>
-                    </ul>
-                    
+                <div class="row">
+                    <!-- P A S T GAMES -->
+                    <div id="sports-past-matches" class="col s4">
+                        <h5 class="telegrafico center">PAST GAMES ({{ pastGames.length }})</h5>
 
-                    <div id="organizer-profile-ongoing" class="col s12">
-                        <table class="highlight responsive-table organizer-games-data" ng-init="getPublicOrganizerOngoingGames()">
-                            <tbody class="">
-                                <tr class="century-gothic" ng-repeat="game in ongoingGames | limitTo: 5">
-                                <!-- ng-repeat -> itong <tr> na naka repeat ay mauulit ng ilang beses depende sa 
-                                kung ilan yung laman ng games na array
-                                game represents on element in the array games--> 
-                                    <td>{{ game.name }}</td>
-                                    <td>{{ game.start_date| date:"longDate" }}</td>
-                                    <td>{{ game.location }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="highlight organizer-showall">
-                            <tbody>
-                                <tr>
-                                    <td class="center-align century-gothic white-text palette-3" id="organizer-ongoing-showall" data-target="organizer-ongoing-modal">Show All</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <!-- LIST OF GAMES -->
+                        <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getPublicOrganizerPastGames()">
+                            <div class="sports-match palette-border-5" ng-repeat="game in pastGames">
+                                <a href="#/game/{{game.game_id}}">
+                                <!-- GAME TITLE -->
+                                    <div class="sports-match-title row">
+                                        <div class="telegrafico col s10">{{ game.name }}</div>
+                                    </div>
+
+                                    <!-- GAME INFO -->
+                                    <div class="sports-match-info">
+                                        Start: {{ game.start_date| date:"longDate"}}
+
+                                    </div>
+                                    <div class="sports-match-info">
+                                        End: {{ game.end_date| date:"longDate"}}
+                                    </div>
+                                    <div class="sports-match-info">
+                                        Location: {{ game.location }}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div id="organizer-profile-incoming" class="col s12">
-                        <table class="highlight responsive-table organizer-games-data" ng-init="getPublicOrganizerUpcomingGames()">
-                            <tbody>
-                                <tr class="century-gothic" ng-repeat="game in upcomingGames | limitTo: 5">
-                                    <td>{{ game.name }}</td>
-                                    <td>{{ game.start_date| date:"longDate"}}</td>
-                                    <td>{{ game.location }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="highlight organizer-showall">
-                            <tbody>
-                                <tr>
-                                    <td class="center-align century-gothic white-text palette-3" id="organizer-incoming-showall" data-target="organizer-incoming-modal">Show All</td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                    <!-- O N  G O I N G GAMES -->
+                    <div id="sports-ongoing-matches" class="col s4">
+                        <h5 class="telegrafico center">ON-GOING GAMES ({{ ongoingGames.length }})</h5>
+
+                        <!-- LIST OF GAMES -->
+                        <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getPublicOrganizerOngoingGames()">
+                            <div class="sports-match palette-border-3" ng-repeat="game in ongoingGames">
+                                <!-- GAME TITLE -->
+                                <a href="#/game/{{game.game_id}}">
+                                    <div class="sports-match-title row">
+                                        <div class="telegrafico col s10">{{ game.name }}</div>
+                                    </div>
+
+                                    <!-- GAME INFO -->
+                                    <div class="sports-match-info">
+                                        Start: {{ game.start_date| date:"longDate"}}
+
+                                    </div>
+                                    <div class="sports-match-info">
+                                        End: {{ game.end_date| date:"longDate"}}
+                                    </div>
+                                    <div class="sports-match-info">
+                                        Location: {{ game.location }}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div id="organizer-profile-past" class="col s12">
-                        <table class="highlight responsive-table organizer-games-data" ng-init="getPublicOrganizerPastGames()">
-                            <tbody>
-                                <tr class="century-gothic" ng-repeat="game in pastGames | limitTo: 5">
-                                    <td>{{ game.name }}</td>
-                                    <td>{{ game.start_date| date:"longDate"}}</td>
-                                    <td>{{ game.location }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="highlight organizer-showall">
-                            <tbody>
-                                <tr>
-                                    <td class="center-align century-gothic palette-3" id="organizer-ongoing-showall" data-target="organizer-past-modal">Show All</td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                    <!-- U P C O M I N G GAMES -->
+                    <div id="sports-upcoming-matches" class="col s4">
+                        <h5 class="telegrafico center">UPCOMING GAMES ({{ upcomingGames.length }})</h5>
+
+                        <!-- LIST OF GAMES -->
+                        <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getPublicOrganizerUpcomingGames()">
+                            <div class="sports-match palette-border-4" ng-repeat="game in upcomingGames">
+                                <!-- GAME TITLE -->
+                                <a href="#/game/{{game.game_id}}">
+                                    <div class="sports-match-title row">
+                                        <div class="telegrafico col s10">{{ game.name }}</div>
+                                    </div>
+
+                                    <!-- GAME INFO -->
+                                    <div class="sports-match-info">
+                                        Start: {{ game.start_date| date:"longDate"}}
+
+                                    </div>
+                                    <div class="sports-match-info">
+                                        End: {{ game.end_date| date:"longDate"}}
+                                    </div>
+                                    <div class="sports-match-info">
+                                        Location: {{ game.location }}
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,9 +143,10 @@
         <table class="highlight responsive-table">
             <tbody>
                 <tr class="century-gothic" ng-repeat="game in ongoingGames">
-                    <td> {{ game.name }}</td>
-                    <td> {{ game.start_date| date:"longDate" }}</td>
-                    <td> {{ game.location }}</td>
+                    <a href="#/game/{{game.game_id}}">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date| date:"longDate" }}</td>
+                        <td> {{ game.location }}</td>
                     <!-- <td>
                         <div class="organizer-actions" data-target="organizer-update-game-modal">
                             <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
@@ -137,6 +155,7 @@
                             <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
                         </div>
                     </td> -->
+                    </a>
                 </tr>
             </tbody>
         </table>
@@ -163,9 +182,10 @@
         <table class="highlight responsive-table">
             <tbody>
                 <tr class="century-gothic" ng-repeat="game in upcomingGames">
-                    <td> {{ game.name }}</td>
-                    <td> {{ game.start_date| date:"longDate" }}</td>
-                    <td> {{ game.location }}</td>
+                    <a href="#/game/{{game.game_id}}">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date| date:"longDate" }}</td>
+                        <td> {{ game.location }}</td>
                     <!-- <td>
                         <div class="organizer-actions" data-target="organizer-update-game-modal">
                             <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
@@ -174,6 +194,7 @@
                             <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
                         </div>
                     </td> -->
+                    </a>
                 </tr>
             </tbody>
         </table>
@@ -200,9 +221,10 @@
         <table class="highlight responsive-table">
             <tbody>
                 <tr class="century-gothic" ng-repeat="game in pastGames">
-                    <td> {{ game.name }}</td>
-                    <td> {{ game.start_date| date:"longDate" }}</td>
-                    <td> {{ game.location }}</td>
+                    <a href="#/game/{{game.game_id}}">
+                        <td> {{ game.name }}</td>
+                        <td> {{ game.start_date| date:"longDate" }}</td>
+                        <td> {{ game.location }}</td>
                     <!-- <td>
                         <div class="organizer-actions" data-target="organizer-update-game-modal">
                             <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
@@ -211,6 +233,7 @@
                             <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
                         </div>
                     </td> -->
+                    </a>
                 </tr>
             </tbody>
         </table>
