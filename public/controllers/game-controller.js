@@ -302,6 +302,7 @@
                     $scope.participatingOrgs =[];
                     viewAllOrganizationForGame();
                     viewAllOrganizationInGame();
+                    checkValidOrgAdd();
                     Materialize.toast("Successfully added the organizations!", 3000);
                 }, function(err) {
                     console.log(err);
@@ -532,7 +533,7 @@
                 .then(function(res){
                     console.log("Organizations In Game Retrieved"+ $scope.thisGame.game_id);
                     $scope.tempOrgs = res.data;
-                    $scope.availableOrgs = [];
+                    $scope.participatingOrgs = [];
                     for(var i = 0; i<$scope.tempOrgs.length; i++){
                         $scope.newOrganizationInGame = {
                             orgId: $scope.tempOrgs[i].organization_id,
