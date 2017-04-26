@@ -15,6 +15,8 @@
         $scope.column3 = [];
         $scope.gamefeedInit = gamefeedInit;
         $scope.addGame = addGame;
+        $scope.setPending = setPending;
+        $scope.deleteGame = deleteGame;
 
         UserService.getUserInfo()
         .then((res) => {
@@ -25,6 +27,10 @@
         });
 
         function gamefeedInit(){
+            $scope.games = [];
+            $scope.column1 = [];
+            $scope.column2 = [];
+            $scope.column3 = [];
             retrieveGames();
         }
 
@@ -132,7 +138,7 @@
             .then((res) => {
                 Materialize.toast('Game added', 2000);
                 resetModalData();
-                retrieveGames();
+                gamefeedInit();
             }, (err) => {
                 Materialize.toast('An error occured', 2000);
             });
@@ -157,5 +163,19 @@
                 && $scope.description.trim() != '';
         }
 
+        function setPending(id) {
+            $scope.pending = id;
+        }
+
+        function deleteGame() {
+            OrganizerService.deleteGame($scope.pending)
+            .then((res) => {
+                Materialize.toast('Game deleted', 2000);
+                gamefeedInit();
+                $scope.pending = null;
+            }, (err) => {
+                Materialize.toast('An error occured', 2000);
+            });
+        }
     }
 })();
