@@ -350,21 +350,23 @@
 									</div>
 
 									<!-- lois diane ito -->
-									<h5 class="game-remove-margin center rockwell white-text">Organizer</h5><br>
-									<div class="col s12 m12" ng-hide="<checkOrganizer()>">
+									<h5 class="game-remove-margin center rockwell white-text" ng-init="viewGameOrganizerDetails()">Organizer</h5><br>
+									<div class="col s12 m12">
 										<!-- presentation view -->
-										<div ng-repeat="<organizer in organizers>" style="overflow-y:auto;">
-											<p class="telegrafico game-sponsor-title white-text center" >
-											{{organizer.name}}
+										<div>
+											<p class="telegrafico game-organizer-description white-text center" >
+											Name: {{gameOrganizer.name}}
 											</p>
-											<p class="game-sponsor-description century-gothic white-text center">{{organizer.description}}</p>
+											<p class="game-organizer-description-description century-gothic white-text center">Description: {{gameOrganizer.description}}</p>
+											<p class="game-organizer-description century-gothic white-text center">Contact Number: {{gameOrganizer.contact}}</p>
+											<p class="game-organizer-description century-gothic white-text center">Email: {{gameOrganizer.email}}</p>
 										</div>
 									</div>
-									<div class="col s12 m12" ng-show="<checkOrganizer()>">
+									<!-- <div class="col s12 m12" ng-show="<checkOrganizer()>">
 										<p class="telegrafico game-sponsor-title white-text center">
 											No organizers here yet!
 										</p>
-									</div>
+									</div> -->
 									<!-- lois diane ito -->
 									
 								</div>
@@ -418,7 +420,7 @@
 										
 									</div>
 									<div class="col s12 m12" ng-show="checkSponsors()">
-										<p class="telegrafico game-sponsor-title">
+										<p class="telegrafico game-sponsor-title white-text center">
 											No sponsors here yet!
 										</p>
 									</div>
