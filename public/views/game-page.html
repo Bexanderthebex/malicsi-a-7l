@@ -438,28 +438,30 @@
 
 
 <!-- DELETE SPONSOR MODAL -->
-<div id="game-delete-sponsor" class="modal" style="overflow-y: hidden;">
-	<div class="modal-content game-header-fill century-gothic">
-		<div class="row game-remove-bottom">
+<div id="game-delete-sponsor" class="modal" >
+	<div class="row game-remove-bottom">
+		<div class="modal-content game-header-fill century-gothic">
 			<div class="col s12 game-padding-left game-padding-right palette-5">
 				<div class="center">
 						<div class="card-title white-text center telegrafico" id="thicken">
 					 		<h5>Delete Sponsor(s) From Game</h5>
 						</div>
 				</div>
-			</div>	
-				<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
-					<div class="row" ng-repeat="sponsor in sponsors" >
-						<span class="telegrafico game-checkbox-change-color" >
-							<input type="checkbox" class="filled-in" ng-click="checkValidSponsorDel()" id="{{sponsor.sponsorId}}" ng-model="sponsor.checked"/>
-							<label for="{{sponsor.sponsorId}}">
-								<p class="game-sponsor-title">{{sponsor.name}}</p><p>{{sponsor.description}}  </p>
-							</label>
-						</span>
-					</div>
-				</div>				
-		</div>	
-	</div>
+			</div>
+		</div>
+	</div>			
+	<div class="modal-content">
+		<div class="row" ng-repeat="sponsor in sponsors" >
+			<span class="telegrafico game-checkbox-change-color" >
+				<input type="checkbox" class="filled-in" ng-click="checkValidSponsorDel()" id="{{sponsor.sponsorId}}" ng-model="sponsor.checked"/>
+				<label for="{{sponsor.sponsorId}}">
+					<p class="game-sponsor-title">{{sponsor.name}}</p><p>{{sponsor.description}}  </p>
+				</label>
+			</span>
+		</div>
+	</div>				
+			
+	
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-disabled="!validSponsorDel" data-target="game-delete-sponsor-2">NEXT</button>	
@@ -468,8 +470,9 @@
 
 <!-- DELETE SPONSOR CONFIRM MODAL -->
 <div id="game-delete-sponsor-2" class="modal">
-	<div class="modal-content game-header-fill century-gothic">
-		<div class="row game-remove-bottom">
+	<div class="row game-remove-bottom">
+		<div class="modal-content game-header-fill century-gothic">
+		
 			<div class="col s12 game-padding-left game-padding-right">
 				<div class="center palette-5">
 					<br>
@@ -492,7 +495,7 @@
 </div>
 
 <!-- DELETE ORGANIZATION MODAL -->
-<div id="game-delete-organization" class="modal" style="overflow-y: hidden;">
+<div id="game-delete-organization" class="modal" >
 	<div class="modal-content game-header-fill century-gothic">
 		<div class="row game-remove-bottom">
 			<div class="col s12 game-padding-left game-padding-right palette-5">
@@ -502,17 +505,18 @@
 						</div>
 				</div>
 			</div>	
-				<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
-					<div class="row" ng-repeat="organization in participatingOrgs" >
-						<span class="telegrafico game-checkbox-change-color" >
-							<input type="checkbox" class="filled-in" ng-click="checkValidOrgDel()" id="org{{organization.orgId}}" ng-model="organization.checked"/>
-							<label for="org{{organization.orgId}}">
-								<p class="game-sponsor-title">{{organization.name}}</p>
-							</label>
-						</span>
-					</div>
-				</div>				
 		</div>	
+		<div class="modal-content" >
+			<div class="row" ng-repeat="organization in participatingOrgs" >
+				<span class="telegrafico game-checkbox-change-color" >
+					<input type="checkbox" class="filled-in" ng-click="checkValidOrgDel()" id="org{{organization.orgId}}" ng-model="organization.checked"/>
+					<label for="org{{organization.orgId}}">
+						<p class="game-sponsor-title">{{organization.name}}</p>
+					</label>
+				</span>
+			</div>
+		</div>				
+			
 	</div>
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
@@ -591,7 +595,7 @@
 </div> -->
 
 <!-- ADD SPONSOR MODAL -->
-<div id="game-sponsor-add" style="overflow:hidden;" class="modal" ng-init="viewOtherSponsoringInstitutions()">
+<div id="game-sponsor-add" class="modal" ng-init="viewOtherSponsoringInstitutions()">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-5">
 			<div class="center">
@@ -601,7 +605,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
+	<div class="modal-content">
 		<div class="row" ng-repeat="newSponsor in otherSponsors" >
 			<span class="telegrafico game-checkbox-change-color" >
 				<input type="checkbox" class="filled-in" ng-click="checkValidSponsorAdd()" id="{{newSponsor.sponsorId}}" ng-model="newSponsor.checked"/>
@@ -611,14 +615,14 @@
 			</span>
 		</div>
 	</div>
-	<div class="modal-footer" >
+	<div class="modal-footer right-align" >
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-disabled="!validSponsorAdd" ng-click="addMultipleSponsors()">ADD</button>
 	</div>
 </div>
 
 <!-- ADD ORGANIZATION MODAL -->
-<div id="game-organization-add" style="overflow:hidden;" class="modal" ng-init="viewAllOrganizationForGame()">
+<div id="game-organization-add" class="modal" ng-init="viewAllOrganizationForGame()">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-5">
 			<div class="center">
@@ -628,7 +632,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
+	<div class="modal-content">
 		<div class="row" ng-repeat="newOrg in availableOrgs" >
 			<span class="telegrafico game-checkbox-change-color" >
 				<input type="checkbox" class="filled-in" ng-click="checkValidOrgAdd()" id="newOrg{{newOrg.orgId}}" ng-model="newOrg.checked"/>
@@ -638,7 +642,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="modal-footer" >
+	<div class="modal-footer right-align" >
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-disabled="!validOrgAdd" ng-click="addMultipleOrganizations()">ADD</button>
 	</div>
