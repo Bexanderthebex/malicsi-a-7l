@@ -56,10 +56,10 @@
 											{{ location }}
 										</div>
 										<div class="gamefeed-padding-down">
-											<div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x.game_id)">
+											<div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)">
 												<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
 											</div>
-											<div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x.game_id)">
+											<div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)">
 												<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
 											</div>
 										</div>
@@ -101,10 +101,10 @@
 											{{ location }}
 										</div>
 										<div class="gamefeed-padding-down">
-											<div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x.game_id)">
+											<div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)">
 												<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
 											</div>
-											<div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x.game_id)">
+											<div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)">
 												<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
 											</div>
 										</div>
@@ -146,10 +146,10 @@
 											{{ location }}
 										</div>
 										<div class="gamefeed-padding-down">
-											<div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x.game_id)">
+											<div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)">
 												<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
 											</div>
-											<div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x.game_id)">
+											<div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)">
 												<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
 											</div>
 										</div>
@@ -246,7 +246,7 @@
 		</div>
 	</div>
 	<div class="modal-footer palette-5 right-align">
-		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-click="resetModalData()">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-click="addGame()">ADD</button>
 	</div>
 </div>
@@ -266,25 +266,25 @@
 		</div>
 		<div class="row gamefeed-modal-container">
 			<div class="input-field col s6 gamefeed-input-color-change">
-				<input placeholder=" " id="name" type="text" class="validate">
+				<input placeholder=" " id="name" type="text" class="validate" ng-model="gameName">
 				<label for="name">Game Name</label>
 			</div>
 			<div class="input-field col s6 gamefeed-input-color-change">
-				<input placeholder=" " id="location" type="text" class="validate ">
+				<input placeholder=" " id="location" type="text" class="validate " ng-model="location">
 				<label for="location">Location</label>
 			</div>
 
 			<div class="input-field col s6 gamefeed-input-color-change">
-				<input id="start-date" type="date" class="validate ">
+				<input id="start-date" type="date" class="validate " ng-model="startDate">
 				<label for="start-date" class="gamefeed-adjust-label">Start Date</label>
 			</div>
 			<div class="input-field col s6 gamefeed-input-color-change">
-				<input id="end-date" type="date" class="validate ">
+				<input id="end-date" type="date" class="validate " ng-model="endDate">
 				<label for="end-date" class="gamefeed-adjust-label">End Date</label>
 			</div>
 
 			<div class="input-field col s12 gamefeed-input-color-change">
-				<textarea placeholder=" " id="description" class="materialize-textarea" data-length="140"></textarea>
+				<textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="description"></textarea>
 				<label for="description" class="gamefeed-textarea-label-color-change">Description</label>
 			</div>
 
@@ -302,8 +302,8 @@
 		</div>
 	</div>
 	<div class="modal-footer palette-5 right-align">
-		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
-		<button href="" class="modal-action modal-close minimalist-button">UPDATE</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-click="resetModalData()">CLOSE</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-click="editGame()">UPDATE</button>
 	</div>
 </div>
 

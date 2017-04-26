@@ -41,8 +41,8 @@ exports.updateGame = (req, res) => {
 		[
 			gameId,
 			req.body.name,
-			req.body.startDate,
-			req.body.endDate,
+			new Date(req.body.startDate),
+			new Date(req.body.endDate),
 			req.body.location,
 			req.body.description,
 		], (err, rows) =>{
