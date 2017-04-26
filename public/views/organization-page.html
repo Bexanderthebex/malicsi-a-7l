@@ -14,14 +14,14 @@
 			</div>
 		</div>
 
-		<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="">
+		<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
 			<div class="col s12">
 				<ul id="organization-team-tabs" class="tabs" ng-repeat="game in gamesInOrganization">
-					<li class="tab col s3"><a class="blue-text darken-3 rockwell active" href="#game-table1">GAME 1</a></li>
+					<li class="tab col s3"><a class="blue-text darken-3 rockwell active" href="#game-table1">{{ game.name }}</a></li>
 				</ul>
 			</div>
-			<div id="team-table-1"
-				<div id="game-table1">
+			<div id="team-table-1" ng-init="retrieveTeams(thisOrganization.organization_id, game.game_id)">
+				<div id="game-table1" ng-repeat="team in teams">
 					<table>
 						<thead>
 							<tr class="telegrafico">
@@ -30,13 +30,13 @@
 								<th> Medals Won </th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody >
 							<tr class="rockwell">
 								<td>
-									<span> AI LORDSZ </span>
+									<span> {{ team.team_name} } </span>
 								</td>
 								<td>
-									<span> Trip to 170 again </span>
+									<span> {{team.sport_name}} </span>
 								</td>
 								<td>
 									<div class="col s4"> 3 </div>

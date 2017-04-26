@@ -78,21 +78,19 @@
         }
 
 
-        function retrieveTeams(org_id) {
+        function retrieveTeams(org_id, game_id) {
             OrganizationService
                 .retrieveTeams(org_id)
                 .then(function(res) {
-                    var teamTemp = res.data;
-                    var outer = [];
-                    
-                    if(teamTemp.length < 1)
-                        $('#emptyOrganization').text('No Teams Yet');
-                    else{
-                        $('#emptyOrganization').text('');
-                        while(teamTemp.length) outer.push(teamTemp.splice(0,6));
-                        
+                    var temp = res.data;
+                    var i=0;
+
+                    for(i=0; i<temp.length; i++) {
+                        if(temp[i].game_id == game_id) {
+                            $scope.teams.push(temp[i]);
+                        }
                     }
-                    $scope.teams = outer;
+                    
                 }, function(err) {
                     Materialize.toast('Error loading teams');
                     console.log(err);
