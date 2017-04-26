@@ -136,7 +136,7 @@
                 .createTeam($scope.team)
                 .then(function (res){
                     Materialize.toast('Successfully created a team!', 3000);
-                    $window.location.href = ""
+                    // $window.location.href = "/competitor/profile";
                 }, function(err) {
                     console.log(err);
                 })
