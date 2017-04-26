@@ -163,11 +163,11 @@
     z-index:99;
 }
 
-#game-add-organization{
+#game-organization-add{
     overflow:hidden;
 }
 
-#game-add-organization .modal-content{
+#game-organization-add .modal-content{
     overflow-y:auto;
     max-height:50vh; 
     z-index:99;
