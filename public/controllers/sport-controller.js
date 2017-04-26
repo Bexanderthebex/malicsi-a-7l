@@ -99,7 +99,7 @@
                 }
         }
 
-        viewPastMatch(2);
+        viewPastMatch();
         function viewFutureMatch(){
             SportService
                 .viewFutureMatch($scope.thisSport.sport_id)
