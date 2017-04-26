@@ -138,6 +138,7 @@ router.delete('/game/deleteOrganizationFromGame', gameController.deleteOrganizat
 router.get('/game/viewAllOngoingGames', gameController.viewAllOngoingGames);
 router.get('/game/viewAllUpcomingGames', gameController.viewAllUpcomingGames);
 router.get('/game/viewAllRecentGames', gameController.viewAllRecentGames);
+router.get('/game/viewGameOrganizerDetails', gameController.viewGameOrganizerDetails);
 
 // game-sponsor routers
 router.get('/game/viewSponsor',  sponsorController.viewSponsor);
