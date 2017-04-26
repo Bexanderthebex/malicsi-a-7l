@@ -18,28 +18,16 @@
         $scope.retrieveMatches = retrieveMatches;
         $scope.retrieveSport = retrieveSport;
         $scope.retrieveSportRankings = retrieveSportRankings;
-        $scope.retrieveSponsors = retrieveSponsors;
         $scope.checkRankings = checkRankings;
-        $scope.viewPastMatchesInSport = viewPastMatchesInSport;
-        $scope.viewOngoingMatchesInSport = viewOngoingMatchesInSport;
-        $scope.viewUpcomingMatchesInSport = viewUpcomingMatchesInSport;
         $scope.viewCurrentMatch = viewCurrentMatch;         //newly added function
         $scope.viewPastMatch = viewPastMatch;               //newly added function
         $scope.viewFutureMatch = viewFutureMatch;           //newly added function
-        $scope.checkPastMatches = checkPastMatches;
-        $scope.checkOngoingMatches = checkOngoingMatches;
-        $scope.checkUpcomingMatches = checkUpcomingMatches;
-
         $scope.sport = {};
         $scope.game = {};
+        $scope.currMatch = [];
+        $scope.futureMatch = [];
+        $scope.pastMatch = [];
         $scope.rankings = [];
-        $scope.pastMatches = [];
-        $scope.ongoingMatches = [];
-        $scope.upcomingMatches = [];
-        $scope.temp = [];
-        $scope.match_id_tracker = [];
-        $scope.sponsors = [];
-
         $scope.newMatch = {
             timeStart: undefined,
             timeEnd: undefined,
@@ -47,22 +35,10 @@
             sportID: undefined
         };
 
-        function checkPastMatches(){
-            if($scope.pastMatches.length == 0 ) return true;
-            else false;
-        }
-        function checkOngoingMatches(){
-            if($scope.ongoingMatches.length == 0 ) return true;
-            else false;
-        }
-        function checkUpcomingMatches(){
-            if($scope.upcomingMatches.length == 0 ) return true;
-            else false;
-        }
-
         function retrieveSport() {
             SportService
                 .retrieveSport($scope.thisSport.sport_id) //parameter is sport id
+
                 .then(function (res){
                     console.log("retrieved sport");
                     $scope.sport = res.data;
@@ -70,7 +46,6 @@
                     console.log($scope.sport.game_id);
                     retrieveGame($scope.sport.game_id);
                     retrieveSportRankings($scope.sport.sport_id);
-                    retrieveSponsors($scope.sport.sport_id);
                 }, function(err) {
                     console.log("sport not retrieved");
                 })
@@ -101,16 +76,40 @@
                 })
         }
 
-        function retrieveSponsors(sport_id) {
+        function viewCurrentMatch() {
             SportService
-                .retrieveSponsors(sport_id) //parameter is sport id
+                .viewCurrentMatch($scope.thisSport.sport_id)
                 .then(function (res){
-                    console.log("retrieved sponsors");
-                    $scope.sponsors = res.data;
+                    console.log("current matches retrieved");
+                    $scope.currMatch = res.data;
+                }), function(err){ 
+                    console.log("matches not retrieved");
+                }
+        }
+
+        function viewPastMatch() {
+            SportService
+                .viewPastMatch($scope.thisSport.sport_id)
+                .then(function (res){
+                    console.log("Past match retrieved");
+                    $scope.pastMatch = res.data;
                     console.log(res.data);
-                }, function(err) {
-                    console.log("sponsors not retrieved");
-                })
+                }), function(err){
+                    console.log("matches not retrieved");
+                }
+        }
+
+        viewPastMatch(2);
+        function viewFutureMatch(){
+            SportService
+                .viewFutureMatch($scope.thisSport.sport_id)
+                .then(function (res){
+                    console.log("future matches retrieved");
+                    $scope.futureMatch = res.data;
+                    console.log(res.data);
+                }), function(err){
+                    console.log("matches not retrieved");
+                }
         }
 
         function checkRankings() {
@@ -171,102 +170,6 @@
                     console.log("retrieved matches");
                 }, function(err) {
                     console.log(err);
-                })
-        }
-
-        function viewPastMatchesInSport(){
-            SportService
-                .viewPastMatchesInSport($scope.thisSport.sport_id)
-                .then(function(res){
-                    console.log("past matches retrieved for sport#"+ $scope.thisSport.sport_id);
-                    console.log(res.data);
-                    $scope.temp = res.data;
-                    for (var i = $scope.temp.length - 1; i >= 0; i--) {
-                        for(var j = $scope.temp.length - 2; j>=0; j--){
-                            if($scope.temp[i].match_id == $scope.temp[j].match_id && $scope.temp[i].team_id != $scope.temp[j].team_id && $scope.match_id_tracker.indexOf($scope.temp[i].match_id)==-1){
-                                $scope.mergedMatch = {
-                                    team1_name: $scope.temp[i].team_name,
-                                    team1_id: $scope.temp[i].team_id,
-                                    team2_name: $scope.temp[j].team_name,
-                                    team2_id: $scope.temp[j].team_id,
-                                    match_date: $scope.temp[i].match_date,
-                                    time_start: $scope.temp[i].time_start,
-                                    time_end: $scope.temp[i].time_end,
-                                    match_id: $scope.temp[i].match_id
-                                };
-                            $scope.pastMatches.push($scope.mergedMatch);
-                            $scope.match_id_tracker.push($scope.temp[i].match_id);
-                            }
-                        }
-                    }
-                    console.log($scope.pastMatches);                                   
-                }, function(err){
-                    console.log(err.data);
-                    Materialize.toast('Failed to retrieve past matches!', 3000);
-                })
-        }
-
-        function viewOngoingMatchesInSport(){
-            SportService
-                .viewOngoingMatchesInSport($scope.thisSport.sport_id)
-                .then(function(res){
-                    console.log("ongoing matches retrieved for sport#"+ $scope.thisSport.sport_id);
-                    console.log(res.data);
-                    $scope.temp = res.data;
-                    for (var i = $scope.temp.length - 1; i >= 0; i--) {
-                        for(var j = $scope.temp.length - 2; j>=0; j--){
-                            if($scope.temp[i].match_id == $scope.temp[j].match_id && $scope.temp[i].team_id != $scope.temp[j].team_id && $scope.match_id_tracker.indexOf($scope.temp[i].match_id)==-1){
-                                $scope.mergedMatch = {
-                                    team1_name: $scope.temp[i].team_name,
-                                    team1_id: $scope.temp[i].team_id,
-                                    team2_name: $scope.temp[j].team_name,
-                                    team2_id: $scope.temp[j].team_id,
-                                    match_date: $scope.temp[i].match_date,
-                                    time_start: $scope.temp[i].time_start,
-                                    time_end: $scope.temp[i].time_end,
-                                    match_id: $scope.temp[i].match_id
-                                };
-                            $scope.ongoingMatches.push($scope.mergedMatch);
-                            $scope.match_id_tracker.push($scope.temp[i].match_id);
-                            }
-                        }
-                    }
-                    console.log($scope.ongoingMatches);
-
-                }, function(err){
-                    console.log(err.data);
-                    Materialize.toast('Failed to retrieve ongoing matches!', 3000);
-                })
-        }
-        function viewUpcomingMatchesInSport(){
-            SportService
-                .viewUpcomingMatchesInSport($scope.thisSport.sport_id)
-                .then(function(res){
-                    console.log("upcoming matches retrieved for sport#"+ $scope.thisSport.sport_id);
-                    console.log(res.data);
-                    $scope.temp = res.data;
-                    for (var i = $scope.temp.length - 1; i >= 0; i--) {
-                        for(var j = $scope.temp.length - 2; j>=0; j--){
-                            if($scope.temp[i].match_id == $scope.temp[j].match_id && $scope.temp[i].team_id != $scope.temp[j].team_id && $scope.match_id_tracker.indexOf($scope.temp[i].match_id)==-1){
-                                $scope.mergedMatch = {
-                                    team1_name: $scope.temp[i].team_name,
-                                    team1_id: $scope.temp[i].team_id,
-                                    team2_name: $scope.temp[j].team_name,
-                                    team2_id: $scope.temp[j].team_id,
-                                    match_date: $scope.temp[i].match_date,
-                                    time_start: $scope.temp[i].time_start,
-                                    time_end: $scope.temp[i].time_end,
-                                    match_id: $scope.temp[i].match_id
-                                };
-                            $scope.upcomingMatches.push($scope.mergedMatch);
-                            $scope.match_id_tracker.push($scope.temp[i].match_id);
-                            }
-                        }
-                    }
-
-                }, function(err){
-                    console.log(err.data);
-                    Materialize.toast('Failed to retrieve upcoming matches!', 3000);
                 })
         }
     }
