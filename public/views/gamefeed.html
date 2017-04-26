@@ -212,25 +212,25 @@
 		</div>
 		<div class="row gamefeed-modal-container  gamefeed-add-modal-content">
 			<div class="input-field col s6 gamefeed-input-color-change">
-				<input placeholder=" " id="name" type="text" class="validate ">
+				<input placeholder=" " id="name" type="text" class="validate " ng-model="gameName">
 				<label for="name">Game Name</label>
 			</div>
 			<div class="input-field col s6 gamefeed-input-color-change">
-				<input placeholder=" " id="location" type="text" class="validate ">
+				<input placeholder=" " id="location" type="text" class="validate " ng-model="location">
 				<label for="location">Location</label>
 			</div>
 
 			<div class="input-field col s6 gamefeed-input-color-change">
-				<input id="start-date" type="date" class="validate ">
+				<input id="start-date" type="date" class="validate " ng-model="startDate">
 				<label for="start-date" class="gamefeed-adjust-label">Start Date</label>
 			</div>
 			<div class="input-field col s6 gamefeed-input-color-change">
-				<input id="end-date" type="date" class="validate ">
+				<input id="end-date" type="date" class="validate " ng-model="endDate">
 				<label for="end-date" class="gamefeed-adjust-label">End Date</label>
 			</div>
 
 			<div class="input-field col s12 gamefeed-input-color-change">
-				<textarea placeholder=" " id="description" class="materialize-textarea" data-length="140"></textarea>
+				<textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="description"></textarea>
 				<label for="description" class="gamefeed-textarea-label-color-change">Description</label>
 			</div>
 
@@ -247,7 +247,7 @@
 	</div>
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
-		<button href="" class="modal-action modal-close minimalist-button">ADD</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-click="addGame()">ADD</button>
 	</div>
 </div>
 

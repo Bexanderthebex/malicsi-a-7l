@@ -6,14 +6,23 @@
         .module('app')
         .controller('GameFeedController', GameFeedController);
 
-    GameFeedController.$inject = ['$scope', '$routeParams', 'GameService', 'SearchService'];
+    GameFeedController.$inject = ['$scope', '$routeParams', 'GameService', 'SearchService', 'OrganizerService', 'UserService'];
 
-    function GameFeedController($scope, $routeParams,  GameService, SearchService){
+    function GameFeedController($scope, $routeParams, GameService, SearchService, OrganizerService, UserService){
         $scope.games = [];
         $scope.column1 = [];
         $scope.column2 = [];
         $scope.column3 = [];
         $scope.gamefeedInit = gamefeedInit;
+        $scope.addGame = addGame;
+
+        UserService.getUserInfo()
+        .then((res) => {
+            $scope.user = res.data;
+        }, (err) => {
+            console.log('game feed get current user error', err);
+            Materialize.toast('Error getting user data.', 2000);
+        });
 
         function gamefeedInit(){
             retrieveGames();
@@ -81,7 +90,6 @@
             }
         }
 
-
         function searchGame() {
             SearchService
                 .retrieveGames($scope.thisGame.game_id)
@@ -100,8 +108,53 @@
                     $scope.games = res.data;
                     retrieveGames("false");
                 }, function(err){
-                    
+
                 })
+        }
+
+        function addGame() {
+            console.log('checkModalData', checkModalData());
+            if (!checkModalData()) {
+                Materialize.toast('Fill in all fields', 2000)
+                return;
+            }
+
+            const game = {
+                orgID: $scope.user.id,
+                gameName: $scope.gameName,
+                startDate: $scope.startDate,
+                endDate: $scope.endDate,
+                locat: $scope.locat,
+                descrip: $scope.description
+            };
+
+            OrganizerService.addGame(game)
+            .then((res) => {
+                Materialize.toast('Game added', 2000);
+                resetModalData();
+                retrieveGames();
+            }, (err) => {
+                Materialize.toast('An error occured', 2000);
+            });
+        }
+
+        function resetModalData() {
+            $scope.gameName = null;
+            $scope.location = null;
+            $scope.startDate = null;
+            $scope.endDate = null;
+            $scope.description = null;
+        }
+
+        function checkModalData() {
+            return $scope.gameName != null
+                && $scope.gameName.trim() != ''
+                && $scope.location != null
+                && $scope.location.trim() != ''
+                && $scope.startDate != null
+                && $scope.endDate != null
+                && $scope.description != null
+                && $scope.description.trim() != '';
         }
 
     }
