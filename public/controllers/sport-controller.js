@@ -101,6 +101,18 @@
                 })
         }
 
+        function retrieveMatchWinner(sport_id) {
+            SportService
+                .retrieveMatchWinner(sport_id) //parameter is sport id
+                .then(function (res){
+                    console.log("retrieved match winners");
+                    $scope.rankings = res.data;
+                    console.log(res.data);
+                }, function(err) {
+                    console.log("match winners not retrieved");
+                })
+        }
+
         function retrieveSponsors(sport_id) {
             SportService
                 .retrieveSponsors(sport_id) //parameter is sport id

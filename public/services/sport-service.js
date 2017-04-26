@@ -275,5 +275,22 @@
             
             return deferred.promise;
         }
+
+        function retrieveMatchWinner(sport_id) {
+            let deferred = $q.defer();
+            console.log(sport_id);
+            $http({
+                method: 'GET',
+                //params: { 'sportId':sport_id },
+                url: '/game/viewSponsorInSport/' + sport_id,
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
     }
 })();

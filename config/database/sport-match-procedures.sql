@@ -132,6 +132,18 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS retrieve_match_winner;
+DELIMITER //
+CREATE PROCEDURE retrieve_match_winner
+(IN s_id INT
+)
+BEGIN 
+	SELECT m.match_id, t.team_name FROM
+	team t, team_in_match tm, sport_match m, sport s WHERE
+	t.team_id = tm.team_id AND tm.match_id = m.match_id AND m.sport_id = s.sport_id AND tm.ranking = 1 AND s.sport_id = s_id;
+END //
+DELIMITER ;
+
 -- view future match in sport
 GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
@@ -156,7 +168,7 @@ GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_match_sport TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_match_sport TO 'guest'@'localhost';
 
--- view  match details
+-- view match details
 GRANT EXECUTE ON PROCEDURE view_match_details TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_match_details TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_match_details TO 'competitor'@'localhost';
@@ -167,6 +179,12 @@ GRANT EXECUTE ON PROCEDURE view_all_match TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_match TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_match TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_match TO 'guest'@'localhost';
+
+--retrieve match winner
+GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'guest'@'localhost'
 
 -- add match
 GRANT EXECUTE ON PROCEDURE add_match TO 'organizer'@'localhost';
