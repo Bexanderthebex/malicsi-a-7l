@@ -19,6 +19,8 @@
             retrieveSport: retrieveSport,
             retrieveGame: retrieveGame,
             retrieveSportRankings: retrieveSportRankings,
+            checkRankings: checkRankings,
+            retrieveSponsors: retrieveSponsors,
             viewCurrentMatch: viewCurrentMatch,
             viewPastMatch: viewPastMatch,
             viewFutureMatch: viewFutureMatch
@@ -93,7 +95,7 @@
             
             return deferred.promise;
         }
-        //start of added part -melbex
+        
         function viewCurrentMatch(sport_id){
             let deferred = $q.defer();
             console.log(sport_id);
@@ -144,7 +146,68 @@
 
             return deferred.promise;
         }
-        //end of added part -melbex
+
+        function viewPastMatchesInSport(sport_id){
+            let deferred = $q.defer();
+            let sport = {
+                sportId: sport_id
+            }
+
+            $http({
+                method: 'GET',
+                params: sport,
+                url: '/game/viewAllPastMatchesInSport',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+        function viewOngoingMatchesInSport(sport_id){
+            let deferred = $q.defer();
+            let sport = {
+                sportId: sport_id
+            }
+
+
+            $http({
+                method: 'GET',
+                params: sport,
+                url: '/game/viewAllOngoingMatchesInSport',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+        
+        function viewUpcomingMatchesInGame(sport_id){
+            let deferred = $q.defer();
+            let sport = {
+                sportId: sport_id
+            }
+
+            $http({
+                method: 'GET',
+                params: game, 
+                url: '/game/viewAllUpcomingMatchesInSport',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
         function retrieveSport(sport_id) {
             let deferred = $q.defer();
             console.log(sport_id);
@@ -186,6 +249,23 @@
                 method: 'GET',
                 // params: { 'gameId':game_id },
                 url: '/sport/ranks/' + sport_id,
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+        function retrieveSponsors(sport_id) {
+            let deferred = $q.defer();
+            console.log(sport_id);
+            $http({
+                method: 'GET',
+                params: { 'sportId':sport_id },
+                url: '/game/viewSponsorInSport',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
