@@ -76,6 +76,18 @@
                 })
         }
 
+        function retrieveMatchWinner(sport_id) {
+            SportService
+                .retrieveMatchWinner(sport_id) //parameter is sport id
+                .then(function (res){
+                    console.log("retrieved match winners");
+                    $scope.rankings = res.data;
+                    console.log(res.data);
+                }, function(err) {
+                    console.log("match winners not retrieved");
+                })
+        }
+
         function viewCurrentMatch() {
             SportService
                 .viewCurrentMatch($scope.thisSport.sport_id)
@@ -99,7 +111,6 @@
                 }
         }
 
-        viewPastMatch();
         function viewFutureMatch(){
             SportService
                 .viewFutureMatch($scope.thisSport.sport_id)

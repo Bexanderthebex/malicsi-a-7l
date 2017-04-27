@@ -175,6 +175,7 @@ router.get('/sport/match/viewAllMatch', matchController.viewAllMatch);
 router.get('/sport/match/viewCurrentMatch', matchController.viewCurrentMatch);
 router.get('/sport/match/viewPastMatch', matchController.viewPastMatch);
 router.get('/sport/match/viewUpcomingMatch', matchController.viewFutureMatch);
+router.get('/sport/match/retrieveMatchWinner/:sportId', matchController.retrieveMatchWinner);
 router.get('/sport/match/viewMatchDetails', matchController.viewMatchDetails);
 router.post('/sport/match/addMatch',  matchController.addMatch);
 router.put('/sport/match/editMatch', matchController.editMatch);

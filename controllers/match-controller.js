@@ -188,3 +188,19 @@ exports.viewFutureMatch = (req, res) => {
 		}
 	});
 }
+
+exports.retrieveMatchWinner = (req, res) => {
+	let query = 'CALL retrieve_match_winner(?)';
+
+	connection.userType('A').query(query,
+		[req.params.sportId],
+		(err, rows, fields) => {
+		if(rows.length === 0){
+			return res.status(200).send(rows[0]);
+		}else if(!err){
+			res.status(404).send("There are no current match winners");
+		}else{
+			res.status(500).send("Internal server error occurred");
+		}
+	});
+}
