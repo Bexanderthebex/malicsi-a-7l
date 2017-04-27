@@ -180,11 +180,11 @@ GRANT EXECUTE ON PROCEDURE view_all_match TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_match TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_match TO 'guest'@'localhost';
 
---retrieve match winner
+-- retrieve match winner
 GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'guest'@'localhost'
+GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'guest'@'localhost';
 
 -- add match
 GRANT EXECUTE ON PROCEDURE add_match TO 'organizer'@'localhost';
