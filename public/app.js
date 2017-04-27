@@ -74,7 +74,7 @@
                 // 'access': { requiredAuthentication: true }
             })
             .when('/organizations', {
-                'templateUrl': 'views/organizations.html',
+                'templateUrl': 'views/orgfeed.html',
                 'caseInsensitiveMatch': true,
                 'controller': 'OrganizationsController'
                 // 'access': { requiredAuthentication: true }
