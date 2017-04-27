@@ -36,6 +36,7 @@
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
         $scope.getCompetitorTeams = getCompetitorTeams;
+        $scope.getCompetitorTeamsPublic = getCompetitorTeamsPublic;
         $scope.getCompetitorOrganization = getCompetitorOrganization;
         $scope.editCompetitor = editCompetitor;
         $scope.editCompetitorBio = editCompetitorBio;
@@ -84,18 +85,20 @@
         }
 
         function getCompetitorTeamsPublic(){
-            UserService
-                .getUserInfo()
-                .then(function(res) {
-                    $scope.userinfo = res.data;
-                    console.log("id: " + $scope.userinfo.id);
-                }, function(err) {
-                    console.log(err);
-                })
+            // UserService
+            //     .getUserInfo()
+            //     .then(function(res) {
+            //         $scope.userinfo = res.data;
+            //         console.log("id: " + $scope.userinfo.id);
+            //     }, function(err) {
+            //         console.log(err);
+            //     })
+            console.log($scope.thisCompetitor.competitor_id);
             CompetitorService
-                .getCompetitorTeamsPublic($scope.userinfo.id)
+                .getCompetitorTeamsPublic($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
                     $scope.competitorteams = res.data;
+                    console.log($scope.competitorteams);
                 }, function(err) {
                     console.log(err);
                 })
