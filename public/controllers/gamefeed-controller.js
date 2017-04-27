@@ -13,6 +13,7 @@
         $scope.column1 = [];
         $scope.column2 = [];
         $scope.column3 = [];
+        $scope.sortType = 'name';
         $scope.gamefeedInit = gamefeedInit;
         $scope.addGame = addGame;
         $scope.setPending = setPending;
@@ -50,13 +51,11 @@
                 })
         }
 
-        function sortBy(value){
-            console.log("joiurishs")
-            console.log(value)
+        function sortBy(){
             // sort the games
-            if(value == "true"){
+            if($scope.sortType === 'name'){
                 sortByName();
-            }else{
+            }else if($scope.sortType === 'date'){
                 sortByDate();
             }
         }
