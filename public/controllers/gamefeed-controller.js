@@ -13,11 +13,14 @@
         $scope.column1 = [];
         $scope.column2 = [];
         $scope.column3 = [];
+        $scope.sortType = 'name';
         $scope.gamefeedInit = gamefeedInit;
         $scope.addGame = addGame;
         $scope.setPending = setPending;
         $scope.deleteGame = deleteGame;
         $scope.editGame = editGame;
+        $scope.checkUser = checkUser;
+		$scope.searchGame = searchGame;
 
         UserService.getUserInfo()
         .then((res) => {
@@ -48,13 +51,11 @@
                 })
         }
 
-        function sortBy(value){
-            console.log("joiurishs")
-            console.log(value)
+        function sortBy(){
             // sort the games
-            if(value == "true"){
+            if($scope.sortType === 'name'){
                 sortByName();
-            }else{
+            }else if($scope.sortType === 'date'){
                 sortByDate();
             }
         }
@@ -142,6 +143,12 @@
             $scope.pending = game;
         }
 
+		function checkUser() {
+			return $scope.user != undefined
+				&& $scope.user != null
+				&& $scope.user.type == 'O';
+		}
+
         function addGame() {
             if (!checkModalData()) {
                 Materialize.toast('Fill in all fields', 2000)
@@ -213,6 +220,29 @@
                 resetModalData();
                 gamefeedInit();
                 $scope.pending = null;
+            }, (err) => {
+                Materialize.toast('An error occured', 2000);
+            });
+        }
+
+        function searchGame() {
+            console.log($scope.gameFeedSearch)
+            if ($scope.gameFeedSearch == undefined
+                || $scope.gameFeedSearch == null
+                || $scope.gameFeedSearch.trim() == '') {
+                    gamefeedInit();
+                    return;
+            }
+
+            SearchService.retrieveGame($scope.gameFeedSearch)
+            .then((res) => {
+                $scope.games = [];
+                $scope.column1 = [];
+                $scope.column2 = [];
+                $scope.column3 = [];
+
+                $scope.games = res.data;
+                distributeGame();
             }, (err) => {
                 Materialize.toast('An error occured', 2000);
             });
