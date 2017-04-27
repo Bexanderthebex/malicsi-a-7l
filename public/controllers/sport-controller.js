@@ -12,6 +12,7 @@
         $scope.thisSport = {
             sport_id: $routeParams.id
         };
+        $scope.copyMatch = copyMatch;
         $scope.addMatch = addMatch;
         $scope.editMatch = editMatch;
         $scope.deleteMatch = deleteMatch;
@@ -34,6 +35,10 @@
             date: undefined,
             sportID: undefined
         };
+
+        function copyMatch(match) {
+            // copy match - will be accessed inside edit
+        }
 
         function retrieveSport() {
             SportService
@@ -105,7 +110,7 @@
                 .then(function (res){
                     console.log("Past match retrieved");
                     $scope.pastMatch = res.data;
-                        console.log(res.data);
+                    console.log(res.data);
                 }), function(err){
                     console.log("matches not retrieved");
                 }
