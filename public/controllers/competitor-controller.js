@@ -6,9 +6,9 @@
         .module('app')
         .controller('CompetitorController', CompetitorController);
 
-    CompetitorController.$inject = ['$scope', '$window', '$routeParams', 'CompetitorService', 'UserService'];
+    CompetitorController.$inject = ['$scope', '$window', '$routeParams', 'CompetitorService', 'UserService', 'GameService'];
 
-    function CompetitorController($scope, $window, $routeParams, CompetitorService, UserService) {
+    function CompetitorController($scope, $window, $routeParams, CompetitorService, UserService, GameService) {
         $scope.thisCompetitor = {
             competitor_id: $routeParams.id
         };
@@ -24,6 +24,7 @@
         };
 
         $scope.competitorteams = [];
+        $scope.competitorgames = [];
         $scope.coachedteam = [];
         $scope.pendingRequests = [];
         $scope.rank = [];
@@ -79,6 +80,17 @@
                 .getCompetitorTeams()
                 .then(function(res) {
                     $scope.competitorteams = res.data;
+                    for(var i = 0; i < $scope.competitorteams.length; i++){
+                        console.log($scope.competitorteams[i].game_id);
+                        GameService
+                            .viewGameDetails($scope.competitorteams[i].game_id)
+                            .then(function(res) {
+                                $scope.competitorgames.push(res.data);
+                                console.log($scope.competitorgames);
+                            }, function(err) {
+                                console.log(err);
+                            })
+                    }
                 }, function(err) {
                     console.log(err);
                 })
@@ -93,16 +105,25 @@
             //     }, function(err) {
             //         console.log(err);
             //     })
-            console.log($scope.thisCompetitor.competitor_id);
             CompetitorService
                 .getCompetitorTeamsPublic($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
                     $scope.competitorteams = res.data;
-                    console.log($scope.competitorteams);
+                    for(var i = 0; i < $scope.competitorteams.length; i++){
+                        GameService
+                            .viewGameDetails($scope.competitorteams[i].game_id)
+                            .then(function(res) {
+                                console.log(res.data);
+                                if(!$scope.competitorgames.find( function find(game){ return game.name === res.data.name })) {
+                                    $scope.competitorgames.push(res.data);
+                                }
+                            }, function(err) {
+                                console.log(err);
+                            })
+                    }
                 }, function(err) {
                     console.log(err);
                 })
-
         }
 
         function getCompetitorOrganization(){
