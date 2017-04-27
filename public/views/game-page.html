@@ -123,10 +123,12 @@
 		</div>
 
 		<div class="col s9 game-main-content game-padding-left game-padding-right" ng-init="viewGameDetails()">
-				<div id="sports-title" class="rockwell ">
-			<h3 class="white-text">{{game.name}}</h3>
-			<h6 class="white-text">Start: {{game.start_date}} End: {{game.end_date}}</h6>
-		</div>
+			<div id="sports-title" class="rockwell ">
+				<h3 class="white-text">{{game.name}}</h3>
+				<h6 class="white-text">Start: {{game.start_date}} End: {{game.end_date}}</h6>
+				<h6 class="white-text" ng-hide="checkGameLocation()">{{game.location}}</h6>
+				<h6 class="white-text" ng-show="checkGameLocation()">No location available.</h6>
+			</div>
 
 		<div class="row grey lighten-3">
 			<div class="col s12">
@@ -278,13 +280,13 @@
 									</div>
 									<div class="col s12 m6 offset-m3 game-padding-right">
 										<form id="game-game-search-bar">
-											<input type="search" >
+											<input type="search" ng-model = "query" ng-change="searchSport()">
 										</form>
 									</div>
 								</div>
 							</div>
 
-							<div class="row"	ng-init="retrieveAllSports()">
+							<div class="row"	ng-init="retrieveAllSports()" ng-hide="checkSports()">
 								<div class="col s4" ng-show='checkIfOrganizer()'>
 									<div class="game-sport" data-target="game-add-sport" >
 										<div class="card game-hovercard">
@@ -328,7 +330,11 @@
 											</div>
 										</div>
 									</div>
-                </div>
+               					 </div>
+							</div>
+							<div class ="row center" ng-show="checkSports()">
+								<h5 class="rockwell center">No sports here.</h5>
+								<p class="rockwell center grey-text">Please check your search query or contact your game organizer.</p>
 							</div>
 						</div>
 
@@ -336,19 +342,31 @@
 							<!-- <div class="row center">
 								<button href="" class="center modal-action modal-close minimalist-button" data-target="game-modify-org" ng-show='checkIfOrganizer()'>Modify Organization</button>
 							</div> -->
-
 							<div class="card-panel palette-4 game-remove-padding">
-								<p class="center game-remove-top">
-									<i class="fa fa-map-marker large"></i>
-								</p>
-								<h5 class="rockwell center white-text" ng-hide="checkGameLocation()">{{game.location}}</h5>
-								<h5 class="rockwell center white-text" ng-show="checkGameLocation()">No location available.</h5>
 								<div class="row game-remove-bottom">
-									<div class="col s12">
-										<div class="divider divider-color"></div>
+									<div class="col s12 center">
 										<p class="white-text century-gothic game-location-description" ng-hide = "checkGameDescription()">{{game.description}}</p>
 										<p class="white-text century-gothic game-location-description" ng-show = "checkGameDescription()">No description available.</p>
 									</div>
+
+									<!-- lois diane ito -->
+									<h5 class="game-remove-margin center rockwell white-text">Organizer</h5><br>
+									<div class="col s12 m12" ng-hide="<checkOrganizer()>">
+										<!-- presentation view -->
+										<div ng-repeat="<organizer in organizers>" style="overflow-y:auto;">
+											<p class="telegrafico game-sponsor-title white-text center" >
+											{{organizer.name}}
+											</p>
+											<p class="game-sponsor-description century-gothic white-text center">{{organizer.description}}</p>
+										</div>
+									</div>
+									<div class="col s12 m12" ng-show="<checkOrganizer()>">
+										<p class="telegrafico game-sponsor-title white-text center">
+											No organizers here yet!
+										</p>
+									</div>
+									<!-- lois diane ito -->
+									
 								</div>
 							</div>
 
