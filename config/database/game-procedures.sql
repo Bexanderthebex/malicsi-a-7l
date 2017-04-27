@@ -43,7 +43,7 @@ DROP PROCEDURE IF EXISTS view_game_details;
 DELIMITER //
 CREATE PROCEDURE view_game_details(IN game_id_in INT)
 BEGIN
-	select game.name, start_date,end_date, location, game.description, organizer.name as organizer_name , organizer.description as organizer_description, datediff(end_date, start_date) as game_duration from game,organizer where game.organizer_id = organizer.id and game.game_id = game_id_in;
+	select game.game_id as game_id, game.name, start_date,end_date, location, game.description, organizer.name as organizer_name , organizer.description as organizer_description, datediff(end_date, start_date) as game_duration from game,organizer where game.organizer_id = organizer.id and game.game_id = game_id_in;
 END;
 //
 DELIMITER ;

@@ -274,7 +274,10 @@
                 url: '/sport/ranks/'+sport_id,
                 headers: headers
             }).then((res) => {
-                deferred.resolve(res);
+                if (res[0] == undefined)
+                    deferred.resolve([]);
+                else
+                    deferred.resolve(res[0]);
             }, (err) => {
                 deferred.reject(err);
             });

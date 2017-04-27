@@ -28,6 +28,12 @@
         $scope.coachedteam = [];
         $scope.pendingRequests = [];
         $scope.rank = [];
+        $scope.rankings = {
+            "first" : 0,
+            "second" : 0,
+            "third" : 0,
+            "total" : 0
+        };
         $scope.sport_id = [];
         $scope.listgames = [];
         $scope.game = [];
@@ -52,7 +58,7 @@
         $scope.acceptMembershipRequest = acceptMembershipRequest;
         $scope.deleteMembershipRequest = deleteMembershipRequest;
         
-        function searchCompetitor(id){
+        function searchCompetitor(){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
@@ -110,13 +116,12 @@
                 .then(function(res) {
                     $scope.competitorteams = res.data;
                     for(var i = 0; i < $scope.competitorteams.length; i++){
+                        console.log($scope.competitorteams[i].game_id);
                         GameService
                             .viewGameDetails($scope.competitorteams[i].game_id)
                             .then(function(res) {
-                                console.log(res.data);
-                                if(!$scope.competitorgames.find( function find(game){ return game.name === res.data.name })) {
-                                    $scope.competitorgames.push(res.data);
-                                }
+                                $scope.competitorgames.push(res.data);
+                                console.log($scope.competitorgames);
                             }, function(err) {
                                 console.log(err);
                             })
@@ -265,10 +270,22 @@
         }
 
         function getTeamRankings(){
+            console.log($scope.RankingSportID);
             CompetitorService
-                .getTeamRankings($scope.sport_id.sport_id)
+                .getTeamRankings($scope.RankingSportID)
                 .then(function (res){
                     $scope.rank = res.data;
+                    if ($scope.rank == [] || $scope.rank == undefined){
+                        $scope.rankings.first = 0;
+                        $scope.rankings.second= 0;
+                        $scope.rankings.third = 0;
+                        console.log("Rankings Unavailable");
+                    }
+                    else{
+                        $scope.rankings.first = res.data[0];
+                        $scope.rankings.second= res.data[1];
+                        $scope.rankings.third = res.data[2];
+                    }
                 }, function(err) {
                     console.log(err);
                 })
@@ -294,15 +311,16 @@
                 })
         }
 
-        function deleteTeam(){
-            // console.log($scope.team.team_id);
+        function deleteTeam(team_id){
+            console.log(team_id);
             CompetitorService
-                .deleteTeam($scope.team.team_id)
+                .deleteTeam(team_id)
                 .then(function (res){
-                    $scope.rank = res.data;
+                    Materialize.toast('Team Deletion Success', 4000);
                 }, function(err) {
                     console.log(err);
                 })
+            getCoachedTeam();
         }
 
         function acceptMembershipRequest(){
