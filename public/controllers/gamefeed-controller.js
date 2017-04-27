@@ -19,6 +19,7 @@
         $scope.deleteGame = deleteGame;
         $scope.editGame = editGame;
         $scope.checkUser = checkUser;
+		$scope.searchGame = searchGame;
 
         UserService.getUserInfo()
         .then((res) => {
@@ -220,6 +221,29 @@
                 resetModalData();
                 gamefeedInit();
                 $scope.pending = null;
+            }, (err) => {
+                Materialize.toast('An error occured', 2000);
+            });
+        }
+
+        function searchGame() {
+            console.log($scope.gameFeedSearch)
+            if ($scope.gameFeedSearch == undefined
+                || $scope.gameFeedSearch == null
+                || $scope.gameFeedSearch.trim() == '') {
+                    gamefeedInit();
+                    return;
+            }
+
+            SearchService.retrieveGame($scope.gameFeedSearch)
+            .then((res) => {
+                $scope.games = [];
+                $scope.column1 = [];
+                $scope.column2 = [];
+                $scope.column3 = [];
+
+                $scope.games = res.data;
+                distributeGame();
             }, (err) => {
                 Materialize.toast('An error occured', 2000);
             });
