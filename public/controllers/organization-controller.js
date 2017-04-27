@@ -50,6 +50,7 @@
         $scope.checkTeamMembership = checkTeamMembership;
         $scope.setViewedGame = setViewedGame;
         $scope.setPageView = setPageView;
+        $scope.searchInOrg = searchInOrg;
         
         function initPage(org_id){
             UserService
@@ -265,6 +266,24 @@
                 }, function(err) {
                     console.log(err.data);
                 })
+        }
+
+        function searchInOrg(input) {
+            console.log("halbira");
+            var temp =  $scope.gamesInOrganization;
+            var i;
+            var matches = [];
+            var toSearch = input;
+
+            for(i=0; i<temp.length; i++) {
+                var reg = new RegExp(toSearch.toLowerCase(), "i");
+                if(reg.test(temp[i].name.toLowerCase()) == true) {
+                    matches.push(temp[i]);
+                }
+            }
+
+            // matches array contains the results
+            console.log(matches);
         }
 
     }
