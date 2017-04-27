@@ -37,7 +37,9 @@
         $scope.isMember = 0;
         $scope.totalPages = 1;
         $scope.pagedTeams=[];
+        $scope.filteredGames = [];
 
+        $scope.viewedGame = {}; 
         $scope.retrieveTeams = retrieveTeams;
         $scope.retrieveTeam = retrieveTeam;
         $scope.joinTeam = joinTeam;
@@ -79,6 +81,7 @@
                 .getGamesInOrganization(org_id)
                 .then(function(res) {
                     $scope.gamesInOrganization = res.data;
+                    $scope.filteredGames = $scope.gamesInOrganization.slice(0);
                     setViewedGame($scope.gamesInOrganization[0]);
                     console.log (res.data);
                 }, function(err) {
@@ -89,6 +92,7 @@
 
         
         function setViewedGame(game){
+            $scope.viewedGame = game;
             $scope.viewedGameID = game.game_id;
             retrieveTeams($scope.thisOrganization.organization_id);
             console.log($scope.viewedGameID);
@@ -281,9 +285,10 @@
                     matches.push(temp[i]);
                 }
             }
-
+            $scope.filteredGames = matches.slice(0);
+            setViewedGame($scope.filteredGames[0])
             // matches array contains the results
-            console.log(matches);
+            console.log($scope.filteredGames);
         }
 
     }
