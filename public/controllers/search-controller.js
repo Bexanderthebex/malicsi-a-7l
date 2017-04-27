@@ -6,16 +6,25 @@
         .module('app')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$scope', 'SearchService'];
+    SearchController.$inject = ['$scope', '$routeParams', '$location', 'SearchService'];
 
-    function SearchController($scope, SearchService) {
+    function SearchController($scope, $routeParams, $location, SearchService) {
         $scope.results = [];
         $scope.competitors = [];
         $scope.organizations = [];
         $scope.games = [];
         $scope.sports = [];
         $scope.organizers = [];
+        $scope.search = search;
 
+
+        function search(sdata) {
+            $location.path('/search/' + sdata);
+            // searchBy($routeParams.sdata, true, true, true, true, true);
+        }
+
+        $scope.searchquery = $routeParams.sdata;
+    
         $scope.searchBy = function(searchquery, game, organization, sport, competitor, organizer){
             $scope.results = [];
             $scope.competitors = [];
