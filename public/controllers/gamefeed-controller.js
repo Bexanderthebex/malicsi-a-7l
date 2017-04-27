@@ -18,6 +18,7 @@
         $scope.setPending = setPending;
         $scope.deleteGame = deleteGame;
         $scope.editGame = editGame;
+        $scope.checkUser = checkUser;
 
         UserService.getUserInfo()
         .then((res) => {
@@ -141,6 +142,12 @@
         function setPending(game) {
             $scope.pending = game;
         }
+
+		function checkUser() {
+			return $scope.user != undefined
+				&& $scope.user != null
+				&& $scope.user.type == 'O';
+		}
 
         function addGame() {
             if (!checkModalData()) {
