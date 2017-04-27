@@ -2,7 +2,7 @@
 
 (function(){
     angular
-        .module('app', ['ngRoute'])
+        .module('app', ['ngRoute','angular.filter'])
         .config(config)
 
     config.$inject = ['$routeProvider','$locationProvider'];
