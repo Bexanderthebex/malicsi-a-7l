@@ -258,19 +258,19 @@
 		</div>  
 		<div class="row competitor-modal-container  competitor-add-modal-content">
 			<div class="input-field col s6 competitor-input-color-change">
-				<input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
+				<input placeholder=" " id="first-name" type="text" ng-model="competitor.first_name">
 				<label for="first-name">First Name</label>
 			</div>
 			<div class="input-field col s6 competitor-input-color-change">
-				<input placeholder=" " id="last-name" type="text" class="validate" ng-model="competitor.last_name">
+				<input placeholder=" " id="last-name" type="text" ng-model="competitor.last_name">
 				<label for="last-name">Last Name</label>
 			</div>
 			<div class="input-field col s4 competitor-input-color-change">
-				<input placeholder=" " id="nickname" type="text" class="validate" ng-model="competitor.nickname">
+				<input placeholder=" " id="nickname" type="text" ng-model="competitor.nickname">
 				<label for="nickname">Nickname</label>
 			</div>
 			<div class="input-field col s4 competitor-input-color-change">
-				<input id="birthdate" type="date" class="validate" ng-model="bday">
+				<input id="birthdate" type="date" ng-model="bday">
 				<label for="birthdate" class="competitor-adjust-label">Birthdate</label>
 			</div>
 			<div class="input-field col s4">
@@ -281,11 +281,11 @@
 				<label class="competitor-adjust-label" for="female">Female</label></span>
 			</div>
 			<div class="input-field col s6 competitor-input-color-change" >
-				<input placeholder=" " id="contact" type="text" class="validate" ng-model="competitor.contact">
+				<input placeholder=" " id="contact" type="text" ng-model="competitor.contact">
 				<label for="contact">Contact</label>
 			</div>
 			<div class="input-field col s6 competitor-input-color-change">
-				<input placeholder=" " id="email" type="email" class="validate" ng-model="competitor.email">
+				<input placeholder=" " id="email" type="email" ng-model="competitor.email">
 				<label for="email">Email</label>
 			</div>
 			<div class="input-field col s12 competitor-input-color-change">
@@ -293,11 +293,11 @@
 				<label for="Bio" class="competitor-textarea-label-color-change">Bio</label>
 			</div>
 			<div class="input-field col s6 competitor-input-color-change">
-				<input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
+				<input placeholder=" " id="first-name" type="text" ng-model="competitor.username">
 				<label for="first-name">Username</label>
 			</div>
 			<div class="input-field col s6 competitor-input-color-change">
-				<input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
+				<input placeholder=" " id="last-name" type="password" ng-model="competitor.password">
 				<label for="last-name">Password</label>
 			</div>
 			<div class="row">
@@ -342,25 +342,25 @@
 		</div>  
 		<div class="row competitor-modal-container  competitor-add-modal-content">
 			<div class="input-field col l9 m9 s12 competitor-input-color-change">
-				<input placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name">
+				<input placeholder="" id="team_name" type="text" ng-model="team.team_name">
 				<label for="team-name">Team Name</label>
 			</div>
 			<div class="input-field col s3 m3 s12 competitor-input-color-change">
-				<input placeholder="" id="max_members" type="text" class="validate" ng-model="team.max_members">
+				<input placeholder="" id="max_members" type="number" ng-model="team.max_members">
 				<label for="max-members">Max Members</label>
 			</div>
-			<div class="input-field col l6 m6 s12" ng-init="listAllGames()">
+			<div class="input-field col l12 m12 s12" ng-init="listAllGames()">
 				<label class="active">Game</label><br>
 				<select class="browser-default" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">
 				</select>
 			</div>
-			<div class="input-field col l6 m6 s12">
+			<div class="input-field col l12 m12 s12">
 				<label class="active">Sports</label><br>
 				<select class="browser-default" ng-model="team.sport_id" ng-options="sport.sport_name for sport in sports">
 					<option selected disabled class="white black-text" value="">&nbsp;</option>
 				</select>
 			</div><br>
-			<div class="input-field col l6 m6 s12">
+			<div class="input-field col l12 m12 s12">
 				<label class="active">Organization</label><br>
 				<select class="browser-default" ng-model="team.team_organization" ng-options="organization.name for organization in organizations">
 					<option selected disabled class="white black-text" value="">&nbsp;</option>
