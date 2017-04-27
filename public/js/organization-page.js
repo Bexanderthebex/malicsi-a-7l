@@ -25,7 +25,7 @@ $(document).ready(function(){
         maxSlides: 1,
         moveSlides: 2,
         slideMargin: 6,
-        auto: true
+        auto: false
     });
 
     $('span').css('height', $(".pic").height());
@@ -37,3 +37,4 @@ $(document).ready(function(){
 
     $('.modal').modal();
 });
+

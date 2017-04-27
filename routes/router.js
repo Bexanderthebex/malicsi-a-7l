@@ -76,6 +76,7 @@ router.post('/user/getAllUsers', checkUser('A'), adminController.getAllUsers);
 router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
 router.put('/competitor/editCompetitor', competitorController.editCompetitor);
 router.get('/competitor/getCompetitorTeams', competitorController.getCompetitorTeams);
+router.get('/competitor/getCompetitorTeamsPublic', competitorController.getCompetitorTeamsPublic);
 router.get('/competitor/getCompetitorOrganization', competitorController.getCompetitorOrganization);
 router.get('/competitor/getCompetitor', competitorController.getCompetitor);
 router.put('/competitor/editCompetitorBio', competitorController.editCompetitorBio);
