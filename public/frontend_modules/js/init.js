@@ -21,5 +21,10 @@
 		
 	    $('.tooltipped').tooltip({delay: 50});
         $('input#input_text, textarea').characterCounter();
+		
+		$(document).ready(function(){
+			$('.scrollspy').scrollSpy();
+		});
+     
 	}); // end of document ready
 })(jQuery); // end of jQuery name space
