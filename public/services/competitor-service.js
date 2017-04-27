@@ -25,6 +25,10 @@
             getPendingRequests: getPendingRequests,
             getTeamRankings: getTeamRankings,
             listAllGames: listAllGames,
+            viewAllSportsInGame: viewAllSportsInGame,
+            viewAllOrganizationInGame: viewAllOrganizationInGame,
+            acceptMembershipRequest: acceptMembershipRequest,
+            deleteMembershipRequest: deleteMembershipRequest
         }
 
         return service;
@@ -260,7 +264,75 @@
             return deferred.promise;
         }
 
+        function viewAllSportsInGame(game_id){
+            let deferred = $q.defer();
+            
+            $http({
+                method: 'GET',
+                url: '/game/viewAllSportsInGame/' + game_id,
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
 
+            return deferred.promise;
+        }
+
+        function viewAllOrganizationInGame(game_id){
+            console.log(game_id);
+            let deferred = $q.defer();
+            
+            $http({
+                method: 'GET',
+                params: { 'gameId': game_id },
+                url: '/game/viewAllOrganizationInGame/',               
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function acceptMembershipRequest(id){
+            let deferred = $q.defer();
+
+            console.log('teamid service: ' + id);
+            $http({
+                method: 'POST',
+                data: $.param(id),
+                url: '/team/acceptMembershipRequest',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function deleteMembershipRequest(id){
+            let deferred = $q.defer();
+
+            console.log('teamid service: ' + id);
+            $http({
+                method: 'DELETE',
+                data: $.param(id),
+                url: '/team/deleteMembershipRequest',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
         
     }
 })();

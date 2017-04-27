@@ -367,6 +367,46 @@
                 </select>
             </div>
         </div>
+    </div>  
+    <div class="modal-content">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <span class="telegrafico">Team Name</span>
+                        <input placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name">
+                    </div>
+                    <div class="input-field col l6 m6 s12" ng-init="listAllGames()">
+                        <span class="telegrafico">Game</span>
+                        <select class="browser-default" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">                            
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col l6 m6 s12">
+                        <span class="telegrafico">Sports</span>
+                        <select class="browser-default" ng-model="team.sport_id" ng-options="sport.sport_name for sport in sports">
+                            <option selected disabled class="white black-text" value="">&nbsp;</option>
+                            <!-- <option class="" value="1" ng-selected="team.sport_id">Basketball</option>
+                            <option class="" value="2" ng-selected="team.sport_id">Volleyball</option>
+                            <option class="" value="3" ng-selected="team.sport_id">Baseball</option>
+                            <option class="" value="4" ng-selected="team.sport_id">100-meter dash</option>
+                            <option class="" value="5" ng-selected="team.sport_id">Tug of war</option> -->
+                        </select>
+                    </div>
+                    <div class="input-field col l6 m6 s12">
+                        <span class="telegrafico">Organization</span>
+                        <select class="browser-default" ng-model="team.team_organization" ng-options="organization.name for organization in organizations">
+                            <option selected disabled class="white black-text" value="">&nbsp;</option>
+                            <!-- <option class="white black-text" value="1" ng-selected="team.team_organization">College of Sciences</option>
+                            <option class="white black-text" value="2" ng-selected="team.team_organization">College of Arts</option>
+                            <option class="white black-text" value="3" ng-selected="team.team_organization">College of Music</option> -->
+                        </select>
+                    </div>
+                   <div class="input-field col l6 m6 s12">
+                        <span class="telegrafico">Max Members</span>
+                        <input placeholder="" id="max_members" type="text" class="validate" ng-model="team.max_members">
+                    </div>
     </div>
     <div class="modal-footer palette-5 right-align">
         <button href="" class="modal-action modal-close minimalist-button" ng-click="createTeam()">CREATE</button>

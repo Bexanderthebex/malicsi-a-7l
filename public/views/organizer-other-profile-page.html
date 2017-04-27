@@ -8,14 +8,11 @@
                 <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
 
-            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCurrentUser()">
-            <!-- ng-init -> ito muna yung tatawagin para makuha yung organizer na kailangan
-            yung irereturn ng getCurrentUser() ay isang organizer, which is yung $scope.organizer
-            accessible yung values ng attributes ng organizer by enclosing it sa {{ }} -->
-                <h3 class="rockwell">{{ organizer.name }}</h3>
-                <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
+            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getOrganizer()">
+                <h3 class="rockwell">{{ thisOrganizer.name }}</h3>
+                <p class="telegrafico">Contact: {{ thisOrganizer.contact }} | E-mail: {{ thisOrganizer.email }}</p>
                 <p class="telegrafico">
-                    {{ organizer.description }}
+                    {{ thisOrganizer.description }}
                 </p>
             </div>
             <div class="col l1 m1 s12"></div>
@@ -43,6 +40,7 @@
                                         <div class="telegrafico col s1" data-target="organizer-update-game-modal">
                                             <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
                                         <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
+
                                     </div>
 
                                     <!-- GAME INFO -->
@@ -119,7 +117,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -137,7 +134,6 @@
     </div>
 
 </div>
-
 <!--  Scripts-->
 <script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>
 <script type="text/javascript" src="../js/organizer-profile-page.js"></script>

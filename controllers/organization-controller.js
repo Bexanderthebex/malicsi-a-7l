@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 
 exports.searchOrganization = (req, res) => {
-	query = 'select * from organization where name like ?';
+	let query = 'select * from organization where name like ?';
 
 	connection.userType('A').query(query,
 		[
@@ -21,7 +21,7 @@ exports.searchOrganization = (req, res) => {
 }
 
 exports.editOrganization = (req, res) => {
-	query = 'update organization set name = ? where organization_id = ?';
+	let query = 'update organization set name = ? where organization_id = ?';
 
 	connection.userType('A').query(query,
 		[
@@ -36,7 +36,7 @@ exports.editOrganization = (req, res) => {
 }
 
 exports.addOrganization = (req, res) => {
-	query = 'insert into organization (name) values(?)';
+	let query = 'insert into organization (name) values(?)';
 
 	connection.userType('A').query(query,
         [

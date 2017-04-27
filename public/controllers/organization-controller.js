@@ -6,10 +6,10 @@
         .module('app')
         .controller('OrganizationController', OrganizationController);
 
-    OrganizationController.$inject = ['$scope', '$routeParams', 'OrganizationService', 'UserService'];
+    OrganizationController.$inject = ['$scope', '$routeParams', 'OrganizationService', 'UserService', '$window'];
 
 
-    function OrganizationController($scope, $routeParams, OrganizationService, UserService) {
+    function OrganizationController($scope, $routeParams, OrganizationService, UserService, $window) {
         $scope.thisOrganization = {
             organization_id: $routeParams.id
         };
@@ -32,6 +32,7 @@
         $scope.gamesInOrganization = [];
         $scope.teamModal = {};
         $scope.teamMembers = [];
+        $scope.isMember = 0;
         $scope.retrieveTeams = retrieveTeams;
         $scope.retrieveTeam = retrieveTeam;
         $scope.joinTeam = joinTeam;
@@ -41,6 +42,7 @@
         //$scope.retrieveOrganizationStatistics = retrieveOrganizationStatistics;
         $scope.retrieveOrganization = retrieveOrganization;
         $scope.retrieveGamesInOrganization = retrieveGamesInOrganization;
+        $scope.checkTeamMembership = checkTeamMembership;
         
         function initPage(org_id){
             UserService
@@ -59,7 +61,7 @@
                     $scope.organization = res.data;
                     retrieveOrganizationStatistics($scope.thisOrganization.organization_id);
                 }, function(err) {
-                    Materialize.toast('Error loading organization');
+                    $window.location.href = '/#/error';
                     console.log(err);
                 })
         }
@@ -74,6 +76,7 @@
                     console.log(err);
                 })
         }
+
 
         function retrieveTeams(org_id) {
             OrganizationService
@@ -167,7 +170,7 @@
         //to be to be to be
         function retrieveOrganizationStatistics(id) {
             OrganizationService
-                .getOrganizationRankings(1)
+                .getOrganizationRankings(id)
                 .then(function(res) {
                     if (res.data.ranking == null){
                         $scope.organizationStats.first = 0;
@@ -184,6 +187,26 @@
                     }
                 }, function(err) {
                     Materialize.toast('Error loading details');
+                    console.log(err.data);
+                })
+        }
+
+        function checkTeamMembership(team_id) {
+            OrganizationService
+                .checkTeamMembership(team_id)
+                .then(function(res) {
+                    if(res.data == []) {
+                        // can join to teams; not a member, did not join yet
+                        $scope.isMember = -1;
+                    } else if(res.data.is_member == 0) {
+                        // pending request
+                        $scope.isMember = 1;
+                    } else if(res.data.is_member == 1) {
+                        // already a member
+                        $scope.isMember = 0;
+                    }
+
+                }, function(err) {
                     console.log(err.data);
                 })
         }

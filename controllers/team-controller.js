@@ -4,6 +4,8 @@ const connection = require('./../config/db-connection.js');
 
 
 exports.createTeam = (req, res) => {
+    console.log(req.body);
+
     currentUser = req.session.user;
     query = "CALL create_team(?, ?, ?, ?, ?)";
     query1 = "CALL get_team(?)"
@@ -18,6 +20,7 @@ exports.createTeam = (req, res) => {
             if(!err) {
                 return res.status(200).send({ 'message' : 'Sucessfully created team'});
             } else {
+                console.log(err);
                 return res.status(500).send({ 'message' : 'An error occured'});
             }
         }
@@ -65,7 +68,7 @@ exports.deleteMembershipRequest = (req, res) => {
     
     connection.userType('A').query(query, 
         [
-            req.body.id,
+            currentUser.id,
             req.body.team_id
         ], (err, rows) => {
                 if(!err) {
@@ -83,7 +86,7 @@ exports.acceptMembershipRequest = (req, res) => {
     
     connection.userType('A').query(query, 
         [
-            req.body.id,
+            currentUser.id,
             req.body.team_id
         ], (err, rows) => {
                 if(!err) {
@@ -91,6 +94,28 @@ exports.acceptMembershipRequest = (req, res) => {
                 } else {
                     return res.status(500).send({ 'message' : 'An error occured'});
                 }
+        }
+     );
+}
+exports.getMembershipRequest = (req, res) => {
+    currentUser = req.session.user;
+    query = "CALL get_membership_request(?,?)";
+    
+    connection.userType('A').query(query, 
+        [
+            currentUser.id,
+            req.query.team_id
+        ], (err, rows) => {
+            if(!err) {
+                if (rows[0].length == 1){
+                    return res.status(200).send(rows[0][0]);
+                }
+                else{
+                    return res.status(200).send(rows[0]);
+                }
+            } else {
+                return res.status(500).send({ 'message' : 'An error occured'});
+            }
         }
      );
 }
