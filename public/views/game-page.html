@@ -380,7 +380,7 @@
 								<div class="row">
 									<div class="col s12 m12" ng-hide="checkSponsors()">
 										<!-- editing view -->
- -										<!-- <span class="telegrafico game-checkbox-change-color" ng-repeat = "sponsor in sponsors">
+ 										<!-- <span class="telegrafico game-checkbox-change-color" ng-repeat = "sponsor in sponsors">
  -											<input type="checkbox" class="filled-in" id="filled-in-box" checked="checked" />
  -											<label for="filled-in-box">
  -												<p class="game-sponsor-title">
@@ -438,15 +438,13 @@
 								<p class="game-sponsor-title">{{sponsor.name}}</p><p>{{sponsor.description}}  </p>
 							</label>
 						</span>
-
 					</div>
 				</div>				
-			
 		</div>	
-		
 	</div>
 	<div class="modal-footer palette-5 right-align">
-		<button href="" class="modal-action modal-close btn-flat waves-effect" ng-disabled="!validSponsorDel" data-target="game-delete-sponsor-2">Next</button>	
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-disabled="!validSponsorDel" data-target="game-delete-sponsor-2">NEXT</button>	
 	</div>
 </div>
 
@@ -469,6 +467,7 @@
 		</div>
 	</div>
 	<div class="modal-footer palette-5 right-align">
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-click="deleteMultipleSponsors()">YES</button>
 		<button href="" class="modal-action modal-close minimalist-button" data-target="game-delete-sponsor">NO</button>
 	</div>
@@ -496,10 +495,10 @@
 					</div>
 				</div>				
 		</div>	
-		
 	</div>
 	<div class="modal-footer palette-5 right-align">
-		<button href="" class="modal-action modal-close btn-flat waves-effect" ng-disabled="!validOrgDel" data-target="game-delete-organization-2">Next</button>	
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-disabled="!validOrgDel" data-target="game-delete-organization-2">NEXT</button>	
 	</div>
 </div>
 
@@ -522,6 +521,7 @@
 		</div>
 	</div>
 	<div class="modal-footer palette-5 right-align">
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-click="deleteMultipleOrganizations()">YES</button>
 		<button href="" class="modal-action modal-close minimalist-button" data-target="game-delete-sponsor">NO</button>
 	</div>
@@ -567,6 +567,7 @@
 	</div>
 
 	<div class="modal-footer palette-5 right-align">
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-click="addSport()">SAVE</button>
 	</div>
 </div> -->
@@ -593,7 +594,8 @@
 		</div>
 	</div>
 	<div class="modal-footer" >
-		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-disabled="!validSponsorAdd" ng-click="addMultipleSponsors()">Add</a>
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-disabled="!validSponsorAdd" ng-click="addMultipleSponsors()">ADD</button>
 	</div>
 </div>
 
@@ -619,7 +621,8 @@
 		</div>
 	</div>
 	<div class="modal-footer" >
-		<a href="" class="modal-action modal-close waves-effect btn-flat" ng-disabled="!validOrgAdd" ng-click="addMultipleOrganizations()">Add</a>
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-disabled="!validOrgAdd" ng-click="addMultipleOrganizations()">ADD</button>
 	</div>
 </div>
 
@@ -698,6 +701,7 @@
 		</div>
 	</div>
 	<div class="modal-footer palette-5 right-align">
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-click="addSport()">ADD</button>
 	</div>
 </div>
@@ -784,6 +788,7 @@
 	</div>
 
 	<div class="modal-footer palette-5 right-align">
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-click="updateSport(sportCopy)">UPDATE</button>
 	</div>
 </div>
@@ -807,6 +812,7 @@
 		</div>
 	</div>
 	<div class="modal-footer palette-5 right-align">
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-click="deleteSport(sportCopy)">YES</button>
 		<button href="" class="modal-action modal-close minimalist-button">NO</button>
 	</div>
@@ -910,6 +916,7 @@
 		</div>
 	</div>
 	<div class="modal-footer palette-5 right-align">
+		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button">MODIFY</button>
 	</div>
 </div>

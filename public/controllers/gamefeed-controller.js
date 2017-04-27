@@ -25,7 +25,6 @@
                 .then(function(res) {
                     $scope.games = res.data;
                     sortBy();
-
                 }, function(err) {
                     console.log(err);
                     // Materialize.toast('', 3000);
@@ -49,7 +48,6 @@
                 if(a.name > b.name) return 1;
                 return 0;
             });
-
             distributeGame();
         }
 
