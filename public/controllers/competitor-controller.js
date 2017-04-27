@@ -13,6 +13,7 @@
             competitor_id: $routeParams.id
         };
         $scope.competitor = {};
+        $scope.userinfo = {};
 
         $scope.team = {
             team_name: null,
@@ -53,7 +54,6 @@
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
-                    //console.log(res.data);
                     $scope.competitor = res.data;
                 }, function(err) {
                     console.log(err);
@@ -81,6 +81,25 @@
                 }, function(err) {
                     console.log(err);
                 })
+        }
+
+        function getCompetitorTeamsPublic(){
+            UserService
+                .getUserInfo()
+                .then(function(res) {
+                    $scope.userinfo = res.data;
+                    console.log("id: " + $scope.userinfo.id);
+                }, function(err) {
+                    console.log(err);
+                })
+            CompetitorService
+                .getCompetitorTeamsPublic($scope.userinfo.id)
+                .then(function(res) {
+                    $scope.competitorteams = res.data;
+                }, function(err) {
+                    console.log(err);
+                })
+
         }
 
         function getCompetitorOrganization(){

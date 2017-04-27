@@ -7,11 +7,11 @@
                 <img id="visited-competitor-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
 
-            <div id="visited-competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCurrentUser()">
-                <h3 class="rockwell">{{ visited-competitor.name }}</h3>
-                <p class="telegrafico">Contact: {{ visited-competitor.contact }} | E-mail: {{ visited-competitor.email }}</p>
+            <div id="visited-competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="searchCompetitor(thisCompetitor.competitor_id)">
+                <h3 class="rockwell">{{ competitor.first_name }} {{ competitor.last_name }}</h3>
+                <p class="telegrafico">Contact: {{ competitor.contact }} | E-mail: {{ competitor.email }}</p>
                 <p class="telegrafico">
-                    {{ visited-competitor.description }}
+                    {{ competitor.bio }}
                 </p>
                 <div class="row">
                     <div class="col l3 m2 s12 offset-l9">
@@ -83,11 +83,11 @@
                         <!--div class="indicator white" style="z-index: 1"></div-->
                     </ul>
 
-	                <div id="visited-competitor-teams" class="col s12 affiliation-div" ng-init="getvisited-competitorTeams()">
+	                <div id="visited-competitor-teams" class="col s12 affiliation-div" ng-init="getCompetitorTeamsPublic(thisCompetitor.id)">
                         <div class="tablewrapper">
                             <table class="highlight responsive-table visited-competitor-games-data">
     	                        <tbody>
-    	                            <tr class="century-gothic" ng-repeat="team in visited-competitorteams">
+    	                            <tr class="century-gothic" ng-repeat="team in competitorteams">
     	                                <td>{{team.team_name}}</td>
     	                                <td>{{team.sport_name}}</td>
     	                            </tr>
