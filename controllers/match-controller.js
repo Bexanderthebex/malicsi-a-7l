@@ -165,6 +165,7 @@ exports.viewPastMatch = (req, res) => {
 		(err, rows, fields) => {
 		if(!err){
 			return res.status(200).send(rows[0]);
+			console.log(rows[0]);
 		}else if(rows.length > 0){
 			res.status(404).send("There are no current matches");
 		}else{
