@@ -11,7 +11,8 @@ $(document).ready(function(){
 
 	$('.datepicker').pickadate({
 		format: 'yyyy-mm-dd',
-		selectMonths: true,
-		selectYear: 120
-	})
+		selectYears: 75,
+		selectMonths: true
+	});
+
 });
