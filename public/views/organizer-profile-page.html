@@ -9,9 +9,6 @@
             </div>
 
             <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCurrentUser()">
-            <!-- ng-init -> ito muna yung tatawagin para makuha yung organizer na kailangan
-            yung irereturn ng getCurrentUser() ay isang organizer, which is yung $scope.organizer
-            accessible yung values ng attributes ng organizer by enclosing it sa {{ }} -->
                 <h3 class="rockwell">{{ organizer.name }}</h3>
                 <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
                 <p class="telegrafico">
@@ -54,25 +51,27 @@
                             <!-- LIST OF GAMES -->
                             <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerPastGames()">
                                 <div class="sports-match palette-border-5" ng-repeat="game in pastGames">
+                                    <a href="#/game/{{game.game_id}}">
                                     <!-- GAME TITLE -->
-                                    <div class="sports-match-title row">
-                                        <div class="telegrafico col s10">{{ game.name }}</div>
-                                        <div class="telegrafico col s1" data-target="organizer-update-game-modal">
-                                            <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
-                                        <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
-                                    </div>
+                                        <div class="sports-match-title row">
+                                            <div class="telegrafico col s10">{{ game.name }}</div>
+                                            <div class="telegrafico col s1" data-target="organizer-update-game-modal">
+                                                <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
+                                            <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
+                                        </div>
 
-                                    <!-- GAME INFO -->
-                                    <div class="sports-match-info">
-                                        Start: {{ game.start_date| date:"longDate"}}
+                                        <!-- GAME INFO -->
+                                        <div class="sports-match-info">
+                                            Start: {{ game.start_date| date:"longDate"}}
 
-                                    </div>
-                                    <div class="sports-match-info">
-                                        End: {{ game.end_date| date:"longDate"}}
-                                    </div>
-                                    <div class="sports-match-info">
-                                        Location: {{ game.location }}
-                                    </div>
+                                        </div>
+                                        <div class="sports-match-info">
+                                            End: {{ game.end_date| date:"longDate"}}
+                                        </div>
+                                        <div class="sports-match-info">
+                                            Location: {{ game.location }}
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -85,24 +84,26 @@
                             <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerOngoingGames()">
                                 <div class="sports-match palette-border-3" ng-repeat="game in ongoingGames">
                                     <!-- GAME TITLE -->
-                                    <div class="sports-match-title row">
-                                        <div class="telegrafico col s10">{{ game.name }}</div>
-                                        <div class="telegrafico col s1" data-target="organizer-update-game-modal">
-                                            <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
-                                        <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
-                                    </div>
+                                    <a href="#/game/{{game.game_id}}">
+                                        <div class="sports-match-title row">
+                                            <div class="telegrafico col s10">{{ game.name }}</div>
+                                            <div class="telegrafico col s1" data-target="organizer-update-game-modal">
+                                                <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
+                                            <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
+                                        </div>
 
-                                    <!-- GAME INFO -->
-                                    <div class="sports-match-info">
-                                        Start: {{ game.start_date| date:"longDate"}}
+                                        <!-- GAME INFO -->
+                                        <div class="sports-match-info">
+                                            Start: {{ game.start_date| date:"longDate"}}
 
-                                    </div>
-                                    <div class="sports-match-info">
-                                        End: {{ game.end_date| date:"longDate"}}
-                                    </div>
-                                    <div class="sports-match-info">
-                                        Location: {{ game.location }}
-                                    </div>
+                                        </div>
+                                        <div class="sports-match-info">
+                                            End: {{ game.end_date| date:"longDate"}}
+                                        </div>
+                                        <div class="sports-match-info">
+                                            Location: {{ game.location }}
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -115,24 +116,26 @@
                             <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerUpcomingGames()">
                                 <div class="sports-match palette-border-4" ng-repeat="game in upcomingGames">
                                     <!-- GAME TITLE -->
-                                    <div class="sports-match-title row">
-                                        <div class="telegrafico col s10">{{ game.name }}</div>
-                                        <div class="telegrafico col s1" data-target="organizer-update-game-modal">
-                                            <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
-                                        <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
-                                    </div>
+                                    <a href="#/game/{{game.game_id}}">
+                                        <div class="sports-match-title row">
+                                            <div class="telegrafico col s10">{{ game.name }}</div>
+                                            <div class="telegrafico col s1" data-target="organizer-update-game-modal">
+                                                <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
+                                            <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
+                                        </div>
 
-                                    <!-- GAME INFO -->
-                                    <div class="sports-match-info">
-                                        Start: {{ game.start_date| date:"longDate"}}
+                                        <!-- GAME INFO -->
+                                        <div class="sports-match-info">
+                                            Start: {{ game.start_date| date:"longDate"}}
 
-                                    </div>
-                                    <div class="sports-match-info">
-                                        End: {{ game.end_date| date:"longDate"}}
-                                    </div>
-                                    <div class="sports-match-info">
-                                        Location: {{ game.location }}
-                                    </div>
+                                        </div>
+                                        <div class="sports-match-info">
+                                            End: {{ game.end_date| date:"longDate"}}
+                                        </div>
+                                        <div class="sports-match-info">
+                                            Location: {{ game.location }}
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -191,129 +194,96 @@
 </div>
 
 <!-- Edit Profile Modal -->
-<div id="organizer-profile-edit-modal" class="modal modal-fixed-footer">
-    <div class="row organizer-modal-style">
-        <div class="row remove-bottom">
-            <div class="col s12 padding-left padding-right palette-5">
-                <div class="center">
+<div id="organizer-profile-edit-modal" class="modal gamefeed-addition modal-fixed-footer">
+    <div class="modal-content gamefeed-header-fill century-gothic">
+        <div class="row gamefeed-remove-bottom">
+            <div class="col s12 gamefeed-padding-left gamefeed-padding-right">
+                <div class="center palette-5">
                     <br>
-                        <div class="card-title white-text center telegrafico">
-                            <h4>Profile</h4>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="gamefeed-remove-bottom-modal">Edit Profile</h4>
                         </div>
                     <br>
                 </div>
             </div>
-        </div>  
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col l6 m6 s12" style="margin-top: 0px;">
-                    <span class="telegrafico">Username</span>
-                    <input placeholder="Enter Name" id="username" type="text" class="organizer-input-style validate" ng-model="organizer.username">
-                </div>
-                <div class="input-field col l6 m6 s12" style="margin-top: 0px;">
-                    <span class="telegrafico">Password</span>
-                    <input placeholder="Enter Password" id="password" type="password" class="organizer-input-style validate" ng-model="organizer.password">
-                </div>
+        </div>
+        <div class="row gamefeed-modal-container  gamefeed-add-modal-content" ng-init="getCurrentUser()">
+            <div class="input-field col s6 gamefeed-input-color-change">
+                <input placeholder=" " id="username" type="text" class="validate" ng-model="organizer.username">
+                <label for="username">Username</label>
             </div>
-            <div class="row">
-                <div class="input-field col l6 m6 s12 organizer-update-form">
-                    <span class="telegrafico">Name</span>
-                    <input placeholder="Enter Name" id="name" type="text" class="organizer-input-style validate" ng-model="organizer.name">
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col l6 m6 s12 organizer-update-form">
-                    <span class="telegrafico">Contact Number</span>
-                    <input placeholder="Enter Contact Number" id="contact" type="text" class="organizer-input-style validate" ng-model="organizer.contact">
-                </div>
-                <div class="input-field col l6 m6 s12 organizer-update-form">
-                    <span class="telegrafico">Email</span>
-                    <input placeholder="Enter Email" id="email" type="text" class="organizer-input-style validate" ng-model="organizer.email">
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 organizer-update-form">
-                    <span class="telegrafico">Description</span>
-                    <textarea id="textarea1" class="organizer-input-style materialize-textarea" ng-model="organizer.description"></textarea>
-                </div>
+            <div class="input-field col s6 gamefeed-input-color-change">
+                <input placeholder=" " id="password" type="password" class="validate " ng-model="organizer.password">
+                <label for="password">Password</label>
             </div>
 
-
-            <div class="row">
-                <div class="file-title col s12 century-gothic valign-wrapper">
-                    Profile Picture
-                </div>
-
-                <div class="col s12">
-                    <form action="#">
-                        <div class="file-field input-field">
-                            <div class="btn file-button">
-                                <span>File</span>
-                                <input type="file">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                            </div>
-                        </div>
-                    </form>
-                </div>
+            <div class="input-field col s12 gamefeed-input-color-change">
+                <input placeholder=" " id="name" type="text" class="validate " ng-model="organizer.name">
+                <label for="name" class="">Name</label>
             </div>
-        </form>
+            <div class="input-field col s6 gamefeed-input-color-change">
+                <input placeholder=" " id="contact" type="text" class="validate " ng-model="organizer.contact">
+                <label for="contact" class="">Contact Number</label>
+            </div>
+            <div class="input-field col s6 gamefeed-input-color-change">
+                <input placeholder=" " id="email" type="text" class="validate " ng-model="organizer.email">
+                <label for="email" class="">E-Mail</label>
+            </div>
+
+            <div class="input-field col s12 gamefeed-input-color-change">
+                <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="organizer.description"></textarea>
+                <label for="description" class="gamefeed-textarea-label-color-change">Description</label>
+            </div>
+        </div>
     </div>
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico" ng-click="updateOrganizer()"><i class="material-icons left">check</i>Update</a>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="updateOrganizer()">UPDATE</button>
     </div>
 </div>
 
 <!-- Update Game -->
-<div id="organizer-update-game-modal" class="modal modal-fixed-footer">
-    <div class="row organizer-modal-style">
-        <div class="row remove-bottom">
-            <div class="col s12 padding-left padding-right palette-5">
-                <div class="center">
+<div id="organizer-update-game-modal" class="modal gamefeed-addition modal-fixed-footer">
+    <div class="modal-content gamefeed-header-fill century-gothic">
+        <div class="row gamefeed-remove-bottom">
+            <div class="col s12 gamefeed-padding-left gamefeed-padding-right">
+                <div class="center palette-5">
                     <br>
-                        <div class="card-title white-text center telegrafico">
-                            <h4>Update Game</h4>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="gamefeed-remove-bottom-modal">Update Game</h4>
                         </div>
                     <br>
                 </div>
             </div>
-        </div>  
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s12" style="margin-top: 0px;">
-                    <span class="telegrafico">Game Name</span>
-                    <input placeholder="Enter game name" id="name" type="text" class="organizer-input-style validate" ng-model="gameCopy.name">
-                </div>
+        </div>
+        <div class="row gamefeed-modal-container">
+            <div class="input-field col s6 gamefeed-input-color-change">
+                <input placeholder=" " id="name" type="text" class="validate" ng-model="gameCopy.name">
+                <label for="name">Game Name</label>
             </div>
-            <div class="row">
-                <div class="input-field col s12 organizer-update-form">
-                    <span class="telegrafico">Location</span>
-                    <input placeholder="Enter location" id="location" type="text" class="organizer-input-style validate" ng-model="gameCopy.location">
-                </div>
+            <div class="input-field col s6 gamefeed-input-color-change">
+                <input placeholder=" " id="location" type="text" class="validate " ng-model="gameCopy.location">
+                <label for="location">Location</label>
             </div>
-            <div class="row">
-                <div class="input-field col l6 s6 organizer-update-form">
-                    <span class="telegrafico">Start Date</span>
-                    <input id="start-date" class="organizer-input-style datepicker validate" ng-model="gameCopy.startDate">
-                </div>
-                <div class="input-field col l6 s6 organizer-update-form">
-                    <span class="telegrafico">End Date</span>
-                    <input id="end-date" class="organizer-input-style datepicker validate" ng-model="gameCopy.endDate">
-                </div>
+
+            <div class="input-field col s6 gamefeed-input-color-change">
+                <input id="start-date" type="date" class="validate " ng-model="gameCopy.startDate">
+                <label for="start-date" class="">Start Date</label>
             </div>
-            <div class="row">
-                <div class="input-field col s12 organizer-update-form">
-                    <span class="telegrafico">Description</span>
-                    <textarea id="description" class="organizer-input-style materialize-textarea" ng-model="gameCopy.description"></textarea>
-                </div>
+            <div class="input-field col s6 gamefeed-input-color-change">
+                <input id="end-date" type="date" class="validate " ng-model="gameCopy.endDate">
+                <label for="end-date" class="">End Date</label>
             </div>
-        </form>
+
+            <div class="input-field col s12 gamefeed-input-color-change">
+                <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="gameCopy.description"></textarea>
+                <label for="description" class="gamefeed-textarea-label-color-change">Description</label>
+            </div>
+
+            <p class="center">Note: Changes will only reflect on fields which are edited.</p>
+        </div>
     </div>
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico" ng-click="updateGame()"><i class="material-icons left">check</i>Update</a>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button">UPDATE</button>
     </div>
 </div>
 

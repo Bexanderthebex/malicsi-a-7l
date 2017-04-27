@@ -17,7 +17,7 @@
             getUsersByType: getUsersByType,
             setIsActive: setIsActive,
             updateUser: updateUser,
-            updatePassword: updatePassword
+            updateUserPassword: updateUserPassword
         }
 
         return service;
@@ -81,22 +81,22 @@
             return deferred.promise;
         }
       
+        // function updateUserPassword(user) {
+        //     let deferred = $q.defer();
+
+        //     $http.put('/user/updatePassword', 
+        //         user
+        //     ).then(function(res){
+        //         deferred.resolve(res);
+        //     }, function(err) {
+        //         console.log(err);
+        //         deferred.reject(err);
+        //     });
+
+        //     return deferred.promise;
+        // }
+
         function updateUserPassword(user) {
-            let deferred = $q.defer();
-
-            $http.put('/user/updatePassword', 
-                user
-            ).then(function(res){
-                deferred.resolve(res);
-            }, function(err) {
-                console.log(err);
-                deferred.reject(err);
-            });
-
-            return deferred.promise;
-        }
-
-        function updatePassword(user) {
             let deferred = $q.defer();
 
             $http({

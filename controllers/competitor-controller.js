@@ -4,6 +4,7 @@ const connection = require('./../config/db-connection.js');
 
 exports.searchCompetitor = (req, res) => {
 	query = "CALL search_competitor(?)";
+	console.log(req.query.keyword);
 	connection.userType('A').query(query,
 		[
 			"%" + req.query.keyword + "%"
@@ -40,7 +41,7 @@ exports.getCompetitor = (req, res) => {
 
 exports.getCompetitorTeams = (req, res) => {
 	query = 'CALL get_competitor_teams(?)';
-
+	
 	connection.userType('A').query(query,
 		[
 			req.session.user.id
@@ -53,10 +54,23 @@ exports.getCompetitorTeams = (req, res) => {
 	});
 }
 
+exports.getCompetitorTeamsPublic = (req, res) => {
+	query = 'CALL get_competitor_teams(?)';
+	console.log("id: "+req.query.id);
+	connection.userType('A').query(query,
+		[
+			req.query.id
+		], (err, rows) => {
+		    if(!err) {
+				return res.status(200).send(rows[0]);
+			} else {
+				return res.status(500).send({'message' : 'Internal Server Error'});
+			}
+	});
+}
+
 exports.getCompetitorOrganization = (req, res) => {
 	query = 'CALL get_competitor_organization(?)';
-
-	console.log(req.session.user.id);
 	connection.userType('A').query(query,
 		[
 			req.session.user.id
@@ -114,7 +128,7 @@ exports.editCompetitorBio = (req,res) => {
 			if(!err) {
 				connection.userType('A').query(query1,
 					[
-						currentUserid
+						currentUser.id
 					], (err, rows) => {
 						if(!err) {
 							return res.status(200).send(rows[0][0]);
