@@ -71,15 +71,18 @@ insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) 
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(22, '1997-04-11', 'Kenichii', 'Ana', 'Ken', 'M', 'kenichii ana competitor | **');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(23, '1998-05-12', 'Caroline', 'Tolentino', 'Carol', 'F', 'caroline tolentino competitor | BSCS | Batch "14');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(24, '1998-08-19', 'Jourish', 'Abasolo', 'Jou', 'M', 'jourish abasolo competitor | Ang gwapo ko nakakainis');
+
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(25, '1999-07-17', 'Meika Lei', 'Dane', 'Meika', 'F', 'meika dane competitor | * Official A.R.M.Y | * Tinkerbell * Aroha * Carat');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(26, '1997-11-25', 'Anton', 'Rufino', 'Anton', 'M', 'anton rufino competitor | // TODO: Insert self-flattery here');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(27, '1997-11-21', 'John Louis', 'Gosgolan', 'JLo', 'M', 'john louis gosgolan competitor | Lost, finding self.');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(28, '1997-12-31', 'Miguel', 'Castillo', 'Migui', 'M', 'miguel castillo competitor | Forever curious');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(29, '1997-10-31', 'Patricia', 'Calata', 'Patty', 'F', 'patricia calata competitor | Sigma Delta Phi 2015. tidsoptimist. space cadet. tunay, palaban, makabayan.');
+
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(30, '1998-02-13', 'Paul', 'Villaro', 'Paul', 'M', 'paul villaro competitor | Isko. 19. Kusgan na programmer. Dara-sexual.');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(31, '1994-03-19', 'Marie Betel', 'de Robles', 'Betel', 'F', 'betel de robles competitor | "Never be discouraged. Never hold back. Give everything you got. And when you fall throughout life, remember this: FALL FORWARD."');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(32, '1995-04-27', 'Manong', 'Guard', 'M.Guard', 'M', 'manong guard competitor | Here to "guard" your hearts');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(33, '1998-05-30', 'Unicorn', 'Princess', 'Unicorn', 'F', 'unicorn princess competitor | Im just a thin rhino');
+
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(34, '1999-10-29', 'Hermione', 'Granger', 'Hermi', 'F', 'hermione competitor | Its levi-O-sa ');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(35, '1996-11-12', 'Harry', 'Potter', 'Azkaban', 'M', 'harry potter competitor | Im the chosen one');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(36, '1997-12-13', 'Ron', 'Weasley','Ronner', 'M', 'ron competitor | Im not Ed Sheeran');
@@ -90,6 +93,7 @@ insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) 
 
 insert into organizer (name,description,id) VALUES('College of Arts and Sciences','To serve as a center of excellence in the basic sciences, as a cradle of humanities .',41);
 insert into organizer (name,description,id) VALUES('College of Human Ecology','The College of Human Ecology advocates and uses interdisciplinary, holistic, and integrative.',42);
+
 insert into organizer (name,description,id) VALUES('College of Engineering and Agro-Industrial Technology','Excellence in engineering education, research and extension.', 43);
 insert into organizer (name,description,id) VALUES('University Health Services','As a model of quality service management and a leader in sustainable natural resource.', 44);
 insert into organizer (name,description,id) VALUES('University Housing Office','Shall manage the University’s housing facilities and residence halls with efficiency.', 45);

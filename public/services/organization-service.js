@@ -146,6 +146,23 @@
             return deferred.promise;
         }
 
+        function checkTeamMembership(team_id) {
+            let deferred = $q.defer();
+            $http({
+                method: 'GET',
+                data: $.param({'team_id' : team_id}),
+                url: '/team/getMembershipRequest',
+                headers: headers
+            }).then((res) => {
+                console.log(res);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
         function getOrganization(org_id) {
             let deferred = $q.defer();
 
