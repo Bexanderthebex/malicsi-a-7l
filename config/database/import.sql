@@ -1,235 +1,308 @@
--- user
-INSERT INTO user VALUES (1,'hjackson0','$2a$10$t6eW84Qrmegm9MuSU.pPBu6iC4NBYiTLwE4./G0rj8R3ZYdO4n0I6','jmason0@deviantart.com','(225)115-4710','C',1);
-INSERT INTO user VALUES (2,'kmitchell1','$2a$10$oSJCn9tWl2nccCmCP6trSebI6SHFeeyIYHn20wsjm1ToNvXr61tYW','pmorris1@wisc.edu','(797)753-8815','C',1);
-INSERT INTO user VALUES (3,'amccoy2','$2a$10$8vqC8KNhP5p9dzQJoEoVsOla/1Uineed6i9.WD6AMSmYpnGxmsomK','jromero2@bloomberg.com','(967)855-1348','C',1);
-INSERT INTO user VALUES (4,'jfields3','$2a$10$Nc4hUlHwW483/e0iMNwWmOyUkBOxHZrRhcnr.Vfm98Grypvt9hDLy','grobinson3@ow.ly','(992)919-7960','C',1);
-INSERT INTO user VALUES (5,'dmitchell4','$2a$10$YVgQF0BwIuYSAEmWHpSNVOxCmuQzJAjSuwjjYVhNa0BqGRli4Kwpy','fcampbell4@ezinearticles.com','(200)707-8970','C',0);
-INSERT INTO user VALUES (6,'djacobs5','$2a$10$vDdt9KoLo8R8Ab7Jv3hH0e6/BEaoYn191Y3kIvS.rKANGKIcstyN2','proberts5@goodreads.com','(404)393-2199','C',1);
-INSERT INTO user VALUES (7,'dharvey6','$2a$10$NhAv1tOa1z9kGejjUWWUVu79ohUfJB88GgSQQx/9NG57gzziEhqGS','jcastillo6@bloomberg.com','(609)687-5465','C',0);
-INSERT INTO user VALUES (8,'prodriguez7','$2a$10$dQQrT3xZtkH747/6b6oQqOasfPJlLbCRoMCde1QG5pIGW.AT4H1wu','rwoods7@bbb.org','(647)767-8926','C',0);
-INSERT INTO user VALUES (9,'lclark8','$2a$10$q8uPz7mIQZ0zRzB/6oUAcuoSw2c0YTtNwg4saAsPzdOU9Vn.ZGe2K','erobinson8@furl.net','(293)798-4498','C',0);
-INSERT INTO user VALUES (10,'jhenry9','$2a$10$PD/if9WZTKqpCJcKKM1BkOD/K2h3666orOPzrwbbkmNoP/YHGHbLu','rcampbell9@mapquest.com','(438)128-4688','C',0);
-INSERT INTO user VALUES (11,'rgarciaa','$2a$10$ZZbN.PVkL7jaIM8UhyIu6OJ14PsZKuams/5mXAiyzsgD0xnPe1WtG','cjenkinsa@prnewswire.com','(593)923-9177','O',1);
-INSERT INTO user VALUES (12,'ayoungb','$2a$10$DyFAKZkBoqUNZ.P8xh65vO6/LkeyYiFBK8PGB7pVJ4S/liK5z8Wbu','ccarterb@theguardian.com','(872)750-6464','O',0);
-INSERT INTO user VALUES (13,'echavezc','$2a$10$DMK/FDcLGGcms/X6QMKvYu.pZxfERGivMj01grMTlz8scNPGs6dLW','srodriguezc@paypal.com','(450)119-1285','O',0);
-INSERT INTO user VALUES (14,'kstephensd','$2a$10$MWvxMHqxq.hCOfkxtwYAzOG8jtlig24jRZ7.EnJXGTgFgLIAy1Bku','lsimsd@merriam-webster.com','(896)704-4572','O',1);
-INSERT INTO user VALUES (15,'hmartine','$2a$10$.5Uup3RUFMCkISWQ9rHCVuTM.m/QicRl7k.r483liMN.jSHedxutW','cnguyene@ezinearticles.com','(937)738-1913','O',0);
-INSERT INTO user VALUES (16,'cwhitef','$2a$10$gmE.hWPxwmNflBKF12ugOeIfIPvvJ5uJnNqP5Z/pjDopvKn5AwsrC','trobertsonf@nih.gov','(131)107-2381','A',1);
-INSERT INTO user VALUES (17,'phansong','$2a$10$4nE6MqnJX8dIq97BlzLrTeogCXlNj70FZKWJmgoju2TgfsfHKLTOq','agreeneg@virginia.edu','(233)799-2178','A',1);
-INSERT INTO user VALUES (18,'wkingh','$2a$10$fsH4N00b7e3guSx19GrbLeWAKpxnTa/E9tjBb6mRoW0Zas3VYhh5K','parnoldh@usgs.gov','(198)931-5393','A',0);
-INSERT INTO user VALUES (19,'ldanielsi','$2a$10$tVK8XfDwse.IWAVr7.NAHe910xmD9xKUj4xqVi6UEMmnzZRtJOYxS','jsnyderi@people.com.cn','(825)505-1587','A',1);
-INSERT INTO user VALUES (20,'jperryj','$2a$10$SBSv2lsRoaXzBJ7Pkv3vo.N2xFNflH/hDjH7IOfg35evN/va5zZe.','jtuckerj@disqus.com','(795)835-6197','A',0);
-INSERT INTO user VALUES (21, 'mcdo', '$2a$10$NKb9/ulKnLxK/XqPDL6WHOCINKR16lW/AvpFs/.0n5Ijr5Zqmbz8S', 'mcdo@gmail.com', '(049)8-7000', 'A', 1);
+INSERT INTO user VALUES (1,'asmith0','$2a$10$lwsdMs1oR3xqKtz0lVTIIOd7H/1t8TpZuVmYPwcjtS067HnZiIzxy','jhawkins0@tuttocitta.it','(577)399-7885','A',0);
+INSERT INTO user VALUES (2,'jramirez1','$2a$10$TsvjLdfO.NnDul03QKy.8uppWDR.8L5hmfWFIbFbpPvJwEq304Os.','tjenkins1@amazon.co.uk','(160)503-6933','A',1);
+INSERT INTO user VALUES (3,'mwillis2','$2a$10$jmoDlpASfAZzNddnK0u8T.wCHJACaeoC2WlzY6Cv.Yud6BWEadK3e','adean2@1688.com','(430)228-8448','A',0);
+INSERT INTO user VALUES (4,'ehawkins3','$2a$10$p1LjciDnvKkzRQim2ZzLmOK5gqC3YgtIsyfs2iXssswenKDyf9GN2','alawson3@nih.gov','(560)849-2974','A',0);
+INSERT INTO user VALUES (5,'wfox4','$2a$10$kOv6fuMZ3SjLLXh6QmP4Yu5qDlQ3E6BtMvRodXGvbUu.uKpa4VMg.','jmurphy4@vistaprint.com','(363)197-8873','A',1);
+INSERT INTO user VALUES (6,'rkelley5','$2a$10$Axk3jgfsYL.zx1ejWS4AquwK6Q9yA6hBkrNPwfB32h.ONrSrnTDDy','jreyes5@cloudflare.com','(469)532-8744','A',1);
+INSERT INTO user VALUES (7,'acampbell6','$2a$10$ns3v7Ta7UZNYVLWZt/17Ku1O431a3ibz6Qk62vDsOKKKmRcAn24T6','mharrison6@cargocollective.com','(366)499-5858','A',1);
+INSERT INTO user VALUES (8,'dmason7','$2a$10$IUiomL979RhNUX.EGaKMrO0t9hvKKC1DMWStJU.0AMFQhqqmQJZkO','calvarez7@wp.com','(777)683-0986','A',0);
+INSERT INTO user VALUES (9,'pfoster8','$2a$10$wNIGLmsS5sIhChVQR5v3P.cZ9hF9ocacAcv8mmx14q.JLctJRtZn6','abradley8@51.la','(801)260-9465','A',1);
+INSERT INTO user VALUES (10,'rward9','$2a$10$cLki4Zj0TT.LLeWsfF465u/GBSBl2IFN4dGAma8Hs3e/MpEk6kyIC','jgraham9@bing.com','(327)123-3269','A',0);
 
--- competitor
-insert into competitor (id, birthday, first_name, last_name, nickname, sex, bio) values (1, '1991-08-24', 'James', 'Cook', 'James', 'M', 'Water. Earth. Fire. Air.');
-insert into competitor (id, birthday, first_name, last_name, nickname, sex, bio) values (2, '1987-04-24', 'Janet', 'Davis', 'Cheryl', 'F', 'Long ago, the four nations lived together in harmony.');
-insert into competitor (id, birthday, first_name, last_name, nickname, sex, bio) values (3, '1996-02-09', 'Anna', 'Jones', 'Ashley', 'F', 'Then everything changed when the Fire Nation attacked.');
-insert into competitor (id, birthday, first_name, last_name, nickname, sex, bio) values (4, '1992-08-09', 'Steven', 'Allen', 'Carl', 'M', 'Only the Avatar, master of all four elements, could stop them.');
-insert into competitor (id, birthday, first_name, last_name, nickname, sex, bio) values (5, '1994-01-20', 'Frances', 'Perez', 'Frances', 'F', 'But when the world needed him most, he vanished.');
-insert into competitor (id, birthday, first_name, last_name, nickname, sex, bio) values (6, '1989-02-24', 'Amy', 'Cruz', 'Sara', 'F', 'A hundred years passed and my brother and I discovered the new Avatar,');
-insert into competitor (id, birthday, first_name, last_name, nickname, sex, bio) values (7, '1993-07-18', 'Bruce', 'Parker', 'Thomas', 'M', 'an airbender named Aang,');
-insert into competitor (id, birthday, first_name, last_name, nickname, sex, bio) values (8, '1992-04-15', 'Daniel', 'Dean', 'Bruce', 'M', 'and although his airbending skills are great, ');
-insert into competitor (id, birthday, first_name, last_name, nickname, sex, bio) values (9, '1995-02-07', 'Diana', 'Simmons', 'Patricia', 'F', 'he still has a lot to learn before he iss ready to save anyone.');
-insert into competitor (id, birthday, first_name, last_name, nickname, sex, bio) values (10, '1988-09-10', 'Jean', 'Hall', 'Kathryn', 'F', 'But I believe Aang can save the world.');
+INSERT INTO user VALUES (11,'beili','$2a$10$hv9kLyC28lE27H7llCL0L.LZczdXcEGQskmqzttCcMGwTX6RzgBn2','cccepe@up.edu.ph','(577)399-7885','C',1);
+INSERT INTO user VALUES (12,'ralph','$2a$10$BiEvhLgGfAm9fPVtUYaX8OTJfZs7vQGj4Q8forLRROo1vbWrUqQ72','rareyes@up.edu.ph','(160)503-6933','C',1);
+INSERT INTO user VALUES (13,'adrian','$2a$10$b0MJcS4SZFY3pSOX7CbAR.WGGtaK4SSqxqsp7o3ttPakEO2hY0SOq','amnoel1@up.edu.ph','(430)228-8448','C',0);
+INSERT INTO user VALUES (14,'paula','$2a$10$fB00WaILw7CpGnUjRPQzYejd9xir5IkLPLu7O4htvCBvj9SX1c5p6','pvtan@up.edu.ph','(560)849-2974','C',0);
+INSERT INTO user VALUES (15,'jc','$2a$10$XJHfgc7D0Qj0L0iYq1rA5OioPOBn0wwJXwXjsw9yiAU6FzYU79XJ2','jgricablanca@up.edu.ph','(363)197-8873','C',1);
+INSERT INTO user VALUES (16,'emy','$2a$10$wVCpssLiDmR6O9NYK9mCUeBVjIsuDlOppUUkoGJos1caIWbeBlDoW','ejcabalares@up.edu.ph','(469)532-8744','C',0);
+INSERT INTO user VALUES (17,'clark','$2a$10$tqzSnPlNRoyo/05qU.K5KuFHEb7BRrCb8jr7jWtjpiTcW0cQqVysy','cpalmazan@up.edu.ph','(366)499-5858','C',1);
+INSERT INTO user VALUES (18,'melbex','$2a$10$fkJBUl5KKN0QU4CdnxcnRuORraC.hVaoRq17fS2qS2mtOi84ZiUKu','adean7@tumblr.com','(777)683-0986','C',0);
+INSERT INTO user VALUES (19,'brixter','$2a$10$rccqtU9TZmRmzFPQfzdMb.glQlHXupXg9KYJCHFVl1cyzJY5jNKM6','brlumabi@up.edu.ph','(801)260-9465','C',1);
+INSERT INTO user VALUES (20,'aleck','$2a$10$Zfvuu3QHRvD9cRChxQ0AQePDXG28DxdIRAy0Wsk3kCKYXZr6FZUBq','aimenguito1@up.edu.ph','(327)123-3269','C',0);
+INSERT INTO user VALUES (21,'yssel','$2a$10$4oIlIUm7CH/sDwXQFdXsYe0QrfG4SCqTepPzi9zCRYA5mHJHkBo1y','bpsalvania@up.edu.ph','(577)399-7885','C',0);
+INSERT INTO user VALUES (22,'kenichii','$2a$10$Q/WWdOaQ0HKmfm7KUNtTOuLE5iKM.c6nEz.egL3jHtsq/imc/NwN6','kaana@up.edu.ph','(160)503-6933','C',0);
+INSERT INTO user VALUES (23,'caroline','$2a$10$YhoftMCct7I55twvrWfbm.bUdRbFDleirKkGDom.xWTT2YP8nu3Xi','cbtolentino1 @up.edu.ph','(430)228-8448','C',0);
+INSERT INTO user VALUES (24,'jourish','$2a$10$QI0ydEGLZE8010qH7R1tF.frQetiyA8cT.CXmzFhwkBoPS..Vqjeu','jdabasolo2@up.edu.ph','(560)849-2974','C',0);
+INSERT INTO user VALUES (25,'meika','$2a$10$OS11GlbHMVfYzpn4vlF5y.9umtXKHUD03/.JSfJ2a87bNdNJZZKvG','mddane@up.edu.ph','(363)197-8873','C',1);
+INSERT INTO user VALUES (26,'anton','$2a$10$LsUi2fe9DCv5V//ZpRsmaepeUtq9eMNRN9BYv5UkH9fYIZBlVDYUK','mprufino@up.edu.ph','(469)532-8744','C',0);
+INSERT INTO user VALUES (27,'jlo','$2a$10$0rm1t3D5sD1fXM11V/Fv2.yDpmzSSIKgfIv0Hock2OcUq1oAB8IvG','jlgosgolan@up.edu.ph','(366)499-5858','C',0);
+INSERT INTO user VALUES (28,'migui','$2a$10$3KLRuhNERTaq4u6RSzHFs.0z9oMDsRiCvyXbuDZIVwggx9KhvFq8O','jfcastillo@up.edu.ph','(777)683-0986','C',0);
+INSERT INTO user VALUES (29,'patty','$2a$10$Nf2dWkodBLooVNsXxV/BS.oYd2/zHfhj2lK5xeMw.MPO6nzFQl2Ci','pmcalata@up.edu.ph','(801)260-9465','C',1);
+INSERT INTO user VALUES (30,'paul','$2a$10$2h1ML/H3DfphvciX4vgI5e/noKdHrrtGRgO07nqRm.dHTOXNQeot.','pgvillaro@up.edu.ph','(327)123-3269','C',0);
+INSERT INTO user VALUES (31,'betel','$2a$10$RduwtrBYi.8LOwX83TA/O.1lNWarT5DV0E3pft3Z2SZhaOmOtneMS','mabderobles@up.edu.ph','(577)399-7885','C',1);
+INSERT INTO user VALUES (32,'manong_guard','$2a$10$JGesVPYS3imyB.YPnsSuAuPAFVBzMV.e2bvgwmm4lcmEDuRSBqiom','manguard@gmail.com','(160)503-6933','C',0);
+INSERT INTO user VALUES (33,'unicorn_princess','$2a$10$PVlexQOcGEedjiLmB1ku4uvGdfOJcXoibYxSBzrr3kLvHNFrD1JPW','unicornprin@gmail.com','(430)228-8448','C',0);
+INSERT INTO user VALUES (34,'hermione','$2a$10$U2yNbDrKLEjDRghPyyMGgOW07rVu34XaFJpD/w/MkJQlgK1yDjMSq','hjgranger@hsww.edu.uk','(560)849-2974','C',1);
+INSERT INTO user VALUES (35,'harry','$2a$10$uO42EnoO3WVvmBGfGUpCdOB3x8rNoiYsVLOnVrnxTfSPx73atewlK','hjpotter@hsww.edu.uk','(363)197-8873','C',1);
+INSERT INTO user VALUES (36,'ron','$2a$10$ATh0biJthPFPt7M2aPamQOes9oQAiGO/Ue81GnolOKM6k0pww8DZm','rbweasley@hsww.edu.uk','(469)532-8744','C',0);
+INSERT INTO user VALUES (37,'draco','$2a$10$VaJjwCiSS/xvx0vfelNj0OODR2z.PPRhGz2Spxsgq6abbK502k0iW','dlmalfoy@hsww.edu.uk','(366)499-5858','C',1);
+INSERT INTO user VALUES (38,'snape','$2a$10$aTG1qbUMqvVwii9uOvlKNOEz7C2MAc0fKER3NrUKnZN3z2VCy9ZIO','ssnape@hsww.edu.uk','(777)683-0986','C',0);
+INSERT INTO user VALUES (39,'dumbledore','$2a$10$VPWpCmeyQ8jdM.0uA82XJOFSebRszM9664OQ6wkGNCFaYzEPj177W','adumbledore@hsww.edu.uk','(801)260-9465','C',0);
+INSERT INTO user VALUES (40,'hedwig','$2a$10$5OgzvnO/kcrVH69ZQOi.dOEeugtmfd33BwbsQwy4AcyvbU.uck2Be','hedwig@hsww.edu.uk','(327)123-3269','C',0);
 
--- competitor_sport_played
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (1, 1, 'Figure Skating');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (2, 2, 'Basketball');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (3, 3, 'Taekwondo');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (4, 4, 'Baseball');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (5, 5, 'Basketball');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (6, 6, 'Sipa');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (7, 7, 'Patintero');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (8, 8, 'Hide and Seek');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (9, 9, 'Track');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (10, 10, 'Judo');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (11, 10, 'Basketball');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (12, 1, 'Judo');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (13, 2, 'Sepak Takraw');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (14, 3, 'Arnis');
-insert into competitor_sport_played (sport_played_id, id, sport_played) values (15, 4, 'Fencing');
-
--- organizer
-insert into organizer (id, name, description) values (11, 'Keylex', 'eget elit sodales scelerisque');
-insert into organizer (id, name, description) values (12, 'Flowdesk', 'ut suscipit a feugiat');
-insert into organizer (id, name, description) values (13, 'Keylex', 'montes nascetur ridiculus mus vivamus');
-insert into organizer (id, name, description) values (14, 'Stringtough', 'ut nulla sed accumsan felis');
-insert into organizer (id, name, description) values (15, 'Sub-Ex', 'amet diam in magna');
-
--- sponsor institution
-insert into sponsor_institution (sponsor_id, name, description) values (1, 'Livetube', 'vel nisl duis ac');
-insert into sponsor_institution (sponsor_id, name, description) values (2, 'Vipe', 'consequat morbi a ipsum integer');
-insert into sponsor_institution (sponsor_id, name, description) values (3, 'Wordify', 'porttitor lorem id ligula');
-insert into sponsor_institution (sponsor_id, name, description) values (4, 'Kamba', 'hac habitasse platea');
-insert into sponsor_institution (sponsor_id, name, description) values (5, 'Zoomlounge', 'ultrices mattis odio donec');
-insert into sponsor_institution (sponsor_id, name, description) values (6, 'Edgetag', 'in hac habitasse platea dictumst');
-insert into sponsor_institution (sponsor_id, name, description) values (7, 'Wikivu', 'ut volutpat sapien');
-insert into sponsor_institution (sponsor_id, name, description) values (8, 'Rhynoodle', 'nisl ut volutpat sapien arcu');
-insert into sponsor_institution (sponsor_id, name, description) values (9, 'Vimbo', 'libero quis orci nullam molestie');
-insert into sponsor_institution (sponsor_id, name, description) values (10, 'Jetwire', 'at feugiat non pretium quis');
-
--- organization
-insert into organization (organization_id, name) values (1, 'Tin');
-insert into organization (organization_id, name) values (2, 'Wrapsafe');
-insert into organization (organization_id, name) values (3, 'Quo Lux');
-insert into organization (organization_id, name) values (4, 'Viva');
-insert into organization (organization_id, name) values (5, 'Asoka');
-
--- game
-insert into game (game_id, organizer_id, name, start_date, end_date, location, description) values (1, 14, 'Subin', '2017-02-24', '2017-03-11', 'Cibitung', 'risus praesent lectus vestibulum quam');
-insert into game (game_id, organizer_id, name, start_date, end_date, location, description, overall_winner) values (2, 12, 'Treeflex', '2016-09-05', '2016-10-06', 'Miretice', 'vel nulla eget eros', 5);
-insert into game (game_id, organizer_id, name, start_date, end_date, location, description, overall_winner) values (3, 15, 'Sonsing', '2016-02-28', '2017-05-23', 'Krajan Gajihan', 'dui proin leo odio', 5);
-insert into game (game_id, organizer_id, name, start_date, end_date, location, description, overall_winner) values (4, 11, 'It', '2016-04-08', '2016-10-10', 'Caimitillo', 'at nulla suspendisse potenti cras', 2);
-insert into game (game_id, organizer_id, name, start_date, end_date, location, description, overall_winner) values (5, 12, 'Quo Lux', '2016-03-02', '2017-12-09', 'Tuochuan', 'tempus vivamus in felis eu', 4);
-insert into game (game_id, organizer_id, name, start_date, end_date, location, description) values (6, 15, 'Tresom', '2016-06-15', '2016-09-10', 'Weifang', 'bibendum imperdiet nullam orci');
-insert into game (game_id, organizer_id, name, start_date, end_date, location, description, overall_winner) values (7, 14, 'Domainer', '2016-06-16', '2017-03-25', 'Pateros', 'est quam pharetra magna ac', 1);
-insert into game (game_id, organizer_id, name, start_date, end_date, location, description, overall_winner) values (8, 11, 'Veribet', '2016-01-30', '2017-05-09', 'Basar', 'ultrices mattis odio', 5);
-insert into game (game_id, organizer_id, name, start_date, end_date, location, description, overall_winner) values (9, 11, 'Lotlux', '2016-05-19', '2016-06-08', 'Malim', 'ac nulla sed', 5);
-insert into game (game_id, organizer_id, name, start_date, end_date, location, description) values (10, 14, 'Prodder', '2016-02-14', '2017-06-20', 'Al Birah', 'faucibus orci luctus');
-
--- organization in game
-insert into organization_in_game (game_id, organization_id) values (7, 3);
-insert into organization_in_game (game_id, organization_id) values (1, 5);
-insert into organization_in_game (game_id, organization_id) values (6, 3);
-insert into organization_in_game (game_id, organization_id) values (3, 3);
-insert into organization_in_game (game_id, organization_id) values (6, 2);
-insert into organization_in_game (game_id, organization_id) values (3, 2);
-insert into organization_in_game (game_id, organization_id) values (4, 5);
-insert into organization_in_game (game_id, organization_id) values (6, 4);
-insert into organization_in_game (game_id, organization_id) values (3, 4);
-insert into organization_in_game (game_id, organization_id) values (3, 5);
-insert into organization_in_game (game_id, organization_id) values (10, 2);
-insert into organization_in_game (game_id, organization_id) values (7, 2);
-insert into organization_in_game (game_id, organization_id) values (7, 5);
-insert into organization_in_game (game_id, organization_id) values (10, 3);
-insert into organization_in_game (game_id, organization_id) values (10, 1);
-insert into organization_in_game (game_id, organization_id) values (5, 2);
-insert into organization_in_game (game_id, organization_id) values (9, 3);
-insert into organization_in_game (game_id, organization_id) values (9, 4);
-insert into organization_in_game (game_id, organization_id) values (8, 1);
-insert into organization_in_game (game_id, organization_id) values (9, 1);
-
--- sponsor_games
-insert into sponsor_games (sponsor_id, game_id) values (2, 3);
-insert into sponsor_games (sponsor_id, game_id) values (4, 10);
-insert into sponsor_games (sponsor_id, game_id) values (2, 8);
-insert into sponsor_games (sponsor_id, game_id) values (5, 4);
-insert into sponsor_games (sponsor_id, game_id) values (2, 5);
-insert into sponsor_games (sponsor_id, game_id) values (6, 3);
-insert into sponsor_games (sponsor_id, game_id) values (9, 2);
-insert into sponsor_games (sponsor_id, game_id) values (7, 7);
-insert into sponsor_games (sponsor_id, game_id) values (5, 1);
-insert into sponsor_games (sponsor_id, game_id) values (10, 1);
-
--- sport
-insert into sport (sport_id, sport_name, mechanics, winner, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values (1, 'soCALM Pain Relieving', 'massa id nisl venenatis lacinia aenean sit amet justo morbi ut odio', 3, '08:21:00', '17:16:00', '2016-12-03', '2017-06-05', 10, 'Round Robin', 7);
-insert into sport (sport_id, sport_name, mechanics, winner, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values (2, 'Sport Injury Complex', 'vestibulum proin eu mi nulla ac enim in tempor turpis nec', 2, '08:27:00', '17:08:00', '2016-09-01', '2017-03-17', 10, 'All or nothing', 4);
-insert into sport (sport_id, sport_name, mechanics, winner, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values (3, 'RILUZOLE', 'placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit', 4, '08:06:00', '17:25:00', '2016-06-21', '2017-05-04', 15, 'Tally Score', 6);
-insert into sport (sport_id, sport_name, mechanics, winner, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values (4, 'POTASSIUM CHLORIDE', 'ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi', 4, '08:31:00', '18:01:00', '2016-09-11', '2017-01-19', 15, 'One point each', 3);
-insert into sport (sport_id, sport_name, mechanics, winner, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values (5, 'DG Body', 'viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus', 3, '08:48:00', '17:57:00', '2016-06-21', '2016-07-20', 15, 'No points', 6);
-insert into sport (sport_id, sport_name, mechanics, winner, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values (6, 'cold and cough', 'felis donec semper sapien a libero nam dui proin leo odio', 4, '08:36:00', '18:03:00', '2017-01-24', '2017-02-16', 10, 'This is a scoring system', 2);
-insert into sport (sport_id, sport_name, mechanics, winner, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values (7, 'Rizatriptan Benzoate', 'condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique', 1, '07:14:00', '18:01:00', '2016-08-18', '2016-12-03', 10, 'who knows', 9);
-insert into sport (sport_id, sport_name, mechanics, winner, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values (8, 'Methocarbamol', 'mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec', 1, '07:33:00', '18:42:00', '2016-08-05', '2017-04-24', 20, 'Round Robin', 6);
-insert into sport (sport_id, sport_name, mechanics, winner, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values (9, 'ENALAPRIL MALEATE', 'dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut at dolor quis', 4, '07:46:00', '18:31:00', '2016-10-04', '2017-04-28', 20, 'FCFS', 8);
-insert into sport (sport_id, sport_name, mechanics, winner, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values (10, 'PERJETA', 'potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur', 1, '07:05:00', '18:18:00', '2016-11-25', '2016-12-01', 10, 'SJFS', 2);
-
--- team
-insert into team (team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values (1, 'Health Mart Z Sleep', 7, 3, 1, 1, 15);
-insert into team (team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values (2, 'Oxygen', 7, 8, 2, 1, 15);
-insert into team (team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values (3, 'Nifedipine', 10, 9, 1, 1, 20);
-insert into team (team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values (4, 'Phenylephrine Hydrochloride', 8, 2, 3,0, 20);
-insert into team (team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values (5, 'Goldenrod', 2, 5, 1,0, 20);
-insert into team (team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values (6, 'Allergy Relief', 7, 9, 2,1, 20);
-insert into team (team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values (7, 'SHISEIDO SHEER AND PERFECT FOUNDATION', 6, 8, 1,1, 20);
-insert into team (team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values (8, 'Good Sense Childrens Mucus Relief Cough', 2, 10, 2,1, 15);
-insert into team (team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values (9, 'Hemorrhoidal', 2, 6, 4,1, 15);
-insert into team (team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values (10, 'Diprivan', 4, 1, 2,1, 15);
-
--- sport_match
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (1, '08:59:00', '18:57:00', 3, '2016-06-20', 'ac enim in tempor turpis nec');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (2, '07:32:00', '17:32:00', 3, '2016-06-20', 'magna vulputate luctus cum sociis natoque penatibus');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (3, '08:48:00', '17:20:00', 7, '2016-08-22', 'cum sociis natoque penatibus et magnis dis parturient');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (4, '08:57:00', '17:01:00', 2, '2016-09-03', 'luctus cum sociis natoque penatibus et magnis');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (5, '08:40:00', '18:59:00', 9, '2016-10-09', 'velit nec nisi vulputate nonummy maecenas tincidunt');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (6, '08:55:00', '18:18:00', 10, '2016-11-30', 'ultrices posuere cubilia curae donec pharetra magna');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (7, '08:25:00', '18:02:00', 4, '2016-09-20', 'quis justo maecenas rhoncus aliquam');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (8, '07:47:00', '17:38:00', 7, '2016-08-22', 'sem mauris laoreet ut rhoncus');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (9, '07:10:00', '18:38:00', 9, '2016-10-09', 'at turpis a pede posuere nonummy');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (10, '07:14:00', '18:29:00', 3, '2016-06-20', 'nisl ut volutpat sapien arcu sed augue');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (11, '08:01:00', '17:43:00', 10, '2016-11-30', 'lectus pellentesque eget nunc donec quis');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (12, '07:40:00', '18:13:00', 6, '2017-01-28', 'ultrices posuere cubilia curae mauris viverra');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (13, '08:30:00', '17:42:00', 8, '2016-08-10', 'facilisi cras non velit nec nisi');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (14, '07:35:00', '17:03:00', 10, '2016-11-30', 'neque sapien placerat ante nulla justo');
-insert into sport_match (match_id, time_start, time_end, sport_id, match_date, remarks) values (15, '08:46:00', '17:10:00', 6, '2017-01-28', 'dui vel nisl duis ac nibh');
+INSERT INTO user VALUES (41,'cas','$2a$10$mQYsU8J.eGmu5YeHMXbqHOPoi0g5ytid/qI1C85SOgE5HHOKHzYyy','colartssci@up.edu.ph','(327)123-3269','O',1);
+INSERT INTO user VALUES (42,'che','$2a$10$rCBgovpUKXu/gBc.JDgJB.U3N9btXkwBaFYQxYkfGbvt5H.QPObFy','colhumeco@up.edu.ph','(577)399-7885','O',1);
+INSERT INTO user VALUES (43,'ceat','$2a$10$m13mAstG.h2zlKOH2.GHUOsKCuAUl.ocv7VY40oP5/CNbO2wBmOlC','colengargtech@up.edu.ph','(160)503-6933','O',0);
+INSERT INTO user VALUES (44,'uhs','$2a$10$8bNaS32dp9fPDBiDOe4UvODXakWRr2Kosssg.ib59M9/afoU9z5su','unihealthserv@up.edu.ph','(430)228-8448','O',0);
+INSERT INTO user VALUES (45,'uho','$2a$10$1eKX/CclQfnuGO4Ee4LcNuWBgPdnu.qC/PGdSQ8DPAP5DgxYVICMm','unihousing@up.edu.ph','(560)849-2974','O',0);
+INSERT INTO user VALUES (46,'cdc','$2a$10$dPWwA4DTMPSzRZPrKd0KR.8zKLpvm/DRnu.ncnvxd9/uXbTqqvv2q','coldevcom@up.edu.ph','(363)197-8873','O',1);
+INSERT INTO user VALUES (47,'cfnr','$2a$10$Cn8.y1QlalR3mKUBoagmW.aULOCQ9898oV8FVVRBHRQuMyAF4V/yy','colfornatres@up.edu.ph','(469)532-8744','O',1);
+INSERT INTO user VALUES (48,'cvm','$2a$10$gyFHIQZBPZ/C2Sg5R7J/c.iQi07R6/52Uj4vhDMFwOHFJUzMolCM6','colvetmed@up.edu.ph','(366)499-5858','O',1);
+INSERT INTO user VALUES (49,'ca','$2a$10$29IdnI9WyfHtrdkGTtvpNuBvwQYQe/Vtx56KJsMWPN/uYE4G/qGGG','colagr@up.edu.ph','(777)683-0986','O',0);
+INSERT INTO user VALUES (50,'sesam','$2a$10$q24vwizj2C9RKMA1YubL2ufX3AygEQYWIEKbUkC/Snwn6nSk8efby','schenvscimgt@up.edu.ph','(801)260-9465','O',0);
+INSERT INTO user VALUES (51,'ics','$2a$10$TQM96kOyw2COG1rzj/SxRe0vONeIiBxlCzmar6N0QEx3SdNNiyKRG','instcomsci@up.edu.ph','(327)123-3269','O',0);
+INSERT INTO user VALUES (52,'mainlib','$2a$10$lgEsDVS5j42NjwraMO22qeHVOxc.n4FhD0ypryryVXR1qeYNCLuWO','elib@up.edu.ph','(469)532-8744','O',0);
+INSERT INTO user VALUES (53,'chancy','$2a$10$sA3lCqpyuztBTulSvOif3OEfgGmbPbAMztEvNrL3F9zoRwDyexzk.','fcsanchez@up.edu.ph','(366)499-5858','O',0);
+INSERT INTO user VALUES (54,'dean','$2a$10$7vXAaE5EtzFFvtCy1FXE1OKACB/GGbhihaMQJENpNN8cmDIZG50j6','fplansigan@up.edu.ph','(777)683-0986','O',1);
+INSERT INTO user VALUES (55,'sir_jimmy','$2a$10$184HZGZX/z5HDOMdcH5Gxu41AVOfaNNnmJLgrmvH55V.landd7lWu','jmsamaniego@up.edu.ph','(801)260-9465','O',0);
 
 
--- team_in_match
-insert into team_in_match (match_id, team_id) values (12, 9);
-insert into team_in_match (match_id, team_id) values (4, 10);
-insert into team_in_match (match_id, team_id) values (3, 10);
-insert into team_in_match (match_id, team_id) values (4, 6);
-insert into team_in_match (match_id, team_id) values (11, 2);
-insert into team_in_match (match_id, team_id) values (2, 10);
-insert into team_in_match (match_id, team_id) values (14, 4);
-insert into team_in_match (match_id, team_id) values (9, 10);
-insert into team_in_match (match_id, team_id) values (7, 7);
-insert into team_in_match (match_id, team_id) values (12, 6);
-insert into team_in_match (match_id, team_id) values (6, 4);
-insert into team_in_match (match_id, team_id) values (15, 6);
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(11, '1997-02-22', 'Coubeili', 'Cepe', 'Beili', 'F','coubeili cepe competitor | free spirit');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(12, '1997-08-22', 'Ralph', 'Reyes', 'Ralphy', 'M', 'ralph reyes competitor | Penguin | BSCS | BattleCity');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(13, '1997-09-30', 'Adrian', 'Noel', 'Adre', 'M', 'adrian noel competitor | Do I look like I know what Im doing? BSCS | WX1');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(14, '1998-04-28', 'Paula', 'Tan', 'Pola', 'F', 'paula tan competitor | BSCS | Batch "14 ');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(15, '1996-02-28', 'John Carlo', 'Ricablanca', 'JC', 'M', 'jc ricablanca competitor | whatever, I dont give a damn');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(16, '1997-10-24', 'Emy Jane', 'Cabarles', 'Emy', 'F', 'emy cabarles competitor | not an important person');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(17, '1997-11-24', 'Clark', 'Almazan', 'Clarkie', 'M', 'clark almazan competitor | circle clicker. well not now lol. pretty much some ordinary guy');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(18, '1997-04-11', 'Melbex', 'De Leon', 'Bex', 'M', 'melbex de leon competitor | Take this sinking boat and point it home');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(19, '1998-05-09', 'Brixter', 'Lumabi', 'Brix', 'M', 'brixter lumabi competitor | A tech enthusiast | Connected to the latest happenings in Computer and Mobile Technology!');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(20, '1998-09-13', 'Aleck', 'Menguito', 'Vinock', 'M', 'aleck menguito competitor | Just your average socially akward weeaboo | Im very fond of dogs and dreams');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(21, '1997-08-20', 'Yssel', 'Salvania', 'Blessy', 'F', 'yssel salvania competitor | Im very fond of dogs and dreams');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(22, '1997-04-11', 'Kenichii', 'Ana', 'Ken', 'M', 'kenichii ana competitor | **');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(23, '1998-05-12', 'Caroline', 'Tolentino', 'Carol', 'F', 'caroline tolentino competitor | BSCS | Batch "14');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(24, '1998-08-19', 'Jourish', 'Abasolo', 'Jou', 'M', 'jourish abasolo competitor | Ang gwapo ko nakakainis');
+
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(25, '1999-07-17', 'Meika Lei', 'Dane', 'Meika', 'F', 'meika dane competitor | * Official A.R.M.Y | * Tinkerbell * Aroha * Carat');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(26, '1997-11-25', 'Anton', 'Rufino', 'Anton', 'M', 'anton rufino competitor | // TODO: Insert self-flattery here');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(27, '1997-11-21', 'John Louis', 'Gosgolan', 'JLo', 'M', 'john louis gosgolan competitor | Lost, finding self.');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(28, '1997-12-31', 'Miguel', 'Castillo', 'Migui', 'M', 'miguel castillo competitor | Forever curious');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(29, '1997-10-31', 'Patricia', 'Calata', 'Patty', 'F', 'patricia calata competitor | Sigma Delta Phi 2015. tidsoptimist. space cadet. tunay, palaban, makabayan.');
+
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(30, '1998-02-13', 'Paul', 'Villaro', 'Paul', 'M', 'paul villaro competitor | Isko. 19. Kusgan na programmer. Dara-sexual.');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(31, '1994-03-19', 'Marie Betel', 'de Robles', 'Betel', 'F', 'betel de robles competitor | "Never be discouraged. Never hold back. Give everything you got. And when you fall throughout life, remember this: FALL FORWARD."');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(32, '1995-04-27', 'Manong', 'Guard', 'M.Guard', 'M', 'manong guard competitor | Here to "guard" your hearts');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(33, '1998-05-30', 'Unicorn', 'Princess', 'Unicorn', 'F', 'unicorn princess competitor | Im just a thin rhino');
+
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(34, '1999-10-29', 'Hermione', 'Granger', 'Hermi', 'F', 'hermione competitor | Its levi-O-sa ');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(35, '1996-11-12', 'Harry', 'Potter', 'Azkaban', 'M', 'harry potter competitor | Im the chosen one');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(36, '1997-12-13', 'Ron', 'Weasley','Ronner', 'M', 'ron competitor | Im not Ed Sheeran');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(37, '1998-09-14', 'Draco', 'Malfoy', 'Cola', 'M', 'draco competitor | My father will hear about that');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(38, '1999-08-01', 'Severus', 'Snape', 'Snape', 'M', 'snape competitor | "Its not a phase"');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(39, '1996-09-06', 'Albus', 'Dumbledore', 'Dumbledore', 'M', 'dumbledore competitor | Ten points to dumbledore');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(40, '1995-07-14', 'Hedwig', 'The Owl', 'Hedwig', 'M', 'hedwig competitor | Soaring in the Heavens');
+
+insert into organizer (name,description,id) VALUES('College of Arts and Sciences','To serve as a center of excellence in the basic sciences, as a cradle of humanities .',41);
+insert into organizer (name,description,id) VALUES('College of Human Ecology','The College of Human Ecology advocates and uses interdisciplinary, holistic, and integrative.',42);
+
+insert into organizer (name,description,id) VALUES('College of Engineering and Agro-Industrial Technology','Excellence in engineering education, research and extension.', 43);
+insert into organizer (name,description,id) VALUES('University Health Services','As a model of quality service management and a leader in sustainable natural resource.', 44);
+insert into organizer (name,description,id) VALUES('University Housing Office','Shall manage the University’s housing facilities and residence halls with efficiency.', 45);
+insert into organizer (name,description,id) VALUES('College of Development Communication','UPLB CDC envisions a stable, progressive, committed and responsive cooperative.',46);
+insert into organizer (name,description,id) VALUES('College of Forestry and Natural Resources','Developing globally competitive and locally-adaptive human resources imbued.',47);
+insert into organizer (name,description,id) VALUES('College of Veterinary Medicine', 'The premier veterinary institution in Asia Pacific recognized for producing world-class.',48);
+insert into organizer (name,description,id) VALUES('College of Agriculture','A premier institution of higher learning in agriculture and food sciences promoting the development.',49);
+insert into organizer (name,description,id) VALUES('School of Environmental Science and Management', 'A center of excellence in the fields of environmental science and management.',50);
+insert into organizer (name,description,id) VALUES('Institute of Computer Science','The ICS aims to produce the needed quality manpower for the software industry of the Philippines.',51);
+insert into organizer (name,description,id) VALUES('UP Los Baños Main Library','Composed of the Main Library, 8 College and 2 Special libraries, and a High School Library.',52);
+insert into organizer (name,description,id) VALUES('Chancellor Fernando C. Sanchez, Jr','Current University of the Philippines Los Baños Chancellor',53);
+insert into organizer (name,description,id) VALUES('Dr. Felino P. Lansigan','Current University of the Philippines Los Baños CAS Dean',54);
+insert into organizer (name,description,id) VALUES('Jaime M. Samaniego','Senior ICS Faculty Member',55);
+
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (1, 53, 'Palarong UPLB 2015', '2015-03-16', '2015-03-27', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (2, 51, 'PalICSihan 2015', '2015-03-29', '2015-03-29', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (3, 51, 'PalICSihan 2016', '2016-02-22', '2016-02-22', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (4, 43, 'Engineering Meet 2016', '2016-03-26', '2016-05-29', 'Freedom Park Lower Ground');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (5, 53, 'Palarong UPLB 2016', '2016-03-28', '2016-04-08', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (6, 41, 'PalaCASan 2016', '2016-10-01', '2016-10-15', 'Freedom Park Upper Ground');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (7, 43, 'Engineering Meet 2017', '2017-02-15', '2017-04-20', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (8, 53, 'Palarong UPLB 2017', '2017-03-27', '2017-04-07', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (9, 51, 'PalICSihan 2017', '2017-03-13', '2017-08-13', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (10, 45, 'PasADAhan 2017', '2017-06-15', '2017-06-18', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (11, 41, 'PalaCASan 2017', '2017-10-03', '2017-10-17', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (12, 43, 'Engineering Meet 2018', '2018-03-01', '2018-05-06', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (13, 45, 'PasADAhan 2018', '2018-06-27', '2018-07-01', ' Freedom Park Lower Ground');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (14, 41, 'PalaCASan 2018', '2018-10-01', '2018-10-15', 'Baker Hall');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (15, 43, 'Engineering Meet 2019', '2019-02-22', '2019-04-27', 'Freedom Park Lower Ground');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (16, 51, 'PalICSihan 2019', '2019-03-18', '2019-03-18', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (17, 45, 'PasADAhan 2019', '2019-06-23', '2019-06-25', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (18, 41, 'PalaCASan 2019', '2019-06-24', '2019-07-08', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (19, 41, 'PalaCASan 2020', '2020-06-04', '2020-06-18', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (20, 43, 'Engineering Meet 2020', '2020-02-21', '2021-04-03', 'To Be Announced');
+
+insert into sponsor_institution(sponsor_id, name, description) values(1, 'Angels Burger', 'Dito sa Angels Burger.. Ang unang kagat, tinapay lahat');
+insert into sponsor_institution(sponsor_id, name, description) values(2, 'High Ground Gourmet Comfort Food', 'A casual neighborhood restaurant that specializes in international and local comfort food');
+insert into sponsor_institution(sponsor_id, name, description) values(3, 'Big Ds', 'Ramenan of UPLB');
+insert into sponsor_institution(sponsor_id, name, description) values(4, 'Chooks to Go', 'Masarap Kahit Walang Sauce');
+insert into sponsor_institution(sponsor_id, name, description) values(5, 'Reyal Litson Manok', 'Mas masarap pag may sauce');
+insert into sponsor_institution(sponsor_id, name, description) values(6, 'Andoks Litson', 'Pambansang Litsong Manok');
+insert into sponsor_institution(sponsor_id, name, description) values(7, 'Bank of the Philippine Islangs(BPI)', 'We ll take you farther');
+insert into sponsor_institution(sponsor_id, name, description) values(8, 'Boysen', 'The Quality You can Trust');
+insert into sponsor_institution(sponsor_id, name, description) values(9, 'Chowking', 'Tikman ang tagumpay');
+insert into sponsor_institution(sponsor_id, name, description) values(10, 'Fita Biscuits', 'Parang Life');
+insert into sponsor_institution(sponsor_id, name, description) values(11, 'Goldilocks', 'How thoughtful, How Goldilocks');
+insert into sponsor_institution(sponsor_id, name, description) values(12, 'Jollibee', 'Bida ang saya!');
+insert into sponsor_institution(sponsor_id, name, description) values(13, 'Mercury Drug Store', 'Nakasisigurong gamot ay laging bago');
+insert into sponsor_institution(sponsor_id, name, description) values(14, 'Philippine Long Distance Company', 'Were changing lives');
+insert into sponsor_institution(sponsor_id, name, description) values(15, 'Pop Cola', 'Always tama ang timpla');
+insert into sponsor_institution(sponsor_id, name, description) values(16, 'Mikasa Sports', 'Produces best athletics balls money can buy');
+insert into sponsor_institution(sponsor_id, name, description) values(17, 'Smart Telecommunications', 'Connecting people');
+insert into sponsor_institution(sponsor_id, name, description) values(18, 'Gatorade', 'Fueling the future');
+insert into sponsor_institution(sponsor_id, name, description) values(19, 'Nike', 'Just Do It');
+insert into sponsor_institution(sponsor_id, name, description) values(20, 'Spalding', 'True to the Game');
+
+insert into sponsor_games(sponsor_id, game_id) values (1, 1);
+insert into sponsor_games(sponsor_id, game_id) values (1, 2);
+insert into sponsor_games(sponsor_id, game_id) values (2, 1);
+insert into sponsor_games(sponsor_id, game_id) values (2, 5);
+insert into sponsor_games(sponsor_id, game_id) values (2, 7);
+insert into sponsor_games(sponsor_id, game_id) values (2, 15);
+insert into sponsor_games(sponsor_id, game_id) values (3, 1);
+insert into sponsor_games(sponsor_id, game_id) values (3, 20);
+insert into sponsor_games(sponsor_id, game_id) values (5, 8);
+insert into sponsor_games(sponsor_id, game_id) values (6, 1);
+insert into sponsor_games(sponsor_id, game_id) values (6, 8);
+insert into sponsor_games(sponsor_id, game_id) values (8, 1);
+insert into sponsor_games(sponsor_id, game_id) values (10, 7);
+insert into sponsor_games(sponsor_id, game_id) values (10, 8);
+insert into sponsor_games(sponsor_id, game_id) values (10, 15);
+insert into sponsor_games(sponsor_id, game_id) values (11, 1);
+insert into sponsor_games(sponsor_id, game_id) values (12, 1);
+insert into sponsor_games(sponsor_id, game_id) values (14, 8);
+insert into sponsor_games(sponsor_id, game_id) values (15, 8);
+insert into sponsor_games(sponsor_id, game_id) values (17, 8);
+
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(1, 'Basketball', 'kill all you want','09:00','11:00','2015-03-16', '2015-03-27', 8, 'Round Robin', 1);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(2, 'VolleyBall', 'kill all you want','12:00','14:00','2015-03-29', '2015-03-29', 16, 'Single Elimination', 2);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(3, 'Baseball', 'kill all you want','08:00','11:00','2016-02-22', '2016-02-22', 4, 'Single Elimination', 3);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(4, '100 meter dash', 'kill all you want','10:00','10:30','2016-03-26', '2016-05-29', 10, 'Single Elimination', 4);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(5, 'Tug of war', 'kill all you want','07:00','10:00','2016-03-28', '2016-04-08', 8, 'Round Robin', 5);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(6, 'Chess', 'kill all you want','08:00','19:00','2016-10-01', '2016-10-15', 8, 'Round Robin', 6);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(7, 'Basketball', 'kill all you want','09:00','11:00','2017-02-15', '2017-04-20', 8, 'Round Robin', 7);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(8, 'Chess', 'kill all you want','10:00','22:00','2017-03-27', '2017-04-07', 30, 'Swedish', 8);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(9, 'Javelin throw', 'kill all you want','08:00','11:00','2017-03-13', '2017-08-13', 8, 'Single Elimination', 9);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(10, '3km Run', 'run all you can','09:00','11:00','2017-06-15', '2017-06-18', 40, 'Single Elimination', 10);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(11, 'Taekwondo', 'kick all you can','09:00','11:00','2017-10-03', '2017-10-17', 8, 'Single Elimination', 11);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(12, 'Volleyball', 'Spike all you want','11:00','15:00','2018-03-01', '2018-05-06', 8, 'Single Elimination', 12);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(13, '100 meter dash', 'run all you want','09:00','11:00','2018-06-27', '2018-07-01', 8, 'Single Elimination', 13);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(14, 'Basketball', 'kill all you want','09:00','11:00','2018-10-01', '2018-10-15', 8, 'Round Robin', 14);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(15, 'Tennis', 'kill all you want','08:00','12:00','2019-02-22', '2019-04-27', 8, 'Single Elimination', 15);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(16, 'Basketball', 'kill all you want','09:00','11:00','2019-03-18', '2019-03-18', 8, 'Round Robin', 16);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(17, 'Chess', 'kill all you want','08:00','20:00','2019-06-23', '2019-06-25', 8, 'Round Robin', 17);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(18, 'Basketball', 'kill all you want','09:00','11:00','2019-06-24', '2019-07-08', 8, 'Round Robin', 18);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(19, 'Dance sport', 'kill all you want','08:00','12:00','2020-06-04', '2020-06-18', 8, 'Single Elimination', 19);
+INSERT INTO sport(sport_id, sport_name, mechanics, time_start, time_end, start_date, end_date, max_teams, scoring_system, game_id) values(20, 'Basketball', 'kill all you want','09:00','11:00','2020-02-21', '2021-04-03', 8, 'Round Robin', 20);
+
+
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (1, "10:00", "12:00", 1, "2015-3-17");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (2, "12:00", "14:00", 2, "2015-3-29");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (3, "08:00", "11:00", 3, "2016-2-22");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (4, "10:00", "10:30", 4, "2016-3-30");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (5, "07:00", "10:00", 5, "2016-4-05");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (6, "13:00", "15:00", 1, "2015-3-17");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (7, "14:00", "16:00", 2, "2015-3-29");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (8, "12:00", "14:00", 3, "2016-2-22");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (9, "10:30", "11:00", 4, "2016-3-30");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (10, "10:00", "13:00", 5, "2016-4-05");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (11, "09:00", "11:00", 3, "2017-10-13");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (12, "11:00", "15:00", 2, "2018-3-01");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (13, "09:00", "11:00", 13, "2018-6-27");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (14, "09:00", "11:00", 14, "2018-10-01");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (15, "10:00", "12:00", 15, "2019-2-22");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (16, "09:00", "11:00", 16, "2019-3-18");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (17, "08:00", "20:00", 17, "2019-6-23");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (18, "09:00", "11:00", 18, "2019-6-24");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (19, "08:00", "12:00", 19, "2019-6-04");
+insert into sport_match(match_id, time_start, time_end, sport_id, match_date) values (20, "09:00", "11:00", 20, "2020-2-21");
+
+
+INSERT INTO organization VALUES(1, "College of Sciences"); 
+INSERT INTO organization VALUES(2, "College of Arts"); 
+INSERT INTO organization VALUES(3, "College of Music"); 
+INSERT INTO organization VALUES(4, "Young Software Scientists");
+INSERT INTO organization VALUES(5, "Angulords");
+INSERT INTO organization VALUES(6, "Some Scientists");
+INSERT INTO organization VALUES(7, "Young Geeks");
+INSERT INTO organization VALUES(8, "College of Biology");
+
+INSERT INTO organization_in_game VALUES(1,1);
+INSERT INTO organization_in_game VALUES(2,1);
+INSERT INTO organization_in_game VALUES(3,1);
+INSERT INTO organization_in_game VALUES(4,1);
+INSERT INTO organization_in_game VALUES(5,1);
+INSERT INTO organization_in_game VALUES(1,2);
+INSERT INTO organization_in_game VALUES(2,2);
+INSERT INTO organization_in_game VALUES(3,2);
+INSERT INTO organization_in_game VALUES(1,3);
+INSERT INTO organization_in_game VALUES(2,4);
+INSERT INTO organization_in_game VALUES(3,4);
+INSERT INTO organization_in_game VALUES(2,5);
+INSERT INTO organization_in_game VALUES(3,5);
+INSERT INTO organization_in_game VALUES(1,6);
+INSERT INTO organization_in_game VALUES(2,7);
+INSERT INTO organization_in_game VALUES(3,7);
+INSERT INTO organization_in_game VALUES(4,7);
+INSERT INTO organization_in_game VALUES(2,8);
+INSERT INTO organization_in_game VALUES(3,8);
+INSERT INTO organization_in_game VALUES(4,8);
+
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 1 ,'Team Avengers', 11, 1, 1, 1, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 2 ,'Team Avengers', 11, 2, 1, 0, 3);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 3 ,'Team Avengers', 11, 3, 1, 0, 5);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 4 ,'Team Avengers', 11, 4, 1, 1, 5);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 5 ,'Team Avengers', 11, 5, 1, 1, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 6 ,'Team Justice League', 32, 1, 2, 0, 5);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 7 ,'Team Justice League', 32, 2, 2, 1, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 8 ,'Team Justice League', 32, 3, 2, 0, 5);	
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 9 ,'Team KrustyKrew', 23, 1, 3, 1, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 10 ,'Team Bang', 24, 2, 4, 0, 3);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 11 ,'Team Bang', 24, 3, 4, 0, 5);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 12 ,'Team Bog', 24, 2, 5, 1, 5);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 13 ,'Team Bog', 15, 3, 5, 1, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 14 ,'Team Bangan', 21, 1, 6, 0, 5);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 15 ,'Team Secret', 16, 2, 7, 1, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 16 ,'Team Secret', 20, 3, 7, 0, 5);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 17 ,'Team Secret', 15, 4, 7, 1, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 18 ,'Team Phoenix', 21, 2, 8, 0, 5);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 19 ,'Team Phoenix', 16, 3, 8, 1, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 20 ,'Team Phoenix', 20, 4, 8, 0, 5);
+
+
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(22, 1, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(12, 1, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 1, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(14, 1, 0);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(25, 1, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(26, 2, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(17, 2, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(18, 4, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(19, 4, 0);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(12, 5, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 5, 0);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(12, 6, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 7, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(14, 7, 0);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 8, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(14, 8, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(17, 9, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(18, 9, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(19, 10, 0);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(19, 15, 1);	
+
+insert into team_in_match (match_id, team_id) values (1, 1);
+insert into team_in_match (match_id, team_id) values (1, 6);
 insert into team_in_match (match_id, team_id) values (2, 2);
-insert into team_in_match (match_id, team_id) values (10, 5);
-insert into team_in_match (match_id, team_id) values (9, 3);
-
--- team_announcement
-insert into team_announcement (team_announcement_id, team_id, announcement) values (1, 8, 'Lets get down to business, to defeat the Huns');
-insert into team_announcement (team_announcement_id, team_id, announcement) values (2, 3, 'Did they send me daughters, when I asked for sons?');
-insert into team_announcement (team_announcement_id, team_id, announcement) values (3, 9, 'Youre the saddest bunch I ever met');
-insert into team_announcement (team_announcement_id, team_id, announcement) values (4, 6, 'But you can bet before were through');
-insert into team_announcement (team_announcement_id, team_id, announcement) values (5, 8, 'Mister, Ill make a man out you');
-insert into team_announcement (team_announcement_id, team_id, announcement) values (6, 1, 'Tranquil as the forest, but on fire within');
-insert into team_announcement (team_announcement_id, team_id, announcement) values (7, 3, 'Once you find your center, you are sure to win');
-insert into team_announcement (team_announcement_id, team_id, announcement) values (8, 1, 'Youre a spineless, pale, pathetic lot');
-insert into team_announcement (team_announcement_id, team_id, announcement) values (9, 10, 'And you havent got a clue');
-insert into team_announcement (team_announcement_id, team_id, announcement) values (10, 3, 'Somehow Ill make a man out of you');
-
--- competitor_joins_team
-insert into competitor_joins_team (id, team_id, is_member) values (5, 7, 1);
-insert into competitor_joins_team (id, team_id, is_member) values (7, 1, 0);
-insert into competitor_joins_team (id, team_id, is_member) values (6, 2, 1);
-insert into competitor_joins_team (id, team_id, is_member) values (9, 10, 0);
-insert into competitor_joins_team (id, team_id, is_member) values (9, 9, 0);
-insert into competitor_joins_team (id, team_id, is_member) values (9, 5, 1);
-insert into competitor_joins_team (id, team_id, is_member) values (6, 9, 1);
-insert into competitor_joins_team (id, team_id, is_member) values (7, 5, 0);
-insert into competitor_joins_team (id, team_id, is_member) values (1, 2, 0);
-insert into competitor_joins_team (id, team_id, is_member) values (5, 2, 0);
-
--- team_joins_sport
-insert into team_joins_sport (team_id, sport_id, is_approved) values (5, 5, 1);
-insert into team_joins_sport (team_id, sport_id, is_approved) values (1, 1, 1);
-insert into team_joins_sport (team_id, sport_id, is_approved) values (9, 4, 0);
-insert into team_joins_sport (team_id, sport_id, is_approved) values (10, 7, 1);
-insert into team_joins_sport (team_id, sport_id, is_approved) values (6, 1, 1);
-insert into team_joins_sport (team_id, sport_id, is_approved) values (4, 8, 0);
-insert into team_joins_sport (team_id, sport_id, is_approved) values (9, 5, 1);
-insert into team_joins_sport (team_id, sport_id, is_approved) values (6, 3, 1);
-insert into team_joins_sport (team_id, sport_id, is_approved) values (1, 7, 0);
-insert into team_joins_sport (team_id, sport_id, is_approved) values (5, 4, 0);
-
--- log
-insert into log (log_id, user_id, log_msg, date_created) values (1, 1, 'eros suspendisse accumsan tortor quis turpis sed ante', '2017-3-29');
-insert into log (log_id, user_id, log_msg, date_created) values (2, 3, 'ipsum ac tellus semper interdum mauris ullamcorper purus sit amet', '2016-6-5');
-insert into log (log_id, user_id, log_msg, date_created) values (3, 6, 'est quam pharetra magna ac consequat metus', '2016-6-3');
-insert into log (log_id, user_id, log_msg, date_created) values (4, 2, 'dolor quis odio consequat varius', '2016-11-20');
-insert into log (log_id, user_id, log_msg, date_created) values (5, 4, 'in est risus auctor sed tristique in', '2016-7-22');
-insert into log (log_id, user_id, log_msg, date_created) values (6, 5, 'enim in tempor turpis nec euismod scelerisque quam turpis adipiscing', '2017-3-19');
-insert into log (log_id, user_id, log_msg, date_created) values (7, 6, 'arcu sed augue aliquam erat volutpat in congue', '2016-6-9');
-insert into log (log_id, user_id, log_msg, date_created) values (8, 2, 'turpis donec posuere metus vitae ipsum aliquam non mauris morbi', '2016-4-11');
-insert into log (log_id, user_id, log_msg, date_created) values (9, 2, 'ultrices posuere cubilia curae mauris viverra diam vitae', '2017-3-27');
-insert into log (log_id, user_id, log_msg, date_created) values (10, 5, 'nulla nunc purus phasellus in felis', '2016-11-9');
-
-
-
-
-
+insert into team_in_match (match_id, team_id) values (2, 7);
+insert into team_in_match (match_id, team_id) values (3, 3);
+insert into team_in_match (match_id, team_id) values (3, 8);
+insert into team_in_match (match_id, team_id) values (4, 4);
+insert into team_in_match (match_id, team_id) values (4, 17);
+insert into team_in_match (match_id, team_id) values (5, 5);
+insert into team_in_match (match_id, team_id) values (5, 12);
+insert into team_in_match (match_id, team_id) values (6, 9);
+insert into team_in_match (match_id, team_id) values (6, 14);
+insert into team_in_match (match_id, team_id) values (7, 10);
+insert into team_in_match (match_id, team_id) values (7, 15);
+insert into team_in_match (match_id, team_id) values (8, 11);
+insert into team_in_match (match_id, team_id) values (8, 13);
+insert into team_in_match (match_id, team_id) values (11, 16);
+insert into team_in_match (match_id, team_id) values (11, 19);

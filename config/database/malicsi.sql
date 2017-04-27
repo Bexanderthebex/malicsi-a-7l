@@ -7,7 +7,7 @@ CREATE TABLE user (
 	username VARCHAR(50) NOT NULL,
 	password VARCHAR(60) NOT NULL,
 	email VARCHAR(254) NOT NULL,
-	contact VARCHAR(15),
+	contact VARCHAR(20),
 	type CHAR(1) NOT NULL,
 	is_active BOOLEAN NOT NULL,
 	PRIMARY KEY (id),
@@ -19,7 +19,7 @@ CREATE TABLE competitor (
 	birthday DATE NOT NULL,
 	first_name VARCHAR(30) NOT NULL,
 	last_name VARCHAR(30) NOT NULL,
-	nickname VARCHAR(15) NOT NULL,
+	nickname VARCHAR(25) NOT NULL,
 	sex CHAR(1),
 	bio TEXT,
 	PRIMARY KEY (id),
@@ -36,8 +36,8 @@ CREATE TABLE competitor_sport_played (
 
 CREATE TABLE organizer (
 	id INT NOT NULL,
-	name VARCHAR(50),
-	description VARCHAR(100),
+	name VARCHAR(70),
+	description VARCHAR(120),
 	PRIMARY KEY (id),
 	FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE
 );
