@@ -22,7 +22,11 @@
             getTeamMembers: getTeamMembers,
             createTeam: createTeam,
             deleteTeam: deleteTeam,
-            getPendingRequests: getPendingRequests
+            getPendingRequests: getPendingRequests,
+            getTeamRankings: getTeamRankings,
+            listAllGames: listAllGames,
+            viewAllSportsInGame: viewAllSportsInGame,
+            viewAllOrganizationInGame: viewAllOrganizationInGame
         }
 
         return service;
@@ -111,8 +115,6 @@
 
         function getCompetitorOrganization(){
             let deferred = $q.defer();
-
-            console.log("Here mam");
             $http({
                 method: 'GET',
                 url: '/competitor/getCompetitorOrganization',
@@ -129,7 +131,6 @@
         function getCoachedTeam(){
             let deferred = $q.defer();
 
-            console.log('here service');
             $http({
                 method: 'GET',
                 url: '/team/getCoachedTeams',
@@ -146,7 +147,6 @@
         function getTeamMembers(id){
             let deferred = $q.defer();
 
-            console.log('id service: ' + id);
             $http({
                 method: 'GET',
                 params: {'team_id': id},
@@ -213,12 +213,79 @@
             return deferred.promise;
         }
 
-        function getTeamRankings(sport_id){
+        function listAllGames(){
             let deferred = $q.defer();
 
             $http({
                 method: 'GET',
+                url: '/game/viewAllGames',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        // function listAllSports(){
+        //     let deferred = $q.defer();
+
+        //     $http({
+        //         method: 'GET',
+        //         url: '/sport/viewAllSports',
+        //         headers: headers
+        //     }).then((res) => {
+        //         deferred.resolve(res);
+        //     }, (err) => {
+        //         deferred.reject(err);
+        //     });
+
+        //     return deferred.promise;
+        // }
+
+
+        function getTeamRankings(sport_id){
+            let deferred = $q.defer();
+            
+            $http({
+                method: 'GET',
                 url: '/sport/ranks/'+sport_id,
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function viewAllSportsInGame(game_id){
+            let deferred = $q.defer();
+            
+            $http({
+                method: 'GET',
+                url: '/game/viewAllSportsInGame/' + game_id,
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function viewAllOrganizationInGame(game_id){
+            console.log(game_id);
+            let deferred = $q.defer();
+            
+            $http({
+                method: 'GET',
+                params: { 'gameId': game_id },
+                url: '/game/viewAllOrganizationInGame/',               
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);

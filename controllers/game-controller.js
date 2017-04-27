@@ -134,12 +134,13 @@ exports.viewAllSportsInGame = (req, res) => {
 				else if (rows[0].length==0){
 					res.status(200).send([]);
 				}
+
 				else{
 					console.log(err.code);
-					res.status(500).send("An error occurred.");
+					return res.status(500).send("An error occurred.");
 				}
 			});
-	} else res.status(400).send("Invalid parameter.")
+	} else return res.status(400).send("Invalid parameter.")
 }
 
 exports.deleteGame = (req, res) => {
@@ -302,7 +303,8 @@ exports.viewAllOrganizationForGame = (req, res) => {
 		if (!err) {
 			return res.status(200).send(rows[0]);
 		}else{
-			res.status(500).send("Internal Server Error");
+			console.log(err);
+			return res.status(500).send("Internal Server Error");
 		}
 	})
 }
@@ -313,8 +315,10 @@ exports.viewAllOrganizationInGame = (req, res) => {
 		(err, rows) => {
 		if (!err) {
 			return res.status(200).send(rows[0]);
+
 		}else{
-			res.status(500).send("Internal Server Error");
+			console.log(err);
+			return res.status(500).send("Internal Server Error");
 		}
 	})
 }
@@ -349,12 +353,15 @@ exports.deleteOrganizationFromGame = (req, res) =>{
 
 
 exports.viewAllOngoingGames = (req, res) => {
-	let query = 'CALL view_all_ongoing_games()';
+	let query = 'CALL view_all_ongoing_games(?)';
+
 	connection.userType('A').query(query,
-		(err, rows, fields) => {
+		[
+			req.query.organizer_id
+		], (err, rows, fields) => {
 			if(!err && rows[0].length != 0){
 				return res.status(200).send(rows[0]);
-			}else if(rows[0].length ==0 ){
+			}else if(rows[0].length == 0){
 				res.status(200).send([]);
 			}else{
 				res.status(500).send("Internal Server Error Occured");
@@ -363,12 +370,15 @@ exports.viewAllOngoingGames = (req, res) => {
 }
 
 exports.viewAllUpcomingGames = (req, res) => {
-	let query = 'CALL view_all_upcoming_games()';
+	let query = 'CALL view_all_upcoming_games(?)';
+	
 	connection.userType('A').query(query,
-		(err, rows, fields) => {
+		[
+			req.query.organizer_id
+		], (err, rows, fields) => {
 			if(!err && rows[0].length != 0){
 				return res.status(200).send(rows[0]);
-			}else if(rows[0].length ==0 ){
+			}else if(rows[0].length == 0){
 				res.status(200).send([]);
 			}else{
 				res.status(500).send("Internal Server Error Occured");
@@ -377,9 +387,12 @@ exports.viewAllUpcomingGames = (req, res) => {
 }
 
 exports.viewAllRecentGames = (req, res) => {
-	let query = 'CALL view_all_recent_games()';
+	let query = 'CALL view_all_recent_games(?)';
+
 	connection.userType('A').query(query,
-		(err, rows, fields) => {
+		[
+			req.query.organizer_id
+		], (err, rows, fields) => {
 			if(!err && rows[0].length != 0){
 				return res.status(200).send(rows[0]);
 			}else if(rows[0].length ==0 ){
