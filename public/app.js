@@ -107,7 +107,7 @@
                 'caseInsensitiveMatch': true
                 // 'access': { requiredAuthentication: true }
             })
-            // .otherwise({'templateUrl': 'views/error-404-page.html'})
+            .otherwise({'templateUrl': 'views/error-404-page.html'})
 
     }
 
