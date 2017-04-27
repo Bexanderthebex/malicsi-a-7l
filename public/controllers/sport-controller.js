@@ -76,7 +76,6 @@
                 })
         }
 
-<<<<<<< HEAD
         function retrieveMatchWinner(sport_id) {
             SportService
                 .retrieveMatchWinner(sport_id) //parameter is sport id
@@ -89,10 +88,7 @@
                 })
         }
 
-        function retrieveSponsors(sport_id) {
-=======
         function viewCurrentMatch() {
->>>>>>> 1cfce0acbed469d6d2553c880fbdbb651d3738ba
             SportService
                 .viewCurrentMatch($scope.thisSport.sport_id)
                 .then(function (res){
@@ -115,7 +111,6 @@
                 }
         }
 
-        viewPastMatch();
         function viewFutureMatch(){
             SportService
                 .viewFutureMatch($scope.thisSport.sport_id)
