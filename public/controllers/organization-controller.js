@@ -61,12 +61,6 @@
                 })
         }
 
-        function setViewedGame(game){
-            $scope.viewedGameID = game.game_id;
-            retrieveTeams($scope.thisOrganization.organization_id);
-            console.log($scope.viewedGameID);
-        }
-
         function retrieveOrganization() {
             OrganizationService
                 .getOrganization($scope.thisOrganization.organization_id)
@@ -90,6 +84,13 @@
                     Materialize.toast('Error loading games');
                     console.log(err);
                 })
+        }
+
+        
+        function setViewedGame(game){
+            $scope.viewedGameID = game.game_id;
+            retrieveTeams($scope.thisOrganization.organization_id);
+            console.log($scope.viewedGameID);
         }
 
 
