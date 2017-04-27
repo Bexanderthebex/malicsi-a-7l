@@ -378,7 +378,7 @@ exports.viewAllUpcomingGames = (req, res) => {
 
 exports.viewAllRecentGames = (req, res) => {
 	let query = 'CALL view_all_recent_games()';
-	connection.userType('A').query(query,
+	connection.userType('A').query(query, 
 		(err, rows, fields) => {
 			if(!err && rows[0].length != 0){
 				return res.status(200).send(rows[0]);
@@ -390,3 +390,14 @@ exports.viewAllRecentGames = (req, res) => {
 		});
 }
 
+exports.viewGameOrganizerDetails = (req, res) => {
+	let query = 'CALL view_game_organizer_details(?)';
+	connection.userType('A').query(query, [req.query.gameId],
+		(err, rows, fields) => {
+			if(!err)
+				return res.status(200).send(rows[0]);
+			else
+				res.status(500).send("Internal Server Error");
+			
+		})
+}
