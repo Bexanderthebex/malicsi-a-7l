@@ -46,6 +46,8 @@
         $scope.listAllGames = listAllGames;
         $scope.listAllSportAndOrganization = listAllSportAndOrganization;
         $scope.deleteTeam = deleteTeam;
+        $scope.acceptMembershipRequest = acceptMembershipRequest;
+        $scope.deleteMembershipRequest = deleteMembershipRequest;
         
         function searchCompetitor(id){
             CompetitorService
@@ -182,7 +184,7 @@
                 .getCoachedTeam()
                 .then(function (res){
                     $scope.coachedteam = res.data;
-                    console.log($scope.coachedteam);
+                    // console.log($scope.coachedteam);
                 }, function(err) {
                     console.log(err);
                 })
@@ -250,6 +252,7 @@
         }
 
         function deleteTeam(){
+            // console.log($scope.team.team_id);
             CompetitorService
                 .deleteTeam($scope.team.team_id)
                 .then(function (res){
@@ -258,6 +261,47 @@
                     console.log(err);
                 })
         }
+
+        function acceptMembershipRequest(){
+            console.log($scope.pendingRequests.team_id);
+            CompetitorService
+                .acceptMembershipRequest($scope.pendingRequests.team_id)
+                .then(function (res){
+                    Materialize.toast('Application Success', 4000);
+                }, function(err) {
+                    console.log(err);
+                })
+
+            CompetitorService
+                .getPendingRequests()
+                .then(function (res){
+                    $scope.pendingRequests = res.data;
+                    console.log($scope.pendingRequests);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
+        function deleteMembershipRequest(){
+            console.log($scope.pendingRequests.team_id);
+            CompetitorService
+                .deleteMembershipRequest($scope.pendingRequests.team_id)
+                .then(function (res){
+                    Materialize.toast('Application Declined', 4000);
+                }, function(err) {
+                    console.log(err);
+                })
+
+            CompetitorService
+                .getPendingRequests()
+                .then(function (res){
+                    $scope.pendingRequests = res.data;
+                    console.log($scope.pendingRequests);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
 
     }
 })();

@@ -68,7 +68,7 @@ exports.deleteMembershipRequest = (req, res) => {
     
     connection.userType('A').query(query, 
         [
-            req.body.id,
+            currentUser.id,
             req.body.team_id
         ], (err, rows) => {
                 if(!err) {
@@ -86,7 +86,7 @@ exports.acceptMembershipRequest = (req, res) => {
     
     connection.userType('A').query(query, 
         [
-            req.body.id,
+            currentUser.id,
             req.body.team_id
         ], (err, rows) => {
                 if(!err) {
