@@ -66,7 +66,7 @@ exports.addOrganizationToGame = (req, res) =>{
 }
 
 exports.deleteOrganization = (req, res) => {
-	let query = 'call delete_organization(?)'
+	// var query = 'call delete_organization(?)'
 	connection.userType(req.session.user.type).query(query, [
 		req.body.orgId
 	],
