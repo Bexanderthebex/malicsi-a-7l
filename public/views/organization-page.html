@@ -6,22 +6,114 @@
 			<img class="valign" id="organization-logo" src="assets/team1.png">
 			<h2 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h2>
 		</div>
-		<div class="row org-handler" ng-init="retrieveTeams(thisOrganization.organization_id)"><h4 class="organization-team-handler palette-text-3 center rockwell"> Teams Handled </h4></div>
-		<!--Slider-->
-		<div class="slider4" style="box-shadow: 0!important;" >
-			<div class="slide" ng-repeat="slider in teams">
-				<div class="container organization-team-list" data-target="organization-team-info-modal" >
-					<div class="row"> 
-						<h5 class="organization-team-name palette-text-3 rockwell" id="emptyOrganization"></h5>
-						<div class="col s4 m3 l2 organization-team" ng-repeat="team in slider" ng-click="retrieveTeam(team.team_id)">
-							<img class="valign organization-team-logo" src="assets/team1.png">
-							<h5 class="organization-team-name palette-text-3 rockwell">{{ team.team_name }}</h5>
-							<span class="organization-team-info palette-text-4 rockwell"> GAME(2001) </span>
-						</div>
-					</div>
-				</div>
+		<div class="row org-search-panel palette-5">
+			<div class="col s6 m6 l6 offset-m3 container">
+				<form id="game-game-search-bar" class="search-bar-config">
+					<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
+				</form>
 			</div>
 		</div>
+
+		<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
+			<div class="col s12">
+				<ul id="organization-team-tabs" class="tabs">
+					<li class="tab col s3"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li>
+				</ul>
+			</div>
+
+			<div id="team-table-1">
+				<div id="game-table1" >
+					<a href="#/game/{{viewedGameID}}"><h5 class="rockwell strong letter-spacing-1 center">{{ viewedGame.name }}</h5></a>
+					<table>
+						<thead>
+							<tr class="telegrafico">
+								<th> Team Name </th>
+								<th> Sport </th>
+								<th> Medals Won </th>
+							</tr>
+						</thead>
+						<tbody >
+							<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id)">
+								<td>
+									<div> {{pagedTeam.team_name}} </div>
+								</td>
+								<td>
+									<div> {{pagedTeam.sport_name}} </div>
+								</td>
+								<td>
+									<div class="col s4"> {{pagedTeam.statistics.first}} {{pagedTeam.statistics.second}} {{pagedTeam.statistics.third}} </div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- <div id="game-table2">
+					<table>
+						<thead>
+							<tr class="telegrafico">
+								<th> Team </th>
+								<th> Sport </th>
+								<th> Medals Won </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="rockwell">
+								<td>
+									<span> Singko Babies </span>
+								</td>
+								<td>
+									<span> Bagsakan ng Grades </span>
+								</td>
+								<td>
+									<div class="col s4"> 3 </div>
+									<div class="col s4"> 3 </div>
+									<div class="col s4"> 3 </div> 
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="game-table3">
+					<table>
+						<thead>
+							<tr class="telegrafico">
+								<th> Team </th>
+								<th> Sport </th>
+								<th> Medals Won </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="rockwell">
+								<td>
+									<span> Team No Practicum </span>
+								</td>
+								<td>
+									<span> Hanapan 2017 </span>
+								</td>
+								<td>
+									<div class="col s4"> 3 </div>
+									<div class="col s4"> 3 </div>
+									<div class="col s4"> 3 </div> 
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div> -->
+			</div>
+			<div class="container center col s12">
+				<ul class="pagination center">
+					<!-- <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li> -->
+					<li><a href="" ng-repeat="p in pages" ng-click="setPageView(p)">{{p + 1}}</a></li>
+					<!-- <li class="waves-effect"><a href="#team-table-2">2</a></li>
+					<li class="waves-effect"><a href="#team-table-3">3</a></li>
+					<li class="waves-effect"><a href="#team-table-4">4</a></li>
+					<li class="waves-effect"><a href="#team-table-5">5</a></li> -->
+					<!-- <li class="waves-effect"><a href="#team-table-6"><i class="material-icons">chevron_right</i></a></li> -->
+				</ul>
+			</div>
+
+		</div>
+		<!--<div class="row org-handler" ng-init="retrieveTeams(1)"><h4 class="organization-team-handler palette-text-3 center rockwell"> Teams Handled </h4></div>-->
 
 		<div id="organization-team-info-modal" class="modal modal-fixed-footer">
 			<div class="modal-content">
@@ -117,45 +209,9 @@
 			</div>
 		</div>
 		<!--Recent games label-->
-		<div class="row recent-games-label center-align"> 
-			<h4 class="rockwell palette-text-3 organization-team-handler"> Recent Games </h4>
-			
-		</div>
-		<!--Recent games modal-->
-		<div class="row container" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
-			<div class="col s3 m3 l3 center-align recent-games-card" ng-repeat="game in gamesInOrganization.slice(0, 3)">
-				<a href="#/game/{{game.game_id}}">
-				<h4 class="rockwell strong palette-text-4">{{game.name}}</h4>
-				<span class="century-gothic secondary-text"> {{ game.description }} </span>
-				</a>
-			</div>
-			<div class="col s3 m3 l2 center-align recent-games-card see-more">
-				<button href="" data-target="organization-allgames-modal" class="minimalist-button"> See more </button>
-			</div>
-		</div>
-		<!--All games modal-->
-		<div id="organization-allgames-modal" class="modal modal-fixed-footer">
-			<div class="modal-content" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
-				<div class="row">
-					<h4 class="rockwell strong palette-text-3 center">Games Participated</h4>
-				</div>
-				<div class="row">
-					<div class="col s4 m4 l4 center-align all-games-card" ng-repeat="game in gamesInOrganization">
-						<a href="#/game/{{game.game_id}}">
-						<h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
-						<span class="century-gothic secondary-text"> {{ game.description }} </span>
-						<p class="century-gothic secondary-text"> {{ game.start_date }} </p>
-						<p class="century-gothic secondary-text"> {{ game.location }} </p>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button href="" class="modal-action modal-close minimalist-button right">Close</button>
-			</div>
-		</div>
 	</div>
 </div>
 
 <script type="text/javascript" src="../js/organization-page.js"></script>
-<script type="text/javascript" src="../controllers/organization-controller.js"></script>
+<script type="text/javascript" src="../controllers/organization-controller.js"></script> 
+<script type="text/javascript" src="../js/competitor-profile-page.js"></script>

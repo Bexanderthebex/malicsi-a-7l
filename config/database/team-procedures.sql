@@ -124,7 +124,7 @@ DELIMITER //
 
 CREATE PROCEDURE get_teams_on_organization (IN org_id INT)
 	BEGIN
-	   SELECT * FROM team  WHERE team_organization = org_id;
+	   SELECT * FROM team join sport on team.sport_id = sport.sport_id WHERE team_organization = org_id;
 	END; //
 DELIMITER ;
 
@@ -134,7 +134,7 @@ DELIMITER //
 
 CREATE PROCEDURE display_pending_membership_request(IN owner_idin INT)
 	BEGIN
-		SELECT first_name, last_name, team_id, team_name, sport_name FROM competitor, sport s join team JOIN competitor_joins_team using(team_id) 
+		SELECT competitor.id, first_name, last_name, team_id, team_name, sport_name FROM competitor, sport s join team JOIN competitor_joins_team using(team_id) 
 		WHERE s.sport_id = team.sport_id AND competitor.id = competitor_joins_team.id AND team.id = owner_idin AND is_member = 0;
 	END; //
 DELIMITER ;

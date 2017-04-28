@@ -42,7 +42,7 @@
                                 <div id="stats-panel" class="container">
                                     <div id="wins-badge" class="circle container valign-wrapper">
                                         <div class="valign center-block">
-                                            <div id="wins-stat" class="center-align">9</div>
+                                            <div id="wins-stat" class="center-align">{{rankings.first}}</div>
                                             <div class="telegrafico">FIRST</div>
                                         </div>
                                     </div>
@@ -50,7 +50,7 @@
                                         <div class="col l6 m6 s6 center-block">
                                             <div id="draws-badge" class="stats-badge circle container valign-wrapper">
                                                 <div class="valign center-block">
-                                                    <div class="stats-num center-align">4</div>
+                                                    <div class="stats-num center-align">{{rankings.second}}</div>
                                                     <div class="stat-desc telegrafico">SECOND</div>
                                                 </div>
                                             </div>
@@ -58,7 +58,7 @@
                                         <div class="col l6 m6 s6 center-block">
                                             <div id="losses-badge" class="stats-badge circle container valign-wrapper">
                                                 <div class="valign center-block">
-                                                    <div class="stats-num center-align">4</div>
+                                                    <div class="stats-num center-align">{{rankings.third}}</div>
                                                     <div class="stat-desc telegrafico">THIRD</div>
                                                 </div>
                                             </div>
@@ -68,9 +68,10 @@
                             </div>
                                 
                             <div class="row center">
-                                <div class="input-field col l6 m6 s6 offset-l3 offset-m3 offset-s3">
-                                    <select class="browser-default minimalist-button" value="Sport" ng-model="sport_id" ng-options="sport.sport_name for sport in competitorteams" ng-click="getTeamRankings()">
+                                <div class="input-field col l12 m12 s12 ">
+                                    <select class="browser-default minimalist-button" ng-click="getTeamRankings()" ng-model="RankingSportID">
                                         <option value="" selected disabled>Sports</option>
+                                        <option value="{{sport.sport_id}}" ng-repeat="sport in competitorteams" >{{sport.sport_name}}</option>
                                     </select>
                                 </div>  
                             </div>
@@ -87,15 +88,15 @@
                             <thead>
                                 <tr class="white-text palette-3 telegrafico">
                                     <th>Team Name</th>
-                                    <th class="center">Sports</th>
-                                    <th class="center">Game</th>
+                                    <th class="centered">Sports</th>
+                                    <th class="centered">Game</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="century-gothic" ng-repeat="team in competitorteams">
                                     <td>{{team.team_name}}</td>
-                                    <td class="center">{{team.sport_name}}</td>
-                                    <td class="center">{{team.game_name}}</td>
+                                    <td class="centered"><a href="#/sports/{{team.sport_id}}">{{team.sport_name}}</a></td>
+                                    <td class="centered"><a href="#/game/{{team.game_id}}">{{team.name}}</a></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -114,9 +115,10 @@
                     <div class="col s3 m3 l2 push-s9 push-m9 push-l10 center-align recent-games-card see-more">
                         <button href="" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
                     </div>
-                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames">
+                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames | limitTo: 3"><a href="#/game/{{game.game_id}}">
                         <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
                         <span class="century-gothic secondary-text">{{ game.location }}</span>
+                        </a>
                     </div>
                     <!-- <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card">
                         <h4 class="rockwell strong palette-text-4">GAME 1</h4>
@@ -146,8 +148,8 @@
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
-                <ul class="collapsible" data-collapsible="accordion" ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id)">
-                    <li>
+                <ul class="collapsible" data-collapsible="accordion" ng-click="getTeamMembers(cteam.team_id)">
+                    <li ng-repeat="cteam in coachedteam" >
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
@@ -179,10 +181,10 @@
                                 <td>{{ pr.team_name }}</td>
                                 <td>
                                     <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Applicant" data-target="competitor-accept-applicant-modal">
-                                        <i class="fa fa-check fa-lg" ng-click="pendingRequests.team_id=pr.team_id; pendingRequests.first_name=pr.first_name; pendingRequests.team_name=pr.team_name"></i>
+                                        <i class="fa fa-check fa-lg" ng-click="pendingRequests.team_id=pr.team_id; pendingRequests.id=pr.id; pendingRequests.first_name=pr.first_name; pendingRequests.team_name=pr.team_name"></i>
                                     </div>
                                     <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Applicant" data-target="competitor-decline-applicant-modal">
-                                        <i class="fa fa-times fa-lg" ng-click="pendingRequests.team_id=pr.team_id; pendingRequests.first_name=pr.first_name; pendingRequests.team_name=pr.team_name"></i>
+                                        <i class="fa fa-times fa-lg" ng-click="pendingRequests.team_id=pr.team_id; pendingRequests.id=pr.id; pendingRequests.first_name=pr.first_name; pendingRequests.team_name=pr.team_name"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -368,46 +370,7 @@
             </div>
         </div>
     </div>  
-    <div class="modal-content">
-        <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col l6 m6 s12">
-                        <span class="telegrafico">Team Name</span>
-                        <input placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name">
-                    </div>
-                    <div class="input-field col l6 m6 s12" ng-init="listAllGames()">
-                        <span class="telegrafico">Game</span>
-                        <select class="browser-default" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">                            
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col l6 m6 s12">
-                        <span class="telegrafico">Sports</span>
-                        <select class="browser-default" ng-model="team.sport_id" ng-options="sport.sport_name for sport in sports">
-                            <option selected disabled class="white black-text" value="">&nbsp;</option>
-                            <!-- <option class="" value="1" ng-selected="team.sport_id">Basketball</option>
-                            <option class="" value="2" ng-selected="team.sport_id">Volleyball</option>
-                            <option class="" value="3" ng-selected="team.sport_id">Baseball</option>
-                            <option class="" value="4" ng-selected="team.sport_id">100-meter dash</option>
-                            <option class="" value="5" ng-selected="team.sport_id">Tug of war</option> -->
-                        </select>
-                    </div>
-                    <div class="input-field col l6 m6 s12">
-                        <span class="telegrafico">Organization</span>
-                        <select class="browser-default" ng-model="team.team_organization" ng-options="organization.name for organization in organizations">
-                            <option selected disabled class="white black-text" value="">&nbsp;</option>
-                            <!-- <option class="white black-text" value="1" ng-selected="team.team_organization">College of Sciences</option>
-                            <option class="white black-text" value="2" ng-selected="team.team_organization">College of Arts</option>
-                            <option class="white black-text" value="3" ng-selected="team.team_organization">College of Music</option> -->
-                        </select>
-                    </div>
-                   <div class="input-field col l6 m6 s12">
-                        <span class="telegrafico">Max Members</span>
-                        <input placeholder="" id="max_members" type="text" class="validate" ng-model="team.max_members">
-                    </div>
-    </div>
+
     <div class="modal-footer palette-5 right-align">
         <button href="" class="modal-action modal-close minimalist-button" ng-click="createTeam()">CREATE</button>
     </div>
@@ -590,7 +553,7 @@
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="deleteTeam()">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="deleteTeam(team.team_id)">YES</button>
         <button href="" class="modal-action modal-close minimalist-button">NO</button>
     </div>
 </div>

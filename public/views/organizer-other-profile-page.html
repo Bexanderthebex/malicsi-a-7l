@@ -20,19 +20,27 @@
 
         <div id="org-profile-div" class="col s12">
             <div class="row container">
-            <!-- Games Handled -->
-                <div class="row">
-                    <!-- P A S T GAMES -->
-                    <div id="sports-past-matches" class="col s4">
-                        <h5 class="telegrafico center">PAST GAMES ({{ pastGames.length }})</h5>
+                <!-- Games Handled -->
+                <div id="sports-matches">
+                    <div class="row" style="margin: 0; margin-top: 20px;">
+                        <h4 class="rockwell center strong" style="margin: 0!important;">Games Handled</h4>
+                    </div>
+                    <div class="row">
 
-                        <!-- LIST OF GAMES -->
-                        <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getPublicOrganizerPastGames()">
-                            <div class="sports-match palette-border-5" ng-repeat="game in pastGames">
-                                <a href="#/game/{{game.game_id}}">
-                                <!-- GAME TITLE -->
+                        <!-- P A S T GAMES -->
+                        <div id="sports-past-matches" class="col s4">
+                            <h5 class="telegrafico center">PAST GAMES ({{ games.length }})</h5>
+
+                            <!-- LIST OF GAMES -->
+                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;">
+                                <div class="sports-match palette-border-5" ng-repeat="game in games">
+                                    <!-- GAME TITLE -->
                                     <div class="sports-match-title row">
                                         <div class="telegrafico col s10">{{ game.name }}</div>
+                                        <div class="telegrafico col s1" data-target="organizer-update-game-modal">
+                                            <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
+                                        <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
+
                                     </div>
 
                                     <!-- GAME INFO -->
@@ -46,22 +54,23 @@
                                     <div class="sports-match-info">
                                         Location: {{ game.location }}
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- O N  G O I N G GAMES -->
-                    <div id="sports-ongoing-matches" class="col s4">
-                        <h5 class="telegrafico center">ON-GOING GAMES ({{ ongoingGames.length }})</h5>
+                        <!-- O N  G O I N G GAMES -->
+                        <div id="sports-ongoing-matches" class="col s4">
+                            <h5 class="telegrafico center">ON-GOING GAMES ({{ games.length }})</h5>
 
-                        <!-- LIST OF GAMES -->
-                        <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getPublicOrganizerOngoingGames()">
-                            <div class="sports-match palette-border-3" ng-repeat="game in ongoingGames">
-                                <!-- GAME TITLE -->
-                                <a href="#/game/{{game.game_id}}">
+                            <!-- LIST OF GAMES -->
+                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;">
+                                <div class="sports-match palette-border-3" ng-repeat="game in games">
+                                    <!-- GAME TITLE -->
                                     <div class="sports-match-title row">
                                         <div class="telegrafico col s10">{{ game.name }}</div>
+                                        <div class="telegrafico col s1" data-target="organizer-update-game-modal">
+                                            <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
+                                        <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
                                     </div>
 
                                     <!-- GAME INFO -->
@@ -75,22 +84,23 @@
                                     <div class="sports-match-info">
                                         Location: {{ game.location }}
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- U P C O M I N G GAMES -->
-                    <div id="sports-upcoming-matches" class="col s4">
-                        <h5 class="telegrafico center">UPCOMING GAMES ({{ upcomingGames.length }})</h5>
+                        <!-- U P C O M I N G GAMES -->
+                        <div id="sports-upcoming-matches" class="col s4">
+                            <h5 class="telegrafico center">UPCOMING GAMES ({{ games.length }})</h5>
 
-                        <!-- LIST OF GAMES -->
-                        <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getPublicOrganizerUpcomingGames()">
-                            <div class="sports-match palette-border-4" ng-repeat="game in upcomingGames">
-                                <!-- GAME TITLE -->
-                                <a href="#/game/{{game.game_id}}">
+                            <!-- LIST OF GAMES -->
+                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;">
+                                <div class="sports-match palette-border-4" ng-repeat="game in games">
+                                    <!-- GAME TITLE -->
                                     <div class="sports-match-title row">
                                         <div class="telegrafico col s10">{{ game.name }}</div>
+                                        <div class="telegrafico col s1" data-target="organizer-update-game-modal">
+                                            <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
+                                        <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
                                     </div>
 
                                     <!-- GAME INFO -->
@@ -104,14 +114,13 @@
                                     <div class="sports-match-info">
                                         Location: {{ game.location }}
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <!-- <div class="row organizer-footer black">
             <div class="black">
@@ -125,124 +134,6 @@
     </div>
 
 </div>
-
-<!-- Ongoing Games Modal -->
-<div id="organizer-ongoing-modal" class="modal modal-fixed-footer">
-    <div class="row organizer-modal-style">
-        <div class="row remove-bottom">
-            <div class="col s12 padding-left padding-right palette-5">
-                <div class="center">
-                    <br>
-                        <div class="card-title white-text center rockwell">
-                            <h5>Ongoing Games</h5>
-                        </div>
-                    <br>
-                </div>
-            </div>
-        </div> 
-        <table class="highlight responsive-table">
-            <tbody>
-                <tr class="century-gothic" ng-repeat="game in ongoingGames">
-                    <a href="#/game/{{game.game_id}}">
-                        <td> {{ game.name }}</td>
-                        <td> {{ game.start_date| date:"longDate" }}</td>
-                        <td> {{ game.location }}</td>
-                    <!-- <td>
-                        <div class="organizer-actions" data-target="organizer-update-game-modal">
-                            <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
-                        </div>
-                        <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                            <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
-                        </div>
-                    </td> -->
-                    </a>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
-    </div>
-</div>
-
-<!-- Incoming Games Modal -->
-<div id="organizer-incoming-modal" class="modal modal-fixed-footer">
-    <div class="row organizer-modal-style">
-        <div class="row remove-bottom">
-            <div class="col s12 padding-left padding-right palette-5">
-                <div class="center">
-                    <br>
-                        <div class="card-title white-text center rockwell">
-                            <h5>Incoming Games</h5>
-                        </div>
-                    <br>
-                </div>
-            </div>
-        </div>  
-        <table class="highlight responsive-table">
-            <tbody>
-                <tr class="century-gothic" ng-repeat="game in upcomingGames">
-                    <a href="#/game/{{game.game_id}}">
-                        <td> {{ game.name }}</td>
-                        <td> {{ game.start_date| date:"longDate" }}</td>
-                        <td> {{ game.location }}</td>
-                    <!-- <td>
-                        <div class="organizer-actions" data-target="organizer-update-game-modal">
-                            <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
-                        </div>
-                        <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                            <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
-                        </div>
-                    </td> -->
-                    </a>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
-    </div>
-</div>
-
-<!-- Past Games Modal -->
-<div id="organizer-past-modal" class="modal modal-fixed-footer">
-    <div class="row organizer-modal-style">
-        <div class="row remove-bottom">
-            <div class="col s12 padding-left padding-right palette-5">
-                <div class="center">
-                    <br>
-                        <div class="card-title white-text center rockwell">
-                            <h5>Past Games</h5>
-                        </div>
-                    <br>
-                </div>
-            </div>
-        </div>  
-        <table class="highlight responsive-table">
-            <tbody>
-                <tr class="century-gothic" ng-repeat="game in pastGames">
-                    <a href="#/game/{{game.game_id}}">
-                        <td> {{ game.name }}</td>
-                        <td> {{ game.start_date| date:"longDate" }}</td>
-                        <td> {{ game.location }}</td>
-                    <!-- <td>
-                        <div class="organizer-actions" data-target="organizer-update-game-modal">
-                            <i class="fa fa-pencil-square-o fa-lg" ng-click="copyGame(game)"></i>
-                        </div>
-                        <div class="organizer-actions" data-target="organizer-delete-game-modal">
-                            <i class="fa fa-minus-square fa-lg" ng-click="copyGame(game)"></i>
-                        </div>
-                    </td> -->
-                    </a>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
-    </div>
-</div>
-
 <!--  Scripts-->
 <script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>
 <script type="text/javascript" src="../js/organizer-profile-page.js"></script>

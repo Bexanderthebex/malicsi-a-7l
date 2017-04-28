@@ -63,13 +63,14 @@ exports.teamMembershipRequest = (req, res) => {
 }
 
 exports.deleteMembershipRequest = (req, res) => {
-    currentUser = req.session.user;
-    query = "CALL delete_membership_request(?,?)";
     
+    query = "CALL delete_membership_request(?,?)";
+    console.log(req.query.id);
+    console.log(req.query.team_id);
     connection.userType('A').query(query, 
         [
-            req.body.id,
-            req.body.team_id
+            req.query.id,
+            req.query.team_id
         ], (err, rows) => {
                 if(!err) {
                     return res.status(200).send({ 'message' : 'Sucessfully deleted request'});
@@ -81,13 +82,13 @@ exports.deleteMembershipRequest = (req, res) => {
 }
 
 exports.acceptMembershipRequest = (req, res) => {
-    currentUser = req.session.user;
+
     query = "CALL accept_membership_request(?,?)";
     
     connection.userType('A').query(query, 
         [
-            req.body.id,
-            req.body.team_id
+            req.query.id,
+            req.query.team_id
         ], (err, rows) => {
                 if(!err) {
                     return res.status(200).send({ 'message' : 'Sucessfully accepted request'});
@@ -98,12 +99,12 @@ exports.acceptMembershipRequest = (req, res) => {
      );
 }
 exports.getMembershipRequest = (req, res) => {
-    currentUser = req.session.user;
+    
     query = "CALL get_membership_request(?,?)";
     
     connection.userType('A').query(query, 
         [
-            currentUser.id,
+            req.query.id,
             req.query.team_id
         ], (err, rows) => {
             if(!err) {

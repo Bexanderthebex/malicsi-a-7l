@@ -13,26 +13,21 @@
                 <p class="telegrafico">
                     {{ competitor.bio }}
                 </p>
-                <div class="row">
-                    <div class="col l3 m2 s12 offset-l9">
-                        <button class="minimalist-button-org" id="edit-profile-button" data-target="invite-to-teams-modal">INVITE TO TEAMS</button>
-                    </div>
-                </div>
             </div>        
         </div>
         <div id="profile-div" class="col s12">
             <div class="row container">
                 <div class="col s12 m5 l4">
                     <!-- Statistics -->
-                    <h5 class="rockwell">Statistics</h5>
-                    <div class="row palette-border-5" id="visited-competitor-profile-add-game">
-                        <div id="visited-competitor-stats-panel" class="grey lighten-2 col l12 m12 s12">
+                    <h5 class="rockwell center">Statistics</h5>
+                    <div class="row palette-border-5" id="competitor-profile-add-game">
+                        <div id="competitor-stats-panel" class="grey lighten-2 col l12 m12 s12">
                             <div class="row">
                                 <br>
                                 <div id="stats-panel" class="container">
                                     <div id="wins-badge" class="circle container valign-wrapper">
                                         <div class="valign center-block">
-                                            <div id="wins-stat" class="center-align">9</div>
+                                            <div id="wins-stat" class="center-align">{{rankings.first}}</div>
                                             <div class="telegrafico">FIRST</div>
                                         </div>
                                     </div>
@@ -40,7 +35,7 @@
                                         <div class="col l6 m6 s6 center-block">
                                             <div id="draws-badge" class="stats-badge circle container valign-wrapper">
                                                 <div class="valign center-block">
-                                                    <div class="stats-num center-align">4</div>
+                                                    <div class="stats-num center-align">{{rankings.second}}</div>
                                                     <div class="stat-desc telegrafico">SECOND</div>
                                                 </div>
                                             </div>
@@ -48,7 +43,7 @@
                                         <div class="col l6 m6 s6 center-block">
                                             <div id="losses-badge" class="stats-badge circle container valign-wrapper">
                                                 <div class="valign center-block">
-                                                    <div class="stats-num center-align">4</div>
+                                                    <div class="stats-num center-align">{{rankings.third}}</div>
                                                     <div class="stat-desc telegrafico">THIRD</div>
                                                 </div>
                                             </div>
@@ -58,14 +53,10 @@
                             </div>
                                 
                             <div class="row center">
-                                <div class="input-field col l6 m6 s6 offset-l3 offset-m3 offset-s3">
-                                    <select class="browser-default minimalist-button">
+                                <div class="input-field col l12 m12 s12 ">
+                                    <select class="browser-default minimalist-button" ng-click="getTeamRankings()" ng-model="RankingSportID">
                                         <option value="" selected disabled>Sports</option>
-                                        <option class="white black-text" value="">Basketball</option>
-                                        <option class="white black-text" value="">Baseball</option>
-                                        <option class="white black-text" value="">Football</option>
-                                        <option class="white black-text" value="">Swimming</option>
-                                        <option class="white black-text" value="">Hockey</option>
+                                        <option value="{{sport.sport_id}}" ng-repeat="sport in competitorteams" >{{sport.sport_name}}</option>
                                     </select>
                                 </div>  
                             </div>
@@ -75,63 +66,29 @@
 
                 <!-- Affiliations -->
                 <div class="col s12 m7 l8">
-                    <h5 class="rockwell">Affiliations</h5>
-                    
-                    <ul class="tabs tabs-fixed-width telegrafico" id="visited-competitor-profile-games">
-                        <li class="tab col s4"><a class="white-text" href="#visited-competitor-teams">TEAMS</a></li>
-                        <li class="tab col s4"><a class="white-text" href="#visited-competitor-organizations">ORGANIZATIONS</a></li>
-                        <!--div class="indicator white" style="z-index: 1"></div-->
-                    </ul>
-
-	                <div id="visited-competitor-teams" class="col s12 affiliation-div" ng-init="getCompetitorTeamsPublic(thisCompetitor.id)">
-                        <div class="tablewrapper">
-                            <table class="highlight responsive-table visited-competitor-games-data">
-    	                        <tbody>
-    	                            <tr class="century-gothic" ng-repeat="team in competitorteams">
-    	                                <td>{{team.team_name}}</td>
-    	                                <td>{{team.sport_name}}</td>
-    	                            </tr>
-    	                        </tbody>
-    	                    </table>
-                        </div> 
-                        <table class="highlight organizer-showall">
+                    <h5 class="rockwell center">Affiliations</h5>
+                    <div class="tablewrapper">
+                        <table class="bordered highlight" ng-init="getCompetitorTeamsPublic()">
+                            <thead>
+                                <tr class="white-text palette-3 telegrafico">
+                                    <th>Team Name</th>
+                                    <th class="centered">Sports</th>
+                                    <th class="centered">Game</th>
+                                </tr>
+                            </thead>
                             <tbody>
-                                <tr>
-                                    <td class="center-align century-gothic white-text palette-3" id="organizer-ongoing-showall" data-target="organizer-ongoing-modal">&nbsp;</td>
+                                <tr class="century-gothic" ng-repeat="team in competitorteams">
+                                    <td>{{team.team_name}}</td>
+                                    <td class="centered"><a href="#/sports/{{team.sport_id}}">{{team.sport_name}}</a></td>
+                                    <td class="centered"><a href="#/game/{{team.game_id}}">{{team.name}}</a></td>
                                 </tr>
                             </tbody>
                         </table>
-	                </div>
-	                <div id="visited-competitor-organizations" class="col s12 affiliation-div">
-	                    <div class="tablewrapper">
-                            <table class="highlight responsive-table visited-competitor-games-data">
-    	                        <tbody>
-    	                            <tr class="century-gothic">
-    	                                <!--td>{{team.organization}}</td-->
-    	                            </tr>
-    	                        </tbody>
-    	                    </table>
-                        </div>
-                        <table class="highlight organizer-showall">
-                            <tbody>
-                                <tr>
-                                    <td class="center-align century-gothic white-text palette-3" id="organizer-ongoing-showall" data-target="organizer-ongoing-modal">&nbsp;</td>
-                                </tr>
-                            </tbody>
-                        </table>
-	                </div>
-	            </div>
-	        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- Sports Played -->
-            <div class="row container" ng-init="getvisited-competitorTeams()">
-                <h5 class="rockwell">Sports Played</h5><br>    
-                <div class="chip" ng-repeat="sport in visited-competitorteams">{{sport.sport_name}}</div>
-                <!-- <div class="chip">Baseball</div>
-                <div class="chip">Football</div>
-                <div class="chip">Swimming</div>
-                <div class="chip">Hockey</div> -->
-            </div><br>
 
             <div class="divider container"></div><br>
 
@@ -140,11 +97,12 @@
                 <h5 class="rockwell left-align">Games Participated</h5><br>    
                 <div class="row" ng-init="getCompetitorGames()">
                     <div class="col s3 m3 l2 push-s9 push-m9 push-l10 center-align recent-games-card see-more">
-                        <button href="" data-target="visited-competitor-allgames-modal" class="minimalist-button"> See more </button>
+                        <button href="" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
                     </div>
-                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames | limitTo: 3">
+                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames | limitTo: 3"><a href="#/game/{{game.game_id}}">
                         <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
                         <span class="century-gothic secondary-text">{{ game.location }}</span>
+                        </a>
                     </div>
                     <!-- <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card">
                         <h4 class="rockwell strong palette-text-4">GAME 1</h4>
@@ -157,7 +115,7 @@
                 </div>
             </div><br>
 
-            <div class="row visited-competitor-footer black">
+            <div class="row competitor-footer black">
                 <div class="black">
                     <ul class="right hide-on-med-and-down">
                         <li><a href="#"> Help </a></li>
@@ -166,62 +124,29 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
-<!-- Invite to Teams Modal -->
-<div id="invite-to-teams-modal" class="modal">
-    <div class="modal-content competitor-header-fill century-gothic">
-		<div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Games Participated</h4>
-                        </div>
-                    <br>
-                </div>
-            </div>
         </div>
-		<div class="row">
-			<form class="col s12">
-				<div class="input-field col l12 m12 s12">
-					<p><span><input id="team-1" type="checkbox" class="checkbox-blue" name="team" value="">
-					<label class="black-text telegrafico" for="team-1" ng-model="">Team 1</label></span></p>
-					<p><span><input id="team-2" type="checkbox" class="checkbox-blue" name="team" value="">
-					<label class="black-text telegrafico" for="team-2" ng-model="">Team Two</label></span></p>
-					<p><span><input id="team-3" type="checkbox" class="checkbox-blue" name="team" value="">
-					<label class="black-text telegrafico" for="team-3" ng-model="">Team Threeeee</label></span></p>
-				</div>
-			</form>
-		</div>
-	</div>
-	<div class="divider"></div>
-	<div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Invitations Sent', 4000)">SEND</button>
-        <button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
     </div>
 </div>
 
 <!--All games participated modal-->
-<div id="visited-competitor-allgames-modal" class="modal modal-fixed-footer">
+<div id="competitor-allgames-modal" class="modal modal-fixed-footer">
     <div class="modal-content competitor-header-fill century-gothic">
         <div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Games Participated</h4>
-                        </div>
-                    <br>
+                <div class="col s12 competitor-padding-left competitor-padding-right">
+                    <div class="center palette-5">
+                        <br>
+                            <div class="card-title white-text center telegrafico" id="thicken">
+                                <h4 class="competitor-remove-bottom-modal">Games Participated</h4>
+                            </div>
+                        <br>
+                    </div>
                 </div>
             </div>
-        </div>
         <div class="row">
             <div class="col s4 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
                 <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
-                <span class="century-gothic secondary-text">{{ game.location}}</span>
+                <span class="century-gothic secondary-text">{{ game.location }}</span>
             </div>
             <!-- <div class="col s4 m4 l4 center-align all-games-card">
                 <h4 class="rockwell strong palette-text-4">GAME 1</h4>
@@ -265,6 +190,7 @@
         <button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
     </div>
 </div>
+
 
 <!--  Scripts-->
 <script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>
