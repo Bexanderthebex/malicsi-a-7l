@@ -227,3 +227,72 @@
 	color: white;
 	transition: background 0.3s;
 }
+
+/************ MODALS ************/
+.sports-match-header-fill{
+    padding: 0px !important;
+}
+
+.sports-match-remove-bottom {
+  margin-bottom: 0px !important;
+}
+
+.sports-match-padding-right {
+    padding-right: 0rem !important;
+}
+
+.sports-match-padding-left {
+    padding-left: 0rem !important;
+}
+
+.sports-match-remove-bottom-modal {
+    margin-bottom: 0px !important;
+}
+
+.sports-match-adjust-label {
+    top: -14px !important;
+    font-size: 0.8rem !important;
+}
+
+/* input tags */
+.sports-match-input-color-change input:not([type]):focus:not([readonly]),
+.sports-match-input-color-change input[type=text]:focus:not([readonly]),
+.sports-match-input-color-change input[type=date]:focus:not([readonly]),
+.sports-match-input-color-change input[type=time]:focus:not([readonly]),
+.sports-match-input-color-change textarea.materialize-textarea:focus:not([readonly]) {
+	/*
+		if kailangan niyo ng iba pang type of input, dagdag + edit niyo na lang to: [change <input-type>]
+		.sports-match-input-color-change input[type=<input-type>]:focus:not([readonly]),
+	*/
+	border-bottom: 1px solid #00415a;
+	box-shadow: 0 1px 0 0 #00415a;
+}
+
+.sports-match-input-color-change input:not([type]):focus:not([readonly]) + label,
+.sports-match-input-color-change input[type=text]:focus:not([readonly]) + label,
+.sports-match-input-color-change input[type=date]:focus:not([readonly]) + label,
+.sports-match-input-color-change input[type=time]:focus:not([readonly]) + label,
+.sports-match-input-color-change textarea.materialize-textarea:focus:not([readonly]) + label.sports-match-textarea-label-color-change {
+	/*
+		if kailangan niyo ng iba pang type of input, dagdag + edit niyo na lang to: [change <input-type>]
+		.sports-match-input-color-change input[type=<input-type>]:focus:not([readonly]) + label,
+	*/
+	color: #00415a;
+}
+
+/* input - textarea */
+.sports-match-textarea-label-color-change{
+	color: #00415a;   
+}
+
+/* radio buttons */
+.sports-match-radio-button [type="radio"]:checked + label:after,
+.sports-match-radio-button [type="radio"].with-gap:checked + label:before,
+.sports-match-radio-button [type="radio"].with-gap:checked + label:after {
+	border: 2px solid #00415a;
+}
+
+.sports-match-radio-button [type="radio"]:checked + label:after,
+.sports-match-radio-button [type="radio"].with-gap:checked + label:after {
+	background-color: #00415a;
+}

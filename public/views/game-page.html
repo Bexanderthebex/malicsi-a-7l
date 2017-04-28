@@ -123,12 +123,10 @@
 		</div>
 
 		<div class="col s9 game-main-content game-padding-left game-padding-right" ng-init="viewGameDetails()">
-			<div id="sports-title" class="rockwell ">
-				<h3 class="white-text">{{game.name}}</h3>
-				<h6 class="white-text">Start: {{game.start_date}} End: {{game.end_date}}</h6>
-				<h6 class="white-text" ng-hide="checkGameLocation()">{{game.location}}</h6>
-				<h6 class="white-text" ng-show="checkGameLocation()">No location available.</h6>
-			</div>
+				<div id="sports-title" class="rockwell ">
+			<h3 class="white-text">{{game.name}}</h3>
+			<h6 class="white-text">Start: {{game.start_date}} End: {{game.end_date}}</h6>
+		</div>
 
 		<div class="row grey lighten-3">
 			<div class="col s12">
@@ -142,6 +140,32 @@
 								<div id="game-past-match" class="col s12 m3" ng-repeat="pastMatch in pastMatches.slice(0,4)">
 									<div class="game-match palette-border-5">
 										<!-- MATCH TITLE -->
+										<div class="game-padding-left game-padding-right palette-5 center game-match-header">
+											<h5 class="telegrafico white-text">Past</h5>
+										</div>
+
+										<div class="game-match-container" >
+											<div  ng-repeat="team in pastMatch.teams">
+												<div class="col s12 m12">
+													<div class="game-match-title">
+														<div class="center century-gothic truncate">{{team.name}}</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="game-match-info">
+												Start: {{pastMatch.time_start}} • End: {{pastMatch.time_end}}
+											</div>
+											<div class="game-match-info">
+												Date: {{pastMatch.match_date}} ID: {{pastMatch.match_id}}
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- OLD PAST MATCH VIEW (2 TEAMS ONLY)
+								<div id="game-past-match" class="col s12 m3" ng-repeat="pastMatch in pastMatches.slice(0,4)">
+									<div class="game-match palette-border-5">
+										
 										<div class="game-padding-left game-padding-right palette-5 center game-match-header">
 											<h5 class="telegrafico white-text">Past</h5>
 										</div>
@@ -173,7 +197,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
 							</div>
 							<div class="row" ng-show="checkPastMatches()">
@@ -184,7 +208,32 @@
 							<div class="row" ng-hide = "checkOngoingMatches()">
 								<div id="game-ongoing-match" class="col s12 m3" ng-repeat="ongoingMatch in ongoingMatches.slice(0,4)" >
 									<div class="game-match palette-border-4">
-										<!-- MATCH TITLE -->
+										<div class="game-padding-left game-padding-right palette-4 center game-match-header">
+											<h5 class="telegrafico white-text">Ongoing</h5>
+										</div>
+
+										<div class="game-match-container">
+											<div ng-repeat="team in ongoingMatch.teams">
+												<div class="col s12 m12">
+													<div class="game-match-title">
+														<div class="center century-gothic truncate">{{team.name}}</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="game-match-info">
+												Start: {{ongoingMatch.time_start}} • End: {{ongoingMatch.time_end}}
+											</div>
+											<div class="game-match-info">
+												Date: {{ongoingMatch.match_date}}
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- OLD ONGOING MATCHES 2 TEAMS ONLY
+								<div id="game-ongoing-match" class="col s12 m3" ng-repeat="ongoingMatch in ongoingMatches.slice(0,4)" >
+									<div class="game-match palette-border-4">
 										<div class="game-padding-left game-padding-right palette-4 center game-match-header">
 											<h5 class="telegrafico white-text">Ongoing</h5>
 										</div>
@@ -216,17 +265,44 @@
 											</div>
 										</div>
 									</div>
-										</div>
-								</div>
-								<div class="row" ng-show="checkOngoingMatches()">
-										<h5 class="rockwell center">No ongoing matches.</h5>
-								</div>
+									
+								</div> -->
+							</div>
+							<div class="row" ng-show="checkOngoingMatches()">
+								<h5 class="rockwell center">No ongoing matches.</h5>
+							</div>
 						</li>
 						<li>
 							<div class="row" ng-hide="checkUpcomingMatches()">
 								<div id="game-upcoming-match" class="col s12 m3" ng-repeat= "upcomingMatch in upcomingMatches">
 									<div class="game-match palette-border-3">
-										<!-- MATCH TITLE -->
+										
+										<div class="game-padding-left game-padding-right palette-3 center game-match-header">
+											<h5 class="telegrafico white-text">Upcoming</h5>
+										</div>
+
+										<div class="game-match-container">
+											<div ng-repeat="team in upcomingMatch.teams">
+												<div class="col s12 m12">
+													<div class="game-match-title">
+														<div class="center century-gothic truncate">{{team.name}}</div>
+													</div>
+												</div>
+											</div>
+
+											<div class="game-match-info">
+												Start: {{upcomingMatch.time_start}} • End: {{upcomingMatch.time_end}}
+											</div>
+											<div class="game-match-info">
+												Date: {{upcomingMatch.match_date}}
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- OLD UPCOMING MATCHES 2 TEAMS ONLY
+								<div id="game-upcoming-match" class="col s12 m3" ng-repeat= "upcomingMatch in upcomingMatches">
+									<div class="game-match palette-border-3">
+										
 										<div class="game-padding-left game-padding-right palette-3 center game-match-header">
 											<h5 class="telegrafico white-text">Upcoming</h5>
 										</div>
@@ -258,7 +334,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 							<div class="row" ng-show="checkUpcomingMatches()">
 									<h5 class="rockwell center">No upcoming matches. </h5>
@@ -280,13 +356,13 @@
 									</div>
 									<div class="col s12 m6 offset-m3 game-padding-right">
 										<form id="game-game-search-bar">
-											<input type="search" ng-model = "query" ng-change="searchSport()">
+											<input type="search" >
 										</form>
 									</div>
 								</div>
 							</div>
 
-							<div class="row"	ng-init="retrieveAllSports()" ng-hide="checkSports()">
+							<div class="row"	ng-init="retrieveAllSports()">
 								<div class="col s4" ng-show='checkIfOrganizer()'>
 									<div class="game-sport" data-target="game-add-sport" >
 										<div class="card game-hovercard">
@@ -326,15 +402,13 @@
 												<div class="game-match-info">
 													9/{{sport.max_teams}}
 												</div>
-												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">{{sport.sport_name | lowercase}}</div>
+												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">
+														<a href="/#/sports/{{sport.sport_id}}">{{sport.sport_name | lowercase}}</a>
+												</div>
 											</div>
 										</div>
 									</div>
-               					 </div>
-							</div>
-							<div class ="row center" ng-show="checkSports()">
-								<h5 class="rockwell center">No sports here.</h5>
-								<p class="rockwell center grey-text">Please check your search query or contact your game organizer.</p>
+                </div>
 							</div>
 						</div>
 
@@ -342,31 +416,38 @@
 							<!-- <div class="row center">
 								<button href="" class="center modal-action modal-close minimalist-button" data-target="game-modify-org" ng-show='checkIfOrganizer()'>Modify Organization</button>
 							</div> -->
+
 							<div class="card-panel palette-4 game-remove-padding">
+								<p class="center game-remove-top">
+									<i class="fa fa-map-marker large"></i>
+								</p>
+								<h5 class="rockwell center white-text" ng-hide="checkGameLocation()">{{game.location}}</h5>
+								<h5 class="rockwell center white-text" ng-show="checkGameLocation()">No location available.</h5>
 								<div class="row game-remove-bottom">
-									<div class="col s12 center">
+									<div class="col s12">
+										<div class="divider divider-color"></div>
 										<p class="white-text century-gothic game-location-description" ng-hide = "checkGameDescription()">{{game.description}}</p>
-										<p class="white-text century-gothic game-location-description" ng-show = "checkGameDescription()">No description available.</p>
 									</div>
 
 									<!-- lois diane ito -->
-									<h5 class="game-remove-margin center rockwell white-text">Organizer</h5><br>
-									<div class="col s12 m12" ng-hide="<checkOrganizer()>">
+									<h5 class="game-remove-margin center rockwell white-text" ng-init="viewGameOrganizerDetails()">Organizer</h5>
+									<div class="col s12 m12">
 										<!-- presentation view -->
-										<div ng-repeat="<organizer in organizers>" style="overflow-y:auto;">
-											<p class="telegrafico game-sponsor-title white-text center" >
-											{{organizer.name}}
+										<div>
+											<p class="telegrafico game-organizer-description white-text center" >
+											Name: <br/> {{gameOrganizer.name}}
 											</p>
-											<p class="game-sponsor-description century-gothic white-text center">{{organizer.description}}</p>
+											<p class="game-organizer-description-description century-gothic white-text center">Description: <br/> {{gameOrganizer.description}}</p>
+											<p class="game-organizer-description century-gothic white-text center">Contact Number: <br/> {{gameOrganizer.contact}}</p>
+											<p class="game-organizer-description century-gothic white-text center">Email: <br/> {{gameOrganizer.email}}</p>
 										</div>
 									</div>
-									<div class="col s12 m12" ng-show="<checkOrganizer()>">
+									<!-- <div class="col s12 m12" ng-show="<checkOrganizer()>">
 										<p class="telegrafico game-sponsor-title white-text center">
 											No organizers here yet!
 										</p>
-									</div>
+									</div> -->
 									<!-- lois diane ito -->
-									
 								</div>
 							</div>
 
@@ -418,7 +499,7 @@
 										
 									</div>
 									<div class="col s12 m12" ng-show="checkSponsors()">
-										<p class="telegrafico game-sponsor-title">
+										<p class="telegrafico game-sponsor-title white-text center">
 											No sponsors here yet!
 										</p>
 									</div>
@@ -438,28 +519,30 @@
 
 
 <!-- DELETE SPONSOR MODAL -->
-<div id="game-delete-sponsor" class="modal" style="overflow-y: hidden;">
-	<div class="modal-content game-header-fill century-gothic">
-		<div class="row game-remove-bottom">
+<div id="game-delete-sponsor" class="modal" >
+	<div class="row game-remove-bottom">
+		<div class="modal-content game-header-fill century-gothic">
 			<div class="col s12 game-padding-left game-padding-right palette-5">
 				<div class="center">
 						<div class="card-title white-text center telegrafico" id="thicken">
 					 		<h5>Delete Sponsor(s) From Game</h5>
 						</div>
 				</div>
-			</div>	
-				<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
-					<div class="row" ng-repeat="sponsor in sponsors" >
-						<span class="telegrafico game-checkbox-change-color" >
-							<input type="checkbox" class="filled-in" ng-click="checkValidSponsorDel()" id="{{sponsor.sponsorId}}" ng-model="sponsor.checked"/>
-							<label for="{{sponsor.sponsorId}}">
-								<p class="game-sponsor-title">{{sponsor.name}}</p><p>{{sponsor.description}}  </p>
-							</label>
-						</span>
-					</div>
-				</div>				
-		</div>	
-	</div>
+			</div>
+		</div>
+	</div>			
+	<div class="modal-content">
+		<div class="row" ng-repeat="sponsor in sponsors" >
+			<span class="telegrafico game-checkbox-change-color" >
+				<input type="checkbox" class="filled-in" ng-click="checkValidSponsorDel()" id="{{sponsor.sponsorId}}" ng-model="sponsor.checked"/>
+				<label for="{{sponsor.sponsorId}}">
+					<p class="game-sponsor-title">{{sponsor.name}}</p><p>{{sponsor.description}}  </p>
+				</label>
+			</span>
+		</div>
+	</div>				
+			
+	
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-disabled="!validSponsorDel" data-target="game-delete-sponsor-2">NEXT</button>	
@@ -468,8 +551,9 @@
 
 <!-- DELETE SPONSOR CONFIRM MODAL -->
 <div id="game-delete-sponsor-2" class="modal">
-	<div class="modal-content game-header-fill century-gothic">
-		<div class="row game-remove-bottom">
+	<div class="row game-remove-bottom">
+		<div class="modal-content game-header-fill century-gothic">
+		
 			<div class="col s12 game-padding-left game-padding-right">
 				<div class="center palette-5">
 					<br>
@@ -492,7 +576,7 @@
 </div>
 
 <!-- DELETE ORGANIZATION MODAL -->
-<div id="game-delete-organization" class="modal" style="overflow-y: hidden;">
+<div id="game-delete-organization" class="modal" >
 	<div class="modal-content game-header-fill century-gothic">
 		<div class="row game-remove-bottom">
 			<div class="col s12 game-padding-left game-padding-right palette-5">
@@ -502,17 +586,18 @@
 						</div>
 				</div>
 			</div>	
-				<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
-					<div class="row" ng-repeat="organization in participatingOrgs" >
-						<span class="telegrafico game-checkbox-change-color" >
-							<input type="checkbox" class="filled-in" ng-click="checkValidOrgDel()" id="org{{organization.orgId}}" ng-model="organization.checked"/>
-							<label for="org{{organization.orgId}}">
-								<p class="game-sponsor-title">{{organization.name}}</p>
-							</label>
-						</span>
-					</div>
-				</div>				
 		</div>	
+		<div class="modal-content" >
+			<div class="row" ng-repeat="organization in participatingOrgs" >
+				<span class="telegrafico game-checkbox-change-color" >
+					<input type="checkbox" class="filled-in" ng-click="checkValidOrgDel()" id="org{{organization.orgId}}" ng-model="organization.checked"/>
+					<label for="org{{organization.orgId}}">
+						<p class="game-sponsor-title">{{organization.name}}</p>
+					</label>
+				</span>
+			</div>
+		</div>				
+			
 	</div>
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
@@ -591,7 +676,7 @@
 </div> -->
 
 <!-- ADD SPONSOR MODAL -->
-<div id="game-sponsor-add" style="overflow:hidden;" class="modal" ng-init="viewOtherSponsoringInstitutions()">
+<div id="game-sponsor-add" class="modal" ng-init="viewOtherSponsoringInstitutions()">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-5">
 			<div class="center">
@@ -601,7 +686,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
+	<div class="modal-content">
 		<div class="row" ng-repeat="newSponsor in otherSponsors" >
 			<span class="telegrafico game-checkbox-change-color" >
 				<input type="checkbox" class="filled-in" ng-click="checkValidSponsorAdd()" id="{{newSponsor.sponsorId}}" ng-model="newSponsor.checked"/>
@@ -611,14 +696,14 @@
 			</span>
 		</div>
 	</div>
-	<div class="modal-footer" >
+	<div class="modal-footer right-align" >
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-disabled="!validSponsorAdd" ng-click="addMultipleSponsors()">ADD</button>
 	</div>
 </div>
 
 <!-- ADD ORGANIZATION MODAL -->
-<div id="game-organization-add" style="overflow:hidden;" class="modal" ng-init="viewAllOrganizationForGame()">
+<div id="game-organization-add" class="modal" ng-init="viewAllOrganizationForGame()">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-5">
 			<div class="center">
@@ -628,7 +713,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal-content" style="overflow-y:auto;max-height:350px; z-index:99;">
+	<div class="modal-content">
 		<div class="row" ng-repeat="newOrg in availableOrgs" >
 			<span class="telegrafico game-checkbox-change-color" >
 				<input type="checkbox" class="filled-in" ng-click="checkValidOrgAdd()" id="newOrg{{newOrg.orgId}}" ng-model="newOrg.checked"/>
@@ -638,7 +723,7 @@
 			</span>
 		</div>
 	</div>
-	<div class="modal-footer" >
+	<div class="modal-footer right-align" >
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button" ng-disabled="!validOrgAdd" ng-click="addMultipleOrganizations()">ADD</button>
 	</div>

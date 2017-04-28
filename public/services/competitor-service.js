@@ -17,6 +17,7 @@
             editCompetitorBio: editCompetitorBio,
             getCompetitor: getCompetitor,
             getCompetitorTeams: getCompetitorTeams,
+            getCompetitorTeamsPublic: getCompetitorTeamsPublic,
             getCompetitorOrganization: getCompetitorOrganization,
             getCoachedTeam: getCoachedTeam,
             getTeamMembers: getTeamMembers,
@@ -105,6 +106,23 @@
             $http({
                 method: 'GET',
                 url: '/competitor/getCompetitorTeams',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function getCompetitorTeamsPublic(competitor_id){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                params: {id: competitor_id},
+                url: '/competitor/getCompetitorTeamsPublic',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
@@ -256,7 +274,10 @@
                 url: '/sport/ranks/'+sport_id,
                 headers: headers
             }).then((res) => {
-                deferred.resolve(res);
+                if (res[0] == undefined)
+                    deferred.resolve([]);
+                else
+                    deferred.resolve(res[0]);
             }, (err) => {
                 deferred.reject(err);
             });

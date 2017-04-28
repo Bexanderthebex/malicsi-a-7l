@@ -134,7 +134,7 @@ DELIMITER //
 
 CREATE PROCEDURE get_teams_on_organization (IN org_id INT)
 	BEGIN
-	   SELECT * FROM team  WHERE team_organization = org_id;
+	   SELECT * FROM team join sport on team.sport_id = sport.sport_id WHERE team_organization = org_id;
 	END; //
 DELIMITER ;
 
