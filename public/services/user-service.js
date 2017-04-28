@@ -17,7 +17,8 @@
             getUsersByType: getUsersByType,
             setIsActive: setIsActive,
             updateUser: updateUser,
-            updateUserPassword: updateUserPassword
+            updateUserPassword: updateUserPassword,
+            editPassword: editPassword
         }
 
         return service;
@@ -104,6 +105,38 @@
                 url: '/user/updatePassword',
                 data: $.param(user),
                 headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function updateUserPassword(user) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'PUT',
+                url: '/user/updatePassword',
+                data: $.param(user),
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function editPassword(userID, newPassword) {
+            let deferred = $q.defer();
+
+            $http.put('/user/updatePassword', {
+                id: userID,
+                password: newPassword
             }).then((res) => {
                 deferred.resolve(res);
             }, (err) => {
