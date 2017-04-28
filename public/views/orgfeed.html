@@ -1,17 +1,17 @@
 <div id="mainHolder" ng-init="orgfeedInit()">
 <div class="row" id="orgteamfeed">
-	<div id="orgfeed-sidebar" class="col l3 hide-on-med-and-down palette-gray">
+	<div id="orgfeed-sidebar" class="col l3 hide-on-med-and-down palette-5">
 	
 		<div>
 			<div class="rockwell orgfeed-sidetitle">SORT</div>
 			<div>
 				<form id="orgfeed-sort">
 				<div>
-					<input ng-init="true" ng-value="'atoz'" ng-model="atoz" ng-click="sortBy(atoz)" class="with-gap" name="group1" type="radio" id="test1" />
+					<input ng-init="true" ng-value="'atoz'" ng-model="atoz" ng-click="sortBy()" class="with-gap" name="group1" type="radio" id="test1" />
 			      	<label for="test1">A-Z</label>
 				</div>
 				<div>
-					<input ng-value="'ztoa'" ng-model="atoz" class="with-gap" ng-click="sortBy(atoz)" name="group1" type="radio" id="test2" />
+					<input ng-value="'ztoa'" ng-model="atoz" class="with-gap" ng-click="sortBy()" name="group1" type="radio" id="test2" />
 			      	<label for="test2">Z-A</label>
 				</div>
 
@@ -52,10 +52,8 @@
 	</div>
 		
 	<div id="main" class="orgfeed col l9 offset-l3 m12 s12 ">
-		<div id="orgfeed-title" class="row margin-override-0">
-			<div class="col s12 margin-override-0">
-				<!-- <h3 class="rockwell margin-override-0">List of Organizations</h3> -->
-			</div>
+		<div class="row margin-override-0" style="padding-left: 5%; padding-right: 5%;">
+			<h3 class="rockwell ">Organizations</h3>
 		</div>
 		<div class="row " style="padding-left: 5%; padding-right: 5%;">
 			
@@ -66,7 +64,7 @@
 							<div class="col s10 margin-override-0 padding-override-0 telegrafico white-text left truncate">
 								{{ data.org }}
 							</div>
-							<div class="col s2 hide-on-med-and-down">
+							<div class="col s2 .hide-on-small-only">
 								
 								<div class="orgteam-count palette-2 palette-text-3 valign-wrapper">
 									

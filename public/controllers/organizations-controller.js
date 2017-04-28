@@ -16,14 +16,44 @@
         $scope.orgfeedInit = orgfeedInit;
         $scope.sortBy = sortBy;
         $scope.filter = filter;
+        $scope.atoz = 'atoz';
 
         function filter(org, team){
-            $scope.orgs = [];
+            org = (org == undefined || org == null) ? '' : org;
+            team = (team == undefined || team == null) ? '' : team;
 
             console.log("filter");
             console.log(org);
             console.log(team);
 
+            SearchService.retrieveOrganization(org)
+            .then((res) => {
+                let organizations = res.data;
+                console.log('filter orgs', organizations);
+                if (team != '' || team != null || team != undefined) {
+                    SearchService.retrieveTeam(team)
+                    .then((res) => {
+                        let teams = res.data;
+                        let result = [];
+                        for (org of organizations) {
+                            for (team of teams) {
+                                if (team.team_organization == org.organization_id) {
+                                    result.push(org);
+                                    break;
+                                }
+                            }
+                        }
+                        $scope.organizations = [];
+                        $scope.organizations = result;
+                        retrieveTeams();
+                    })
+                } else {
+                    $scope.organizations = [];
+                    $scope.organizations = organizations;
+                    retrieveTeams();
+                }
+            }, (err) => {})
+            /*
             if(org !== ""){
                 SearchService
                     .retrieveOrganization(org)
@@ -67,13 +97,13 @@
                     })
             }else{
                 orgfeedInit();
-            }
+            }*/
 
             
         }
 
-        function sortBy(sortMethod){
-            if(sortMethod === 'atoz'){
+        function sortBy(){
+            if($scope.atoz === 'atoz'){
                 sortAtoZ();   
             }else{
                 sortZtoA();
@@ -135,7 +165,6 @@
                             fetchedTeams.push(res.data);
                         }
                         console.log(fetchedTeams);
-                        index++;
                         var name = $scope.organizations[index].name;
                         console.log(name);
                         var data = {
@@ -145,6 +174,7 @@
                             teamCount: fetchedTeams.length
                         }
                         $scope.orgfeedData.push(data);
+                        index++;
 
                         sortAtoZ();
                     }, function(err){
