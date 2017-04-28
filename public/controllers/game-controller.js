@@ -6,9 +6,9 @@
 		.module('app')
 		.controller('GameController', GameController);
 
-	GameController.$inject = ['$scope', '$routeParams', '$filter', 'GameService', 'UserService', 'SearchService'];
+	GameController.$inject = ['$scope', '$routeParams', '$filter', '$location', 'GameService', 'UserService', 'SearchService'];
 
-	function GameController($scope, $routeParams, $filter, GameService, UserService, SearchService) {
+	function GameController($scope, $routeParams, $filter, $location, GameService, UserService, SearchService) {
 		$scope.thisGame = {
 			game_id: $routeParams.gameId
 		};
@@ -562,7 +562,8 @@
 					$scope.game = res.data;
 				}, function(err){
 					console.log(err.data);
-					Materialize.toast('Failed to retrieve game details!', 3000);
+					$location.path("/error");
+					// Materialize.toast('Failed to retrieve game details!', 3000);
 				})
 		}
 
