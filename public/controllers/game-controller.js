@@ -256,7 +256,8 @@
 			else false;
 		}
 		function checkIfOrganizer(){
-			if($scope.user.type=="O") return true;
+			if($scope.user.type=="A") return true;
+			else if ($scope.user.id==$scope.game.organizer_id) return true;
 			else return false;
 		}
 
