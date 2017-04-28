@@ -62,15 +62,32 @@ table.highlight tbody tr:hover {
 }
 
 div.tablewrapper {
-  height: 260px;
-  overflow-y: hidden;
-  border-left: 3px solid #00719c;
-  border-right: 3px solid #00719c;
+  height: 363px !important;
+  overflow-y: auto;
+  border: 3px solid #00719c;
+  border-radius: 5px;
 }
 
-div.tablewrapper table tbody tr {
+/*.fixed_headers {
+  table-layout: fixed;
+  border-collapse: collapse;
   
-}
+  thead {
+    tr {
+      display: block;
+      position: relative;
+    }
+  }
+  tbody {
+    display: block;
+    overflow: auto;
+    width: 100%;
+  }
+}*/
+
+div.tablewrapper table tbody tr td, div.tablewrapper table thead tr th {
+  border-radius: 0px;
+} 
 
 #competitor-ongoing-showall {
     color: white !important;
@@ -92,9 +109,9 @@ div.tablewrapper table tbody tr {
 }
 
 .competitor-games-data {
-    border-left: solid 2.5px;
+/*    border-left: solid 2.5px;
     border-right: solid 2.5px;
-    border-color: #00719c;
+    border-color: #00719c;*/
 }
 
 #competitor-profile-add-game {

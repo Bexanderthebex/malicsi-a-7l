@@ -85,7 +85,7 @@
                 'controller': 'OrganizationController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/search', {
+            .when('/search/:sdata', {
                 'templateUrl': 'views/search-page.html',
                 'caseInsensitiveMatch': true,
                 'controller': 'SearchController'
