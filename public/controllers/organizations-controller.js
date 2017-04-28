@@ -20,29 +20,56 @@
         function filter(org, team){
             $scope.orgs = [];
 
+            console.log("filter");
+            console.log(org);
+            console.log(team);
+
             if(org !== ""){
                 SearchService
                     .retrieveOrganization(org)
                     .then(function(res){
-                        $scope.orgs = [];
-                        $scope.orgs = res.data;
+                        $scope.organizations = [];
+                        $scope.organizations = res.data;
+                        console.log($scope.orgs);
+                        retrieveTeams();
+
+
                     }, function(err){                    
                     })
-            }
 
-            if(team !== ""){
+            }else if(team !== ""){
                 SearchService
                     .retrieveTeam(team)
                     .then(function(res){
                         $scope.teams = [];
                         $scope.teams = res.data;
+                        console.log($scope.teams);
+
+                        for(var i=0; i<$scope.teams.length; i++){
+                            console.log("maru");
+                            // find organization
+                            for(var j=0; j<$scope.orgs; j++){
+                                if($scope.orgs[j].organization_id == $scope.teams[i].team_organization){
+                                    var team = [];
+                                    team.push($scope.teams[i]);
+                                    $scope.orgfeedData = [];
+                                    var data = {
+                                        org: $scope.orgs[j].name,
+                                        id: $scope.orgs[j].organization_id,
+                                        teams: team,
+                                        teamCount: 1
+                                    }
+                                    $scope.orgfeedData.push(data);
+                                }
+                            }
+                        }
                     }, function(err){                    
                     })
+            }else{
+                orgfeedInit();
             }
 
-            for(var i=0; i<$scope.teams.length; i++){
-                
-            }
+            
         }
 
         function sortBy(sortMethod){
@@ -96,7 +123,8 @@
         function retrieveTeams(){
             var index = 0;
             $scope.orgfeedData = [];
-            for(var i=0; i< $scope.organizations.length; i++){
+            for(var i=0; i<$scope.organizations.length; i++){
+                console.log($scope.organizations[i].name);
                 OrganizationService
                     .retrieveTeams($scope.organizations[i].organization_id)
                     .then(function(res){

@@ -13,6 +13,7 @@
     function SearchService($http, $q) {
         const service = {
             retrieveOrganizer: retrieveOrganizer,
+            retrieveTeam: retrieveTeam,
             retrieveGame: retrieveGame,
             retrieveOrganization: retrieveOrganization,
             retrieveSport: retrieveSport,
