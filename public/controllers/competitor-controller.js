@@ -324,9 +324,9 @@
         }
 
         function acceptMembershipRequest(){
-            console.log($scope.pendingRequests.team_id);
+            
             CompetitorService
-                .acceptMembershipRequest($scope.pendingRequests.team_id)
+                .acceptMembershipRequest($scope.pendingRequests.team_id, $scope.pendingRequests.id)
                 .then(function (res){
                     Materialize.toast('Application Success', 4000);
                 }, function(err) {
@@ -344,9 +344,9 @@
         }
 
         function deleteMembershipRequest(){
-            console.log($scope.pendingRequests.team_id);
+            console.log("team_id: "+$scope.pendingRequests.team_id + "id: "+$scope.pendingRequests.id);
             CompetitorService
-                .deleteMembershipRequest($scope.pendingRequests.team_id)
+                .deleteMembershipRequest($scope.pendingRequests.team_id, $scope.pendingRequests.id)
                 .then(function (res){
                     Materialize.toast('Application Declined', 4000);
                 }, function(err) {
