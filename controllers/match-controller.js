@@ -41,7 +41,7 @@ exports.editMatch = function(req, res, next){
 		[
 			req.body.timeStart,
 			req.body.timeEnd,
-			req.body.date,
+			new Date(req.body.date),
 			req.body.remarks,
 			req.body.matchID
 		 ],
@@ -53,6 +53,7 @@ exports.editMatch = function(req, res, next){
 			});
 
 		}else{
+			console.log(err);
 		    res.status(404).send("Not Found");
 		}
 	})
@@ -69,6 +70,7 @@ exports.editTeamRankingInMatch = function(req, res, next){
 				return res.status(200).send(rows[0]);
 			})
 		}else{
+			console.log(err);
 		    res.status(404).send("Not Found");
 		}
 	});

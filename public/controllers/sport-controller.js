@@ -29,6 +29,8 @@
         $scope.futureMatch = [];
         $scope.pastMatch = [];
         $scope.rankings = [];
+        $scope.matchCopy = [];
+        $scope.matchDateCopy = {};
         $scope.newMatch = {
             timeStart: undefined,
             timeEnd: undefined,
@@ -37,7 +39,21 @@
         };
 
         function copyMatch(match) {
-            // copy match - will be accessed inside edit
+            // $scope.matchCopy.clear();
+            for (var i = 0; i < match.length; i++) {
+                // $scope.time_start = new Date("12-01-2014"+"T"+match[i].time_start+"Z");
+                $scope.matchCopy.push(match[i]);
+                // console.log($scope.matchCopy[i].time_start);
+                $scope.matchDateCopy = {
+                    timeStart: new Date("2014-01-01"+"T"+match[i].time_start+"Z"),
+                    timeEnd: new Date("2014-01-01"+"T"+match[i].time_end+"Z"),
+                    date: new Date(match[i].match_date+"T"+match[i].time_start+"Z"),
+                    remarks: match[i].remarks,
+                    matchID: match[i].match_id
+                };
+                // console.log($scope.matchCopy[i].time_start);
+            }
+            console.log($scope.matchCopy);
         }
 
         function retrieveSport() {
@@ -159,14 +175,24 @@
                 })
         }
 
-        function editMatch() {
+        function editMatch(rankings, info) {
             SportService
-                .editMatch()
+                .editMatch(info)
                 .then(function (res){
                     Materialize.toast('Edited match!', 3000); 
                 }, function(err) {
                     Materialize.toast('Match not edited!', 3000); 
                 })
+            for (var i = 0; i < rankings.length; i++) {
+                SportService
+                    .editRanking(rankings[i])
+                    .then(function (res){
+                        Materialize.toast('Edited rank!', 3000); 
+                    }, function(err) {
+                        Materialize.toast('Rank not edited!', 3000); 
+                    })
+            }
+
         }
 
         function deleteMatch() {

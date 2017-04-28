@@ -55,8 +55,9 @@
 
 					<!-- LIST OF MATCHES -->
 					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewPastMatch()">
-						<div data-target="match-edit-modal" class="sports-match palette-border-5" ng-repeat="(key, value) in pastMatch | groupBy: 'match_id'" ng-click="copyMatch(match)">
+						<div data-target="match-edit-modal" class="sports-match palette-border-5" ng-repeat="(key, value) in pastMatch | groupBy: 'match_id'" ng-click="copyMatch(value)">
 							<!-- MATCH TITLE -->
+							
 							<div class="sports-match-title row">
 								<div class="telegrafico col s9">Players</div>
 								<div class="telegrafico col s3">Winner</div>
@@ -245,25 +246,25 @@
             <div class="row sports-match-modal-container"><br>
                 <!-- EDIT MATCH INFO -->
                 <div class="input-field col s4 sports-match-input-color-change">
-                    <input placeholder=" " id="match-start-time" type="time" class="validate" ng-model="matchCopy.time_start">
+                    <input placeholder=" " id="match-start-time" type="time" class="validate" ng-model="matchDateCopy.timeStart">
                     <label for="match-start-time" class="sports-match-adjust-label">
                         Start Time
                     </label>
                 </div>
                 <div class="input-field col s4 sports-match-input-color-change">
-                    <input placeholder=" " id="match-end-time" type="time" class="validate" ng-model="matchCopy.time_end">
+                    <input placeholder=" " id="match-end-time" type="time" class="validate" ng-model="matchDateCopy.timeEnd">
                     <label for="match-end-time" class="sports-match-adjust-label">
                         End Time
                     </label>
                 </div>
                 <div class="input-field col s4 sports-match-input-color-change">
-                    <input placeholder=" " id="match-date" type="date" class="validate" ng-model="matchCopy.match_date">
+                    <input placeholder=" " id="match-date" type="date" date="dd-MM-yyyy" class="validate" ng-model="matchDateCopy.date">
                     <label for="match-date" class="sports-match-adjust-label">
                         Date
                     </label>
                 </div>
                 <div class="input-field col s12 sports-match-input-color-change">
-                    <textarea placeholder=" " id="match-remarks" class="materialize-textarea" data-length="140" ng-model="matchCopy.remarks"></textarea>
+                    <textarea placeholder=" " id="match-remarks" class="materialize-textarea" data-length="140" ng-model="matchDateCopy.remarks"></textarea>
                     <label for="match-remarks" class="sports-match-textarea-label-color-change">
                         Remarks
                     </label>
@@ -280,9 +281,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><!-- <tr ng-repeat="team in rankings"> -->
-                                    <td>Team Name</td><!-- <td>{{ team.name }}</td> -->
-                                    <td width="30%"><input type="text" class="validate"></td><!-- <td width="30%"><input type="text" class="validate" ng-model="team.rank"></td> -->
+                                <tr ng-repeat="team in matchCopy">
+                                    <td>{{ team.team_name }}</td>
+                                    <td width="30%"><input type="text" class="validate" ng-model="team.ranking"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -291,8 +292,8 @@
             </div>
         </div>
         <div class="modal-footer palette-5 right-align"><!-- button -->
+            <button href="" class="modal-action modal-close minimalist-button" ng-click="editMatch(matchCopy, matchDateCopy)">SAVE CHANGES</button>
             <button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
-            <button href="" class="modal-action modal-close minimalist-button">SAVE CHANGES</button>
         </div>
     </div>
 
