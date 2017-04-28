@@ -14,7 +14,7 @@
 			</div>
 		</div>
 
-		<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id);setViewedGame(gamesInOrganization[0]);setPageView(0);">
+		<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
 			<div class="col s12">
 				<ul id="organization-team-tabs" class="tabs">
 					<li class="tab col s3"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li>
