@@ -71,14 +71,14 @@
 	<!-- NAVIGATION BAR -->
 	<div id="navbar" class="row">
 		<!-- APP LOGO AND TITLE -->
-		<a href="#/"> <div id="nav-logo" class="col s6 valign-wrapper">
-			<img src="assets/logo/logo.png" alt="MalICSi">
+		<a href="#/"> <div id="nav-logo" class="col s3 valign-wrapper">
+			<img src="assets/logo/logo.png" alt="MalICSi" class="left">
 			MAL<div class="palette-text-1">ICS</div>I
 		</div></a>
 
 		<!-- NAV BUTTONS -->
 
-		<div class="col s4" id="navigation" ng-controller="NavCtrl">
+		<div class="col s7" id="navigation" ng-controller="NavCtrl">
 			<!-- DROP DOWN -->
 			<a data-activates="nav-dropdown" data-beloworigin="true" class="dropdown-button navbtns valign-wrapper right palette-text-1" style="color: #00b8ff;"><i class="fa fa-chevron-down"></i></a>
 			<ul id="nav-dropdown" class="dropdown-content">
@@ -89,11 +89,11 @@
 		    </ul>
 
 
-			<a ng-href="{{iconUrl}}" id="nav-profile" class="navbtns valign-wrapper right"><i  class="fa fa-user-o" aria-hidden="true"></i><span>{{user.username}}</span></a>
+			<a ng-href="{{iconUrl}}" id="nav-profile" class="navbtns valign-wrapper right"><i  class="fa fa-user-o" aria-hidden="true"></i><div class="truncate" id="navname">{{user.username}}</div></a>
 
-			<a href="#/organizations" class="navbtns valign-wrapper right palette-text-1" style="color: #00719c;">ORGANIZATIONS</a>
-			<a href="#/game" class="navbtns valign-wrapper right palette-text-4" style="color: #00719c;">GAMES</a>
-			<a href="#/" class="navbtns valign-wrapper right palette-text-5" style="color: #00b8ff;">HOME</a>
+			<a href="#/organizations" class="navbtns valign-wrapper right palette-text-1" style="color: #00719c;"><span class="hide-on-med-and-down">ORGANIZATIONS</span></a>
+			<a href="#/game" class="navbtns valign-wrapper right palette-text-4" style="color: #00719c;"><span class="hide-on-med-and-down">GAMES</span></a>
+			<a href="#/" class="navbtns valign-wrapper right palette-text-5" style="color: #00b8ff;"><span class="hide-on-med-and-down">HOME</span></a>
 		</div>
 
 		<!-- NAV SEARCH BAR -->
