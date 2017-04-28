@@ -545,3 +545,11 @@
   border: 2px solid #00415a;
   background-color: #00415a;
 }
+
+.input-field .error{
+    position: relative;
+    top: -1rem;
+    left: 0rem;
+    font-size: 0.8rem;
+    color: #FF4081;
+}
