@@ -10,7 +10,7 @@
 			<div class="row center">
 				<div class="col s6 offset-s3">
 					<form id="gamefeed-game-search-bar">
-						<input type="search" ng-model="searchquery" >
+						<input type="search" ng-model="searchquery" code="13" press-enter="searchBy(searchquery, gamecheck, orgcheck, sportcheck, competitorcheck, organizercheck)">
 					</form>
 				</div>
 				<div class="col s6 offset-s3 telegrafico search-searchbtn">
@@ -40,9 +40,9 @@
 			</div>
 		</div>		
 	</div>
-	<div class="container search-results">
+	<div class="container search-results" ng-init="searchBy(searchquery, gamecheck, orgcheck, sportcheck, competitorcheck, organizercheck)">
 		<div class="row center">
-			<h4 class="rockwell">25 Results</h4>
+			<h4 class="rockwell">{{ results.length }} Results</h4>
 		</div>
 		<div class="row center">		
 			<!-- COMPETITOR RESULTS -->
@@ -157,7 +157,7 @@
 			<div class="col s12 m4 l4" ng-repeat="organizer in organizers">
 				<div class="search-match palette-border-5">
 					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
-						<h4 class="telegrafico white-text"><a href="#/organizer/{{organizer.id}}" class="white-text">{{ organizer.name }}</a></h4>
+						<h4 class="telegrafico white-text"><a href="#/organizer/profile/{{organizer.id}}" class="white-text">{{ organizer.name }}</a></h4>
 					</div>
 
 					<div class="row">

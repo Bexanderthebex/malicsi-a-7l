@@ -1,9 +1,11 @@
+'use strict'
+
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 
 exports.searchOrganization = (req, res) => {
-	query = 'select * from organization where name like ?';
+	let query = 'select * from organization where name like ?';
 
 	connection.userType('A').query(query,
 		[
@@ -19,7 +21,7 @@ exports.searchOrganization = (req, res) => {
 }
 
 exports.editOrganization = (req, res) => {
-	query = 'update organization set name = ? where organization_id = ?';
+	let query = 'update organization set name = ? where organization_id = ?';
 
 	connection.userType('A').query(query,
 		[
@@ -34,7 +36,7 @@ exports.editOrganization = (req, res) => {
 }
 
 exports.addOrganization = (req, res) => {
-	query = 'insert into organization (name) values(?)';
+	let query = 'insert into organization (name) values(?)';
 
 	connection.userType('A').query(query,
         [
@@ -64,7 +66,7 @@ exports.addOrganizationToGame = (req, res) =>{
 }
 
 exports.deleteOrganization = (req, res) => {
-	let query = 'call delete_organization(?)'
+	// var query = 'call delete_organization(?)'
 	connection.userType(req.session.user.type).query(query, [
 		req.body.orgId
 	],

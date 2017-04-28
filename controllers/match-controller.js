@@ -82,7 +82,6 @@ exports.viewMatchInSport = (req, res) => {
 		if (!err){
 			return res.status(200).send(rows[0]);
 		}else{
-			console.log(err);
 			res.status(500).send("Internal Server Error");
 		}
 	})
@@ -119,7 +118,6 @@ exports.viewAllMatch = (req, res) => {
 			}
 		});
 }
-
 exports.deleteMatch = (req, res) => {
 	let query = 'CALL view_match_details(?);';
 	let matchId = req.body.matchId
@@ -142,7 +140,7 @@ exports.deleteMatch = (req, res) => {
 	});
 }
 
-
+//start of new added controllers
 exports.viewCurrentMatch = (req, res) => {
 	let query = 'CALL view_current_match(?)';
 
@@ -167,6 +165,7 @@ exports.viewPastMatch = (req, res) => {
 		(err, rows, fields) => {
 		if(!err){
 			return res.status(200).send(rows[0]);
+			console.log(rows[0]);
 		}else if(rows.length > 0){
 			res.status(404).send("There are no current matches");
 		}else{
@@ -185,6 +184,22 @@ exports.viewFutureMatch = (req, res) => {
 			return res.status(200).send(rows[0]);
 		}else if(rows.length > 0){
 			res.status(404).send("There are no current matches");
+		}else{
+			res.status(500).send("Internal server error occurred");
+		}
+	});
+}
+
+exports.retrieveMatchWinner = (req, res) => {
+	let query = 'CALL retrieve_match_winner(?)';
+
+	connection.userType('A').query(query,
+		[req.params.sportId],
+		(err, rows, fields) => {
+		if(rows.length === 0){
+			return res.status(200).send(rows[0]);
+		}else if(!err){
+			res.status(404).send("There are no current match winners");
 		}else{
 			res.status(500).send("Internal server error occurred");
 		}

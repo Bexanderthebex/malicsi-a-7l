@@ -2,7 +2,7 @@
 
 (function(){
     angular
-        .module('app', ['ngRoute'])
+        .module('app', ['ngRoute','angular.filter'])
         .config(config)
 
     config.$inject = ['$routeProvider','$locationProvider'];
@@ -85,7 +85,7 @@
                 'controller': 'OrganizationController'
                 // 'access': { requiredAuthentication: true }
             })
-            .when('/search', {
+            .when('/search/:sdata', {
                 'templateUrl': 'views/search-page.html',
                 'caseInsensitiveMatch': true,
                 'controller': 'SearchController'

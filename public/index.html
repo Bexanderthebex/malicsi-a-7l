@@ -62,6 +62,7 @@
 		<script src="frontend_modules/js/angular.min.js"></script>
 		<script src="frontend_modules/js/angular-route.min.js"></script>
 	  	<script src="frontend_modules/js/jquery.bxslider.min.js"></script>
+	  	<script src="frontend_modules/js/angular-filter.js"></script>
 		<script src="js/slider.js"></script>
 
 	</head>
@@ -96,9 +97,9 @@
 		</div>
 
 		<!-- NAV SEARCH BAR -->
-		<div class="col s2 valign-wrapper" id="nav-search">
+		<div class="col s2 valign-wrapper" id="nav-search" ng-controller="SearchController">
 			<form id="nav-search-bar">
-				<input type="search" >
+				<input type="search" ng-model="searchbox" code="13" press-enter="search(searchbox)">
 			</form>
 		</div>
 	</div>

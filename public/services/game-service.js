@@ -19,6 +19,7 @@
             deleteSport: deleteSport,
             retrieveAllSports: retrieveAllSports,
             viewGameDetails: viewGameDetails,
+            viewGameOrganizerDetails: viewGameOrganizerDetails,
             viewAllGames: viewAllGames,
             viewPastMatchesInGame: viewPastMatchesInGame,
             viewOngoingMatchesInGame: viewOngoingMatchesInGame,
@@ -29,8 +30,8 @@
             viewOtherSponsoringInstitutions: viewOtherSponsoringInstitutions,
             addSponsoringInstitution: addSponsoringInstitution,
             deleteSponsoringInstitution: deleteSponsoringInstitution,
-            addOrganizationToGame: addOrganizationToGame,
-            deleteOrganizationFromGame: deleteOrganizationFromGame,
+            addMultipleOrganizations: addMultipleOrganizations,
+            deleteMultipleOrganizations: deleteMultipleOrganizations,
             viewAllOrganizationForGame: viewAllOrganizationForGame,
             viewAllOrganizationInGame: viewAllOrganizationInGame,
             deleteMultipleSponsoringInstitutions: deleteMultipleSponsoringInstitutions,
@@ -107,7 +108,25 @@
             return deferred.promise;
         }
 
+        function viewGameOrganizerDetails(game_id){
+            let deferred = $q.defer();
+            let game = {
+                gameId: game_id
+            }
 
+            $http({
+                method: 'GET',
+                params: game,
+                url: '/game/viewGameOrganizerDetails/',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
 
         function addSport(sport) {
             let deferred = $q.defer();
@@ -127,25 +146,30 @@
             return deferred.promise;
         }
 
-        function addOrganizationToGame(game_id, org_id) {
+        function addMultipleOrganizations(organizations) {
             let deferred = $q.defer()
 
-            let organization = {
-                gameId : game_id,
-                orgId : org_id
+            for(var i = 0; i<organizations.length; i++){
+                let organization = {
+                    gameId : organizations[i].gameId,
+                    orgId : organizations[i].orgId
+                }
+                console.log(organizations);
+                $http({
+                    method: 'POST',
+                    data: $.param(organization),
+                    url: '/game/addOrganizationToGame',
+                    headers: headers
+                }).then((res) => {
+                    console.log(res);
+                    deferred.resolve(res);
+                }, (err) => {
+                    deferred.reject(err);
+                });
+
+
             }
-            console.log(game_id, org_id);
-            $http({
-                method: 'POST',
-                data: $.param(organization),
-                url: '/game/addOrganizationToGame',
-                headers: headers
-            }).then((res) => {
-                console.log(res);
-                deferred.resolve(res);
-            }, (err) => {
-                deferred.reject(err);
-            });
+            
 
             return deferred.promise;
         } 
@@ -227,25 +251,26 @@
             return deferred.promise;
         }
 
-        function deleteOrganizationFromGame(game_id, org_id) {
+        function deleteMultipleOrganizations(organizations) {
             let deferred = $q.defer();
-
-            let organization = {
-                gameId : game_id,
-                orgId : org_id
+            for(var i = 0; i<organizations.length; i++){
+                let organization = {
+                    gameId : organizations[i].gameId,
+                    orgId : organizations[i].orgId
+                }
+                $http({
+                    method: 'DELETE',
+                    data: $.param(organization),
+                    url: '/game/deleteOrganizationFromGame',
+                    headers: headers
+                }).then((res) => {
+                    console.log(res.data);
+                    deferred.resolve(res);
+                }, (err) => {
+                    deferred.reject(err);
+                });    
             }
-
-            $http({
-                method: 'DELETE',
-                data: $.param(organization),
-                url: '/game/deleteOrganizationFromGame',
-                headers: headers
-            }).then((res) => {
-                console.log(res.data);
-                deferred.resolve(res);
-            }, (err) => {
-                deferred.reject(err);
-            });
+            
 
             return deferred.promise;
         }

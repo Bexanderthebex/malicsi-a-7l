@@ -76,6 +76,7 @@ router.post('/user/getAllUsers', checkUser('A'), adminController.getAllUsers);
 router.get('/competitor/searchCompetitor', competitorController.searchCompetitor);
 router.put('/competitor/editCompetitor', competitorController.editCompetitor);
 router.get('/competitor/getCompetitorTeams', competitorController.getCompetitorTeams);
+router.get('/competitor/getCompetitorTeamsPublic', competitorController.getCompetitorTeamsPublic);
 router.get('/competitor/getCompetitorOrganization', competitorController.getCompetitorOrganization);
 router.get('/competitor/getCompetitor', competitorController.getCompetitor);
 router.put('/competitor/editCompetitorBio', competitorController.editCompetitorBio);
@@ -116,6 +117,7 @@ router.get('/team/getCoachedTeams',teamController.getCoachedTeam);
 router.get('/team/getTeamsOnOrganization',teamController.getTeamsOnOrganization);
 router.get('/team/getOrganizationRankings',teamController.getOrganizationRankings);
 router.get('/team/displayPendingMembershipRequest',teamController.displayPendingMembershipRequest);
+router.get('/team/getMembershipRequest',teamController.getMembershipRequest);
 
 // game routers
 router.get('/game/searchGame', gameController.searchForGameByKeyword);
@@ -132,11 +134,13 @@ router.post('/game/createGame',  gameController.createGame);
 router.put('/game/updateGame',  gameController.updateGame);
 router.post('/game/addOrganizationToGame', gameController.addOrganizationToGame);
 router.get('/game/viewAllOrganizationForGame', gameController.viewAllOrganizationForGame);
+router.get('/game/viewAllOrganizationInGame', gameController.viewAllOrganizationInGame);
 router.delete('/game/deleteGame/',  gameController.deleteGame);
 router.delete('/game/deleteOrganizationFromGame', gameController.deleteOrganizationFromGame)
 router.get('/game/viewAllOngoingGames', gameController.viewAllOngoingGames);
 router.get('/game/viewAllUpcomingGames', gameController.viewAllUpcomingGames);
 router.get('/game/viewAllRecentGames', gameController.viewAllRecentGames);
+router.get('/game/viewGameOrganizerDetails', gameController.viewGameOrganizerDetails);
 
 // game-sponsor routers
 router.get('/game/viewSponsor',  sponsorController.viewSponsor);
@@ -157,6 +161,9 @@ router.delete('/sponsor/deleteSponsor', sponsorController.deleteSponsor);
 router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);
 router.get('/sport/viewSport', sportController.viewSportDetails);
 router.get('/sport/ranks/:sportId', sportController.retrieveSportRankings);
+router.get('/sport/match/viewCurrentMatch', matchController.viewCurrentMatch); 
+router.get('/sport/match/viewPastMatch', matchController.viewPastMatch); 
+router.get('/sport/match/viewFutureMatch', matchController.viewFutureMatch);
 router.get('/sport/search', sportController.searchForSportByKeyword);
 router.post('/sport/createSport', sportController.createSport);
 router.post('/sport/addWinnerSport', sportController.addWinnerSport);
@@ -170,6 +177,7 @@ router.get('/sport/match/viewAllMatch', matchController.viewAllMatch);
 router.get('/sport/match/viewCurrentMatch', matchController.viewCurrentMatch);
 router.get('/sport/match/viewPastMatch', matchController.viewPastMatch);
 router.get('/sport/match/viewUpcomingMatch', matchController.viewFutureMatch);
+router.get('/sport/match/retrieveMatchWinner/:sportId', matchController.retrieveMatchWinner);
 router.get('/sport/match/viewMatchDetails', matchController.viewMatchDetails);
 router.post('/sport/match/addMatch',  matchController.addMatch);
 router.put('/sport/match/editMatch', matchController.editMatch);
