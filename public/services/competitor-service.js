@@ -319,13 +319,12 @@
             return deferred.promise;
         }
 
-        function acceptMembershipRequest(id){
+        function acceptMembershipRequest(team_id, id){
             let deferred = $q.defer();
 
-            console.log('teamid service: ' + id);
             $http({
                 method: 'POST',
-                data: $.param(id),
+                params: {"team_id": team_id, "id": id},
                 url: '/team/acceptMembershipRequest',
                 headers: headers
             }).then((res) => {
@@ -337,13 +336,12 @@
             return deferred.promise;
         }
 
-        function deleteMembershipRequest(id){
+        function deleteMembershipRequest(team_id, id){
             let deferred = $q.defer();
 
-            console.log('teamid service: ' + id);
             $http({
                 method: 'DELETE',
-                data: $.param(id),
+                params: {"team_id": team_id, "id": id},
                 url: '/team/deleteMembershipRequest',
                 headers: headers
             }).then((res) => {

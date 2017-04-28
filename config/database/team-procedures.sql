@@ -144,7 +144,7 @@ DELIMITER //
 
 CREATE PROCEDURE display_pending_membership_request(IN owner_idin INT)
 	BEGIN
-		SELECT first_name, last_name, team_id, team_name, sport_name FROM competitor, sport s join team JOIN competitor_joins_team using(team_id) 
+		SELECT competitor.id, first_name, last_name, team_id, team_name, sport_name FROM competitor, sport s join team JOIN competitor_joins_team using(team_id) 
 		WHERE s.sport_id = team.sport_id AND competitor.id = competitor_joins_team.id AND team.id = owner_idin AND is_member = 0;
 	END; //
 DELIMITER ;
