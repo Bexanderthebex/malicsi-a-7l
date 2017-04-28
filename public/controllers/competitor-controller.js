@@ -269,12 +269,14 @@
                 })
         }
 
-        function getTeamRankings(){
+        function getTeamRankings(id){
             console.log($scope.RankingSportID);
+            console.log(id);
             CompetitorService
-                .getTeamRankings($scope.RankingSportID)
+                .getTeamRankings($scope.RankingSportID, id)
                 .then(function (res){
                     $scope.rank = res.data;
+                    console.log($scope.rank);
                     if ($scope.rank == [] || $scope.rank == undefined){
                         $scope.rankings.first = 0;
                         $scope.rankings.second= 0;
@@ -282,9 +284,9 @@
                         console.log("Rankings Unavailable");
                     }
                     else{
-                        $scope.rankings.first = res.data[0];
-                        $scope.rankings.second= res.data[1];
-                        $scope.rankings.third = res.data[2];
+                        $scope.rankings.first = $scope.rank[0].ranks;
+                        $scope.rankings.second= $scope.rank[1].ranks;
+                        $scope.rankings.third = $scope.rank[2].ranks;
                     }
                 }, function(err) {
                     console.log(err);

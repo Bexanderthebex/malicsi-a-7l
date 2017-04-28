@@ -166,6 +166,14 @@ BEGIN
 END; //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS retrieve_competitor_rankings_from_sport;
+DELIMITER //
+CREATE PROCEDURE retrieve_competitor_rankings_from_sport (IN in_sport_id INT, IN in_id INT)
+BEGIN
+	select ranking, count(ranking) as ranks from competitor_joins_team join team_in_match using(team_id) join sport_match using(match_id) where sport_id = in_sport_id and id = in_id group by ranking;
+END //
+DELIMITER ;
+ 
 
 -- create sport
 GRANT EXECUTE ON PROCEDURE create_sport TO 'organizer'@'localhost';
@@ -217,3 +225,8 @@ GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'administrator'@'l
 GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'guest'@'localhost';
 
+-- retrieve competitor rankings from sport
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'guest'@'localhost';

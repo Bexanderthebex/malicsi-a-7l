@@ -266,14 +266,16 @@
         // }
 
 
-        function getTeamRankings(sport_id){
+        function getTeamRankings(sport_id, id){
             let deferred = $q.defer();
             
+            console.log(sport_id);
             $http({
                 method: 'GET',
-                url: '/sport/ranks/'+sport_id,
+                url: '/sport/comranks/'+sport_id+'/'+id,
                 headers: headers
             }).then((res) => {
+                console.log(res.data);
                 if (res[0] == undefined)
                     deferred.resolve([]);
                 else
