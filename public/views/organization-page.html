@@ -9,19 +9,21 @@
 		<div class="row org-search-panel palette-5">
 			<div class="col s6 m6 l6 offset-m3 container">
 				<form id="game-game-search-bar" class="search-bar-config">
-					<input type="search">
+					<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
 				</form>
 			</div>
 		</div>
 
-		<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
+		<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id);setViewedGame(gamesInOrganization[0]);setPageView(0);">
 			<div class="col s12">
 				<ul id="organization-team-tabs" class="tabs">
-					<li class="tab col s3"  ng-repeat="game in gamesInOrganization" ng-click="setViewedGame(game)"><a class="blue-text darken-3 rockwell active" href="#" >{{ game.name }}</a></li>
+					<li class="tab col s3"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li>
 				</ul>
 			</div>
-			<div id="team-table-1" ng-init="retrieveTeams(thisOrganization.organization_id)">
+
+			<div id="team-table-1">
 				<div id="game-table1" >
+					<a href="#/game/{{viewedGameID}}"><h5 class="rockwell strong letter-spacing-1 center">{{ viewedGame.name }}</h5></a>
 					<table>
 						<thead>
 							<tr class="telegrafico">
@@ -31,7 +33,7 @@
 							</tr>
 						</thead>
 						<tbody >
-							<tr class="rockwell" ng-init="setPageView(0)" ng-repeat="pagedTeam in pagedTeams" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id)">
+							<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id)">
 								<td>
 									<div> {{pagedTeam.team_name}} </div>
 								</td>

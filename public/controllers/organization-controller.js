@@ -37,7 +37,9 @@
         $scope.isMember = 0;
         $scope.totalPages = 1;
         $scope.pagedTeams=[];
+        $scope.filteredGames = [];
 
+        $scope.viewedGame = {}; 
         $scope.retrieveTeams = retrieveTeams;
         $scope.retrieveTeam = retrieveTeam;
         $scope.joinTeam = joinTeam;
@@ -50,6 +52,7 @@
         $scope.checkTeamMembership = checkTeamMembership;
         $scope.setViewedGame = setViewedGame;
         $scope.setPageView = setPageView;
+        $scope.searchInOrg = searchInOrg;
         
         function initPage(org_id){
             UserService
@@ -78,6 +81,7 @@
                 .getGamesInOrganization(org_id)
                 .then(function(res) {
                     $scope.gamesInOrganization = res.data;
+                    $scope.filteredGames = $scope.gamesInOrganization.slice(0);
                     setViewedGame($scope.gamesInOrganization[0]);
                     console.log (res.data);
                 }, function(err) {
@@ -88,6 +92,7 @@
 
         
         function setViewedGame(game){
+            $scope.viewedGame = game;
             $scope.viewedGameID = game.game_id;
             retrieveTeams($scope.thisOrganization.organization_id);
             console.log($scope.viewedGameID);
@@ -265,6 +270,25 @@
                 }, function(err) {
                     console.log(err.data);
                 })
+        }
+
+        function searchInOrg(input) {
+            console.log("halbira");
+            var temp =  $scope.gamesInOrganization;
+            var i;
+            var matches = [];
+            var toSearch = input;
+
+            for(i=0; i<temp.length; i++) {
+                var reg = new RegExp(toSearch.toLowerCase(), "i");
+                if(reg.test(temp[i].name.toLowerCase()) == true) {
+                    matches.push(temp[i]);
+                }
+            }
+            $scope.filteredGames = matches.slice(0);
+            setViewedGame($scope.filteredGames[0])
+            // matches array contains the results
+            console.log($scope.filteredGames);
         }
 
     }
