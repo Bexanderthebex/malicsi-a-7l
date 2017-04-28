@@ -231,6 +231,7 @@
 /************ MODALS ************/
 .sports-match-header-fill{
     padding: 0px !important;
+    overflow-x: hidden;
 }
 
 .sports-match-remove-bottom {
