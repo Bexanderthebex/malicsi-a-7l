@@ -60,6 +60,7 @@
 .search-match:hover {
     border-color: #001f2b;
     color: white !important;
+    transition: border-color 0.5s;
     transition: background-color 0.5s;
     background: #001f2b;
 }

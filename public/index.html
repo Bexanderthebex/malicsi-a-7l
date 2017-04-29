@@ -83,7 +83,7 @@
 			<ul class="right hide-on-med-and-down" ng-controller="NavCtrl">
 				<li class="navbar-rightside">
 
-					<a class="valign-wrapper right palette-text-1" style="color: #00719c;">
+					<a ng-controller="SearchController" class="valign-wrapper right palette-text-1" style="color: #00719c;">
 						<form id="nav-search-bar">
 							<input type="search" ng-model="searchbox" code="13" press-enter="search(searchbox)">
 						</form>

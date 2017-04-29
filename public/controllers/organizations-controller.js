@@ -22,10 +22,6 @@
             org = (org == undefined || org == null) ? '' : org;
             team = (team == undefined || team == null) ? '' : team;
 
-            console.log("filter");
-            console.log(org);
-            console.log(team);
-
             SearchService.retrieveOrganization(org)
             .then((res) => {
                 let organizations = res.data;
@@ -52,54 +48,7 @@
                     $scope.organizations = organizations;
                     retrieveTeams();
                 }
-            }, (err) => {})
-            /*
-            if(org !== ""){
-                SearchService
-                    .retrieveOrganization(org)
-                    .then(function(res){
-                        $scope.organizations = [];
-                        $scope.organizations = res.data;
-                        console.log($scope.orgs);
-                        retrieveTeams();
-
-
-                    }, function(err){                    
-                    })
-
-            }else if(team !== ""){
-                SearchService
-                    .retrieveTeam(team)
-                    .then(function(res){
-                        $scope.teams = [];
-                        $scope.teams = res.data;
-                        console.log($scope.teams);
-
-                        for(var i=0; i<$scope.teams.length; i++){
-                            console.log("maru");
-                            // find organization
-                            for(var j=0; j<$scope.orgs; j++){
-                                if($scope.orgs[j].organization_id == $scope.teams[i].team_organization){
-                                    var team = [];
-                                    team.push($scope.teams[i]);
-                                    $scope.orgfeedData = [];
-                                    var data = {
-                                        org: $scope.orgs[j].name,
-                                        id: $scope.orgs[j].organization_id,
-                                        teams: team,
-                                        teamCount: 1
-                                    }
-                                    $scope.orgfeedData.push(data);
-                                }
-                            }
-                        }
-                    }, function(err){                    
-                    })
-            }else{
-                orgfeedInit();
-            }*/
-
-            
+            }, (err) => {})            
         }
 
         function sortBy(){
