@@ -41,12 +41,19 @@ body::-webkit-scrollbar-thumb{
 	position: fixed;
 	color: white;
 	margin: 0!important;
-	padding-left: 150px;
-	padding-right: 50px;
+	padding-left: 7%;
+	padding-right: 1%;
 }
 
 #nav-profile{
 	color: white!important;
+	/*text-overflow: ellipsis*/
+}
+
+#navname {
+	padding-left: 5px;
+	width: 60px;
+	text-overflow: ellipsis;
 }
 
 #nav-profile:hover{
