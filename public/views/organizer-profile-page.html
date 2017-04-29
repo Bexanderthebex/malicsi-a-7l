@@ -194,96 +194,128 @@
 </div>
 
 <!-- Edit Profile Modal -->
-<div id="organizer-profile-edit-modal" class="modal gamefeed-addition modal-fixed-footer">
-    <div class="modal-content gamefeed-header-fill century-gothic">
-        <div class="row gamefeed-remove-bottom">
-            <div class="col s12 gamefeed-padding-left gamefeed-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="gamefeed-remove-bottom-modal">Edit Profile</h4>
-                        </div>
-                    <br>
+<div id="organizer-profile-edit-modal" class="modal modal-fixed-footer">
+    <div class="modal-content organizer-header-fill century-gothic">
+        <div class="row organizer-remove-bottom">
+            <div class="col s12 organizer-padding-left organizer-padding-right">
+                <div class="center palette-5"> <br>
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h4 class="organizer-remove-bottom-modal"> 
+                            Edit Profile
+                        </h4>
+                    </div> <br>
                 </div>
             </div>
         </div>
-        <div class="row gamefeed-modal-container  gamefeed-add-modal-content" ng-init="getCurrentUser()">
-            <div class="input-field col s6 gamefeed-input-color-change">
-                <input placeholder=" " id="username" type="text" class="validate" ng-model="organizer.username">
-                <label for="username">Username</label>
+        <div class="row organizer-modal-container"><br>
+            <div class="row">
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="username" type="text" class="validate" ng-model="organizer.username">
+                    <label for="username">
+                        Username
+                    </label>
+                </div>
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="password" type="password" class="validate" ng-model="organizer.password">
+                    <label for="password">
+                        Password
+                    </label>
+                </div>
             </div>
-            <div class="input-field col s6 gamefeed-input-color-change">
-                <input placeholder=" " id="password" type="password" class="validate " ng-model="organizer.password">
-                <label for="password">Password</label>
+            <div class="row">
+                <div class="input-field col s12 organizer-input-color-change">
+                    <input placeholder=" " id="name" type="text" class="validate" ng-model="organizer.name">
+                    <label for="name">
+                        Name
+                    </label>
+                </div>
             </div>
-
-            <div class="input-field col s12 gamefeed-input-color-change">
-                <input placeholder=" " id="name" type="text" class="validate " ng-model="organizer.name">
-                <label for="name" class="">Name</label>
+            <div class="row">
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="contact" type="text" class="validate" ng-model="organizer.contact">
+                    <label for="contact">
+                        Contact Number
+                    </label>
+                </div>
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="email" type="text" class="validate" ng-model="organizer.email">
+                    <label for="email">
+                        Email
+                    </label>
+                </div>
             </div>
-            <div class="input-field col s6 gamefeed-input-color-change">
-                <input placeholder=" " id="contact" type="text" class="validate " ng-model="organizer.contact">
-                <label for="contact" class="">Contact Number</label>
-            </div>
-            <div class="input-field col s6 gamefeed-input-color-change">
-                <input placeholder=" " id="email" type="text" class="validate " ng-model="organizer.email">
-                <label for="email" class="">E-Mail</label>
-            </div>
-
-            <div class="input-field col s12 gamefeed-input-color-change">
-                <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="organizer.description"></textarea>
-                <label for="description" class="gamefeed-textarea-label-color-change">Description</label>
+            <div class="row">
+                <div class="input-field col s12 organizer-input-color-change">
+                    <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="organizer.description"></textarea>
+                    <label for="description" class="organizer-textarea-label-color-change">
+                        Description
+                    </label>
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="updateOrganizer()">UPDATE</button>
+    <div class="modal-footer palette-5 right-align"><!-- button -->
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="updateOrganizer()">SAVE CHANGES</button>
+        <button href="" class="modal-action modal-close minimalist-button">CLOSE</button> 
     </div>
 </div>
 
 <!-- Update Game -->
-<div id="organizer-update-game-modal" class="modal gamefeed-addition modal-fixed-footer">
-    <div class="modal-content gamefeed-header-fill century-gothic">
-        <div class="row gamefeed-remove-bottom">
-            <div class="col s12 gamefeed-padding-left gamefeed-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="gamefeed-remove-bottom-modal">Update Game</h4>
-                        </div>
-                    <br>
+<div id="organizer-update-game-modal" class="modal modal-fixed-footer">
+    <div class="modal-content organizer-header-fill century-gothic">
+        <div class="row organizer-remove-bottom">
+            <div class="col s12 organizer-padding-left organizer-padding-right">
+                <div class="center palette-5"> <br>
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h4 class="organizer-remove-bottom-modal"> 
+                            Update Game
+                        </h4>
+                    </div> <br>
                 </div>
             </div>
         </div>
-        <div class="row gamefeed-modal-container">
-            <div class="input-field col s6 gamefeed-input-color-change">
-                <input placeholder=" " id="name" type="text" class="validate" ng-model="gameCopy.name">
-                <label for="name">Game Name</label>
+        <div class="row organizer-modal-container"><br>
+            <div class="row">
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="username" type="text" class="validate" ng-model="gameCopy.gameName">
+                    <label for="username">
+                        Game Name
+                    </label>
+                </div>
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="password" type="text" class="validate" ng-model="gameCopy.locat">
+                    <label for="password">
+                        Location
+                    </label>
+                </div>
             </div>
-            <div class="input-field col s6 gamefeed-input-color-change">
-                <input placeholder=" " id="location" type="text" class="validate " ng-model="gameCopy.location">
-                <label for="location">Location</label>
+            <div class="row">
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="startDate" type="date" class="validate" ng-model="gameCopy.startDate">
+                    <label for="startDate">
+                        Start Date
+                    </label>
+                </div>
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="endDate" type="date" class="validate" ng-model="gameCopy.endDate">
+                    <label for="endDate">
+                        End Date
+                    </label>
+                </div>
             </div>
-
-            <div class="input-field col s6 gamefeed-input-color-change">
-                <input id="start-date" type="date" class="validate " ng-model="gameCopy.startDate">
-                <label for="start-date" class="">Start Date</label>
+            <div class="row">
+                <div class="input-field col s12 organizer-input-color-change">
+                    <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="gameCopy.descrip"></textarea>
+                    <label for="description" class="organizer-textarea-label-color-change">
+                        Description
+                    </label>
+                </div>
             </div>
-            <div class="input-field col s6 gamefeed-input-color-change">
-                <input id="end-date" type="date" class="validate " ng-model="gameCopy.endDate">
-                <label for="end-date" class="">End Date</label>
-            </div>
-
-            <div class="input-field col s12 gamefeed-input-color-change">
-                <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="gameCopy.description"></textarea>
-                <label for="description" class="gamefeed-textarea-label-color-change">Description</label>
-            </div>
-
-            <p class="center">Note: Changes will only reflect on fields which are edited.</p>
         </div>
     </div>
-    <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button">UPDATE</button>
+    <div class="modal-footer palette-5 right-align"><!-- button -->
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="">SAVE CHANGES</button>
+        <button href="" class="modal-action modal-close minimalist-button">CLOSE</button> 
     </div>
 </div>
 
@@ -305,9 +337,8 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat" ng-click="deleteGame()"><i class="material-icons left">check
-        </i>Yes</a>
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="deleteGame()">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button> 
     </div>
 </div>
 
@@ -329,8 +360,8 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat" ng-click="acceptRequest()"><i class="material-icons left">check</i>Yes</a>
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="acceptRequest()">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button> 
     </div>
 </div>
 
@@ -352,8 +383,8 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat" ng-click="declineRequest()"><i class="material-icons left">check</i>Yes</a>
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="declineRequest()">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button> 
     </div>
 </div>
 
@@ -384,53 +415,60 @@
 </div>
 
 <div id="org-add-modal" class="modal modal-fixed-footer">
-    <div class="row organizer-modal-style">
-        <div class="row remove-bottom">
-            <div class="col s12 padding-left padding-right palette-5">
-                <div class="center">
-                    <br>
-                        <div class="card-title white-text center telegrafico">
-                            <h4>Add Game</h4>
-                        </div>
-                    <br>
+    <div class="modal-content organizer-header-fill century-gothic">
+        <div class="row organizer-remove-bottom">
+            <div class="col s12 organizer-padding-left organizer-padding-right">
+                <div class="center palette-5"> <br>
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h4 class="organizer-remove-bottom-modal"> 
+                            Add Game
+                        </h4>
+                    </div> <br>
                 </div>
             </div>
-        </div>  
-        <form class="col s12">
+        </div>
+        <div class="row organizer-modal-container"><br>
             <div class="row">
-                <div class="input-field col s12" style="margin-top: -5px;">
-                    <span class="telegrafico">Game Name</span>
-                    <input placeholder="Enter game name" id="name" type="text" class="organizer-input-style validate" ng-model="newGame.gameName">
-                    <!-- ng-model -> para makuha yung value na iiinput ng user as name ng bagong game -->
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="username" type="text" class="validate" ng-model="newGame.gameName">
+                    <label for="username">
+                        Game Name
+                    </label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12 organizer-add-form">
-                    <span class="telegrafico">Location</span>
-                    <input placeholder="Enter location" id="location" type="text" class="organizer-input-style validate" ng-model="newGame.locat">
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6 organizer-add-form">
-                    <span class="telegrafico">Start Date</span>
-                    <input id="game-start-date" class="datepicker organizer-input-style validate" ng-model="newGame.startDate">
-                </div>
-                <div class="input-field col s6 organizer-add-form">
-                    <span class="telegrafico">End Date</span>
-                    <input id="game-end-date" class="datepicker organizer-input-style validate" ng-model="newGame.endDate">
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="password" type="text" class="validate" ng-model="newGame.locat">
+                    <label for="password">
+                        Location
+                    </label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 organizer-add-form">
-                    <span class="telegrafico">Description</span>
-                    <textarea id="description" class="organizer-input-style materialize-textarea" ng-model="newGame.descrip"></textarea>
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="startDate" type="date" class="validate" ng-model="newGame.startDate">
+                    <label for="startDate" class="organizer-adjust-label">
+                        Start Date
+                    </label>
+                </div>
+                <div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder=" " id="endDate" type="date" class="validate" ng-model="newGame.endDate">
+                    <label for="endDate" class="organizer-adjust-label">
+                        End Date
+                    </label>
                 </div>
             </div>
-        </form>
+            <div class="row">
+                <div class="input-field col s12 organizer-input-color-change">
+                    <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="newGame.descrip"></textarea>
+                    <label for="description" class="organizer-textarea-label-color-change">
+                        Description
+                    </label>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico"><i class="material-icons left">close</i>Cancel</a>
-        <a class="modal-action modal-close waves-effect btn-flat telegrafico" ng-click="addGame()"><i class="material-icons left">check</i>Add</a>
+    <div class="modal-footer palette-5 right-align"><!-- button -->
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="addGame()">ADD</button>
+        <button href="" class="modal-action modal-close minimalist-button">CLOSE</button> 
     </div>
 </div>
 
