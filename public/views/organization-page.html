@@ -6,9 +6,61 @@
 			<img class="valign" id="organization-logo" src="assets/team1.png">
 			<h2 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h2>
 		</div>
-		<div class="row org-search-panel palette-5">
-			<div class="col s6 m6 l6 offset-m3 container">
-				<form id="game-game-search-bar" class="search-bar-config">
+		<!--<div class="row org-search-panel palette-5">
+			<div class="col s6 m6 l6 offset-m3 container rockwell">
+				<form id="org-game-search-bar" class="search-bar-config">
+					<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
+				</form>
+			</div>
+		</div>-->
+
+		<div class="row statistics-label center-align"> 
+			<h3 class="rockwell palette-text-3 `"> Statistics </h3>
+		</div>
+		<div class="row container">
+		 	<!-- STATISTICS -->
+            <div class="col s12 m12 l5 palette-3">
+                <div class="row center-align" ng-model="OrganizationController">
+                    <div class="col s4 m4 l4">
+						<h1 class="stat-nums rockwell strong"> {{organizationStats.first}} </h1>
+					</div>
+					<div class="col s4 m4 l4">
+						<h1 class="stat-nums rockwell strong"> {{organizationStats.second}} </h1>
+					</div>
+					<div class="col s4 m4 l4">
+						<h1 class="stat-nums rockwell strong"> {{organizationStats.third}} </h1>
+					</div>
+             
+                </div>
+                <div class="row center-align">
+                    <div class="col s4 m4 l4">
+                        <h3 class="palette-text-5 rockwell strong">2nd</h3>
+                    </div>
+                    <div class="col s4 m4 l4">
+                        <h3 class="palette-text-5 rockwell strong">1st</h3>
+                    </div>
+                    <div class="col s4 m4 l4">
+                        <h3 class="palette-text-5 rockwell strong">3rd</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m12 l7 palette-2">
+                <div class="row center-align">
+					<h1 class="rockwell strong stat-nums"> {{organizationStats.total}} </h1>
+                </div>
+				<div class="row center-align">
+					<div class="col s12 m12 l12">
+						<h3 class="palette-text-5 rockwell strong"> Total wins </h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col s6 m6 l6 container rockwell">
+			<div class="right">
+				<span class="rockwell"> GAME: </span>
+				<form id="org-game-search-bar" class="search-bar-config">
 					<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
 				</form>
 			</div>
@@ -23,11 +75,16 @@
 
 			<div id="team-table-1">
 				<div id="game-table1" >
-					<a href="#/game/{{viewedGameID}}"><h5 class="rockwell strong letter-spacing-1 center">{{ viewedGame.name }}</h5></a>
-					<table>
+					<a href="#/game/{{viewedGameID}}"><h3 class="rockwell strong letter-spacing-1 center">{{ viewedGame.name }}</h3></a>
+					<table class="highlight">
 						<thead>
 							<tr class="telegrafico">
-								<th> Team Name </th>
+								<th> 
+									Team Name
+									<form id="org-team-search-bar" class="search-bar-config">
+										<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
+									</form>
+								</th>
 								<th> Sport </th>
 								<th> Medals Won </th>
 							</tr>
@@ -41,64 +98,16 @@
 									<div> {{pagedTeam.sport_name}} </div>
 								</td>
 								<td>
-									<div class="col s4"> {{pagedTeam.statistics.first}} {{pagedTeam.statistics.second}} {{pagedTeam.statistics.third}} </div>
+									<div class="col s4">
+										<div><span style="font-weight: bold">1st</span> {{pagedTeam.statistics.first}} </div>
+										<div><span style="font-weight: bold">2nd</span> {{pagedTeam.statistics.second}}</div> 
+										<div><span style="font-weight: bold">3rd</span> {{pagedTeam.statistics.third}} </div>
+									</div>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<!-- <div id="game-table2">
-					<table>
-						<thead>
-							<tr class="telegrafico">
-								<th> Team </th>
-								<th> Sport </th>
-								<th> Medals Won </th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="rockwell">
-								<td>
-									<span> Singko Babies </span>
-								</td>
-								<td>
-									<span> Bagsakan ng Grades </span>
-								</td>
-								<td>
-									<div class="col s4"> 3 </div>
-									<div class="col s4"> 3 </div>
-									<div class="col s4"> 3 </div> 
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div id="game-table3">
-					<table>
-						<thead>
-							<tr class="telegrafico">
-								<th> Team </th>
-								<th> Sport </th>
-								<th> Medals Won </th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="rockwell">
-								<td>
-									<span> Team No Practicum </span>
-								</td>
-								<td>
-									<span> Hanapan 2017 </span>
-								</td>
-								<td>
-									<div class="col s4"> 3 </div>
-									<div class="col s4"> 3 </div>
-									<div class="col s4"> 3 </div> 
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div> -->
 			</div>
 			<div class="container center col s12">
 				<ul class="pagination center">
@@ -113,7 +122,7 @@
 			</div>
 
 		</div>
-		<!--<div class="row org-handler" ng-init="retrieveTeams(1)"><h4 class="organization-team-handler palette-text-3 center rockwell"> Teams Handled </h4></div>-->
+		<!--<div class="row org-handler" ng-init="retrieveTeams(1)"><h4 class="` palette-text-3 center rockwell"> Teams Handled </h4></div>-->
 
 		<div id="organization-team-info-modal" class="modal modal-fixed-footer">
 			<div class="modal-content">
@@ -167,48 +176,6 @@
 				<button class="modal-action modal-close right join-team-close minimalist-button">Close</button>
 			</div>
 		</div>
-		<div class="row statistics-label center-align"> 
-			<h4 class="rockwell palette-text-3 organization-team-handler"> Statistics </h4>
-		</div>
-		<div class="row container">
-		 	<!-- STATISTICS -->
-            <div class="col s12 m12 l5 palette-3">
-                <div class="row center-align" ng-model="OrganizationController">
-                    <div class="col s4 m4 l4">
-						<h1 class="stat-nums rockwell strong"> {{organizationStats.first}} </h1>
-					</div>
-					<div class="col s4 m4 l4">
-						<h1 class="stat-nums rockwell strong"> {{organizationStats.second}} </h1>
-					</div>
-					<div class="col s4 m4 l4">
-						<h1 class="stat-nums rockwell strong"> {{organizationStats.third}} </h1>
-					</div>
-             
-                </div>
-                <div class="row center-align">
-                    <div class="col s4 m4 l4">
-                        <h3 class="palette-text-5 century-gothic strong">2nd</h3>
-                    </div>
-                    <div class="col s4 m4 l4">
-                        <h3 class="palette-text-5 century-gothic strong">1st</h3>
-                    </div>
-                    <div class="col s4 m4 l4">
-                        <h3 class="palette-text-5 century-gothic strong">3rd</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m12 l7 palette-2">
-                <div class="row center-align">
-					<h1 class="rockwell strong stat-nums"> {{organizationStats.total}} </h1>
-                </div>
-				<div class="row center-align">
-					<div class="col s12 m12 l12">
-						<h3 class="palette-text-5 century-gothic strong"> Total number of wins </h3>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--Recent games label-->
 	</div>
 </div>
 
