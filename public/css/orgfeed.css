@@ -19,12 +19,13 @@
 	padding-top: 5%;
 	padding-left: 40px;
 	padding-right: 50px;
+	color: white;
 
 }
 
 #orgfeed-sort label{
 	font-family: telegrafico;
-	color: black;
+	color: white;
 	font-size: 18px;
 
 }
@@ -122,6 +123,7 @@
 	margin-top: 5px!important;
 	padding-left: 10px!important;
 	font-family: century-gothic!important;
+	color: #00415a!important;
 	/*padding-right: 10px!important;*/
 }
 
@@ -145,4 +147,15 @@
 	font-size: 18px;
 	letter-spacing: 3px;
 	font-weight: bold;
+}
+
+#orgfeed-sort input[type="radio"]:checked + label:after,
+#orgfeed-sort input[type="radio"].with-gap:checked + label:before,
+#orgfeed-sort input[type="radio"].with-gap:checked + label:after {
+	border: 2px solid #00719c!important;
+}
+
+#orgfeed-sort input[type="radio"]:checked + label:after,
+#orgfeed-sort input[type="radio"].with-gap:checked + label:after {
+	background-color: #00719c!important;
 }
