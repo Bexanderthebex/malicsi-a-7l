@@ -32,6 +32,7 @@
 
 .search-match{
     border: solid 2.5px;
+    border-color: #00719c;
     border-radius: 8px;
     min-height: 100px;
     margin-top: 10px;
@@ -105,4 +106,22 @@
   color: #00719c;
   transition: background 0.3s;
   cursor: pointer;
+}
+
+.search-tabs .search-tab a{
+  color: #00719c;
+}
+.search-tabs .search-tab a:hover,.search-tabs .search-tab a.active {
+  background-color: transparent;
+  color: white;
+}
+.search-tabs .search-tab.disabled a,.search-tabs .search-tab.disabled a:hover {
+  color: rgba(102,147,153,0.7);  
+}
+.search-tabs .indicator {
+  background-color: white;
+}
+
+.search-tabs {
+  overflow-x: hidden;
 }
