@@ -25,14 +25,6 @@
 			addOrganization: addOrganization,
 			deleteSponsor: deleteSponsor,
 			editSponsor: editSponsor
-
-			//deleteAdmin: deleteAdmin,
-			//addOrganizer: addOrganizer,
-			//updateOrganizer: updateOrganizer,
-			//deleteOrganizer: deleteOrganizer,
-			//addUser: addUser,
-			//updateUser: updateUser,
-			//deleteUser: deleteUser,
 		}
 
 		return service;

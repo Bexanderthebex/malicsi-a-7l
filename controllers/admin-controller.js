@@ -66,6 +66,7 @@ exports.createOrganizer = (req, res) => {
 exports.changeActivity = (req, res) => {
 	let query = 'CALL update_activity(?, ?)';
 	let type = req.session.user.type;
+	console.log(req.params.id)
 	connection.userType(type).query(query, [
 		req.body.is_active,
 		req.params.id

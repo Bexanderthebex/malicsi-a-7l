@@ -91,8 +91,9 @@
                         GameService
                             .viewGameDetails($scope.competitorteams[i].game_id)
                             .then(function(res) {
-                                $scope.competitorgames.push(res.data);
-                                console.log($scope.competitorgames);
+                                if(!$scope.competitorgames.find( function find(game){ return game.name === res.data.name })) {
+                                    $scope.competitorgames.push(res.data);
+                                }
                             }, function(err) {
                                 console.log(err);
                             })
@@ -116,12 +117,12 @@
                 .then(function(res) {
                     $scope.competitorteams = res.data;
                     for(var i = 0; i < $scope.competitorteams.length; i++){
-                        console.log($scope.competitorteams[i].game_id);
                         GameService
                             .viewGameDetails($scope.competitorteams[i].game_id)
                             .then(function(res) {
-                                $scope.competitorgames.push(res.data);
-                                console.log($scope.competitorgames);
+                                if(!$scope.competitorgames.find( function find(game){ return game.name === res.data.name })) {
+                                    $scope.competitorgames.push(res.data);
+                                }
                             }, function(err) {
                                 console.log(err);
                             })

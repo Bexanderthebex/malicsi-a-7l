@@ -82,8 +82,9 @@
                 .then(function(res) {
                     $scope.gamesInOrganization = res.data;
                     $scope.filteredGames = $scope.gamesInOrganization.slice(0);
-                    setViewedGame($scope.gamesInOrganization[0]);
-                    console.log (res.data);
+                    $scope.viewedGame = $scope.gamesInOrganization[0];
+                    $scope.viewedGameID = $scope.gamesInOrganization[0].game_id;
+                    retrieveTeams($scope.thisOrganization.organization_id);
                 }, function(err) {
                     Materialize.toast('Error loading games');
                     console.log(err);
@@ -95,7 +96,6 @@
             $scope.viewedGame = game;
             $scope.viewedGameID = game.game_id;
             retrieveTeams($scope.thisOrganization.organization_id);
-            console.log($scope.viewedGameID);
         }
 
 
@@ -104,6 +104,7 @@
                 .retrieveTeams(org_id)
                 .then(function(res) {
                     $scope.teams = [];
+                    $scope.pages = [];
                     var temp = res.data;
                     var i=0;
                     console.log($scope.viewedGameID);
@@ -117,30 +118,25 @@
                             };
                             retrieveTeamStatistics(temp[i].team_id,temp[i].statistics);
                             //temp[i].statistics = retrieveTeamStatistics(temp[i].team_id);
-                            console.log(temp[i]);
                             $scope.teams.push(temp[i]);
                         }
                     }
-                    
+                    $scope.totalPages = Math.floor($scope.teams.length/5)==0?1:$scope.teams.length/5;
+                    for (var i=0;i<$scope.totalPages;i++) $scope.pages.push(i);
+                    var page = 0;
+                    $scope.pagedTeams = [];
+                    if ($scope.teams.length == 0)
+                        return;
+                    $scope.pagedTeams = $scope.teams.slice(page*5, (page*5)+5>$scope.teams.length?$scope.teams.length:(page*5)+5);
                 }, function(err) {
                     Materialize.toast('Error loading teams');
                     console.log(err);
                 })
-
-            $scope.totalPages = Math.floor($scope.teams.length/5)==0?1:$scope.teams.length/5;
-            for (var i=0;i<$scope.totalPages;i++)
-                $scope.pages.push(i)
-            setPageView(0);
-            console.log($scope.totalPages);
-
         }
 
         function setPageView(page){
             $scope.pagedTeams = [];
             console.log($scope.teams);
-            console.log(page*5);
-            console.log(page*5+5);
-            console.log($scope.teams.length);
             if ($scope.teams.length == 0)
                 return;
             $scope.pagedTeams = $scope.teams.slice(page*5, (page*5)+5>$scope.teams.length?$scope.teams.length:(page*5)+5);
