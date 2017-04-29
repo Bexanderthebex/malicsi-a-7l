@@ -82,6 +82,13 @@
 			</a>
 			<ul class="right hide-on-med-and-down" ng-controller="NavCtrl">
 				<li class="navbar-rightside">
+
+					<a href="#/organizations" class="valign-wrapper right palette-text-1" style="color: #00719c;">
+						<form id="nav-search-bar">
+							<input type="search" ng-model="searchbox" code="13" press-enter="search(searchbox)">
+						</form>
+					</a>
+
 					<a data-activates="nav-dropdown" data-beloworigin="true" class="dropdown-button navbtns valign-wrapper right palette-text-1" style="color: #00b8ff;"><i class="fa fa-chevron-down"></i></a>
 					<ul id="nav-dropdown" class="dropdown-content">
 						<li class="nav-dropdown-item black white-text telegrafico" ng-hide="hide == false" ><a href="#" ng-controller="UserCtrl" ng-click="logOut()"><i style="color: #00719c;" class="fa fa-sign-out" aria-hidden="true"></i>Log Out</a></li>
@@ -90,9 +97,12 @@
 						<li class="nav-dropdown-item black white-text telegrafico"><a href="/#/aboutus"><i style="color: #00719c;" class="fa fa-quote-left" aria-hidden="true"></i>About Us</a></li>
 					</ul>					
 
+					
+
 					<a ng-href="{{iconUrl}}" id="nav-profile" class="navbtns valign-wrapper right"><i  class="fa fa-user-o" aria-hidden="true"></i><span>{{user.username}}</span></a>
 
 					<a href="#/organizations" class="navbtns valign-wrapper right palette-text-1" style="color: #00719c;">ORGANIZATIONS</a>
+					
 					<a href="#/game" class="navbtns valign-wrapper right palette-text-4" style="color: #00719c;">GAMES</a>
 					<a href="#/" class="navbtns valign-wrapper right palette-text-5" style="color: #00b8ff;">HOME</a>
 				</li>
