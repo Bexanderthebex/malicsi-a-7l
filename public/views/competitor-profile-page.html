@@ -106,7 +106,7 @@
 
             <!-- Sports Played -->
 
-            <div class="divider container"></div><br>
+            <!-- <div class="divider container"></div><br> -->
 
             <!-- Games Participated-->
             <div class="row container" ng-init="">
@@ -131,16 +131,6 @@
                 </div>
             </div><br>
 
-            <div class="row competitor-footer black">
-                <div class="black">
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="#"> Help </a></li>
-                        <li><a href="#"> About Us </a></li>
-                        <li>All Rights Reserved</li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
 
         <div id="teams-managed-div" class="col s12" ng-init="getCoachedTeam()">
@@ -148,13 +138,24 @@
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
-                <ul class="collapsible" data-collapsible="accordion" ng-click="getTeamMembers(cteam.team_id)">
+                <ul class="collapsible z-depth-0" data-collapsible="accordion" ng-click="getTeamMembers(cteam.team_id)">
+                    <li>
+                        <div class="collapsible-header grey lighten-2 remove-bottom">
+                            <div id="teams-managed-header" class="row remove-bottom telegrafico">
+                                <div class="col l3 m3 s3 font-pt-18">Team Name</div>
+                                <div class="col l5 m5 s5 font-pt-18 center">Organization</div>
+                                <div class="col l3 m3 s3 font-pt-18 center">Sports</div>
+                                <div class="col l1 m1 s1 center-block">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li ng-repeat="cteam in coachedteam" >
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
-                                <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
-                                <div class="col l5 m5 s5">{{cteam.name}}</div>
-                                <div class="col l3 m3 s3">{{cteam.sport_name}}</div>
+                                <div class="col l3 m3 s3">{{cteam.team_name}}</div>
+                                <div class="col l5 m5 s5 center">{{cteam.name}}</div>
+                                <div class="col l3 m3 s3 center">{{cteam.sport_name}}</div>
                                 <div class="col l1 m1 s1 center-block">
                                      <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team" ng-click="team.team_id=cteam.team_id"></i></div>
                                 </div>
@@ -299,10 +300,10 @@
                 <label for="first-name">Username</label>
             </div>
             <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
+                <input required placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
                 <label for="last-name">Password</label>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="file-title col s12 century-gothic valign-wrapper">
                     <label class="active">Profile Picture</label>
                 </div>
@@ -320,7 +321,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
@@ -353,18 +354,18 @@
             </div>
             <div class="input-field col l6 m6 s12" ng-init="listAllGames()">
                 <label class="active">Game</label><br>
-                <select class="browser-default" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">
+                <select class="browser-default competitor-select-dropdown" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">
                 </select>
             </div>
             <div class="input-field col l6 m6 s12">
                 <label class="active">Sports</label><br>
-                <select class="browser-default" ng-model="team.sport_id" ng-options="sport.sport_name for sport in sports">
+                <select class="browser-default competitor-select-dropdown" ng-model="team.sport_id" ng-options="sport.sport_name for sport in sports">
                     <option selected disabled class="white black-text" value="">&nbsp;</option>
                 </select>
-            </div><br>
+            </div>
             <div class="input-field col l6 m6 s12">
                 <label class="active">Organization</label><br>
-                <select class="browser-default" ng-model="team.team_organization" ng-options="organization.name for organization in organizations">
+                <select class="browser-default competitor-select-dropdown" ng-model="team.team_organization" ng-options="organization.name for organization in organizations">
                     <option selected disabled class="white black-text" value="">&nbsp;</option>
                 </select>
             </div>

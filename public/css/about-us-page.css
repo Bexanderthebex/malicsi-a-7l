@@ -1,7 +1,57 @@
-.cover-photo {
-  background-size: contain;
+div {
+  height: 100%;
+}
+
+h3 {
+  margin: 0px;
+}
+
+#cover-photo {
+  height: 95%;
+  background-image: url(../assets/about-us-cover.jpg);
+  background-color: #00415a;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+#tagline {
+  background-color: rgba(0,0,0,0.5);
+  font-size: 36pt;
+}
+
+#about, #lennon, #stuart, #ringo, #mccartney, #about-content {
+  height: auto;
+}
+
+.shortcuts:hover {
+  background-color: white;
+}
+
+#tagline-div {
+  height: 85%;
+}
+
+#shortcuts-div {
+  height: 10%;
+}
+
+.team-name {
+  font-size: 14pt;
+  color: white;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.team-name:hover {
+  cursor: pointer !important;
+}
+
+.material-icons:hover {
+  color: black;
+}
+
+.remove-bottom {
+  margin-bottom: 0px;
 }
 
 #dev-team {
@@ -18,7 +68,7 @@
 }
 
 .dev-member-card {
-  background-color: rgba(255,255,255,0.3);
+  background-color: #00b8ff;
 }
 
 .col-margin-remove {
@@ -26,7 +76,7 @@
 }
 
 .bordered-div {
-  border: 2px solid #00415a;
+/*  border: 2px solid #00415a;*/
   border-radius: 5px;
 }
 

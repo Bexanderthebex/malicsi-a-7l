@@ -1,154 +1,50 @@
-<div id="mainHolder" ng-controller="competitorController">
+<div id="mainHolder">
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
-    <div id="main" class="parallax-container">
-        <!-- competitor Basic Info -->
-        <div class="parallax">
-            <img src="assets/images/4.jpg">
+    <div id="main">
+        <div id="cover-photo" class="">
+            <div id="tagline-div" class="row valign-wrapper remove-bottom">
+                <span id="tagline" class="valign center-block white-text rockwell">&#8220; MalICSi: Sumaksi, sumali, magkumbinsi! &#8221;</span>
+            </div>
+            <div id="shortcuts-div" class="row remove-bottom section">
+                <div class="col l2 m2 s2 offset-l1 offset-m1 offset-s1">
+                    <a href="#about" class="shortcuts tiny btn-floating  palette-1"><i class="tiny material-icons left">description</i></a>&nbsp;<span href="#about" class="telegrafico team-name">About</span>
+                </div>
+                <div class="col l2 m2 s2">
+                    <a href="#lennon" class="shortcuts tiny btn-floating  palette-2"><i class="tiny material-icons left">code</i></a>&nbsp;<span class="telegrafico team-name">Lennon</span>
+                </div>
+                <div class="col l2 m2 s2">
+                    <a href="stuart" class="shortcuts tiny btn-floating  palette-3"><i class="tiny material-icons left">settings</i></a>&nbsp;<span class="telegrafico team-name">Stuart</span>
+                </div>
+                <div class="col l2 m2 s2">
+                    <a href="#ringo" class="shortcuts tiny btn-floating  palette-4"><i class="tiny material-icons left">settings</i></a>&nbsp;<span class="telegrafico team-name">Ringo</span>
+                </div>
+                <div class="col l2 m2 s2">
+                    <a href="mccartney" class="shortcuts tiny btn-floating  palette-5"><i class="tiny material-icons left">settings</i></a>&nbsp;<span class="telegrafico team-name">McCartney</span>
+                </div>
+            </div>
         </div>
-        <div class="row container center">
-           <!--  <div id="about-us-img-1" class="cover-photo row hide-on-small-only">&nbsp;</div>
-            <div id="about-us-img-1s" class="cover-photo row container hide-on-med-and-up">&nbsp;</div> -->
-            <div class="row"><h3 class="rockwell center"><a href="#about-us" class="scrollspy black-text">About Us</a></h3></div>
-            <div id="about-us" class="row">
-                <div class="row">
-                    <h1 class="sansation">
-                        &#8220; Insert our slogan/tagline here. &#8221;
-                    </h1>
-                </div>
-                <div id="details-div" class="row">
-                    <div class="col l4 m4 s12">
-                        <h5 class="telegrafico">Header</h5>
-                        <p class="century-gothic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <br>
+        <div id="about" class="container valign-wrapper center">
+            <div id="about-content" class="valign center container">
+                <h3 class=" rockwell palette-text-3">About</h3>
+                <hr class="container">
+                <p class="century-gothic">A Game Management System made by 20 junior students of the Institute of Computer Science with the goal of organizing efficiently the yearly sport event of Computer Science undergrduates together with the instructors and the professors.</p>
+                <div class="row dev-member-card center bordered-div">
+                    <div class="col l5 m5 s5">
+                        <img src="../assets/avatars/female_avatar_1.png" class="responsive-img">
                     </div>
-                    <div class="col l4 m4 s12">
-                        <h5 class="telegrafico">Header</h5>
-                        <p class="century-gothic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                    </div>
-                    <div class="col l4 m4 s12">
-                        <h5 class="telegrafico">Header</h5>
-                        <p class="century-gothic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <div class="col l7 m7 s7">
+                        <h5 class="telegrafico">Claizel Coubeili Cepe</h5>
+                        <p class="century-gothic">Project Manager</p>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="row"><h3 class="rockwell">Meet the Developers</h3></div>
-                <div class="row center">
-                    <div class="col l4 m4 s12 offset-l4 offset-m4">
-                         <div class="dev-member-card center bordered-div">
-                            <h5 class="telegrafico">Claizel Coubeili Cepe</h5>
-                            <p class="century-gothic">Project Manager</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="dev-team" class="row center">
-                    <div class="col l3 m3 s12 ">
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Blessy Salvania</h5>
-                            <p class="century-gothic">Team Leader<br>Front-end Developer</p>
-                            <p class="century-gothic"></p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Jourish Abasolo</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Kenichii Ana</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Meika Lei Dane</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Carol Tolentino</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                    </div>
-                    <div class="col-margin-remove col l3 m3 s12">
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Emy Cabarles</h5>
-                            <p class="century-gothic">Team Leader<br>Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                    </div>
-                    <div class="col-margin-remove col l3 m3 s12">
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Ralph Reyes</h5>
-                            <p class="century-gothic">Team Leader<br>Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                    </div>
-                    <div class="col-margin-remove col l3 m3 s12">
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Anton Rufino</h5>
-                            <p class="century-gothic">Team Leader<br>Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                    </div>
-                </div>
-            </div>
-        </div>         
+        </div>
+        <div id="lennon" class="container grey center lighten-2">
+            <h3 class=" rockwell palette-text-3">Team Lennon</h3>
+        </div>
+
     </div>
 </div>
 
@@ -156,7 +52,6 @@
 <script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>
 <script>
     $(document).ready(function(){
-      $('.parallax').parallax();
+      $('.scrollspy').scrollSpy();
     });
 </script>
-<!--script type="text/javascript" src="../js/competitor-profile-page.js"></script-->
