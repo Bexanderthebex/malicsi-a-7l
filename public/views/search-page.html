@@ -24,7 +24,7 @@
 		<div class="row center container" style="margin-bottom: 0px;">
 			<h4 class="rockwell white-text">{{ results.length==1 ? results.length + ' Result' : results.length + ' Results' }} for "{{ searchfor }}"</h4>
 		</div>
-		<div class="row container">
+		<div class="row container" ng-hide="results.length==0">
 		    <div class="col s12">
 				<ul class="search-tabs tabs telegrafico palette-5">
 					<li class="tab col s2 search-tab"><a class="" href="#game-results">Game ({{ games.length }})</a></li>
