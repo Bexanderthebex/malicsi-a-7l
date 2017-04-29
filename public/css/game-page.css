@@ -2,6 +2,18 @@
     margin-bottom: 1% !important;
 }
 
+#game-slider .indicators .indicator-item {
+  background-color: #001f2b;
+  border: 3px solid #ffffff;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+#game-slider .indicators .indicator-item.active {
+  background-color: #00a5d3;
+}
+
 .game-container {
     margin: 0 auto;
     max-width: 1280px;
