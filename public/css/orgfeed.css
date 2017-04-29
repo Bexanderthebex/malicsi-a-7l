@@ -45,6 +45,7 @@
 	border-radius: 50%;
 	/*margin-left: 25px;*/
 	font-family: rockwell;
+	color: black;
 }
 
 
@@ -116,10 +117,10 @@
 }
 
 .orgfeed-input{
-	border-radius: 2px!important;
+	border-radius: 50px!important;
 	border: none!important;
 	overflow: hidden!important;
-	background: #00b8ff!important;
+	background: white!important;
 	margin-top: 5px!important;
 	padding-left: 10px!important;
 	font-family: century-gothic!important;
