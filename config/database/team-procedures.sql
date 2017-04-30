@@ -11,7 +11,16 @@ CREATE PROCEDURE get_team (IN id INT)
 
 DELIMITER ;
 
-
+DROP PROCEDURE IF EXISTS search_team;		
+ DELIMITER //		
+ 		
+ CREATE PROCEDURE search_team (IN team_namein VARCHAR(50))		
+ 	BEGIN		
+ 		SELECT * from team where team_name like team_namein;		
+ 	END; //		
+ 		
+ DELIMITER ;
+ 
 DROP PROCEDURE IF EXISTS get_coached_team;
 DELIMITER //
 
@@ -160,6 +169,8 @@ GRANT EXECUTE ON procedure get_members TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure organization_rankings TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure get_teams_on_organization TO 'competitor'@'localhost';
 
+GRANT EXECUTE ON procedure count_team_members_in_team TO 'administrator'@'localhost';
+GRANT EXECUTE ON procedure display_pending_membership_request TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure create_team TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure delete_team TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure team_membership_request TO 'administrator'@'localhost';
@@ -178,5 +189,3 @@ GRANT EXECUTE ON procedure get_teams_on_organization TO 'guest'@'localhost';
 
 GRANT EXECUTE ON procedure get_membership_request TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure get_membership_request TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure get_membership_request TO 'organizer'@'localhost';
-GRANT EXECUTE ON procedure get_membership_request TO 'guest'@'localhost';
