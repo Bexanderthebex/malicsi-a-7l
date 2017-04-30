@@ -1,51 +1,121 @@
-.cover-photo {
-  background-size: contain;
+@media only screen and (max-width: 500px){
+  .h4-style {
+    width: auto !important;
+  }
+}
+
+.h5-margin {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.h4-style {
+  border-radius: 50px;
+  width: 500px;
+  margin-bottom: 20px;
+}
+
+.p-style {
+  margin-top: 2px;
+  margin-bottom: 2px; 
+}
+
+#cover-photo {
+/*  height: 600px;*/
+  background-image: url(../assets/about-us-cover.jpg);
+  background-color: #00415a;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-#dev-team {
-  height: 255px;
-  overflow-y: auto;
+#company-logo {
+  width: 40%;
 }
 
-#details-div {
-  background-color: rgba(255,255,255,0.3);
+#tagline {
+  background-color: rgba(0,0,0,0.5);
+  font-size: 36pt;
 }
 
-#project-manager-card {
-  width: 
+
+#about-content, #about-details, #lennon, #stuart, #ringo, #mccartney {
+  height: auto;
+}
+
+#about-details {
+  height: auto;
+}
+
+.shortcuts:hover {
+  background-color: white;
+}
+
+#tagline-div {
+  height: 85%;
+  margin-top: 0px;
+}
+
+#shortcuts-div {
+  height: 10%;
+}
+
+.team-name {
+  font-size: 14pt;
+  color: white;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.team-name:hover {
+  cursor: pointer !important;
+}
+
+.material-icons:hover {
+  color: black;
+}
+
+.remove-bottom {
+  margin-bottom: 0px;
+}
+
+.padding-top-bottom {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.inline {
+  display: inline-block;
 }
 
 .dev-member-card {
-  background-color: rgba(255,255,255,0.3);
-}
-
-.col-margin-remove {
-  margin-left: 0 !important;
-}
-
-.bordered-div {
-  border: 2px solid #00415a;
+  height: 150px;
+  width: 350px;
   border-radius: 5px;
 }
-
-#about-us-img-1 {
-  background-image: url('/assets/dev-team-photo-3.jpg');
-  height: 500px;
+.dev-member-avatar {
+  width: 120px;
+}
+.dev-member-info {
+  width: 180px;
+}
+.dev-member-img {
+  width: 110px;
+  height: 110px;
+}
+#project-manager {
+  background-color: #00b8ff;
+}
+.dev-member-tl {
+  background-color: #00415a;
+  color: white;
 }
 
-#about-us-img-2 {
-  background-image: url('/assets/dev-team-photo.png');
-  height: 500px;
+.dev-member-1 {
+  background-color: #00719c;
+  color: white;
 }
 
-#about-us-img-1s {
-  background-image: url('/assets/dev-team-photo-3.jpg');
-  height: 250px;
-}
-
-#about-us-img-2s {
-  background-image: url('/assets/dev-team-photo.png');
-  height: 250px;
+.dev-member-2 {
+  background-color: #001f2b;
+  color: white;
 }
