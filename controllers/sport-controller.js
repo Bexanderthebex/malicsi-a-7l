@@ -204,7 +204,6 @@ exports.retrieveCompetitorSportRankings = (req, res, next) => {
 			[req.params.sportId, req.params.id],
 			(err, rows) =>{
 				if(!err){
-					console.log(rows[0]);
 					return res.status(200).send(rows[0]);
 				}
 				else if(rows.length == undefined){

@@ -270,23 +270,30 @@
         }
 
         function getTeamRankings(id){
-            console.log($scope.RankingSportID);
-            console.log(id);
             CompetitorService
                 .getTeamRankings($scope.RankingSportID, id)
                 .then(function (res){
                     $scope.rank = res.data;
-                    console.log($scope.rank);
                     if ($scope.rank == [] || $scope.rank == undefined){
                         $scope.rankings.first = 0;
                         $scope.rankings.second= 0;
                         $scope.rankings.third = 0;
                         console.log("Rankings Unavailable");
                     }
-                    else{
+                    else if($scope.rank.length == 3){
                         $scope.rankings.first = $scope.rank[0].ranks;
                         $scope.rankings.second= $scope.rank[1].ranks;
                         $scope.rankings.third = $scope.rank[2].ranks;
+                    }
+                    else if($scope.rank.length == 2){
+                        $scope.rankings.first = $scope.rank[0].ranks;
+                        $scope.rankings.second= $scope.rank[1].ranks;
+                        $scope.rankings.third = 0;
+                    }
+                    else{
+                        $scope.rankings.first = $scope.rank[0].ranks;
+                        $scope.rankings.second= 0;
+                        $scope.rankings.third = 0;
                     }
                 }, function(err) {
                     console.log(err);
@@ -307,7 +314,6 @@
                 .viewAllOrganizationInGame($scope.game.game_id)
                 .then(function (res){
                     $scope.organizations = res.data;
-                    // console.log($scope.organizations);
                 }, function(err) {
                     console.log(err);
                 })

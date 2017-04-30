@@ -276,10 +276,11 @@
                 headers: headers
             }).then((res) => {
                 console.log(res.data);
-                if (res[0] == undefined)
+                if (res.data[0] == undefined)
                     deferred.resolve([]);
                 else
-                    deferred.resolve(res[0]);
+                    deferred.resolve(res);
+                
             }, (err) => {
                 deferred.reject(err);
             });
