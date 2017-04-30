@@ -24,6 +24,7 @@
         $scope.sortBy = sortBy;
 
         function search(sdata) {
+            $scope.atoz = 'atoz';
             $location.path('/search/' + sdata);
             // searchBy($routeParams.sdata, true, true, true, true, true);
         }
