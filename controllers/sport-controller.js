@@ -196,3 +196,27 @@ exports.searchForSportByKeyword = (req,res) => {
 }
 
 
+exports.retrieveCompetitorSportRankings = (req, res, next) => {
+	let query = 'CALL retrieve_competitor_rankings_from_sport(?, ?)';
+	let param = parseInt(req.params.sportId);
+	if(!isNaN(param)){
+		connection.userType('A').query(query,
+			[req.params.sportId, req.params.id],
+			(err, rows) =>{
+				if(!err){
+					return res.status(200).send(rows[0]);
+				}
+				else if(rows.length == undefined){
+					return res.status(404).send("Rankings are unavailable.");
+				}
+				else{
+					console.log(err);
+					return res.status(500).send("Internal server error.");
+				}
+			});
+
+	}
+	else{
+		res.status(400).send("Invalid parameter.");
+	}
+}
