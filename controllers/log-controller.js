@@ -74,7 +74,7 @@ exports.searchLog = (req, res) => {
     );
 }
 
-exports.createLog = (req, res) => {
+exports.createLog = (id, message) => {
     currentUser = req.session.user;
     query = "CALL create_log(?, ?)";
 
@@ -82,13 +82,13 @@ exports.createLog = (req, res) => {
 	let type = req.session.user.type;
     connection.userType(type).query(query,
         [
-            req.body.id,
-            req.body.message
+            id,
+            message
         ], (err, rows) => {
             if(!err) {
-                return res.status(200).send({ 'message' : 'Sucessfully created log'});
+                return true;
             } else {
-                return res.status(500).send({ 'message' : 'An error occured'});
+                return false;
             }
         }
     );
