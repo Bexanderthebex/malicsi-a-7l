@@ -31,7 +31,7 @@
 	width: 100%;
 	padding-right: 25px;
 	/*background: black;*/
-	opacity: .75;
+	/*opacity: .75;*/
 	overflow-y: auto;
 }
 
@@ -170,7 +170,7 @@
 }
 
 #login-container{
-	background: url('/assets/login.jpg');
+	/*background: url('/assets/login.jpg');*/
 	background-size: cover;
 }
 

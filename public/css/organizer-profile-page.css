@@ -160,3 +160,65 @@ table.highlight tbody tr:hover {
   background-color: #001f2b;
   /*border-radius: 5px;*/
 }
+
+/******** MODAL ********/
+.organizer-header-fill{
+    padding: 0px !important;
+    overflow-x: hidden;
+}
+
+.organizer-remove-bottom {
+  margin-bottom: 0px !important;
+}
+
+.organizer-padding-right {
+    padding-right: 0rem !important;
+}
+
+.organizer-padding-left {
+    padding-left: 0rem !important;
+}
+
+.organizer-remove-bottom-modal {
+    margin-bottom: 0px !important;
+}
+
+.organizer-adjust-label {
+    top: -14px !important;
+    font-size: 0.8rem !important;
+}
+
+/* input tags */
+.organizer-input-color-change input:not([type]):focus:not([readonly]),
+.organizer-input-color-change input[type=text]:focus:not([readonly]),
+.organizer-input-color-change input[type=date]:focus:not([readonly]),
+.organizer-input-color-change input[type=password]:focus:not([readonly]),
+.organizer-input-color-change textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #00415a;
+  box-shadow: 0 1px 0 0 #00415a;
+}
+
+.organizer-input-color-change input:not([type]):focus:not([readonly]) + label,
+.organizer-input-color-change input[type=text]:focus:not([readonly]) + label,
+.organizer-input-color-change input[type=date]:focus:not([readonly]) + label,
+.organizer-input-color-change input[type=password]:focus:not([readonly]) + label,
+.organizer-input-color-change textarea.materialize-textarea:focus:not([readonly]) + label.organizer-textarea-label-color-change {
+  color: #00415a;
+}
+
+/* input - textarea */
+.organizer-textarea-label-color-change{
+  color: #00415a;   
+}
+
+/* radio buttons */
+.organizer-radio-button [type="radio"]:checked + label:after,
+.organizer-radio-button [type="radio"].with-gap:checked + label:before,
+.organizer-radio-button [type="radio"].with-gap:checked + label:after {
+  border: 2px solid #00415a;
+}
+
+.organizer-radio-button [type="radio"]:checked + label:after,
+.organizer-radio-button [type="radio"].with-gap:checked + label:after {
+  background-color: #00415a;
+}

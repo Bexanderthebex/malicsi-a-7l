@@ -16,64 +16,43 @@
         $scope.orgfeedInit = orgfeedInit;
         $scope.sortBy = sortBy;
         $scope.filter = filter;
+        $scope.atoz = 'atoz';
 
         function filter(org, team){
-            $scope.orgs = [];
+            org = (org == undefined || org == null) ? '' : org;
+            team = (team == undefined || team == null) ? '' : team;
 
-            console.log("filter");
-            console.log(org);
-            console.log(team);
-
-            if(org !== ""){
-                SearchService
-                    .retrieveOrganization(org)
-                    .then(function(res){
-                        $scope.organizations = [];
-                        $scope.organizations = res.data;
-                        console.log($scope.orgs);
-                        retrieveTeams();
-
-
-                    }, function(err){                    
-                    })
-
-            }else if(team !== ""){
-                SearchService
-                    .retrieveTeam(team)
-                    .then(function(res){
-                        $scope.teams = [];
-                        $scope.teams = res.data;
-                        console.log($scope.teams);
-
-                        for(var i=0; i<$scope.teams.length; i++){
-                            console.log("maru");
-                            // find organization
-                            for(var j=0; j<$scope.orgs; j++){
-                                if($scope.orgs[j].organization_id == $scope.teams[i].team_organization){
-                                    var team = [];
-                                    team.push($scope.teams[i]);
-                                    $scope.orgfeedData = [];
-                                    var data = {
-                                        org: $scope.orgs[j].name,
-                                        id: $scope.orgs[j].organization_id,
-                                        teams: team,
-                                        teamCount: 1
-                                    }
-                                    $scope.orgfeedData.push(data);
+            SearchService.retrieveOrganization(org)
+            .then((res) => {
+                let organizations = res.data;
+                console.log('filter orgs', organizations);
+                if (team != '' || team != null || team != undefined) {
+                    SearchService.retrieveTeam(team)
+                    .then((res) => {
+                        let teams = res.data;
+                        let result = [];
+                        for (org of organizations) {
+                            for (team of teams) {
+                                if (team.team_organization == org.organization_id) {
+                                    result.push(org);
+                                    break;
                                 }
                             }
                         }
-                    }, function(err){                    
+                        $scope.organizations = [];
+                        $scope.organizations = result;
+                        retrieveTeams();
                     })
-            }else{
-                orgfeedInit();
-            }
-
-            
+                } else {
+                    $scope.organizations = [];
+                    $scope.organizations = organizations;
+                    retrieveTeams();
+                }
+            }, (err) => {})            
         }
 
-        function sortBy(sortMethod){
-            if(sortMethod === 'atoz'){
+        function sortBy(){
+            if($scope.atoz === 'atoz'){
                 sortAtoZ();   
             }else{
                 sortZtoA();
@@ -135,7 +114,6 @@
                             fetchedTeams.push(res.data);
                         }
                         console.log(fetchedTeams);
-                        index++;
                         var name = $scope.organizations[index].name;
                         console.log(name);
                         var data = {
@@ -145,6 +123,7 @@
                             teamCount: fetchedTeams.length
                         }
                         $scope.orgfeedData.push(data);
+                        index++;
 
                         sortAtoZ();
                     }, function(err){

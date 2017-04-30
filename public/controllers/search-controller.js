@@ -16,16 +16,114 @@
         $scope.sports = [];
         $scope.organizers = [];
         $scope.search = search;
-
+        $scope.goToCompetitor = goToCompetitor;
+        $scope.goToOrganization = goToOrganization;
+        $scope.goToSport = goToSport;
+        $scope.goToOrganizer = goToOrganizer;
+        $scope.goToGame = goToGame;
+        $scope.sortBy = sortBy;
 
         function search(sdata) {
+            $scope.atoz = 'atoz';
             $location.path('/search/' + sdata);
             // searchBy($routeParams.sdata, true, true, true, true, true);
         }
 
+        function goToCompetitor(sdata) {
+            $location.path('/competitor/profile/' + sdata);
+        }
+
+        function goToOrganization(sdata) {
+            $location.path('/organization/' + sdata);
+        }
+
+        function goToSport(sdata) {
+            $location.path('/sports/' + sdata);
+        }
+
+        function goToOrganizer(sdata) {
+            $location.path('/organizer/profile/' + sdata);
+        }
+
+        function goToGame(sdata) {
+            $location.path('/game/' + sdata);
+        }
+
         $scope.searchquery = $routeParams.sdata;
+
+        function sortBy(sortMethod){
+            if(sortMethod === 'atoz'){
+                sortAtoZ();   
+            }else{
+                sortZtoA();
+            }
+        }
+
+        function sortAtoZ(){
+            $scope.games.sort(function(a, b){
+                if(a.name < b.name) return -1;
+                if(a.name > b.name) return 1;
+                return 0;
+            });
+
+            $scope.organizations.sort(function(a, b){
+                if(a.name < b.name) return -1;
+                if(a.name > b.name) return 1;
+                return 0;
+            });
+
+            $scope.sports.sort(function(a, b){
+                if(a.sport_name < b.sport_name) return -1;
+                if(a.sport_name > b.sport_name) return 1;
+                return 0;
+            });
+
+            $scope.organizers.sort(function(a, b){
+                if(a.name < b.name) return -1;
+                if(a.name > b.name) return 1;
+                return 0;
+            });
+
+            $scope.competitors.sort(function(a, b){
+                if(a.first_name < b.first_name) return -1;
+                if(a.first_name > b.first_name) return 1;
+                return 0;
+            });
+        }
+
+        function sortZtoA(){
+            $scope.games.sort(function(a, b){
+                if(a.name > b.name) return -1;
+                if(a.name < b.name) return 1;
+                return 0;
+            });
+
+            $scope.organizations.sort(function(a, b){
+                if(a.name > b.name) return -1;
+                if(a.name < b.name) return 1;
+                return 0;
+            });
+
+            $scope.sports.sort(function(a, b){
+                if(a.sport_name > b.sport_name) return -1;
+                if(a.sport_name < b.sport_name) return 1;
+                return 0;
+            });
+
+            $scope.organizers.sort(function(a, b){
+                if(a.name > b.name) return -1;
+                if(a.name < b.name) return 1;
+                return 0;
+            });
+
+            $scope.competitors.sort(function(a, b){
+                if(a.first_name > b.first_name) return -1;
+                if(a.first_name < b.first_name) return 1;
+                return 0;
+            });
+        }
     
-        $scope.searchBy = function(searchquery, game, organization, sport, competitor, organizer){
+        $scope.searchBy = function(searchquery){
             $scope.results = [];
             $scope.competitors = [];
             $scope.organizations = [];
@@ -33,25 +131,13 @@
             $scope.sports = [];
             $scope.organizers = [];
 
-            if(competitor){
-                searchCompetitor(searchquery);
-            }
+            searchCompetitor(searchquery);
+            searchOrganization(searchquery);
+            searchGame(searchquery);
+            searchSport(searchquery);
+            searchOrganizer(searchquery);
 
-            if(organization){
-                searchOrganization(searchquery);
-            }
-
-            if(game){
-                searchGame(searchquery);
-            }
-
-            if(sport){
-                searchSport(searchquery);
-            }
-
-            if(organizer){
-                searchOrganizer(searchquery);
-            }
+            $scope.searchfor = searchquery;
         }
 
         function searchOrganizer(search){
