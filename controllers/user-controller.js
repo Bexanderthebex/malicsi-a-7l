@@ -23,7 +23,7 @@ exports.login = (req, res) => {
 						return res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
 						// console.log('hello')
-						return res.json({ 'message' : 'Incorrect credentials', 'userdata' : rows[0]}).status(401);
+						return res.status(401).json({ 'message' : 'Incorrect credentials', 'userdata' : rows[0]}).status(401);
 						//console.log(res);
 					}
 				});
@@ -172,7 +172,7 @@ exports.searchUser = (req, res) => {
 
 exports.updatePassword = (req, res) => {
 	let update_query = 'CALL update_user_password(?, ?)';
-
+	console.log('kek', req.body)
 	//let type = req.session.user.type;
 	// console.log("pw: " +req.body.password);
 	connection.userType('A').query(update_query, [
