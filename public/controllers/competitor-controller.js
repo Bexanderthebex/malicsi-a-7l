@@ -14,7 +14,6 @@
         };
         $scope.competitor = {};
         $scope.userinfo = {};
-
         $scope.team = {
             team_name: null,
             sport_id: null,
@@ -23,6 +22,7 @@
 
         };
 
+        $scope.membercount = [];
         $scope.competitorteams = [];
         $scope.competitorgames = [];
         $scope.coachedteam = [];
@@ -345,7 +345,6 @@
         }
 
         function deleteMembershipRequest(){
-            console.log("team_id: "+$scope.pendingRequests.team_id + "id: "+$scope.pendingRequests.id);
             CompetitorService
                 .deleteMembershipRequest($scope.pendingRequests.team_id, $scope.pendingRequests.id)
                 .then(function (res){
@@ -363,6 +362,20 @@
                     console.log(err);
                 })
         }
+
+        function countMembersInTeam(team_id){
+            console.log(team_id);
+            CompetitorService
+                .countMembersInTeam(team_id)
+                .then(function (res){
+                    $scope.membercount = res.data;
+                    console.log(res.data);
+                    console.log($scope.membercount);
+                }, function(err) {
+                    console.log(err);
+                })
+        }
+
 
 
     }

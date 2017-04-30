@@ -352,6 +352,23 @@
 
             return deferred.promise;
         }
+
+        function countMembersInTeam(teamid){
+            let deferred = $q.defer();
+            console.log(teamid);
+            $http({
+                method: 'GET',
+                params:{"team_id": teamid},
+                url: '/team/countMembersInTeam',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
         
     }
 })();

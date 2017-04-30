@@ -11,16 +11,6 @@ CREATE PROCEDURE get_team (IN id INT)
 
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS search_team;
-DELIMITER //
-
-CREATE PROCEDURE search_team (IN team_namein VARCHAR(50))
-	BEGIN
-		SELECT * from team where team_name like team_namein;
-	END; //
-
-DELIMITER ;
-
 
 DROP PROCEDURE IF EXISTS get_coached_team;
 DELIMITER //
@@ -149,6 +139,16 @@ CREATE PROCEDURE display_pending_membership_request(IN owner_idin INT)
 	END; //
 DELIMITER ;
 
+DROP procedure IF EXISTS count_team_members_in_team;
+DELIMITER //
+
+CREATE PROCEDURE count_team_members_in_team(IN team_idin INT)
+	BEGIN
+		SELECT COUNT(is_member) AS memberCount FROM competitor_joins_team WHERE team_id = team_idin AND is_member = 1 GROUP BY is_member;
+	END; //
+DELIMITER ;
+
+GRANT EXECUTE ON procedure count_team_members_in_team TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure display_pending_membership_request TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure create_team TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure delete_team TO 'competitor'@'localhost';
