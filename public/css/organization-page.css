@@ -240,3 +240,13 @@
   height: 23%;
   padding-top: 3.2%;
 }
+
+.org-search-panel {
+  height: 70px;
+}
+
+
+.search-bar-config {
+  margin-top: 18px;
+  /*margin-left: 3%;*/
+}

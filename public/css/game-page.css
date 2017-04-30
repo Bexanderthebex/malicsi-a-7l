@@ -163,11 +163,11 @@
     z-index:99;
 }
 
-#game-add-organization{
+#game-organization-add{
     overflow:hidden;
 }
 
-#game-add-organization .modal-content{
+#game-organization-add .modal-content{
     overflow-y:auto;
     max-height:50vh; 
     z-index:99;
@@ -359,7 +359,7 @@
 }
 
 .game-location-description{
-    font-size: 14px;
+    font-size: 10px;
     /*margin-top: -20px; */
 }
 
@@ -544,4 +544,12 @@
 .game-checkbox-change-color [type="checkbox"].filled-in:checked + label:after {
   border: 2px solid #00415a;
   background-color: #00415a;
+}
+
+.input-field .error{
+    position: relative;
+    top: -1rem;
+    left: 0rem;
+    font-size: 0.8rem;
+    color: #FF4081;
 }

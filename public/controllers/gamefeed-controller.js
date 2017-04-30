@@ -45,7 +45,6 @@
                     $scope.games = res.data;
                     console.log(res.data);
                     sortBy();
-
                 }, function(err) {
                     console.log(err);
                     // Materialize.toast('', 3000);
@@ -67,7 +66,6 @@
                 if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
                 return 0;
             });
-
             distributeGame();
         }
 

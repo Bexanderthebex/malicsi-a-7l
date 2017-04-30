@@ -48,22 +48,22 @@ DELIMITER //
 	//
 DELIMITER ;
 
-GRANT EXECUTE ON PROCEDURE create_log TO organizer;
-GRANT EXECUTE ON PROCEDURE create_log TO administrator;
-GRANT EXECUTE ON PROCEDURE create_log TO competitor;
-GRANT EXECUTE ON PROCEDURE create_log TO guest;
+GRANT EXECUTE ON PROCEDURE create_log TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE create_log TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE create_log TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE create_log TO 'guest'@'localhost';
 
-GRANT EXECUTE ON PROCEDURE get_user_logs TO organizer;
-GRANT EXECUTE ON PROCEDURE get_user_logs TO administrator;
-GRANT EXECUTE ON PROCEDURE get_user_logs TO competitor;
-GRANT EXECUTE ON PROCEDURE get_user_logs TO guest;
+GRANT EXECUTE ON PROCEDURE get_user_logs TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_user_logs TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_user_logs TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_user_logs TO 'guest'@'localhost';
 
-GRANT EXECUTE ON PROCEDURE get_logs TO organizer;
-GRANT EXECUTE ON PROCEDURE get_logs TO administrator;
-GRANT EXECUTE ON PROCEDURE get_logs TO competitor;
-GRANT EXECUTE ON PROCEDURE get_logs TO guest;
+GRANT EXECUTE ON PROCEDURE get_logs TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_logs TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_logs TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_logs TO 'guest'@'localhost';
 
-GRANT EXECUTE ON PROCEDURE search_logs TO organizer;
-GRANT EXECUTE ON PROCEDURE search_logs TO administrator;
-GRANT EXECUTE ON PROCEDURE search_logs TO competitor;
-GRANT EXECUTE ON PROCEDURE search_logs TO guest;
+GRANT EXECUTE ON PROCEDURE search_logs TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_logs TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_logs TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_logs TO 'guest'@'localhost';

@@ -43,7 +43,7 @@ DROP PROCEDURE IF EXISTS view_game_details;
 DELIMITER //
 CREATE PROCEDURE view_game_details(IN game_id_in INT)
 BEGIN
-	select game.name, start_date,end_date, location, game.description, organizer.name as organizer_name , organizer.description as organizer_description, datediff(end_date, start_date) as game_duration from game,organizer where game.organizer_id = organizer.id and game.game_id = game_id_in;
+select game.game_id as game_id, game.name, start_date,end_date, location, game.description, organizer.name as organizer_name , organizer.description as organizer_description, datediff(end_date, start_date) as game_duration from game,organizer where game.organizer_id = organizer.id and game.game_id = game_id_in;
 END;
 //
 DELIMITER ;
@@ -168,9 +168,9 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS view_all_ongoing_games;
 DELIMITER //
-CREATE PROCEDURE view_all_ongoing_games()
+CREATE PROCEDURE view_all_ongoing_games(IN id INT)
 BEGIN
-	SELECT * FROM game WHERE start_date <= NOW() AND end_date >= NOW();
+	SELECT * FROM game WHERE (start_date <= NOW() AND end_date >= NOW()) AND organizer_id = id;
 END;
 //
 DELIMITER ;
@@ -187,9 +187,9 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS view_all_upcoming_games;
 DELIMITER //
-CREATE PROCEDURE view_all_upcoming_games()
+CREATE PROCEDURE view_all_upcoming_games(IN id INT)
 BEGIN
-	SELECT * FROM game WHERE start_date > NOW();
+	SELECT * FROM game WHERE start_date > NOW() AND organizer_id = id;
 END;
 //
 DELIMITER ;
@@ -214,9 +214,9 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS view_all_recent_games;
 DELIMITER //
-CREATE PROCEDURE view_all_recent_games()
+CREATE PROCEDURE view_all_recent_games(IN id INT)
 BEGIN
-	SELECT * FROM game WHERE end_date > NOW();
+	SELECT * FROM game WHERE end_date < NOW() AND organizer_id = id;
 END;
 //
 DELIMITER ;
@@ -233,6 +233,7 @@ DELIMITER ;
 --  orgs in game
 GRANT EXECUTE ON PROCEDURE view_all_organization_in_game TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_organization_in_game TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_organization_in_game TO 'competitor'@'localhost';
 
 -- available orgs for game
 GRANT EXECUTE ON PROCEDURE view_all_organization_for_game TO 'organizer'@'localhost';
