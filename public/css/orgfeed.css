@@ -1,0 +1,148 @@
+#orgteamfeed input[type=text]:focus{
+	border: none!important;
+}
+
+.orgfeed{
+	/*background: blue!important;*/
+	width: 100%;
+	height: 100%;
+	/*padding-left: 22%;*/
+
+}
+
+#orgfeed-sidebar{
+	/*background: yellow;*/
+	position: fixed;
+	/*width: 20%;*/
+	/*margin-left: 75%;*/
+	height: 100%;
+	padding-top: 5%;
+	padding-left: 40px;
+	padding-right: 50px;
+
+}
+
+#orgfeed-sort label{
+	font-family: telegrafico;
+	color: black;
+	font-size: 18px;
+
+}
+
+.team-tag{
+	border: none;
+	height: 30px;
+	font-size: 12px;
+	padding: 0!important;
+	/*padding-left: 15px;*/
+}
+
+.orgteam-count{
+	width: 30px;
+	height: 30px;
+	font-size: 12px;
+	border-radius: 50%;
+	/*margin-left: 25px;*/
+	font-family: rockwell;
+}
+
+
+.orgfeed-orgteambox{
+	height: 200px;
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 2px;
+	overflow: hidden;
+
+}
+
+.orgfeed-orgteambox:hover{
+
+}
+
+#orgfeed-title{
+
+}
+
+.orgteambox-header{
+	width: 100%;
+	height: 50px;
+	padding: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 18px;
+	letter-spacing: 1px;
+}
+
+.orgteambox-body{
+	width: 100%;
+	height: 150px;
+	overflow-y: auto;
+	/*overflow-x: hidden;*/
+	border: solid 1px rgba(0,0,0,.1);
+}
+
+.orgteambox-team{
+	font-weight: normal;
+	padding: 5px;
+	height: 27px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 12px;
+}
+
+.orgteambox-body::-webkit-scrollbar-track
+{
+	background: transparent!important;
+	/*-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);*/
+	/*background-color: #F5F5F5;*/
+	padding-right: 3px!important;
+}
+
+.orgteambox-body::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: transparent;
+	padding-right: 3px!important;
+}
+
+.orgteambox-body::-webkit-scrollbar-thumb
+{
+	background-color: #00719c;
+	border-radius: 5px;
+	padding-right: 3px!important;
+}
+
+.orgfeed-input{
+	border-radius: 2px!important;
+	border: none!important;
+	overflow: hidden!important;
+	background: #00b8ff!important;
+	margin-top: 5px!important;
+	padding-left: 10px!important;
+	font-family: century-gothic!important;
+	/*padding-right: 10px!important;*/
+}
+
+.orgfeed-input:focus{
+	border: none!important;
+}
+
+.orgfeed-button{
+	color: white;
+	border: none;
+	border-radius: 2px;
+	overflow: hidden;
+	margin-top: 15px;
+	padding: 10px;
+	letter-spacing: 1px;
+	font-size: 14px;
+	width: 50px;
+}
+
+.orgfeed-sidetitle{
+	font-size: 18px;
+	letter-spacing: 3px;
+	font-weight: bold;
+}

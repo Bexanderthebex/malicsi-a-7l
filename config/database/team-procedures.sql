@@ -11,6 +11,16 @@ CREATE PROCEDURE get_team (IN id INT)
 
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS search_team;
+DELIMITER //
+
+CREATE PROCEDURE search_team (IN team_namein VARCHAR(50))
+	BEGIN
+		SELECT * from team where team_name like team_namein;
+	END; //
+
+DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS get_coached_team;
 DELIMITER //
@@ -134,7 +144,7 @@ DELIMITER //
 
 CREATE PROCEDURE display_pending_membership_request(IN owner_idin INT)
 	BEGIN
-		SELECT first_name, last_name, team_id, team_name, sport_name FROM competitor, sport s join team JOIN competitor_joins_team using(team_id) 
+		SELECT competitor.id, first_name, last_name, team_id, team_name, sport_name FROM competitor, sport s join team JOIN competitor_joins_team using(team_id) 
 		WHERE s.sport_id = team.sport_id AND competitor.id = competitor_joins_team.id AND team.id = owner_idin AND is_member = 0;
 	END; //
 DELIMITER ;

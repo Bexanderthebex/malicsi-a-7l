@@ -157,7 +157,7 @@
 												Start: {{pastMatch.time_start}} • End: {{pastMatch.time_end}}
 											</div>
 											<div class="game-match-info">
-												Date: {{pastMatch.match_date}} ID: {{pastMatch.match_id}}
+												Date: {{pastMatch.match_date}}
 											</div>
 										</div>
 									</div>
@@ -745,52 +745,65 @@
 			</div>
 		</div>
 		<div class="row game-modal-container game-modal-content">
-
-				<div class="input-field col s6 game-input-color-change">
-					<input placeholder=" " id="addName" type="text" class="validate">
-					<label for="name">Sport Name</label>
+			<form name="addSportForm">
+				<div class="row">
+					<div class="input-field col s6 game-input-color-change">
+						<input placeholder=" "  ng-model="addName" type="text" class="validate" name="addName" required>
+						<label for="name">Sport Name</label>
+						<div ng-show="addSportForm.addName.$invalid && addSportForm.addName.$touched" class="error">required</div>
+					</div>
+					
+					<div class="input-field col s2 game-input-color-change">
+						<input placeholder=" " ng-model="addMaxTeams" type="number" name="addMaxTeams" class="validate" required>
+						<label for="maxTeams">Max Teams</label>
+						<div ng-show="addSportForm.addMaxTeams.$invalid && addSportForm.addMaxTeams.$touched" class="error">required</div>
+					</div>
+					<div class="input-field col s4 game-input-color-change">
+						<select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" >
+							<option value="" selected hidden>None</option>
+						</select>
+						<label>Scoring system</label>
+					</div>
 				</div>
 
-				<div class="input-field col s2 game-input-color-change">
-					<input placeholder=" " id="addMaxTeams" type="number" class="validate">
-					<label for="maxTeams">Max Teams</label>
-				</div>
+				<div class="row">
+					<div class="col s6">
+						<h6 class="center game-modal-title">Time</h6>
+					</div>
+					<div class="col s6">
+						<h6 class="center game-modal-title">Date</h6>
+					</div>
+			
+					<div class="input-field col s3 game-input-color-change">
+						<input placeholder="Time started" name="addStartTime" type="time" ng-model="addStartTime" class="validate" required>
+						<label class="game-adjust-label" for="start-time">Start</label>
+						<div class="dummy">
+							<div ng-show="addSportForm.addStartTime.$invalid && addSportForm.addStartTime.$touched" class="error">required</div>
+						</div>
 
-				<div class="input-field col s4 game-input-color-change">
-					<select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" >
-						<option value="" selected hidden>None</option>
-					</select>
-					<label>Scoring system</label>
-				</div>
-
-				<div class="col s6">
-					<h6 class="center game-modal-title">Time</h6>
-				</div>
-				<div class="col s6">
-					<h6 class="center game-modal-title">Date</h6>
-				</div>
-
-				<div class="input-field col s3 game-input-color-change">
-					<input placeholder="Time started" id="addStartTime" type="time" class="validate">
-					<label class="game-adjust-label" for="start-time">Start</label>
-				</div>
-				<div class="input-field col s3 game-input-color-change">
-					<input placeholder="Time ended" id="addEndTime" type="time" class="validate">
-					<label class="game-adjust-label" for="end-time">End</label>
-				</div>
-
-				<div class="input-field col s3 game-input-color-change">
-					<input placeholder="Date started" id="addStartDate" type="date" class="validate">
-					<label class="game-adjust-label" for="start-time">Start</label>
-				</div>
-				<div class="input-field col s3 game-input-color-change">
-					<input placeholder="Date ended" id="addEndDate" type="date" class="validate">
-					<label class="game-adjust-label" for="end-time">End</label>
+					</div>
+					<div class="input-field col s3 game-input-color-change">
+						<input placeholder="Time ended" name="addEndTime" type="time" ng-model="addEndTime" class="validate" required>
+						<label class="game-adjust-label" for="end-time">End</label>
+						<div ng-show="addSportForm.addEndTime.$invalid && addSportForm.addEndTime.$touched" class="error">required</div>
+					</div>
+					<br/>
+					<div class="input-field col s3 game-input-color-change">
+						<input placeholder="Date started" name="addStartDate" type="date" ng-model="addStartDate" class="validate" required>
+						<label class="game-adjust-label" for="start-time">Start</label>
+						<div ng-show="addSportForm.addStartDate.$invalid && addSportForm.addStartDate.$touched" class="error">required</div>
+					</div>
+					<div class="input-field col s3 game-input-color-change">
+						<input placeholder="Date ended" name="addEndDate" type="date" ng-model="addEndDate" class="validate" required>
+						<label class="game-adjust-label" for="end-time">End</label>
+						<div ng-show="addSportForm.addEndDate.$invalid && addSportForm.addEndDate.$touched" class="error">required</div>
+					</div>
 				</div>
 
 				<div class="input-field col s12 game-input-color-change">
-					<textarea placeholder=" " id="addDescription" class="materialize-textarea"></textarea>
+					<textarea placeholder=" " name="addMechanics" ng-model="addMechanics" class="materialize-textarea" required></textarea>
 					<label for="description" class="game-textarea-label-color-change">Mechanics</label>
+					<div ng-show="addSportForm.addMechanics.$invalid && addSportForm.addMechanics.$touched" class="error">required</div>
 				</div>
 
 				<!--
@@ -800,12 +813,12 @@
 				scoring_system: req.body.scoringSystem,
 				game_id: req.body.gameID
 				-->
-
+			</form>
 		</div>
 	</div>
 	<div class="modal-footer palette-5 right-align">
-		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
-		<button href="" class="modal-action modal-close minimalist-button" ng-click="addSport()">ADD</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-click="resetAddSportForm()">CLOSE</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-click="addSport()" ng-disabled="addSportForm.$invalid">ADD</button>
 	</div>
 </div>
 
@@ -825,56 +838,67 @@
 			</div>
 		</div>
 		<div class="row game-modal-container game-modal-content">
+			<form name="updateSportForm">
+				<div class="row">
+					<div class="input-field col s6 game-input-color-change">
+						<input placeholder=" " name="updateName" type="text" class="validate" ng-model="updateName" required>
+						<label for="name">Sport Name</label>
+						<div ng-show="updateSportForm.updateName.$invalid" class="error">required</div>
+					</div>
 
-				<div class="input-field col s6 game-input-color-change">
-					<input placeholder=" " id="addName" type="text" class="validate" ng-model="sportCopy.sport_name">
-					<label for="name">Sport Name</label>
-				</div>
+					<div class="input-field col s2 game-input-color-change">
+						<input placeholder=" " name="updateMaxTeams" type="number" class="validate" ng-model="updateMaxTeams" required>
+						<label for="maxTeams">Max Teams</label>
+						<div ng-show="updateSportForm.updateMaxTeams.$invalid" class="error">required</div>
+					</div>
 
-				<div class="input-field col s2 game-input-color-change">
-					<input placeholder=" " id="addMaxTeams" type="number" class="validate" ng-model="sportCopy.max_teams">
-					<label for="maxTeams">Max Teams</label>
-				</div>
-
-				<div class="input-field col s4 game-input-color-change">
-					<select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" >
-						<!-- <option value="" disabled selected>Choose your option</option>
-						<option value="Tally Score">Tally Score</option>
-						<option value="Round Robin">Round Robin</option>
-						<option value="None">None</option> -->
-						<option value="" selected hidden>None</option>
-					</select>
-					<label>Scoring system</label>
-				</div>
-
-				<div class="col s6">
-					<h6 class="center game-modal-title">Time</h6>
-				</div>
-				<div class="col s6">
-					<h6 class="center game-modal-title">Date</h6>
+					<div class="input-field col s4 game-input-color-change">
+						<select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" required>
+							<!-- <option value="" disabled selected>Choose your option</option>
+							<option value="Tally Score">Tally Score</option>
+							<option value="Round Robin">Round Robin</option>
+							<option value="None">None</option> -->
+							<option value="" selected hidden>None</option>
+						</select>
+						<label>Scoring system</label>
+					</div>
 				</div>
 
-				<div class="input-field col s3 game-input-color-change">
-					<input placeholder="" id="start-time" type="time" class="validate" ng-model="sportCopy.time_start">
-					<label for="start-time" class="game-adjust-label">Start</label>
-				</div>
-				<div class="input-field col s3 game-input-color-change">
-					<input placeholder="" id="end-time" type="time" class="validate" ng-model="sportCopy.time_end">
-					<label for="end-time" class="game-adjust-label">End</label>
-				</div>
+				<div class="row">
+					<div class="col s6">
+						<h6 class="center game-modal-title">Time</h6>
+					</div>
+					<div class="col s6">
+						<h6 class="center game-modal-title">Date</h6>
+					</div>
+					
+					<div class="input-field col s3 game-input-color-change">
+						<input placeholder="" name="updateStartTime" type="time" class="validate" ng-model="updateStartTime" required>
+						<label for="start-time" class="game-adjust-label">Start</label>
+						<div ng-show="updateSportForm.updateStartTime.$invalid" class="error">required</div>
+					</div>
+					<div class="input-field col s3 game-input-color-change">
+						<input placeholder="" name="updateEndTime" type="time" class="validate" ng-model="updateEndTime" required>
+						<label for="end-time" class="game-adjust-label">End</label>
+						<div ng-show="updateSportForm.updateEndTime.$invalid" class="error">required</div>
+					</div>
 
-				<div class="input-field col s3 game-input-color-change">
-					<input placeholder="Date started" id="addStartDate" type="date" class="validate" ng-model="sportCopy.start_date">
-					<label class="game-adjust-label" for="start-time">Start</label>
-				</div>
-				<div class="input-field col s3 game-input-color-change">
-					<input placeholder="Date ended" id="addEndDate" type="date" class="validate" ng-model="sportCopy.end_date">
-					<label class="game-adjust-label" for="end-time">End</label>
-				</div>
+					<div class="input-field col s3 game-input-color-change">
+						<input placeholder="Date started" name="updateStartDate" type="date" class="validate" ng-model="updateStartDate" required>
+						<label class="game-adjust-label" for="start-time">Start</label>
+						<div ng-show="updateSportForm.updateStartDate.$invalid" class="error">required</div>
+					</div>
+					<div class="input-field col s3 game-input-color-change">
+						<input placeholder="Date ended" id="updateEndDate" type="date" class="validate" ng-model="updateEndDate" required>
+						<label class="game-adjust-label" for="end-time">End</label>
+						<div ng-show="updateSportForm.updateEndDate.$invalid" class="error">required</div>
+					</div>
 
-				<div class="input-field col s12 game-input-color-change">
-					<textarea placeholder=" " id="addDescription" class="materialize-textarea" ng-model="sportCopy.mechanics"></textarea>
-					<label for="description" class="game-textarea-label-color-change">Mechanics</label>
+					<div class="input-field col s12 game-input-color-change">
+						<textarea placeholder=" " name="updateMechanics" class="materialize-textarea" ng-model="updateMechanics" required></textarea>
+						<label for="description" class="game-textarea-label-color-change">Mechanics</label>
+						<div ng-show="updateSportForm.updateMechanics.$invalid" class="error">required</div>
+					</div>
 				</div>
 
 				<p class="center">Note: Changes will only reflect on fields which are edited.</p>
@@ -886,13 +910,13 @@
 				scoring_system: req.body.scoringSystem,
 				game_id: req.body.gameID
 				-->
-
+			</form>
 		</div>
 	</div>
 
 	<div class="modal-footer palette-5 right-align">
-		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
-		<button href="" class="modal-action modal-close minimalist-button" ng-click="updateSport(sportCopy)">UPDATE</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-click="resetUpdateSportForm()">CLOSE</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-click="updateSport()" ng-disabled="updateSportForm.$invalid">UPDATE</button>
 	</div>
 </div>
 

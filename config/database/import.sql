@@ -14,7 +14,7 @@ INSERT INTO user VALUES (12,'ralph','$2a$10$BiEvhLgGfAm9fPVtUYaX8OTJfZs7vQGj4Q8f
 INSERT INTO user VALUES (13,'adrian','$2a$10$b0MJcS4SZFY3pSOX7CbAR.WGGtaK4SSqxqsp7o3ttPakEO2hY0SOq','amnoel1@up.edu.ph','(430)228-8448','C',0);
 INSERT INTO user VALUES (14,'paula','$2a$10$fB00WaILw7CpGnUjRPQzYejd9xir5IkLPLu7O4htvCBvj9SX1c5p6','pvtan@up.edu.ph','(560)849-2974','C',0);
 INSERT INTO user VALUES (15,'jc','$2a$10$XJHfgc7D0Qj0L0iYq1rA5OioPOBn0wwJXwXjsw9yiAU6FzYU79XJ2','jgricablanca@up.edu.ph','(363)197-8873','C',1);
-INSERT INTO user VALUES (16,'emy','$2a$10$wVCpssLiDmR6O9NYK9mCUeBVjIsuDlOppUUkoGJos1caIWbeBlDoW','ejcabalares@up.edu.ph','(469)532-8744','C',0);
+INSERT INTO user VALUES (16,'emy','$2a$10$wVCpssLiDmR6O9NYK9mCUeBVjIsuDlOppUUkoGJos1caIWbeBlDoW','ejcabarles@up.edu.ph','(469)532-8744','C',0);
 INSERT INTO user VALUES (17,'clark','$2a$10$tqzSnPlNRoyo/05qU.K5KuFHEb7BRrCb8jr7jWtjpiTcW0cQqVysy','cpalmazan@up.edu.ph','(366)499-5858','C',1);
 INSERT INTO user VALUES (18,'melbex','$2a$10$fkJBUl5KKN0QU4CdnxcnRuORraC.hVaoRq17fS2qS2mtOi84ZiUKu','adean7@tumblr.com','(777)683-0986','C',0);
 INSERT INTO user VALUES (19,'brixter','$2a$10$rccqtU9TZmRmzFPQfzdMb.glQlHXupXg9KYJCHFVl1cyzJY5jNKM6','brlumabi@up.edu.ph','(801)260-9465','C',1);
@@ -24,7 +24,7 @@ INSERT INTO user VALUES (22,'kenichii','$2a$10$Q/WWdOaQ0HKmfm7KUNtTOuLE5iKM.c6nE
 INSERT INTO user VALUES (23,'caroline','$2a$10$YhoftMCct7I55twvrWfbm.bUdRbFDleirKkGDom.xWTT2YP8nu3Xi','cbtolentino1 @up.edu.ph','(430)228-8448','C',0);
 INSERT INTO user VALUES (24,'jourish','$2a$10$QI0ydEGLZE8010qH7R1tF.frQetiyA8cT.CXmzFhwkBoPS..Vqjeu','jdabasolo2@up.edu.ph','(560)849-2974','C',0);
 INSERT INTO user VALUES (25,'meika','$2a$10$OS11GlbHMVfYzpn4vlF5y.9umtXKHUD03/.JSfJ2a87bNdNJZZKvG','mddane@up.edu.ph','(363)197-8873','C',1);
-INSERT INTO user VALUES (26,'anton','$2a$10$LsUi2fe9DCv5V//ZpRsmaepeUtq9eMNRN9BYv5UkH9fYIZBlVDYUK','mprufino@up.edu.ph','(469)532-8744','C',0);
+INSERT INTO user VALUES (26,'anton','$2a$10$LsUi2fe9DCv5V//ZpRsmaepeUtq9eMNRN9BYv5UkH9fYIZBlVDYUK','marufino@up.edu.ph','(469)532-8744','C',0);
 INSERT INTO user VALUES (27,'jlo','$2a$10$0rm1t3D5sD1fXM11V/Fv2.yDpmzSSIKgfIv0Hock2OcUq1oAB8IvG','jlgosgolan@up.edu.ph','(366)499-5858','C',0);
 INSERT INTO user VALUES (28,'migui','$2a$10$3KLRuhNERTaq4u6RSzHFs.0z9oMDsRiCvyXbuDZIVwggx9KhvFq8O','jfcastillo@up.edu.ph','(777)683-0986','C',0);
 INSERT INTO user VALUES (29,'patty','$2a$10$Nf2dWkodBLooVNsXxV/BS.oYd2/zHfhj2lK5xeMw.MPO6nzFQl2Ci','pmcalata@up.edu.ph','(801)260-9465','C',1);
@@ -261,7 +261,12 @@ INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_pa
 INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 18 ,'Team Phoenix', 21, 2, 8, 0, 5);
 INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 19 ,'Team Phoenix', 16, 3, 8, 1, 15);
 INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 20 ,'Team Phoenix', 20, 4, 8, 0, 5);
-
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 21 ,'Team Midnight', 13, 9, 1, 0, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 22 ,'Team Dawnstar', 13, 10, 1, 0, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 23 ,'Team Markarth', 13, 11, 1, 0, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 24 ,'Team Solitude', 13, 12, 1, 0, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 25 ,'Team Winterfell', 13, 13, 1, 0, 15);
+INSERT INTO team(team_id, team_name, id, sport_id, team_organization, pending_participation, max_members) values( 26 ,'Team Juniper', 13, 14, 1, 0, 15);
 
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(22, 1, 1);
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(12, 1, 1);
@@ -273,7 +278,6 @@ INSERT INTO competitor_joins_team(id, team_id, is_member) values(17, 2, 1);
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(18, 4, 1);
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(19, 4, 0);
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(12, 5, 1);
-INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 5, 0);
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(12, 6, 1);
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 7, 1);
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(14, 7, 0);
@@ -282,7 +286,26 @@ INSERT INTO competitor_joins_team(id, team_id, is_member) values(14, 8, 1);
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(17, 9, 1);
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(18, 9, 1);
 INSERT INTO competitor_joins_team(id, team_id, is_member) values(19, 10, 0);
-INSERT INTO competitor_joins_team(id, team_id, is_member) values(19, 15, 1);	
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(19, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(12, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(14, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(15, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(16, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(17, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(18, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(21, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(23, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(24, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(25, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(29, 21, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 2, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 3, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 4, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 5, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 6, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 9, 1);
+INSERT INTO competitor_joins_team(id, team_id, is_member) values(13, 10, 1);
+
 
 insert into team_in_match (match_id, team_id) values (1, 1);
 insert into team_in_match (match_id, team_id) values (1, 6);

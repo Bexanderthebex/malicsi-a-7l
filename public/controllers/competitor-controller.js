@@ -91,8 +91,9 @@
                         GameService
                             .viewGameDetails($scope.competitorteams[i].game_id)
                             .then(function(res) {
-                                $scope.competitorgames.push(res.data);
-                                console.log($scope.competitorgames);
+                                if(!$scope.competitorgames.find( function find(game){ return game.name === res.data.name })) {
+                                    $scope.competitorgames.push(res.data);
+                                }
                             }, function(err) {
                                 console.log(err);
                             })
@@ -116,12 +117,12 @@
                 .then(function(res) {
                     $scope.competitorteams = res.data;
                     for(var i = 0; i < $scope.competitorteams.length; i++){
-                        console.log($scope.competitorteams[i].game_id);
                         GameService
                             .viewGameDetails($scope.competitorteams[i].game_id)
                             .then(function(res) {
-                                $scope.competitorgames.push(res.data);
-                                console.log($scope.competitorgames);
+                                if(!$scope.competitorgames.find( function find(game){ return game.name === res.data.name })) {
+                                    $scope.competitorgames.push(res.data);
+                                }
                             }, function(err) {
                                 console.log(err);
                             })
@@ -324,9 +325,9 @@
         }
 
         function acceptMembershipRequest(){
-            console.log($scope.pendingRequests.team_id);
+            
             CompetitorService
-                .acceptMembershipRequest($scope.pendingRequests.team_id)
+                .acceptMembershipRequest($scope.pendingRequests.team_id, $scope.pendingRequests.id)
                 .then(function (res){
                     Materialize.toast('Application Success', 4000);
                 }, function(err) {
@@ -344,9 +345,9 @@
         }
 
         function deleteMembershipRequest(){
-            console.log($scope.pendingRequests.team_id);
+            console.log("team_id: "+$scope.pendingRequests.team_id + "id: "+$scope.pendingRequests.id);
             CompetitorService
-                .deleteMembershipRequest($scope.pendingRequests.team_id)
+                .deleteMembershipRequest($scope.pendingRequests.team_id, $scope.pendingRequests.id)
                 .then(function (res){
                     Materialize.toast('Application Declined', 4000);
                 }, function(err) {

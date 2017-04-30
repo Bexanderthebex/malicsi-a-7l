@@ -61,3 +61,7 @@
 .palette-border-5 {
 	color: #001f2b;
 }
+
+.palette-gray{
+	background: rgba(0,0,0,.1);
+}

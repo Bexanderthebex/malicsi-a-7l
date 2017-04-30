@@ -5,15 +5,16 @@
 		.module('app')
 		.controller('GameController', GameController);
 
-	GameController.$inject = ['$scope', '$routeParams', 'GameService', 'UserService', 'SearchService'];
+	GameController.$inject = ['$scope', '$routeParams', '$filter', '$location', 'GameService', 'UserService', 'SearchService'];
 
-	function GameController($scope, $routeParams,  GameService, UserService, SearchService) {
+	function GameController($scope, $routeParams, $filter, $location, GameService, UserService, SearchService) {
 		$scope.thisGame = {
 			game_id: $routeParams.gameId
 		};
 		$scope.addZero = addZero;
 		$scope.addSport = addSport;
-		$scope.clearNewSport = clearNewSport;
+		$scope.resetAddSportForm = resetAddSportForm;
+		$scope.resetUpdateSportForm = resetUpdateSportForm;
 		$scope.retrieveSport = retrieveSport;
 		$scope.deleteSport = deleteSport;
 		$scope.updateSport = updateSport;
@@ -60,6 +61,24 @@
 		$scope.checkSports = checkSports;
 		$scope.mergeMatchesBeta = mergeMatchesBeta;
 
+		$scope.addName = undefined;
+		$scope.addMaxTeams = undefined;
+		$scope.addMechanics = undefined;
+		$scope.addStartTime = undefined;
+		$scope.addEndTime = undefined;
+		$scope.addStartDate = undefined;
+		$scope.addEndDate = undefined;
+		$scope.updateId = undefined;
+		$scope.updateName = undefined;
+		$scope.updateMaxTeams = undefined;
+		$scope.updateMechanics = undefined;
+		$scope.updateStartTime = undefined;
+		$scope.updateEndTime = undefined;
+		$scope.updateStartDate = undefined;
+		$scope.updateEndDate = undefined;		
+		$scope.updateWinner = undefined;
+		$scope.updateScoringSystem = undefined;
+		$scope.updateGameId = undefined;
 		$scope.user = {};
 		$scope.sport = {};
 		$scope.query = undefined;
@@ -159,21 +178,26 @@
 		$scope.scoringSystemPresets = ["Tally Score", "Round Robin", "Elimination"];
 
 		function addSport() {
-			$scope.newSport.sportName = $('#addName').val();
-			$scope.newSport.timeStart = $('#addStartTime').val();
-			$scope.newSport.timeEnd = $('#addEndTime').val();
-			$scope.newSport.startDate = $('#addStartDate').val();
-			$scope.newSport.endDate = $('#addEndDate').val();
-			$scope.newSport.mechanics = $('#addDescription').val();
-			$scope.newSport.maxTeams = $('#addMaxTeams').val();
-			$scope.newSport.scoringSystem = $scope.selectedScoring;
-			console.log($scope.newSport);
+			var newSport = {
+				sportName: $scope.addName,
+				mechanics: $scope.addMechanics,
+				timeStart: $filter('date')($scope.addStartTime, "HH:mm:ss"),
+				timeEnd: $filter('date')($scope.addEndTime, "HH:mm:ss"),
+				startDate: $filter('date')($scope.addStartDate, "yyyy-M-d"),
+				endDate: $filter('date')($scope.addEndDate, "yyyy-M-d"),
+				maxTeams: $scope.addMaxTeams,
+				scoringSystem: $scope.selectedScoring,
+				gameID: $scope.thisGame.game_id
+			};
+			
+
+			console.log(newSport);
 			GameService
-				.addSport($scope.newSport)
+				.addSport(newSport)
 				.then(function (res){
 					console.log("added");
 					Materialize.toast("Successfully added the sport!", 3000);
-					clearNewSport();
+					resetAddSportForm();
 					retrieveAllSports();
 				}, function(err) {
 					console.log(err);
@@ -231,7 +255,8 @@
 			else false;
 		}
 		function checkIfOrganizer(){
-			if($scope.user.type=="O") return true;
+			if($scope.user.type=="A") return true;
+			else if ($scope.user.id==$scope.game.organizer_id) return true;
 			else return false;
 		}
 
@@ -273,7 +298,8 @@
 			if(countAdd>0) $scope.validOrgDel=true;
 			else $scope.validOrgDel=false;
 		}
-		
+
+
 		function getUserDetails(){
 			UserService
 				.getUserInfo()
@@ -312,20 +338,19 @@
 		
 
 		function passSport(sport){
-			$scope.sportCopy = {
-				sport_id: sport.sport_id,
-				sport_name: sport.sport_name,
-				mechanics: sport.mechanics,
-				winner: sport.winner,
-				time_start: new Date("2014-01-01T"+sport.time_start+"+08:00"),
-				time_end: new Date("2014-01-01T"+sport.time_end+"+08:00"),
-				start_date: new Date(sport.start_date+"T00:00:00Z"),
-				end_date: new Date(sport.end_date+"T00:00:00Z"),
-				max_teams: sport.max_teams,
-				scoring_system: sport.scoring_system,
-				game_id: sport.game_id
-			};
-			$scope.selectedScoring = sport.scoring_system;
+				$scope.updateId = sport.sport_id;
+				$scope.updateName = sport.sport_name;
+				$scope.updateMechanics = sport.mechanics;
+				$scope.updateWinner = sport.winner;
+				$scope.updateStartTime = new Date(sport.start_date+"T"+sport.time_start+"+08:00");
+				$scope.updateEndTime =  new Date(sport.end_date+"T"+sport.time_end+"+08:00");
+				$scope.updateStartDate =  new Date(sport.start_date+"T"+sport.time_start+"Z");
+				$scope.updateEndDate =  new Date(sport.end_date+"T"+sport.time_end+"Z");
+				$scope.updateMaxTeams =  sport.max_teams;
+				$scope.updateScoringSystem =  sport.scoring_system;
+				$scope.updateGameId = sport.game_id;
+			
+			
 			console.log(sport);
 		}
 
@@ -353,7 +378,7 @@
 		}
 
 
-		function clearNewSport(){
+		function resetAddSportForm(){
 			$scope.newSport = {
 				sportName: undefined, 
 				mechanics: undefined,
@@ -365,13 +390,47 @@
 				scoringSystem: undefined, 
 				gameID: $scope.thisGame.game_id
 			};
-			$('#addName').val("");
-			$('#addStartTime').val("");
-			$('#addEndTime').val("");
-			$('#addStartDate').val("");
-			$('#addEndDate').val("");
-			$('#addDescription').val("");
-			$('#addMaxTeams').val("");
+			// $('#addName').val("");
+			// $('#addStartTime').val("");
+			// $('#addEndTime').val("");
+			// $('#addStartDate').val("");
+			// $('#addEndDate').val("");
+			// $('#addDescription').val("");
+			// $('#addMaxTeams').val("");
+
+			$scope.addName = undefined;
+			$scope.addMaxTeams = undefined;
+			$scope.addMechanics = undefined;
+			$scope.addStartTime = undefined;
+			$scope.addEndTime = undefined;
+			$scope.addStartDate = undefined;
+			$scope.addEndDate = undefined;
+			$scope.addSportForm.$setPristine();
+			$scope.addSportForm.$setUntouched();
+		}
+
+		function resetUpdateSportForm(){
+			$scope.updateName = undefined;
+			$scope.updateMaxTeams = undefined;
+			$scope.updateMechanics = undefined;
+			$scope.updateStartTime = undefined;
+			$scope.updateEndTime = undefined;
+			$scope.updateStartDate = undefined;
+			$scope.updateEndDate = undefined;		
+			$scope.updateWinner = undefined;
+			$scope.updateScoringSystem = undefined;
+			$scope.updateGameId = undefined;
+			$scope.updateSportForm.$setPristine();
+		}
+
+		function checkNameAddSport(){
+			if($('#addName').val().length==0){
+				$(document).ready(function(){
+					$('#addName').tooltip({delay:0, position:"bottom", tooltip:"Please enter a valid name"});
+				})
+			}
+			else
+				$('#addName').tooltip("remove");
 		}
 
 		function retrieveSport() {
@@ -415,10 +474,10 @@
 		}
 
 
-		function deleteSport(sport) {
-			console.log("To delete sport " + sport.sport_id);
+		function deleteSport() {
+			console.log("To delete sport " + $scope.updateId);
 			GameService
-				.deleteSport(sport.sport_id)
+				.deleteSport($scope.updateId)
 				.then(function(res) {
 					console.log("deleted");
 					Materialize.toast('Successfully deleted the sport!', 3000);
@@ -449,18 +508,33 @@
 				})
 		}
 
-		function updateSport(sport) {
-			sport.time_start = sport.time_start.getHours()+":"+sport.time_start.getMinutes() +":"+ sport.time_start.getSeconds();
-			sport.time_end = sport.time_end.getHours()+ ":" +sport.time_end.getMinutes() + ":" + sport.time_end.getSeconds();
-			sport.start_date = sport.start_date.getFullYear()+"-"+(sport.start_date.getMonth()+1)+"-"+sport.start_date.getDate();
-			sport.end_date = sport.end_date.getFullYear()+"-"+(sport.end_date.getMonth()+1)+"-"+sport.end_date.getDate();
-			sport.scoring_system = $scope.selectedScoring;
+		function updateSport() {
+			var sport = {
+				sport_id: $scope.updateId,
+				sport_name: $scope.updateName,
+				mechanics: $scope.updateMechanics, 
+				max_teams: $scope.updateMaxTeams, 
+				time_start: $scope.updateStartTime.getHours()+":"+$scope.updateStartTime.getMinutes() +":"+ $scope.updateStartTime.getSeconds(),
+				time_end: $scope.updateEndTime.getHours()+ ":" +$scope.updateEndTime.getMinutes() + ":" + $scope.updateEndTime.getSeconds(),
+				start_date: $scope.updateStartDate.getFullYear()+"-"+($scope.updateStartDate.getMonth()+1)+"-"+$scope.updateStartDate.getDate(),
+				end_date: $scope.updateEndDate.getFullYear()+"-"+($scope.updateEndDate.getMonth()+1)+"-"+$scope.updateEndDate.getDate(),
+				scoring_system: $scope.updateScoringSystem,
+				game_id: $scope.updateGameId,
+				winner: $scope.updateWinner
+			}
+
+			// sport.time_start = sport.time_start.getHours()+":"+sport.time_start.getMinutes() +":"+ sport.time_start.getSeconds();
+			// sport.time_end = sport.time_end.getHours()+ ":" +sport.time_end.getMinutes() + ":" + sport.time_end.getSeconds();
+			// sport.start_date = sport.start_date.getFullYear()+"-"+(sport.start_date.getMonth()+1)+"-"+sport.start_date.getDate();
+			// sport.end_date = sport.end_date.getFullYear()+"-"+(sport.end_date.getMonth()+1)+"-"+sport.end_date.getDate();
+			// sport.scoring_system = $scope.selectedScoring;
 			console.log(sport);
 			GameService
 				.updateSport(sport)
 				.then(function(res) {
 					console.log("updated");
 					Materialize.toast('Successfully updated the sport!', 3000);
+					resetUpdateSportForm();
 					retrieveAllSports();
 				}, function(err) {
 					console.log(err.data);
@@ -487,7 +561,8 @@
 					$scope.game = res.data;
 				}, function(err){
 					console.log(err.data);
-					Materialize.toast('Failed to retrieve game details!', 3000);
+					$location.path("/error");
+					// Materialize.toast('Failed to retrieve game details!', 3000);
 				})
 		}
 

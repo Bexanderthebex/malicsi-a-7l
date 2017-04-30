@@ -13,6 +13,7 @@
     function SearchService($http, $q) {
         const service = {
             retrieveOrganizer: retrieveOrganizer,
+            retrieveTeam: retrieveTeam,
             retrieveGame: retrieveGame,
             retrieveOrganization: retrieveOrganization,
             retrieveSport: retrieveSport,
@@ -24,6 +25,22 @@
         }
 
         return service;
+
+        function retrieveTeam(search) {
+            let deferred = $q.defer();
+            $http({
+                method: 'GET',
+                params: { 'search': search },
+                url: '/team/searchTeam',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
 
         function retrieveOrganizer(search) {
             let deferred = $q.defer();
