@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  $('.tooltipped').tooltip({delay: 20});
+
   // initializing all forms as disabled
 
   // $('.admin-form-edit').attr('disabled', 'disabled');
@@ -24,6 +26,13 @@ $(document).ready(function(){
       stopPropagation: false // Stops event propagation
     }
   );
+
+  $('#admin-proceed-btn').on('click', function(){
+    // showing off proper card on view panel
+    $('#admin-verify-first').css('display', 'none');
+    $('#admin-verify-second').css('display', 'block');
+    
+  });
 
   $('#admin-admins-btn').on('click', function(){
     // showing off proper card on view panel
