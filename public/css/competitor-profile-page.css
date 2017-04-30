@@ -11,6 +11,12 @@
   }
 }
 
+.competitor-cteam .collapsible-header:hover{
+  background: #00a5d3!important;
+  transition: background 0.5s;
+
+}
+
 .competitor-profile-info {
     height: 250px;
     background-color: #00719c;;
@@ -277,7 +283,7 @@ div.tablewrapper table tbody tr td, div.tablewrapper table thead tr th {
 
 .modal-content::-webkit-scrollbar-thumb
 {
-  background-color: #001f2b;
+  background-color: #00415a;
   border-radius: 5px;
 }
 

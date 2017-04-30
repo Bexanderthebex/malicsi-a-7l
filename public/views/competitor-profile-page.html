@@ -157,7 +157,7 @@
                             </div>
                         </div>
                     </li>
-                    <li ng-repeat="cteam in coachedteam" >
+                    <li class="competitor-cteam" ng-repeat="cteam in coachedteam" >
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3">{{cteam.team_name}}</div>
@@ -334,7 +334,8 @@
         </form> 
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor()">UPDATE</button>
+        <button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
+        <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="editCompetitor()">UPDATE</button>
     </div>
 </div>
 
