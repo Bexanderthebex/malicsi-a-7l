@@ -75,6 +75,7 @@ exports.searchLog = (req, res) => {
 }
 
 exports.createLog = (id, message) => {
+	let query = "CALL create_log(?,?)";
     connection.userType('A').query(query,
         [
             id,
