@@ -3,24 +3,31 @@ $(document).ready(function(){
   var sideOpen = true;
 
   //resize just happened, pixels changed
-  if ( $(window).width() > 980) {
+  if ( $(window).width() > 982) {
+    sideOpen = true;
     $(".admin-fixed-sidebar").css("display", "block");
     $("#admin-sidenav-trigger").css("visibility", "hidden");
   } 
   else if ($(window).width() > 600){
+    $("#admin-sidenav-trigger").addClass("offset-m6").addClass("offset-s7");
     $("#admin-sidenav-trigger").css("visibility", "visible");
   }else{
+    $("#admin-sidenav-trigger").addClass("offset-m6").addClass("offset-s7");
     $("#admin-sidenav-trigger").css("visibility", "visible");
     // $(".admin-fixed-sidebar").css("display", "none");
   }
 
   $(window).resize(function() {
-    if ( $(window).width() > 980) {      
+    if ( $(window).width() > 982) {
+      sideOpen = true;
+      $(".admin-fixed-sidebar").css("display", "block");
       $("#admin-sidenav-trigger").css("visibility", "hidden");
     } 
     else if ($(window).width() > 600){
+      $("#admin-sidenav-trigger").addClass("offset-m6").addClass("offset-s7");
       $("#admin-sidenav-trigger").css("visibility", "visible");
     }else{
+      $("#admin-sidenav-trigger").addClass("offset-m6").addClass("offset-s7");
       $("#admin-sidenav-trigger").css("visibility", "visible");
       // $(".admin-fixed-sidebar").css("display", "none");
     }

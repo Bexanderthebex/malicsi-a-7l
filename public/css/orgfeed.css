@@ -11,16 +11,13 @@
 }
 
 #orgfeed-sidebar{
-	/*background: yellow;*/
 	position: fixed;
-	/*width: 20%;*/
-	/*margin-left: 75%;*/
 	height: 100%;
 	padding-top: 5%;
 	padding-left: 40px;
 	padding-right: 50px;
 	color: white;
-
+	z-index: 100;
 }
 
 #orgfeed-sort label{
