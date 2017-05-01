@@ -149,7 +149,7 @@
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
                 <ul class="collapsible" data-collapsible="accordion" ng-click="getTeamMembers(cteam.team_id)">
-                    <li ng-repeat="cteam in coachedteam" >
+                    <li ng-repeat="cteam in coachedteam">
                         <div class="collapsible-header active" ng-init="countMembersInTeam(cteam.team_id)">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>

@@ -353,12 +353,12 @@
             return deferred.promise;
         }
 
-        function countMembersInTeam(teamid){
+        function countMembersInTeam(team_id){
             let deferred = $q.defer();
-            console.log(teamid);
+            console.log(team_id);
             $http({
                 method: 'GET',
-                params:{"team_id": teamid},
+                params:{"team_id": team_id},
                 url: '/team/countMembersInTeam',
                 headers: headers
             }).then((res) => {
