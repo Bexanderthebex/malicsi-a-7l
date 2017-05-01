@@ -11,7 +11,7 @@
 
 					<div class="col s6 offset-s3">
 						<form id="gamefeed-game-search-bar">
-							<input type="search" ng-model="gameFeedSearch" ng-change="searchGame()">
+							<input type="search" ng-model="gameFeedSearch" ng-change="searchGame()" tabindex="1">
 						</form>
 					</div>
 					<div class="col s4 offset-s5 telegrafico gamefeed-sort-part white-text">
@@ -31,91 +31,46 @@
 					<div id="gamefeed-game-title" class="col s12 m4 gamefeed-padding-left gamefeed-padding-right">
 
 						<div class="row gamefeed-padding-left gamefeed-padding-right" >
-
-							<div class="col s12" ng-repeat="x in column1">
-								<div class="gamefeed-match palette-border-5 ">
-									<!-- MATCH TITLE -->
-									<a ng-href="#/game/{{x.game_id}}">
-										<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-											<h4 class="telegrafico white-text">{{ x.name }}</h4>
-										</div>
-									</a>
-
-									<div class="row">
-										<div class="col s12">
-											<div class="gamefeed-description gamefeed-remove-bottom">
-												<div class="center century-gothic">{{ x.description }}</div>
-											</div>
-										</div>
-									</div>
-									<div class="gamefeed-match-container">
-										<div class="telegrafico center">Date</div>
-										<div class="gamefeed-match-info center">
-											Start: {{ x.start_date }} | End: {{ x.end_date }}
-										</div>
-										<div class="telegrafico center">Location</div>
-										<div class="gamefeed-match-info center">
-											{{ x.location }}
-										</div>
-										<div class="gamefeed-padding-down">
-											<div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
-												<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-											</div>
-											<div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
-												<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
-
-						</div>
-
-					</div>
-
-
-					<div id="gamefeed-game-title" class="col s12 m4 gamefeed-padding-left gamefeed-padding-right">
-
-						<div class="row gamefeed-padding-left gamefeed-padding-right">
-
-							<div class="col s12" ng-repeat="x in column2">
-								<div class="gamefeed-match palette-border-5 ">
-									<!-- MATCH TITLE -->
-									<a ng-href="#/game/{{x.game_id}}">
-										<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-											<h4 class="telegrafico white-text">{{ x.name }}</h4>
-										</div>
-									</a>
-
-									<div class="row">
-										<div class="col s12">
-											<div class="gamefeed-description gamefeed-remove-bottom">
-												<div class="center century-gothic">{{ x.description }}</div>
-											</div>
-										</div>
-									</div>
-									<div class="gamefeed-match-container">
-										<div class="telegrafico center">Date</div>
-										<div class="gamefeed-match-info center">
-											Start: {{ x.start_date }} | End: {{ x.end_date }}
-										</div>
-										<div class="telegrafico center">Location</div>
-										<div class="gamefeed-match-info center">
-											{{ x.location }}
-										</div>
-										<div class="gamefeed-padding-down">
-											<div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
-												<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-											</div>
-											<div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
-												<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-											</div>
-										</div>
-									</div>
-
-								</div>
-							</div>
+                            <div class="col s12" ng-repeat="x in column1">
+                                <div class="gamefeed-game-box">
+                                    <a ng-href="#/game/{{x.game_id}}">
+                                        <div class="gamefeed-game-box-header palette-4 valign-wrapper">
+                                            <div class="width-100 row margin-override-0">
+                                                <div class="col s12 telegrafico white-text left truncate center navbtns gamefeed-adjust-title-game">
+                                                    {{ x.name }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="gamefeed-game-box-body">
+                                        <div class="row gamefeed-remove-bottom">
+                                            <div class="col s12">
+                                                <div class="gamefeed-description gamefeed-remove-bottom">
+                                                    <div class="center century-gothic">{{ x.description }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gamefeed-match-container">
+                                            <div class="telegrafico center">Date</div>
+                                            <div class="gamefeed-match-info center">
+                                                Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                            </div>
+                                            <div class="telegrafico center">Location</div>
+                                            <div class="gamefeed-match-info center">
+                                                {{ x.location }}
+                                            </div>
+                                            <div class="gamefeed-padding-down">
+                                                <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
+                                                </div>
+                                                <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 						</div>
 
@@ -126,43 +81,96 @@
 
 						<div class="row gamefeed-padding-left gamefeed-padding-right">
 
-							<div class="col s12" ng-repeat="x in column3">
-								<div class="gamefeed-match palette-border-5 ">
-									<!-- MATCH TITLE -->
-									<a ng-href="#/game/{{x.game_id}}">
-										<div class="gamefeed-padding-left gamefeed-padding-right palette-5 center gamefeed-match-header">
-											<h4 class="telegrafico white-text">{{ x.name }}</h4>
-										</div>
-									</a>
+                            <div class="col s12" ng-repeat="x in column2">
+                                <div class="gamefeed-game-box">
+                                    <a ng-href="#/game/{{x.game_id}}">
+                                        <div class="gamefeed-game-box-header palette-4 valign-wrapper">
+                                            <div class="width-100 row margin-override-0">
+                                                <div class="col s12 telegrafico white-text left truncate center navbtns gamefeed-adjust-title-game">
+                                                    {{ x.name }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="gamefeed-game-box-body">
+                                        <div class="row gamefeed-remove-bottom">
+                                            <div class="col s12">
+                                                <div class="gamefeed-description gamefeed-remove-bottom">
+                                                    <div class="center century-gothic">{{ x.description }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gamefeed-match-container">
+                                            <div class="telegrafico center">Date</div>
+                                            <div class="gamefeed-match-info center">
+                                                Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                            </div>
+                                            <div class="telegrafico center">Location</div>
+                                            <div class="gamefeed-match-info center">
+                                                {{ x.location }}
+                                            </div>
+                                            <div class="gamefeed-padding-down">
+                                                <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
+                                                </div>
+                                                <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-									<div class="row">
-										<div class="col s12">
-											<div class="gamefeed-description gamefeed-remove-bottom">
-												<div class="center century-gothic">{{ x.description }}</div>
-											</div>
-										</div>
-									</div>
-									<div class="gamefeed-match-container">
-										<div class="telegrafico center">Date</div>
-										<div class="gamefeed-match-info center">
-											Start: {{ x.start_date }} | End: {{ x.end_date }}
-										</div>
-										<div class="telegrafico center">Location</div>
-										<div class="gamefeed-match-info center">
-											{{ x.location }}
-										</div>
-										<div class="gamefeed-padding-down">
-											<div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
-												<i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-											</div>
-											<div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
-												<i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-											</div>
-										</div>
-									</div>
+						</div>
 
-								</div>
-							</div>
+					</div>
+
+
+					<div id="gamefeed-game-title" class="col s12 m4 gamefeed-padding-left gamefeed-padding-right">
+
+						<div class="row gamefeed-padding-left gamefeed-padding-right">
+
+                            <div class="col s12" ng-repeat="x in column3">
+                                <div class="gamefeed-game-box">
+                                    <a ng-href="#/game/{{x.game_id}}">
+                                        <div class="gamefeed-game-box-header palette-4 valign-wrapper">
+                                            <div class="width-100 row margin-override-0">
+                                                <div class="col s12 telegrafico white-text left truncate center navbtns gamefeed-adjust-title-game">
+                                                    {{ x.name }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="gamefeed-game-box-body">
+                                        <div class="row gamefeed-remove-bottom">
+                                            <div class="col s12">
+                                                <div class="gamefeed-description gamefeed-remove-bottom">
+                                                    <div class="center century-gothic">{{ x.description }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="gamefeed-match-container">
+                                            <div class="telegrafico center">Date</div>
+                                            <div class="gamefeed-match-info center">
+                                                Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                            </div>
+                                            <div class="telegrafico center">Location</div>
+                                            <div class="gamefeed-match-info center">
+                                                {{ x.location }}
+                                            </div>
+                                            <div class="gamefeed-padding-down">
+                                                <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
+                                                </div>
+                                                <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
 						</div>
 
@@ -197,8 +205,8 @@
 	</div>
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
-		<button href="" class="modal-action modal-close minimalist-button" ng-click="deleteGame()">YES</button>
-		<button href="" class="modal-action modal-close minimalist-button">NO</button>
+		<button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="deleteGame()">YES</button>
+		<button href="" class="modal-action modal-close minimalist-button-inverted">NO</button>
 	</div>
 </div>
 
@@ -253,7 +261,7 @@
 	</div>
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button" ng-click="resetModalData()">CLOSE</button>
-		<button href="" class="modal-action modal-close minimalist-button" ng-click="addGame()">ADD</button>
+		<button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="addGame()">ADD</button>
 	</div>
 </div>
 
@@ -309,7 +317,7 @@
 	</div>
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button" ng-click="resetModalData()">CLOSE</button>
-		<button href="" class="modal-action modal-close minimalist-button" ng-click="editGame()">UPDATE</button>
+		<button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="editGame()">UPDATE</button>
 	</div>
 </div>
 
