@@ -1,3 +1,18 @@
+@media only screen and (max-width : 500px) {
+  input.full-width-email.admin-form-edit {
+    width: 165px;
+  }
+  input.full-width-contact.admin-form-edit {
+    width: 100px;
+  }
+  input.full-width-desc.admin-form-edit {
+    width: 160px;
+  }
+  .table-width {
+    width: 100px; 
+  }
+}
+
 .tooltip-icon {
     background: none!important;
     text-shadow: none!important;

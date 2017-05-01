@@ -284,4 +284,6 @@ $(document).ready(function(){
     selectMonths: true,
     selectYears: true
   });
+  $(".table-width").tableHeadFixer({"head" : false, "left" : 1});
+
 });
