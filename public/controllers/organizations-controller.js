@@ -6,17 +6,22 @@
         .module('app')
         .controller('OrganizationsController', OrganizationsController);
 
-    OrganizationsController.$inject = ['$scope', 'SearchService', 'OrganizationService'];
+    OrganizationsController.$inject = ['$scope', '$routeParams', '$location', 'SearchService', 'OrganizationService'];
 
-    function OrganizationsController($scope, SearchService, OrganizationService) {
+    function OrganizationsController($scope, $routeParams, $location, SearchService, OrganizationService) {
         $scope.organizations = [];
         $scope.searchOrganization = searchOrganization;
         $scope.teamsPerOrg = [];
         $scope.orgfeedData = [];
         $scope.orgfeedInit = orgfeedInit;
+        $scope.goToOrganization = goToOrganization;
         $scope.sortBy = sortBy;
         $scope.filter = filter;
         $scope.atoz = 'atoz';
+
+        function goToOrganization(sdata) {
+            $location.path('/organization/' + sdata);
+        }
 
         function filter(org, team){
             org = (org == undefined || org == null) ? '' : org;

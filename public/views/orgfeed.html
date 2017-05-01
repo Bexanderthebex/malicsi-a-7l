@@ -1,7 +1,6 @@
 <div id="mainHolder" ng-init="orgfeedInit()">
 <div class="row" id="orgteamfeed">
-	<div id="orgfeed-sidebar" class="col l3 hide-on-med-and-down palette-5">
-	
+	<div id="orgfeed-sidebar" class="col l3 m6 s7 palette-5">
 		<div>
 			<div class="rockwell orgfeed-sidetitle">SORT</div>
 			<div>
@@ -45,10 +44,10 @@
 			</div>
 			<button ng-click="filter(orgquery, teamquery)" class="telegrafico waves-effect orgfeed-button palette-4"><i class="fa fa-search"></i></button>
 				
-		</div>
-
-
-	
+		</div>	
+	</div>
+	<div id="orgfeed-sidenav-trigger" class="col valign-wrapper offset-m6 offset-s7 admin-fixed-sidebar">
+		<i id="orgfeed-close-open-sidenav" class="fa fa-th-list admin-form-edit-btn"></i>
 	</div>
 		
 	<div id="main" class="orgfeed col l9 offset-l3 m12 s12 ">
@@ -58,7 +57,7 @@
 		<div class="row " style="padding-left: 5%; padding-right: 5%;">
 			
 			<div class="col l4 m12 s12" ng-repeat="data in orgfeedData">
-				<div class="orgfeed-orgteambox">
+				<div class="orgfeed-orgteambox" ng-click="goToOrganization(data.id)">
 					<div class="orgteambox-header palette-3 valign-wrapper">
 						<div class="width-100 row margin-override-0">
 							<div class="col s10 margin-override-0 padding-override-0 telegrafico white-text left truncate">
@@ -98,3 +97,5 @@
 </div>
 			
 </div>
+
+<script src="js/orgfeed.js"></script>
