@@ -1,6 +1,6 @@
 @media only screen and (max-width: 500px){
-  #visited-competitor-basic-info h3, #competitor-basic-info p {
-    color: black;
+  #visited-competitor-basic-info h3, .text-black {
+    color: black !important;
   }
   #visited-competitor-basic-info {
     padding-left: 25px;
