@@ -150,15 +150,19 @@ exports.deleteMatch = (req, res) => {
 exports.viewCurrentMatch = (req, res) => {
 	let query = 'CALL view_current_match(?)';
 
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('A').query(query,
 		[req.query.sportId],
 		(err, rows, fields) => {
 		if(!err){
-			logs.createLog(currentUser.id, "Created Game");
-			return res.status(200).send(rows[0]);
-		}else if(rows.length > 0){
-			return res.status(404).send("There are no current matches");
+			// logs.createLog(currentUser.id, "Created Game");
+			if(rows.length == 0){
+				return res.status(200).send([]);
+			}
+			else{
+				return res.status(200).send(rows[0]);
+			}
 		}else{
+			console.log(err);
 			return res.status(500).send("Internal server error occurred");
 		}
 	});
@@ -171,11 +175,14 @@ exports.viewPastMatch = (req, res) => {
 		[req.query.sportId],
 		(err, rows, fields) => {
 		if(!err){
-
-			return res.status(200).send(rows[0]);
-		}else if(rows.length > 0){
-			return res.status(404).send("There are no current matches");
+			if(rows.length == 0){
+				return res.status(200).send([]);
+			}
+			else{
+				return res.status(200).send(rows[0]);
+			}
 		}else{
+			console.log(err);
 			return res.status(500).send("Internal server error occurred");
 		}
 	});
@@ -188,10 +195,15 @@ exports.viewFutureMatch = (req, res) => {
 		[req.query.sportId],
 		(err, rows, fields) => {
 		if(!err){
-			return res.status(200).send(rows[0]);
-		}else if(rows.length > 0){
-			return res.status(404).send("There are no current matches");
+			if(rows.length == 0){
+				return res.status(200).send([]);
+			}
+			else{
+				return res.status(200).send(rows[0]);
+			}
+		
 		}else{
+			console.log(err);
 			return res.status(500).send("Internal server error occurred");
 		}
 	});
