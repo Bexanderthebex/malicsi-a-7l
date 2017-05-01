@@ -12,11 +12,11 @@
 					<input type="search" ng-model="searchquery" code="13" press-enter="searchBy(searchquery)">
 				</form>
 			</div>
-			<div class="col s12 l3 offset-l1 telegrafico gamefeed-sort-part white-text">
+			<div class="col s12 l3 offset-l1 telegrafico white-text" id="orgfeed-sort">
 				<p>Sort by:
-					<input value="'atoz'" ng-value="'atoz'" ng-model="atoz" ng-click="sortBy(atoz)" class="with-gap" name="sort-search" type="radio" id="Ascending" />
+					<input ng-init="true" value="'atoz'" ng-value="'atoz'" ng-model="atoz" ng-click="sortBy()" class="with-gap" name="sort-search" type="radio" id="Ascending" />
 					<label for="Ascending" class="white-text">A-Z</label>
-					<input ng-value="'ztoa'" ng-model="ztoa" class="with-gap" ng-click="sortBy(ztoa)" class="with-gap" name="sort-search" type="radio" id="Descending" />
+					<input ng-value="'ztoa'" ng-model="atoz" class="with-gap" ng-click="sortBy()" class="with-gap" name="sort-search" type="radio" id="Descending" />
 					<label for="Descending" class="white-text">Z-A</label>
 				</p>
 			</div>
@@ -37,49 +37,129 @@
 		    </div>
 		</div>
 	</div>
-	<div class="container search-results" ng-init="searchBy(searchquery, gamecheck, orgcheck, sportcheck, competitorcheck, organizercheck)">
+	<div class="container search-results" ng-init="searchBy(searchquery)">
 		<div class="row center">		
 			<!-- COMPETITOR RESULTS -->
 			<div id="competitor-results">
-				<div class="col s12 m4 l4" ng-repeat="competitor in competitors">
-					<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToCompetitor(competitor.id)">
-						<p class="telegrafico white-text">{{ competitor.first_name + " " + competitor.last_name }}</p>
+				<div class="col s12 m4 l4">
+					<div class="s12" ng-repeat="competitor in competitors1">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToCompetitor(competitor.id)">
+							<p class="telegrafico white-text">{{ competitor.first_name + " " + competitor.last_name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 l4">
+					<div class="s12" ng-repeat="competitor in competitors2">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToCompetitor(competitor.id)">
+							<p class="telegrafico white-text">{{ competitor.first_name + " " + competitor.last_name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 l4">
+					<div class="s12" ng-repeat="competitor in competitors3">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToCompetitor(competitor.id)">
+							<p class="telegrafico white-text">{{ competitor.first_name + " " + competitor.last_name }}</p>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- GAME -->
 			<div id="game-results">
-				<div class="col s12 m4 l4" ng-repeat="game in games">
-					<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToGame(game.game_id)">
-						<p class="telegrafico white-text">{{ game.name }}</p>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="game in games1">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToGame(game.game_id)">
+							<p class="telegrafico white-text">{{ game.name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="game in games2">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToGame(game.game_id)">
+							<p class="telegrafico white-text">{{ game.name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="game in games3">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToGame(game.game_id)">
+							<p class="telegrafico white-text">{{ game.name }}</p>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- ORGANIZATION -->
 			<div id="organization-results">
-				<div class="col s12 m4 l4" ng-repeat="organization in organizations" ng-click="goToOrganization(organization.organization_id)">
-					<div class="search-match col s12 palette-3 palette-border-3">
-						<p class="telegrafico white-text">{{ organization.name }}</p>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="organization in organizations1" ng-click="goToOrganization(organization.organization_id)">
+						<div class="search-match col s12 palette-3 palette-border-3">
+							<p class="telegrafico white-text">{{ organization.name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="organization in organizations2" ng-click="goToOrganization(organization.organization_id)">
+						<div class="search-match col s12 palette-3 palette-border-3">
+							<p class="telegrafico white-text">{{ organization.name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="organization in organizations3" ng-click="goToOrganization(organization.organization_id)">
+						<div class="search-match col s12 palette-3 palette-border-3">
+							<p class="telegrafico white-text">{{ organization.name }}</p>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- SPORT -->
 			<div  id="sport-results">
-				<div class="col s12 m4 l4" ng-repeat="sport in sports">
-					<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToSport(sport.sport_id)">
-						<p class="telegrafico white-text">{{ sport.sport_name }}</p>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="sport in sports1">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToSport(sport.sport_id)">
+							<p class="telegrafico white-text">{{ sport.sport_name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="sport in sports2">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToSport(sport.sport_id)">
+							<p class="telegrafico white-text">{{ sport.sport_name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="sport in sports3">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToSport(sport.sport_id)">
+							<p class="telegrafico white-text">{{ sport.sport_name }}</p>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- ORGANIZER -->
 			<div id="organizer-results">
-				<div class="col s12 m4 l4" ng-repeat="organizer in organizers">
-					<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToOrganizer(organizer.id)">
-						<p class="telegrafico white-text">{{ organizer.name }}</p>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="organizer in organizers1">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToOrganizer(organizer.id)">
+							<p class="telegrafico white-text">{{ organizer.name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="organizer in organizers2">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToOrganizer(organizer.id)">
+							<p class="telegrafico white-text">{{ organizer.name }}</p>
+						</div>
+					</div>
+				</div>
+				<div class="col s12 m4 l4">
+					<div class="col s12" ng-repeat="organizer in organizers3">
+						<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToOrganizer(organizer.id)">
+							<p class="telegrafico white-text">{{ organizer.name }}</p>
+						</div>
 					</div>
 				</div>
 			</div>
