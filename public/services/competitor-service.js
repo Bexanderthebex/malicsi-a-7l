@@ -30,6 +30,7 @@
             viewAllOrganizationInGame: viewAllOrganizationInGame,
             acceptMembershipRequest: acceptMembershipRequest,
             deleteMembershipRequest: deleteMembershipRequest,
+            addTeamMember: addTeamMember,
             listUpcomingOngoingGamesNotLimited: listUpcomingOngoingGamesNotLimited
         }
 
@@ -360,7 +361,7 @@
 
             $http({
                 method: 'DELETE',
-                params: {"team_id": team_id, "id": id},
+                data: $.param({"team_id": team_id, "id": id}), 
                 url: '/team/deleteMembershipRequest',
                 headers: headers
             }).then((res) => {
@@ -372,6 +373,22 @@
             return deferred.promise;
         }
 
+        function addTeamMember(team_id, id){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                data: $.param({"team_id": team_id, "id": id}), 
+                url: '/team/addTeamMember',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
         
     }
 })();

@@ -149,7 +149,7 @@
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
                 <ul class="collapsible" data-collapsible="accordion">
-                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id)">
+                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id);">
                         <div class="collapsible-header active" ng-init="countMembersInTeam(cteam.team_id)">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
@@ -162,7 +162,9 @@
                         </div>
                         <div class="collapsible-body">
                             <span class="telegrafico">Membership Count: {{membercount}}/{{cteam.max_members}}</span>
-                            <div class="chip" ng-repeat="member in teammembers">{{member.first_name}} {{member.last_name}}<i class="close material-icons">close</i></div>
+                            <a class=" pull-right btn-floating btn-small waves-effect waves-light grey lighten-2 " data-target="competitor-add-member-modal" ng-click="getRecruitRoaster(cteam);" ng-hide="membercount>=cteam.max_members"><i class="grey-text text-darken-2 material-icons tiny">add</i></a>
+                            <div class="telegrafico">Members: </div>
+                            <div class="chip" ng-repeat="member in teammembers"><a href="/#/competitor/profile/{{member.id}}">{{member.first_name}} {{member.last_name}}</a><i class="close material-icons"><a ng-click = "kickMember(cteam.team_id,member.id)">close</a></i></div>
                         </div>
                     </li>
                 </ul>
@@ -395,6 +397,7 @@
                 <a href="#/game/{{game.game_id}}">
                     <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
                     <span class="century-gothic secondary-text">{{ game.location }}</span>
+                    <a class="btn-floating btn-small waves-effect waves-light grey lighten-2 " data-target=""><i class="grey-text text-darken-2 material-icons tiny">add</i></a>
                 </a>
             </div>
             <!-- <div class="col s4 m4 l4 center-align all-games-card">
@@ -439,6 +442,57 @@
         <button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
     </div>
 </div>
+
+<!--Competitor Add Member Modal-->
+<div id="competitor-add-member-modal" class="modal modal-fixed-footer">
+    <div class="modal-content competitor-header-fill century-gothic">
+        <div class="row competitor-remove-bottom">
+                <div class="col s12 competitor-padding-left competitor-padding-right">
+                    <div class="center palette-5">
+                        <br>
+                            <div class="card-title white-text center telegrafico" id="thicken">
+                                <h4 class="competitor-remove-bottom-modal">Add Members</h4>
+                            </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col s4 m4 l4 center-align all-games-card" data-target="competitor-add-applicant-modal" ng-repeat="competitor in roaster" ng-click="setScoutedApplicant(competitor)">
+                    <h6 class="rockwell palette-text-6">{{ competitor.first_name }} {{ competitor.last_name }}</h6>
+                    <span class="century-gothic secondary-text">({{ competitor.nickname }})</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
+    </div>
+</div>
+
+<!-- Add Applicant Modal -->
+<div id="competitor-add-applicant-modal" class="modal competitor-prompt">
+    <div class="modal-content competitor-header-fill century-gothic   ">
+        <div class="row competitor-remove-bottom">
+            <div class="col s12 competitor-padding-left competitor-padding-right">
+                <div class="center palette-5">
+                    <br>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="competitor-remove-bottom-modal">Add Applicant</h4>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>  
+        <div class="row competitor-modal-container">
+            <p>Are you sure you want to add {{ scoutedApplicant.first_name}} to {{ scoutedApplicant.team_name }}?</p>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="recruitNewMember()">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button>
+    </div>
+</div>
+
 
 <!-- Accept Applicant Modal -->
 <div id="competitor-accept-applicant-modal" class="modal competitor-prompt">

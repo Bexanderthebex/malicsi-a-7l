@@ -108,6 +108,7 @@ router.get('/team/teamStatistics',teamController.getTeamStatistics);
 router.post('/team/createTeam',teamController.createTeam);
 router.delete('/team/deleteTeam',teamController.deleteTeam);
 router.delete('/team/deleteMembershipRequest',teamController.deleteMembershipRequest);
+router.post('/team/addTeamMember',teamController.addTeamMember);
 router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 router.get('/team/searchTeam',teamController.searchTeam);
