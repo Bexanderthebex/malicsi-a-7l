@@ -3,6 +3,7 @@
 // const bodyParser = require('body-parser');
 
 const connection = require('./../config/db-connection.js');
+const logs = require('./log-controller')
 
 /**
 * POST /organizer
@@ -39,6 +40,7 @@ exports.createOrganizer = (req, res) => {
 							req.body.description
 						], function(err, rows){
 							if(!err){
+								logs.createLog(req.session.user.id, 'Created Organizer')
 								return res.status(200).send({'message': 'Successfully created organizer.'});
 							}else{
 								console.log(err);
@@ -77,6 +79,9 @@ exports.changeActivity = (req, res) => {
 			if(rows.affectedRows == 0) {
 				return res.status(500).send({'message': 'User does not exist.'});
 			}else{
+				if (req.body.is_active) logs.createLog(req.session.user.id, 'Activated User');
+				else logs.createLog(req.session.user.id, 'Deactivated User');
+
 				return res.status(200).send({'message': 'User activity status successfully updated.'});
 			}
 		}else{
@@ -126,6 +131,7 @@ exports.createAdmin = (req, res) => {
 		req.body.contact
 	], (err, rows) => {
 		if (!err) {
+			logs.createLog('Created Admin');
 			res.status(200).send({'message': 'Successfully created admin'});
 		} else if (err.code === 'ER_DUP_ENTRY') {
 			res.status(500).send({ 'message' : 'User exists' });
