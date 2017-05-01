@@ -1,5 +1,46 @@
 $(document).ready(function(){
   $('.tooltipped').tooltip({delay: 20});
+  var sideOpen = true;
+
+  //resize just happened, pixels changed
+  if ( $(window).width() > 980) {
+    $(".admin-fixed-sidebar").css("display", "block");
+    $("#admin-sidenav-trigger").css("visibility", "hidden");
+  } 
+  else if ($(window).width() > 600){
+    $("#admin-sidenav-trigger").css("visibility", "visible");
+  }else{
+    $("#admin-sidenav-trigger").css("visibility", "visible");
+    // $(".admin-fixed-sidebar").css("display", "none");
+  }
+
+  $(window).resize(function() {
+    if ( $(window).width() > 980) {      
+      $("#admin-sidenav-trigger").css("visibility", "hidden");
+    } 
+    else if ($(window).width() > 600){
+      $("#admin-sidenav-trigger").css("visibility", "visible");
+    }else{
+      $("#admin-sidenav-trigger").css("visibility", "visible");
+      // $(".admin-fixed-sidebar").css("display", "none");
+    }
+    
+  });
+
+  $("#admin-sidenav-trigger").on('click', function(){
+    if(sideOpen){
+      $(".admin-fixed-sidebar").css("display", "none");
+      $("#admin-sidenav-trigger, #close-open-sidenav").css("display", "inline");
+      $("#admin-sidenav-trigger").removeClass("offset-m6").removeClass("offset-s7");
+      sideOpen = false;
+    }else{
+      $(".admin-fixed-sidebar").css("display", "block");
+      $("#admin-sidenav-trigger").addClass("offset-m6").addClass("offset-s7");
+      $("#admin-sidenav-trigger, #close-open-sidenav").css("display", "inline");
+      sideOpen = true;
+    }
+  });
+
 
   // initializing all forms as disabled
 
