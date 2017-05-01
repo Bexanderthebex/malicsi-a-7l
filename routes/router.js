@@ -111,7 +111,6 @@ router.delete('/team/deleteMembershipRequest',teamController.deleteMembershipReq
 router.post('/team/teamMembershipRequest',teamController.teamMembershipRequest);
 router.post('/team/acceptMembershipRequest',teamController.acceptMembershipRequest);
 router.get('/team/searchTeam',teamController.searchTeam);
-router.get('/team/countMembersInTeam',teamController.countMembersInTeam);
 router.get('/team/countTeamInSports',teamController.countTeamInSports);
 router.get('/team/getTeamMembers',teamController.getTeamMembers);
 router.get('/team/getTeam',teamController.getTeam);

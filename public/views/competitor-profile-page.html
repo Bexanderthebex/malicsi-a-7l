@@ -148,21 +148,20 @@
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
-                <ul class="collapsible" data-collapsible="accordion" ng-click="getTeamMembers(cteam.team_id)">
-                    <li ng-repeat="cteam in coachedteam">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id)">
                         <div class="collapsible-header active" ng-init="countMembersInTeam(cteam.team_id)">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
                                 <div class="col l5 m5 s5">{{cteam.name}}</div>
                                 <div class="col l3 m3 s3">{{cteam.sport_name}}</div>
-                                <div class="col l3 m3 s3">{{membercount}}</div>
                                 <div class="col l1 m1 s1 center-block">
                                      <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team" ng-click="team.team_id=cteam.team_id"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="collapsible-body">
-                            <span class="telegrafico">Max Members: {{cteam.max_members}}</span>
+                            <span class="telegrafico">Membership Count: {{membercount}}/{{cteam.max_members}}</span>
                             <div class="chip" ng-repeat="member in teammembers">{{member.first_name}} {{member.last_name}}<i class="close material-icons">close</i></div>
                         </div>
                     </li>

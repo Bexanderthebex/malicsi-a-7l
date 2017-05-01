@@ -57,7 +57,6 @@
         $scope.deleteTeam = deleteTeam;
         $scope.acceptMembershipRequest = acceptMembershipRequest;
         $scope.deleteMembershipRequest = deleteMembershipRequest;
-        
         function searchCompetitor(){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
@@ -244,6 +243,7 @@
                 .getTeamMembers(id)
                 .then(function (res){
                     $scope.teammembers = res.data;
+                    $scope.membercount = res.data.length;
                 }, function(err) {
                     console.log(err);
                 })
@@ -264,17 +264,6 @@
             CompetitorService
                 .listUpcomingOngoingGamesNotLimited()
                 .then(function (res){
-                    console.log("\n\n\n");
-                    console.log(res.data);
-                    let today = new Date();
-                    let dd = today.getDate();
-                    let mm = today.getMonth()+1;
-                    let yyyy = today.getFullYear();
-                    let i;
-                    for (i=0;i<res.data.length;i++){
-                        console.log(res.data[i].end_date);
-                        console.log(yyyy+"-"+mm+"-"+dd);
-                    }
                     $scope.listgames = res.data;
                 }, function(err) {
                     console.log(err);
@@ -377,19 +366,6 @@
                 .then(function (res){
                     $scope.pendingRequests = res.data;
                     console.log($scope.pendingRequests);
-                }, function(err) {
-                    console.log(err);
-                })
-        }
-
-        function countMembersInTeam(team_id){
-            console.log(team_id);
-            CompetitorService
-                .countMembersInTeam(team_id)
-                .then(function (res){
-                    $scope.membercount = res.data;
-                    console.log(res.data);
-                    console.log($scope.membercount);
                 }, function(err) {
                     console.log(err);
                 })

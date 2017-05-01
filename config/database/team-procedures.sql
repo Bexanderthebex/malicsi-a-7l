@@ -148,16 +148,7 @@ CREATE PROCEDURE display_pending_membership_request(IN owner_idin INT)
 	END; //
 DELIMITER ;
 
-DROP procedure IF EXISTS count_team_members_in_team;
-DELIMITER //
 
-CREATE PROCEDURE count_team_members_in_team(IN team_idin INT)
-	BEGIN
-		SELECT COUNT(is_member) AS memberCount FROM competitor_joins_team WHERE team_id = team_idin AND is_member = 1 GROUP BY is_member;
-	END; //
-DELIMITER ;
-
-GRANT EXECUTE ON procedure count_team_members_in_team TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure display_pending_membership_request TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure create_team TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure delete_team TO 'competitor'@'localhost';
@@ -169,7 +160,6 @@ GRANT EXECUTE ON procedure get_members TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure organization_rankings TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure get_teams_on_organization TO 'competitor'@'localhost';
 
-GRANT EXECUTE ON procedure count_team_members_in_team TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure display_pending_membership_request TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure create_team TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure delete_team TO 'administrator'@'localhost';

@@ -143,15 +143,15 @@ insert into game (game_id, organizer_id, name, start_date, end_date, location) v
 insert into game (game_id, organizer_id, name, start_date, end_date, location) values (19, 41, 'PalaCASan 2020', '2020-06-04', '2020-06-18', 'To Be Announced');
 insert into game (game_id, organizer_id, name, start_date, end_date, location) values (20, 43, 'Engineering Meet 2020', '2020-02-21', '2021-04-03', 'To Be Announced');
 insert into game (game_id, organizer_id, name, start_date, end_date, location) values (21, 46, 'Devcolympics 2015', '2015-01-09', '2015-01-16', 'Freedom Park Lower Ground');
-insert into game (game_id, organizer_id, name, start_date, end_date, location) values (22, 2, 'CEMplangan 2015', '2015-09-01', '2015-10-21', 'Copeland Gymnasium');
-insert into game (game_id, organizer_id, name, start_date, end_date, location) values (23, 2, 'CEMplangan 2016', '2016-09-01', '2016-10-24', 'Copeland Gymnasium');
-insert into game (game_id, organizer_id, name, start_date, end_date, location) values (24, 2, 'CEMplangan 2017', '2017-09-01', '2017-10-22', 'Copeland Gymnasium');
-insert into game (game_id, organizer_id, name, start_date, end_date, location) values (25, 2, 'CEMplangan 2018', '2018-09-03', '2018-10-24', 'To Be Announced');
-insert into game (game_id, organizer_id, name, start_date, end_date, location) values (26, 2, 'CEMplangan 2019', '2019-09-02', '2019-10-23', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (22, 42, 'CEMplangan 2015', '2015-09-01', '2015-10-21', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (23, 42, 'CEMplangan 2016', '2016-09-01', '2016-10-24', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (24, 42, 'CEMplangan 2017', '2017-09-01', '2017-10-22', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (25, 42, 'CEMplangan 2018', '2018-09-03', '2018-10-24', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (26, 42, 'CEMplangan 2019', '2019-09-02', '2019-10-23', 'To Be Announced');
 insert into game (game_id, organizer_id, name, start_date, end_date, location) values (27, 48, 'VetMed SportsFest 2017', '2017-02-14', '2017-02-16', 'Copeland Gymnasium');
 insert into game (game_id, organizer_id, name, start_date, end_date, location) values (28, 46, 'Devcolympics 2016', '2016-01-08', '2016-01-15', 'Freedom Park Lower Ground');
 insert into game (game_id, organizer_id, name, start_date, end_date, location) values (29, 46, 'Devcolympics 2017', '2017-01-06', '2017-01-13', 'Freedom Park Lower Ground');
-insert into game (game_id, organizer_id, name, start_date, end_date, location) values (30, 6, 'CEMplangan 2020', '2020-09-01', '2020-10-22', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (30, 46, 'CEMplangan 2020', '2020-09-01', '2020-10-22', 'To Be Announced');
 
 insert into sponsor_institution(sponsor_id, name, description) values(1, 'Angels Burger', 'Dito sa Angels Burger.. Ang unang kagat, tinapay lahat');
 insert into sponsor_institution(sponsor_id, name, description) values(2, 'High Ground Gourmet Comfort Food', 'A casual neighborhood restaurant that specializes in international and local comfort food');

@@ -31,13 +31,14 @@ exports.createTeam = (req, res) => {
 
 exports.deleteTeam = (req, res) => {
     query = "CALL delete_team(?)"; 
+    team_id = req.body.team_id
     currentUser = req.session.user;
     connection.userType('A').query(query, 
         [
             req.query.team_id
         ], (err, rows) => {
             if(!err) {
-                logs.createLog(currentUser.id,"Deleted Team "+req.body.team_id);
+                logs.createLog(currentUser.id,"Deleted Team "+team_id);
                 return res.status(200).send({ 'message' : 'Sucessfully deleted team'}); 
             } else {
                 return res.status(500).send({ 'message' : 'An error occured'});
@@ -48,6 +49,7 @@ exports.deleteTeam = (req, res) => {
 
 exports.teamMembershipRequest = (req, res) => {
     currentUser = req.session.user;
+    team_id = req.body.team_id;
     query = "CALL team_membership_request(?,?)";
     connection.userType('A').query(query, 
             [
@@ -55,7 +57,7 @@ exports.teamMembershipRequest = (req, res) => {
                 req.body.team_id
             ], (err, rows) => {
                 if(!err) {
-                    logs.createLog(currentUser.id,"Created Membership Request To Team" + req.body.team_id);
+                    logs.createLog(currentUser.id,"Created Membership Request To Team" + team_id);
                     return res.status(200).send({ 'message' : 'Sucessfully sent request'});
                 } else {
                     if(err.code == 'ER_DUP_ENTRY') return res.status(493).send({ 'message' : 'Duplicate entry'});
@@ -67,6 +69,8 @@ exports.teamMembershipRequest = (req, res) => {
 
 exports.deleteMembershipRequest = (req, res) => {
     currentUser = req.session.user;    
+    id = req.body.id;
+    team_id = req.body.team_id;
     query = "CALL delete_membership_request(?,?)";
     connection.userType('A').query(query, 
         [
@@ -74,7 +78,7 @@ exports.deleteMembershipRequest = (req, res) => {
             req.body.team_id
         ], (err, rows) => {
                 if(!err) {
-                    logs.createLog(currentUser.id,"Deleted Membership Request of" + req.body.id + "To Team" + req.body.team_id);
+                    logs.createLog(currentUser.id,"Deleted Membership Request of" + id + "To Team" + team_id);
                     return res.status(200).send({ 'message' : 'Sucessfully deleted request'});
                 } else {
                     return res.status(500).send({ 'message' : 'An error occured'});
@@ -86,14 +90,15 @@ exports.deleteMembershipRequest = (req, res) => {
 exports.acceptMembershipRequest = (req, res) => {
 
     query = "CALL accept_membership_request(?,?)";
-    
+    id = req.query.id;
+    team_id = req.query.team_id;
     connection.userType('A').query(query, 
         [
             req.query.id,
             req.query.team_id
         ], (err, rows) => {
                 if(!err) {
-                    logs.createLog(currentUser.id,"Accepted Membership Request of" + req.body.id + "To Team" + req.body.team_id);
+                    logs.createLog(currentUser.id,"Accepted Membership Request of" + id + "To Team" + team_id);
                     return res.status(200).send({ 'message' : 'Sucessfully accepted request'});
                 } else {
                     return res.status(500).send({ 'message' : 'An error occured'});
@@ -320,19 +325,4 @@ exports.searchTeam = (req, res) => {
                  return res.status(500).send({'message' : 'Internal Server Error'});
              }
          });
-}
-
-exports.countMembersInTeam = (req, res) => {
-    query = "CALL count_team_members_in_team(?)"
-    console.log(req.query.team_id);
-    connection.userType('A').query(query,
-    [
-        req.query.team_id
-    ], (err, rows) => {
-        if(!err) {
-            return res.status(200).send(rows);
-        } else {
-            return res.status(500).send({ 'message' : 'An error occured'});
-        }
-    });
 }
