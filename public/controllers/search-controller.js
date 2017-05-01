@@ -26,6 +26,7 @@
         function search(sdata) {
             $scope.atoz = 'atoz';
             $location.path('/search/' + sdata);
+            $('#nav-search-bar').sideNav('hide');
             // searchBy($routeParams.sdata, true, true, true, true, true);
         }
 
