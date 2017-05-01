@@ -49,6 +49,8 @@
                     return;
             }
             $location.path('/search/' + sdata);
+            $('#nav-search-bar').sideNav('hide');
+            // searchBy($routeParams.sdata, true, true, true, true, true);
         }
 
         function goToCompetitor(sdata) {
