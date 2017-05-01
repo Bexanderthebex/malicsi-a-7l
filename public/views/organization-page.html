@@ -82,7 +82,7 @@
 								<th> 
 									Team Name
 									<form id="org-team-search-bar" class="search-bar-config">
-										<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
+										<input type="search" ng-model="searchTeam" code="13"">
 									</form>
 								</th>
 								<th> Sport </th>
@@ -90,7 +90,7 @@
 							</tr>
 						</thead>
 						<tbody >
-							<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id)">
+							<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams | filter:searchTeam" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id)">
 								<td>
 									<div> {{pagedTeam.team_name}} </div>
 								</td>
