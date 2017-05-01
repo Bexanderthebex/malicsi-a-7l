@@ -1,181 +1,85 @@
 <div id="mainHolder">
-<!-- Do not put anything inside main holder -->
-<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
-	<div class="palette-4" id="search-extend-header">
-		<div class="row search-game-container">
-			<div class="col s12">
-				<h2 class="center white-text rockwell">Search</h2>
+	<div class="palette-5" id="search-extend-header">
+		<div class="row container">
+			<!-- <div class="col s12">
+				<h2 class="white-text rockwell">Search</h2>
+			</div> -->
+		</div>
+		<div class="row container" style="margin-bottom: 0px;">
+			<div class="col s12 l8">
+				<form id="gamefeed-game-search-bar">
+					<input type="search" ng-model="searchquery" code="13" press-enter="searchBy(searchquery)">
+				</form>
 			</div>
-			<div class="row center">
-				<div class="col s6 offset-s3">
-					<form id="gamefeed-game-search-bar">
-						<input type="search" ng-model="searchquery" code="13" press-enter="searchBy(searchquery, gamecheck, orgcheck, sportcheck, competitorcheck, organizercheck)">
-					</form>
-				</div>
-				<div class="col s6 offset-s3 telegrafico search-searchbtn">
-					<a class="minimalist-button-search" ng-click="searchBy(searchquery, gamecheck, orgcheck, sportcheck, competitorcheck, organizercheck)">Search</a>
-				</div>
+			<div class="col s12 l3 offset-l1 telegrafico gamefeed-sort-part white-text">
+				<p>Sort by:
+					<input value="'atoz'" ng-value="'atoz'" ng-model="atoz" ng-click="sortBy(atoz)" class="with-gap" name="sort-search" type="radio" id="Ascending" />
+					<label for="Ascending" class="white-text">A-Z</label>
+					<input ng-value="'ztoa'" ng-model="ztoa" class="with-gap" ng-click="sortBy(ztoa)" class="with-gap" name="sort-search" type="radio" id="Descending" />
+					<label for="Descending" class="white-text">Z-A</label>
+				</p>
 			</div>
-			<div class="row center filter-holder">
-				<div class="container telegrafico search-sort-part white-text">
-					<p class="search-sort-adjust">
-						Filter By: 
-						<input type="checkbox" class="filled-in" id="gamechk" ng-init="gamecheck=true" ng-model="gamecheck" style="margin-right: 20px!important; width:80px!important";" />
-						<label for="gamechk"> Game</label>
-						
-						<input type="checkbox" class="filled-in" id="organization" ng-init="orgcheck=true" ng-model="orgcheck" style="margin-left: 10px;"/>
-						<label for="organization"> Organization</label>
-						
-						<input type="checkbox" class="filled-in" id="sport" ng-init="sportcheck=true" ng-model="sportcheck" style="margin-left: 10px;"/>
-						<label for="sport"> Sport</label>
-						
-						<input type="checkbox" class="filled-in" id="competitor" ng-init="competitorcheck=true" ng-model="competitorcheck" style="margin-left: 10px;"/>
-						<label for="competitor"> Competitor</label>
-						
-						<input type="checkbox" class="filled-in" id="organizer" ng-init="organizercheck=true" ng-model="organizercheck" style="margin-left: 10px;"/>
-						<label for="organizer"> Organizer</label>
-					</p>
-				</div>
-			</div>
-		</div>		
+		</div>
+		<div class="row center container" style="margin-bottom: 0px;">
+			<h4 class="rockwell white-text">{{ results.length==1 ? results.length + ' Result' : results.length + ' Results' }} for "{{ searchfor }}"</h4>
+		</div>
+		<div class="row container" ng-hide="results.length==0">
+		    <div class="col s12">
+				<ul class="search-tabs tabs telegrafico palette-5">
+					<li class="tab col s2 search-tab"><a class="" href="#game-results">Game ({{ games.length }})</a></li>
+					<li class="tab col s3 search-tab"><a class="" href="#organization-results">Organization ({{ organizations.length }})</a></li>
+					<li class="tab col s2 search-tab"><a class="" href="#sport-results">Sport ({{ sports.length }})</a></li>
+					<li class="tab col s3 search-tab"><a class="" href="#competitor-results">Competitor ({{ competitors.length }})</a></li>
+					<li class="tab col s2 search-tab"><a class="" href="#organizer-results">Organizer ({{ organizers.length }})</a></li>
+					<div class="indicator" style="z-index: 1"></div>
+				</ul><br>
+		    </div>
+		</div>
 	</div>
 	<div class="container search-results" ng-init="searchBy(searchquery, gamecheck, orgcheck, sportcheck, competitorcheck, organizercheck)">
-		<div class="row center">
-			<h4 class="rockwell">{{ results.length }} Results</h4>
-		</div>
 		<div class="row center">		
 			<!-- COMPETITOR RESULTS -->
-			<div class="col s12 m4 l4" ng-repeat="competitor in competitors">
-				<div class="search-match palette-border-5">
-					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
-						<h4 class="telegrafico white-text"><a href="#/competitor/profile/{{competitor.id}}" class="white-text">{{ competitor.first_name + " " + competitor.last_name }}</a></h4>
-					</div>
-
-					<div class="row">
-						<div class="col s12">
-							<div class="search-description search-remove-bottom">
-								<div class="center century-gothic">Competitor</div>
-							</div>
-						</div>
-					</div>
-					<div class="search-match-container">
-						<div class="search-padding-down">
-							<div data-target="search-update-game" class="col s1 offset-s9">
-								<i class="fa fa-pencil search-adjust-icons" aria-hidden="true"></i>
-							</div>
-							<div data-target="search-delete-game" class="col s1">
-								<i class="fa fa-close search-adjust-icons" aria-hidden="true"></i>
-							</div>
-						</div>
+			<div id="competitor-results">
+				<div class="col s12 m4 l4" ng-repeat="competitor in competitors">
+					<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToCompetitor(competitor.id)">
+						<p class="telegrafico white-text">{{ competitor.first_name + " " + competitor.last_name }}</p>
 					</div>
 				</div>
 			</div>
 
 			<!-- GAME -->
-			<div class="col s12 m4 l4" ng-repeat="game in games">
-				<div class="search-match palette-border-5">
-					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
-						<h4 class="telegrafico white-text"><a href="#/game/{{game.game_id}}" class="white-text">{{ game.name }}</a></h4>
-					</div>
-
-					<div class="row">
-						<div class="col s12">
-							<div class="search-description search-remove-bottom">
-								<div class="center century-gothic">Game</div>
-							</div>
-						</div>
-					</div>
-					<div class="search-match-container">
-						<div class="search-padding-down">
-							<div data-target="search-update-game" class="col s1 offset-s9">
-								<i class="fa fa-pencil search-adjust-icons" aria-hidden="true"></i>
-							</div>
-							<div data-target="search-delete-game" class="col s1">
-								<i class="fa fa-close search-adjust-icons" aria-hidden="true"></i>
-							</div>
-						</div>
+			<div id="game-results">
+				<div class="col s12 m4 l4" ng-repeat="game in games">
+					<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToGame(game.game_id)">
+						<p class="telegrafico white-text">{{ game.name }}</p>
 					</div>
 				</div>
 			</div>
 
 			<!-- ORGANIZATION -->
-			<div class="col s12 m4 l4" ng-repeat="organization in organizations">
-				<div class="search-match palette-border-5">
-					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
-						<h4 class="telegrafico white-text"><a href="#/organization/{{organization.organization_id}}" class="white-text">{{ organization.name }}</a></h4>
-					</div>
-
-					<div class="row">
-						<div class="col s12">
-							<div class="search-description search-remove-bottom">
-								<div class="center century-gothic">Organization</div>
-							</div>
-						</div>
-					</div>
-					<div class="search-match-container">
-						<div class="search-padding-down">
-							<div data-target="search-update-game" class="col s1 offset-s9">
-								<i class="fa fa-pencil search-adjust-icons" aria-hidden="true"></i>
-							</div>
-							<div data-target="search-delete-game" class="col s1">
-								<i class="fa fa-close search-adjust-icons" aria-hidden="true"></i>
-							</div>
-						</div>
+			<div id="organization-results">
+				<div class="col s12 m4 l4" ng-repeat="organization in organizations" ng-click="goToOrganization(organization.organization_id)">
+					<div class="search-match col s12 palette-3 palette-border-3">
+						<p class="telegrafico white-text">{{ organization.name }}</p>
 					</div>
 				</div>
 			</div>
 
 			<!-- SPORT -->
-			<div class="col s12 m4 l4" ng-repeat="sport in sports">
-				<div class="search-match palette-border-5">
-					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
-						<h4 class="telegrafico white-text"><a href="#/sports/{{sport.sport_id}}" class="white-text">{{ sport.sport_name }}</a></h4>
-					</div>
-
-					<div class="row">
-						<div class="col s12">
-							<div class="search-description search-remove-bottom">
-								<div class="center century-gothic">Sport</div>
-							</div>
-						</div>
-					</div>
-					<div class="search-match-container">
-						<div class="search-padding-down">
-							<div data-target="search-update-game" class="col s1 offset-s9">
-								<i class="fa fa-pencil search-adjust-icons" aria-hidden="true"></i>
-							</div>
-							<div data-target="search-delete-game" class="col s1">
-								<i class="fa fa-close search-adjust-icons" aria-hidden="true"></i>
-							</div>
-						</div>
+			<div  id="sport-results">
+				<div class="col s12 m4 l4" ng-repeat="sport in sports">
+					<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToSport(sport.sport_id)">
+						<p class="telegrafico white-text">{{ sport.sport_name }}</p>
 					</div>
 				</div>
 			</div>
 
 			<!-- ORGANIZER -->
-			<div class="col s12 m4 l4" ng-repeat="organizer in organizers">
-				<div class="search-match palette-border-5">
-					<div class="search-padding-left search-padding-right palette-5 center search-match-header">
-						<h4 class="telegrafico white-text"><a href="#/organizer/profile/{{organizer.id}}" class="white-text">{{ organizer.name }}</a></h4>
-					</div>
-
-					<div class="row">
-						<div class="col s12">
-							<div class="search-description search-remove-bottom">
-								<div class="center century-gothic">Organizer</div>
-							</div>
-						</div>
-					</div>
-					<div class="search-match-container">
-						<div class="search-padding-down">
-							<div data-target="search-update-game" class="col s1 offset-s9">
-								<i class="fa fa-pencil search-adjust-icons" aria-hidden="true"></i>
-							</div>
-							<div data-target="search-delete-game" class="col s1">
-								<i class="fa fa-close search-adjust-icons" aria-hidden="true"></i>
-							</div>
-						</div>
+			<div id="organizer-results">
+				<div class="col s12 m4 l4" ng-repeat="organizer in organizers">
+					<div class="search-match col s12 palette-3 palette-border-3" ng-click="goToOrganizer(organizer.id)">
+						<p class="telegrafico white-text">{{ organizer.name }}</p>
 					</div>
 				</div>
 			</div>

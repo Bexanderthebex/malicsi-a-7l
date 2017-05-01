@@ -165,10 +165,10 @@ CREATE TABLE team_joins_sport (
 );
 
 CREATE TABLE log (
-	log_id INT NOT NULL,
+	log_id INT NOT NULL AUTO_INCREMENT,
 	user_id INT NOT NULL,
 	log_msg VARCHAR(140) NOT NULL,
-	date_created DATETIME NOT NULL,
+	date_created DATETIME NOT NULL DEFAULT NOW(),
 	FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE,
 	PRIMARY KEY(log_id)
 );

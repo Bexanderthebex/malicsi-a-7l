@@ -1,0 +1,100 @@
+<div id="mainHolder" ng-init="orgfeedInit()">
+<div class="row" id="orgteamfeed">
+	<div id="orgfeed-sidebar" class="col l3 hide-on-med-and-down palette-5">
+	
+		<div>
+			<div class="rockwell orgfeed-sidetitle">SORT</div>
+			<div>
+				<form id="orgfeed-sort">
+				<div>
+					<input ng-init="true" ng-value="'atoz'" ng-model="atoz" ng-click="sortBy()" class="with-gap" name="group1" type="radio" id="test1" />
+			      	<label for="test1">A-Z</label>
+				</div>
+				<div>
+					<input ng-value="'ztoa'" ng-model="atoz" class="with-gap" ng-click="sortBy()" name="group1" type="radio" id="test2" />
+			      	<label for="test2">Z-A</label>
+				</div>
+
+				</form>
+				
+			</div>
+
+			<div class="row"></div>
+
+
+			<div class="rockwell orgfeed-sidetitle">
+				FILTER
+			</div>
+			<div class="telegrafico letter-spacing-1">ORGANIZATION</div>
+			<div class="row margin-override-0">
+				<div class="col s12 padding-override-0">
+					
+				<form style="width: 100%;">
+					<input type="search" ng-model="orgquery" class="orgfeed-input margin-override-0" style="height: 38px; ">
+				</form>
+				</div>
+			</div>
+			<div class="telegrafico letter-spacing-1">TEAM</div>
+			<div class="row margin-override-0">
+				<div class="col s12 padding-override-0">
+					
+				<form style="width: 100%;">
+					<input type="search" ng-model="teamquery" class="orgfeed-input margin-override-0" style="height: 38px; ">
+				</form>
+				</div>
+			</div>
+			<button ng-click="filter(orgquery, teamquery)" class="telegrafico waves-effect orgfeed-button palette-4"><i class="fa fa-search"></i></button>
+				
+		</div>
+
+
+	
+	</div>
+		
+	<div id="main" class="orgfeed col l9 offset-l3 m12 s12 ">
+		<div class="row margin-override-0" style="padding-left: 5%; padding-right: 5%;">
+			<h3 class="rockwell ">Organizations</h3>
+		</div>
+		<div class="row " style="padding-left: 5%; padding-right: 5%;">
+			
+			<div class="col l4 m12 s12" ng-repeat="data in orgfeedData">
+				<div class="orgfeed-orgteambox">
+					<div class="orgteambox-header palette-3 valign-wrapper">
+						<div class="width-100 row margin-override-0">
+							<div class="col s10 margin-override-0 padding-override-0 telegrafico white-text left truncate">
+								{{ data.org }}
+							</div>
+							<div class="col s2 .hide-on-small-only">
+								
+								<div class="orgteam-count palette-2 palette-text-3 valign-wrapper">
+									
+									<div class=" row margin-override-0 width-100 center-align">{{ data.teamCount }}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="orgteambox-body" >
+						<table class="striped century-gothic">
+							<tbody>
+								<tr ng-repeat="team in data.teams">
+									<th class="truncate orgteambox-team">
+										{{ team.team_name }}
+									</th>
+								</tr>
+								
+							</tbody>
+						</table>
+						
+					</div>
+
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+</div>
+			
+</div>
