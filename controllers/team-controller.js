@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
+const logs = require('./../controllers/log-controller.js');
 
 
 exports.createTeam = (req, res) => {
@@ -18,6 +19,7 @@ exports.createTeam = (req, res) => {
             req.body.max_members
         ], (err, rows) => {
             if(!err) {
+                logs.createLog(currentUser.id,"Created New Team");
                 return res.status(200).send({ 'message' : 'Sucessfully created team'});
             } else {
                 console.log(err);
@@ -29,11 +31,13 @@ exports.createTeam = (req, res) => {
 
 exports.deleteTeam = (req, res) => {
     query = "CALL delete_team(?)"; 
+    currentUser = req.session.user;
     connection.userType('A').query(query, 
         [
             req.query.team_id
         ], (err, rows) => {
             if(!err) {
+                logs.createLog(currentUser.id,"Deleted Team "+req.body.team_id);
                 return res.status(200).send({ 'message' : 'Sucessfully deleted team'}); 
             } else {
                 return res.status(500).send({ 'message' : 'An error occured'});
@@ -51,6 +55,7 @@ exports.teamMembershipRequest = (req, res) => {
                 req.body.team_id
             ], (err, rows) => {
                 if(!err) {
+                    logs.createLog(currentUser.id,"Created Membership Request To Team" + req.body.team_id);
                     return res.status(200).send({ 'message' : 'Sucessfully sent request'});
                 } else {
                     if(err.code == 'ER_DUP_ENTRY') return res.status(493).send({ 'message' : 'Duplicate entry'});
@@ -61,7 +66,7 @@ exports.teamMembershipRequest = (req, res) => {
 }
 
 exports.deleteMembershipRequest = (req, res) => {
-    
+    currentUser = req.session.user;    
     query = "CALL delete_membership_request(?,?)";
     connection.userType('A').query(query, 
         [
@@ -69,6 +74,7 @@ exports.deleteMembershipRequest = (req, res) => {
             req.body.team_id
         ], (err, rows) => {
                 if(!err) {
+                    logs.createLog(currentUser.id,"Deleted Membership Request of" + req.body.id + "To Team" + req.body.team_id);
                     return res.status(200).send({ 'message' : 'Sucessfully deleted request'});
                 } else {
                     return res.status(500).send({ 'message' : 'An error occured'});
@@ -87,6 +93,7 @@ exports.acceptMembershipRequest = (req, res) => {
             req.query.team_id
         ], (err, rows) => {
                 if(!err) {
+                    logs.createLog(currentUser.id,"Accepted Membership Request of" + req.body.id + "To Team" + req.body.team_id);
                     return res.status(200).send({ 'message' : 'Sucessfully accepted request'});
                 } else {
                     return res.status(500).send({ 'message' : 'An error occured'});

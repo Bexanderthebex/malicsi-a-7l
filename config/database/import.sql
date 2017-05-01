@@ -8,6 +8,11 @@ INSERT INTO user VALUES (7,'acampbell6','$2a$10$ns3v7Ta7UZNYVLWZt/17Ku1O431a3ibz
 INSERT INTO user VALUES (8,'dmason7','$2a$10$IUiomL979RhNUX.EGaKMrO0t9hvKKC1DMWStJU.0AMFQhqqmQJZkO','calvarez7@wp.com','(777)683-0986','A',0);
 INSERT INTO user VALUES (9,'pfoster8','$2a$10$wNIGLmsS5sIhChVQR5v3P.cZ9hF9ocacAcv8mmx14q.JLctJRtZn6','abradley8@51.la','(801)260-9465','A',1);
 INSERT INTO user VALUES (10,'rward9','$2a$10$cLki4Zj0TT.LLeWsfF465u/GBSBl2IFN4dGAma8Hs3e/MpEk6kyIC','jgraham9@bing.com','(327)123-3269','A',0);
+INSERT INTO user VALUES (56,'inzen','$2a$10$Q4fVczu6fTgaY2VlBUkePupaoc1rH9Pr0CRApHHJ5lapZyIN1Hj22','inzenfernozoa@gmail.com','09062562035','A',1);
+INSERT INTO user VALUES (57,'cadoc','$2a$10$IOUqFg8.SyGLsAm5F66tM.G.eHIYHMy0qPptuY0FIvt0PJsli1BUe','cadocangel@gmail.com','08927455618','A',0);
+INSERT INTO user VALUES (58,'lionel','$2a$10$3LB9gOXHnbRtWEPRYWs/8OpVqN2iLvzqIhLihnM0Y2pM40ImcbfT.','lionelalbert@gmail.com','0958788456','A',0);
+INSERT INTO user VALUES (59,'douglas','$2a$10$jehG9Tq2kcqV6BDRrwsC/O4YU6a2QVWusUn.NA6o8HTtvK2egXLTC','dougramirez@yahoo.com','09057458625','A',0);
+INSERT INTO user VALUES (60,'dennise','$2a$10$NXTExPx8iUreWc2VfyhptOPtadRKaEhwShiDGra3rLNjcPUQkmate','dendenbaca@gmail.com','5248756985','A',0);
 
 INSERT INTO user VALUES (11,'beili','$2a$10$hv9kLyC28lE27H7llCL0L.LZczdXcEGQskmqzttCcMGwTX6RzgBn2','cccepe@up.edu.ph','(577)399-7885','C',1);
 INSERT INTO user VALUES (12,'ralph','$2a$10$BiEvhLgGfAm9fPVtUYaX8OTJfZs7vQGj4Q8forLRROo1vbWrUqQ72','rareyes@up.edu.ph','(160)503-6933','C',1);
@@ -39,6 +44,12 @@ INSERT INTO user VALUES (37,'draco','$2a$10$VaJjwCiSS/xvx0vfelNj0OODR2z.PPRhGz2S
 INSERT INTO user VALUES (38,'snape','$2a$10$aTG1qbUMqvVwii9uOvlKNOEz7C2MAc0fKER3NrUKnZN3z2VCy9ZIO','ssnape@hsww.edu.uk','(777)683-0986','C',0);
 INSERT INTO user VALUES (39,'dumbledore','$2a$10$VPWpCmeyQ8jdM.0uA82XJOFSebRszM9664OQ6wkGNCFaYzEPj177W','adumbledore@hsww.edu.uk','(801)260-9465','C',0);
 INSERT INTO user VALUES (40,'hedwig','$2a$10$5OgzvnO/kcrVH69ZQOi.dOEeugtmfd33BwbsQwy4AcyvbU.uck2Be','hedwig@hsww.edu.uk','(327)123-3269','C',0);
+
+INSERT INTO user VALUES (61,'hilda','$2a$10$Qc.4ijycQtAZHdrsaC01q.YP938mLkwpANIQUGnVb6sQqCfyBDbHS','hildadubuque@yahoo.com','09658465236','C',0);
+INSERT INTO user VALUES (62,'waldo','$2a$10$18vmklhlyrkfPBsGt6dV.ewEPtGVRq1H1rhIWYqnV7C94/Hz.7zRC','waldocastillote@gmail.com','09758421289','C',0);
+INSERT INTO user VALUES (63,'audrey','$2a$10$26ezGgKyKoyFXEte08kEzOk8UoWTvdtC5rtvq6w.lut1M.MP7Pg0i','audreymanuel@gmail.com','09258623579','C',0);
+INSERT INTO user VALUES (64,'maria','$2a$10$iHDP2m0Z1o/6aDfSPN38qu9XJaggOZCqzVsv3fZs2fm8X9NjLXqNC','mariaandres@gmail.com','(049)456-709','C',0);
+INSERT INTO user VALUES (65,'ross','$2a$10$HnOWi3VVPAjPNLRO8kCU6.rQsQEhOgWWC5ZWPu1q8yJ.SyBjLTrUa','rossgeller@gmail.com','09567108099','C',0);
 
 INSERT INTO user VALUES (41,'cas','$2a$10$mQYsU8J.eGmu5YeHMXbqHOPoi0g5ytid/qI1C85SOgE5HHOKHzYyy','colartssci@up.edu.ph','(327)123-3269','O',1);
 INSERT INTO user VALUES (42,'che','$2a$10$rCBgovpUKXu/gBc.JDgJB.U3N9btXkwBaFYQxYkfGbvt5H.QPObFy','colhumeco@up.edu.ph','(577)399-7885','O',1);
@@ -88,6 +99,13 @@ insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) 
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(39, '1996-09-06', 'Albus', 'Dumbledore', 'Dumbledore', 'M', 'dumbledore competitor | Ten points to dumbledore');
 insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(40, '1995-07-14', 'Hedwig', 'The Owl', 'Hedwig', 'M', 'hedwig competitor | Soaring in the Heavens');
 
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(61, '1996-04-04', 'Hilda', 'DuBuque', 'Hilda', 'F', 'hilda competitor | Vape Nation (VN)');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(62, '1994-07-13', 'Waldo', 'Castillote', 'Waldo', 'M', 'waldo competitor | Where am I? ');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(63, '1997-07-23', 'Audrey', 'Manuel', 'Audrey', 'F', 'audrey competitor | Vlogin life' );
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(64, '1997-04-01', 'Maria', 'Andres', 'Mary', 'F', 'maria competitor | God First');
+insert into competitor(id, birthday, first_name, last_name, nickname, sex, bio) values(65, '1987-09-18', 'Ross', 'Geller', 'Ross', 'M', 'ross competitor | Raptor Dude');
+
+
 insert into organizer (name,description,id) VALUES('College of Arts and Sciences','To serve as a center of excellence in the basic sciences, as a cradle of humanities .',41);
 insert into organizer (name,description,id) VALUES('College of Human Ecology','The College of Human Ecology advocates and uses interdisciplinary, holistic, and integrative.',42);
 insert into organizer (name,description,id) VALUES('College of Engineering and Agro-Industrial Technology','Excellence in engineering education, research and extension.', 43);
@@ -124,6 +142,16 @@ insert into game (game_id, organizer_id, name, start_date, end_date, location) v
 insert into game (game_id, organizer_id, name, start_date, end_date, location) values (18, 41, 'PalaCASan 2019', '2019-06-24', '2019-07-08', 'To Be Announced');
 insert into game (game_id, organizer_id, name, start_date, end_date, location) values (19, 41, 'PalaCASan 2020', '2020-06-04', '2020-06-18', 'To Be Announced');
 insert into game (game_id, organizer_id, name, start_date, end_date, location) values (20, 43, 'Engineering Meet 2020', '2020-02-21', '2021-04-03', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (21, 46, 'Devcolympics 2015', '2015-01-09', '2015-01-16', 'Freedom Park Lower Ground');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (22, 2, 'CEMplangan 2015', '2015-09-01', '2015-10-21', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (23, 2, 'CEMplangan 2016', '2016-09-01', '2016-10-24', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (24, 2, 'CEMplangan 2017', '2017-09-01', '2017-10-22', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (25, 2, 'CEMplangan 2018', '2018-09-03', '2018-10-24', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (26, 2, 'CEMplangan 2019', '2019-09-02', '2019-10-23', 'To Be Announced');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (27, 48, 'VetMed SportsFest 2017', '2017-02-14', '2017-02-16', 'Copeland Gymnasium');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (28, 46, 'Devcolympics 2016', '2016-01-08', '2016-01-15', 'Freedom Park Lower Ground');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (29, 46, 'Devcolympics 2017', '2017-01-06', '2017-01-13', 'Freedom Park Lower Ground');
+insert into game (game_id, organizer_id, name, start_date, end_date, location) values (30, 6, 'CEMplangan 2020', '2020-09-01', '2020-10-22', 'To Be Announced');
 
 insert into sponsor_institution(sponsor_id, name, description) values(1, 'Angels Burger', 'Dito sa Angels Burger.. Ang unang kagat, tinapay lahat');
 insert into sponsor_institution(sponsor_id, name, description) values(2, 'High Ground Gourmet Comfort Food', 'A casual neighborhood restaurant that specializes in international and local comfort food');
@@ -145,7 +173,11 @@ insert into sponsor_institution(sponsor_id, name, description) values(17, 'Smart
 insert into sponsor_institution(sponsor_id, name, description) values(18, 'Gatorade', 'Fueling the future');
 insert into sponsor_institution(sponsor_id, name, description) values(19, 'Nike', 'Just Do It');
 insert into sponsor_institution(sponsor_id, name, description) values(20, 'Spalding', 'True to the Game');
-
+insert into sponsor_institution(sponsor_id, name, description) values(21, 'Adidas', 'Impossible is Nothing');
+insert into sponsor_institution(sponsor_id, name, description) values(22, 'Reebok', 'Iam what I am');
+insert into sponsor_institution(sponsor_id, name, description) values(23, 'Keds', 'Ladies 1st since 1916');
+insert into sponsor_institution(sponsor_id, name, description) values(24, 'Converse', 'Shoes are boring, Wear Sneakers');	
+insert into sponsor_institution(sponsor_id, name, description) values(25, 'UNIQLO', 'Made for All');
 
 insert into sponsor_games(sponsor_id, game_id) values (1, 1);
 insert into sponsor_games(sponsor_id, game_id) values (1, 2);
@@ -219,6 +251,13 @@ INSERT INTO organization VALUES(5, "Angulords");
 INSERT INTO organization VALUES(6, "Some Scientists");
 INSERT INTO organization VALUES(7, "Young Geeks");
 INSERT INTO organization VALUES(8, "College of Biology");
+INSERT INTO organization VALUES(9, "Applied Mathematics League");
+INSERT INTO organization VALUES(10, "Civil Engineering Society");
+INSERT INTO organization VALUES(11, "Newton's Apostles");
+INSERT INTO organization VALUES(12, "Veterinary Animal Care Company");
+INSERT INTO organization VALUES(13, "Natural Resource Circle");
+INSERT INTO organization VALUES(14, "Economic Management Club");
+INSERT INTO organization VALUES(15, "Upsilon Phi Lambda Beta");
 
 INSERT INTO organization_in_game VALUES(1,1);
 INSERT INTO organization_in_game VALUES(2,1);
