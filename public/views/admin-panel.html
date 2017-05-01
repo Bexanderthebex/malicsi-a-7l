@@ -2,7 +2,7 @@
 	<div id="main">
 		<div class="row">
 			<!-- SIDE NAV -->
-			<div class="col s3 palette-5 admin-fixed-sidebar z-depth-2">
+			<div class="col l3 m6 s7 palette-5 admin-fixed-sidebar ">
 				<div id="admin-title" class="valign-wrapper">
 					<div style="width: 100%; text-align: left;">
 						<h4 class="rockwell palette-text-3" style="margin:0;">ADMIN  <!-- <i class="fa fa-legal" style="margin-left: 10px; color: white;"></i> --></h4>
@@ -19,9 +19,12 @@
 					<button class="ad-btn" id="admin-spon-btn"><div style="width: 90%; float: left;">SPONSORS</div> <i class="fa fa-chevron-right"></i></button>
 				</div>
 			</div>
+			<div id="admin-sidenav-trigger" class="col valign-wrapper offset-m6 offset-s7 admin-fixed-sidebar">
+				<i id="close-open-sidenav" class="fa fa-bars admin-form-edit-btn"></i>
+			</div>
 
 			<!-- NAV VIEWS -->
-			<div id="admin-main" class="col s9 offset-s3 admin-padding-left admin-padding-right">
+			<div id="admin-main" class="col l9 offset-l3 m12 s12 admin-padding-left admin-padding-right">
 				<!-- Admins -->
 				<div id="admin-adminscrud" class="admin-view" style="display: inline;">
 
@@ -45,6 +48,7 @@
 							<thead>
 								<tr class="telegrafico">
 									<th>Username</th>
+									<th ><i class="fa fa-key"></i></th>
 									<th>Email</th>
 									<th>Contact</th>
 									<th>Inactive / Active</th>
@@ -52,9 +56,13 @@
 							</thead>
 							<tbody class="century-gothic">
 								<tr ng-repeat="a in admins">
-									<td class="match-player" style="width: 13%;">
+									<td class="match-player" style="width: 10%;">
 										<input disabled class="admin-form-edit admin-form-edit-{{a.id}}" type="text" ng-model="a.username" ng-init="a.username">
-									</td style="width: 12%;">
+									</td>
+									<td style="width: 5%!important;">
+
+											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password"></i>
+									</td>
 									<td class="match-player" style="width: 25%;">
 										<input disabled class="admin-form-edit admin-form-edit-{{a.id}}" type="text" ng-model="a.email" ng-init="a.email">
 									</td>
@@ -69,10 +77,10 @@
 									  		</label>
 										</div>
 									</td>
-									<td style="width: 10%;">
+									<td style="width: 15%;">
 										<div>
-											<i ng-attr-id="admin-edit-{{a.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editAdmin(a)"></i>
-											<i ng-attr-id="admin-cancel-edit-{{a.id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditAdmin(a)"></i>
+											<i ng-attr-id="admin-edit-{{a.id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editAdmin(a)"></i>
+											<i ng-attr-id="admin-cancel-edit-{{a.id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditAdmin(a)"></i>
 										</div>
 									</td>
 								</tr>
@@ -129,19 +137,23 @@
 							<thead>
 								<tr class="telegrafico">
 									<th>Name</th>
+									<th style="width: 20px!important;"><i class="fa fa-key"></i></th>
 									<th>Description</th>
 									<th>Inactive / Active</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
 								<tr ng-repeat="o in organizers">
-									<td class="match-player">
+									<td style="width: 25%;" class="match-player">
 										<input disabled class="admin-form-edit organizer-form-edit-{{o.id}}" type="text" ng-model="o.name" ng-init="o.name">
 									</td>
-									<td class="match-player">
+									<td style="width: 5%;">
+											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password"></i>
+									</td>
+									<td style="width: 35%;"class="match-player">
 										<input disabled class="admin-form-edit organizer-form-edit-{{o.id}}" type="text" ng-model="o.description" ng-init="o.description">
 									</td>
-									<td class="match-player">
+									<td style="width: 20%;" class="match-player">
 										<div class="switch">
 									  		<label>
 											<input class="admin-lever" type="checkbox" ng-init="o.is_active" ng-model="!!o.is_active" ng-click="setIsActive(!o.is_active, o.id, organizers)">
@@ -149,10 +161,10 @@
 									  		</label>
 										</div>
 									</td>
-									<td>
+									<td style="width: 15%;">
 										<div>
-											<i ng-attr-id="organizer-edit-{{o.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganizer(o)"></i>
-											<i ng-attr-id="organizer-cancel-edit-{{o.id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditOrganizer(o)"></i>
+											<i ng-attr-id="organizer-edit-{{o.id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganizer(o)"></i>
+											<i ng-attr-id="organizer-cancel-edit-{{o.id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditOrganizer(o)"></i>
 										</div>
 									</td>
 								</tr>
@@ -221,23 +233,20 @@
 						<table class="striped">
 							<thead>
 								<tr class="telegrafico">
-									<th>Name</th>
+									<th style="width: 50%!important;">Name</th>
+									<th style="width: 30%!important;">Actions</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
 								<tr ng-repeat="org in organizations">
-									<td class="match-player">
+									<td style="width: 50%!important;" class="match-player">
 										<input disabled class="admin-form-edit organization-form-edit-{{org.organization_id}}" type="text" ng-model="org.name" ng-init="org.name">
 									</td>
-									<td class="match-player">
+									<td style="width: 30%!important;">
 										<div>
-											<i class="admin-form-edit-btn fa fa-close fa-lg" ng-click="deleteOrganization(org.organization_id)"></i>
-										</div>
-									</td>
-									<td>
-										<div>
-											<i ng-attr-id="organization-edit-{{org.organization_id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganization(org)"></i>
-											<i ng-attr-id="organization-cancel-edit-{{org.organization_id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditOrganization(org)"></i>
+											<i data-position="left" data-delay="20" data-tooltip="Delete" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-trash fa-lg" ng-click="deleteOrganization(org.organization_id)"></i>
+											<i ng-attr-id="organization-edit-{{org.organization_id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganization(org)"></i>
+											<i ng-attr-id="organization-cancel-edit-{{org.organization_id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditOrganization(org)"></i>
 										</div>
 									</td>
 								</tr>
@@ -285,6 +294,7 @@
 							<thead>
 								<tr class="telegrafico">
 									<th>Username</th>
+									<th><i class="fa fa-key"></i></th>
 									<th>Email Address</th>
 									<th>Contact No.</th>
 									<th>Inactive / Active</th>
@@ -292,9 +302,12 @@
 							</thead>
 							<tbody class="century-gothic">
 								<tr ng-repeat="u in users">
-									<td class="match-player" style="width: 13%;">
+									<td class="match-player" style="width: 10%;">
 										<input disabled class="admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.username" ng-init="u.username">
-									</td style="width: 12%;">
+									</td >
+									<td style="width: 10%!important;">
+											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password"></i>
+									</td>
 									<td class="match-player" style="width: 25%;">
 										<input disabled class="admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.email" ng-init="u.email">
 									</td>
@@ -309,10 +322,10 @@
 											</label>
 										</div>
 									</td>
-									<td style="width: 10%;">
+									<td style="width: 15%;">
 										<div>
-											<i ng-attr-id="user-edit-{{u.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editUser(u)"></i>
-											<i ng-attr-id="user-cancel-edit-{{u.id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditUser(u)"></i>
+											<i ng-attr-id="user-edit-{{u.id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editUser(u)"></i>
+											<i ng-attr-id="user-cancel-edit-{{u.id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditUser(u)"></i>
 										</div>
 									</td>
 								</tr>
@@ -406,7 +419,6 @@
 								<tr class="telegrafico">
 									<th>Name</th>
 									<th>Description</th>
-									<th>Delete Sponsor</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
@@ -417,15 +429,11 @@
 									<td class="match-player">
 										<input disabled class="admin-form-edit sponsor-form-edit-{{s.sponsor_id}}" type="text" ng-model="s.description" ng-init="s.description">
 									</td>
-									<td class="match-player">
-										<div>
-											<i class="admin-form-edit-btn fa fa-close fa-lg" ng-click="deleteSponsor(s.sponsor_id)"></i>
-										</div>
-									</td>
 									<td>
 										<div>
-											<i ng-attr-id="sponsor-edit-{{s.sponsor_id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editSponsor(s)"></i>
-											<i ng-attr-id="sponsor-cancel-edit-{{s.sponsor_id}}" class="admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditSponsor(s)"></i>
+											<i data-position="left" data-delay="20" data-tooltip="Delete" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-trash fa-lg" ng-click="deleteSponsor(s.sponsor_id)"></i>
+											<i ng-attr-id="sponsor-edit-{{s.sponsor_id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editSponsor(s)"></i>
+											<i ng-attr-id="sponsor-cancel-edit-{{s.sponsor_id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditSponsor(s)"></i>
 										</div>
 									</td>
 								</tr>
@@ -459,6 +467,44 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<!-- Modals -->
+<div id="admin-change-password" class="modal">
+	<div id="admin-verify-first" class="modal-content">
+		<form>
+			<div>
+				<label class="admin-verify">Verify you're an admin</label>
+			</div>
+			<div><label class="admin-enter-password">Enter password:</label></div>
+			<div class="row">
+				<div class="col s9 padding-override-0">
+					<input class="admin-fillup-form" type="password">
+				</div>
+				<div class="col s3">
+					<button id="admin-proceed-btn" style="height: 40px; width: 40px;" class="waves-effect waves-light search-admin-button"><i class="fa fa-arrow-right"></i></button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div id="admin-verify-second" style="display: none;" class="modal-content">
+		<form>
+			<div><label class="admin-enter-password">Change Password:</label></div>
+			<div class="row margin-override-0">
+				<div class="col s9 padding-override-0">
+					<input class="admin-fillup-form" type="password">
+				</div>
+				<div class="col s3">
+					<button style="height: 40px; width: 40px;" class="waves-effect waves-light search-admin-button"><i class="fa fa-arrow-right"></i></button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- <div class="modal-footer right-align">
+		<button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
+		<button href="" class="modal-action modal-close minimalist-button" ng-click="">NEXT <i class="fa fa-angle-double-right"></i></button>
+	</div> -->
 </div>
 
 <!--Scripts-->

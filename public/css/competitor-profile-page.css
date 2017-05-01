@@ -11,8 +11,10 @@
   }
 }
 
-
-
+.competitor-cteam .collapsible-header:hover{
+  background: #00a5d3!important;
+  transition: background 0.5s;
+}
 
 .competitor-profile-info {
     height: 250px;
@@ -83,23 +85,6 @@ div.tablewrapper {
   border: 3px solid #00719c;
   border-radius: 5px;
 }
-
-/*.fixed_headers {
-  table-layout: fixed;
-  border-collapse: collapse;
-  
-  thead {
-    tr {
-      display: block;
-      position: relative;
-    }
-  }
-  tbody {
-    display: block;
-    overflow: auto;
-    width: 100%;
-  }
-}*/
 
 div.tablewrapper table tbody tr td, div.tablewrapper table thead tr th {
   border-radius: 0px;
@@ -297,7 +282,7 @@ div.tablewrapper table tbody tr td, div.tablewrapper table thead tr th {
 
 .modal-content::-webkit-scrollbar-thumb
 {
-  background-color: #001f2b;
+  background-color: #00415a;
   border-radius: 5px;
 }
 

@@ -157,7 +157,8 @@
                             </div>
                         </div>
                     </li>
-                    <li ng-repeat="cteam in coachedteam" >
+
+                    <li class="competitor-cteam" ng-repeat="cteam in coachedteam">
                         <div class="collapsible-header active">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3">{{cteam.team_name}}</div>
@@ -311,30 +312,12 @@
                     <input required placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
                     <label for="last-name">Password</label>
                 </div>
-                <!-- <div class="row">
-                    <div class="file-title col s12 century-gothic valign-wrapper">
-                        <label class="active">Profile Picture</label>
-                    </div>
-
-                    <div class="col s12">
-                        <form action="#">
-                            <div class="file-field input-field">
-                                <div class="btn file-button blue darken-4">
-                                    <span class="telegrafico">File</span>
-                                    <input type="file">
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div> -->
             </div>
         </form> 
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor()">UPDATE</button>
+        <button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
+        <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="editCompetitor()">UPDATE</button>
     </div>
 </div>
 

@@ -437,6 +437,16 @@
             sponsor.name = sponsorCache[sponsor.sponsor_id].name;
             sponsor.description = sponsorCache[sponsor.sponsor_id].description;
         }
+
+        $scope.editPassword = (userID, newPassword) => {
+            UserService.editPassword(userID, newPassword)
+            .then((res) => {
+                $scope.admins = res.data;
+                console.log('edit password')
+            }, (err) => {
+                console.log(err);
+            })
+        }
     }
 })();
 
