@@ -57,7 +57,9 @@
 }
 
 .orgfeed-orgteambox:hover{
-
+	opacity: 0.7;
+	cursor: pointer;
+	transition: opacity 0.5s;
 }
 
 #orgfeed-title{
