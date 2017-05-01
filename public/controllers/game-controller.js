@@ -1,6 +1,7 @@
 'use strict';
 
 (() => {
+
 	angular
 		.module('app')
 		.controller('GameController', GameController);
@@ -22,6 +23,7 @@
 		$scope.retrieveAllSports = retrieveAllSports;
 		$scope.searchSport = searchSport;
 		$scope.passSport = passSport;
+		$scope.countTeamInSport = countTeamInSport;
 		$scope.viewGameDetails = viewGameDetails;
 		$scope.viewGameOrganizerDetails = viewGameOrganizerDetails;
 		$scope.viewPastMatchesInGame = viewPastMatchesInGame;
@@ -34,8 +36,6 @@
 		$scope.checkOngoingMatches = checkOngoingMatches;
 		$scope.checkUpcomingMatches = checkUpcomingMatches;
 		$scope.viewSponsoringInstitutions = viewSponsoringInstitutions;
-		// $scope.deleteSponsoringInstitution = deleteSponsoringInstitution;
-		// $scope.addSponsoringInstitution = addSponsoringInstitution;
 		$scope.viewOtherSponsoringInstitutions = viewOtherSponsoringInstitutions;
 		$scope.initializeSponsoringInstitutions = initializeSponsoringInstitutions;
 		$scope.checkSponsors = checkSponsors;
@@ -75,7 +75,7 @@
 		$scope.updateStartTime = undefined;
 		$scope.updateEndTime = undefined;
 		$scope.updateStartDate = undefined;
-		$scope.updateEndDate = undefined;		
+		$scope.updateEndDate = undefined;
 		$scope.updateWinner = undefined;
 		$scope.updateScoringSystem = undefined;
 		$scope.updateGameId = undefined;
@@ -127,7 +127,7 @@
 		//add existing sponsor to game
 		$scope.newSponsorGame = {
 			sponsorId: undefined,
-			gameId: undefined, 
+			gameId: undefined,
 			name: undefined,
 			description: undefined,
 			checked: false
@@ -189,7 +189,7 @@
 				scoringSystem: $scope.selectedScoring,
 				gameID: $scope.thisGame.game_id
 			};
-			
+
 
 			console.log(newSport);
 			GameService
@@ -332,10 +332,10 @@
 				}, function(err) {
 					console.log(err);
 					Materialize.toast("Failed to add the Organization!", 3000);
-				}) 
+				})
 		}
-				
-		
+
+
 
 		function passSport(sport){
 				$scope.updateId = sport.sport_id;
@@ -349,8 +349,8 @@
 				$scope.updateMaxTeams =  sport.max_teams;
 				$scope.updateScoringSystem =  sport.scoring_system;
 				$scope.updateGameId = sport.game_id;
-			
-			
+
+
 			console.log(sport);
 		}
 
@@ -367,7 +367,7 @@
 
 		function passSponsorDelete(sponsor){
 			console.log(sponsor);
-			
+
 			$scope.sponsorCopy = {
 				name: sponsor.name,
 				description: sponsor.description,
@@ -380,14 +380,14 @@
 
 		function resetAddSportForm(){
 			$scope.newSport = {
-				sportName: undefined, 
+				sportName: undefined,
 				mechanics: undefined,
 				timeStart: undefined,
 				timeEnd: undefined,
 				startDate: undefined,
-				endDate: undefined, 
-				maxTeams: undefined, 
-				scoringSystem: undefined, 
+				endDate: undefined,
+				maxTeams: undefined,
+				scoringSystem: undefined,
 				gameID: $scope.thisGame.game_id
 			};
 			// $('#addName').val("");
@@ -416,7 +416,7 @@
 			$scope.updateStartTime = undefined;
 			$scope.updateEndTime = undefined;
 			$scope.updateStartDate = undefined;
-			$scope.updateEndDate = undefined;		
+			$scope.updateEndDate = undefined;
 			$scope.updateWinner = undefined;
 			$scope.updateScoringSystem = undefined;
 			$scope.updateGameId = undefined;
@@ -467,6 +467,11 @@
 				.retrieveAllSports($scope.thisGame.game_id)
 				.then(function(res) {
 					$scope.sports = res.data;
+					for (var i = 0; i<res.data.length; i++){
+						countTeamInSport(res.data[i]);
+					}
+					$scope.sports = res.data;
+					console.log(res.data);
 				}, function(err) {
 					console.log(err);
 					Materialize.toast('Failed to retrieve sports!', 3000);
@@ -487,7 +492,7 @@
 					Materialize.toast('Failed to delete sport!', 3000);
 				})
 		}
-	  
+
 		function deleteMultipleOrganizations() {
 			var organizations = [];
 			for (var i = 0; i<$scope.participatingOrgs.length; i++){
@@ -512,8 +517,8 @@
 			var sport = {
 				sport_id: $scope.updateId,
 				sport_name: $scope.updateName,
-				mechanics: $scope.updateMechanics, 
-				max_teams: $scope.updateMaxTeams, 
+				mechanics: $scope.updateMechanics,
+				max_teams: $scope.updateMaxTeams,
 				time_start: $scope.updateStartTime.getHours()+":"+$scope.updateStartTime.getMinutes() +":"+ $scope.updateStartTime.getSeconds(),
 				time_end: $scope.updateEndTime.getHours()+ ":" +$scope.updateEndTime.getMinutes() + ":" + $scope.updateEndTime.getSeconds(),
 				start_date: $scope.updateStartDate.getFullYear()+"-"+($scope.updateStartDate.getMonth()+1)+"-"+$scope.updateStartDate.getDate(),
@@ -550,6 +555,20 @@
 				}, function(err) {
 					console.log(err.data);
 				})
+		}
+
+
+		function countTeamInSport(sport){
+			GameService
+				.countTeamInSport(sport.sport_id)
+				.then(function(res) {
+
+					console.log("Team count for sport#"+sport.sport_id+": "+ res.data.team_count);
+					sport.team_count = res.data.team_count;
+				}, function(err){
+					console.log(err.data);
+				})
+
 		}
 
 		function viewGameDetails(){
@@ -681,11 +700,11 @@
 					match_id_tracker.push(data[i].match_id);
 					if(flag=="past")		$scope.pastMatches.push(mergedMatchBeta);
 					else if(flag=="ongoing")		$scope.ongoingMatches.push(mergedMatchBeta);
-					if(flag=="upcoming")		$scope.upcomingMatches.push(mergedMatchBeta);					
+					if(flag=="upcoming")		$scope.upcomingMatches.push(mergedMatchBeta);
 				}
 
 			}
-			
+
 			//then add the teams to the matches
 			//welp, javascript is not a pass-by-reference language they said....
 			if (flag=="past"){
@@ -700,7 +719,7 @@
 							break;
 						}
 					}
-				}			
+				}
 			}
 			else if (flag=="ongoing"){
 				for(var i = 0; i<data.length; i++){
@@ -714,7 +733,7 @@
 							break;
 						}
 					}
-				}			
+				}
 			}
 			else if (flag=="upcoming"){
 				for(var i = 0; i<data.length; i++){
@@ -728,13 +747,13 @@
 							break;
 						}
 					}
-				}			
+				}
 			}
 
-				
+
 		}
 
-		
+
 
 		function viewOngoingMatchesInGame(){
 			GameService
@@ -844,7 +863,7 @@
 						};
 						$scope.sponsors.push($scope.newSponsorGame);
 					}
-						
+
 					console.log($scope.sponsors);
 				}, function(err){
 					console.log(err.data);
@@ -857,7 +876,7 @@
 				.viewOtherSponsoringInstitutions($scope.thisGame.game_id)
 				.then(function(res){
 					console.log("other sponsoring institutions retrieved for game#"+ $scope.thisGame.game_id);
-				   
+
 					$scope.sponsorAdd = {};
 					// $scope.otherSponsors = res;
 					// console.log(angular.extend($scope.otherSponsors, res));
@@ -955,6 +974,6 @@
 				})
 		}
 
-	
+
 	}
 })();
