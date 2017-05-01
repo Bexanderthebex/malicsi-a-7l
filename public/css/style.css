@@ -46,8 +46,8 @@ body::-webkit-scrollbar-thumb{
 	position: fixed;
 	color: white;
 	margin: 0!important;
-	padding-left: 150px;
-	padding-right: 150px;
+	padding-left: 5%;
+	padding-right: 5%;
 }
 
 #nav-profile{
@@ -238,3 +238,20 @@ body::-webkit-scrollbar-thumb{
 	color: transparent;
 }
 
+.sidenav-photo-header {
+    height: 150px;
+}
+
+#sidenav-name{
+    margin-top: 30% !important;
+}
+
+.sidenav-header{
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 5%;
+}
+
+.sidenav-search {
+    margin-left: 10% !important;
+}

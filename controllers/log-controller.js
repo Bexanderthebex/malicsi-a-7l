@@ -75,12 +75,7 @@ exports.searchLog = (req, res) => {
 }
 
 exports.createLog = (id, message) => {
-    currentUser = req.session.user;
-    query = "CALL create_log(?, ?)";
-
-
-	let type = req.session.user.type;
-    connection.userType(type).query(query,
+    connection.userType('A').query(query,
         [
             id,
             message

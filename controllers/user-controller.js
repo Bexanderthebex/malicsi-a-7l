@@ -4,6 +4,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 const bcrypt = require('bcrypt');
+const logs= require('./log-controller');
 
 exports.login = (req, res) => {
 	var query = 'CALL select_user_with_password_from_username(?)';
@@ -19,6 +20,8 @@ exports.login = (req, res) => {
 							username: rows[0][0].username,
 							type: rows[0][0].type
 						}
+
+						logs.createLog(req.session.user.id, 'Login');
 
 						return res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
@@ -43,6 +46,7 @@ exports.login = (req, res) => {
 }
 
 exports.logout = (req, res) => {
+	log.createLog(req.session.user.id, 'Logout');
 	req.session = null;
 	return res.status(200).send({'message': 'Logout successful'});
 }
@@ -85,6 +89,8 @@ exports.register = (req, res) => {
 									req.body.sex
 								], (err, rows) => {
 									if(!err){
+										logs.createLog(req.session.user.id, 'Signup');
+
 										returnObject["birthday"] = req.body.birthday;
 										returnObject["first_name"] = req.body.first_name;
 										returnObject["last_name"] = req.body.last_name;
@@ -144,6 +150,7 @@ exports.update = (req, res) =>{
 		} else if (rows.affectedRows === 0) {
 			return res.status(404).send({ 'message': 'User was not updated.' });
 		} else {
+			logs.createLog(req.session.user.id, 'Edited User')
 			req.session.user.username = req.body.username;
 			return res.status(200).send(rows);
 		}
@@ -183,6 +190,7 @@ exports.updatePassword = (req, res) => {
 		else if (rows.affectedRows === 0) {
 			return res.status(404).send({ 'message': 'User was not updated.' });
 		} else {
+			logs.createLog(req.session.user.id, 'Edited User Password');
 			req.session.user.username = req.body.username;
 			return res.status(200).send(rows);
 		}
