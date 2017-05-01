@@ -402,7 +402,7 @@
 
 												<div class="telegrafico">Teams Remaining</div>
 												<div class="game-match-info">
-													9/{{sport.max_teams}}
+													{{sport.team_count}}/{{sport.max_teams}}
 												</div>
 												<div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">
 														<a href="/#/sports/{{sport.sport_id}}">{{sport.sport_name | lowercase}}</a>
@@ -435,7 +435,7 @@
 										<!-- presentation view -->
 										<div>
 											<p class="telegrafico game-organizer-description white-text center" >
-											Name: <br/> {{gameOrganizer.name}}
+											Name: <br/> <a href="#/organizer/profile/{{game.organizer_id}}">{{gameOrganizer.name}}</a>
 											</p>
 											<p class="game-organizer-description-description century-gothic white-text center">Description: <br/> {{gameOrganizer.description}}</p>
 											<p class="game-organizer-description century-gothic white-text center">Contact Number: <br/> {{gameOrganizer.contact}}</p>
