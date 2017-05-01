@@ -2,9 +2,9 @@
     angular.module('app')
         .controller('AdminCtrl', AdminCtrl);
 
-    AdminCtrl.$inject = ['$scope', '$http', 'UserService', 'AdminService', 'SearchService', 'OrganizerService', 'OrganizationService'];
+    AdminCtrl.$inject = ['$scope', '$http', 'UserService', 'AdminService', 'SearchService', 'OrganizerService', 'OrganizationService', '$location'];
 
-    function AdminCtrl($scope, $http, UserService, AdminService, SearchService, OrganizerService, OrganizationService) {
+    function AdminCtrl($scope, $http, UserService, AdminService, SearchService, OrganizerService, OrganizationService, $location) {
         let adminCache = {};
         let userCache = {};
         let organizerCache = {};
@@ -62,6 +62,10 @@
 
         UserService.getUserInfo().then((res) => {
             user = res.data;
+            if (res.data == '' || user.type != 'A') {
+                Materialize.toast('You need to be logged in as an administrator to access the admin panel.', 2000);
+                $location.url('/');
+            }
         }, (err) => {
             Materialize.toast('An error occured.', 2000);
             console.log(err);
