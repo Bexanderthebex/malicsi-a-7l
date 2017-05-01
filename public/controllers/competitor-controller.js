@@ -76,7 +76,7 @@
                         $window.location.href = '/';
                     }
                 }, function(err) {
-                    console.log(err);
+                    $window.location.href = '/#/error';
                 })
         }
 
@@ -86,7 +86,6 @@
                 .then(function(res) {
                     $scope.competitorteams = res.data;
                     for(var i = 0; i < $scope.competitorteams.length; i++){
-                        console.log($scope.competitorteams[i].game_id);
                         GameService
                             .viewGameDetails($scope.competitorteams[i].game_id)
                             .then(function(res) {
@@ -103,14 +102,6 @@
         }
 
         function getCompetitorTeamsPublic(){
-            // UserService
-            //     .getUserInfo()
-            //     .then(function(res) {
-            //         $scope.userinfo = res.data;
-            //         console.log("id: " + $scope.userinfo.id);
-            //     }, function(err) {
-            //         console.log(err);
-            //     })
             CompetitorService
                 .getCompetitorTeamsPublic($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
@@ -143,8 +134,6 @@
 
         function editCompetitor(){
             $scope.competitor.birthday = $scope.bday.getFullYear()+"-"+($scope.bday.getMonth()+1)+"-"+$scope.bday.getDate();
-           
-            console.log($scope.competitor);
             CompetitorService
                 .editCompetitor($scope.competitor)
                 .then(function (res){
@@ -185,7 +174,6 @@
         }
 
         function createTeam(){
-            console.log($scope.team);
             $scope.team.sport_id = $scope.team.sport_id.sport_id;
             $scope.team.team_organization = $scope.team.team_organization.organization_id;
             
@@ -214,17 +202,6 @@
                 }, function(err) {
                     console.log(err);
                 })
-
-            // CompetitorService
-            //     .getTeamMembers(id)
-            //     .then(function (res){
-            //         $scope.teammembers = res.data;
-            //        // console.log("members: ");
-            //         //console.log($scope.teammembers);
-            //     }, function(err) {
-            //         console.log(err);
-            //     })
-
         }
 
         function getCoachedTeam(){
@@ -254,7 +231,6 @@
                 .getPendingRequests()
                 .then(function (res){
                     $scope.pendingRequests = res.data;
-                    console.log($scope.pendingRequests);
                 }, function(err) {
                     console.log(err);
                 })
@@ -279,7 +255,6 @@
                         $scope.rankings.first = 0;
                         $scope.rankings.second= 0;
                         $scope.rankings.third = 0;
-                        console.log("Rankings Unavailable");
                     }
                     else if($scope.rank.length == 3){
                         $scope.rankings.first = $scope.rank[0].ranks;
@@ -321,7 +296,6 @@
         }
 
         function deleteTeam(team_id){
-            console.log(team_id);
             CompetitorService
                 .deleteTeam(team_id)
                 .then(function (res){
@@ -346,7 +320,6 @@
                 .getPendingRequests()
                 .then(function (res){
                     $scope.pendingRequests = res.data;
-                    console.log($scope.pendingRequests);
                 }, function(err) {
                     console.log(err);
                 })
@@ -365,13 +338,10 @@
                 .getPendingRequests()
                 .then(function (res){
                     $scope.pendingRequests = res.data;
-                    console.log($scope.pendingRequests);
                 }, function(err) {
                     console.log(err);
                 })
         }
-
-
 
     }
 })();

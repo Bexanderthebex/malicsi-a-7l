@@ -6,13 +6,6 @@
 			<img class="valign" id="organization-logo" src="assets/team1.png">
 			<h2 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h2>
 		</div>
-		<!--<div class="row org-search-panel palette-5">
-			<div class="col s6 m6 l6 offset-m3 container rockwell">
-				<form id="org-game-search-bar" class="search-bar-config">
-					<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
-				</form>
-			</div>
-		</div>-->
 
 		<div class="row statistics-label center-align"> 
 			<h3 class="rockwell palette-text-3 `"> Statistics </h3>
@@ -82,7 +75,7 @@
 								<th> 
 									Team Name
 									<form id="org-team-search-bar" class="search-bar-config">
-										<input type="search" ng-model="searchTeam" code="13">
+										<input type="search" ng-model="searchTeam" code="13"">
 									</form>
 								</th>
 								<th> Sport </th>
@@ -90,7 +83,7 @@
 							</tr>
 						</thead>
 						<tbody >
-							<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams | filter:searchTeam" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id);">
+							<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams | filter:searchTeam" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id)">
 								<td>
 									<div> {{pagedTeam.team_name}} </div>
 								</td>
