@@ -63,7 +63,7 @@ exports.updateGame = (req, res) => {
 exports.viewAllGames = (req, res) => {
 	console.log(req.body);
 	let query = 'CALL view_all_games();';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 	    (err, results) => {
 			if(!err){
 				return res.status(200).send(results[0]);
@@ -80,7 +80,7 @@ exports.viewGameDetails = (req, res) => {
 	let query = 'call view_game_details(?);';
 	let param = parseInt(req.query.gameId);
 	if (!isNaN(param)){
-		connection.userType(req.session.user.type).query(query,
+		connection.userType('G').query(query,
 		param,
 		(err, results, fields)	=> {
 		if (!err && results[0].length!=0) {
@@ -102,7 +102,7 @@ exports.viewGameDetails = (req, res) => {
 exports.searchForGameByKeyword = (req,res) => {
 	let query = 'call search_for_game_by_keyword(?);';
 	if(req.query.keyword != ''){
-		connection.userType(req.session.user.type).query(query,
+		connection.userType('G').query(query,
 
 			[
 				'%' + req.query.keyword + '%'
@@ -127,7 +127,7 @@ exports.viewAllSportsInGame = (req, res) => {
 	let param = parseInt(req.params.gameId);
 	if (!isNaN(param)){
 
-		connection.userType(req.session.user.type).query(query,
+		connection.userType('G').query(query,
 			param,
 			(err, rows, fields)	=> {
 				if (!err && rows[0].length!=0) {
@@ -172,7 +172,7 @@ exports.deleteGame = (req, res) => {
 
 exports.countGameOrganizer = (req, res) => {
 	let query = 'CALL count_game_organizer(?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.params.organizerId
 		], (err, rows, fields) => {
@@ -187,7 +187,7 @@ exports.countGameOrganizer = (req, res) => {
 
 exports.viewUpcomingOngoingGames = (req,res) =>{
 	let query = 'call view_all_upcoming_ongoing_games();';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		(err, rows, fields)	=> {
 			if (!err && rows[0].length!=0) {
 				return res.status(200).send(rows[0]);
@@ -204,7 +204,7 @@ exports.viewUpcomingOngoingGames = (req,res) =>{
 
 exports.viewUpcomingOngoingGamesNotLimited = (req,res) =>{
 	let query = 'call view_all_upcoming_ongoing_games_not_limited();';
-	connection.userType('A').query(query,
+	connection.userType('G').query(query,
 		(err, rows, fields)	=> {
 			console.log(rows);
 			if (!err && rows[0].length!=0) {
@@ -222,7 +222,7 @@ exports.viewUpcomingOngoingGamesNotLimited = (req,res) =>{
 
 exports.viewAllOngoingMatchesInGame = (req, res) => {
 	let query = 'CALL view_all_ongoing_matches_in_game(?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.gameId
 		], (err, rows, fields) => {
@@ -238,7 +238,7 @@ exports.viewAllOngoingMatchesInGame = (req, res) => {
 
 exports.viewAllPastMatchesInGame = (req, res) => {
 	let query = 'CALL view_all_past_matches_in_game(?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.gameId
 		], (err, rows, fields) => {
@@ -256,7 +256,7 @@ exports.viewAllPastMatchesInGame = (req, res) => {
 
 exports.viewAllUpcomingMatchesInGame = (req, res) => {
 	let query = 'CALL view_all_upcoming_matches_in_game(?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.gameId
 		], (err, rows, fields) => {
@@ -274,7 +274,7 @@ exports.retrieveOrgRankings = (req, res, next) => {
 	let query = 'CALL retrieve_org_rankings_from_game(?)';
 	let param = parseInt(req.params.gameId);
 	if(!isNaN(param)){
-		connection.userType(req.session.user.type).query(query,
+		connection.userType('G').query(query,
 			param,
 			(err, rows) =>{
 				if(!err){
@@ -296,7 +296,7 @@ exports.retrieveOrgRankings = (req, res, next) => {
 }
 
 exports.viewAllOrganizationForGame = (req, res) => {
-	connection.userType(req.session.user.type).query('CALL view_all_organization_for_game(?)',
+	connection.userType('G').query('CALL view_all_organization_for_game(?)',
 		[req.query.gameId],
 		(err, rows) => {
 		if (!err) {
@@ -309,7 +309,7 @@ exports.viewAllOrganizationForGame = (req, res) => {
 }
 
 exports.viewAllOrganizationInGame = (req, res) => {
-	connection.userType(req.session.user.type).query('CALL view_all_organization_in_game(?)',
+	connection.userType('G').query('CALL view_all_organization_in_game(?)',
 		[req.query.gameId],
 		(err, rows) => {
 		if (!err) {
@@ -356,7 +356,7 @@ exports.deleteOrganizationFromGame = (req, res) =>{
 exports.viewAllOngoingGames = (req, res) => {
 	let query = 'CALL view_all_ongoing_games(?)';
 
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.organizer_id
 		], (err, rows, fields) => {
@@ -373,7 +373,7 @@ exports.viewAllOngoingGames = (req, res) => {
 exports.viewAllUpcomingGames = (req, res) => {
 	let query = 'CALL view_all_upcoming_games(?)';
 	
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.organizer_id
 		], (err, rows, fields) => {
@@ -390,7 +390,7 @@ exports.viewAllUpcomingGames = (req, res) => {
 exports.viewAllRecentGames = (req, res) => {
 	let query = 'CALL view_all_recent_games(?)';
 
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.organizer_id
 		], (err, rows, fields) => {
@@ -406,7 +406,7 @@ exports.viewAllRecentGames = (req, res) => {
 
 exports.viewGameOrganizerDetails = (req, res) => {
 	let query = 'CALL view_game_organizer_details(?)';
-	connection.userType(req.session.user.type).query(query, [req.query.gameId],
+	connection.userType('G').query(query, [req.query.gameId],
 		(err, rows, fields) => {
 			if(!err)
 				return res.status(200).send(rows[0]);

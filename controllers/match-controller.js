@@ -6,14 +6,14 @@ const logs = require('./../controllers/log-controller.js');
 
 
 exports.addMatch = (req, res) => {
-	connection.userType(req.session.user.type).query('CALL add_match(?, ?, ?, ?)', 
+	connection.userType('G').query('CALL add_match(?, ?, ?, ?)', 
 		[req.body.timeStart,
 		 req.body.timeEnd,
 		 req.body.date,
 		 req.body.sportID], 
 		(err, rows) => {
 		if (!err){
-			connection.userType(req.session.user.type).query('CALL view_last_inserted_match()', (err, rows) => {
+			connection.userType('G').query('CALL view_last_inserted_match()', (err, rows) => {
 				logs.createLog(currentUser.id, "Created Match");
 				return res.status(200).send(rows[0]);
 			})
@@ -25,7 +25,7 @@ exports.addMatch = (req, res) => {
 
 exports.countMatchBySport = (req, res) => {
 	let query = 'CALL count_match_by_sport(?)';
-	connection.userType(req.session.user.type).query(query, 
+	connection.userType('G').query(query, 
 		[
 		req.params.sportID
 		], 
@@ -81,7 +81,7 @@ exports.editTeamRankingInMatch = function(req, res, next){
 
 exports.viewMatchInSport = (req, res) => {
 	let query = "call view_match_sport(?)"
-	connection.userType(req.session.user.type).query(query, 
+	connection.userType('G').query(query, 
 		[req.query.sportId], 
 		(err, rows, fields) => {
 		if (!err){
@@ -95,7 +95,7 @@ exports.viewMatchInSport = (req, res) => {
 exports.viewMatchDetails = (req, res) => {
 	let query = 'call view_match_details(?);';
 
-	connection.userType(req.session.user.type).query(query, 
+	connection.userType('G').query(query, 
 		[req.query.matchId], 
 		(err, rows) => {
 
@@ -113,7 +113,7 @@ exports.viewMatchDetails = (req, res) => {
 
 exports.viewAllMatch = (req, res) => {
 	let query = 'CALL view_all_match()';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		(err, rows) => {
 			if(!err){
 				return res.status(200).send(rows);
@@ -150,11 +150,10 @@ exports.deleteMatch = (req, res) => {
 exports.viewCurrentMatch = (req, res) => {
 	let query = 'CALL view_current_match(?)';
 
-	connection.userType('A').query(query,
+	connection.userType('G').query(query,
 		[req.query.sportId],
 		(err, rows, fields) => {
 		if(!err){
-			// logs.createLog(currentUser.id, "Created Game");
 			if(rows.length == 0){
 				return res.status(200).send([]);
 			}
@@ -162,7 +161,6 @@ exports.viewCurrentMatch = (req, res) => {
 				return res.status(200).send(rows[0]);
 			}
 		}else{
-			console.log(err);
 			return res.status(500).send("Internal server error occurred");
 		}
 	});
@@ -171,7 +169,7 @@ exports.viewCurrentMatch = (req, res) => {
 exports.viewPastMatch = (req, res) => {
 	let query = 'CALL view_past_match(?)';
 
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[req.query.sportId],
 		(err, rows, fields) => {
 		if(!err){
@@ -182,7 +180,6 @@ exports.viewPastMatch = (req, res) => {
 				return res.status(200).send(rows[0]);
 			}
 		}else{
-			console.log(err);
 			return res.status(500).send("Internal server error occurred");
 		}
 	});
@@ -191,7 +188,7 @@ exports.viewPastMatch = (req, res) => {
 exports.viewFutureMatch = (req, res) => {
 	let query = 'CALL view_future_match(?)';
 
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[req.query.sportId],
 		(err, rows, fields) => {
 		if(!err){
@@ -203,7 +200,6 @@ exports.viewFutureMatch = (req, res) => {
 			}
 		
 		}else{
-			console.log(err);
 			return res.status(500).send("Internal server error occurred");
 		}
 	});
@@ -212,7 +208,7 @@ exports.viewFutureMatch = (req, res) => {
 exports.retrieveMatchWinner = (req, res) => {
 	let query = 'CALL retrieve_match_winner(?)';
 
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[req.params.sportId],
 		(err, rows, fields) => {
 		if(rows.length === 0){

@@ -58,7 +58,7 @@ exports.createSport = (req, res) => {
 
 exports.countSportByGame = (req, res) => {
 	let query = 'CALL count_sport_by_game(?)';
-	connection.userType(req.session.user.type).query(query, 
+	connection.userType('G').query(query, 
 		[
 			req.params.gameID
 		], (err, rows) => {
@@ -72,7 +72,7 @@ exports.countSportByGame = (req, res) => {
 
 exports.viewSportDetails = (req, res) => {
 	let query = 'CALL view_sport(?)';
-	connection.userType(req.session.user.type).query(query, 
+	connection.userType('G').query(query, 
 		[
 		req.query.sportID
 		], 
@@ -131,12 +131,11 @@ exports.retrieveSportRankings = (req, res, next) => {
 	let query = 'CALL retrieve_team_rankings_from_sport(?)';
 	let param = parseInt(req.params.sportId);
 	if(!isNaN(param)){
-		connection.userType(req.session.user.type).query(query,
+		connection.userType('G').query(query,
 			[req.params.sportId],
 			(err, rows) =>{
 				if(!err){
 					return res.status(200).send(rows[0]);
-					console.log(rows[0]);
 				}
 				else if(rows.length == undefined){
 					return res.status(404).send("Rankings are unavailable.");
@@ -155,7 +154,7 @@ exports.retrieveSportRankings = (req, res, next) => {
 exports.searchForSportByKeyword = (req,res) => {
 	let query = 'call search_for_sport_by_keyword(?);';
 	let param = '%' + req.query.keyword + '%';
-	connection.userType(req.session.user.type).query(query, 
+	connection.userType('G').query(query, 
 		param,
 		(err, results, fields)	=> {
 		console.log(err);
@@ -176,7 +175,7 @@ exports.retrieveCompetitorSportRankings = (req, res, next) => {
 	let query = 'CALL retrieve_competitor_rankings_from_sport(?, ?)';
 	let param = parseInt(req.params.sportId);
 	if(!isNaN(param)){
-		connection.userType('A').query(query,
+		connection.userType('G').query(query,
 			[req.params.sportId, req.params.id],
 			(err, rows) =>{
 				if(!err){
