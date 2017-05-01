@@ -46,7 +46,7 @@ exports.login = (req, res) => {
 }
 
 exports.logout = (req, res) => {
-	log.createLog(req.session.user.id, 'Logout');
+	logs.createLog(req.session.user.id, 'Logout');
 	req.session = null;
 	return res.status(200).send({'message': 'Logout successful'});
 }
