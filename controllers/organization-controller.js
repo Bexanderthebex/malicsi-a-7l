@@ -60,13 +60,11 @@ exports.addOrganizationToGame = (req, res) =>{
 		}else{
 			res.status(500).send("Internal Server Error");
 		}
-
-
-	})
+	});
 }
 
 exports.deleteOrganization = (req, res) => {
-	// var query = 'call delete_organization(?)'
+	var query = 'call delete_organization(?)'
 	connection.userType(req.session.user.type).query(query, [
 		req.body.orgId
 	],

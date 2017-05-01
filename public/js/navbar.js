@@ -15,4 +15,5 @@ $(document).ready(function(){
     $('.navbtns').css('color', '#00719c');
     $(this).css('color', '#00b8ff');
   });
+  $(".button-collapse").sideNav();
 });

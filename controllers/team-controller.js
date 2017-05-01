@@ -45,8 +45,6 @@ exports.deleteTeam = (req, res) => {
 exports.teamMembershipRequest = (req, res) => {
     currentUser = req.session.user;
     query = "CALL team_membership_request(?,?)";
-    query1 = "SELECT * FROM competitor_joins_team WHERE id = ? AND team_id = ?";
-    
     connection.userType('A').query(query, 
             [
                 currentUser.id,
@@ -63,12 +61,11 @@ exports.teamMembershipRequest = (req, res) => {
 }
 
 exports.deleteMembershipRequest = (req, res) => {
-    currentUser = req.session.user;
-    query = "CALL delete_membership_request(?,?)";
     
+    query = "CALL delete_membership_request(?,?)";
     connection.userType('A').query(query, 
         [
-            currentUser.id,
+            req.body.id,
             req.body.team_id
         ], (err, rows) => {
                 if(!err) {
@@ -81,13 +78,13 @@ exports.deleteMembershipRequest = (req, res) => {
 }
 
 exports.acceptMembershipRequest = (req, res) => {
-    currentUser = req.session.user;
+
     query = "CALL accept_membership_request(?,?)";
     
     connection.userType('A').query(query, 
         [
-            currentUser.id,
-            req.body.team_id
+            req.query.id,
+            req.query.team_id
         ], (err, rows) => {
                 if(!err) {
                     return res.status(200).send({ 'message' : 'Sucessfully accepted request'});
@@ -98,12 +95,12 @@ exports.acceptMembershipRequest = (req, res) => {
      );
 }
 exports.getMembershipRequest = (req, res) => {
-    currentUser = req.session.user;
+    
     query = "CALL get_membership_request(?,?)";
     
     connection.userType('A').query(query, 
         [
-            currentUser.id,
+            req.query.id,
             req.query.team_id
         ], (err, rows) => {
             if(!err) {
@@ -146,12 +143,8 @@ exports.getTeamStatistics = (req, res) => {
             req.query.team_id
         ], (err, rows) => {
             if(!err) {
-                if (rows[0].length == 1){
-                    return res.status(200).send(rows[0][0]);
-                }
-                else{
                     return res.status(200).send(rows[0]);
-                }
+                
             } else {
                 return res.status(500).send({ 'message' : 'An error occured'});
             }
@@ -160,18 +153,13 @@ exports.getTeamStatistics = (req, res) => {
 
 exports.getOrganizationRankings = (req, res) => {
     query = "CALL organization_rankings(?)";
-    
     connection.userType('A').query(query,
         [
             req.query.org_id
         ], (err, rows) => {
             if(!err) {
-                if (rows[0].length == 1){
-                    return res.status(200).send(rows[0][0]);
-                }
-                else{
-                    return res.status(200).send(rows[0]);
-                }
+                return res.status(200).send(rows[0]);
+                
             } else {
                 return res.status(500).send({ 'message' : 'An error occured'});
             }
@@ -305,4 +293,25 @@ exports.getGamesInOrganization = (req, res) => {
             return res.status(500).send({ 'message' : 'An error occured'});
         }
     });
+}
+
+exports.searchTeam = (req, res) => {
+    query = 'CALL search_team(?)';
+
+    connection.userType('A').query(query,
+        [
+            "%" + req.query.search + "%"
+        ], (err, rows) => {
+            if(!err) {
+                if(rows[0].length == 1) {
+                    return res.status(200).send(rows[0]);
+                } else {
+                    return res.status(200).send(rows[0]);
+
+                }
+            } else {
+                return res.status(500).send({'message' : 'Internal Server Error'});
+            }
+        }
+    );
 }

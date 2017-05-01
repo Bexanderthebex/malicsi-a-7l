@@ -100,7 +100,7 @@ exports.editSponsorDetails = (req, res) => {
 
 exports.viewSponsor = (req, res) => {
 	let query = 'CALL view_sponsor(?,?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.sponsorId
 		],
@@ -116,7 +116,7 @@ exports.viewSponsor = (req, res) => {
 
 exports.searchSponsor = (req, res) => {
 	let query = 'CALL search_sponsor(?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			'%' + req.query.search + '%'
 		],
@@ -132,7 +132,7 @@ exports.searchSponsor = (req, res) => {
 
 exports.viewAllSponsor = (req, res) => {
 	let query = 'SELECT * FROM sponsor_institution';
-	connection.userType(req.session.user.type).query(query, [], (err, rows) => {
+	connection.userType('G').query(query, [], (err, rows) => {
 		if(!err){
 			return res.status(200).send(rows);
 		}else{
@@ -144,7 +144,7 @@ exports.viewAllSponsor = (req, res) => {
 
 exports.viewSponsorInSport = (req, res) => {
 	let query = 'CALL view_sponsor_in_sport(?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.sportId
 		],
@@ -161,7 +161,7 @@ exports.viewSponsorInSport = (req, res) => {
 
 exports.viewSponsorInGame = (req, res) => {
 	let query = 'CALL view_all_sponsors_in_game(?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.gameId
 		],
@@ -177,7 +177,7 @@ exports.viewSponsorInGame = (req, res) => {
 
 exports.viewSponsorNotInGame = (req, res) => {
 	let query = 'CALL view_all_sponsors_not_in_game(?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.gameId
 		],

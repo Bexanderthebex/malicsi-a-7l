@@ -91,8 +91,9 @@
                         GameService
                             .viewGameDetails($scope.competitorteams[i].game_id)
                             .then(function(res) {
-                                $scope.competitorgames.push(res.data);
-                                console.log($scope.competitorgames);
+                                if(!$scope.competitorgames.find( function find(game){ return game.name === res.data.name })) {
+                                    $scope.competitorgames.push(res.data);
+                                }
                             }, function(err) {
                                 console.log(err);
                             })
@@ -116,12 +117,12 @@
                 .then(function(res) {
                     $scope.competitorteams = res.data;
                     for(var i = 0; i < $scope.competitorteams.length; i++){
-                        console.log($scope.competitorteams[i].game_id);
                         GameService
                             .viewGameDetails($scope.competitorteams[i].game_id)
                             .then(function(res) {
-                                $scope.competitorgames.push(res.data);
-                                console.log($scope.competitorgames);
+                                if(!$scope.competitorgames.find( function find(game){ return game.name === res.data.name })) {
+                                    $scope.competitorgames.push(res.data);
+                                }
                             }, function(err) {
                                 console.log(err);
                             })
@@ -261,18 +262,28 @@
 
         function listAllGames(){
             CompetitorService
-                .listAllGames()
+                .listUpcomingOngoingGamesNotLimited()
                 .then(function (res){
+                    console.log("\n\n\n");
+                    console.log(res.data);
+                    let today = new Date();
+                    let dd = today.getDate();
+                    let mm = today.getMonth()+1;
+                    let yyyy = today.getFullYear();
+                    let i;
+                    for (i=0;i<res.data.length;i++){
+                        console.log(res.data[i].end_date);
+                        console.log(yyyy+"-"+mm+"-"+dd);
+                    }
                     $scope.listgames = res.data;
                 }, function(err) {
                     console.log(err);
                 })
         }
 
-        function getTeamRankings(){
-            console.log($scope.RankingSportID);
+        function getTeamRankings(id){
             CompetitorService
-                .getTeamRankings($scope.RankingSportID)
+                .getTeamRankings($scope.RankingSportID, id)
                 .then(function (res){
                     $scope.rank = res.data;
                     if ($scope.rank == [] || $scope.rank == undefined){
@@ -281,10 +292,20 @@
                         $scope.rankings.third = 0;
                         console.log("Rankings Unavailable");
                     }
+                    else if($scope.rank.length == 3){
+                        $scope.rankings.first = $scope.rank[0].ranks;
+                        $scope.rankings.second= $scope.rank[1].ranks;
+                        $scope.rankings.third = $scope.rank[2].ranks;
+                    }
+                    else if($scope.rank.length == 2){
+                        $scope.rankings.first = $scope.rank[0].ranks;
+                        $scope.rankings.second= $scope.rank[1].ranks;
+                        $scope.rankings.third = 0;
+                    }
                     else{
-                        $scope.rankings.first = res.data[0];
-                        $scope.rankings.second= res.data[1];
-                        $scope.rankings.third = res.data[2];
+                        $scope.rankings.first = $scope.rank[0].ranks;
+                        $scope.rankings.second= 0;
+                        $scope.rankings.third = 0;
                     }
                 }, function(err) {
                     console.log(err);
@@ -305,7 +326,6 @@
                 .viewAllOrganizationInGame($scope.game.game_id)
                 .then(function (res){
                     $scope.organizations = res.data;
-                    // console.log($scope.organizations);
                 }, function(err) {
                     console.log(err);
                 })
@@ -324,9 +344,9 @@
         }
 
         function acceptMembershipRequest(){
-            console.log($scope.pendingRequests.team_id);
+            
             CompetitorService
-                .acceptMembershipRequest($scope.pendingRequests.team_id)
+                .acceptMembershipRequest($scope.pendingRequests.team_id, $scope.pendingRequests.id)
                 .then(function (res){
                     Materialize.toast('Application Success', 4000);
                 }, function(err) {
@@ -344,9 +364,9 @@
         }
 
         function deleteMembershipRequest(){
-            console.log($scope.pendingRequests.team_id);
+            console.log("team_id: "+$scope.pendingRequests.team_id + "id: "+$scope.pendingRequests.id);
             CompetitorService
-                .deleteMembershipRequest($scope.pendingRequests.team_id)
+                .deleteMembershipRequest($scope.pendingRequests.team_id, $scope.pendingRequests.id)
                 .then(function (res){
                     Materialize.toast('Application Declined', 4000);
                 }, function(err) {
