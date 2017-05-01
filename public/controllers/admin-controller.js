@@ -75,16 +75,26 @@
            if($scope.adminUsername === undefined || $scope.adminPassword == undefined || $scope.adminEmail === undefined || $scope.adminContact === undefined){
                 Materialize.toast('Error. Missing text field(s).', 2000);
             }else{
-                AdminService.addAdmin({
+                const admin = {
                     username: $scope.adminUsername,
                     password: $scope.adminPassword,
                     email: $scope.adminEmail,
                     contact: $scope.adminContact
-                }).then((res) => {
+                }
+                AdminService.addAdmin(admin)
+                .then((res) => {
                     $scope.adminUsername = "";
                     $scope.adminPassword = "";
                     $scope.adminEmail = "";
                     $scope.adminContact = "";
+
+                    UserService.getUsersByType('A').then((res) => {
+                        $scope.admins = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    Materialize.toast('Successfully created admin.', 2000);
                 }, (err) => {
                     Materialize.toast(err.data.message);
                 });
@@ -95,14 +105,17 @@
             if($scope.organizerUsername === undefined || $scope.organizerPassword == undefined || $scope.organizerEmail === undefined || $scope.organizerContact === undefined || $scope.organizerName === undefined || $scope.organizerDescription === undefined){
                 Materialize.toast('Error. Missing text field(s).', 2000);
             }else{
-                AdminService.addOrganizer({
+                const organizer = {
                     username: $scope.organizerUsername,
                     password: $scope.organizerPassword,
                     email: $scope.organizerEmail,
                     contact: $scope.organizerContact,
                     name: $scope.organizerName,
                     description: $scope.organizerDescription
-                }).then((res) => {
+                };
+
+                AdminService.addOrganizer(organizer)
+                .then((res) => {
                     $scope.organizerUsername = "";
                     $scope.organizerPassword = "";
                     $scope.organizerEmail = "";
@@ -110,7 +123,11 @@
                     $scope.organizerName = "";
                     $scope.organizerDescription = "";
 
-                    console.log('add organizer', res.data);
+                    SearchService.retrieveOrganizer('').then((res) => {
+                        $scope.organizers = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
 
                     Materialize.toast('Successfully created organizer.', 2000);
                 }, (err) => {
@@ -130,7 +147,14 @@
 
                     console.log('add organization', res.data);
 
-                    Materialize.toast('Successfully created organization..', 2000);
+                    SearchService.retrieveOrganization('').then((res) => {
+                        $scope.organizations = res.data;
+                        console.log('organizations', $scope.organizations);
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    Materialize.toast('Successfully created organization.', 2000);
                 }, (err) => {
                     console.log('Add organizer', err);
                 });
@@ -395,7 +419,14 @@
                     description: $scope.sponsorDescription
                 };
                 AdminService.addSponsor(sponsor).then((res) => {
-                    Materialize.toast("Sponsor added", 2000);
+                    SearchService.retrieveSponsor('').then((res) => {
+                        $scope.sponsors = res.data;
+                        console.log("sponsors", $scope.sponsors);
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    Materialize.toast("Successfully created sponsor.", 2000);
                 }, (err) => {
                     console.log(err);
                     Materialize.toast("An error occured.", 2000);
