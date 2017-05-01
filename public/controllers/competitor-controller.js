@@ -22,7 +22,7 @@
 
         };
 
-        $scope.membercount = [];
+        $scope.membercount = 0;
         $scope.competitorteams = [];
         $scope.competitorgames = [];
         $scope.coachedteam = [];
