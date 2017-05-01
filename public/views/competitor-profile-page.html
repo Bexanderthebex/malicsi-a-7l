@@ -76,7 +76,7 @@
                                 
                             <div class="row center">
                                 <div class="input-field col l12 m12 s12 ">
-                                    <select class="browser-default minimalist-button" ng-click="getTeamRankings()" ng-model="RankingSportID">
+                                    <select class="browser-default minimalist-button" ng-click="getTeamRankings(competitor.id)" ng-model="RankingSportID">
                                         <option value="" selected disabled>Sports</option>
                                         <option value="{{sport.sport_id}}" ng-repeat="sport in competitorteams" >{{sport.sport_name}}</option>
                                     </select>

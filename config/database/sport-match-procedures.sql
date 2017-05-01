@@ -151,22 +151,22 @@ GRANT EXECUTE ON PROCEDURE view_match_sport TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_match_sport TO 'guest'@'localhost';
 
 -- view past match in sport
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_current_match TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_current_match TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_current_match TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_current_match TO 'guest'@'localhost';
 
 -- view current match in sport
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_future_match TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_future_match TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_future_match TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_future_match TO 'guest'@'localhost';
 
 -- view matches in a sport
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_past_match TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_past_match TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_past_match TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_past_match TO 'guest'@'localhost';
 
 -- view match details
 GRANT EXECUTE ON PROCEDURE view_match_details TO 'administrator'@'localhost';
