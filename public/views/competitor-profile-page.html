@@ -147,32 +147,20 @@
             <div class="row container">
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
-
-                <ul class="collapsible z-depth-0" data-collapsible="accordion" ng-click="getTeamMembers(cteam.team_id)">
-                    <li>
-                        <div class="collapsible-header grey lighten-2 remove-bottom">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id)">
+                        <div class="collapsible-header grey lighten-2 remove-bottom active" id="teams-managed-header" ng-init="countMembersInTeam(cteam.team_id)">
                             <div id="teams-managed-header" class="row remove-bottom telegrafico">
-                                <div class="col l3 m3 s3 font-pt-18">Team Name</div>
-                                <div class="col l5 m5 s5 font-pt-18 center">Organization</div>
-                                <div class="col l3 m3 s3 font-pt-18 center">Sports</div>
-                                <div class="col l1 m1 s1 center-block">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="competitor-cteam" ng-repeat="cteam in coachedteam" >
-                        <div class="collapsible-header active">
-                            <div class="row remove-bottom century-gothic">
-                                <div class="col l3 m3 s3">{{cteam.team_name}}</div>
-                                <div class="col l5 m5 s5 center">{{cteam.name}}</div>
-                                <div class="col l3 m3 s3 center">{{cteam.sport_name}}</div>
+                                <div class="col l3 m3 s3 font-pt-18">{{cteam.team_name}}</div>
+                                <div class="col l3 m3 s3 font-pt-18 center">{{cteam.name}}</div>
+                                <div class="col l3 m3 s3 font-pt-18 center">{{cteam.sport_name}}</div>
                                 <div class="col l1 m1 s1 center-block">
                                      <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team" ng-click="team.team_id=cteam.team_id"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="collapsible-body">
-                            <span class="telegrafico">Max Members: {{cteam.max_members}}</span>
+                            <span class="telegrafico">Membership Count: {{membercount}}/{{cteam.max_members}}</span>
                             <div class="chip" ng-repeat="member in teammembers">{{member.first_name}} {{member.last_name}}<i class="close material-icons">close</i></div>
                         </div>
                     </li>
@@ -203,58 +191,7 @@
                     </table>
                 </div>
                 <div class="container divider"></div>
-                <!-- <div class="col s12">
-                    <h5 class="rockwell">Invites</h5>
-                    <table class="highlight responsive-table">
-                        <tbody>
-                            <tr class="century-gothic">
-                                <td class="bold">Jane Mare</td>
-                                <td>Team-You-Are-Invited-To</td>
-                                <td>Basketball</td>
-                                <td>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
-                                        <i class="fa fa-check fa-lg"></i>
-                                    </div>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
-                                        <i class="fa fa-times fa-lg"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td class="bold">Jean Mare</td>
-                                <td>Team-You-Are-Invited-To</td>
-                                <td>Football</td>
-                                <td>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
-                                        <i class="fa fa-check fa-lg"></i>
-                                    </div>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
-                                        <i class="fa fa-times fa-lg"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td class="bold">Joan Mare</td>
-                                <td>Team-You-Are-Invited-To</td>
-                                <td>Hockey</td>
-   
-                                <td>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
-                                        <i class="fa fa-check fa-lg"></i>
-                                    </div>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
-                                        <i class="fa fa-times fa-lg"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> -->
-            </div>
-        </div>
-
-    </div>
-
+ 
 <!-- Edit Profile Modal -->
 <div id="edit-profile-modal" class="modal modal-fixed-footer">
     <div class="modal-content competitor-header-fill century-gothic">
@@ -388,9 +325,10 @@
                 </div>
             </div>
         <div class="row">
-            <div class="col s12 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
-                <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
-                <span class="century-gothic secondary-text">{{ game.location }}</span>
+                <a href="#/game/{{game.game_id}}">
+                    <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
+                    <span class="century-gothic secondary-text">{{ game.location }}</span>
+                </a>
             </div>
         </div>
     </div>

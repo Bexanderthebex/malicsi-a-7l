@@ -136,8 +136,11 @@
             </div>
         <div class="row">
             <div class="col s12 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
-                <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
-                <span class="century-gothic secondary-text">{{ game.location }}</span>
+                <a href="#/game/{{game.game_id}}">
+                    <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
+                    <span class="century-gothic secondary-text">{{ game.location }}</span>
+                </a>
+
             </div>
         </div>
 
