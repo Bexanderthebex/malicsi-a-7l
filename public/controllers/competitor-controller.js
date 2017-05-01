@@ -14,7 +14,6 @@
         };
         $scope.competitor = {};
         $scope.userinfo = {};
-
         $scope.team = {
             team_name: null,
             sport_id: null,
@@ -23,6 +22,7 @@
 
         };
 
+        $scope.membercount = 0;
         $scope.competitorteams = [];
         $scope.competitorgames = [];
         $scope.coachedteam = [];
@@ -57,7 +57,6 @@
         $scope.deleteTeam = deleteTeam;
         $scope.acceptMembershipRequest = acceptMembershipRequest;
         $scope.deleteMembershipRequest = deleteMembershipRequest;
-        
         function searchCompetitor(){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
@@ -221,6 +220,7 @@
                 .getTeamMembers(id)
                 .then(function (res){
                     $scope.teammembers = res.data;
+                    $scope.membercount = res.data.length;
                 }, function(err) {
                     console.log(err);
                 })
@@ -238,7 +238,7 @@
 
         function listAllGames(){
             CompetitorService
-                .listAllGames()
+                .listUpcomingOngoingGamesNotLimited()
                 .then(function (res){
                     $scope.listgames = res.data;
                 }, function(err) {
@@ -246,9 +246,9 @@
                 })
         }
 
-        function getTeamRankings(){
+        function getTeamRankings(id){
             CompetitorService
-                .getTeamRankings($scope.RankingSportID)
+                .getTeamRankings($scope.RankingSportID, id)
                 .then(function (res){
                     $scope.rank = res.data;
                     if ($scope.rank == [] || $scope.rank == undefined){
@@ -256,10 +256,20 @@
                         $scope.rankings.second= 0;
                         $scope.rankings.third = 0;
                     }
+                    else if($scope.rank.length == 3){
+                        $scope.rankings.first = $scope.rank[0].ranks;
+                        $scope.rankings.second= $scope.rank[1].ranks;
+                        $scope.rankings.third = $scope.rank[2].ranks;
+                    }
+                    else if($scope.rank.length == 2){
+                        $scope.rankings.first = $scope.rank[0].ranks;
+                        $scope.rankings.second= $scope.rank[1].ranks;
+                        $scope.rankings.third = 0;
+                    }
                     else{
-                        $scope.rankings.first = res.data[0];
-                        $scope.rankings.second= res.data[1];
-                        $scope.rankings.third = res.data[2];
+                        $scope.rankings.first = $scope.rank[0].ranks;
+                        $scope.rankings.second= 0;
+                        $scope.rankings.third = 0;
                     }
                 }, function(err) {
                     console.log(err);
@@ -280,7 +290,6 @@
                 .viewAllOrganizationInGame($scope.game.game_id)
                 .then(function (res){
                     $scope.organizations = res.data;
-                    // console.log($scope.organizations);
                 }, function(err) {
                     console.log(err);
                 })
@@ -333,7 +342,6 @@
                     console.log(err);
                 })
         }
-
 
     }
 })();

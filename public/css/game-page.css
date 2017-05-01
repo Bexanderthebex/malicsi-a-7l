@@ -361,11 +361,12 @@
     color: black;
     margin: 0px !important;
     margin-top: -10px;
+    line-height: 22px;
 }
 
 .game-sponsor-description{
-    font-size: 10px;
-    margin-top: -5px;
+    font-size: 12px;
+    margin-top: -1px;
     line-height: 14px !important;
     color: black;
 }
@@ -564,4 +565,52 @@
     left: 0rem;
     font-size: 0.8rem;
     color: #FF4081;
+}
+
+.game-adjust-sponsor-desc{
+    margin-top: -8px;
+    font-size: 12px;
+}
+
+.game-transparent-button{
+    background-color: transparent !important;
+    border: solid 2px white !important;
+    color: white !important;
+}
+
+.game-transparent-button:hover{
+    background-color: white !important;
+    border: solid 2px white !important;
+    color: #00415a !important;
+}
+
+.gamefeed-game-box{
+	/*height: 200px;*/
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.gamefeed-game-box-header{
+	width: 100%;
+	height: 50px;
+	padding-top: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 18px;
+	letter-spacing: 1px;
+}
+
+.gamefeed-game-box-body{
+	width: 100%;
+	height: 150px;
+	/*overflow-y: auto;*/
+	border: solid 1px rgba(0,0,0,.1);
+}
+
+.gamefeed-adjust-title-game{
+    margin-bottom: -2px !important;
+    font-size: 22px;
 }

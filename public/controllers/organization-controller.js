@@ -44,12 +44,13 @@
         $scope.retrieveTeam = retrieveTeam;
         $scope.joinTeam = joinTeam;
         $scope.initPage = initPage;
+        $scope.quitTeam = quitTeam;
         //$scope.retrieveMembers = retrieveMembers;
         //$scope.retrieveTeamStatistics = retrieveTeamStatistics;
         //$scope.retrieveOrganizationStatistics = retrieveOrganizationStatistics;
         $scope.retrieveOrganization = retrieveOrganization;
         $scope.retrieveGamesInOrganization = retrieveGamesInOrganization;
-        $scope.checkTeamMembership = checkTeamMembership;
+        //$scope.checkTeamMembership = checkTeamMembership;
         $scope.setViewedGame = setViewedGame;
         $scope.setPageView = setPageView;
         $scope.searchInOrg = searchInOrg;
@@ -107,7 +108,6 @@
                     $scope.pages = [];
                     var temp = res.data;
                     var i=0;
-                    console.log($scope.viewedGameID);
                     for(i=0; i<temp.length; i++) {
                         if(temp[i].game_id == $scope.viewedGameID) {
                             temp[i].statistics = {
@@ -136,11 +136,9 @@
 
         function setPageView(page){
             $scope.pagedTeams = [];
-            console.log($scope.teams);
             if ($scope.teams.length == 0)
                 return;
             $scope.pagedTeams = $scope.teams.slice(page*5, (page*5)+5>$scope.teams.length?$scope.teams.length:(page*5)+5);
-            console.log($scope.pagedTeams);
         }
 
 
@@ -151,6 +149,7 @@
                     $scope.teamModal = res.data;
                     retrieveMembers(team_id);
                     retrieveTeamStatistics(team_id);
+                    checkTeamMembership(team_id);
                 }, function(err) {
                     Materialize.toast('Error loading details');
                     console.log(err);
@@ -173,51 +172,50 @@
         }
 
         function joinTeam(team_id) {
-            OrganizationService
-                .joinTeam(team_id)
-                .then(function(res) {
-                    Materialize.toast('Sucessfully joined team');
-                }, function(err) {
-                    if(err.data.message.valueOf()=='Duplicate entry') {
-                        Materialize.toast('Already sent request');
-                    } else {
-                        Materialize.toast('Error');
-                        console.log(err.data.message);
-                    }
-                })
+
+            if ($scope.isMember == -1){
+                OrganizationService
+                    .joinTeam(team_id)
+                    .then(function(res) {
+                        Materialize.toast('Sucessfully sent request',3000);
+                        retrieveTeam(team_id);
+                    }, function(err) {
+                        if(err.data.message.valueOf()=='Duplicate entry') {
+                            Materialize.toast('Already sent request',3000);
+                        } else {
+                            Materialize.toast('Error');
+                            console.log(err.data.message);
+                        }
+                    })
+            }
+            else if ($scope.isMember == 0)
+                Materialize.toast('Already sent request',3000);
         }
 
         function retrieveTeamStatistics(id, stats) {
             OrganizationService
                 .retrieveTeamStatistics(id)
                 .then(function(res) {
+                    let i;
+                    let st = 0;
+                    let nd = 0;
+                    let rd = 0;
+                    for (i = 0; i < 3;i++){
+                        st = res.data[i]==undefined?st:res.data[i].ranking == 1?res.data[i].rankCount:st; 
+                        nd = res.data[i]==undefined?nd:res.data[i].ranking == 2?res.data[i].rankCount:nd;
+                        rd = res.data[i]==undefined?rd:res.data[i].ranking == 3?res.data[i].rankCount:rd; 
+                    } 
+                
                     
-                    console.log(res.data);
-                    if (res.data.ranking == null){
-                        $scope.teamStats.first = 0;
-                        $scope.teamStats.second= 0;
-                        $scope.teamStats.third = 0;
-                        $scope.teamStats.total = 0;
+                    $scope.teamStats.first = st;
+                    $scope.teamStats.second= nd;
+                    $scope.teamStats.third = rd;
+                    $scope.teamStats.total = st + nd + rd;
+                    stats.first = st;
+                    stats.second= nd;
+                    stats.third = rd;
+                    stats.total = st + nd + rd;
 
-                        stats.first = 0;
-                        stats.second= 0;
-                        stats.third = 0;
-                        stats.total = 0;
-                        console.log("Not Available");
-                    }
-
-                    else{
-                        $scope.teamStats.first = res.data[0];
-                        $scope.teamStats.second= res.data[1];
-                        $scope.teamStats.third = res.data[2];
-                        $scope.teamStats.total = res.data[0] + res.data[1] + res.data[2];
-                        stats.first = res.data[0];
-                        stats.second= res.data[1];
-                        stats.third = res.data[2];
-                        stats.total = res.data[0] + res.data[1] + res.data[2];
-
-                    }
-                    console.log(stats);
                     return stats;
                 }, function(err) {
                     Materialize.toast('Error loading details');
@@ -227,9 +225,18 @@
         //to be to be to be
         function retrieveOrganizationStatistics(id) {
             OrganizationService
-                .getOrganizationRankings(id)
+                .retrieveOrganizationRankings(id)
                 .then(function(res) {
-                    if (res.data.ranking == null){
+                    let i;
+                    let st = 0;
+                    let nd = 0;
+                    let rd = 0;
+                    for (i = 0; i < 3;i++){
+                        st = res.data[i]==undefined?st:res.data[i].ranking == 1?res.data[i].rankCount:st; 
+                        nd = res.data[i]==undefined?nd:res.data[i].ranking == 2?res.data[i].rankCount:nd;
+                        rd = res.data[i]==undefined?rd:res.data[i].ranking == 3?res.data[i].rankCount:rd; 
+                    } 
+                    /*if (res.data.ranking == null){
                         $scope.organizationStats.first = 0;
                         $scope.organizationStats.second= 0;
                         $scope.organizationStats.third = 0;
@@ -237,11 +244,14 @@
                         console.log("Not Available");
                     }
                     else{
-                        $scope.organizationStats.first = res.data[0];
-                        $scope.organizationStats.second= res.data[1];
-                        $scope.organizationStats.third = res.data[2];
-                        $scope.organizationStats.total = res.data[0] + res.data[1] + res.data[2];
-                    }
+
+
+*/
+                        $scope.organizationStats.first = st;
+                        $scope.organizationStats.second= nd;
+                        $scope.organizationStats.third = rd;
+                        $scope.organizationStats.total = st + nd + rd;
+                    //}
                 }, function(err) {
                     Materialize.toast('Error loading details');
                     console.log(err.data);
@@ -250,22 +260,29 @@
 
         function checkTeamMembership(team_id) {
             OrganizationService
-                .checkTeamMembership(team_id)
+                .checkTeamMembership($scope.currentUser.id,team_id)
                 .then(function(res) {
-                    if(res.data == []) {
+                    if(res.data.length == 0) {
                         // can join to teams; not a member, did not join yet
                         $scope.isMember = -1;
-                    } else if(res.data.is_member == 0) {
-                        // pending request
-                        $scope.isMember = 1;
-                    } else if(res.data.is_member == 1) {
-                        // already a member
-                        $scope.isMember = 0;
+                    } else {
+                        // pending request = 0, member = 1
+                        $scope.isMember = res.data.is_member;
                     }
-
                 }, function(err) {
                     console.log(err.data);
                 })
+        }
+
+        function quitTeam(team_id) {
+            OrganizationService
+                .quitTeam($scope.currentUser.id,team_id)
+                .then(function(res) {
+                    Materialize.toast("Successfully left the team", 3000);
+                }, function(err) {
+                    console.log(err.data);
+                })
+                retrieveTeam(team_id);
         }
 
         function searchInOrg(input) {

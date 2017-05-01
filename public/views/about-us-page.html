@@ -1,162 +1,355 @@
-<div id="mainHolder" ng-controller="competitorController">
+<div id="mainHolder">
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
-    <div id="main" class="parallax-container">
-        <!-- competitor Basic Info -->
-        <div class="parallax">
-            <img src="assets/images/4.jpg">
+    <div id="main">
+        <div id="cover-photo" class="">
+            <div id="tagline-div" class="row valign-wrapper remove-bottom">
+                <span id="tagline" class="valign center center-block white-text rockwell">&#8220; MalICSi: Sumaksi, sumali, magkumbinsi! &#8221;</span>
+            </div>
+            <div id="shortcuts-div" class="row remove-bottom section">
+                <div class="col l2 m2 s2 offset-l1 offset-m1 offset-s1">
+                    <a href="#about-content" class="shortcuts tiny btn-floating tooltipped palette-1" data-position='top' data-delay=150 data-tooltip='About'><i class="tiny material-icons">description</i></a>&nbsp;<span href="#about" class="telegrafico team-name hide-on-small-only">About</span>
+                </div>
+                <div class="col l2 m2 s2">
+                    <a href="#lennon" class="shortcuts tiny btn-floating tooltipped palette-2" data-position='top' data-delay=150 data-tooltip='Lennon'><i class="tiny material-icons">code</i></a>&nbsp;<span class="telegrafico team-name hide-on-small-only">Lennon</span>
+                </div>
+                <div class="col l2 m2 s2">
+                    <a href="#stuart" class="shortcuts tiny btn-floating tooltipped palette-3" data-position='top' data-delay=150 data-tooltip='Stuart'><i class="tiny material-icons">settings</i></a>&nbsp;<span class="telegrafico team-name hide-on-small-only">Stuart</span>
+                </div>
+                <div class="col l2 m2 s2">
+                    <a href="#ringo" class="shortcuts tiny btn-floating tooltipped palette-4" data-position='top' data-delay=150 data-tooltip='Ringo'><i class="tiny material-icons">settings</i></a>&nbsp;<span class="telegrafico team-name hide-on-small-only">Ringo</span>
+                </div>
+                <div class="col l2 m2 s2">
+                    <a href="#mccartney" class="shortcuts tiny btn-floating tooltipped palette-5" data-position='top' data-delay=150 data-tooltip='McCartney'><i class="tiny material-icons left">settings</i></a>&nbsp;<span class="telegrafico team-name hide-on-small-only">McCartney</span>
+                </div>
+            </div>
         </div>
-        <div class="row container center">
-           <!--  <div id="about-us-img-1" class="cover-photo row hide-on-small-only">&nbsp;</div>
-            <div id="about-us-img-1s" class="cover-photo row container hide-on-med-and-up">&nbsp;</div> -->
-            <div class="row"><h3 class="rockwell center"><a href="#about-us" class="scrollspy black-text">About Us</a></h3></div>
-            <div id="about-us" class="row">
-                <div class="row">
-                    <h1 class="sansation">
-                        &#8220; Insert our slogan/tagline here. &#8221;
-                    </h1>
+        <br>
+        <div id="about-content">
+            <div id="about-details" class="container valign-wrapper center">
+                <div class="valign center container">
+                    <img id="company-logo" src="../assets/company-logo.jpg"><br>
+                    <hr class="container"><br>
+                    <p class="p-style century-gothic">Malicsi is a game management system made by 20 junior students of the Institute of Computer Science with the goal of organizing efficiently the yearly sport event of Computer Science undergrduates together with the instructors and the professors.</p>
                 </div>
-                <div id="details-div" class="row">
-                    <div class="col l4 m4 s12">
-                        <h5 class="telegrafico">Header</h5>
-                        <p class="century-gothic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div id="developers">
+                <h3 class="palette-text-4 telegrafico center grey lighten-2">Meet the Developers</h3>
+                <div id="pm" class="row">
+                    <div id="project-manager" class="dev-member-card center-block">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/female_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Claizel Coubeili Cepe</h5>
+                                    <p class="p-style century-gothic">Project Manager</p>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="col l4 m4 s12">
-                        <h5 class="telegrafico">Header</h5>
-                        <p class="century-gothic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div id="lennon" class="row center">
+                    <h4 class="h4-style palette-text-3 telegrafico grey lighten-2 center-block">Team Lennon</h4>
+                        <div class="dev-member-card dev-member-tl center-block">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/female_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Blessy Salvania</h5>
+                                    <p class="p-style century-gothic">Team Leader<br>Front-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><br>
+                    <div class="dev-member-card dev-member-1 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">John Jourish Abasolo</h5>
+                                    <p class="p-style century-gothic">Front-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="dev-member-card dev-member-2 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Kenichii Ana</h5>
+                                    <p class="p-style century-gothic">Front-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><br><br>
+                    <div class="dev-member-card dev-member-2 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/female_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Meika Lei Dane</h5>
+                                    <p class="p-style century-gothic">Front-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="dev-member-card dev-member-1 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/female_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Caroline Tolentino</h5>
+                                    <p class="p-style century-gothic">Front-end Developer </p>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-                    <div class="col l4 m4 s12">
-                        <h5 class="telegrafico">Header</h5>
-                        <p class="century-gothic">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div id="stuart" class="row center">
+                    <h4 class="h4-style palette-text-3 telegrafico grey lighten-2 center-block">Team Stuart</h4>
+                    <div class="dev-member-card dev-member-tl center-block">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/female_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Emy Jane Cabarles</h5>
+                                    <p class="p-style century-gothic">Team Leader<br>Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><br>
+                    <div class="dev-member-card dev-member-1 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Clark Daniel Almazan</h5>
+                                    <p class="p-style century-gothic">Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="dev-member-card dev-member-2 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Melbex De Leon</h5>
+                                    <p class="p-style century-gothic">Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><br><br>
+                    <div class="dev-member-card dev-member-2 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Brixter John Lumabi</h5>
+                                    <p class="p-style century-gothic">Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="dev-member-card dev-member-1 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Aleck Menguito</h5>
+                                    <p class="p-style century-gothic">Back-end Developer </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="ringo" class="row center">
+                    <h4 class="h4-style palette-text-3 telegrafico grey lighten-2 center-block">Team Ringo</h4>
+                    <div class="dev-member-card dev-member-tl center-block">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Ralph Reyes</h5>
+                                    <p class="p-style century-gothic">Team Leader<br>Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><br>
+                    <div class="dev-member-card dev-member-1 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/female_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Claizel Coubeili Cepe</h5>
+                                    <p class="p-style century-gothic">Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="dev-member-card dev-member-2 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Adrian Noel</h5>
+                                    <p class="p-style century-gothic">Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><br><br>
+                    <div class="dev-member-card dev-member-2 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">John Carlo Ricablanca</h5>
+                                    <p class="p-style century-gothic">Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="dev-member-card dev-member-1 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/female_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Paula Tan</h5>
+                                    <p class="p-style century-gothic">Back-end Developer </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="mccartney" class="row center">
+                    <h4 class="h4-style palette-text-3 telegrafico grey lighten-2 center-block">Team McCartney</h4>
+                    <div class="dev-member-card dev-member-tl center-block">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Anton Rufino</h5>
+                                    <p class="p-style century-gothic">Team Leader<br>Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><br>
+                    <div class="dev-member-card dev-member-1 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/female_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Patricia Calata</h5>
+                                    <p class="p-style century-gothic">Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="dev-member-card dev-member-2 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Jose Miguel Castillo</h5>
+                                    <p class="p-style century-gothic">Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div><br><br>
+                    <div class="dev-member-card dev-member-2 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">John Louis Gosgolan</h5>
+                                    <p class="p-style century-gothic">Back-end Developer</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="dev-member-card dev-member-1 inline">
+                        <table>
+                            <tr>
+                                <td class="dev-member-avatar center">
+                                    <img class="dev-member-img circle" src="../assets/avatars/male_avatar_1.png">
+                                </td>
+                                <td class="dev-member-info center">
+                                    <h5 class="h5-margin telegrafico">Paul Jhon Villaro</h5>
+                                    <p class="p-style century-gothic">Back-end Developer </p>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="row"><h3 class="rockwell">Meet the Developers</h3></div>
-                <div class="row center">
-                    <div class="col l4 m4 s12 offset-l4 offset-m4">
-                         <div class="dev-member-card center bordered-div">
-                            <h5 class="telegrafico">Claizel Coubeili Cepe</h5>
-                            <p class="century-gothic">Project Manager</p>
-                        </div>
-                    </div>
-                </div>
-                <div id="dev-team" class="row center">
-                    <div class="col l3 m3 s12 ">
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Blessy Salvania</h5>
-                            <p class="century-gothic">Team Leader<br>Front-end Developer</p>
-                            <p class="century-gothic"></p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Jourish Abasolo</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Kenichii Ana</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Meika Lei Dane</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Carol Tolentino</h5>
-                            <p class="century-gothic">Front-end Developer</p>
-                        </div><br>
-                    </div>
-                    <div class="col-margin-remove col l3 m3 s12">
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Emy Cabarles</h5>
-                            <p class="century-gothic">Team Leader<br>Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                    </div>
-                    <div class="col-margin-remove col l3 m3 s12">
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Ralph Reyes</h5>
-                            <p class="century-gothic">Team Leader<br>Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                    </div>
-                    <div class="col-margin-remove col l3 m3 s12">
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">Anton Rufino</h5>
-                            <p class="century-gothic">Team Leader<br>Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                        <div class="dev-member-card center bordered-div left-align">
-                            <h5 class="telegrafico">_______________</h5>
-                            <p class="century-gothic">Back-end Developer</p>
-                        </div><br>
-                    </div>
-                </div>
-            </div>
-        </div>         
+        </div>
     </div>
+
 </div>
 
 <!--  Scripts-->
 <script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>
 <script>
-    $(document).ready(function(){
-      $('.parallax').parallax();
+    $(document).ready(function() {
+        $(window).resize(function() {
+            var bodyheight = $(this).height() - 60;
+            $("#cover-photo").height(bodyheight);
+        }).resize();
+
+        $(document).on('click', 'a', function(event){
+            event.preventDefault();
+
+            $('html, body, #mainHolder, #main').animate({
+                scrollTop: $( $.attr(this, 'href') ).offset().top
+            }, 500);
+        });
+        var $root = $('html, body, #mainHolder, #main');
+        $('a').click(function() {
+            $root.animate({
+                scrollTop: $( $.attr(this, 'href') ).offset().top
+            }, 500);
+            return false;
+        });
     });
 </script>
-<!--script type="text/javascript" src="../js/competitor-profile-page.js"></script-->

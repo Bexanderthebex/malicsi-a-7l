@@ -27,7 +27,13 @@
 			});
 		}
 
-		$scope.signUp = function(fname, lname, nname, uname, sex, pword, bday, email, contactNum){
+		$scope.signUp = function(fname, lname, nname, uname, sex, pword, cspword, bday, email, contactNum){
+			console.log('sex', sex)
+			if (pword != cspword) {
+				Materialize.toast('Passwords do not match', 2000);
+				return;
+			}
+
 			$http.post('/register', {
 				username: uname,
 				password: pword,
@@ -49,7 +55,7 @@
 				$scope.ead = "";
 			}, (err) => {
 				Materialize.toast(err.data.message, 2000)
-			})
+			});
 		}
 
 		$scope.logOut = function(){
@@ -60,6 +66,20 @@
 			}, function(err) {
 				console.log(err);
 			});
+		}
+
+		$scope.validate = (fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum) => {
+			console.log(fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum)
+			return (fname != '' && fname != undefined && fname != null)
+				&& (lname != '' && lname != undefined && lname != null)
+				&& (nname != '' && nname != undefined && nname != null)
+				&& (suname != '' && suname != undefined && suname != null)
+				&& (sex != '' && sex != undefined && sex != null)
+				&& (spword != '' && spword != undefined && spword != null)
+				&& (cspword != '' && cspword != undefined && cspword != null)
+				&& (bday != '' && bday != undefined && bday != null)
+				&& (email != '' && email != undefined && email != null)
+				&& (contactNum != '' && fname != undefined && fname != null);
 		}
 	}
 })();

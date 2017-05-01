@@ -1,6 +1,8 @@
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
+const logs = require('./../controllers/log-controller.js');
+
 
 exports.searchOrganizer = (req, res) => {
 	query = 'CALL search_organizer(?)';
@@ -44,18 +46,19 @@ exports.editOrganizer = (req,res) => {
 	query = "CALL edit_organizer(?,?,?)";
 	query1 = "CALL get_organizer(?)";
 
-	connection.userType('A').query(query,
+	connection.userType(req.session.user.type).query(query,
 		[
 			req.body.name,
 			req.body.description,
 			req.body.id
 		], (err, rows) => {
 			if(!err) {
-				connection.userType('A').query(query1,
+				connection.userType(req.session.user.type).query(query1,
 					[
 						req.body.id
 					], (err, rows) => {
 						if(!err) {
+							logs.createLog(currentUser.id,"Edited Organizer Information");
 							return res.status(200).send(rows[0]);
 
 						}
@@ -155,13 +158,12 @@ exports.processRequest = (req, res, next) => {
 			req.body.team_id
 		], (err,rows) => {
 			if(!err){
-				console.log(req.body);
 				connection.userType('A').query(query1,
 					[
 				 		req.body.team_id
 					], (err,rows) => {
 						if(!err){
-							console.log(req.body);
+							logs.createLog(currentUser.id,"Accepted Team "+req.body.team_id+" to a Game");
 							if(rows.length == 1){
 								return res.status(200).send(rows[0][0]);
 							} else {
@@ -199,6 +201,7 @@ exports.deleteTeam = (req, res, next) => {
 				 		req.body.team_id
 					], (err,rows) => {
 						if(!err){
+							logs.createLog(currentUser.id,"Deleted Team "+req.body.team_id);
 							return 200;
 
 						} else {

@@ -29,7 +29,8 @@
             viewAllSportsInGame: viewAllSportsInGame,
             viewAllOrganizationInGame: viewAllOrganizationInGame,
             acceptMembershipRequest: acceptMembershipRequest,
-            deleteMembershipRequest: deleteMembershipRequest
+            deleteMembershipRequest: deleteMembershipRequest,
+            listUpcomingOngoingGamesNotLimited: listUpcomingOngoingGamesNotLimited
         }
 
         return service;
@@ -247,19 +248,37 @@
             return deferred.promise;
         }
 
-
-        function getTeamRankings(sport_id){
+        function listUpcomingOngoingGamesNotLimited(){
             let deferred = $q.defer();
-            
+
             $http({
                 method: 'GET',
-                url: '/sport/ranks/'+sport_id,
+                url: '/game/viewUpcomingOngoingGamesNotLimited',
                 headers: headers
             }).then((res) => {
-                if (res[0] == undefined)
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function getTeamRankings(sport_id, id){
+            let deferred = $q.defer();
+            
+            console.log(sport_id);
+            $http({
+                method: 'GET',
+                url: '/sport/comranks/'+sport_id+'/'+id,
+                headers: headers
+            }).then((res) => {
+                console.log(res.data);
+                if (res.data[0] == undefined)
                     deferred.resolve([]);
                 else
-                    deferred.resolve(res[0]);
+                    deferred.resolve(res);
+                
             }, (err) => {
                 deferred.reject(err);
             });
@@ -333,6 +352,7 @@
 
             return deferred.promise;
         }
+
         
     }
 })();

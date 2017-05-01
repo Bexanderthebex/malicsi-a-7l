@@ -8,7 +8,14 @@
             </div>
 
             <div id="competitor-basic-info" class="col l5 m5 s12 white-text" ng-init="getCompetitor()">
-                <h3 class="rockwell">{{ competitor.nickname }}</h3>
+                <h3 class="rockwell hide-on-small-only">{{ competitor.nickname }}</h3>
+                <div class="row hide-on-med-and-up">
+                    <h3 class="rockwell col s7">{{ competitor.nickname }}</h3>
+                    <div class="col s5">
+                        <br>
+                        <button class="minimalist-button-org" id="edit-profile-button" data-target="edit-profile-modal">EDIT PROFILE</button>
+                    </div>
+                </div>
                 <p class="telegrafico">
                     {{ competitor.first_name }} {{ competitor.last_name}}
                 </p>
@@ -17,7 +24,7 @@
                     {{ competitor.bio }}
                 </p>        
             </div>        
-            <div class="col l2 m2 s12">
+            <div class="col l2 m2 s12 hide-on-small-only">
                 <br><br>
                 <button class="minimalist-button-org" id="edit-profile-button" data-target="edit-profile-modal">EDIT PROFILE</button>
             </div>
@@ -69,7 +76,7 @@
                                 
                             <div class="row center">
                                 <div class="input-field col l12 m12 s12 ">
-                                    <select class="browser-default minimalist-button" ng-click="getTeamRankings()" ng-model="RankingSportID">
+                                    <select class="browser-default minimalist-button" ng-click="getTeamRankings(competitor.id)" ng-model="RankingSportID">
                                         <option value="" selected disabled>Sports</option>
                                         <option value="{{sport.sport_id}}" ng-repeat="sport in competitorteams" >{{sport.sport_name}}</option>
                                     </select>
@@ -106,19 +113,22 @@
 
             <!-- Sports Played -->
 
-            <div class="divider container"></div><br>
+            <!-- <div class="divider container"></div><br> -->
 
             <!-- Games Participated-->
             <div class="row container" ng-init="">
                 <h5 class="rockwell left-align">Games Participated</h5><br>    
                 <div class="row">
-                    <div class="col s3 m3 l2 push-s9 push-m9 push-l10 center-align recent-games-card see-more">
+                    <div class="col m2 l2 push-m10 push-l10 center-align recent-games-card see-more hide-on-small-only">
                         <button href="" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
                     </div>
-                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames | limitTo: 3"><a href="#/game/{{game.game_id}}">
+                    <div class="col s12 m3 l3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames | limitTo: 3"><a href="#/game/{{game.game_id}}">
                         <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
                         <span class="century-gothic secondary-text">{{ game.location }}</span>
                         </a>
+                    </div>
+                    <div class="col s4 offset-s4 center-align recent-games-card see-more hide-on-med-and-up">
+                        <button href="" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
                     </div>
                     <!-- <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card">
                         <h4 class="rockwell strong palette-text-4">GAME 1</h4>
@@ -131,37 +141,26 @@
                 </div>
             </div><br>
 
-            <div class="row competitor-footer black">
-                <div class="black">
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="#"> Help </a></li>
-                        <li><a href="#"> About Us </a></li>
-                        <li>All Rights Reserved</li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
 
         <div id="teams-managed-div" class="col s12" ng-init="getCoachedTeam()">
             <div class="row container">
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
-
-                <ul class="collapsible" data-collapsible="accordion" ng-click="getTeamMembers(cteam.team_id)">
-                    <li ng-repeat="cteam in coachedteam" >
-                        <div class="collapsible-header active">
-                            <div class="row remove-bottom century-gothic">
-                                <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
-                                <div class="col l5 m5 s5">{{cteam.name}}</div>
-                                <div class="col l3 m3 s3">{{cteam.sport_name}}</div>
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id)">
+                        <div class="collapsible-header grey lighten-2 remove-bottom active" id="teams-managed-header" ng-init="countMembersInTeam(cteam.team_id)">
+                            <div id="teams-managed-header" class="row remove-bottom telegrafico">
+                                <div class="col l3 m3 s3 font-pt-18">{{cteam.team_name}}</div>
+                                <div class="col l3 m3 s3 font-pt-18 center">{{cteam.name}}</div>
+                                <div class="col l3 m3 s3 font-pt-18 center">{{cteam.sport_name}}</div>
                                 <div class="col l1 m1 s1 center-block">
                                      <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team" ng-click="team.team_id=cteam.team_id"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="collapsible-body">
-                            <span class="telegrafico">Max Members: {{cteam.max_members}}</span>
+                            <span class="telegrafico">Membership Count: {{membercount}}/{{cteam.max_members}}</span>
                             <div class="chip" ng-repeat="member in teammembers">{{member.first_name}} {{member.last_name}}<i class="close material-icons">close</i></div>
                         </div>
                     </li>
@@ -192,58 +191,7 @@
                     </table>
                 </div>
                 <div class="container divider"></div>
-                <!-- <div class="col s12">
-                    <h5 class="rockwell">Invites</h5>
-                    <table class="highlight responsive-table">
-                        <tbody>
-                            <tr class="century-gothic">
-                                <td class="bold">Jane Mare</td>
-                                <td>Team-You-Are-Invited-To</td>
-                                <td>Basketball</td>
-                                <td>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
-                                        <i class="fa fa-check fa-lg"></i>
-                                    </div>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
-                                        <i class="fa fa-times fa-lg"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td class="bold">Jean Mare</td>
-                                <td>Team-You-Are-Invited-To</td>
-                                <td>Football</td>
-                                <td>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
-                                        <i class="fa fa-check fa-lg"></i>
-                                    </div>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
-                                        <i class="fa fa-times fa-lg"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td class="bold">Joan Mare</td>
-                                <td>Team-You-Are-Invited-To</td>
-                                <td>Hockey</td>
-   
-                                <td>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
-                                        <i class="fa fa-check fa-lg"></i>
-                                    </div>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
-                                        <i class="fa fa-times fa-lg"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> -->
-            </div>
-        </div>
-
-    </div>
-
+ 
 <!-- Edit Profile Modal -->
 <div id="edit-profile-modal" class="modal modal-fixed-footer">
     <div class="modal-content competitor-header-fill century-gothic">
@@ -257,74 +205,58 @@
                     <br>
                 </div>
             </div>
-        </div>  
-        <div class="row competitor-modal-container  competitor-add-modal-content">
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
-                <label for="first-name">First Name</label>
-            </div>
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="last-name" type="text" class="validate" ng-model="competitor.last_name">
-                <label for="last-name">Last Name</label>
-            </div>
-            <div class="input-field col s4 competitor-input-color-change">
-                <input placeholder=" " id="nickname" type="text" class="validate" ng-model="competitor.nickname">
-                <label for="nickname">Nickname</label>
-            </div>
-            <div class="input-field col s4 competitor-input-color-change">
-                <input id="birthdate" type="date" class="validate" ng-model="bday">
-                <label for="birthdate" class="competitor-adjust-label">Birthdate</label>
-            </div>
-            <div class="input-field col s4">
-                <label class="competitor-adjust-label">Sex</label><br>
-                <span><input id="male" type="radio" name="gender" value="M" class="with-gap" ng-model="competitor.sex">
-                <label class="competitor-adjust-label" for="male">Male</label></span>
-                <span><input id="female" type="radio" name="gender" value="F" class="with-gap"  ng-model="competitor.sex">
-                <label class="competitor-adjust-label" for="female">Female</label></span>
-            </div>
-            <div class="input-field col s6 competitor-input-color-change" >
-                <input placeholder=" " id="contact" type="text" class="validate" ng-model="competitor.contact">
-                <label for="contact">Contact</label>
-            </div>
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="email" type="email" class="validate" ng-model="competitor.email">
-                <label for="email">Email</label>
-            </div>
-            <div class="input-field col s12 competitor-input-color-change">
-                <textarea placeholder=" " id="bio" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
-                <label for="Bio" class="competitor-textarea-label-color-change">Bio</label>
-            </div>
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
-                <label for="first-name">Username</label>
-            </div>
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
-                <label for="last-name">Password</label>
-            </div>
-            <div class="row">
-                <div class="file-title col s12 century-gothic valign-wrapper">
-                    <label class="active">Profile Picture</label>
+        </div> 
+        <form>
+            <div class="row competitor-modal-container  competitor-add-modal-content">
+                <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                    <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
+                    <label for="first-name">First Name</label>
                 </div>
-
-                <div class="col s12">
-                    <form action="#">
-                        <div class="file-field input-field">
-                            <div class="btn file-button blue darken-4">
-                                <span class="telegrafico">File</span>
-                                <input type="file">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                            </div>
-                        </div>
-                    </form>
+                <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                    <input placeholder=" " id="last-name" type="text" class="validate" ng-model="competitor.last_name">
+                    <label for="last-name">Last Name</label>
+                </div>
+                <div class="input-field col l4 m4 s12 competitor-input-color-change">
+                    <input placeholder=" " id="nickname" type="text" class="validate" ng-model="competitor.nickname">
+                    <label for="nickname">Nickname</label>
+                </div>
+                <div class="input-field col l4 m4 s12 competitor-input-color-change">
+                    <input id="birthdate" type="date" class="validate" ng-model="bday">
+                    <label for="birthdate" class="competitor-adjust-label">Birthdate</label>
+                </div>
+                <div class="input-field col l4 m4 s12">
+                    <label class="competitor-adjust-label">Sex</label><br>
+                    <span><input id="male" type="radio" name="gender" value="M" class="with-gap" ng-model="competitor.sex">
+                    <label class="competitor-adjust-label" for="male">Male</label></span>
+                    <span><input id="female" type="radio" name="gender" value="F" class="with-gap"  ng-model="competitor.sex">
+                    <label class="competitor-adjust-label" for="female">Female</label></span>
+                </div>
+                <div class="input-field col l6 m6 s12 competitor-input-color-change" >
+                    <input placeholder=" " id="contact" type="text" class="validate" ng-model="competitor.contact">
+                    <label for="contact">Contact</label>
+                </div>
+                <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                    <input placeholder=" " id="email" type="email" class="validate" ng-model="competitor.email">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-field col l12 m12 s12 competitor-input-color-change">
+                    <textarea placeholder=" " id="bio" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
+                    <label for="Bio" class="competitor-textarea-label-color-change">Bio</label>
+                </div>
+                <div class="input-field col m6 l6 s12 competitor-input-color-change">
+                    <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
+                    <label for="first-name">Username</label>
+                </div>
+                <div class="input-field col m6 l6 s12 competitor-input-color-change">
+                    <input required placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
+                    <label for="last-name">Password</label>
                 </div>
             </div>
-        </div>
+        </form> 
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor()">UPDATE</button>
+        <button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
+        <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="editCompetitor()">UPDATE</button>
     </div>
 </div>
 
@@ -342,33 +274,35 @@
                 </div>
             </div>
         </div>  
-        <div class="row competitor-modal-container  competitor-add-modal-content">
-            <div class="input-field col l9 m9 s12 competitor-input-color-change">
-                <input placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name">
-                <label for="team-name">Team Name</label>
-            </div>
-            <div class="input-field col s3 m3 s12 competitor-input-color-change">
-                <input placeholder="" id="max_members" type="text" class="validate" ng-model="team.max_members">
-                <label for="max-members">Max Members</label>
-            </div>
-            <div class="input-field col l6 m6 s12" ng-init="listAllGames()">
-                <label class="active">Game</label><br>
-                <select class="browser-default" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">
-                </select>
-            </div>
-            <div class="input-field col l6 m6 s12">
-                <label class="active">Sports</label><br>
-                <select class="browser-default" ng-model="team.sport_id" ng-options="sport.sport_name for sport in sports">
-                    <option selected disabled class="white black-text" value="">&nbsp;</option>
-                </select>
-            </div><br>
-            <div class="input-field col l6 m6 s12">
-                <label class="active">Organization</label><br>
-                <select class="browser-default" ng-model="team.team_organization" ng-options="organization.name for organization in organizations">
-                    <option selected disabled class="white black-text" value="">&nbsp;</option>
-                </select>
-            </div>
-        </div>
+        <form>
+            <div class="row competitor-modal-container  competitor-add-modal-content">
+                <div class="input-field col l9 m9 s12 competitor-input-color-change">
+                    <input placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name">
+                    <label for="team-name">Team Name</label>
+                </div>
+                <div class="input-field col s3 m3 s12 competitor-input-color-change">
+                    <input placeholder="" id="max_members" type="text" class="validate" ng-model="team.max_members">
+                    <label for="max-members">Max Members</label>
+                </div>
+                <div class="input-field col l6 m6 s12" ng-init="listAllGames()">
+                    <label class="active">Game</label><br>
+                    <select class="browser-default competitor-select-dropdown" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">
+                    </select>
+                </div>
+                <div class="input-field col l6 m6 s12">
+                    <label class="active">Sports</label><br>
+                    <select class="browser-default competitor-select-dropdown" ng-model="team.sport_id" ng-options="sport.sport_name for sport in sports">
+                        <option selected disabled class="white black-text" value="">&nbsp;</option>
+                    </select>
+                </div>
+                <div class="input-field col l6 m6 s12">
+                    <label class="active">Organization</label><br>
+                    <select class="browser-default competitor-select-dropdown" ng-model="team.team_organization" ng-options="organization.name for organization in organizations">
+                        <option selected disabled class="white black-text" value="">&nbsp;</option>
+                    </select>
+                </div>
+            </div>     
+        </form>
     </div>  
 
     <div class="modal-footer palette-5 right-align">
@@ -391,47 +325,12 @@
                 </div>
             </div>
         <div class="row">
-            <div class="col s4 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
-                <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
-                <span class="century-gothic secondary-text">{{ game.location }}</span>
-            </div>
-            <!-- <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div> -->
-        </div>
-        <!-- <div class="row">
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+                <a href="#/game/{{game.game_id}}">
+                    <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
+                    <span class="century-gothic secondary-text">{{ game.location }}</span>
+                </a>
             </div>
         </div>
-        <div class="row">
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-        </div> -->
     </div>
     <div class="modal-footer palette-5 right-align">
         <button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
