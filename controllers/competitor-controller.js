@@ -4,7 +4,6 @@ const connection = require('./../config/db-connection.js');
 
 exports.searchCompetitor = (req, res) => {
 	query = "CALL search_competitor(?)";
-	console.log(req.query.keyword);
 	connection.userType('A').query(query,
 		[
 			"%" + req.query.keyword + "%"
@@ -56,7 +55,6 @@ exports.getCompetitorTeams = (req, res) => {
 
 exports.getCompetitorTeamsPublic = (req, res) => {
 	query = 'CALL get_competitor_teams(?)';
-	console.log("id: "+req.query.id);
 	connection.userType('A').query(query,
 		[
 			req.query.id
@@ -134,7 +132,6 @@ exports.editCompetitorBio = (req,res) => {
 							return res.status(200).send(rows[0][0]);
 						}
 						else{
-							console.log(err);
 							return res.status(500).send({'message' : 'Internal Server Error'});
 						}
 					}

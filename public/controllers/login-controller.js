@@ -28,7 +28,6 @@
 		}
 
 		$scope.signUp = function(fname, lname, nname, uname, sex, pword, bday, email, contactNum){
-			console.log(bday.getFullYear()+"-"+bday.getMonth()+"-"+bday.getDate());
 			$http.post('/register', {
 				username: uname,
 				password: pword,

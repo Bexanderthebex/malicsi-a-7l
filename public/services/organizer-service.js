@@ -87,7 +87,6 @@
                 url: '/game/createGame',
                 headers: headers
             }).then((res) => {
-                console.log(res);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -105,10 +104,8 @@
                 url: '/game/updateGame',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
-                console.log(err);
                 deferred.reject(err);
             });
 
@@ -124,7 +121,6 @@
                 url: '/game/deleteGame',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -160,7 +156,6 @@
                 url: '/organizer/processRequest',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -179,7 +174,6 @@
                 url: '/organizer/deleteTeam',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -197,7 +191,6 @@
                 url: '/organizer/getOrganizer',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);

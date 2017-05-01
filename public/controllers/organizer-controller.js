@@ -46,8 +46,8 @@
             $scope.gameCopy = {
                 gameId: game.game_id,
                 name: game.name,
-                startDate: game.start_date,
-                endDate: game.end_date,
+                startDate: new Date(game.start_date),
+                endDate: new Date(game.end_date),
                 location: game.location,
                 description: game.description
             }
@@ -62,10 +62,7 @@
         }
 
         function addGame() {
-            $scope.newGame.startDate = $('#game-start-date').val();
-            $scope.newGame.endDate = $('#game-end-date').val();
             $scope.newGame.orgID = $scope.organizer.id;
-            console.log($scope.newGame);
             OrganizerService
                 .addGame($scope.newGame) //calls addGame function in OrganizerService
                 .then(function (res){ //function block when success sa OrganizerService
@@ -91,7 +88,6 @@
                 .retrievePastGames($scope.thisOrganizer.orgID)
                 .then(function(res) {
                     $scope.pastGames = res.data;
-                    console.log($scope.pastGames);
                 }, function(err) { 
                     Materialize.toast('Games not retrieved.', 3000);
                 })
@@ -102,7 +98,6 @@
                 .retrieveOngoingGames($scope.thisOrganizer.orgID)
                 .then(function(res) {
                     $scope.ongoingGames = res.data;
-                    console.log($scope.ongoingGames);
                 }, function(err) { 
                     Materialize.toast('Games not retrieved.', 3000);
                 })
@@ -113,7 +108,6 @@
                 .retrieveUpcomingGames($scope.thisOrganizer.orgID)
                 .then(function(res) {
                     $scope.upcomingGames = res.data;
-                    console.log($scope.upcomingGames);
                 }, function(err) { 
                     Materialize.toast('Games not retrieved.', 3000);
                 })
@@ -128,7 +122,6 @@
                         .retrievePastGames($scope.organizer.id)
                         .then(function(res) {
                             $scope.pastGames = res.data;
-                            console.log($scope.pastGames);
                         }, function(err) { 
                             Materialize.toast('Games not retrieved.', 3000);
                         })
@@ -146,7 +139,6 @@
                         .retrieveOngoingGames($scope.organizer.id)
                         .then(function(res) {
                             $scope.ongoingGames = res.data;
-                            console.log($scope.ongoingGames);
                         }, function(err) { 
                             Materialize.toast('Games not retrieved.', 3000);
                         })
@@ -164,7 +156,6 @@
                         .retrieveUpcomingGames($scope.organizer.id)
                         .then(function(res) {
                             $scope.upcomingGames = res.data;
-                            console.log($scope.upcomingGames);
                         }, function(err) { 
                             Materialize.toast('Games not retrieved.', 3000);
                         })
@@ -189,18 +180,25 @@
                 .deleteGame($scope.gameCopy.gameId) //game id
                 .then(function(res) {
                     Materialize.toast('Successfully deleted game!', 3000);
-                    retrieveGame();
+                    getOrganizerPastGames();
+                    getOrganizerOngoingGames();
+                    getOrganizerUpcomingGames();
                 }, function(err) {
                     Materialize.toast('Error deleting game!', 3000);
                 })
         }
 
         function updateGame() {
+            $scope.gameCopy.startDate = $scope.gameCopy.startDate.getFullYear()+"-"+$scope.gameCopy.startDate.getMonth()+"-"+$scope.gameCopy.startDate.getDate();
+            $scope.gameCopy.endDate = $scope.gameCopy.endDate.getFullYear()+"-"+$scope.gameCopy.endDate.getMonth()+"-"+$scope.gameCopy.endDate.getDate();
+            
             OrganizerService
                 .updateGame($scope.gameCopy)
                 .then(function(res) {
                     Materialize.toast('Successfully updated game!', 3000);
-                    $scope.retrieveGame();
+                    getOrganizerPastGames();
+                    getOrganizerOngoingGames();
+                    getOrganizerUpcomingGames();
                 }, function(err) {
                     Materialize.toast('Failed to update game.', 3000);
                 })
@@ -268,10 +266,9 @@
                     UserService
                         .updateUser($scope.organizer)
                         .then(function(res) {
-                            console.log($scope.organizer.password);
                             if($scope.organizer.password) {
                                 UserService
-                                    .updatePassword($scope.organizer)
+                                    .updateUserPassword($scope.organizer)
                                     .then(function(res) {
                                         Materialize.toast('Successfully updated organizer!', 3000);
                                     }, function(err) {
