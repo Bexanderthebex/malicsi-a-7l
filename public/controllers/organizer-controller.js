@@ -29,6 +29,7 @@
         $scope.getOrganizerUpcomingGames = getOrganizerUpcomingGames;
         $scope.getPublicOrganizerUpcomingGames = getPublicOrganizerUpcomingGames;
         $scope.getOrganizerRequests = getOrganizerRequests;
+        $scope.getCurrentUser = getCurrentUser;
 
         $scope.organizer = {};
         $scope.game = {};
@@ -214,14 +215,17 @@
                 })
         }
         
-        function getCurrentUser() {		
+        function getCurrentUser() {	
+            console.log("anuna");	
             UserService		
                 .getUserInfo()		
-                .then(function (res){		
-                    $scope.currentUser = res.data;		
-                    if($scope.competitor == []) {
+                .then(function (res){
+                    console.log(res.data);			
+                    if(res.data.type != 'O') {
                         $window.location.href = '/';
-                    }		
+                    } else {
+                        $scope.currentUser = res.data;
+                    }	
                  }, function(err) {		
                     Materialize.toast('error', 3000);		
                 })		

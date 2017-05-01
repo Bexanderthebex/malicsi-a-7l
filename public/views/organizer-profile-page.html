@@ -1,14 +1,14 @@
 <div id="mainHolder">
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
-    <div id="main" class="">
+    <div id="main" class="" ng-init="getCurrentUser()">
         <!-- Organizer Basic Info -->
         <div class="row palette-3 organizer-profile-info">
             <div class="col l3 m5 s12 offset-l1 center">
                 <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
 
-            <div id="competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="getCurrentUser()">
+            <div id="competitor-basic-info" class="col l7 m7 s12 white-text">
                 <h3 class="rockwell">{{ organizer.name }}</h3>
                 <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
                 <p class="telegrafico">
