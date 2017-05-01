@@ -162,6 +162,7 @@ router.delete('/sponsor/deleteSponsor', sponsorController.deleteSponsor);
 router.get('/game/sport/countSportByGame/:gameID', sportController.countSportByGame);
 router.get('/sport/viewSport', sportController.viewSportDetails);
 router.get('/sport/ranks/:sportId', sportController.retrieveSportRankings);
+router.get('/sport/comranks/:sportId/:id', sportController.retrieveCompetitorSportRankings);
 router.get('/sport/match/viewCurrentMatch', matchController.viewCurrentMatch); 
 router.get('/sport/match/viewPastMatch', matchController.viewPastMatch); 
 router.get('/sport/match/viewFutureMatch', matchController.viewFutureMatch);
