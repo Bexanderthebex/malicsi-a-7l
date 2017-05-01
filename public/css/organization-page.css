@@ -5,8 +5,8 @@
   padding-top: 2%;
   margin-left: auto;
   margin-right: auto;
-  height: 16%;
-  width: 16%;
+  height: 14%;
+  width: 14%;
 }
 
 .organization-team {
@@ -27,17 +27,69 @@
   font-size: 80%;
 }
 
+#organization-main-tabs {
+  /*margin-top: -18px;*/
+  margin-top: -1.29%;
+}
+
+#organization-modal-header h4 {
+  margin: 0;
+  padding: 0;
+}
+
+#organization-modal-header h1 {
+  margin: 0;
+  padding: 0;
+}
+
+#organization-main-tabs .indicator {
+  background-color: #00a5d3;
+  height: 5px;
+}
+
+#organization-table th {
+  font-size: 90%;
+}
+
+#organization-table td {
+  font-size: 90%;
+}
+
+#organization-table tbody tr:hover {
+  background-color: #00a5d3;
+  color: #ffffff;
+}
+
+#organization-main-tabs a {
+  color: #ffffff;
+  font-size: 90%;
+}
+
+#organization-main-tabs a:hover {
+  color: #00a5d3;
+}
+
+#organization-main-tabs .active {
+  color: #00a5d3;
+}
+
+#org-wins-count-panel h1 h3 {
+  margin: 0;
+  padding: 0;
+}
+
 #organization-name {
-  padding-top: 1%;
-  font-size: 300%;
+  padding-top: -2%;
+  font-size: 300% !important;
   text-align: center;
   margin-top: 0.5%;
+  padding-bottom: 0.5%;
   color: #ffffff;
   text-shadow: 2px 2px 3px black;
 }
 
 .organization-header {
-  height: 99%;
+  height: 100%;
   background-image: url('/assets/basketball.jpg') !important;
   background-size: cover;
   /*background-color: red;*/
@@ -60,6 +112,17 @@
 .organization-team-name, .organization-team-info, .organization-team-member-name, .organization-team-member-info {
   text-align: center;
   font-size: 110%;
+}
+
+.statistics-label {
+  /*background-color: red;*/
+  margin: 0;
+}
+
+.statistics-label h3 {
+  margin: 0;
+  padding: 0;
+  padding: 5px;
 }
 
 .organization-team-name {
@@ -154,8 +217,19 @@
   font-size: 1000%;
   /*margin-left: 60%;*/
   text-align: center;
+  text-shadow: 1px 1px grey;
 }
 
+.stat-nums-modal {
+  font-size: 500%;
+  text-align: center;
+  text-shadow: 1px 1px grey;
+}
+
+.stats-modal-label {
+  font-size: 200%;
+  text-align: center;
+}
 
 .right-stat {
   margin-top: 1.7%;
@@ -266,11 +340,11 @@
 }
 
 #org-game-search-bar input[type=search] {
-    margin-bottom: 0px !important;
+    margin-bottom: 30px !important;
     background: white url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
     border: 1px solid black;
     padding: 9px 10px 9px 32px;
-    width: 60%;
+    width: 60% !important;
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
     border-radius: 10em;
@@ -318,11 +392,11 @@
 }
 
 #org-team-search-bar input[type=search] {
-    margin-bottom: 0px !important;
+    margin-bottom: 30px !important;
     background: white url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
     border: 1px solid black;
     padding: 9px 10px 9px 32px;
-    width: 20%;
+    width: 30%;
     -webkit-border-radius: 10em;
     -moz-border-radius: 10em;
     border-radius: 10em;
@@ -349,4 +423,28 @@
 
 #org-team-search-bar input::-webkit-input-placeholder {
     color: transparent;
+}
+
+
+#organization-team-tabs {
+  /*margin-top: -18px;*/
+  margin-top: -1.29%;
+}
+
+#organization-team-tabs .indicator {
+  background-color: #00a5d3;
+  height: 5px;
+}
+
+#organization-team-tabs a {
+  color: #ffffff;
+  font-size: 90%;
+}
+
+#organization-team-tabs a:hover {
+  color: #00a5d3;
+}
+
+#organization-team-tabs .active {
+  color: #00a5d3;
 }
