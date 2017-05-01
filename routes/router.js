@@ -128,6 +128,7 @@ router.get('/game/viewAllPastMatchesInGame', gameController.viewAllPastMatchesIn
 router.get('/game/viewAllOngoingMatchesInGame', gameController.viewAllOngoingMatchesInGame);
 router.get('/game/viewAllUpcomingMatchesInGame', gameController.viewAllUpcomingMatchesInGame);
 router.get('/game/viewUpcomingOngoing', gameController.viewUpcomingOngoingGames);
+router.get('/game/viewUpcomingOngoingGamesNotLimited', gameController.viewUpcomingOngoingGamesNotLimited);
 router.get('/game/viewAllSportsInGame/:gameId', gameController.viewAllSportsInGame);
 router.get('/game/countGameOrganizer/:organizerId', gameController.countGameOrganizer);
 router.get('/game/ranks/:gameId', gameController.retrieveOrgRankings);

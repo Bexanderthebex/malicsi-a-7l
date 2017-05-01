@@ -262,8 +262,19 @@
 
         function listAllGames(){
             CompetitorService
-                .listAllGames()
+                .listUpcomingOngoingGamesNotLimited()
                 .then(function (res){
+                    console.log("\n\n\n");
+                    console.log(res.data);
+                    let today = new Date();
+                    let dd = today.getDate();
+                    let mm = today.getMonth()+1;
+                    let yyyy = today.getFullYear();
+                    let i;
+                    for (i=0;i<res.data.length;i++){
+                        console.log(res.data[i].end_date);
+                        console.log(yyyy+"-"+mm+"-"+dd);
+                    }
                     $scope.listgames = res.data;
                 }, function(err) {
                     console.log(err);

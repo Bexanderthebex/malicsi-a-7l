@@ -43,7 +43,9 @@ DROP PROCEDURE IF EXISTS view_game_details;
 DELIMITER //
 CREATE PROCEDURE view_game_details(IN game_id_in INT)
 BEGIN
-select game.name, start_date,end_date, location, game.description, organizer.name as organizer_name , organizer.description as organizer_description, organizer.id as organizer_id, datediff(end_date, start_date) as game_duration from game,organizer where game.organizer_id = organizer.id and game.game_id = game_id_in;
+
+select game.game_id, game.name, start_date,end_date, location, game.description, organizer.name as organizer_name , organizer.description as organizer_description, organizer.id as organizer_id, datediff(end_date, start_date) as game_duration from game,organizer where game.organizer_id = organizer.id and game.game_id = game_id_in;
+
 END;
 //
 DELIMITER ;
@@ -76,6 +78,14 @@ BEGIN
 END//
 delimiter ;
 
+DROP PROCEDURE IF EXISTS view_all_upcoming_ongoing_games_not_limited;
+delimiter //
+CREATE PROCEDURE view_all_upcoming_ongoing_games_not_limited()
+BEGIN
+	select * from game where (start_date <= now() and end_date >= now()) or (start_date >= now() and end_date >= now())
+ 	order by start_date desc;
+END//
+delimiter ;
 
 DROP PROCEDURE IF EXISTS count_game_organizer;
 DELIMITER //
@@ -287,6 +297,12 @@ GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO 'organizer'@'local
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games TO 'guest'@'localhost';
+
+-- view all upcoming and ongoing games
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games_not_limited TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games_not_limited TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games_not_limited TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_ongoing_games_not_limited TO 'guest'@'localhost';
 
 -- count game organizer
 GRANT EXECUTE ON PROCEDURE count_game_organizer TO 'organizer'@'localhost';
