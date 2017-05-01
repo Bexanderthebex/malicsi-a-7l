@@ -148,9 +148,11 @@
 }
 
 .gamefeed-description{
-    font-size: 10px;
+    font-size: 12px;
     font-family: "century-gothic";
     letter-spacing: 1px;
+    margin-top: 12px;
+    margin-bottom: 10px !important;
 }
 
 .gamefeed-match-container{
