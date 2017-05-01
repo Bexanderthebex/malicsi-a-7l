@@ -199,6 +199,24 @@ exports.viewUpcomingOngoingGames = (req,res) =>{
 	});
 }
 
+exports.viewUpcomingOngoingGamesNotLimited = (req,res) =>{
+	let query = 'call view_all_upcoming_ongoing_games_not_limited();';
+	connection.userType('A').query(query,
+		(err, rows, fields)	=> {
+			console.log(rows);
+			if (!err && rows[0].length!=0) {
+				return res.status(200).send(rows[0]);
+			}
+			else if (rows[0].length==0){
+				res.status(404).send("No upcoming/ongoing games.");
+			}
+			else{
+				console.log(err.code);
+				res.status(500).send("An error occurred.");
+			}
+	});
+}
+
 exports.viewAllOngoingMatchesInGame = (req, res) => {
 	let query = 'CALL view_all_ongoing_matches_in_game(?)';
 	connection.userType('A').query(query,

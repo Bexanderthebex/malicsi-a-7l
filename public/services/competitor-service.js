@@ -29,7 +29,8 @@
             viewAllSportsInGame: viewAllSportsInGame,
             viewAllOrganizationInGame: viewAllOrganizationInGame,
             acceptMembershipRequest: acceptMembershipRequest,
-            deleteMembershipRequest: deleteMembershipRequest
+            deleteMembershipRequest: deleteMembershipRequest,
+            listUpcomingOngoingGamesNotLimited: listUpcomingOngoingGamesNotLimited
         }
 
         return service;
@@ -249,6 +250,21 @@
             return deferred.promise;
         }
 
+        function listUpcomingOngoingGamesNotLimited(){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'GET',
+                url: '/game/viewUpcomingOngoingGamesNotLimited',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
         // function listAllSports(){
         //     let deferred = $q.defer();
 
