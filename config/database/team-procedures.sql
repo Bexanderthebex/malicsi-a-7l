@@ -189,3 +189,5 @@ GRANT EXECUTE ON procedure get_teams_on_organization TO 'guest'@'localhost';
 
 GRANT EXECUTE ON procedure get_membership_request TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure get_membership_request TO 'competitor'@'localhost';
+GRANT EXECUTE ON procedure get_membership_request TO 'organizer'@'localhost';		
+GRANT EXECUTE ON procedure get_membership_request TO 'guest'@'localhost';

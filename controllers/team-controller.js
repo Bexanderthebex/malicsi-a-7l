@@ -308,6 +308,26 @@ exports.getGamesInOrganization = (req, res) => {
     });
 }
 
+exports.searchTeam = (req, res) => {
+     query = 'CALL search_team(?)';
+
+     connection.userType('A').query(query,
+        [
+            "%" + req.query.search + "%"
+        ], (err, rows) => {
+             if(!err) {
+                 if(rows[0].length == 1) {
+                     return res.status(200).send(rows[0]);
+                 } else {
+                     return res.status(200).send(rows[0]);
+ 
+                 }
+             } else {
+                 return res.status(500).send({'message' : 'Internal Server Error'});
+             }
+         });
+}
+
 exports.countMembersInTeam = (req, res) => {
     query = "CALL count_team_members_in_team(?)"
     console.log(req.query.team_id);
