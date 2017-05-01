@@ -149,12 +149,12 @@
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
                 <ul class="collapsible" data-collapsible="accordion">
-                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id);">
-                        <div class="collapsible-header active" ng-init="countMembersInTeam(cteam.team_id)">
-                            <div class="row remove-bottom century-gothic">
-                                <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
-                                <div class="col l5 m5 s5">{{cteam.name}}</div>
-                                <div class="col l3 m3 s3">{{cteam.sport_name}}</div>
+                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id)">
+                        <div class="collapsible-header grey lighten-2 remove-bottom active" id="teams-managed-header" ng-init="countMembersInTeam(cteam.team_id)">
+                            <div id="teams-managed-header" class="row remove-bottom telegrafico">
+                                <div class="col l3 m3 s3 font-pt-18">{{cteam.team_name}}</div>
+                                <div class="col l3 m3 s3 font-pt-18 center">{{cteam.name}}</div>
+                                <div class="col l3 m3 s3 font-pt-18 center">{{cteam.sport_name}}</div>
                                 <div class="col l1 m1 s1 center-block">
                                      <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team" ng-click="team.team_id=cteam.team_id"></i></div>
                                 </div>

@@ -60,9 +60,7 @@ exports.addOrganizationToGame = (req, res) =>{
 		}else{
 			res.status(500).send("Internal Server Error");
 		}
-
-
-	})
+	});
 }
 
 exports.deleteOrganization = (req, res) => {
