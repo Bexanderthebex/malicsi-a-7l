@@ -58,7 +58,7 @@
 									</td>
 									<td style="width: 5%!important;">
 
-											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password"></i>
+											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password" ng-click="setPending(a.id)"></i>
 									</td>
 									<td class="match-player" style="width: 25%;">
 										<input disabled class="admin-form-edit admin-form-edit-{{a.id}}" type="text" ng-model="a.email" ng-init="a.email">
@@ -145,7 +145,7 @@
 										<input disabled class="admin-form-edit organizer-form-edit-{{o.id}}" type="text" ng-model="o.name" ng-init="o.name">
 									</td>
 									<td style="width: 5%;">
-											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password"></i>
+											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password" ng-click="setPending(o.id)"></i>
 									</td>
 									<td style="width: 35%;"class="match-player">
 										<input disabled class="admin-form-edit organizer-form-edit-{{o.id}}" type="text" ng-model="o.description" ng-init="o.description">
@@ -303,7 +303,7 @@
 										<input disabled class="admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.username" ng-init="u.username">
 									</td >
 									<td style="width: 10%!important;">
-											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password"></i>
+											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password" ng-click="setPending(u.id)"></i>
 									</td>
 									<td class="match-player" style="width: 25%;">
 										<input disabled class="admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.email" ng-init="u.email">
@@ -464,44 +464,44 @@
 			</div>
 		</div>
 	</div>
-</div>
 
-<!-- Modals -->
-<div id="admin-change-password" class="modal">
-	<div id="admin-verify-first" class="modal-content">
-		<form>
-			<div>
-				<label class="admin-verify">Verify you're an admin</label>
-			</div>
-			<div><label class="admin-enter-password">Enter password:</label></div>
-			<div class="row">
-				<div class="col s9 padding-override-0">
-					<input class="admin-fillup-form" type="password">
+	<!-- Modals -->
+	<div id="admin-change-password" class="modal">
+		<div id="admin-verify-first" class="modal-content">
+			<form>
+				<div>
+					<label class="admin-verify">Verify you're an admin</label>
 				</div>
-				<div class="col s3">
-					<button id="admin-proceed-btn" style="height: 40px; width: 40px;" class="waves-effect waves-light search-admin-button"><i class="fa fa-arrow-right"></i></button>
+				<div><label class="admin-enter-password">Enter password:</label></div>
+				<div class="row">
+					<div class="col s9 padding-override-0">
+						<input class="admin-fillup-form" type="password" ng-model="passwordVerify">
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
+		<div class="modal-footer right-align">
+			<button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
+			<button href="" class="modal-action modal-close minimalist-button" ng-click="authenticate()">NEXT <i class="fa fa-angle-double-right"></i></button>
+		</div>
 	</div>
 
-	<div id="admin-verify-second" style="display: none;" class="modal-content">
-		<form>
-			<div><label class="admin-enter-password">Change Password:</label></div>
-			<div class="row margin-override-0">
-				<div class="col s9 padding-override-0">
-					<input class="admin-fillup-form" type="password">
+	<div id="admin-change-password2" class="modal">
+		<div id="admin-verify-second" class="modal-content">
+			<form>
+				<div><label class="admin-enter-password">Change Password:</label></div>
+				<div class="row margin-override-0">
+					<div class="col s9 padding-override-0">
+						<input class="admin-fillup-form" type="password" ng-model="newPassword">
+					</div>
 				</div>
-				<div class="col s3">
-					<button style="height: 40px; width: 40px;" class="waves-effect waves-light search-admin-button"><i class="fa fa-arrow-right"></i></button>
-				</div>
-			</div>
-		</form>
+			</form>
+		</div>
+		<div class="modal-footer right-align">
+			<button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
+			<button href="" class="modal-action modal-close minimalist-button" ng-click="changePassword()">NEXT <i class="fa fa-angle-double-right"></i></button>
+		</div>
 	</div>
-	<!-- <div class="modal-footer right-align">
-		<button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
-		<button href="" class="modal-action modal-close minimalist-button" ng-click="">NEXT <i class="fa fa-angle-double-right"></i></button>
-	</div> -->
 </div>
 
 <!--Scripts-->

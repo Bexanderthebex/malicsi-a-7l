@@ -43,6 +43,7 @@
                 .viewAllGames()
                 .then(function(res) {
                     $scope.games = res.data;
+                    console.log(res.data);
                     sortBy();
                 }, function(err) {
                     console.log(err);
@@ -61,8 +62,8 @@
 
         function sortByName(){
             $scope.games.sort(function(a, b){
-                if(a.name < b.name) return -1;
-                if(a.name > b.name) return 1;
+                if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
                 return 0;
             });
             distributeGame();
@@ -70,14 +71,7 @@
 
         function sortByDate(){
             $scope.games.sort(function(a, b){
-                var aDate = new Date(a.start_date);
-                var bDate = new Date(b.start_date);
-                var currentDate = new Date(Date.now());
-
-                var integerADate = aDate.getFullYear() * 10000 + aDate.getMonth() * 100 + aDate.getDay();
-                var integerBDate = bDate.getFullYear() * 10000 + bDate.getMonth() * 100 + bDate.getDay();
-
-                return (currentDate - integerADate > currentDate - integerBDate ? a : b);
+                return new Date(b.start_date) - new Date(a.start_date);
             });
             distributeGame();
         }
