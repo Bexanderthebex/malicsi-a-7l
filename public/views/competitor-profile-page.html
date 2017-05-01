@@ -148,9 +148,9 @@
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
-                <ul class="collapsible" data-collapsible="accordion" ng-click="getTeamMembers(cteam.team_id)">
-                    <li ng-repeat="cteam in coachedteam" >
-                        <div class="collapsible-header active">
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id)">
+                        <div class="collapsible-header active" ng-init="countMembersInTeam(cteam.team_id)">
                             <div class="row remove-bottom century-gothic">
                                 <div class="col l3 m3 s3"><b>{{cteam.team_name}}</b></div>
                                 <div class="col l5 m5 s5">{{cteam.name}}</div>
@@ -161,7 +161,7 @@
                             </div>
                         </div>
                         <div class="collapsible-body">
-                            <span class="telegrafico">Max Members: {{cteam.max_members}}</span>
+                            <span class="telegrafico">Membership Count: {{membercount}}/{{cteam.max_members}}</span>
                             <div class="chip" ng-repeat="member in teammembers">{{member.first_name}} {{member.last_name}}<i class="close material-icons">close</i></div>
                         </div>
                     </li>
@@ -392,8 +392,10 @@
             </div>
         <div class="row">
             <div class="col s4 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
-                <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
-                <span class="century-gothic secondary-text">{{ game.location }}</span>
+                <a href="#/game/{{game.game_id}}">
+                    <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
+                    <span class="century-gothic secondary-text">{{ game.location }}</span>
+                </a>
             </div>
             <!-- <div class="col s4 m4 l4 center-align all-games-card">
                 <h4 class="rockwell strong palette-text-4">GAME 1</h4>
