@@ -1,3 +1,56 @@
+.tooltip-icon {
+    background: none!important;
+    text-shadow: none!important;
+    box-shadow: none!important;
+    color: black!important;
+    width: 25px!important;
+    padding: 0!important;
+}
+
+.tooltip-icon:hover{
+    color: #00719c!important;
+}
+
+.admin-verify{
+    color: #00719c!important;
+    font-size: 16px!important;
+    font-family: century-gothic!important;
+}
+
+.admin-enter-password{
+    color: black!important;
+    font-family: century-gothic!important;
+}
+
+#admin-change-password{
+    top: 200px !important;
+    width: 400px!important;
+    /*height: 300px!important;*/
+}
+
+#close-open-sidenav{
+    /*height: 100%;*/
+    /*line-height: 100%;*/
+    font-size: 16px;
+}
+
+#admin-sidenav-trigger, #orgfeed-sidenav-trigger{
+    display: inline;
+    padding-left: 20px!important;
+    padding-top: 10px!important;
+    top: 49%;
+    left: -10px;
+    border-radius: 3px;
+    width: 50px;
+    height: 40px;
+    /*border: 2px solid #00415a;*/
+    background: #001f2b;
+    color: white;
+    z-index: 50!important;
+    box-shadow: 1px 1px 10px black;
+    visibility: hidden;
+}
+
 .admin-padding-right {
     padding-right: 0rem !important;
 }

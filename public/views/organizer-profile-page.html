@@ -255,8 +255,8 @@
         </div>
     </div>
     <div class="modal-footer palette-5 right-align"><!-- button -->
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="updateOrganizer()">SAVE CHANGES</button>
-        <button href="" class="modal-action modal-close minimalist-button">CLOSE</button> 
+        <button href="" class="modal-action modal-close minimalist-button">CANCEL</button> 
+        <button href="" class="modal-action modal-close minimalist-button-org2" ng-click="updateOrganizer()">SAVE CHANGES</button>
     </div>
 </div>
 
@@ -314,8 +314,8 @@
         </div>
     </div>
     <div class="modal-footer palette-5 right-align"><!-- button -->
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="">SAVE CHANGES</button>
-        <button href="" class="modal-action modal-close minimalist-button">CLOSE</button> 
+        <button href="" class="modal-action modal-close minimalist-button">CANCEL</button> 
+        <button href="" class="modal-action modal-close minimalist-button-org2" ng-click="">SAVE CHANGES</button>
     </div>
 </div>
 
@@ -337,7 +337,7 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="deleteGame()">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button-org2" ng-click="deleteGame()">YES</button>
         <button href="" class="modal-action modal-close minimalist-button">NO</button> 
     </div>
 </div>
@@ -360,7 +360,7 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="acceptRequest()">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button-org2" ng-click="acceptRequest()">YES</button>
         <button href="" class="modal-action modal-close minimalist-button">NO</button> 
     </div>
 </div>
@@ -383,7 +383,7 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="declineRequest()">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button-org2" ng-click="declineRequest()">YES</button>
         <button href="" class="modal-action modal-close minimalist-button">NO</button> 
     </div>
 </div>
@@ -406,11 +406,8 @@
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat" ng-click="addGame()"><i class="material-icons left">check</i>Yes</a>
-        <!-- ng-click -> natatawag yung method na addGame() kapag kiniclick itong anchor kung 
-        nasaan yung ng-click
-        the function addGame() ay matatagpuan sa controller, which is yung function addGame() {... -->
+        <button href="" class="modal-action modal-close minimalist-button-org2" ng-click="addGame()">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button> 
     </div>
 </div>
 
@@ -467,8 +464,8 @@
         </div>
     </div>
     <div class="modal-footer palette-5 right-align"><!-- button -->
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="addGame()">ADD</button>
-        <button href="" class="modal-action modal-close minimalist-button">CLOSE</button> 
+        <button href="" class="modal-action modal-close minimalist-button">CANCEL</button> 
+        <button href="" class="modal-action modal-close minimalist-button-org2" ng-click="addGame()">ADD</button>
     </div>
 </div>
 
@@ -505,7 +502,7 @@
         </table>
     </div>
     <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
+        <a class="modal-action modal-close minimalist-button"><i class="material-icons left">close</i>CLOSE</a>
     </div>
 </div>
 
@@ -542,7 +539,7 @@
         </table>
     </div>
     <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
+        <a class="modal-action modal-close minimalist-button"><i class="material-icons left">close</i>CLOSE</a>
     </div>
 </div>
 
@@ -579,7 +576,7 @@
         </table>
     </div>
     <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">close</i>Close</a>
+        <a class="modal-action modal-close minimalist-button"><i class="material-icons left">close</i>CLOSE</a>
     </div>
 </div>
 
