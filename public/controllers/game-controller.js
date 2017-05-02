@@ -36,8 +36,6 @@
 		$scope.checkOngoingMatches = checkOngoingMatches;
 		$scope.checkUpcomingMatches = checkUpcomingMatches;
 		$scope.viewSponsoringInstitutions = viewSponsoringInstitutions;
-		// $scope.deleteSponsoringInstitution = deleteSponsoringInstitution;
-		// $scope.addSponsoringInstitution = addSponsoringInstitution;
 		$scope.viewOtherSponsoringInstitutions = viewOtherSponsoringInstitutions;
 		$scope.initializeSponsoringInstitutions = initializeSponsoringInstitutions;
 		$scope.checkSponsors = checkSponsors;
