@@ -169,6 +169,8 @@ GRANT EXECUTE ON procedure get_members TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure organization_rankings TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure get_teams_on_organization TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure add_team_member TO 'competitor'@'localhost';
+GRANT EXECUTE ON procedure delete_membership_request TO 'competitor'@'localhost';
+
 
 GRANT EXECUTE ON procedure display_pending_membership_request TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure create_team TO 'administrator'@'localhost';
@@ -181,6 +183,7 @@ GRANT EXECUTE ON procedure get_members TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure organization_rankings TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure get_teams_on_organization TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure add_team_member TO 'administrator'@'localhost';
+GRANT EXECUTE ON procedure delete_membership_request TO 'administrator'@'localhost';
 
 GRANT EXECUTE ON procedure rankings TO 'guest'@'localhost';
 GRANT EXECUTE ON procedure count_teams_in_sport TO 'guest'@'localhost';

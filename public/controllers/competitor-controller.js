@@ -12,6 +12,7 @@
         $scope.thisCompetitor = {
             competitor_id: $routeParams.id
         };
+        $scope.pendingRequested = {};
         $scope.teamAccordion = {};
         $scope.competitor = {};
         $scope.userinfo = {};
@@ -64,10 +65,25 @@
         $scope.setScoutedApplicant = setScoutedApplicant;
         $scope.recruitNewMember = recruitNewMember;
         $scope.isFull= isFull;
+        $scope.kickMember = kickMember;
 
-        $('.chips').on('chip.delete', function(e, chip){
+        
+
+        function initChip(){
+
+            $('.chips').material_chip();
+
+            $('.chips-initial').material_chip({
+            data: $scope.teammembers,
+            });
+
+            $('.chips').on('chip.delete', function(e, chip){
             kickMember($scope.toKickFrom,$scope.toKickID)
-        });
+            });
+        }
+
+
+ 
 
         function searchCompetitor(){
             CompetitorService
@@ -344,9 +360,9 @@
                 })
         }
 
-        function deleteMembershipRequest(){
+        function deleteMembershipRequest(team_id,id){
             CompetitorService
-                .deleteMembershipRequest($scope.pendingRequests.team_id, $scope.pendingRequests.id)
+                .deleteMembershipRequest(team_id, id)
                 .then(function (res){
                     Materialize.toast('Application Declined', 4000);
                 }, function(err) {
@@ -363,21 +379,27 @@
         }
 
         function kickMember(team_id,id){
-            console.log("\n\n\n\n");
-            console.log(id);
-            CompetitorService
-                .deleteMembershipRequest(team_id, id)
-                .then(function (res){
-                    Materialize.toast('Kicked a Member', 4000);
-                    getTeamMembers(team_id);
-                }, function(err) {
-                    console.log(err);
-                })
-
+            if (confirm("Confirm Removing This Member") == true) {
+                console.log(team_id);
+                console.log(id);
+                CompetitorService
+                    .deleteMembershipRequest(team_id, id)
+                    .then(function (res){
+                        Materialize.toast('Kicked a Member', 4000);
+                        getTeamMembers(team_id);
+                    }, function(err) {
+                        console.log(err);
+                    })
+            }
 
         }
 
-
+        function setPendingRequest(pr){
+            $scope.pendingRequested.team_id=pr.team_id;
+            $scope.pendingRequested.id=pr.id;
+            $scope.pendingRequested.first_name=pr.first_name;
+            $scope.pendingRequested.team_name=pr.team_name
+        }
         
         function isFull(team_id){
             getTeamMembers(team_id);
