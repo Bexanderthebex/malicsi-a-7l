@@ -1,6 +1,6 @@
 <div id="mainHolder" ng-init="retrieveSport()">
 	<!-- Do not put anything inside main holder -->
-	<!-- Main holder just keeps the main below the navbar -->
+	<!-- Main holder just keeps the main below t9he navbar -->
 	<div id="main">
 		<!-- Do your thing here -->
 		<div id="sports-title" class="rockwell ">
@@ -17,11 +17,11 @@
 				</div>
 
 				<div id="sports-ranking-body" class="col s9 row" ng-show="checkRankings()">
-					<div class="rank-entity col s4" ng-repeat="team in rankings | limitTo: 5">
-						<div class="rank"><h3>0{{ team.total_ranks }}</h3></div>
+					<div class="rank-entity col s4" ng-repeat="team in rankingsSport | limitTo: 5">
+						<div class="rank"><h3>{{ team.total_rank }}</h3></div>
 						<div>
-							<h5>{{ team.org_name }}</h5>
-							<h6>50 points • MVP: Mark Caguioa • Set 4 • 3/4</h6>
+							<h5>{{ team.team_name }}</h5>
+							<h6>{{ team.name }}</h6>
 						</div>
 					</div>
 
@@ -201,24 +201,14 @@
             		<tr>
             			<th>#</th>
             			<th>Team Name</th>
-            			<th>Players</th>
             			<th>Organization</th>
-            			<th>Points</th>
             		</tr>
             	</thead>
             	<tbody>
-            		<tr ng-repeat="team in rankings">
-            			<td>{{ team.total_ranks }}</td>
-            			<td>{{ team.org_name }}</td>
-            			<td>
-            				<h6>Marciso Guiambao</h6>
-            				<h6>Fernando Amorsolo</h6>
-            				<h6>Leonardo DiCaprio</h6>
-            				<h6>Richard Gomez</h6>
-            				<h6>Kitchie Nadal</h6>
-            			</td>
-            			<td>University of The Philippines</td>
-            			<td>98</td>
+            		<tr ng-repeat="team in rankingsSport">
+            			<td>{{ team.total_rank }}</td>
+            			<td>{{ team.team_name }}</td>
+            			<td>{{ team.name }}</td>
             		</tr>
             	</tbody>
             </table>

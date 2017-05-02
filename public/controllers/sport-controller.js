@@ -6,9 +6,9 @@
         .module('app')
         .controller('SportController', SportController);
 
-    SportController.$inject = ['$scope', '$routeParams', 'SportService', 'OrganizerService'];
+    SportController.$inject = ['$scope', '$routeParams', 'SportService', 'OrganizerService', 'OrganizationService', 'CompetitorService'];
 
-    function SportController($scope, $routeParams, SportService, OrganizerService) {
+    function SportController($scope, $routeParams, SportService, OrganizerService, OrganizationService, CompetitorService) {
         $scope.thisSport = {
             sport_id: $routeParams.id
         };
@@ -29,12 +29,16 @@
         $scope.futureMatch = [];
         $scope.pastMatch = [];
         $scope.rankings = [];
+        $scope.rankingsSport = [];
+        $scope.rankingsOrganization = [];
         $scope.newMatch = {
             timeStart: undefined,
             timeEnd: undefined,
             date: undefined,
             sportID: undefined
         };
+        
+
 
         function copyMatch(match) {
             // copy match - will be accessed inside edit
@@ -70,11 +74,11 @@
 
         function retrieveSportRankings(sport_id) {
             SportService
-                .retrieveSportRankings(sport_id) //parameter is sport id
+                .retrieveSportRankings($scope.thisSport.sport_id) //parameter is sport id
                 .then(function (res){
                     console.log("retrieved rankings");
-                    $scope.rankings = res.data;
-                    console.log(res.data);
+                    $scope.rankingsSport = res.data;
+                    console.log($scope.rankingsSport);
                 }, function(err) {
                     console.log("rankings not retrieved");
                 })
@@ -127,7 +131,7 @@
         }
 
         function checkRankings() {
-            if (($scope.rankings).length == 0) {
+            if (($scope.rankingsSport).length == 0) {
                 return false;
             } else {
                 return true;
