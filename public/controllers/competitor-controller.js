@@ -66,6 +66,7 @@
         $scope.recruitNewMember = recruitNewMember;
         $scope.isFull= isFull;
         $scope.kickMember = kickMember;
+        $scope.setPendingRequest = setPendingRequest;
 
         
 
