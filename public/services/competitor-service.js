@@ -30,6 +30,7 @@
             viewAllOrganizationInGame: viewAllOrganizationInGame,
             acceptMembershipRequest: acceptMembershipRequest,
             deleteMembershipRequest: deleteMembershipRequest,
+            addTeamMember: addTeamMember,
             listUpcomingOngoingGamesNotLimited: listUpcomingOngoingGamesNotLimited
         }
 
@@ -185,7 +186,6 @@
         function deleteTeam(id){
             let deferred = $q.defer();
 
-            console.log('teamid service: ' + id);
             $http({
                 method: 'DELETE',
                 params: {'team_id': id},
@@ -203,7 +203,6 @@
         function createTeam(team){
             let deferred = $q.defer();
 
-            console.log(team);
             $http({
                 method: 'POST',
                 data: $.param(team),
@@ -265,22 +264,6 @@
 
             return deferred.promise;
         }
-        // function listAllSports(){
-        //     let deferred = $q.defer();
-
-        //     $http({
-        //         method: 'GET',
-        //         url: '/sport/viewAllSports',
-        //         headers: headers
-        //     }).then((res) => {
-        //         deferred.resolve(res);
-        //     }, (err) => {
-        //         deferred.reject(err);
-        //     });
-
-        //     return deferred.promise;
-        // }
-
 
         function getTeamRankings(sport_id, id){
             let deferred = $q.defer();
@@ -321,7 +304,6 @@
         }
 
         function viewAllOrganizationInGame(game_id){
-            console.log(game_id);
             let deferred = $q.defer();
             
             $http({
@@ -360,7 +342,7 @@
 
             $http({
                 method: 'DELETE',
-                params: {"team_id": team_id, "id": id},
+                data: $.param({"team_id": team_id, "id": id}), 
                 url: '/team/deleteMembershipRequest',
                 headers: headers
             }).then((res) => {
@@ -372,6 +354,22 @@
             return deferred.promise;
         }
 
+        function addTeamMember(team_id, id){
+            let deferred = $q.defer();
+
+            $http({
+                method: 'POST',
+                data: $.param({"team_id": team_id, "id": id}), 
+                url: '/team/addTeamMember',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
         
     }
 })();
