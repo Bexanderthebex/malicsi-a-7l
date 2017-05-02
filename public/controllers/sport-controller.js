@@ -43,7 +43,6 @@
         function retrieveSport() {
             SportService
                 .retrieveSport($scope.thisSport.sport_id) //parameter is sport id
-
                 .then(function (res){
                     console.log("retrieved sport");
                     $scope.sport = res.data;
@@ -97,7 +96,6 @@
             SportService
                 .viewCurrentMatch($scope.thisSport.sport_id)
                 .then(function (res){
-                    console.log("current matches retrieved");
                     $scope.currMatch = res.data;
                 }), function(err){ 
                     console.log("matches not retrieved");
