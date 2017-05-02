@@ -35,7 +35,8 @@
             viewAllOrganizationForGame: viewAllOrganizationForGame,
             viewAllOrganizationInGame: viewAllOrganizationInGame,
             deleteMultipleSponsoringInstitutions: deleteMultipleSponsoringInstitutions,
-            addMultipleSponsoringInstitutions: addMultipleSponsoringInstitutions
+            addMultipleSponsoringInstitutions: addMultipleSponsoringInstitutions,
+            countTeamInSport: countTeamInSport
         }
 
         return service;
@@ -548,6 +549,26 @@
             return deferred.promise;
         }
 
+        function countTeamInSport(sportId){
+            let deferred = $q.defer();
+            let sport = {
+                sport_id : sportId
+            }
 
+            $http({
+                method: 'GET',
+                params: sport,
+                url: '/team/countTeamInSports',
+                headers: headers
+            }).then((res) => {
+                    // console.log(res);
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            return deferred.promise;   
+        }
+
+       
     }
 })();

@@ -23,6 +23,7 @@
 		$scope.retrieveAllSports = retrieveAllSports;
 		$scope.searchSport = searchSport;
 		$scope.passSport = passSport;
+		$scope.countTeamInSport = countTeamInSport;
 		$scope.viewGameDetails = viewGameDetails;
 		$scope.viewGameOrganizerDetails = viewGameOrganizerDetails;
 		$scope.viewPastMatchesInGame = viewPastMatchesInGame;
@@ -35,8 +36,6 @@
 		$scope.checkOngoingMatches = checkOngoingMatches;
 		$scope.checkUpcomingMatches = checkUpcomingMatches;
 		$scope.viewSponsoringInstitutions = viewSponsoringInstitutions;
-		// $scope.deleteSponsoringInstitution = deleteSponsoringInstitution;
-		// $scope.addSponsoringInstitution = addSponsoringInstitution;
 		$scope.viewOtherSponsoringInstitutions = viewOtherSponsoringInstitutions;
 		$scope.initializeSponsoringInstitutions = initializeSponsoringInstitutions;
 		$scope.checkSponsors = checkSponsors;
@@ -468,6 +467,11 @@
 				.retrieveAllSports($scope.thisGame.game_id)
 				.then(function(res) {
 					$scope.sports = res.data;
+					for (var i = 0; i<res.data.length; i++){
+						countTeamInSport(res.data[i]);
+					}
+					$scope.sports = res.data;
+					console.log(res.data);
 				}, function(err) {
 					console.log(err);
 					Materialize.toast('Failed to retrieve sports!', 3000);
@@ -551,6 +555,20 @@
 				}, function(err) {
 					console.log(err.data);
 				})
+		}
+
+
+		function countTeamInSport(sport){
+			GameService
+				.countTeamInSport(sport.sport_id)
+				.then(function(res) {
+
+					console.log("Team count for sport#"+sport.sport_id+": "+ res.data.team_count);
+					sport.team_count = res.data.team_count;
+				}, function(err){
+					console.log(err.data);
+				})
+
 		}
 
 		function viewGameDetails(){
