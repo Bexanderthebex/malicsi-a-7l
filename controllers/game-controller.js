@@ -21,8 +21,8 @@ exports.createGame = (req, res) => {
 	    (err, results) => {
 			if(!err){
 				connection.userType(req.session.user.type).query('CALL view_last_inserted_game()',(err, rows) => {
-					logs.createLog(currentUser.id, "Created Game");
-					return res.status(200).Csend(rows[0]);
+					logs.createLog(req.session.user.id, "Created Game");
+					return res.status(200).send(rows[0]);
 				});
 			}
 			else{
@@ -49,7 +49,7 @@ exports.updateGame = (req, res) => {
 		], (err, rows) =>{
 				if(!err){
 					connection.userType(req.session.user.type).query('CALL view_game_details(?)', gameId, (err, rows) => {
-						logs.createLog(currentUser.id, "Edited Game");
+						logs.createLog(req.session.user.id, "Edited Game");
 						return res.status(200).send(rows[0]);
 
 					});
@@ -159,7 +159,7 @@ exports.deleteGame = (req, res) => {
 				res.status(501).send('Not Implemented');
 			} else {
 				connection.userType(req.session.user.type).query('CALL delete_game(?)', gameId, (err, rows) => {
-				logs.createLog(currentUser.id, "Deleted Game");
+				logs.createLog(req.session.user.id, "Deleted Game");
 				return res.status(200).send(deleted[0]);
 
 				});
@@ -327,7 +327,7 @@ exports.addOrganizationToGame = (req, res) =>{
 		[req.body.orgId, req.body.gameId],
 		(err, rows) => {
 		if (!err) {
-			logs.createLog(currentUser.id, "Added Organization to Game");
+			logs.createLog(req.session.user.id, "Added Organization to Game");
 			return res.status(200).send("Successfully Added");
 		}else{
 			return res.status(500).send("Internal Server Error");
@@ -342,7 +342,7 @@ exports.deleteOrganizationFromGame = (req, res) =>{
 		[req.body.orgId, req.body.gameId],
 		(err, rows) => {
 		if (!err) {
-			logs.createLog(currentUser.id, "Removed Organization from Game");
+			logs.createLog(req.session.user.id, "Removed Organization from Game");
 			return res.status(200).send("Successfully Deleted");
 		}else{
 			return res.status(500).send("Internal Server Error");

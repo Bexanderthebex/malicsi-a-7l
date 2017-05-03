@@ -6,14 +6,17 @@
         .module('app')
         .controller('CompetitorController', CompetitorController);
 
-    CompetitorController.$inject = ['$scope', '$window', '$routeParams', 'CompetitorService', 'UserService', 'GameService'];
+    CompetitorController.$inject = ['$scope', '$window', '$routeParams', 'CompetitorService', 'UserService', 'GameService', 'SearchService', 'OrganizationService'];
 
-    function CompetitorController($scope, $window, $routeParams, CompetitorService, UserService, GameService) {
+    function CompetitorController($scope, $window, $routeParams, CompetitorService, UserService, GameService, SearchService, OrganizationService) {
         $scope.thisCompetitor = {
             competitor_id: $routeParams.id
         };
+        $scope.pendingRequested = {};
+        $scope.teamAccordion = {};
         $scope.competitor = {};
         $scope.userinfo = {};
+        $scope.scoutedApplicant = {};
         $scope.team = {
             team_name: null,
             sport_id: null,
@@ -39,6 +42,7 @@
         $scope.game = [];
         $scope.sports = [];
         $scope.organizations = [];
+        $scope.roaster = [];
 
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
@@ -57,6 +61,31 @@
         $scope.deleteTeam = deleteTeam;
         $scope.acceptMembershipRequest = acceptMembershipRequest;
         $scope.deleteMembershipRequest = deleteMembershipRequest;
+        $scope.getRecruitRoaster = getRecruitRoaster;
+        $scope.setScoutedApplicant = setScoutedApplicant;
+        $scope.recruitNewMember = recruitNewMember;
+        $scope.isFull= isFull;
+        $scope.kickMember = kickMember;
+        $scope.setPendingRequest = setPendingRequest;
+
+        
+
+        function initChip(){
+
+            $('.chips').material_chip();
+
+            $('.chips-initial').material_chip({
+            data: $scope.teammembers,
+            });
+
+            $('.chips').on('chip.delete', function(e, chip){
+            kickMember($scope.toKickFrom,$scope.toKickID)
+            });
+        }
+
+
+ 
+
         function searchCompetitor(){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
@@ -230,6 +259,8 @@
             CompetitorService
                 .getPendingRequests()
                 .then(function (res){
+                    console.log("\n\n\n\n");
+                    console.log(res.data);
                     $scope.pendingRequests = res.data;
                 }, function(err) {
                     console.log(err);
@@ -307,7 +338,12 @@
         }
 
         function acceptMembershipRequest(){
-            
+            if (isFull($scope.pendingRequests.team_id)){
+                Materialize.toast("Team is Already Full");
+                return;
+            }
+
+
             CompetitorService
                 .acceptMembershipRequest($scope.pendingRequests.team_id, $scope.pendingRequests.id)
                 .then(function (res){
@@ -325,9 +361,9 @@
                 })
         }
 
-        function deleteMembershipRequest(){
+        function deleteMembershipRequest(team_id,id){
             CompetitorService
-                .deleteMembershipRequest($scope.pendingRequests.team_id, $scope.pendingRequests.id)
+                .deleteMembershipRequest(team_id, id)
                 .then(function (res){
                     Materialize.toast('Application Declined', 4000);
                 }, function(err) {
@@ -342,6 +378,105 @@
                     console.log(err);
                 })
         }
+
+        function kickMember(team_id,id){
+            if (confirm("Confirm Removing This Member") == true) {
+                console.log(team_id);
+                console.log(id);
+                CompetitorService
+                    .deleteMembershipRequest(team_id, id)
+                    .then(function (res){
+                        Materialize.toast('Kicked a Member', 4000);
+                        getTeamMembers(team_id);
+                    }, function(err) {
+                        console.log(err);
+                    })
+            }
+
+        }
+
+        function setPendingRequest(pr){
+            $scope.pendingRequested.team_id=pr.team_id;
+            $scope.pendingRequested.id=pr.id;
+            $scope.pendingRequested.first_name=pr.first_name;
+            $scope.pendingRequested.team_name=pr.team_name
+        }
+        
+        function isFull(team_id){
+            getTeamMembers(team_id);
+            var max;
+            OrganizationService
+            .retrieveTeam(team_id)
+            .then(function (res){
+               max = (res.data.max_members);
+                if (membercount>= max)
+                    return true;
+                else
+                    return false;
+            }, function(err) {
+                console.log(err);
+            })
+        }
+
+        function getRecruitRoaster(team){
+            $scope.teamAccordion = team;
+            var allCompetitor = [];
+            $scope.roaster = [];
+            SearchService
+                .retrieveCompetitor('')
+                .then(function (res){
+                    allCompetitor = res.data;
+                    console.log($scope.teammembers);                
+                    console.log(allCompetitor);
+                    var i;
+                    var teammembersids = [];
+                    var allCompetitorids = [];
+                    for(i=0;i<res.data.length;i++){
+                        allCompetitorids.push(allCompetitor[i].id);
+                    }
+                    for(i=0;i<$scope.teammembers.length;i++){
+                        teammembersids.push($scope.teammembers[i].id);
+                    }                                        
+
+
+                    for(i=0;i<res.data.length;i++){
+                        var j;
+                        if (teammembersids.includes(allCompetitorids[i]))
+                            continue;
+                        else
+                            $scope.roaster.push(allCompetitor[i]);
+                    }
+                }, function(err) {
+                    console.log(err);
+                })    
+        }
+
+        function setScoutedApplicant(competitor){
+            $scope.scoutedApplicant = {
+                first_name: competitor.first_name, 
+                last_name: competitor.last_name, 
+                nickname: competitor.nickname, 
+                id: competitor.id,
+                team_id: $scope.teamAccordion.team_id,
+                team_name: $scope.teamAccordion.team_name
+            }
+        }
+
+        function recruitNewMember(){
+            console.log($scope.scoutedApplicant.id);
+            CompetitorService
+                .addTeamMember($scope.scoutedApplicant.team_id, $scope.scoutedApplicant.id)
+                .then(function (res){
+                    Materialize.toast('Application Success', 4000);
+                }, function(err) {
+                    console.log(err);
+                })
+            console.log($scope.scoutedApplicant.team_id);
+            getTeamMembers($scope.scoutedApplicant.team_id);
+            getRecruitRoaster($scope.teamAccordion);
+        }
+        
+
 
     }
 })();
