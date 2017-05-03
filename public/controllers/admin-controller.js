@@ -94,6 +94,12 @@
                         console.log(err);
                     });
 
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('Successfully created admin.', 2000);
                 }, (err) => {
                     Materialize.toast(err.data.message);
@@ -129,6 +135,12 @@
                         console.log(err);
                     });
 
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('Successfully created organizer.', 2000);
                 }, (err) => {
                     Materialize.toast(err.data.message)
@@ -150,6 +162,12 @@
                     SearchService.retrieveOrganization('').then((res) => {
                         $scope.organizations = res.data;
                         console.log('organizations', $scope.organizations);
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
                     }, (err) => {
                         console.log(err);
                     });
@@ -231,6 +249,12 @@
                         break;
                     }
                 }
+
+                AdminService.retrieveLog().then((res) => {
+                    $scope.logs = res.data;
+                }, (err) => {
+                    console.log(err);
+                });
             }, (err) => {
                 Materialize.toast('Something went wrong :\'(', 2000);
                 console.log(err);
@@ -262,6 +286,12 @@
 
                 UserService.updateUser(admin)
                 .then((res) => {
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('Admin info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
@@ -284,8 +314,6 @@
             $('#admin-cancel-edit-' + admin.id).hide();
             $('.admin-form-edit-' + admin.id).prop('disabled', true);
 
-            console.log(adminCache)
-
             admin.username = adminCache[admin.id].username;
             admin.email = adminCache[admin.id].email;
             admin.contact = adminCache[admin.id].contact;
@@ -297,8 +325,14 @@
                 $('#organizer-cancel-edit-' + organizer.id).hide();
                 $('.organizer-form-edit-' + organizer.id).prop('disabled', true);
 
-                 OrganizerService.updateOrganizer(organizer)
+                OrganizerService.updateOrganizer(organizer)
                 .then((res) => {
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('Organizer info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
@@ -336,6 +370,12 @@
 
                  OrganizationService.updateOrganization(organization)
                 .then((res) => {
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('Organization info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
@@ -365,6 +405,12 @@
             OrganizationService.deleteOrganization(orgId)
             .then((res) => {
                 Materialize.toast('Organization deleted', 2000);
+                AdminService.retrieveLog().then((res) => {
+                    $scope.logs = res.data;
+                }, (err) => {
+                    console.log(err);
+                });
+
                 for (let i = 0; i < $scope.organizations.length; ++i) {
                     if ($scope.organizations[i].organization_id === orgId) {
                         $scope.organizations.splice(i, 1);
@@ -383,6 +429,12 @@
 
                 UserService.updateUser(user.username, user.email, user.contact, user.id)
                 .then((res) => {
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('User info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
@@ -426,6 +478,12 @@
                         console.log(err);
                     });
 
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast("Successfully created sponsor.", 2000);
                 }, (err) => {
                     console.log(err);
@@ -436,6 +494,12 @@
 
         $scope.deleteSponsor = (id) => {
             AdminService.deleteSponsor(id).then((res) => {
+                AdminService.retrieveLog().then((res) => {
+                    $scope.logs = res.data;
+                }, (err) => {
+                    console.log(err);
+                });
+
                 Materialize.toast("Sponsor deleted", 2000);
                 for (let i = 0; i < $scope.sponsors.length; ++i) {
                     if ($scope.sponsors[i].sponsor_id === id) {
@@ -457,6 +521,12 @@
 
                 AdminService.editSponsor(sponsor)
                 .then((res) => {
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('Sponsor info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
@@ -485,7 +555,12 @@
         $scope.editPassword = (userID, newPassword) => {
             UserService.editPassword(userID, newPassword)
             .then((res) => {
-                $scope.admins = res.data;
+                AdminService.retrieveLog().then((res) => {
+                    $scope.logs = res.data;
+                }, (err) => {
+                    console.log(err);
+                });
+
                 console.log('edit password')
             }, (err) => {
                 console.log(err);
@@ -516,6 +591,13 @@
             UserService.editPassword(pending, $scope.newPassword)
             .then((res) => {
                 $scope.newPassword = '';
+
+                AdminService.retrieveLog().then((res) => {
+                    $scope.logs = res.data;
+                }, (err) => {
+                    console.log(err);
+                });
+
                 Materialize.toast('Password successfully edited', 2000);
             }, (err) => {
                 $scope.newPassword = '';
