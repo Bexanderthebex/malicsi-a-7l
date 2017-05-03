@@ -1,5 +1,12 @@
+#sports-title-holder{
+	width: 100%;
+	text-align: center;
+	padding: 50px;
+	/*padding-bottom: 50px;*/
+}
+
 #sports-title{
-	height: 180px;
+	min-height: 180px;
 	width: 100%;
 	background-image: url('/assets/basketball.jpg')!important;
 	background-size: cover;
@@ -9,7 +16,7 @@
 
 #sports-title h3{
 	letter-spacing: 3px;
-	padding-top: 45px;
+	/*padding-top: 45px;*/
 	margin-top: 0;
 	margin-bottom: 0;
 	text-align: center;

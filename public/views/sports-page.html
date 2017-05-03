@@ -3,21 +3,23 @@
 	<!-- Main holder just keeps the main below t9he navbar -->
 	<div id="main">
 		<!-- Do your thing here -->
-		<div id="sports-title" class="rockwell ">
-			<h3 class="white-text">{{ game.name }} • {{ sport.sport_name }}</h3>
-			<h6 class="white-text">{{ sport.start_date | date:"MM/dd/yyyy" }} - {{ sport.end_date | date:"MM/dd/yyyy" }} • Start: {{ sport.time_start | date:"shortTime" }} End: {{ sport.time_end | date:"shortTime" }} • {{ game.location }} </h6>
+		<div id="sports-title" class="rockwell valign-wrapper">
+			<div id="sports-title-holder">
+				<h3 class="white-text">{{ game.name }} • {{ sport.sport_name }}</h3>
+				<h6 class="white-text">{{ sport.start_date | date:"MM/dd/yyyy" }} - {{ sport.end_date | date:"MM/dd/yyyy" }} • Start: {{ sport.time_start | date:"shortTime" }} End: {{ sport.time_end | date:"shortTime" }} • {{ game.location }} </h6>
+			</div>
 		</div>
 
 		<!-- RANKINGS -->
 		<div class="palette-3">
 			<div id="sports-ranking" class="row">
-				<div id="sports-ranking-title" class="col s3">
+				<div id="sports-ranking-title" class="col l3 m6 s12">
 					<h4 class="rockwell strong letter-spacing-3 palette-text-1">RANKINGS <i class="material-icons" style="font-size: 30px;">equalizer</i></h4>
 					<h6 class="rockwell">As of 7:08PM • 03/27/2017</h6>
 				</div>
 
-				<div id="sports-ranking-body" class="col s9 row" ng-show="checkRankings()">
-					<div class="rank-entity col s4" ng-repeat="team in rankingsSport | limitTo: 5">
+				<div id="sports-ranking-body" class="col l9 m6 s12 row" ng-show="checkRankings()">
+					<div class="rank-entity col l4 m12 s12" ng-repeat="team in rankingsSport | limitTo: 5">
 						<div class="rank"><h3>{{ team.total_rank }}</h3></div>
 						<div>
 							<h5>{{ team.team_name }}</h5>
@@ -25,7 +27,7 @@
 						</div>
 					</div>
 
-					<div id="sports-ranking-view-all-btn" class="col s4" style="padding-top: 25px!important; cursor: pointer!important;">
+					<div id="sports-ranking-view-all-btn" class="col l4 m12 s12" style="padding-top: 25px!important; cursor: pointer!important;">
 						<a id="sports-ranking-view-all" class="rockwell letter-spacing-2 palette-4" data-target="rankings-view-all-modal">
 							VIEW ALL <i class="fa fa-angle-double-right"></i>
 						</a>
@@ -50,7 +52,7 @@
 			<div class="row">
 
 				<!-- P A S T MATCHES -->
-				<div id="sports-past-matches" class="col s4">
+				<div id="sports-past-matches" class="col l4 m6">
 					<h5 class="telegrafico center">PAST MATCHES</h5>
 
 					<!-- LIST OF MATCHES -->
@@ -83,7 +85,7 @@
 				</div>
 
 				<!-- O N  G O I N G MATCHES -->
-				<div id="sports-ongoing-matches" class="col s4">
+				<div id="sports-ongoing-matches" class="col l4 m6">
 					<h5 class="telegrafico center">ON-GOING MATCHES</h5>
 
 					<!-- LIST OF MATCHES -->
@@ -116,7 +118,7 @@
 				</div>
 
 				<!-- U P C O M I N G MATCHES -->
-				<div id="sports-upcoming-matches" class="col s4">
+				<div id="sports-upcoming-matches" class="col l4 m6">
 					<h5 class="telegrafico center">UPCOMING MATCHES</h5>
 
 					<!-- LIST OF MATCHES -->
