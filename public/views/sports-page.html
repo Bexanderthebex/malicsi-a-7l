@@ -235,54 +235,97 @@
                 </div>
             </div>
             <div class="row sports-match-modal-container"><br>
-                <!-- EDIT MATCH INFO -->
-                <div class="input-field col s4 sports-match-input-color-change">
-                    <input placeholder=" " id="match-start-time" type="time" class="validate" ng-model="matchCopy.time_start">
-                    <label for="match-start-time" class="sports-match-adjust-label">
-                        Start Time
-                    </label>
-                </div>
-                <div class="input-field col s4 sports-match-input-color-change">
-                    <input placeholder=" " id="match-end-time" type="time" class="validate" ng-model="matchCopy.time_end">
-                    <label for="match-end-time" class="sports-match-adjust-label">
-                        End Time
-                    </label>
-                </div>
-                <div class="input-field col s4 sports-match-input-color-change">
-                    <input placeholder=" " id="match-date" type="date" class="validate" ng-model="matchCopy.match_date">
-                    <label for="match-date" class="sports-match-adjust-label">
-                        Date
-                    </label>
-                </div>
-                <div class="input-field col s12 sports-match-input-color-change">
-                    <textarea placeholder=" " id="match-remarks" class="materialize-textarea" data-length="140" ng-model="matchCopy.remarks"></textarea>
-                    <label for="match-remarks" class="sports-match-textarea-label-color-change">
-                        Remarks
-                    </label>
-                </div>
+				<div class="col s12">
+					<ul class="tabs">
+				    	<li id="sport-tab-1" class="tab col s3 active"><a href="#edit-match-tab-1">Info</a></li>
+				    	<li class="tab col s3"><a href="#edit-match-tab-2">Rankings</a></li>
+				    	<li class="tab col s3"><a href="#edit-match-tab-3">Teams</a></li>
+					</ul>
+				</div>
+				<div class="col s12 row">
+					<div id="edit-match-tab-1" class="col s12 container">
+		                <!-- EDIT MATCH INFO -->
+		                <div class="input-field col s4 sports-match-input-color-change">
+		                    <input placeholder=" " id="match-start-time" type="time" class="validate" ng-model="matchCopy.time_start">
+		                    <label for="match-start-time" class="sports-match-adjust-label">
+		                        Start Time
+		                    </label>
+		                </div>
+		                <div class="input-field col s4 sports-match-input-color-change">
+		                    <input placeholder=" " id="match-end-time" type="time" class="validate" ng-model="matchCopy.time_end">
+		                    <label for="match-end-time" class="sports-match-adjust-label">
+		                        End Time
+		                    </label>
+		                </div>
+		                <div class="input-field col s4 sports-match-input-color-change">
+		                    <input placeholder=" " id="match-date" type="date" class="validate" ng-model="matchCopy.match_date">
+		                    <label for="match-date" class="sports-match-adjust-label">
+		                        Date
+		                    </label>
+		                </div>
+		                <div class="input-field col s12 sports-match-input-color-change">
+		                    <textarea placeholder=" " id="match-remarks" class="materialize-textarea" data-length="140" ng-model="matchCopy.remarks"></textarea>
+		                    <label for="match-remarks" class="sports-match-textarea-label-color-change">
+		                        Remarks
+		                    </label>
+		                </div>
+					</div>
 
-                <!-- EDIT RANKINGS -->
-                <div class="row">
-                    <div class="col offset-l3 l6 s12">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Teams</th>
-                                    <th>Ranking</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><!-- <tr ng-repeat="team in rankings"> -->
-                                    <td>Team Name</td><!-- <td>{{ team.name }}</td> -->
-                                    <td width="30%">
-                                    	<input type="text" class="validate">
-                                    </td>
-                                    <!-- <td width="30%"><input type="text" class="validate" ng-model="team.rank"></td> -->
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+					<div id="edit-match-tab-2" class="col s12 container">
+						<table class="striped">
+							<thead>
+								<tr class="telegrafico">
+									<th>Team Name</th>
+									<th >Rank</th>
+									<th>Edit Rank</th>
+								</tr>
+							</thead>
+							<tbody class="century-gothic">
+								<tr>
+									<td style="width: 40%;">Team Name</td>
+									<td style="width: 20%;"><input type="text" value="1"></td>
+									<td style="width: 40%;"><i class="fa fa-pencil"></i></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+					<div id="edit-match-tab-3" class="col s12 container">
+						<table class="striped">
+							<thead>
+								<tr class="telegrafico">
+									<th>Team Name</th>
+									<th >Actions</th>
+								</tr>
+							</thead>
+							<tbody class="century-gothic">
+								<tr>
+									<td style="width: 40%;">Team Name</td>
+									<td style="width: 40%;"><i class="fa fa-pencil"></i><i class="fa fa-close"></i></td>
+								</tr>
+							</tbody>
+						</table>
+	
+
+						<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD TEAM</h6>
+						<div class="row padding-override-0">
+							<div class="col s6 padding-override-0">
+								<!-- Team Name -->
+								<label class="admin-fillup-label">Team Name</label>
+								<input ng-model="adminUsername" id="name" type="text" class="validate admin-fillup-form">
+							</div>
+							<div class="col s1 padding-override-0">
+								<button ng-click="addAdmin()" class="minimalist-button"> SUBMIT </button>
+							</div>
+						</div>
+
+						<div class="row padding-override-0">
+						</div>
+
+					</div>
+				</div>
+
             </div>
         </div>
         <div class="modal-footer palette-5 right-align"><!-- button -->

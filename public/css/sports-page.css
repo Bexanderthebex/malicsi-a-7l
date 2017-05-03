@@ -236,6 +236,11 @@
 }
 
 /************ MODALS ************/
+.sports-edit-ranking-team td{
+	padding: 5px!important;
+	height: 30px!important;
+}
+
 .sports-match-header-fill{
     padding: 0px !important;
     overflow-x: hidden;
