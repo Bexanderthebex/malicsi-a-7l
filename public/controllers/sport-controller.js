@@ -37,7 +37,7 @@
             date: undefined,
             sportID: undefined
         };
-        
+
 
 
         function copyMatch(match) {
@@ -103,7 +103,7 @@
                 .then(function (res){
                     console.log("current matches retrieved");
                     $scope.currMatch = res.data;
-                }), function(err){ 
+                }), function(err){
                     console.log("matches not retrieved");
                 }
         }
@@ -153,13 +153,32 @@
             $scope.newMatch.timeStart = addZero(ts.getHours()) + ':' + addZero(ts.getMinutes()) + ':' + addZero(ts.getSeconds());
             $scope.newMatch.timeEnd = addZero(te.getHours()) + ':' + addZero(te.getMinutes()) + ':' + addZero(te.getSeconds());
             $scope.newMatch.sportID = $scope.sport.sport_id;
-            console.log($scope.newMatch);
+
+            if (ts > te
+                || ts < new Date(ts.toDateString() + ' ' + $scope.sport.time_start)
+                || te > new Date(te.toDateString() + ' ' + $scope.sport.time_end)
+            ) {
+                Materialize.toast('Invalid match time', 2000);
+                return;
+            }
+
+            if (new Date($scope.newMatch.date) < new Date($scope.sport.start_date)
+                || new Date($scope.newMatch.date) > new Date($scope.sport.end_date)
+            ) {
+                Materialize.toast('Invalid match date', 2000);
+                return;
+            }
+
             SportService
                 .addMatch($scope.newMatch)
                 .then(function (res){
-                    Materialize.toast('Added new match!', 3000); 
+                    viewPastMatch();
+                    viewCurrentMatch();
+                    viewFutureMatch();
+                    Materialize.toast('Added new match!', 3000);
                 }, function(err) {
-                    Materialize.toast('New match not added!', 3000); 
+                    console.log(err);
+                    Materialize.toast('New match not added!', 3000);
                 })
         }
 
@@ -167,9 +186,9 @@
             SportService
                 .editMatch()
                 .then(function (res){
-                    Materialize.toast('Edited match!', 3000); 
+                    Materialize.toast('Edited match!', 3000);
                 }, function(err) {
-                    Materialize.toast('Match not edited!', 3000); 
+                    Materialize.toast('Match not edited!', 3000);
                 })
         }
 
@@ -177,9 +196,9 @@
             SportService
                 .deleteMatch()
                 .then(function (res){
-                    Materialize.toast('Deleted match!', 3000); 
+                    Materialize.toast('Deleted match!', 3000);
                 }, function(err) {
-                    Materialize.toast('Match not deleted!', 3000); 
+                    Materialize.toast('Match not deleted!', 3000);
                 })
         }
 
