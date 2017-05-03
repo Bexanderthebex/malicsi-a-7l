@@ -316,8 +316,8 @@
 	<div class="modal-content">
 		<div class="row" ng-repeat="sponsor in sponsors" >
 			<span class="telegrafico game-checkbox-change-color" >
-				<input type="checkbox" class="filled-in" ng-click="checkValidSponsorDel()" id="{{sponsor.sponsorId}}" ng-model="sponsor.checked"/>
-				<label for="{{sponsor.sponsorId}}">
+				<input type="checkbox" class="filled-in" ng-click="checkValidSponsorDel()" id="spon{{sponsor.sponsorId}}" ng-model="sponsor.checked"/>
+				<label for="spon{{sponsor.sponsorId}}">
 					<p class="game-sponsor-title">{{sponsor.name}}</p>
                     <p class="century-gothic game-adjust-sponsor-desc">{{sponsor.description}}</p>
 				</label>
@@ -426,8 +426,8 @@
 	<div class="modal-content">
 		<div class="row" ng-repeat="newSponsor in otherSponsors" >
 			<span class="telegrafico game-checkbox-change-color" >
-				<input type="checkbox" class="filled-in" ng-click="checkValidSponsorAdd()" id="{{newSponsor.sponsorId}}" ng-model="newSponsor.checked"/>
-				<label for="{{newSponsor.sponsorId}}">
+				<input type="checkbox" class="filled-in" ng-click="checkValidSponsorAdd()" id="newSpon{{newSponsor.sponsorId}}" ng-model="newSponsor.checked"/>
+				<label for="newSpon{{newSponsor.sponsorId}}">
 					<p class="game-sponsor-title">{{newSponsor.name}}</p>
                     <p class="century-gothic game-adjust-sponsor-desc">{{newSponsor.description}}</p>
 				</label>
