@@ -234,7 +234,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="game-game-box-body game-rightpanel-container game-panel-bottom" ng-hide="checkSports()">
+                            <div class="game-game-box-body game-rightpanel-container game-panel-bottom" >
                                 <div class="col s12">
                                     <div class="row" ng-init="retrieveAllSports()" ng-show="checkIfOrganizer()">
                                         <div class="col s6 m6" >
@@ -249,7 +249,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col s6 m6" ng-repeat = "sport in sports">
+                                        <div class="col s6 m6" ng-repeat = "sport in sports"ng-hide="checkSports()">
                                             <div class="game-sport">
                                                 <div class="card game-hovercard">
                                                     <div class="center">
