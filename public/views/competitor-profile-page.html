@@ -186,7 +186,7 @@
                                         <i class="fa fa-check fa-lg" ng-click="pendingRequests.team_id=pr.team_id; pendingRequests.id=pr.id; pendingRequests.first_name=pr.first_name; pendingRequests.team_name=pr.team_name"></i>
                                     </div>
                                     <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Applicant" data-target="competitor-decline-applicant-modal">
-                                        <i class="fa fa-times fa-lg" ng-click="pendingRequests.team_id=pr.team_id; pendingRequests.id=pr.id; pendingRequests.first_name=pr.first_name; pendingRequests.team_name=pr.team_name"></i>
+                                        <i class="fa fa-times fa-lg" ng-click="setPendingRequest(pr)"></i>
                                     </div>
                                 </td>
                             </tr>
@@ -533,11 +533,11 @@
             </div>
         </div>  
         <div class="row competitor-modal-container">
-            <p>Are you sure you want to decline {{ pendingRequests.first_name}}'s request to join {{ pendingRequests.team_name }}?</p>
+            <p>Are you sure you want to decline {{ pendingRequested.first_name}}'s request to join {{ pendingRequested.team_name }}?</p>
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="deleteMembershipRequest()">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="deleteMembershipRequest(pendingRequested.team_id,pendingRequested.id)">YES</button>
         <button href="" class="modal-action modal-close minimalist-button">NO</button>
     </div>
 </div>
