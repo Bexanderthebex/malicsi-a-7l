@@ -26,7 +26,7 @@
 			</div>
 			<div class="row container">
 			 	<!-- STATISTICS -->
-	            <div class="col s12 m12 l6" id="org-wins-count-panel">
+	            <div class="col s12 m12 l9" id="org-wins-count-panel">
 	                <div class="row center-align" ng-model="OrganizationController">
 	                    <div class="col s4 m4 l4">
 							<h1 class="stat-nums rockwell strong blue-grey-text text-lighten-2"> {{organizationStats.first}} </h1>
@@ -51,7 +51,7 @@
 	                    </div>
 	                </div>
 	            </div>
-	            <div class="col s12 m12 l6">
+	            <div class="col s12 m12 l3">
 	                <div class="row center-align">
 						<h1 class="rockwell strong stat-nums"> {{organizationStats.total}} </h1>
 	                </div>
@@ -67,7 +67,7 @@
 		<div id="organization-team-standings">
 			<div class="col s4 m4 l12 container rockwell">
 				<div class="center">
-					<span class="rockwell"> SEARCH A GAME </span>
+					<span class="rockwell strong palette-text-3"> SEARCH A GAME </span>
 					<form id="org-game-search-bar" class="search-bar-config center">
 						<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
 					</form>
@@ -77,7 +77,7 @@
 			<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
 				<div class="col s12">
 					<ul id="organization-team-tabs" class="tabs">
-						<li class="tab col s3 palette-5"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li>
+						<li class="tab col s3 palette-5 active"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li>
 					</ul>
 				</div>
 				<div id="team-table-1">
@@ -100,8 +100,8 @@
 									<th> 
 										Team Name
 									</th>
-									<th class="centered"> Sport </th>
-									<th class="centered"> Medals Won </th>
+									<th class="center-align"> Sport </th>
+									<th class="center-align"> Medals Won </th>
 								</tr>
 							</thead>
 							<tbody >
@@ -114,9 +114,9 @@
 									</td>
 									<td id="org-team-medals-won">
 										<div class="col s4">
-											<div><span class="yellow-text text-accent-2" style="font-weight: bold">1st</span> {{pagedTeam.statistics.first}} |
-											<span class="blue-grey-text text-lighten-2" style="font-weight: bold">2nd</span> {{pagedTeam.statistics.second}} |
-											<span class="brown-text text-lighten-2" style="font-weight: bold">3rd</span> {{pagedTeam.statistics.third}} </div>
+											<div><span class="org-standing yellow-text text-accent-2" style="font-weight: bold">1st</span> {{pagedTeam.statistics.first}} |
+											<span class="org-standing blue-grey-text text-lighten-2" style="font-weight: bold">2nd</span> {{pagedTeam.statistics.second}} |
+											<span class="org-standing brown-text text-lighten-2" style="font-weight: bold">3rd</span> {{pagedTeam.statistics.third}} </div>
 										</div>
 									</td>
 								</tr>
