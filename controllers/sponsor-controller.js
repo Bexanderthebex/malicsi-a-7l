@@ -15,7 +15,7 @@ exports.addSponsor= (req, res) => {
 		(err, results, fields)	=> {
 		if(!err){
 			connection.userType(req.session.user.type).query('CALL view_last_inserted_sponsor()',(err, rows) => {
-				logs.createLog(currentUser.id, "Created Sponsor");
+				logs.createLog(req.session.user.id, "Created Sponsor");
 				return res.status(200).send(rows[0]);
 			});
 		}
@@ -44,11 +44,12 @@ exports.addSponsorToGame = (req, res) => {
 		(err, results, fields)	=> {
 		if(!err){
 			connection.userType(req.session.user.type).query('CALL view_last_inserted_sponsor_to_game()',(err, rows) => {
-				logs.createLog(currentUser.id, "Added Sponsor to Game");
+				logs.createLog(req.session.user.id, "Added Sponsor to Game");
 				return res.status(200).send(rows[0]);
 			});
 		}
 		else{
+			console.log(err);
 			if(err.code == 'ER_DUP_ENTRY') {
 				return res.status(400).send("Unable to add sponsor to game. Reason: Duplicate/Already a sponsor of the game.");
 			}
@@ -80,7 +81,7 @@ exports.editSponsorDetails = (req, res) => {
 		(err, rows) => {
 		if(!err && rows.affectedRows != 0){
 			connection.userType(req.session.user.type).query('CALL view_sponsor(?)', sponsorId, (err, rows) => {
-				logs.createLog(currentUser.id, "Updated Sponsor");
+				logs.createLog(req.session.user.id, "Updated Sponsor");
 				return res.status(200).send(rows[0]);
 			})
 		}
