@@ -81,7 +81,6 @@ exports.changeActivity = (req, res) => {
 			}else{
 				if (req.body.is_active) logs.createLog(req.session.user.id, 'Activated User');
 				else logs.createLog(req.session.user.id, 'Deactivated User');
-
 				return res.status(200).send({'message': 'User activity status successfully updated.'});
 			}
 		}else{
