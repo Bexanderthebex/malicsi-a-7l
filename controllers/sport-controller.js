@@ -21,7 +21,7 @@ exports.editSport = (req, res, next) => {
 		req.body.sportId
 	], (err, rows) => {
 		if(!err){
-			logs.createLog(currentUser.id, "Updated Sport");
+			logs.createLog(req.session.user.id, "Updated Sport");
 			return res.status(200).send(rows);
 		} 
 		else{
@@ -47,7 +47,7 @@ exports.createSport = (req, res) => {
 		], (err, rows) => {
 			if (!err){
 				connection.userType(req.session.user.type).query('CALL view_last_inserted_sport()', (err, rows) => {
-					logs.createLog(currentUser.id, "Created Sport");
+					logs.createLog(req.session.user.id, "Created Sport");
 					return res.status(200).send(rows[0]);
 				})
 			}else{
@@ -114,7 +114,7 @@ exports.deleteSport = (req, res, next) => {
 			req.body.sportId
 		], (err,rows) => {
 				if(!err) {
-					logs.createLog(currentUser.id, "Deleted Sport");
+					logs.createLog(req.session.user.id, "Deleted Sport");
 					return res.status(200).send("successfully deleted " + req.body.sportId);
 				}
 				else if(rows.length == undefined ){ 
@@ -127,29 +127,6 @@ exports.deleteSport = (req, res, next) => {
 
 }
 
-// exports.retrieveSportRankings = (req, res, next) => {
-// 	let query = 'CALL retrieve_team_rankings_from_sport(?)';
-// 	let param = parseInt(req.params.sportId);
-// 	if(!isNaN(param)){
-// 		connection.userType('G').query(query,
-// 			[req.params.sportId],
-// 			(err, rows) =>{
-// 				if(!err){
-// 					return res.status(200).send(rows[0]);
-// 				}
-// 				else if(rows.length == undefined){
-// 					return res.status(404).send("Rankings are unavailable.");
-// 				}
-// 				else{
-// 					return res.status(500).send("Internal server error.");
-// 				}
-// 			});
-
-// 	}
-// 	else{
-// 		res.status(400).send("Invalid parameter.");
-// 	}
-// }
 
 exports.searchForSportByKeyword = (req,res) => {
 	let query = 'call search_for_sport_by_keyword(?);';
@@ -198,9 +175,6 @@ exports.retrieveCompetitorSportRankings = (req, res, next) => {
 
 exports.retrieveSportRankings = (req, res, next) => {
 	let query = 'CALL retrieve_sport_rankings(?)';
-	let param = parseInt(req.params.sportId);
-	// if(!isNaN(param)){
-		console.log("Entered fxn")
 		connection.userType('G').query(query,
 			[req.params.sportId],
 			(err, rows) =>{
@@ -217,8 +191,25 @@ exports.retrieveSportRankings = (req, res, next) => {
 				}
 			});
 
-	// }
-	// else{
-		// res.status(400).send("Invalid parameter.");
-	// }
 }
+
+exports.retrieveSponsorInSport = (req, res, next) => {
+	let query = 'CALL retrieve_sponsor_in_sport(?)';
+		connection.userType('G').query(query,
+			[req.params.sportId],
+			(err, rows) =>{
+				if(!err){
+					console.log(rows[0])
+					return res.status(200).send(rows[0]);
+				}
+				else if(rows.length == undefined){
+					return res.status(404).send("Sponsors are unavailable.");
+				}
+				else{
+					console.log(err);
+					return res.status(500).send("Internal server error.");
+				}
+			});
+
+}
+
