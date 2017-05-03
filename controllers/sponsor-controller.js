@@ -203,7 +203,7 @@ exports.deleteSponsorFromGame = (req, res) => {
 		let deleted = rows;
 		if(!err) {
 			connection.userType(req.session.user.type).query('CALL delete_sponsor_from_game(?,?)', [sponsorId,gameId], (err, rows) => {
-				logs.createLog(currentUser.id, "Removed Sponsor from Game");
+				logs.createLog(req.session.user.id, "Removed Sponsor from Game");
 				return res.status(200).send(deleted[0]);
 			})
 		}
@@ -224,7 +224,7 @@ exports.deleteSponsor = (req, res) => {
 		let deleted = rows;
 		if(!err) {
 			connection.userType(req.session.user.type).query('CALL delete_sponsor(?)', sponsorId, (err, rows) => {
-				logs.createLog(currentUser.id, "Deleted Sponsor");
+				logs.createLog(req.session.user.id, "Deleted Sponsor");
 				return res.status(200).send(deleted[0]);
 			})
 		}
