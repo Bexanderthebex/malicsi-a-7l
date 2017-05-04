@@ -113,21 +113,13 @@
                 <h5 class="rockwell left-align">Games Participated</h5><br>    
                 <div class="row">
                     <div class="col s3 m3 l2 push-s9 push-m9 push-l10 center-align recent-games-card see-more">
-                        <button href="" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
+                        <button ng-hide="competitorgames.length <= 3" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
                     </div>
                     <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames | limitTo: 3"><a href="#/game/{{game.game_id}}">
                         <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
                         <span class="century-gothic secondary-text">{{ game.location }}</span>
                         </a>
                     </div>
-                    <!-- <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card">
-                        <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                        <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-                    </div>
-                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card">
-                        <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                        <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-                    </div> -->
                 </div>
             </div><br>
 
@@ -264,10 +256,12 @@
             <div class="input-field col s6 competitor-input-color-change">
                 <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
                 <label for="first-name">First Name</label>
+                <div ng-show="competitor.first_name.$invalid && competitor.first_name.$touched" class="error">required</div>
             </div>
             <div class="input-field col s6 competitor-input-color-change">
                 <input placeholder=" " id="last-name" type="text" class="validate" ng-model="competitor.last_name">
                 <label for="last-name">Last Name</label>
+                <div ng-show="competitor.last_name.$invalid && competitor.last_name.$touched" class="error">required</div>
             </div>
             <div class="input-field col s4 competitor-input-color-change">
                 <input placeholder=" " id="nickname" type="text" class="validate" ng-model="competitor.nickname">

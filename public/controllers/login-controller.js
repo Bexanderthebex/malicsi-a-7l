@@ -69,7 +69,6 @@
 		}
 
 		$scope.validate = (fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum) => {
-			console.log(fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum)
 			return (fname != '' && fname != undefined && fname != null)
 				&& (lname != '' && lname != undefined && lname != null)
 				&& (nname != '' && nname != undefined && nname != null)
