@@ -36,7 +36,7 @@ CREATE TABLE competitor_sport_played (
 
 CREATE TABLE organizer (
 	id INT NOT NULL,
-	name VARCHAR(70),
+	name VARCHAR(70) NOT NULL,
 	description VARCHAR(120),
 	PRIMARY KEY (id),
 	FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE
