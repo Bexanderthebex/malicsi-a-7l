@@ -26,7 +26,7 @@
         <div class="container col s12">
             <ul id="competitor-profile-tabs" class="tabs">
                 <li class="tab col s3"><a class="blue-text darken-3 telegrafico active" href="#profile-div">Profile</a></li>
-                <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#teams-managed-div">Teams Managed</a></li>
+                <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#teams-managed-div" ng-click="getCoachedTeam()">Teams Managed</a></li>
                 <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#pending-requests-div">Pending Requests</a></li>
             </ul>
         </div>
@@ -149,7 +149,7 @@
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
 
                 <ul class="collapsible" data-collapsible="accordion">
-                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id)">
+                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id); isFull(cteam.team_id)">
                         <div class="collapsible-header grey lighten-2 remove-bottom active" id="teams-managed-header" ng-init="countMembersInTeam(cteam.team_id)">
                             <div id="teams-managed-header" class="row remove-bottom telegrafico">
                                 <div class="col l3 m3 s3 font-pt-18">{{cteam.team_name}}</div>
@@ -162,9 +162,9 @@
                         </div>
                         <div class="collapsible-body">
                             <span class="telegrafico">Membership Count: {{membercount}}/{{cteam.max_members}}</span>
-                            <a class=" pull-right btn-floating btn-small waves-effect waves-light grey lighten-2 " data-target="competitor-add-member-modal" ng-click="getRecruitRoaster(cteam);" ng-hide="membercount>=cteam.max_members"><i class="grey-text text-darken-2 material-icons tiny">add</i></a>
+                            <a class=" pull-right btn-floating btn-small waves-effect waves-light grey lighten-2 " data-target="competitor-add-member-modal" ng-click="getRecruitRoaster(cteam);isFull(cteam.team_id)" ng-hide="membercount>=cteam.max_members"><i class="grey-text text-darken-2 material-icons tiny">add</i></a>
                             <div class="telegrafico">Members: </div>
-                            <div class="chip" ng-repeat="member in teammembers"><a href="/#/competitor/profile/{{member.id}}">{{member.first_name}} {{member.last_name}}</a><i class="close material-icons"><a ng-click = "kickMember(cteam.team_id,member.id)">close</a></i></div>
+                            <div class="chip" ng-repeat="member in teammembers" ng-hide="member.is_member == 0"><a href="/#/competitor/profile/{{member.id}}">{{member.first_name}} {{member.last_name}}</a><i class="close material-icons"><a data-target="competitor-remove-member" ng-click = "setKickMember(cteam,member)">close</a></i></div>
                         </div>
                     </li>
                 </ul>
@@ -183,7 +183,7 @@
                                 <td>{{ pr.team_name }}</td>
                                 <td>
                                     <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Applicant" data-target="competitor-accept-applicant-modal">
-                                        <i class="fa fa-check fa-lg" ng-click="pendingRequests.team_id=pr.team_id; pendingRequests.id=pr.id; pendingRequests.first_name=pr.first_name; pendingRequests.team_name=pr.team_name"></i>
+                                        <i class="fa fa-check fa-lg" ng-click="pendingRequests.team_id=pr.team_id; pendingRequests.id=pr.id; pendingRequests.first_name=pr.first_name; pendingRequests.team_name=pr.team_name; isFull(pr.team_id)"></i>
                                     </div>
                                     <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Applicant" data-target="competitor-decline-applicant-modal">
                                         <i class="fa fa-times fa-lg" ng-click="setPendingRequest(pr)"></i>
@@ -467,7 +467,7 @@
                 </div>
             </div>
         <div class="row">
-            <div class="col s4 m4 l4 center-align all-games-card" data-target="competitor-add-applicant-modal" ng-repeat="competitor in roaster" ng-click="setScoutedApplicant(competitor)">
+            <div class="col s4 m4 l4 center-align all-games-card" data-target="competitor-add-applicant-modal" ng-repeat="competitor in roaster" ng-click="setScoutedApplicant(competitor);isFull(teamAccordion.team_id)">
                     <h6 class="rockwell palette-text-6">{{ competitor.first_name }} {{ competitor.last_name }}</h6>
                     <span class="century-gothic secondary-text">({{ competitor.nickname }})</span>
             </div>
@@ -630,19 +630,19 @@
             <div class="center">
                 <br>
                     <div class="card-title white-text center rockwell">
-                        <h5>Remove Team Member</h5>
+                        <h5>Kick Team Member</h5>
                     </div>
                 <br>
             </div>
         </div>
     </div>  
     <div class="modal-content telegrafico">
-        <p>Are you sure you want to remove [TEAM MEMBER] from the [TEAM NAME]?</p>
+        <p>Are you sure you want to remove {{kickedMember.first_name}} from the {{kickedMember.team_name}}?</p>
     </div>
     <div class="divider"></div>
     <div class="modal-footer">
         <a class="modal-action modal-close waves-effect btn-flat" onclick="Materialize.toast('Member Removed', 3000)"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+        <a class="modal-action modal-close waves-effect btn-flat" ng-click="kickMember(kickedMember.team_id, kickedMember.id)"><i class="material-icons left">check</i>Yes</a>
     </div>
 </div>
 

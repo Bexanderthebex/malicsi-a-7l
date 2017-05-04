@@ -25,7 +25,7 @@
 
         };
         $scope.dup_password ="";
-
+        $scope.isMember;
         $scope.membercount = 0;
         $scope.competitorteams = [];
         $scope.competitorgames = [];
@@ -44,7 +44,8 @@
         $scope.sports = [];
         $scope.organizations = [];
         $scope.roaster = [];
-
+        $scope.full = false;
+        $scope.kickedMember = {}
         $scope.searchCompetitor = searchCompetitor;
         $scope.getCompetitor = getCompetitor;
         $scope.getCompetitorTeams = getCompetitorTeams;
@@ -68,6 +69,8 @@
         $scope.isFull= isFull;
         $scope.kickMember = kickMember;
         $scope.setPendingRequest = setPendingRequest;
+        $scope.checkTeamMembership = checkTeamMembership;
+        $scope.setKickMember = setKickMember;
 
         
 
@@ -254,8 +257,16 @@
             CompetitorService
                 .getTeamMembers(id)
                 .then(function (res){
-                    $scope.teammembers = res.data;
-                    $scope.membercount = res.data.length;
+                    let i;
+                    let len = res.data.length;
+                    $scope.membercount = 0;
+                    $scope.teammembers = [];
+                    for (i = 0 ; i< len; i++){
+                        if (res.data[i].is_member == 1){
+                            $scope.teammembers.push(res.data[i]);
+                            $scope.membercount += 1;
+                        }
+                    }
                 }, function(err) {
                     console.log(err);
                 })
@@ -344,8 +355,9 @@
         }
 
         function acceptMembershipRequest(){
-            if (isFull($scope.pendingRequests.team_id)){
-                Materialize.toast("Team is Already Full");
+            isFull($scope.pendingRequests.team_id)
+            if ($scope.full){
+                Materialize.toast("Team is Already Full",4000);
                 return;
             }
 
@@ -386,18 +398,16 @@
         }
 
         function kickMember(team_id,id){
-            if (confirm("Confirm Removing This Member") == true) {
-                console.log(team_id);
-                console.log(id);
-                CompetitorService
-                    .deleteMembershipRequest(team_id, id)
-                    .then(function (res){
-                        Materialize.toast('Kicked a Member', 4000);
-                        getTeamMembers(team_id);
-                    }, function(err) {
-                        console.log(err);
-                    })
-            }
+            console.log(team_id);
+            console.log(id);
+            CompetitorService
+                .deleteMembershipRequest(team_id, id)
+                .then(function (res){
+                    Materialize.toast('Kicked a Member', 4000);
+                    getTeamMembers(team_id);
+                }, function(err) {
+                    console.log(err);
+                })
 
         }
 
@@ -407,6 +417,13 @@
             $scope.pendingRequested.first_name=pr.first_name;
             $scope.pendingRequested.team_name=pr.team_name
         }
+
+        function setKickMember(team, member){
+            $scope.kickedMember.team_id=team.team_id;
+            $scope.kickedMember.id=member.id;
+            $scope.kickedMember.first_name=member.first_name;
+            $scope.kickedMember.team_name=team.team_name
+        }
         
         function isFull(team_id){
             getTeamMembers(team_id);
@@ -415,10 +432,13 @@
             .retrieveTeam(team_id)
             .then(function (res){
                max = (res.data.max_members);
-                if (membercount>= max)
-                    return true;
-                else
-                    return false;
+                if ($scope.membercount >= max){
+                    $scope.full = true;
+                    return;
+                }
+                else{
+                    $scope.full = false;
+                }
             }, function(err) {
                 console.log(err);
             })
@@ -426,18 +446,36 @@
 
         function getRecruitRoaster(team){
             $scope.teamAccordion = team;
-            var allCompetitor = [];
             $scope.roaster = [];
             SearchService
                 .retrieveCompetitor('')
                 .then(function (res){
-                    allCompetitor = res.data;
+                    let i;
+                    for(i=0;i<res.data.length;i++){
+                        let competitor = res.data[i]
+                        OrganizationService
+                        .checkTeamMembership(competitor.id,team.team_id)
+                        .then(function(res) {
+                            if(res.data.length == 0) {
+                                $scope.roaster.push(competitor);
+                            }
+                        }, function(err) {
+                            console.log(err.data);
+                        })
+                    }
+                    /*allCompetitor = res.data;
                     console.log($scope.teammembers);                
                     console.log(allCompetitor);
                     var i;
                     var teammembersids = [];
                     var allCompetitorids = [];
                     for(i=0;i<res.data.length;i++){
+                        checkTeamMembership(allCompetitor[i].id, team.team_id)
+                        if ($scope.isMember != -1){
+                            Materialize.toast('With Application..', 4000);
+                            continue;
+                        }
+
                         allCompetitorids.push(allCompetitor[i].id);
                     }
                     for(i=0;i<$scope.teammembers.length;i++){
@@ -451,7 +489,7 @@
                             continue;
                         else
                             $scope.roaster.push(allCompetitor[i]);
-                    }
+                    }*/
                 }, function(err) {
                     console.log(err);
                 })    
@@ -468,8 +506,32 @@
             }
         }
 
+        function checkTeamMembership(id, team_id) {
+            $scope.isMember = -1;
+            OrganizationService
+                .checkTeamMembership(id,team_id)
+                .then(function(res) {
+                    if(res.data.length == 0) {
+                        // can join to teams; not a member, did not join yet
+                        //Materialize.toast('No application..', 4000);
+                        $scope.isMember = -1;
+                    } else {
+                        //Materialize.toast('With Application..', 4000);
+                        // pending request = 0, member = 1
+                        $scope.isMember = res.data.is_member;
+                    }
+                }, function(err) {
+                    console.log(err.data);
+                })
+        }
+
         function recruitNewMember(){
             console.log($scope.scoutedApplicant.id);
+            isFull($scope.scoutedApplicant.team_id)
+            if ($scope.full){
+                Materialize.toast("Team is Already Full", 4000);
+                return;
+            }
             CompetitorService
                 .addTeamMember($scope.scoutedApplicant.team_id, $scope.scoutedApplicant.id)
                 .then(function (res){
