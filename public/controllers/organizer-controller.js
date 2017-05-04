@@ -13,6 +13,7 @@
             orgID: $routeParams.id
         };
         $scope.addGame = addGame;
+        $scope.duped_password = "";
         $scope.deleteGame = deleteGame;
         $scope.updateGame = updateGame;
         $scope.getRequests = getRequests;

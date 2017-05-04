@@ -203,13 +203,20 @@
                 <div class="input-field col s6 organizer-input-color-change">
                     <input placeholder=" " id="username" type="text" class="validate" ng-model="organizer.username">
                     <label for="username">
-                        Username
+                        Username <span style="color:red;" ng-hide='((organizer.username.localeCompare("")))'>Required</span>
                     </label>
                 </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s6 organizer-input-color-change">
-                    <input placeholder=" " id="password" type="password" class="validate" ng-model="organizer.password">
+                    <input placeholder="" id="password" type="password" class="validate" ng-model="organizer.password">
                     <label for="password">
-                        Password
+                        Password <span style="color:red;" ng-hide="(!(organizer.password.localeCompare(duped_password)))">Password Mismatched</span>
+                    </label>
+                </div><div class="input-field col s6 organizer-input-color-change">
+                    <input placeholder="" type="password" class="validate" ng-model="duped_password">
+                    <label for="password">
+                        Password <span style="color:red;" ng-hide="(!(organizer.password.localeCompare(duped_password)))">Password Mismatched</span>
                     </label>
                 </div>
             </div>
@@ -217,7 +224,7 @@
                 <div class="input-field col s12 organizer-input-color-change">
                     <input placeholder=" " id="name" type="text" class="validate" ng-model="organizer.name">
                     <label for="name">
-                        Name
+                        Name <span style="color:red;" ng-hide='((organizer.name.localeCompare("")))'>Required</span>
                     </label>
                 </div>
             </div>
@@ -225,13 +232,13 @@
                 <div class="input-field col s6 organizer-input-color-change">
                     <input placeholder=" " id="contact" type="text" class="validate" ng-model="organizer.contact">
                     <label for="contact">
-                        Contact Number
+                        Contact Number <span style="color:red;" ng-hide='((organizer.contact.localeCompare("")))'>Required</span>
                     </label>
                 </div>
                 <div class="input-field col s6 organizer-input-color-change">
                     <input placeholder=" " id="email" type="text" class="validate" ng-model="organizer.email">
                     <label for="email">
-                        Email
+                        Email <span style="color:red;" ng-hide='((organizer.email.localeCompare("")))'>Required</span>
                     </label>
                 </div>
             </div>
@@ -247,7 +254,10 @@
     </div>
     <div class="modal-footer palette-5 right-align"><!-- button -->
         <button href="" class="modal-action modal-close minimalist-button">CANCEL</button> 
-        <button href="" class="modal-action modal-close minimalist-button-org2" ng-click="updateOrganizer()">SAVE CHANGES</button>
+        <button href="" ng-disabled = '(!(organizer.username.localeCompare(""))) ||
+        (!(organizer.name.localeCompare(""))) ||
+        (!(organizer.contact.localeCompare(""))) ||
+        (!(organizer.email.localeCompare(""))) || ((organizer.password.localeCompare(duped_password)))' class="modal-action modal-close minimalist-button-org2" ng-click="updateOrganizer()">SAVE CHANGES</button>
     </div>
 </div>
 
