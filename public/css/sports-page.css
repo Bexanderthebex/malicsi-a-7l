@@ -309,3 +309,48 @@
 .sports-match-radio-button [type="radio"].with-gap:checked + label:after {
 	background-color: #00415a;
 }
+
+/***********TABS ****************/
+#edit-match-tab-1{
+	padding-top: 20px!important;
+}
+
+#edit-match-tab-2 input{
+	width: 20px!important;
+	text-align: center!important;
+}
+
+#edit-match-tab-3 input{
+	width: 100%!important;
+	font-size: 12px!important;
+}
+
+#edit-match-tab-2 input:active{
+	border-bottom: 2px solid #00719c!important;
+}
+
+#edit-match-tab-2 input, #edit-match-tab-3 input{
+	margin: 0!important;
+	height: 25px!important;
+	border-bottom: 2px solid #00415a!important;
+	color: #00415a!important;
+}
+
+#edit-match-tab-2 input:disabled, #edit-match-tab-3 input:disabled{
+	color: black!important;
+	font-style: bold!important;
+	border-bottom: none!important;
+}
+
+#edit-match-tab-2 td, #edit-match-tab-3 td{
+	height: 40px!important;
+	padding-top: 0!important;
+	padding-bottom: 0!important;
+	font-size: 12px!important;
+}
+
+.fa-hover-style:hover{
+	color: #00719c!important;
+	cursor: pointer!important;
+	transition: color 0.5s!important;
+}

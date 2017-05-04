@@ -234,8 +234,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row sports-match-modal-container"><br>
-				<div class="col s12">
+            <div class="row sports-match-modal-container">
+				<div class="col s12 padding-override-0">
 					<ul class="tabs">
 				    	<li id="sport-tab-1" class="tab col s3 active"><a href="#edit-match-tab-1">Info</a></li>
 				    	<li class="tab col s3"><a href="#edit-match-tab-2">Rankings</a></li>
@@ -284,40 +284,43 @@
 								<tr>
 									<td style="width: 40%;">Team Name</td>
 									<td style="width: 20%;"><input type="text" value="1"></td>
-									<td style="width: 40%;"><i class="fa fa-pencil"></i></td>
+									<td style="width: 40%;"><i class="fa-hover-style fa fa-pencil"></i></td>
 								</tr>
 							</tbody>
 						</table>
 
 					</div>
 
-					<div id="edit-match-tab-3" class="col s12 container">
-						<table class="striped">
-							<thead>
-								<tr class="telegrafico">
-									<th>Team Name</th>
-									<th >Actions</th>
-								</tr>
-							</thead>
-							<tbody class="century-gothic">
-								<tr>
-									<td style="width: 40%;">Team Name</td>
-									<td style="width: 40%;"><i class="fa fa-pencil"></i><i class="fa fa-close"></i></td>
-								</tr>
-							</tbody>
-						</table>
+					<div id="edit-match-tab-3" class="col s12 container row">
+						<div class="col l6 m8 s12">
+							<table class="striped">
+								<thead>
+									<tr class="telegrafico">
+										<th>Team Name</th>
+										<th >Actions</th>
+									</tr>
+								</thead>
+								<tbody class="century-gothic">
+									<tr>
+										<td><input type="text" value="Team Name"></td>
+										<td><i class="fa fa-pencil fa-hover-style" style="margin-right: 5px!important;"></i><i class="fa fa-close fa-hover-style"></i></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 	
-
+						<div class="col l6 m4 s12 .palette-border-1">
 						<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD TEAM</h6>
 						<div class="row padding-override-0">
-							<div class="col s6 padding-override-0">
+							<div class="col s9 ">
 								<!-- Team Name -->
 								<label class="admin-fillup-label">Team Name</label>
 								<input ng-model="adminUsername" id="name" type="text" class="validate admin-fillup-form">
 							</div>
-							<div class="col s1 padding-override-0">
-								<button ng-click="addAdmin()" class="minimalist-button"> SUBMIT </button>
+							<div class="col s3 valign-wrapper" style="height: 100%;">
+								<button class="waves-effect waves-light search-admin-button"><i class="fa fa-plus"></i></button>
 							</div>
+						</div>
 						</div>
 
 						<div class="row padding-override-0">
@@ -329,8 +332,8 @@
             </div>
         </div>
         <div class="modal-footer palette-5 right-align"><!-- button -->
-            <button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
-            <button href="" class="modal-action modal-close minimalist-button">SAVE CHANGES</button>
+            <button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
+            <button href="" class="modal-action modal-close minimalist-button-inverted">SAVE CHANGES</button>
         </div>
     </div>
 
