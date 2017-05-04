@@ -68,6 +68,7 @@
 		$scope.addEndTime = undefined;
 		$scope.addStartDate = undefined;
 		$scope.addEndDate = undefined;
+		$scope.addScoringSystem = undefined;
 		$scope.updateId = undefined;
 		$scope.updateName = undefined;
 		$scope.updateMaxTeams = undefined;
@@ -186,7 +187,7 @@
 				startDate: $filter('date')($scope.addStartDate, "yyyy-M-d"),
 				endDate: $filter('date')($scope.addEndDate, "yyyy-M-d"),
 				maxTeams: $scope.addMaxTeams,
-				scoringSystem: $scope.selectedScoring,
+				scoringSystem: $scope.addScoringSystem,
 				gameID: $scope.thisGame.game_id
 			};
 
@@ -331,7 +332,7 @@
 					Materialize.toast("Successfully added the organizations!", 3000);
 				}, function(err) {
 					console.log(err);
-					Materialize.toast("Failed to add the Organization!", 3000);
+					Materialize.toast("Failed to add the organizations!", 3000);
 				})
 		}
 
@@ -464,7 +465,7 @@
 						countTeamInSport(res.data[i]);
 					}
 					$scope.sports = res.data;
-					console.log(res.data);
+					// console.log(res.data);
 				}, function(err) {
 					console.log(err);
 					Materialize.toast('Failed to retrieve sports!', 3000);
@@ -960,7 +961,7 @@
 					viewSponsoringInstitutions();
 					viewOtherSponsoringInstitutions();
 					checkValidSponsorDel();
-					console.log("done deleting");
+					console.log("done deleting");	
 				}, function(err){
 					console.log(err.data);
 					Materialize.toast('Failed to delete sponsoring institutions!', 3000);
