@@ -18,7 +18,8 @@
             setIsActive: setIsActive,
             updateUser: updateUser,
             updateUserPassword: updateUserPassword,
-            editPassword: editPassword
+            editPassword: editPassword,
+            uploader: uploader
         }
 
         return service;
@@ -113,5 +114,33 @@
 
             return deferred.promise;
         }
+
+        function uploader(data){
+            let deferred = $q.defer();
+            var fd = new FormData();
+            for(var key in data)
+                fd.append(key, data[key]);
+
+            $http.post('/uploadImg', fd, {
+            transformRequest: angular.indentity,
+            headers: { 'Content-Type': undefined }
+            });
+/*
+            console.log(fd);
+            $http({
+                method: 'POST',
+                data: $.param(fd),
+                url: '/uploadImg',
+                transformRequest: angular.indentity,
+                headers: { 'Content-Type': undefined }    
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });*/
+
+            return deferred.promise;
+        }
+
     }
 })();

@@ -32,6 +32,7 @@
         };
         $scope.dup_password ="";
         $scope.isMember;
+        $scope.fileItem = {};
         $scope.rankings = {
             "first" : 0,
             "second" : 0,
@@ -70,6 +71,7 @@
         $scope.kickMember = kickMember;
         $scope.setPendingRequest = setPendingRequest;
         $scope.setKickMember = setKickMember;
+        $scope.upload = upload;
 
         function searchCompetitor(){
             CompetitorService
@@ -164,6 +166,7 @@
                     console.log(err);
                 })
 
+            upload();
 
             UserService
                 .updateUser($scope.competitor)
@@ -174,12 +177,38 @@
                     console.log(err);
                 })
 
+            
             UserService
                 .updateUserPassword($scope.competitor)
                 .then(function (res){
                     //Materialize.toast('Successfully edited!', 3000);
                 }, function(err) {
                     //Materialize.toast('Unsuccessful edit!', 3000);
+                    console.log(err);
+                })
+
+            /*UserService
+                .uploader()
+                .then(function(res)){
+
+                },function(err){
+                    console.log(err);
+                });*/
+        }
+
+        function upload(){
+            $scope.fileItem.file = document.getElementById("fileItem").files[0];
+            $scope.fileItem.file.originalname = $scope.competitor.id;
+            //$scope.fileItem.file.name = { "value":$scope.competitor.id,"writable":true};
+            $scope.fileItem.name=$scope.competitor.id;
+            console.log($scope.fileItem);
+            console.log($scope.fileItem.file);
+            //var uploadUrl = '/upload';
+            UserService
+                .uploader($scope.fileItem)
+                .then(function(res){
+
+                },function(err){
                     console.log(err);
                 })
         }
