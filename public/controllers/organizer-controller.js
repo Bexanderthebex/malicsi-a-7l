@@ -43,6 +43,33 @@
             descrip: undefined
         };
 
+        function getCurrentUser() {	
+            UserService		
+                .getUserInfo()		
+                .then(function (res){		
+                    if(res.data.type != 'O') {
+                        $window.location.href = '/';
+                    } else {
+                        $scope.currentUser = res.data;
+                    }	
+                 }, function(err) {		
+                    Materialize.toast('error', 3000);       
+                })      
+        }
+
+        function getOrganizer() {
+            OrganizerService
+                .getOrganizer($scope.thisOrganizer.orgID)
+                .then(function(res) {
+                    $scope.thisOrganizer = res.data;
+                    if($scope.thisOrganizer == []) {
+                        $window.location.href = '/#/error';
+                    }
+                }, function(err) {
+                    $window.location.href = '/#/error';
+                })
+        }
+
         function copyGame(game) {
             $scope.gameCopy = {
                 gameId: game.game_id,
@@ -109,6 +136,7 @@
                 .retrieveUpcomingGames($scope.thisOrganizer.orgID)
                 .then(function(res) {
                     $scope.upcomingGames = res.data;
+                    console.log($scope.upcomingGames);
                 }, function(err) { 
                     Materialize.toast('Games not retrieved.', 3000);
                 })
@@ -212,32 +240,6 @@
                     $scope.requests = res.data;
                 }, function(err) {
                     Materialize.toast('Error retrieving requests.', 3000);
-                })
-        }
-        
-        function getCurrentUser() {	
-            console.log("anuna");	
-            UserService		
-                .getUserInfo()		
-                .then(function (res){
-                    console.log(res.data);			
-                    if(res.data.type != 'O') {
-                        $window.location.href = '/';
-                    } else {
-                        $scope.currentUser = res.data;
-                    }	
-                 }, function(err) {		
-                    Materialize.toast('error', 3000);		
-                })		
-        }
-
-        function getOrganizer() {
-            OrganizerService
-                .getOrganizer($scope.thisOrganizer.orgID)
-                .then(function(res) {
-                    $scope.thisOrganizer = res.data;
-                }, function(err) {
-                    Materialize.toast('Error retrieving organizer!', 3000);
                 })
         }
 

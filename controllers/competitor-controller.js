@@ -5,7 +5,7 @@ const logs = require('./../controllers/log-controller.js');
 
 exports.searchCompetitor = (req, res) => {
 	query = "CALL search_competitor(?)";
-	connection.userType(req.session.user.type).query(query,
+	connection.userType("G").query(query,
 		[
 			"%" + req.query.keyword + "%"
 		], (err, rows) => {
@@ -25,7 +25,7 @@ exports.searchCompetitor = (req, res) => {
 exports.getCompetitor = (req, res) => {
 	query = "CALL get_competitor(?)";
 
-	connection.userType(req.session.user.type).query(query,
+	connection.userType("G").query(query,
 		[
 			req.query.search
 		], (err, rows) => {
@@ -56,7 +56,7 @@ exports.getCompetitorTeams = (req, res) => {
 
 exports.getCompetitorTeamsPublic = (req, res) => {
 	query = 'CALL get_competitor_teams(?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType("G").query(query,
 		[
 			req.query.id
 		], (err, rows) => {
@@ -70,7 +70,7 @@ exports.getCompetitorTeamsPublic = (req, res) => {
 
 exports.getCompetitorOrganization = (req, res) => {
 	query = 'CALL get_competitor_organization(?)';
-	connection.userType(req.session.user.type).query(query,
+	connection.userType("G").query(query,
 		[
 			req.session.user.id
 		], (err, rows) => {
@@ -151,7 +151,7 @@ exports.editCompetitorBio = (req,res) => {
 exports.getCompetitorRanking = (req, res) => {
 	query = "CALL get_competitor_ranking(?)";
 
-	connection.userType(req.session.user.type).query(query,
+	connection.userType("G").query(query,
 		[
 			req.query.id
 		], (err, rows) => {
