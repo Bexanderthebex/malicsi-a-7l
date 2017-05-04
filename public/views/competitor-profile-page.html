@@ -19,7 +19,7 @@
             </div>        
             <div class="col l2 m2 s12">
                 <br><br>
-                <button class="minimalist-button-org" id="edit-profile-button" data-target="edit-profile-modal">EDIT PROFILE</button>
+                <button class="minimalist-button-org" id="edit-profile-button" data-target="edit-profile-modal" ng-click="getCompetitor()">EDIT PROFILE</button>
             </div>
         </div>
 
@@ -263,15 +263,15 @@
         <div class="row competitor-modal-container  competitor-add-modal-content">
             <div class="input-field col s6 competitor-input-color-change">
                 <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
-                <label for="first-name">First Name</label>
+                <label for="first-name">First Name <span style="color:red;" ng-hide='((competitor.first_name.localeCompare("")))'>Required</span></label>
             </div>
             <div class="input-field col s6 competitor-input-color-change">
                 <input placeholder=" " id="last-name" type="text" class="validate" ng-model="competitor.last_name">
-                <label for="last-name">Last Name</label>
+                <label for="last-name">Last Name <span style="color:red;" ng-hide='((competitor.last_name.localeCompare("")))'>Required</span></label>
             </div>
             <div class="input-field col s4 competitor-input-color-change">
                 <input placeholder=" " id="nickname" type="text" class="validate" ng-model="competitor.nickname">
-                <label for="nickname">Nickname</label>
+                <label for="nickname">Nickname <span style="color:red;" ng-hide='((competitor.nickname.localeCompare("")))'>Required</span></label>
             </div>
             <div class="input-field col s4 competitor-input-color-change">
                 <input id="birthdate" type="date" class="validate" ng-model="bday">
@@ -286,25 +286,33 @@
             </div>
             <div class="input-field col s6 competitor-input-color-change" >
                 <input placeholder=" " id="contact" type="text" class="validate" ng-model="competitor.contact">
-                <label for="contact">Contact</label>
+                <label for="contact">Contact <span style="color:red;" ng-hide='((competitor.contact.localeCompare("")))'>Required</span></label>
             </div>
             <div class="input-field col s6 competitor-input-color-change">
                 <input placeholder=" " id="email" type="email" class="validate" ng-model="competitor.email">
-                <label for="email">Email</label>
+                <label for="email">Email <span style="color:red;" ng-hide='((competitor.email.localeCompare("")))'>Required</span></label>
             </div>
             <div class="input-field col s12 competitor-input-color-change">
                 <textarea placeholder=" " id="bio" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
                 <label for="Bio" class="competitor-textarea-label-color-change">Bio</label>
             </div>
-            <div class="input-field col s6 competitor-input-color-change">
+            <div class="input-field col s12 competitor-input-color-change">
                 <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
-                <label for="first-name">Username</label>
+                <label for="first-name">Username <span style="color:red;" ng-hide='((competitor.username.localeCompare("")))'>Required</span></label>
             </div>
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
-                <label for="last-name">Password</label>
+            <div class=" row ">    
+                <div class="input-field col s6 competitor-input-color-change">
+                    <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
+                    <label for="last-name">Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
+                </div>
+
+                <div class="input-field col s6 competitor-input-color-change">
+                    <input placeholder=" " type="password" class="validate" ng-model="dup_password">
+                    <label for="last-name">Confirm Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
+                </div>
+
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="file-title col s12 century-gothic valign-wrapper">
                     <label class="active">Profile Picture</label>
                 </div>
@@ -322,11 +330,11 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor()">UPDATE</button>
+        <button ng-disabled='!competitor.first_name.localeCompare("") || !competitor.last_name.localeCompare("") || !competitor.nickname.localeCompare("") || !competitor.sex.localeCompare("") || !competitor.contact.localeCompare("") || !competitor.email.localeCompare("") || !competitor.username.localeCompare("") || (competitor.password.localeCompare(dup_password))' href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor(); getCompetitor()">UPDATE</button>
     </div>
 </div>
 
@@ -397,7 +405,6 @@
                 <a href="#/game/{{game.game_id}}">
                     <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
                     <span class="century-gothic secondary-text">{{ game.location }}</span>
-                    <a class="btn-floating btn-small waves-effect waves-light grey lighten-2 " data-target=""><i class="grey-text text-darken-2 material-icons tiny">add</i></a>
                 </a>
             </div>
             <!-- <div class="col s4 m4 l4 center-align all-games-card">

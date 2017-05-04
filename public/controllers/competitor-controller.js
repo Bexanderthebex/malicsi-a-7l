@@ -24,6 +24,7 @@
             max_members: 0
 
         };
+        $scope.dup_password ="";
 
         $scope.membercount = 0;
         $scope.competitorteams = [];
@@ -101,6 +102,7 @@
                 .getUserInfo()
                 .then(function(res) {
                     $scope.competitor = res.data;
+                    $scope.bday =  new Date($scope.competitor.birthday)
                     if($scope.competitor == []) {
                         $window.location.href = '/';
                     }
@@ -163,6 +165,12 @@
 
         function editCompetitor(){
             $scope.competitor.birthday = $scope.bday.getFullYear()+"-"+($scope.bday.getMonth()+1)+"-"+$scope.bday.getDate();
+            
+            if (competitor.first_name.localeCompare("") || competitor.last_name.localeCompare("") || competitor.nickname.localeCompare("") || competitor.sex.localeCompare("") || competitor.contact.localeCompare("") || competitor.email.localeCompare(""))
+                return;
+
+
+
             CompetitorService
                 .editCompetitor($scope.competitor)
                 .then(function (res){
@@ -172,21 +180,31 @@
                     console.log(err);
                 })
 
-            UserService
-                .updateUser($scope.competitor)
-                .then(function (res){
-                    // Materialize.toast('Successfully edited!', 3000);
-                }, function(err) {
-                    Materialize.toast('Unsuccessful edit!', 3000);
-                    console.log(err);
-                })
+
+            if ((competitor.username.localeCompare(""))){
+                Materialize.toast('RAARR!!', 3000);
+                return;
+            }
 
             UserService
-                .updateUserPassword($scope.competitor)
+                .updateUser($scope.competitor)
                 .then(function (res){
                     Materialize.toast('Successfully edited!', 3000);
                 }, function(err) {
                     Materialize.toast('Unsuccessful edit!', 3000);
+                    console.log(err);
+                })
+            if (competitor.password.localeCompare(dup_password)){
+                Materialize.toast('Mismatched Password', 3000);
+                return;
+            }
+
+            UserService
+                .updateUserPassword($scope.competitor)
+                .then(function (res){
+                    //Materialize.toast('Successfully edited!', 3000);
+                }, function(err) {
+                    //Materialize.toast('Unsuccessful edit!', 3000);
                     console.log(err);
                 })
         }
