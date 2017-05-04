@@ -149,7 +149,7 @@
 
         function addMultipleOrganizations(organizations) {
             let deferred = $q.defer()
-
+            let count = 0;
             for(var i = 0; i<organizations.length; i++){
                 let organization = {
                     gameId : organizations[i].gameId,
@@ -163,7 +163,8 @@
                     headers: headers
                 }).then((res) => {
                     console.log(res);
-                    deferred.resolve(res);
+                    count++;
+                    if (count === organizations.length) deferred.resolve(res);
                 }, (err) => {
                     deferred.reject(err);
                 });
@@ -254,6 +255,7 @@
 
         function deleteMultipleOrganizations(organizations) {
             let deferred = $q.defer();
+            let count = 0;
             for(var i = 0; i<organizations.length; i++){
                 let organization = {
                     gameId : organizations[i].gameId,
@@ -266,7 +268,8 @@
                     headers: headers
                 }).then((res) => {
                     console.log(res.data);
-                    deferred.resolve(res);
+                    count++;
+                    if (count === organizations.length) deferred.resolve(res);
                 }, (err) => {
                     deferred.reject(err);
                 });    
@@ -436,7 +439,7 @@
 
         function addMultipleSponsoringInstitutions(sponsors) {
             let deferred = $q.defer();
-
+            let count = 0;
             for (var i = 0; i<sponsors.length; i++){
                 let sponsor = {
                     sponsorId: sponsors[i].sponsorId,
@@ -450,7 +453,8 @@
                     headers: headers
                 }).then((res) => {
                     // console.log(res);
-                    deferred.resolve(res);
+                    count++;
+                    if (count === sponsors.length) deferred.resolve(res);
                 }, (err) => {
                     deferred.reject(err);
                 });
@@ -460,6 +464,32 @@
             return deferred.promise;
         } 
 
+        function deleteMultipleSponsoringInstitutions(sponsors) {
+            let deferred = $q.defer();
+            let counter = 0;
+
+            for (var i = 0; i<sponsors.length; i++){
+                let sponsor = {
+                    sponsorId: sponsors[i].sponsorId,
+                    gameId: sponsors[i].gameId
+                }
+                console.log(sponsor);
+                $http({
+                    method: 'DELETE',
+                    data: $.param(sponsor),
+                    url: '/game/deleteSponsorFromGame',
+                    headers: headers
+                }).then((res) => {
+                    console.log("deleted sponsor#"+ sponsor.sponsorId);
+                    counter += 1;
+                    if (counter === sponsors.length) deferred.resolve(res);
+                }, (err) => {
+                    deferred.reject(err);
+                });
+            }
+
+            return deferred.promise;
+        }
 
         function viewSponsoringInstitutions(game_id){
             let deferred = $q.defer();
@@ -524,30 +554,7 @@
             return deferred.promise;
         }
 
-        function deleteMultipleSponsoringInstitutions(sponsors) {
-            let deferred = $q.defer();
 
-            for (var i = 0; i<sponsors.length; i++){
-                let sponsor = {
-                    sponsorId: sponsors[i].sponsorId,
-                    gameId: sponsors[i].gameId
-                }
-
-                $http({
-                    method: 'DELETE',
-                    data: $.param(sponsor),
-                    url: '/game/deleteSponsorFromGame',
-                    headers: headers
-                }).then((res) => {
-                    // console.log(res);
-                    deferred.resolve(res);
-                }, (err) => {
-                    deferred.reject(err);
-                });
-            }
-
-            return deferred.promise;
-        }
 
         function countTeamInSport(sportId){
             let deferred = $q.defer();
