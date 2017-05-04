@@ -133,7 +133,7 @@
                 .retrieveTeamsInMatch(match_id)
                 .then(function (res){
                     console.log("teams in match retrieved");
-                    return res.data;
+                    $scope.teams = res.data;
                 }), function(err){
                     console.log("teams in match not retrieved");
                 }
@@ -143,7 +143,30 @@
             SportService
                 .viewCurrentMatch($scope.thisSport.sport_id)
                 .then(function (res){
-                 $scope.currMatch = res.data;   
+                 for (var i = 0; i < res.data.length; i++) {
+                        var tempMatch = res.data[i];
+						var  match = {
+							timeStart: undefined,
+							timeEnd: undefined,
+							date: undefined,
+							sportID: undefined,
+							teams : []
+							};
+                        match.match_id = tempMatch.match_id;
+                        match.timeStart = tempMatch.time_start;
+                        match.timeEnd = tempMatch.time_end;
+                        match.date = tempMatch.match_date;
+                        SportService
+                        .retrieveTeamsInMatch(tempMatch.match_id)
+                        .then(
+                        	function(res){
+                        		match.teams = res.data
+                        		console.log = match.teams
+                        	});
+                        
+                        console.log(match);
+                        $scope.currMatch.push(match);
+                    }  
                 }), function(err){ 
                     console.log("matches not retrieved");
                 }
@@ -172,7 +195,6 @@
                         .then(
                         	function(res){
                         		match.teams = res.data
-                        		console.log = match.teams
                         	});
                         
                         console.log(match);
@@ -190,7 +212,29 @@
                 .viewFutureMatch($scope.thisSport.sport_id)
                 .then(function (res){
                     console.log("future matches retrieved");
-                    $scope.futureMatch = res.data;
+                    for (var i = 0; i < res.data.length; i++) {
+                        var tempMatch = res.data[i];
+						var  match = {
+							timeStart: undefined,
+							timeEnd: undefined,
+							date: undefined,
+							sportID: undefined,
+							teams : []
+							};
+                        match.match_id = tempMatch.match_id;
+                        match.timeStart = tempMatch.time_start;
+                        match.timeEnd = tempMatch.time_end;
+                        match.date = tempMatch.match_date;
+                        SportService
+                        .retrieveTeamsInMatch(tempMatch.match_id)
+                        .then(
+                        	function(res){
+                        		match.teams = res.data
+                        	});
+                        
+                        console.log(match);
+                        $scope.futureMatch.push(match);
+                    }
                     console.log(res.data);
                 }), function(err){
                     console.log("matches not retrieved");
