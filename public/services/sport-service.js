@@ -22,7 +22,8 @@
             retrieveSponsors: retrieveSponsors,
             viewCurrentMatch: viewCurrentMatch,
             viewPastMatch: viewPastMatch,
-            viewFutureMatch: viewFutureMatch
+            viewFutureMatch: viewFutureMatch,
+            retrieveTeamsInMatch:retrieveTeamsInMatch
         }
 
         return service;
@@ -111,8 +112,7 @@
             console.log(sport_id);
             $http({
                 method: 'GET',
-                params: {'sportId':sport_id},
-                url: '/sport/match/viewCurrentMatch',
+                url: '/sport/match/viewCurrentMatch/' + sport_id,
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
@@ -128,8 +128,7 @@
             console.log(sport_id);
             $http({
                 method: 'GET',
-                params: {'sportId':sport_id},
-                url: '/sport/match/viewPastMatch',
+                url: '/sport/match/viewPastMatch/' + sport_id,
                 headers: headers
             }).then((res) =>{
                 deferred.resolve(res);
@@ -145,8 +144,7 @@
             console.log(sport_id);
             $http({
                 method: 'GET',
-                params: {'sportID':sport_id},
-                url: '/sport/match/viewFutureMatch',
+                url: '/sport/match/viewFutureMatch/'+sport_id,
                 headers: headers
             }).then((res) =>{
                 deferred.resolve(res);
@@ -156,7 +154,22 @@
 
             return deferred.promise;
         }
-        //end of added part -melbex
+
+        function retrieveTeamsInMatch(match_id) {
+            let deferred = $q.defer();
+            console.log(match_id);
+            $http({
+                method: 'GET',
+                url: '/sport/match/retrieveTeamsInMatch/'+ match_id,
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
         function retrieveSport(sport_id) {
             let deferred = $q.defer();
             console.log(sport_id);

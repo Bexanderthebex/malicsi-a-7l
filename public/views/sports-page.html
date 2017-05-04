@@ -62,7 +62,7 @@
 
 					<!-- LIST OF MATCHES -->
 					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewPastMatch()">
-						<div data-target="match-edit-modal" class="sports-match palette-border-5" ng-repeat="(key, value) in pastMatch | groupBy: 'match_id'" ng-click="copyMatch(value)">
+						<div data-target="match-edit-modal" class="sports-match palette-border-5" ng-repeat="match in pastMatch" ng-click="copyMatch(value)">
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
 								<div class="telegrafico col s9">Players</div>
@@ -70,20 +70,20 @@
 							</div>
 
 							<!-- MATCH PLAYERS -->
-							<div style="margin-bottom: 10px;" ng-repeat="match in value">
+							<div style="margin-bottom: 10px;" ng-repeat="team in match.teams">
 								<!-- One player -->
 								<div class="sports-match-players row">
-									<div class="col s9 century-gothic">{{ match.team_name }}</div>
-									<div class="col s3" style="height: 21px;" ng-show="match.ranking == 1"><i class="material-icons" style="font-size: 21px;">done</i></div>
+									<div class="col s9 century-gothic">{{ team.team_name }}</div>
+									<!-- <div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div> -->
 								</div>
 							</div>
 
 							<!-- MATCH INFO -->
-							<div class="sports-match-info" ng-repeat="match in value | first: 1">
-								Start: {{ match.time_start }} • End: {{ match.time_end }}
+							<div class="sports-match-info">
+								Start: {{ match.timeStart }} • End: {{ match.timeEnd }}
 							</div>
-							<div class="sports-match-info" ng-repeat="match in value | first: 1">
-								Date: {{ match.match_date }}
+							<div class="sports-match-info" >
+								Date: {{ match.date }}
 							</div>
 						</div>
 					</div>
@@ -95,7 +95,7 @@
 
 					<!-- LIST OF MATCHES -->
 					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewCurrentMatch()">
-						<div data-target="match-edit-modal" class="sports-match palette-border-3" ng-repeat="(key, value) in currMatch | group_by: 'match_id'" ng-click="copyMatch(match)">
+						<div data-target="match-edit-modal" class="sports-match palette-border-3" ng-repeat="match in currMatch" ng-click="copyMatch(match)">
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
 								<div class="telegrafico col s9">Players</div>
@@ -105,18 +105,18 @@
 							<!-- MATCH PLAYERS -->
 							<div style="margin-bottom: 10px;">
 								<!-- One player -->
-								<div class="sports-match-players row" ng-repeat="match in value">
-									<div class="col s9 century-gothic">{{ match.team_name }}</div>
+								<div class="sports-match-players row" ng-repeat="team in match.teams">
+									<div class="col s9 century-gothic">{{ team.team_name }}</div>
 									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
 								</div>
 							</div>
 
 							<!-- MATCH INFO -->
 							<div class="sports-match-info" ng-repeat="match in value | first: 1">
-								Start: {{ match.time_start }} • End: {{ match.time_end }}
+								Start: {{ match.timeStart }} • End: {{ match.timeEnd }}
 							</div>
 							<div class="sports-match-info" ng-repeat="match in value | first: 1">
-								Date: {{ match.match_date }}
+								Date: {{ match.date }}
 							</div>
 						</div>
 					</div>
@@ -128,7 +128,7 @@
 
 					<!-- LIST OF MATCHES -->
 					<div  class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewFutureMatch">
-						<div data-target="match-edit-modal" class="sports-match palette-border-4" ng-repeat="match in futureMatch | groupBy: 'match_id'" ng-click="copyMatch(match)">
+						<div data-target="match-edit-modal" class="sports-match palette-border-4" ng-repeat="match in futureMatch " ng-click="copyMatch(match)">
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
 								<div class="telegrafico col s9">Players</div>
@@ -138,18 +138,18 @@
 							<!-- MATCH PLAYERS -->
 							<div style="margin-bottom: 10px;">
 								<!-- One player -->
-								<div class="sports-match-players row" ng-repeat="match in value">
-									<div class="col s9 century-gothic">{{ match.team_name }}</div>
-									<div class="col s3" style="height: 21px;" ><i class="material-icons" style="font-size: 21px;" ></i></div>
+								<div class="sports-match-players row" ng-repeat="team in match.teams">
+									<div class="col s9 century-gothic">{{ team.team_name }}</div>
+									<!-- <div class="col s3" style="height: 21px;" ><i class="material-icons" style="font-size: 21px;" ></i></div> -->
 								</div>
 							</div>
 
 							<!-- MATCH INFO -->
-							<div class="sports-match-info" ng-repeat="match in value | first: 1">
-								Start: {{ match.time_start }} • End: {{ match.time_end }}
+							<div class="sports-match-info">
+								Start: {{ match.timeStart }} • End: {{ match.timeEnd }}
 							</div>
-							<div class="sports-match-info" ng-repeat="match in value | first: 1">
-								Date: {{ match.match_date }}
+							<div class="sports-match-info">
+								Date: {{ match.date }}
 							</div>
 						</div>
 					</div>

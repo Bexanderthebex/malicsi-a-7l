@@ -80,7 +80,7 @@ exports.viewSportDetails = (req, res) => {
 		if (!err){
 			return res.status(200).send(rows[0][0]);
 		}else{
-			return res.status(500).send("Internal Server Error");
+			return res.status(500).send("Internal Server Ercvror");
 		}
 	});
 }
@@ -195,21 +195,21 @@ exports.retrieveSportRankings = (req, res, next) => {
 
 exports.retrieveSponsorInSport = (req, res, next) => {
 	let query = 'CALL retrieve_sponsor_in_sport(?)';
-		connection.userType('G').query(query,
-			[req.params.sportId],
-			(err, rows) =>{
-				if(!err){
-					console.log(rows[0])
-					return res.status(200).send(rows[0]);
-				}
-				else if(rows.length == undefined){
-					return res.status(404).send("Sponsors are unavailable.");
-				}
-				else{
-					console.log(err);
-					return res.status(500).send("Internal server error.");
-				}
-			});
+	connection.userType('G').query(query,
+	[req.params.sportId],
+	(err, rows) =>{
+		if(!err){
+			console.log(rows[0])
+			return res.status(200).send(rows[0]);
+		}
+		else if(rows.length == undefined){
+			return res.status(404).send("Sponsors are unavailable.");
+		}
+		else{
+			console.log(err);
+			return res.status(500).send("Internal server error.");
+		}
+	});
 
 }
 

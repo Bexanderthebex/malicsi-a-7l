@@ -152,7 +152,7 @@ exports.viewCurrentMatch = (req, res) => {
 	let query = 'CALL view_current_match(?)';
 
 	connection.userType('G').query(query,
-		[req.query.sportId],
+		[req.params.sportId],
 		(err, rows, fields) => {
 		if(!err){
 			if(rows.length == 0){
@@ -171,7 +171,7 @@ exports.viewPastMatch = (req, res) => {
 	let query = 'CALL view_past_match(?)';
 
 	connection.userType('G').query(query,
-		[req.query.sportId],
+		[req.params.sportId],
 		(err, rows, fields) => {
 		if(!err){
 			if(rows.length == 0){
@@ -190,7 +190,7 @@ exports.viewFutureMatch = (req, res) => {
 	let query = 'CALL view_future_match(?)';
 
 	connection.userType('G').query(query,
-		[req.query.sportId],
+		[req.params.sportId],
 		(err, rows, fields) => {
 		if(!err){
 			if(rows.length == 0){
@@ -205,6 +205,29 @@ exports.viewFutureMatch = (req, res) => {
 		}
 	});
 }
+
+exports.retrieveTeamsInMatch = (req, res) => {
+	let query = 'CALL retrieve_teams_in_match(?)';
+
+	connection.userType('G').query(query,
+		[req.params.matchId],
+		(err, rows, fields) => {
+		if(!err){
+			console.log(rows);
+			if(rows.length == 0){
+				return res.status(200).send([]);
+			}
+			else{
+				return res.status(200).send(rows[0]);
+			}
+		
+		}else{
+			console.log(err)
+			return res.status(500).send("Internal server error occurred");
+		}
+	});
+}
+
 
 exports.retrieveMatchWinner = (req, res) => {
 	let query = 'CALL retrieve_match_winner(?)';
