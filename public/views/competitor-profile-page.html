@@ -288,11 +288,13 @@
                 <textarea placeholder=" " id="bio" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
                 <label for="Bio" class="competitor-textarea-label-color-change">Bio</label>
             </div>
-            <div class="input-field col s12 competitor-input-color-change">
-                <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
-                <label for="first-name">Username <span style="color:red;" ng-hide='((competitor.username.localeCompare("")))'>Required</span></label>
+            <div class="row">
+                <div class="input-field col s6 competitor-input-color-change">
+                    <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
+                    <label for="first-name">Username <span style="color:red;" ng-hide='((competitor.username.localeCompare("")))'>Required</span></label>
+                </div>
             </div>
-            <div class=" row ">    
+            <div class="row">    
                 <div class="input-field col s6 competitor-input-color-change">
                     <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
                     <label for="last-name">Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
