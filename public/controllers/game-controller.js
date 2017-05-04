@@ -391,13 +391,6 @@
 				scoringSystem: undefined,
 				gameID: $scope.thisGame.game_id
 			};
-			// $('#addName').val("");
-			// $('#addStartTime').val("");
-			// $('#addEndTime').val("");
-			// $('#addStartDate').val("");
-			// $('#addEndDate').val("");
-			// $('#addDescription').val("");
-			// $('#addMaxTeams').val("");
 
 			$scope.addName = undefined;
 			$scope.addMaxTeams = undefined;
