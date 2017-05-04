@@ -16,10 +16,8 @@
 		$scope.addSport = addSport;
 		$scope.resetAddSportForm = resetAddSportForm;
 		$scope.resetUpdateSportForm = resetUpdateSportForm;
-		$scope.retrieveSport = retrieveSport;
 		$scope.deleteSport = deleteSport;
 		$scope.updateSport = updateSport;
-		$scope.updateWinner = updateWinner;
 		$scope.retrieveAllSports = retrieveAllSports;
 		$scope.searchSport = searchSport;
 		$scope.passSport = passSport;
@@ -391,13 +389,6 @@
 				scoringSystem: undefined,
 				gameID: $scope.thisGame.game_id
 			};
-			// $('#addName').val("");
-			// $('#addStartTime').val("");
-			// $('#addEndTime').val("");
-			// $('#addStartDate').val("");
-			// $('#addEndDate').val("");
-			// $('#addDescription').val("");
-			// $('#addMaxTeams').val("");
 
 			$scope.addName = undefined;
 			$scope.addMaxTeams = undefined;
@@ -434,17 +425,6 @@
 				$('#addName').tooltip("remove");
 		}
 
-		function retrieveSport() {
-			GameService
-				.retrieveSport('12')
-				.then(function(res) {
-					$scope.sports = res.data.data;
-					console.log($scope.sports);
-					console.log(res.data.data);
-				}, function(err) {
-					//console.log(err);
-				})
-		}
 
 		function searchSport(){
 			SearchService
@@ -529,11 +509,6 @@
 				winner: $scope.updateWinner
 			}
 
-			// sport.time_start = sport.time_start.getHours()+":"+sport.time_start.getMinutes() +":"+ sport.time_start.getSeconds();
-			// sport.time_end = sport.time_end.getHours()+ ":" +sport.time_end.getMinutes() + ":" + sport.time_end.getSeconds();
-			// sport.start_date = sport.start_date.getFullYear()+"-"+(sport.start_date.getMonth()+1)+"-"+sport.start_date.getDate();
-			// sport.end_date = sport.end_date.getFullYear()+"-"+(sport.end_date.getMonth()+1)+"-"+sport.end_date.getDate();
-			// sport.scoring_system = $scope.selectedScoring;
 			console.log(sport);
 			GameService
 				.updateSport(sport)
@@ -548,15 +523,6 @@
 				})
 		}
 
-		function updateWinner(sport) {
-			GameService
-				.updateWinner(sport)
-				.then(function(res) {
-					console.log("updated");
-				}, function(err) {
-					console.log(err.data);
-				})
-		}
 
 
 		function countTeamInSport(sport){
@@ -658,25 +624,6 @@
 					console.log("past matches retrieved for game#"+ $scope.thisGame.game_id);
 					console.log(res.data);
 					$scope.temp = res.data;
-					// for (var i = $scope.temp.length - 1; i >= 0; i--) {
-					//     for(var j = $scope.temp.length - 2; j>=0; j--){
-					//         if($scope.temp[i].match_id == $scope.temp[j].match_id && $scope.temp[i].team_id != $scope.temp[j].team_id && $scope.match_id_tracker.indexOf($scope.temp[i].match_id)==-1){
-					//             $scope.mergedMatch = {
-					//                 team1_name: $scope.temp[i].team_name,
-					//                 team1_id: $scope.temp[i].team_id,
-					//                 team2_name: $scope.temp[j].team_name,
-					//                 team2_id: $scope.temp[j].team_id,
-					//                 match_date: $scope.temp[i].match_date,
-					//                 time_start: $scope.temp[i].time_start,
-					//                 time_end: $scope.temp[i].time_end,
-					//                 match_id: $scope.temp[i].match_id
-					//             };
-					//         $scope.pastMatches.push($scope.mergedMatch);
-					//         $scope.match_id_tracker.push($scope.temp[i].match_id);
-					//         }
-					//     }
-					// }
-
 					mergeMatchesBeta(res.data, "past");
 					console.log($scope.pastMatches);
 				}, function(err){
@@ -763,24 +710,7 @@
 					console.log("ongoing matches retrieved for game#"+ $scope.thisGame.game_id);
 					console.log(res.data);
 					$scope.temp = res.data;
-					// for (var i = $scope.temp.length - 1; i >= 0; i--) {
-					// 	for(var j = $scope.temp.length - 2; j>=0; j--){
-					// 		if($scope.temp[i].match_id == $scope.temp[j].match_id && $scope.temp[i].team_id != $scope.temp[j].team_id && $scope.match_id_tracker.indexOf($scope.temp[i].match_id)==-1){
-					// 			$scope.mergedMatch = {
-					// 				team1_name: $scope.temp[i].team_name,
-					// 				team1_id: $scope.temp[i].team_id,
-					// 				team2_name: $scope.temp[j].team_name,
-					// 				team2_id: $scope.temp[j].team_id,
-					// 				match_date: $scope.temp[i].match_date,
-					// 				time_start: $scope.temp[i].time_start,
-					// 				time_end: $scope.temp[i].time_end,
-					// 				match_id: $scope.temp[i].match_id
-					// 			};
-					// 		$scope.ongoingMatches.push($scope.mergedMatch);
-					// 		$scope.match_id_tracker.push($scope.temp[i].match_id);
-					// 		}
-					// 	}
-					// }
+
 					mergeMatchesBeta(res.data, "ongoing");
 					console.log($scope.ongoingMatches);
 
@@ -796,24 +726,7 @@
 					console.log("upcoming matches retrieved for game#"+ $scope.thisGame.game_id);
 					console.log(res.data);
 					$scope.temp = res.data;
-					// for (var i = $scope.temp.length - 1; i >= 0; i--) {
-					// 	for(var j = $scope.temp.length - 2; j>=0; j--){
-					// 		if($scope.temp[i].match_id == $scope.temp[j].match_id && $scope.temp[i].team_id != $scope.temp[j].team_id && $scope.match_id_tracker.indexOf($scope.temp[i].match_id)==-1){
-					// 			$scope.mergedMatch = {
-					// 				team1_name: $scope.temp[i].team_name,
-					// 				team1_id: $scope.temp[i].team_id,
-					// 				team2_name: $scope.temp[j].team_name,
-					// 				team2_id: $scope.temp[j].team_id,
-					// 				match_date: $scope.temp[i].match_date,
-					// 				time_start: $scope.temp[i].time_start,
-					// 				time_end: $scope.temp[i].time_end,
-					// 				match_id: $scope.temp[i].match_id
-					// 			};
-					// 		$scope.upcomingMatches.push($scope.mergedMatch);
-					// 		$scope.match_id_tracker.push($scope.temp[i].match_id);
-					// 		}
-					// 	}
-					// }
+
 					mergeMatchesBeta(res.data, "upcoming");
 					console.log($scope.upcomingMatches);
 
@@ -900,29 +813,6 @@
 				})
 		}
 
-		// function addSponsoringInstitution(sponsor_id){
-		//     GameService
-		//         .addSponsoringInstitution(sponsor_id, $scope.thisGame.game_id)
-		//         .then(function(res){
-		//             console.log("added sponsor institution");
-		//             // console.log(res);
-		//         }, function(err){
-		//             console.log(err.data);
-		//             Materialize.toast('Failed to add sponsoring institution!', 3000);
-		//         })
-		// }
-
-		// function deleteSponsoringInstitution(sponsor_id){
-		//     GameService
-		//         .deleteSponsoringInstitution(sponsor_id, $scope.thisGame.game_id)
-		//         .then(function(res){
-		//             console.log("deleted sponsor insitution#"+ $scope.thisGame.game_id);
-		//             // console.log(res);
-		//         }, function(err){
-		//             console.log(err.data);
-		//             Materialize.toast('Failed to delete sponsoring institution  !', 3000);
-		//         })
-		// }
 
 		function showCheckedSponsors(){
 			for(var i=0; i<$scope.otherSponsors.length; i++){
