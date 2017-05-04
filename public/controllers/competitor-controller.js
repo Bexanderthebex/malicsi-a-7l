@@ -166,9 +166,6 @@
         function editCompetitor(){
             $scope.competitor.birthday = $scope.bday.getFullYear()+"-"+($scope.bday.getMonth()+1)+"-"+$scope.bday.getDate();
             
-            if (competitor.first_name.localeCompare("") || competitor.last_name.localeCompare("") || competitor.nickname.localeCompare("") || competitor.sex.localeCompare("") || competitor.contact.localeCompare("") || competitor.email.localeCompare(""))
-                return;
-
 
 
             CompetitorService
@@ -181,11 +178,6 @@
                 })
 
 
-            if ((competitor.username.localeCompare(""))){
-                Materialize.toast('RAARR!!', 3000);
-                return;
-            }
-
             UserService
                 .updateUser($scope.competitor)
                 .then(function (res){
@@ -194,10 +186,6 @@
                     Materialize.toast('Unsuccessful edit!', 3000);
                     console.log(err);
                 })
-            if (competitor.password.localeCompare(dup_password)){
-                Materialize.toast('Mismatched Password', 3000);
-                return;
-            }
 
             UserService
                 .updateUserPassword($scope.competitor)
