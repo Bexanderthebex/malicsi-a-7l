@@ -69,7 +69,6 @@
         $scope.isFull= isFull;
         $scope.kickMember = kickMember;
         $scope.setPendingRequest = setPendingRequest;
-        $scope.checkTeamMembership = checkTeamMembership;
         $scope.setKickMember = setKickMember;
 
         function searchCompetitor(){
