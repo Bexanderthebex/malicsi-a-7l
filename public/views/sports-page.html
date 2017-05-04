@@ -172,22 +172,19 @@
 		</div>
 
 		<!-- SPONSORS -->
-		<div id="sports-sponsors" class="palette-5">
-			<h5 class="rockwell center white-text">Sponsors</h5>
-			<div class="row palette-text-3" style="padding-left: 200px; padding-right: 200px; text-align: center;">
-				<div class="col s3">Yakult</div>
-				<div class="col s3">Bear Brand</div>
-				<div class="col s3">Meralco</div>
-				<div class="col s3">Rain or Shine</div>
-				<div class="col s3">Smart</div>
-				<div class="col s3">Globe</div>
-				<div class="col s3">Yakimix</div>
-				<div class="col s3">Elastomeric</div>
-				<div class="col s3">Cleaveland</div>
-				<div class="col s3">Golden cubes</div>
-				<div class="col s3">Chepar</div>
-				<div class="col s3">Something</div>
-				<div class="col s3">PLDT</div>
+		<div id="sports-sponsors" class="palette-5 row margin-override-0">
+			<div class="col l3 valign-wrapper">
+				<div class="row center">
+					<h5 class="rockwell center white-text">Sponsors</h5>
+				</div>
+			</div>
+			<div class="col l9">
+				<div class="row">
+					<div class="col s2 " ng-repeat="spon in sportSponsors">
+						<h6 class="rockwell palette-text-3">{{ spon.name }}</h6>
+					</div>
+					
+				</div>
 			</div>
 		</div>
 	</div>
@@ -236,13 +233,21 @@
             </div>
             <div class="row sports-match-modal-container">
 				<div class="col s12 padding-override-0">
-					<ul class="tabs">
-				    	<li id="sport-tab-1" class="tab col s3 active"><a href="#edit-match-tab-1">Info</a></li>
-				    	<li class="tab col s3"><a href="#edit-match-tab-2">Rankings</a></li>
-				    	<li class="tab col s3"><a href="#edit-match-tab-3">Teams</a></li>
+
+					<ul id="organization-main-tabs" class="tabs">
+						<li class="tab col s4 palette-5">
+							<a class="blue-text-darken-3 rockwell active strong" href="#edit-match-tab-1">Info</a>
+						<li>
+						<li class="tab col s4 palette-5 ">
+							<a class="blue-text-darken-3 rockwell strong" href="#edit-match-tab-2">Ranking</a>
+						<li>
+						<li class="tab col s4 palette-5 ">
+							<a class="blue-text-darken-3 rockwell strong" href="#edit-match-tab-3">Team</a>
+						<li>
 					</ul>
+					
 				</div>
-				<div class="col s12 row">
+				<div class="col s12 row padding-override-0">
 					<div id="edit-match-tab-1" class="col s12 container">
 		                <!-- EDIT MATCH INFO -->
 		                <div class="input-field col s4 sports-match-input-color-change">
@@ -291,7 +296,7 @@
 
 					</div>
 
-					<div id="edit-match-tab-3" class="col s12 container row">
+					<div id="edit-match-tab-3" class="padding-override-0 col s12 container row">
 						<div class="col l6 m8 s12">
 							<table class="striped">
 								<thead>
@@ -309,18 +314,18 @@
 							</table>
 						</div>
 	
-						<div class="col l6 m4 s12 .palette-border-1">
-						<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD TEAM</h6>
-						<div class="row padding-override-0">
-							<div class="col s9 ">
-								<!-- Team Name -->
-								<label class="admin-fillup-label">Team Name</label>
-								<input ng-model="adminUsername" id="name" type="text" class="validate admin-fillup-form">
+						<div class="col l6 m4 s12 palette-gray" style="height: 100%;">
+							<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD TEAM</h6>
+							<div class="row padding-override-0">
+								<div class="col s9 ">
+									<!-- Team Name -->
+									<label class="admin-fillup-label">Team Name</label>
+									<input ng-model="adminUsername" id="name" type="text" class="validate admin-fillup-form">
+								</div>
+								<div class="col l3 valign-wrapper" style="height: 100%;">
+									<button class="waves-effect waves-light search-admin-button"><i class="fa fa-plus"></i></button>
+								</div>
 							</div>
-							<div class="col s3 valign-wrapper" style="height: 100%;">
-								<button class="waves-effect waves-light search-admin-button"><i class="fa fa-plus"></i></button>
-							</div>
-						</div>
 						</div>
 
 						<div class="row padding-override-0">

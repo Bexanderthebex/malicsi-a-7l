@@ -1,3 +1,5 @@
+$(document).ready(function(){ $('.modal-trigger').leanModal(); });
+
 $(document).ready(function(){
   $('.dropdown-button').dropdown({
       inDuration: 300,

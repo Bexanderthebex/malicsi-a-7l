@@ -23,6 +23,9 @@ exports.addSponsor= (req, res) => {
 			if(err.code == 'ER_TRUNCATED_WRONG_VALUE_FOR_FIELD'){
 				return res.status(400).send("Unable to add sponsor. Reason: Invalid values.");
 			}
+			else if (err.code == 'ER_DUP_ENTRY'){
+				return res.status(400).send("Sponsor already exists.");
+			}
 			else{
 				return res.status(500).send("Unknown error.");
 			}
