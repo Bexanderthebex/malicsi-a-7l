@@ -100,6 +100,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <h4 class="center Telegrafico strong palette-text-4" ng-hide="competitorteams.length != 0"><br><br> No Teams</h4>
                     </div>
                 </div>
             </div>
@@ -114,6 +115,11 @@
                 <div class="row">
                     <div class="col s3 m3 l2 push-s9 push-m9 push-l10 center-align recent-games-card see-more">
                         <button ng-hide="competitorgames.length <= 3" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
+                    </div>
+                    <div class="" ng-hide="competitorgames.length != 0"><a>
+                        <h4 class="Telegrafico strong palette-text-4">No Games</h4>
+                        <span class="century-gothic secondary-text"></span>
+                        </a>
                     </div>
                     <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames | limitTo: 3"><a href="#/game/{{game.game_id}}">
                         <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
@@ -139,7 +145,6 @@
             <div class="row container">
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
-
                 <ul class="collapsible" data-collapsible="accordion">
                     <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id); isFull(cteam.team_id)">
                         <div class="collapsible-header grey lighten-2 remove-bottom active" id="teams-managed-header" ng-init="countMembersInTeam(cteam.team_id)">
@@ -160,6 +165,7 @@
                         </div>
                     </li>
                 </ul>
+                <h4 class="center Telegrafico strong palette-text-4" ng-hide="coachedteam.length != 0">No Teams</h4>
             </div>
         </div>
 
@@ -186,6 +192,7 @@
                     </table>
                 </div>
                 <div class="container divider"></div>
+                <h4 class="center Telegrafico strong palette-text-4" ng-hide="pendingRequests.length != 0">No Membership Applications</h4>
                 <!-- <div class="col s12">
                     <h5 class="rockwell">Invites</h5>
                     <table class="highlight responsive-table">
