@@ -75,6 +75,7 @@ exports.editTeamRankingInMatch = function(req, res, next){
 				return res.status(200).send(rows[0]);
 			})
 		}else{
+			console.log(err);
 		    return res.status(404).send("Not Found");
 		}
 	});

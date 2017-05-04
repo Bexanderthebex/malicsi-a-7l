@@ -6,15 +6,17 @@
         .module('app')
         .controller('SportController', SportController);
 
-    SportController.$inject = ['$scope', '$routeParams', 'SportService', 'OrganizerService', 'OrganizationService', 'CompetitorService'];
+    SportController.$inject = ['$scope', '$routeParams', 'SportService', 'OrganizerService', 'OrganizationService', 'CompetitorService', 'UserService'];
 
-    function SportController($scope, $routeParams, SportService, OrganizerService, OrganizationService, CompetitorService) {
+    function SportController($scope, $routeParams, SportService, OrganizerService, OrganizationService, CompetitorService, UserService) {
         $scope.thisSport = {
             sport_id: $routeParams.id
         };
+        $scope.enableMatch = true;
         $scope.copyMatch = copyMatch;
         $scope.addMatch = addMatch;
         $scope.editMatch = editMatch;
+        $scope.editTeamRanking = editTeamRanking;
         $scope.deleteMatch = deleteMatch;
         $scope.retrieveMatches = retrieveMatches;
         $scope.retrieveSport = retrieveSport;
@@ -27,12 +29,13 @@
         $scope.viewPastMatch = viewPastMatch;               //newly added function
         $scope.viewFutureMatch = viewFutureMatch;           //newly added function
         $scope.retrieveTeamsInMatch = retrieveTeamsInMatch;
+        $scope.getCurrentUser = getCurrentUser;
         $scope.sport = {};
         $scope.game = {};
         $scope.currMatch = [];
         $scope.futureMatch = [];
         $scope.pastMatch = [];
-        $scope.matchCopy = [];
+        $scope.matchCopy = {};
         $scope.matchDateCopy = {};
         $scope.rankings = [];
         $scope.rankingsSport = [];
@@ -43,25 +46,39 @@
             timeStart: undefined,
             timeEnd: undefined,
             date: undefined,
-            sportID: undefined,
+            matchID: undefined,
+            sportID: undefined
         };
        
 
         $scope.dateTime = Date.now();
 
+        function getCurrentUser() { 
+            UserService     
+                .getUserInfo()      
+                .then(function (res){       
+                    if(res.data.type != 'O') {
+                        $scope.enableMatch = false;
+                    } 
+                 }, function(err) {     
+                    Materialize.toast('error', 3000);       
+                })      
+        }
+
         function copyMatch(match) {
-            for (var i = 0; i < match.length; i++) {
-                $scope.matchCopy.push(match[i]);
-                $scope.matchDateCopy = {
-                    timeStart: new Date("2014-01-01"+"T"+match[i].time_start+"Z"),
-                    timeEnd: new Date("2014-01-01"+"T"+match[i].time_end+"Z"),
-                    date: new Date(match[i].match_date+"T"+match[i].time_start+"Z"),
-                    remarks: match[i].remarks,
-                    matchID: match[i].match_id
-                };
-                $scope.matchIdCopy = match[i].match_id;
+            console.log(match);
+            $scope.matchCopy = {
+                timeStart: new Date(match.date+"T"+match.timeStart+"Z"),
+                timeEnd: new Date(match.date+"T"+match.timeEnd+"Z"),
+                date: new Date(match.date+"T"+match.timeStart+"Z"),
+                matchID: match.match_id,
+                teams : []
             }
-            console.log($scope.matchDateCopy);
+            for (var i = 0; i < match.teams.length; i++) {
+                $scope.matchCopy.teams.push(match.teams[i]);
+            }
+            $scope.matchIdCopy = match.match_id;
+            console.log($scope.matchCopy);
         }
 
         function retrieveSport() {
@@ -143,25 +160,26 @@
             SportService
                 .viewCurrentMatch($scope.thisSport.sport_id)
                 .then(function (res){
-                 for (var i = 0; i < res.data.length; i++) {
+                    $scope.currMatch = [];
+                    for (var i = 0; i < res.data.length; i++) {
                         var tempMatch = res.data[i];
-						var  match = {
-							timeStart: undefined,
-							timeEnd: undefined,
+                        var  match = {
+                            timeStart: undefined,
+                            timeEnd: undefined,
 							date: undefined,
-							sportID: undefined,
+							matchID: undefined,
 							teams : []
 							};
                         match.match_id = tempMatch.match_id;
                         match.timeStart = tempMatch.time_start;
                         match.timeEnd = tempMatch.time_end;
                         match.date = tempMatch.match_date;
+                        match.remarks = tempMatch.remarks;
                         SportService
                         .retrieveTeamsInMatch(tempMatch.match_id)
                         .then(
                         	function(res){
                         		match.teams = res.data
-                        		console.log = match.teams
                         	});
                         
                         console.log(match);
@@ -177,19 +195,21 @@
                 .viewPastMatch($scope.thisSport.sport_id)
                 .then(function (res){
                     console.log("Past match retrieved");
+                    $scope.pastMatch = [];
                     for (var i = 0; i < res.data.length; i++) {
                         var tempMatch = res.data[i];
 						var  match = {
 							timeStart: undefined,
 							timeEnd: undefined,
 							date: undefined,
-							sportID: undefined,
+							matchID: undefined,
 							teams : []
 							};
                         match.match_id = tempMatch.match_id;
                         match.timeStart = tempMatch.time_start;
                         match.timeEnd = tempMatch.time_end;
                         match.date = tempMatch.match_date;
+                        match.remarks = tempMatch.remarks;
                         SportService
                         .retrieveTeamsInMatch(tempMatch.match_id)
                         .then(
@@ -212,19 +232,21 @@
                 .viewFutureMatch($scope.thisSport.sport_id)
                 .then(function (res){
                     console.log("future matches retrieved");
+                    $scope.futureMatch = [];
                     for (var i = 0; i < res.data.length; i++) {
                         var tempMatch = res.data[i];
 						var  match = {
 							timeStart: undefined,
 							timeEnd: undefined,
 							date: undefined,
-							sportID: undefined,
+							matchID: undefined,
 							teams : []
 							};
                         match.match_id = tempMatch.match_id;
                         match.timeStart = tempMatch.time_start;
                         match.timeEnd = tempMatch.time_end;
                         match.date = tempMatch.match_date;
+                        match.remarks = tempMatch.remarks;
                         SportService
                         .retrieveTeamsInMatch(tempMatch.match_id)
                         .then(
@@ -235,7 +257,7 @@
                         console.log(match);
                         $scope.futureMatch.push(match);
                     }
-                    console.log(res.data);
+                    // console.log(res.data);
                 }), function(err){
                     console.log("matches not retrieved");
                 }
@@ -243,8 +265,6 @@
 // -----------------------------------------------------------------------------------
 
         function checkRankings() {
-   
-
             if (($scope.rankingsSport).length == 0) {
                 return false;
             } else {
@@ -303,6 +323,16 @@
                 .editMatch()
                 .then(function (res){
                     Materialize.toast('Edited match!', 3000); 
+                }, function(err) {
+                    Materialize.toast('Match not edited!', 3000); 
+                })
+        }
+
+        function editTeamRanking(team) {
+            SportService
+                .editTeamRanking($scope.matchIdCopy, team.team_id, team.ranking)
+                .then(function (res){
+                    Materialize.toast('Team Ranking Updated!', 3000); 
                 }, function(err) {
                     Materialize.toast('Match not edited!', 3000); 
                 })
