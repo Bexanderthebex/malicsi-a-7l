@@ -463,33 +463,6 @@
                             console.log(err.data);
                         })
                     }
-                    /*allCompetitor = res.data;
-                    console.log($scope.teammembers);                
-                    console.log(allCompetitor);
-                    var i;
-                    var teammembersids = [];
-                    var allCompetitorids = [];
-                    for(i=0;i<res.data.length;i++){
-                        checkTeamMembership(allCompetitor[i].id, team.team_id)
-                        if ($scope.isMember != -1){
-                            Materialize.toast('With Application..', 4000);
-                            continue;
-                        }
-
-                        allCompetitorids.push(allCompetitor[i].id);
-                    }
-                    for(i=0;i<$scope.teammembers.length;i++){
-                        teammembersids.push($scope.teammembers[i].id);
-                    }                                        
-
-
-                    for(i=0;i<res.data.length;i++){
-                        var j;
-                        if (teammembersids.includes(allCompetitorids[i]))
-                            continue;
-                        else
-                            $scope.roaster.push(allCompetitor[i]);
-                    }*/
                 }, function(err) {
                     console.log(err);
                 })    
@@ -504,25 +477,6 @@
                 team_id: $scope.teamAccordion.team_id,
                 team_name: $scope.teamAccordion.team_name
             }
-        }
-
-        function checkTeamMembership(id, team_id) {
-            $scope.isMember = -1;
-            OrganizationService
-                .checkTeamMembership(id,team_id)
-                .then(function(res) {
-                    if(res.data.length == 0) {
-                        // can join to teams; not a member, did not join yet
-                        //Materialize.toast('No application..', 4000);
-                        $scope.isMember = -1;
-                    } else {
-                        //Materialize.toast('With Application..', 4000);
-                        // pending request = 0, member = 1
-                        $scope.isMember = res.data.is_member;
-                    }
-                }, function(err) {
-                    console.log(err.data);
-                })
         }
 
         function recruitNewMember(){
