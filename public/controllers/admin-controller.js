@@ -174,7 +174,8 @@
 
                     Materialize.toast('Successfully created organization.', 2000);
                 }, (err) => {
-                    console.log('Add organizer', err);
+                    Materialize.toast(err.data.message, 2000);
+                    console.log('Add organization', err);
                 });
             }
         }
@@ -487,7 +488,7 @@
                     Materialize.toast("Successfully created sponsor.", 2000);
                 }, (err) => {
                     console.log(err);
-                    Materialize.toast("An error occured.", 2000);
+                    Materialize.toast(err.data, 2000);
                 });
             }
         }
