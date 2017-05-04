@@ -17,6 +17,12 @@
         $scope.competitor = {};
         $scope.userinfo = {};
         $scope.scoutedApplicant = {};
+        $scope.membercount = 0;
+        $scope.competitorteams = [];
+        $scope.competitorgames = [];
+        $scope.coachedteam = [];
+        $scope.pendingRequests = [];
+        $scope.rank = [];
         $scope.team = {
             team_name: null,
             sport_id: null,
@@ -26,12 +32,6 @@
         };
         $scope.dup_password ="";
         $scope.isMember;
-        $scope.membercount = 0;
-        $scope.competitorteams = [];
-        $scope.competitorgames = [];
-        $scope.coachedteam = [];
-        $scope.pendingRequests = [];
-        $scope.rank = [];
         $scope.rankings = {
             "first" : 0,
             "second" : 0,
@@ -72,31 +72,16 @@
         $scope.checkTeamMembership = checkTeamMembership;
         $scope.setKickMember = setKickMember;
 
-        
-
-        function initChip(){
-
-            $('.chips').material_chip();
-
-            $('.chips-initial').material_chip({
-            data: $scope.teammembers,
-            });
-
-            $('.chips').on('chip.delete', function(e, chip){
-            kickMember($scope.toKickFrom,$scope.toKickID)
-            });
-        }
-
-
- 
-
         function searchCompetitor(){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
                     $scope.competitor = res.data;
+                    if($scope.competitor == []) {
+                        $window.location.href = '/#/error';
+                    }
                 }, function(err) {
-                    console.log(err);
+                    $window.location.href = '/#/error';
                 })
         }
 

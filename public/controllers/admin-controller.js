@@ -174,7 +174,8 @@
 
                     Materialize.toast('Successfully created organization.', 2000);
                 }, (err) => {
-                    console.log('Add organizer', err);
+                    Materialize.toast(err.data.message, 2000);
+                    console.log('Add organization', err);
                 });
             }
         }
@@ -427,7 +428,7 @@
 				$('#user-cancel-edit-' + user.id).hide();
                 $('.user-form-edit-' + user.id).prop('disabled', true);
 
-                UserService.updateUser(user.username, user.email, user.contact, user.id)
+                UserService.updateUser(user)
                 .then((res) => {
                     AdminService.retrieveLog().then((res) => {
                         $scope.logs = res.data;
@@ -487,7 +488,7 @@
                     Materialize.toast("Successfully created sponsor.", 2000);
                 }, (err) => {
                     console.log(err);
-                    Materialize.toast("An error occured.", 2000);
+                    Materialize.toast(err.data, 2000);
                 });
             }
         }

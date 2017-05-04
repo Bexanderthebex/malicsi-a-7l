@@ -21,6 +21,8 @@
         $scope.retrieveSportRankings = retrieveSportRankings;
         $scope.retrieveSponsors = retrieveSponsors;
         $scope.checkRankings = checkRankings;
+        $scope.checkMatches = checkMatches;
+        $scope.checkSponsors = checkSponsors;
         $scope.viewCurrentMatch = viewCurrentMatch;         //newly added function
         $scope.viewPastMatch = viewPastMatch;               //newly added function
         $scope.viewFutureMatch = viewFutureMatch;           //newly added function
@@ -29,6 +31,8 @@
         $scope.currMatch = [];
         $scope.futureMatch = [];
         $scope.pastMatch = [];
+        $scope.matchCopy = [];
+        $scope.matchDateCopy = {};
         $scope.rankings = [];
         $scope.rankingsSport = [];
         $scope.rankingsOrganization = [];
@@ -39,11 +43,22 @@
             date: undefined,
             sportID: undefined
         };
-        
 
+        $scope.dateTime = Date.now();
 
         function copyMatch(match) {
-            // copy match - will be accessed inside edit
+            for (var i = 0; i < match.length; i++) {
+                $scope.matchCopy.push(match[i]);
+                $scope.matchDateCopy = {
+                    timeStart: new Date("2014-01-01"+"T"+match[i].time_start+"Z"),
+                    timeEnd: new Date("2014-01-01"+"T"+match[i].time_end+"Z"),
+                    date: new Date(match[i].match_date+"T"+match[i].time_start+"Z"),
+                    remarks: match[i].remarks,
+                    matchID: match[i].match_id
+                };
+                $scope.matchIdCopy = match[i].match_id;
+            }
+            console.log($scope.matchDateCopy);
         }
 
         function retrieveSport() {
@@ -115,7 +130,7 @@
                 .viewCurrentMatch($scope.thisSport.sport_id)
                 .then(function (res){
                     $scope.currMatch = res.data;
-                }), function(err){ 
+                }), function(err){
                     console.log("matches not retrieved");
                 }
         }
@@ -152,6 +167,22 @@
             }
         }
 
+        function checkMatches() {
+            if (($scope.pastMatch).length == 0 && ($scope.currMatch).length == 0 && ($scope.futureMatch).length == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function checkSponsors() {
+            if (($scope.sportSponsors).length == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
         function addZero(i) {
             if (i < 10) {
                 i = "0" + i;
@@ -162,16 +193,24 @@
         function addMatch() {
             var ts = new Date($scope.timeStart);
             var te = new Date($scope.timeEnd);
+            var d = new Date($scope.date);
             $scope.newMatch.timeStart = addZero(ts.getHours()) + ':' + addZero(ts.getMinutes()) + ':' + addZero(ts.getSeconds());
             $scope.newMatch.timeEnd = addZero(te.getHours()) + ':' + addZero(te.getMinutes()) + ':' + addZero(te.getSeconds());
+            $scope.newMatch.date = d.getFullYear() + '-' + addZero(d.getMonth()+1) + '-' + addZero(d.getDate());
             $scope.newMatch.sportID = $scope.sport.sport_id;
+
             console.log($scope.newMatch);
+
             SportService
                 .addMatch($scope.newMatch)
                 .then(function (res){
-                    Materialize.toast('Added new match!', 3000); 
+                    Materialize.toast('Added new match!', 3000);
+                    viewPastMatch();
+                    viewCurrentMatch();
+                    viewFutureMatch();
                 }, function(err) {
-                    Materialize.toast('New match not added!', 3000); 
+                    console.log(err);
+                    Materialize.toast('New match not added!', 3000);
                 })
         }
 
@@ -179,19 +218,22 @@
             SportService
                 .editMatch()
                 .then(function (res){
-                    Materialize.toast('Edited match!', 3000); 
+                    Materialize.toast('Edited match!', 3000);
                 }, function(err) {
-                    Materialize.toast('Match not edited!', 3000); 
+                    Materialize.toast('Match not edited!', 3000);
                 })
         }
 
         function deleteMatch() {
             SportService
-                .deleteMatch()
+                .deleteMatch($scope.matchIdCopy)
                 .then(function (res){
-                    Materialize.toast('Deleted match!', 3000); 
+                    Materialize.toast('Deleted match!', 3000);
+                    viewFutureMatch();
+                    viewCurrentMatch();
+                    viewPastMatch();
                 }, function(err) {
-                    Materialize.toast('Match not deleted!', 3000); 
+                    Materialize.toast('Match not deleted!', 3000);
                 })
         }
 

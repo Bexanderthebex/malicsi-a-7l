@@ -45,7 +45,13 @@ exports.addOrganization = (req, res) => {
             if(!err) {
                 return res.status(200).send({ 'message' : 'Sucessfully created organization'});
             } else {
-                return res.status(500).send({ 'message' : 'Internal Server Error'});
+				if (err.code === 'ER_DUP_ENTRY') {
+					return res.status(500).send({ 'message' : 'Organization already exists.'});
+				} else if (err.code === 'ER_BAD_NULL_ERROR') {
+					return res.status(500).send({ 'message' : 'Missing fields.'});
+				} else {
+					return res.status(500).send({ 'message' : 'Internal server error.'});
+				}
             }
         }
     );
