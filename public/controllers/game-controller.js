@@ -68,6 +68,7 @@
 		$scope.addEndTime = undefined;
 		$scope.addStartDate = undefined;
 		$scope.addEndDate = undefined;
+		$scope.addScoringSystem = undefined;
 		$scope.updateId = undefined;
 		$scope.updateName = undefined;
 		$scope.updateMaxTeams = undefined;
@@ -186,7 +187,7 @@
 				startDate: $filter('date')($scope.addStartDate, "yyyy-M-d"),
 				endDate: $filter('date')($scope.addEndDate, "yyyy-M-d"),
 				maxTeams: $scope.addMaxTeams,
-				scoringSystem: $scope.selectedScoring,
+				scoringSystem: $scope.addScoringSystem,
 				gameID: $scope.thisGame.game_id
 			};
 

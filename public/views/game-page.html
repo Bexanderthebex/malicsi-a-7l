@@ -162,7 +162,7 @@
                                         </div>
                                     </div>
                                     <div class="row" ng-show="checkPastMatches()">
-                                            <h5 class="rockwell center game-match-content-row-top past">No ongoing matches. </h5>
+                                            <h5 class="rockwell center game-match-content-row-top past">No past matches. </h5>
                                     </div>
                                 </div>
                                 <div id="ongoing-match">
@@ -491,7 +491,7 @@
 				<div class="row">
 					<div class="input-field col s6 game-input-color-change">
 						<input placeholder=" "  ng-model="addName" type="text" class="validate" name="addName" required>
-						<label for="name">Sport Name</label>
+						<label for="addName">Sport Name</label>
 						<div ng-show="addSportForm.addName.$invalid && addSportForm.addName.$touched" class="error">required</div>
 					</div>
 					
@@ -501,10 +501,12 @@
 						<div ng-show="addSportForm.addMaxTeams.$invalid && addSportForm.addMaxTeams.$touched" class="error">required</div>
 					</div>
 					<div class="input-field col s4 game-input-color-change">
-						<select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" >
+						<!-- <select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" >
 							<option value="" selected hidden>None</option>
-						</select>
-						<label>Scoring system</label>
+						</select> -->
+                        <input placeholder=" "  ng-model="addScoringSystem" type="text" class="validate" name="addScoringSystem" required>
+						<label for="addScoringSystem">Scoring system</label>
+                        <div ng-show="addSportForm.addScoringSystem.$invalid && addSportForm.addScoringSystem.$touched" class="error">required</div>
 					</div>
 				</div>
 
@@ -595,13 +597,16 @@
 					</div>
 
 					<div class="input-field col s4 game-input-color-change">
-						<select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" required>
-							<!-- <option value="" disabled selected>Choose your option</option>
+						<!-- <select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" required>
+							<option value="" disabled selected>Choose your option</option>
 							<option value="Tally Score">Tally Score</option>
 							<option value="Round Robin">Round Robin</option>
-							<option value="None">None</option> -->
+							<option value="None">None</option>
 							<option value="" selected hidden>None</option>
-						</select>
+						</select> -->
+                        <input placeholder=" "  ng-model="updateScoringSystem" type="text" class="validate" name="updateScoringSystem" required>
+                        <label for="updateScoringSystem">Scoring system</label>
+                        <div ng-show="updateSportForm.updateScoringSystem.$invalid && updateSportForm.updateScoringSystem.$touched" class="error">required</div>
 						<label>Scoring system</label>
 					</div>
 				</div>
