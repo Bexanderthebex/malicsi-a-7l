@@ -29,10 +29,17 @@
 
         function addMatch(newMatch) {
             let deferred = $q.defer();
-            console.log(newMatch);
+            
+            let ddata = {
+                timeStart: newMatch.timeStart,
+                timeEnd: newMatch.timeEnd,
+                date: newMatch.date,
+                sportID: newMatch.sportID
+            }
+
             $http({
                 method: 'POST',
-                data: $.param(newMatch),
+                data: $.param(ddata),
                 url: '/sport/match/addMatch',
                 headers: headers
             }).then((res) => {
@@ -64,9 +71,13 @@
         function deleteMatch(match) {
             let deferred = $q.defer();
             console.log(match);
+            let ddata = {
+                matchId: match
+            }
+
             $http({
                 method: 'DELETE',
-                data: $.param(match),
+                data: $.param(ddata),
                 url: '/sport/match/deleteMatch',
                 headers: headers
             }).then((res) => {
