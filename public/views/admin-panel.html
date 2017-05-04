@@ -51,7 +51,8 @@
 									<th ><i class="fa fa-key"></i></th>
 									<th>Email</th>
 									<th>Contact</th>
-									<th>Inactive / Active</th>
+									<th style="padding-left: 30px!important;">Active</th>
+									<th>Edit</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
@@ -79,7 +80,7 @@
 									</td>
 									<td style="width: 15%;">
 										<div>
-											<i ng-attr-id="admin-edit-{{a.id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editAdmin(a)"></i>
+											<i ng-attr-id="admin-edit-{{a.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editAdmin(a)"></i>
 											<i ng-attr-id="admin-cancel-edit-{{a.id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditAdmin(a)"></i>
 										</div>
 									</td>
@@ -139,7 +140,8 @@
 									<th>Name</th>
 									<th style="width: 20px!important;"><i class="fa fa-key"></i></th>
 									<th>Description</th>
-									<th>Inactive / Active</th>
+									<th style="padding-left: 30px!important;">Active</th>
+									<th>Edit</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
@@ -163,7 +165,7 @@
 									</td>
 									<td style="width: 15%;">
 										<div>
-											<i ng-attr-id="organizer-edit-{{o.id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganizer(o)"></i>
+											<i ng-attr-id="organizer-edit-{{o.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganizer(o)"></i>
 											<i ng-attr-id="organizer-cancel-edit-{{o.id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditOrganizer(o)"></i>
 										</div>
 									</td>
@@ -297,7 +299,8 @@
 									<th><i class="fa fa-key"></i></th>
 									<th>Email Address</th>
 									<th>Contact No.</th>
-									<th>Inactive / Active</th>
+									<th style="padding-left: 30px!important;">Active</th>
+									<th>Edit</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
@@ -324,7 +327,7 @@
 									</td>
 									<td style="width: 15%;">
 										<div>
-											<i ng-attr-id="user-edit-{{u.id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editUser(u)"></i>
+											<i ng-attr-id="user-edit-{{u.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editUser(u)"></i>
 											<i ng-attr-id="user-cancel-edit-{{u.id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditUser(u)"></i>
 										</div>
 									</td>
@@ -419,6 +422,7 @@
 								<tr class="telegrafico">
 									<th>Name</th>
 									<th>Description</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
@@ -485,7 +489,7 @@
 		</div>
 		<div class="modal-footer right-align">
 			<button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
-			<button href="" class="modal-action modal-close minimalist-button" ng-click="authenticate()">NEXT <i class="fa fa-angle-double-right"></i></button>
+			<button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="authenticate()">NEXT <i class="fa fa-angle-double-right"></i></button>
 		</div>
 	</div>
 

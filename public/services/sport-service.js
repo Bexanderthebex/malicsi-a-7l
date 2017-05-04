@@ -19,6 +19,7 @@
             retrieveSport: retrieveSport,
             retrieveGame: retrieveGame,
             retrieveSportRankings: retrieveSportRankings,
+            retrieveSponsors: retrieveSponsors,
             viewCurrentMatch: viewCurrentMatch,
             viewPastMatch: viewPastMatch,
             viewFutureMatch: viewFutureMatch
@@ -201,8 +202,7 @@
             console.log(sport_id);
             $http({
                 method: 'GET',
-                params: { 'sportId':sport_id },
-                url: '/game/viewSponsorInSport',
+                url: '/sport/viewSponsorInSport/' + sport_id,
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
