@@ -428,7 +428,7 @@
 				$('#user-cancel-edit-' + user.id).hide();
                 $('.user-form-edit-' + user.id).prop('disabled', true);
 
-                UserService.updateUser(user.username, user.email, user.contact, user.id)
+                UserService.updateUser(user)
                 .then((res) => {
                     AdminService.retrieveLog().then((res) => {
                         $scope.logs = res.data;
