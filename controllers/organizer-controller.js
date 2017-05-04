@@ -7,7 +7,7 @@ const logs = require('./../controllers/log-controller.js');
 exports.searchOrganizer = (req, res) => {
 	query = 'CALL search_organizer(?)';
 
-	connection.userType('A').query(query,
+	connection.userType('G').query(query,
 		[
 			"%" + req.query.search + "%"
 		], (err, rows) => {
@@ -28,7 +28,7 @@ exports.searchOrganizer = (req, res) => {
 exports.getOrganizer = (req, res) => {
 	query = 'CALL get_organizer(?)';
 
-	connection.userType('A').query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.search
 		], (err, rows) => {
@@ -73,7 +73,7 @@ exports.editOrganizer = (req,res) => {
 
 exports.findGames = (req,res,next) => {
 	query = "CALL find_game(?)"
-	connection.userType('A').query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.id
 		], (err,rows) => {
@@ -92,7 +92,7 @@ exports.findGames = (req,res,next) => {
 
 exports.findSport = (req,res,next) =>{
 	query = "CALL find_sport(?)"
-	connection.userType('A').query(query,
+	connection.userType('G').query(query,
 		[
 		 	req.query.game_id
 		], (err,rows) => {
@@ -111,7 +111,7 @@ exports.findSport = (req,res,next) =>{
 
 exports.findTeam = (req,res,next) =>{
 	query = "CALL find_team(?)"
-	connection.userType('A').query(query,
+	connection.userType('G').query(query,
 		[
 			req.query.sport_id
 		], (err,rows) => {
@@ -131,7 +131,7 @@ exports.findTeam = (req,res,next) =>{
 
 exports.getRequest = (req, res, next) => {
 	query = "CALL get_request(?)"
-	connection.userType('A').query(query,
+	connection.userType(req.session.user.type).query(query,
 		[
 			req.query.team_id
 		], (err,rows) => {
@@ -153,12 +153,12 @@ exports.processRequest = (req, res, next) => {
 	query = "CALL process_request(?)"
 	query1 = "CALL get_team(?)"
 
-	connection.userType('A').query(query,
+	connection.userType(req.session.user.type).query(query,
 		[
 			req.body.team_id
 		], (err,rows) => {
 			if(!err){
-				connection.userType('A').query(query1,
+				connection.userType(req.session.user.type).query(query1,
 					[
 				 		req.body.team_id
 					], (err,rows) => {
@@ -186,7 +186,7 @@ exports.deleteTeam = (req, res, next) => {
 	query1 = "CALL delete_team(?)"
 	query = "CALL get_team(?)"
 
-	connection.userType('A').query(query,
+	connection.userType(req.session.user.type).query(query,
 		[
 			req.body.team_id
 		], (err,rows) => {
@@ -219,7 +219,7 @@ exports.deleteTeam = (req, res, next) => {
 
 exports.getPendingParticipation = (req, res, next) => {
 	query = "CALL get_pending_participation(?)"
-	connection.userType('A').query(query,
+	connection.userType(req.session.user.type).query(query,
 		[
 			req.query.organizer_id
 		], (err,rows) => {

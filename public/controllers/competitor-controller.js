@@ -17,6 +17,12 @@
         $scope.competitor = {};
         $scope.userinfo = {};
         $scope.scoutedApplicant = {};
+        $scope.membercount = 0;
+        $scope.competitorteams = [];
+        $scope.competitorgames = [];
+        $scope.coachedteam = [];
+        $scope.pendingRequests = [];
+        $scope.rank = [];
         $scope.team = {
             team_name: null,
             sport_id: null,
@@ -24,13 +30,7 @@
             max_members: 0
 
         };
-
-        $scope.membercount = 0;
-        $scope.competitorteams = [];
-        $scope.competitorgames = [];
-        $scope.coachedteam = [];
-        $scope.pendingRequests = [];
-        $scope.rank = [];
+        $scope.dup_password ="";
         $scope.rankings = {
             "first" : 0,
             "second" : 0,
@@ -67,11 +67,10 @@
         $scope.isFull= isFull;
         $scope.kickMember = kickMember;
         $scope.setPendingRequest = setPendingRequest;
-
-        
+        // $scope.competitor.$setPristine();
+        // $scope.competitor.$setUntouched();
 
         function initChip(){
-
             $('.chips').material_chip();
 
             $('.chips-initial').material_chip({
@@ -83,16 +82,16 @@
             });
         }
 
-
- 
-
         function searchCompetitor(){
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
                     $scope.competitor = res.data;
+                    if($scope.competitor == []) {
+                        $window.location.href = '/#/error';
+                    }
                 }, function(err) {
-                    console.log(err);
+                    $window.location.href = '/#/error';
                 })
         }
 
@@ -101,6 +100,7 @@
                 .getUserInfo()
                 .then(function(res) {
                     $scope.competitor = res.data;
+                    $scope.bday =  new Date($scope.competitor.birthday)
                     if($scope.competitor == []) {
                         $window.location.href = '/';
                     }
@@ -163,6 +163,9 @@
 
         function editCompetitor(){
             $scope.competitor.birthday = $scope.bday.getFullYear()+"-"+($scope.bday.getMonth()+1)+"-"+$scope.bday.getDate();
+            
+
+
             CompetitorService
                 .editCompetitor($scope.competitor)
                 .then(function (res){
@@ -172,10 +175,11 @@
                     console.log(err);
                 })
 
+
             UserService
                 .updateUser($scope.competitor)
                 .then(function (res){
-                    // Materialize.toast('Successfully edited!', 3000);
+                    Materialize.toast('Successfully edited!', 3000);
                 }, function(err) {
                     Materialize.toast('Unsuccessful edit!', 3000);
                     console.log(err);
@@ -184,9 +188,9 @@
             UserService
                 .updateUserPassword($scope.competitor)
                 .then(function (res){
-                    Materialize.toast('Successfully edited!', 3000);
+                    //Materialize.toast('Successfully edited!', 3000);
                 }, function(err) {
-                    Materialize.toast('Unsuccessful edit!', 3000);
+                    //Materialize.toast('Unsuccessful edit!', 3000);
                     console.log(err);
                 })
         }
