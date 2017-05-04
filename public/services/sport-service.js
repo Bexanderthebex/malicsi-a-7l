@@ -144,7 +144,7 @@
             console.log(sport_id);
             $http({
                 method: 'GET',
-                url: '/sport/match/viewFutureMatch/'+sport_id,
+                url: '/sport/match/viewUpcomingMatch/' + sport_id,
                 headers: headers
             }).then((res) =>{
                 deferred.resolve(res);

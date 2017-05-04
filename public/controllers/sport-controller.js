@@ -67,8 +67,8 @@
         function copyMatch(match) {
             console.log(match);
             $scope.matchCopy = {
-                timeStart: new Date("2014-01-01"+"T"+match.timeStart+"Z"),
-                timeEnd: new Date("2014-01-01"+"T"+match.timeEnd+"Z"),
+                timeStart: new Date(match.date+"T"+match.timeStart+"Z"),
+                timeEnd: new Date(match.date+"T"+match.timeEnd+"Z"),
                 date: new Date(match.date+"T"+match.timeStart+"Z"),
                 matchID: match.match_id,
                 teams : []
@@ -256,7 +256,7 @@
                         console.log(match);
                         $scope.futureMatch.push(match);
                     }
-                    console.log(res.data);
+                    // console.log(res.data);
                 }), function(err){
                     console.log("matches not retrieved");
                 }
