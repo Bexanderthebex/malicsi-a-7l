@@ -309,9 +309,9 @@
                 .addMatch($scope.newMatch)
                 .then(function (res){
                     Materialize.toast('Added new match!', 3000);
-                    // viewPastMatch();
-                    // viewCurrentMatch();
-                    // viewFutureMatch();
+                    viewPastMatch();
+                    viewCurrentMatch();
+                    viewFutureMatch();
                 }, function(err) {
                     Materialize.toast('New match not added!', 3000); 
                 })
