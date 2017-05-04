@@ -181,6 +181,14 @@ BEGIN
 	select * from organization join (SELECT team_id, team_name, team_organization as organization_id, sum(ranking) AS total_rank FROM team JOIN team_in_match using (team_id) JOIN sport_match using (match_id) where sport_match.sport_id = in_sport_id group by team_id order by total_rank) as sport_ranking using (organization_id);
 END //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS retrieve_sponsor_in_sport;
+DELIMITER //
+CREATE PROCEDURE retrieve_sponsor_in_sport (IN in_sport_id INT)
+BEGIN
+ 	select name from sponsor_institution join sponsor_games using(sponsor_id) join sport using (game_id) where sponsor_games.game_id = sport.game_id AND sport_id = 1;
+END //
+DELIMITER ;
  
 
 -- create sport
@@ -244,3 +252,9 @@ GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'guest'@'localhost';
+
+-- retrieve sponsor in sport
+GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'guest'@'localhost';

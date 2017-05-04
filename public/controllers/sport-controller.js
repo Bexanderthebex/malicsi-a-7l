@@ -19,6 +19,7 @@
         $scope.retrieveMatches = retrieveMatches;
         $scope.retrieveSport = retrieveSport;
         $scope.retrieveSportRankings = retrieveSportRankings;
+        $scope.retrieveSponsors = retrieveSponsors;
         $scope.checkRankings = checkRankings;
         $scope.viewCurrentMatch = viewCurrentMatch;         //newly added function
         $scope.viewPastMatch = viewPastMatch;               //newly added function
@@ -31,6 +32,7 @@
         $scope.rankings = [];
         $scope.rankingsSport = [];
         $scope.rankingsOrganization = [];
+        $scope.sportSponsors = [];
         $scope.newMatch = {
             timeStart: undefined,
             timeEnd: undefined,
@@ -93,6 +95,18 @@
                     console.log(res.data);
                 }, function(err) {
                     console.log("match winners not retrieved");
+                })
+        }
+
+        function retrieveSponsors(sport_id) {
+            SportService
+                .retrieveSponsors(sport_id) //parameter is sport id
+                .then(function (res){
+                    console.log("retrieved sponsors");
+                    $scope.sportSponsors = res.data;
+                    console.log(res.data);
+                }, function(err) {
+                    console.log("sponsors not retrieved");
                 })
         }
 
