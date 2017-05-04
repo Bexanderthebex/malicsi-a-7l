@@ -234,10 +234,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="game-game-box-body game-rightpanel-container game-panel-bottom" >
+                            <div class="game-game-box-body game-rightpanel-container game-panel-bottom" ng-hide="checkSports()">
                                 <div class="col s12">
                                     <div class="row" ng-init="retrieveAllSports()" >
-                                        <div class="col s6 m6" ng-show="checkIfOrganizer()">
+                                        <div class="col s6 m6" ng-show="checkIfOrganizer()" >
                                             <div class="game-sport" data-target="game-add-sport" >
                                                 <div class="card game-hovercard">
                                                     <div class="center">
@@ -249,7 +249,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col s6 m6" ng-repeat = "sport in sports"ng-hide="checkSports()">
+                                        <div class="col s6 m6" ng-repeat = "sport in sports" ng-hide="checkSports()">
                                             <div class="game-sport">
                                                 <div class="card game-hovercard">
                                                     <div class="center">
@@ -288,7 +288,11 @@
                             </div>
                             <div class ="row center" ng-show="checkSports()">
 								<h5 class="rockwell center">No sports here.</h5>
-								<p class="rockwell center grey-text">Please check your search query or contact your game organizer.</p>
+								<p class="rockwell center grey-text">Incorrect info? Contact your game organizer or administrator.</p>
+                                <button class="minimalist-button game-sponsor-button" data-target="game-add-sport" ng-show="checkIfOrganizer()">
+                                    
+                                            <span class="card-title game-remove-bottom activator center grey-text text-darken-4 telegrafico truncate" >Add</span>                           
+                                </button>
 							</div>
                         </div>
                     </div>
