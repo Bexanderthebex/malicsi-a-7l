@@ -47,12 +47,18 @@
   height: 5px;
 }
 
+#team-table-1 {
+  border: 5px solid #001f2b;
+  border-radius: 2px;
+}
+
 #organization-table th {
   font-size: 90%;
 }
 
 #organization-table td {
   font-size: 90%;
+  border-radius: 0;
 }
 
 #organization-table tbody tr:hover {
@@ -325,6 +331,10 @@
     margin: 0;
 }
 
+#organization-table td:hover .org-standing {
+  text-shadow: 1px 0px black;
+}
+
 #org-game-search-bar input {
     outline: none;
 }
@@ -342,7 +352,7 @@
 #org-game-search-bar input[type=search] {
     margin-bottom: 30px !important;
     background: white url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-    border: 1px solid black;
+    border: 2px solid #001f2b;
     padding: 9px 10px 9px 32px;
     width: 60% !important;
     -webkit-border-radius: 10em;
@@ -394,7 +404,7 @@
 #org-team-search-bar input[type=search] {
     margin-bottom: 30px !important;
     background: white url(http://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
-    border: 1px solid black;
+    border: 2px solid #001f2b;
     padding: 9px 10px 9px 32px;
     width: 30%;
     -webkit-border-radius: 10em;

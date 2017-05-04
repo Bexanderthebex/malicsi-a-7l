@@ -13,7 +13,7 @@ exports.addMatch = (req, res) => {
 		 req.body.sportID],
 		(err, rows) => {
 		if (!err){
-			connection.userType(req.session.user.type).query('CALL view_last_inserted_match()', (err, rows) => {
+			connection.userType('G').query('CALL view_last_inserted_match()', (err, rows) => {
 				logs.createLog(req.session.user.id, "Created Match");
 				return res.status(200).send(rows[0]);
 			})
@@ -52,7 +52,7 @@ exports.editMatch = function(req, res, next){
 		(err, rows) => {
 		if(!err){
 		    connection.userType(req.session.user.type).query('CALL view_match_details(?)', req.body.matchID, (err, rows) => {
-				logs.createLog(currentUser.id, "Updated Match");
+				logs.createLog(req.session.user.id, "Updated Match");
 				return res.status(200).send(rows[0]);
 
 			});
@@ -71,7 +71,7 @@ exports.editTeamRankingInMatch = function(req, res, next){
 		(err, rows) => {
 		if(!err){
 		    connection.userType(req.session.user.type).query('CALL view_team_in_match(?)', req.body.matchID, (err, rows) => {
-				logs.createLog(currentUser.id, "Updated Team Ranking in Match");
+				logs.createLog(req.session.user.id, "Updated Team Ranking in Match");
 				return res.status(200).send(rows[0]);
 			})
 		}else{
@@ -137,7 +137,7 @@ exports.deleteMatch = (req, res) => {
 				return res.status(501).send('Not Implemented');
 			} else {
 				   connection.userType(req.session.user.type).query('CALL delete_match(?)', matchId , (err, rows) => {
-						logs.createLog(currentUser.id, "Deleted Match");
+						logs.createLog(req.session.user.id, "Deleted Match");
 						return res.status(200).send(deleted[0]);
 					})
 			}

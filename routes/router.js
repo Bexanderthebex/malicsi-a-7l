@@ -168,12 +168,14 @@ router.get('/sport/comranks/:sportId/:id', sportController.retrieveCompetitorSpo
 router.get('/sport/match/viewCurrentMatch', matchController.viewCurrentMatch);
 router.get('/sport/match/viewPastMatch', matchController.viewPastMatch);
 router.get('/sport/match/viewFutureMatch', matchController.viewFutureMatch);
+router.get('/sport/retrieveSponsorInSport/:id', sportController.retrieveSponsorInSport);
 router.get('/sport/search', sportController.searchForSportByKeyword);
 router.get('/sport/rankings/:sportId', sportController.retrieveSportRankings);
 router.post('/sport/createSport', sportController.createSport);
 router.post('/sport/addWinnerSport', sportController.addWinnerSport);
 router.put('/sport/editSport', sportController.editSport);
 router.delete('/sport/deleteSport', sportController.deleteSport);
+
 
 //match routers
 router.get('/game/sport/countMatchBySport/:sportID', matchController.countMatchBySport);
