@@ -6,7 +6,7 @@ const logs = require('./../controllers/log-controller.js');
 
 
 exports.addMatch = (req, res) => {
-	connection.userType(req.session.user.type).query('CALL add_match(?, ?, ?, ?)',
+	connection.userType('G').query('CALL add_match(?, ?, ?, ?)',
 		[req.body.timeStart,
 		 req.body.timeEnd,
 		 new Date(req.body.date),

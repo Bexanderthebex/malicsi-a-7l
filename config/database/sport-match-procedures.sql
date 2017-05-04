@@ -189,6 +189,7 @@ GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'guest'@'localhost';
 -- add match
 GRANT EXECUTE ON PROCEDURE add_match TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE add_match TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE add_match TO 'guest'@'localhost';
 
 -- edit match
 GRANT EXECUTE ON PROCEDURE edit_match TO 'organizer'@'localhost';
@@ -202,8 +203,5 @@ GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO 'administrator'@'localh
 GRANT EXECUTE ON PROCEDURE delete_match TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE delete_match TO 'administrator'@'localhost';
 
--- view_last_inserted_match
-GRANT EXECUTE ON PROCEDURE view_last_inserted_match TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_last_inserted_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_last_inserted_match TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_last_inserted_match TO 'guest'@'localhost';
+
