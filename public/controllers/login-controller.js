@@ -18,7 +18,6 @@
 				username : $scope.uname,
 				password : $scope.pword,
 			}).then(function(result){
-				Materialize.toast("Sucessfully logged in!", 2000);
 				$window.location.href = '/';
 			}, function(err) {
 				Materialize.toast("Incorrect credentials", 2000);
@@ -61,7 +60,6 @@
 		$scope.logOut = function(){
 			$http.get('/logout')
 			.then(function(result){
-				Materialize.toast("Successfully logged out", 5000);
 				$window.location.href = '/';
 			}, function(err) {
 				console.log(err);
@@ -69,7 +67,6 @@
 		}
 
 		$scope.validate = (fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum) => {
-			console.log(fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum)
 			return (fname != '' && fname != undefined && fname != null)
 				&& (lname != '' && lname != undefined && lname != null)
 				&& (nname != '' && nname != undefined && nname != null)

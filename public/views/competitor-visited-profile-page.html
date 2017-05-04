@@ -1,13 +1,13 @@
 <div id="mainHolder">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
-	<div id="main">
+	<div id="main" ng-init="searchCompetitor(thisCompetitor.competitor_id)">
         <div class="row palette-3 visited-competitor-profile-info">
             <div class="col l3 m5 s12 offset-l1 center">
                 <img id="visited-competitor-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
 
-            <div id="visited-competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="searchCompetitor(thisCompetitor.competitor_id)">
+            <div id="visited-competitor-basic-info" class="col l7 m7 s12 white-text">
                 <h3 class="rockwell">{{ competitor.first_name }} {{ competitor.last_name }}</h3>
                 <p class="telegrafico text-black">Contact: {{ competitor.contact }} | E-mail: {{ competitor.email }}</p>
                 <p class="telegrafico text-black">
@@ -93,15 +93,12 @@
                 <h5 class="rockwell left-align">Games Participated</h5><br>    
                 <div class="row" ng-init="getCompetitorGames()">
                     <div class="col m2 l2 push-m10 push-l10 center-align recent-games-card see-more hide-on-small-only">
-                        <button href="" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
+                        <button ng-hide="competitorgames.length <= 3" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
                     </div>
                     <div class="col s12 m3 l3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames | limitTo: 3"><a href="#/game/{{game.game_id}}">
                         <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
                         <span class="century-gothic secondary-text">{{ game.location }}</span>
                         </a>
-                    </div>
-                    <div class="col s4 offset-s4 center-align recent-games-card see-more hide-on-med-and-up">
-                        <button href="" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
                     </div>
                 </div>
             </div><br>
