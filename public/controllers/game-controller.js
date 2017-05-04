@@ -331,7 +331,7 @@
 					Materialize.toast("Successfully added the organizations!", 3000);
 				}, function(err) {
 					console.log(err);
-					Materialize.toast("Failed to add the Organization!", 3000);
+					Materialize.toast("Failed to add the organizations!", 3000);
 				})
 		}
 
@@ -471,7 +471,7 @@
 						countTeamInSport(res.data[i]);
 					}
 					$scope.sports = res.data;
-					console.log(res.data);
+					// console.log(res.data);
 				}, function(err) {
 					console.log(err);
 					Materialize.toast('Failed to retrieve sports!', 3000);
@@ -967,7 +967,7 @@
 					viewSponsoringInstitutions();
 					viewOtherSponsoringInstitutions();
 					checkValidSponsorDel();
-					console.log("done deleting");
+					console.log("done deleting");	
 				}, function(err){
 					console.log(err.data);
 					Materialize.toast('Failed to delete sponsoring institutions!', 3000);
