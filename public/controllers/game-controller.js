@@ -58,6 +58,7 @@
 		$scope.checkIfOrganizer = checkIfOrganizer;
 		$scope.checkSports = checkSports;
 		$scope.mergeMatchesBeta = mergeMatchesBeta;
+		$scope.checkValidAddSportStartDate = checkValidAddSportStartDate;
 
 		$scope.addName = undefined;
 		$scope.addMaxTeams = undefined;
@@ -78,6 +79,8 @@
 		$scope.updateWinner = undefined;
 		$scope.updateScoringSystem = undefined;
 		$scope.updateGameId = undefined;
+		$scope.gameStartDate = undefined;
+		$scope.gameEndDate = undefined;
 		$scope.user = {};
 		$scope.sport = {};
 		$scope.query = undefined;
@@ -298,6 +301,13 @@
 			else $scope.validOrgDel=false;
 		}
 
+		function checkValidAddSportStartDate(){
+			if($scope.gameStartDate > $scope.addStartDate){
+				return false;
+			}
+			else return true;
+		}
+
 
 		function getUserDetails(){
 			UserService
@@ -343,8 +353,8 @@
 				$scope.updateWinner = sport.winner;
 				$scope.updateStartTime = new Date(sport.start_date+"T"+sport.time_start+"+08:00");
 				$scope.updateEndTime =  new Date(sport.end_date+"T"+sport.time_end+"+08:00");
-				$scope.updateStartDate =  new Date(sport.start_date+"T"+sport.time_start+"Z");
-				$scope.updateEndDate =  new Date(sport.end_date+"T"+sport.time_end+"Z");
+				$scope.updateStartDate =  new Date(sport.start_date+"T"+"00:00:00"+"Z");
+				$scope.updateEndDate =  new Date(sport.end_date+"T"+"00:00:00"+"Z");
 				$scope.updateMaxTeams =  sport.max_teams;
 				$scope.updateScoringSystem =  sport.scoring_system;
 				$scope.updateGameId = sport.game_id;
@@ -545,6 +555,8 @@
 					console.log("game details retrieved for game#"+ $scope.thisGame.game_id);
 					console.log(res.data);
 					$scope.game = res.data;
+					$scope.gameStartDate = new Date($scope.game.start_date+"T"+"00:00:00"+"Z");
+					$scope.gameEndDate = new Date($scope.game.end_date+"T"+"00:00:00"+"Z");
 				}, function(err){
 					console.log(err.data);
 					$location.path("/error");
