@@ -16,6 +16,7 @@
         $scope.copyMatch = copyMatch;
         $scope.addMatch = addMatch;
         $scope.editMatch = editMatch;
+        $scope.editTeamRanking = editTeamRanking;
         $scope.deleteMatch = deleteMatch;
         $scope.retrieveMatches = retrieveMatches;
         $scope.retrieveSport = retrieveSport;
@@ -322,6 +323,16 @@
                 .editMatch()
                 .then(function (res){
                     Materialize.toast('Edited match!', 3000); 
+                }, function(err) {
+                    Materialize.toast('Match not edited!', 3000); 
+                })
+        }
+
+        function editTeamRanking(team) {
+            SportService
+                .editTeamRanking($scope.matchIdCopy, team.team_id, team.ranking)
+                .then(function (res){
+                    Materialize.toast('Team Ranking Updated!', 3000); 
                 }, function(err) {
                     Materialize.toast('Match not edited!', 3000); 
                 })

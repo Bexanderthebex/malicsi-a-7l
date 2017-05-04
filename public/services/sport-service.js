@@ -14,6 +14,7 @@
         const service = {
             addMatch: addMatch,
             editMatch: editMatch,
+            editTeamRanking: editTeamRanking,
             deleteMatch: deleteMatch,
             retrieveMatches: retrieveMatches,
             retrieveSport: retrieveSport,
@@ -59,6 +60,29 @@
                 method: 'PUT',
                 data: $.param(match),
                 url: '/sport/match/editMatch',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+        function editTeamRanking(matchId,teamId,ranking) {
+            let deferred = $q.defer();
+            
+            let ddata = {
+                ranking: ranking,
+                matchID: matchId,
+                teamID: teamId
+            }
+
+            $http({
+                method: 'PUT',
+                data: $.param(ddata),
+                url: '/sport/match/editTeamRankingInMatch',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
