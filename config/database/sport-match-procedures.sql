@@ -149,6 +149,24 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS add_team_in_match;
+DELIMITER //
+CREATE PROCEDURE add_team_in_match (IN m_id INT, IN t_id INT, IN rank INT)
+BEGIN
+	insert into team_in_match (match_id, team_id, ranking) values (m_id, t_id, rank);
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS delete_team_in_match;
+DELIMITER //
+CREATE PROCEDURE delete_team_in_match (IN m_id INT, IN t_id INT)
+BEGIN
+	DELETE FROM team_in_match WHERE team_id = t_id AND match_id = m_id;
+END //
+DELIMITER ;
+
+
+
 -- view future match in sport
 GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
@@ -214,4 +232,8 @@ GRANT EXECUTE ON PROCEDURE delete_match TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE delete_match TO 'administrator'@'localhost';
 
 GRANT EXECUTE ON PROCEDURE view_last_inserted_match TO 'guest'@'localhost';
+
+
+GRANT EXECUTE ON PROCEDURE add_team_in_match TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE add_team_in_match TO 'administrator'@'localhost';
 
