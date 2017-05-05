@@ -451,6 +451,7 @@
 								<div class="col s9 ">
 									<!-- Team Name -->
 									<label class="admin-fillup-label">Team Name</label>
+									<input ng-model="adminUsername" id="name" type="text" class="validate admin-fillup-form">
 									<select class="browser-default" ng-click="" ng-model="">
                                <option value="" selected disabled>Team</option>
                                <option value="" ng-repeat="" ></option>
