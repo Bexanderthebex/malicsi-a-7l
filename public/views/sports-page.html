@@ -46,7 +46,7 @@
 				<h4 class="rockwell center strong" style="margin: 0!important;">Matches
 
 				<!-- ADD MATCH BUTTON -->
-					<i class="fa fa-plus match-actions" data-target="match-add-modal" ng-hide="!enableMatch"></i>
+					<i class="fa fa-plus match-actions" data-target="match-add-modal" ng-hide="!enableMatch || game.organizer_id !== user.id"></i>
 				</h4>
 			</div>
             <div class="row" ng-hide="checkMatches()">
@@ -62,7 +62,7 @@
 
 					<!-- LIST OF MATCHES -->
 					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewPastMatch()" ng-hide="!enableMatch">
-						<div data-target="match-edit-modal" class="sports-match palette-border-5" ng-repeat="match in pastMatch" ng-click="copyMatch(match)">
+						<div class="sports-match palette-border-5" ng-repeat="match in pastMatch" ng-click="copyMatch(match)">
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
 								<div class="telegrafico col s9">Players</div>
@@ -122,7 +122,7 @@
 
 					<!-- LIST OF MATCHES -->
 					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewCurrentMatch()" ng-hide="!enableMatch">
-						<div data-target="match-edit-modal" class="sports-match palette-border-3" ng-repeat="match in currMatch" ng-click="copyMatch(match)">
+						<div class="sports-match palette-border-3" ng-repeat="match in currMatch" ng-click="copyMatch(match)">
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
 								<div class="telegrafico col s9">Players</div>
@@ -182,7 +182,7 @@
 
 					<!-- LIST OF MATCHES -->
 					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewFutureMatch()" ng-hide="!enableMatch">
-						<div data-target="match-edit-modal" class="sports-match palette-border-4" ng-repeat="match in futureMatch " ng-click="copyMatch(match)">
+						<div class="sports-match palette-border-4" ng-repeat="match in futureMatch " ng-click="copyMatch(match)">
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
 								<div class="telegrafico col s9">Players</div>

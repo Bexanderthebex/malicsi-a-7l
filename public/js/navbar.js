@@ -16,6 +16,7 @@ $(document).ready(function(){
   $('.navbtns').on('click', function(){
     $('.navbtns').css('color', '#00719c');
     $(this).css('color', '#00b8ff');
+    $('.modal').modal('close');
   });
 
     $('.button-collapse').sideNav({

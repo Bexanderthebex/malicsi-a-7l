@@ -49,6 +49,7 @@
             matchID: undefined,
             sportID: undefined
         };
+        $scope.user = {}
        
 
         $scope.dateTime = Date.now();
@@ -59,13 +60,15 @@
                 .then(function (res){       
                     if(res.data.type != 'O') {
                         $scope.enableMatch = false;
-                    } 
+                    }
+                    $scope.user = res.data; 
                  }, function(err) {     
                     Materialize.toast('error', 3000);       
                 })      
         }
 
         function copyMatch(match) {
+            if ($scope.game.organizer_id !== $scope.user.id) return;
             console.log(match);
             $scope.matchCopy = {
                 timeStart: new Date(match.date+"T"+match.timeStart+"Z"),
@@ -79,6 +82,7 @@
             }
             $scope.matchIdCopy = match.match_id;
             console.log($scope.matchCopy);
+            $('#match-edit-modal').modal('open');
         }
 
         function retrieveSport() {
@@ -87,10 +91,9 @@
                 .then(function (res){
                     console.log("retrieved sport");
                     $scope.sport = res.data;
-                    console.log(res.data);
-                    console.log($scope.sport.game_id);
                     retrieveGame($scope.sport.game_id);
                     retrieveSportRankings($scope.sport.sport_id);
+                    retrieveSponsors($scope.sport.sport_id);
                 }, function(err) {
                     console.log("sport not retrieved");
                 })
@@ -304,7 +307,20 @@
             $scope.newMatch.date = d.getFullYear() + '-' + addZero(d.getMonth()+1) + '-' + addZero(d.getDate());
             $scope.newMatch.sportID = $scope.sport.sport_id;
 
-            console.log($scope.newMatch);
+            if (ts > te
+                || ts < new Date(ts.toDateString() + ' ' + $scope.sport.time_start)
+                || te > new Date(te.toDateString() + ' ' + $scope.sport.time_end)
+            ) {
+                Materialize.toast('Invalid match time', 2000);
+                return;
+            }
+
+            if (new Date($scope.newMatch.date) < new Date($scope.sport.start_date)
+                || new Date($scope.newMatch.date) > new Date($scope.sport.end_date)
+            ) {
+                Materialize.toast('Invalid match date', 2000);
+                return;
+            }
 
             SportService
                 .addMatch($scope.newMatch)
