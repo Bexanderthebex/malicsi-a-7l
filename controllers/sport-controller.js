@@ -134,8 +134,6 @@ exports.searchForSportByKeyword = (req,res) => {
 	connection.userType('G').query(query, 
 		param,
 		(err, results, fields)	=> {
-		console.log(err);
-		console.log(results);
 		if (!err) {
 			return res.status(200).send(results[0]);
 		}		

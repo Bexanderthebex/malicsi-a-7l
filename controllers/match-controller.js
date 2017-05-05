@@ -18,7 +18,6 @@ exports.addMatch = (req, res) => {
 				return res.status(200).send(rows[0]);
 			})
 		}else{
-			console.log(err);
 			return res.status(500).send("Internal Server Error");
 		}
 	})
@@ -214,18 +213,14 @@ exports.retrieveTeamsInMatch = (req, res) => {
 		[req.params.matchId],
 		(err, rows, fields) => {
 		if(!err){
-			console.log(rows[0]);
 			if(rows.length == 0){
-				console.log("Here");
 				return res.status(200).send([]);
 			}
 			else{
-				console.log("THere");
 				return res.status(200).send(rows[0]);
 			}
 		
 		}else{
-			console.log(err)
 			return res.status(500).send("Internal server error occurred");
 		}
 	});

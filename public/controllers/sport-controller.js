@@ -104,7 +104,6 @@
                 .then(function (res){
                     console.log("retrieved game");
                     $scope.game = res.data;
-                    console.log(res.data);
                 }, function(err) {
                     console.log("sport not retrieved");
                 })
@@ -128,7 +127,6 @@
                 .then(function (res){
                     console.log("retrieved match winners");
                     $scope.rankings = res.data;
-                    console.log(res.data);
                 }, function(err) {
                     console.log("match winners not retrieved");
                 })
@@ -140,7 +138,6 @@
                 .then(function (res){
                     console.log("retrieved sponsors");
                     $scope.sportSponsors = res.data;
-                    console.log(res.data);
                 }, function(err) {
                     console.log("sponsors not retrieved");
                 })
@@ -161,6 +158,7 @@
             SportService
                 .viewCurrentMatch($scope.thisSport.sport_id)
                 .then(function (res){
+                    $scope.currMatch = [];
                   for (var i = 0; i < res.data.length; i++) {
                         var tempMatch = res.data[i];
 						var  match = {
@@ -182,7 +180,6 @@
                         $scope.currMatch.push(match);
                     }  
                     console.log("Current matches retrieved");
-                    console.log(res);
                 }), function(err){ 
                     console.log("matches not retrieved");
                 }
@@ -192,6 +189,7 @@
             SportService
                 .viewPastMatch($scope.thisSport.sport_id)
                 .then(function (res){
+                     $scope.pastMatch = [];
                     for (var i = 0; i < res.data.length; i++) {
                         var tempMatch = res.data[i];
 						var  match = {
@@ -214,7 +212,6 @@
                     } 
 
         	        console.log("Past matches retrieved");
-                    console.log(res);
 
                 }), function(err){
                     console.log("matches not retrieved");

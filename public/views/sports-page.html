@@ -240,7 +240,7 @@
                                 <!-- One player -->
                                 <div class="sports-match-players row" ng-repeat="team in match.teams">
                                     <div class="col s9 century-gothic">{{ team.team_name }}</div>
-                                    <!-- <div class="col s3" style="height: 21px;" ><i class="material-icons" style="font-size: 21px;" ></i></div> -->
+                                    <div class="col s3" style="height: 21px;" ng-show = "team.ranking == 1" ><i class="material-icons" style="font-size: 21px;" ></i></div>
                                 </div>
                             </div>
 
@@ -251,6 +251,12 @@
                             <div class="sports-match-info">
                                 Date: {{ match.date }}
                             </div>
+                            <div class="sports-match-info">
+								Maximum Teams Allowed: {{ match.maxTeams }}
+							</div>
+							<div class="sports-match-info" ng-hide = "match.remarks == null" >
+								Remarks: {{ match.remarks }}
+							</div>
                         </div>
                     </div>
 				</div>
