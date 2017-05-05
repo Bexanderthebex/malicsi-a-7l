@@ -11,6 +11,10 @@
   }
 }
 
+#teams-managed-header {
+  cursor: initial;
+}
+
 .competitor-cteam .collapsible-header:hover{
   background: #00a5d3!important;
   transition: background 0.5s;
