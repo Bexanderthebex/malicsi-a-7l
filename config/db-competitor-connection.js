@@ -17,6 +17,10 @@ connection.connect((err) => {
     }
 });
 
+setInterval(function () {
+    connection.query('SELECT 1');
+}, 5000);
+
 connection.query('USE heroku_ce2b03d42f2b112');
 module.exports = connection;
 

@@ -59,10 +59,10 @@
                                                     {{ x.location }}
                                                 </div>
                                                 <div class="gamefeed-padding-down">
-                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
-                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
@@ -107,10 +107,10 @@
                                                     {{ x.location }}
                                                 </div>
                                                 <div class="gamefeed-padding-down">
-                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
-                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
@@ -155,10 +155,10 @@
                                                     {{ x.location }}
                                                 </div>
                                                 <div class="gamefeed-padding-down">
-                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
-                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
@@ -203,10 +203,10 @@
                                                     {{ x.location }}
                                                 </div>
                                                 <div class="gamefeed-padding-down">
-                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
-                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
@@ -253,10 +253,10 @@
                                                     {{ x.location }}
                                                 </div>
                                                 <div class="gamefeed-padding-down">
-                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
-                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
@@ -304,10 +304,10 @@
                                                     {{ x.location }}
                                                 </div>
                                                 <div class="gamefeed-padding-down">
-                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
-                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser()">
+                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
                                                         <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
                                                     </div>
                                                 </div>
@@ -327,7 +327,7 @@
 </div>
 
 <div class="fixed-action-btn">
-	<a class="btn-floating btn-large waves-effect waves-light tooltipped" href="" data-target="gamefeed-add-game" id="gamefeed-fab-palette-3" data-position="left" data-delay="50" data-tooltip="Add game" ng-show="checkUser()">
+	<a class="btn-floating btn-large waves-effect waves-light tooltipped" href="" data-target="gamefeed-add-game" id="gamefeed-fab-palette-3" data-position="left" data-delay="50" data-tooltip="Add game" ng-show="checkUser(x)">
 		<i class="large material-icons">add</i>
 	</a>
 </div>
