@@ -188,10 +188,13 @@ router.get('/sport/match/viewPastMatch/:sportId', matchController.viewPastMatch)
 router.get('/sport/match/viewUpcomingMatch/:sportId', matchController.viewFutureMatch);
 router.get('/sport/match/retrieveMatchWinner/:sportId', matchController.retrieveMatchWinner);
 router.get('/sport/match/viewMatchDetails', matchController.viewMatchDetails);
+router.post('/sport/match/addTeamInMatch',  matchController.addTeamInMatch);
 router.post('/sport/match/addMatch',  matchController.addMatch);
 router.put('/sport/match/editMatch', matchController.editMatch);
 router.put('/sport/match/editTeamRankingInMatch', matchController.editTeamRankingInMatch);
 router.delete('/sport/match/deleteMatch', matchController.deleteMatch);
+router.delete('/sport/match/deleteTeamInMatch', matchController.deleteTeamInMatch);
+
 
 // log routers
 router.get('/log/viewAllLogs', checkUser('A'), logController.viewAllLogs);

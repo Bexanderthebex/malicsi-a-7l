@@ -234,9 +234,50 @@ exports.retrieveMatchWinner = (req, res) => {
 		[req.params.sportId],
 		(err, rows, fields) => {
 		if(rows.length === 0){
-			return res.status(200).send(rows[0]);
-		}else if(!err){
 			return res.status(404).send("There are no current match winners");
+		}else if(!err){
+			return res.status(200).send(rows[0]);
+		}else{
+			return res.status(500).send("Internal server error occurred");
+		}
+	});
+}
+
+
+exports.addTeamInMatch = (req, res) => {
+	let query = 'CALL add_team_in_match(?,?,?)';
+
+	connection.userType(req.session.user.type).query(query,
+		[req.body.matchId,
+		req.body.teamId,
+		req.body.rank],
+		(err, rows, fields) => {
+		if(rows.length === 0){
+			return res.status(404).send("There are no current match winners");
+		}else if(!err){
+			return res.status(200).send(rows[0]);
+		}else{
+			return res.status(500).send("Internal server error occurred");
+		}
+	});
+}
+
+
+exports.deleteTeamInMatch = (req, res) => {
+	let query = 'select * from team_in_match where match_id = ? and team_id = ?';
+	let matchId = req.body.matchId;
+	let teamId = req.body.teamId;
+	connection.userType('A').query(query,
+		[matchId,
+		teamId],
+		(err, rows, fields) => {
+		let deleted = rows;
+		console.log(deleted);
+		if(!err){
+			connection.userType('A').query('CALL delete_team_in_match(?,?)', [matchId, teamId] , (err, rows) => {
+					// logs.createLog(req.session.user.id, "Deleted Team In Match");
+					return res.status(200).send(deleted[0]);
+				})
 		}else{
 			return res.status(500).send("Internal server error occurred");
 		}
