@@ -391,7 +391,7 @@
 
         function deleteTeamInMatch(match) {
             SportService
-                .deleteTeamInMatch(match.match,match.teams.team_id)
+                .deleteTeamInMatch(match.matchID,match.teams.team_id)
                 .then(function (res){
                     viewFutureMatch();
                     viewCurrentMatch();
