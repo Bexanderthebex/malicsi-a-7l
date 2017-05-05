@@ -50,8 +50,6 @@
             sportID: undefined
         };
         $scope.user = {}
-       
-
         $scope.dateTime = Date.now();
 
         function getCurrentUser() { 
@@ -62,6 +60,8 @@
                         $scope.enableMatch = false;
                     }
                     $scope.user = res.data; 
+                    console.log($scope.user);
+                    console.log($scope.enableMatch);
                  }, function(err) {     
                     Materialize.toast('error', 3000);       
                 })      
@@ -106,7 +106,6 @@
                 .then(function (res){
                     console.log("retrieved game");
                     $scope.game = res.data;
-                    console.log(res.data);
                 }, function(err) {
                     console.log("sport not retrieved");
                 })
@@ -130,7 +129,6 @@
                 .then(function (res){
                     console.log("retrieved match winners");
                     $scope.rankings = res.data;
-                    console.log(res.data);
                 }, function(err) {
                     console.log("match winners not retrieved");
                 })
@@ -142,18 +140,17 @@
                 .then(function (res){
                     console.log("retrieved sponsors");
                     $scope.sportSponsors = res.data;
-                    console.log(res.data);
                 }, function(err) {
                     console.log("sponsors not retrieved");
                 })
         }
 // --------------------------------------------------------------------
-        function retrieveTeamsInMatch(match_id){
+        function retrieveTeamsInMatch(match){
             SportService
-                .retrieveTeamsInMatch(match_id)
+                .retrieveTeamsInMatch(match.match_id)
                 .then(function (res){
-                    console.log("teams in match retrieved");
-                    $scope.teams = res.data;
+                    console.log("teams in match retrieved", match);
+                    match.teams = res.data;
                 }), function(err){
                     console.log("teams in match not retrieved");
                 }
@@ -164,13 +161,15 @@
                 .viewCurrentMatch($scope.thisSport.sport_id)
                 .then(function (res){
                     $scope.currMatch = [];
-                    for (var i = 0; i < res.data.length; i++) {
+                  for (var i = 0; i < res.data.length; i++) {
                         var tempMatch = res.data[i];
-                        var  match = {
-                            timeStart: undefined,
-                            timeEnd: undefined,
+						var  match = {
+							match_id : undefined,
+							timeStart: undefined,
+							timeEnd: undefined,
 							date: undefined,
-							matchID: undefined,
+							remarks : undefined,
+							maxTeams : undefined,
 							teams : []
 							};
                         match.match_id = tempMatch.match_id;
@@ -178,16 +177,11 @@
                         match.timeEnd = tempMatch.time_end;
                         match.date = tempMatch.match_date;
                         match.remarks = tempMatch.remarks;
-                        SportService
-                        .retrieveTeamsInMatch(tempMatch.match_id)
-                        .then(
-                        	function(res){
-                        		match.teams = res.data
-                        	});
-                        
-                        console.log(match);
+                        match.maxTeams = tempMatch.max_teams;
+                        retrieveTeamsInMatch(match)
                         $scope.currMatch.push(match);
                     }  
+                    console.log("Current matches retrieved");
                 }), function(err){ 
                     console.log("matches not retrieved");
                 }
@@ -197,15 +191,16 @@
             SportService
                 .viewPastMatch($scope.thisSport.sport_id)
                 .then(function (res){
-                    console.log("Past match retrieved");
-                    $scope.pastMatch = [];
+                     $scope.pastMatch = [];
                     for (var i = 0; i < res.data.length; i++) {
                         var tempMatch = res.data[i];
 						var  match = {
+							match_id : undefined,
 							timeStart: undefined,
 							timeEnd: undefined,
 							date: undefined,
-							matchID: undefined,
+							remarks : undefined,
+							maxTeams : undefined,
 							teams : []
 							};
                         match.match_id = tempMatch.match_id;
@@ -213,18 +208,13 @@
                         match.timeEnd = tempMatch.time_end;
                         match.date = tempMatch.match_date;
                         match.remarks = tempMatch.remarks;
-                        SportService
-                        .retrieveTeamsInMatch(tempMatch.match_id)
-                        .then(
-                        	function(res){
-                        		match.teams = res.data
-                        	});
-                        
-                        console.log(match);
+                        match.maxTeams = tempMatch.max_teams;
+                        retrieveTeamsInMatch(match)
                         $scope.pastMatch.push(match);
-                    }
+                    } 
 
-                    console.log($scope.pastMatch);
+        	        console.log("Past matches retrieved");
+
                 }), function(err){
                     console.log("matches not retrieved");
                 }
@@ -239,10 +229,12 @@
                     for (var i = 0; i < res.data.length; i++) {
                         var tempMatch = res.data[i];
 						var  match = {
-							timeStart: undefined,
-							timeEnd: undefined,
-							date: undefined,
-							matchID: undefined,
+							match_id : undefined,
+							timeStart : undefined,
+							timeEnd : undefined,
+							date : undefined,
+							remarks : undefined,
+							maxTeams : undefined,
 							teams : []
 							};
                         match.match_id = tempMatch.match_id;
@@ -250,17 +242,13 @@
                         match.timeEnd = tempMatch.time_end;
                         match.date = tempMatch.match_date;
                         match.remarks = tempMatch.remarks;
-                        SportService
-                        .retrieveTeamsInMatch(tempMatch.match_id)
-                        .then(
-                        	function(res){
-                        		match.teams = res.data
-                        	});
-                        
-                        console.log(match);
+                        match.maxTeams = tempMatch.max_teams;
+                        retrieveTeamsInMatch(match)   
                         $scope.futureMatch.push(match);
-                    }
-                    // console.log(res.data);
+                        console.log("Upcoming matches retrieved");
+                   		console.log(res);
+
+                }
                 }), function(err){
                     console.log("matches not retrieved");
                 }

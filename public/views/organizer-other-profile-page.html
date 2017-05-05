@@ -4,15 +4,22 @@
     <div id="main" class="" ng-init="getOrganizer()">
         <!-- Organizer Basic Info -->
         <div class="row palette-3 organizer-profile-info">
-            <div class="col l3 m5 s12 offset-l1 center">
+            <div class="col l3 m12 s12 offset-l1 center">
                 <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
             </div>
 
-            <div id="competitor-basic-info" class="col l7 m7 s12 white-text">
-                <h3 class="rockwell">{{ thisOrganizer.name }}</h3>
-                <p class="telegrafico">Contact: {{ thisOrganizer.contact }} | E-mail: {{ thisOrganizer.email }}</p>
+            <div id="competitor-basic-info" class="col l7 hide-on-med-and-down white-text">
+                <h3 class="rockwell">{{ organizer.name }}</h3>
+                <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
                 <p class="telegrafico">
-                    {{ thisOrganizer.description }}
+                    {{ organizer.description }}
+                </p>
+            </div>
+            <div id="competitor-basic-info" class="col m12 s12 hide-on-large-only palette-text-5">
+                <h3 class="rockwell">{{ organizer.name }}</h3>
+                <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
+                <p class="telegrafico">
+                    {{ organizer.description }}
                 </p>
             </div>
             <div class="col l1 m1 s12"></div>

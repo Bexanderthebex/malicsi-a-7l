@@ -65,8 +65,8 @@
 						<div class="sports-match palette-border-5" ng-repeat="match in pastMatch" ng-click="copyMatch(match)">
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
+								<div class="telegrafico col s9" ng-hide = "match.teams.length == 0">Players</div>
+								<div class="telegrafico col s3" ng-hide = "match.teams.length == 0">Winner</div>
 							</div>
 
 							<!-- MATCH PLAYERS -->
@@ -74,7 +74,7 @@
 								<!-- One player -->
 								<div class="sports-match-players row">
 									<div class="col s9 century-gothic">{{ team.team_name }}</div>
-									<!-- <div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div> -->
+									<div class="col s3" style="height: 21px;" ng-show = "team.ranking == 1"><i class="material-icons" style="font-size: 21px;">done</i></div>
 								</div>
 							</div>
 
@@ -84,6 +84,12 @@
 							</div>
 							<div class="sports-match-info" >
 								Date: {{ match.date }}
+							</div>
+							<div class="sports-match-info">
+								Maximum Teams Allowed: {{ match.maxTeams }}
+							</div>
+							<div class="sports-match-info" ng-hide = "match.remarks == null" >
+								Remarks: {{ match.remarks }}
 							</div>
 						</div>
 					</div>
@@ -125,8 +131,8 @@
 						<div class="sports-match palette-border-3" ng-repeat="match in currMatch" ng-click="copyMatch(match)">
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
+								<div class="telegrafico col s9" ng-hide = "match.teams.length == 0">Players</div>
+								<div class="telegrafico col s3" ng-hide = "match.teams.length == 0">Winner</div>
 							</div>
 
 							<!-- MATCH PLAYERS -->
@@ -134,16 +140,22 @@
 								<!-- One player -->
 								<div class="sports-match-players row" ng-repeat="team in match.teams">
 									<div class="col s9 century-gothic">{{ team.team_name }}</div>
-									<div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
+									<div class="col s3" style="height: 21px;" ng-show = "team.ranking == 1"><i class="material-icons" style="font-size: 21px;"></i></div>
 								</div>
 							</div>
 
 							<!-- MATCH INFO -->
-							<div class="sports-match-info" ng-repeat="match in value | first: 1">
+							<div class="sports-match-info">
 								Start: {{ match.timeStart }} • End: {{ match.timeEnd }}
 							</div>
-							<div class="sports-match-info" ng-repeat="match in value | first: 1">
+							<div class="sports-match-info">
 								Date: {{ match.date }}
+							</div>
+							<div class="sports-match-info">
+								Maximum Teams Allowed: {{ match.maxTeams }}
+							</div>
+							<div class="sports-match-info" ng-hide = "match.remarks == null" >
+								Remarks: {{ match.remarks }}
 							</div>
 						</div>
 					</div>
@@ -183,10 +195,11 @@
 					<!-- LIST OF MATCHES -->
 					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewFutureMatch()" ng-hide="!enableMatch">
 						<div class="sports-match palette-border-4" ng-repeat="match in futureMatch " ng-click="copyMatch(match)">
+
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
-								<div class="telegrafico col s9">Players</div>
-								<div class="telegrafico col s3">Winner</div>
+								<div class="telegrafico col s9" ng-hide = "match.teams.length == 0">Players</div>
+								<div class="telegrafico col s3" ng-hide = "match.teams.length == 0">Winner</div>
 							</div>
 
 							<!-- MATCH PLAYERS -->
@@ -194,7 +207,7 @@
 								<!-- One player -->
 								<div class="sports-match-players row" ng-repeat="team in match.teams">
 									<div class="col s9 century-gothic">{{ team.team_name }}</div>
-									<!-- <div class="col s3" style="height: 21px;" ><i class="material-icons" style="font-size: 21px;" ></i></div> -->
+									<div class="col s3" style="height: 21px;" ng-show = "team.ranking == 1"><i class="material-icons" style="font-size: 21px;" ></i></div>
 								</div>
 							</div>
 
@@ -204,6 +217,12 @@
 							</div>
 							<div class="sports-match-info">
 								Date: {{ match.date }}
+							</div>
+							<div class="sports-match-info">
+								Maximum Teams Allowed: {{ match.maxTeams }}
+							</div>
+							<div class="sports-match-info" ng-hide = "match.remarks == null" >
+								Remarks: {{ match.remarks }}
 							</div>
 						</div>
 					</div>
@@ -221,7 +240,7 @@
                                 <!-- One player -->
                                 <div class="sports-match-players row" ng-repeat="team in match.teams">
                                     <div class="col s9 century-gothic">{{ team.team_name }}</div>
-                                    <!-- <div class="col s3" style="height: 21px;" ><i class="material-icons" style="font-size: 21px;" ></i></div> -->
+                                    <div class="col s3" style="height: 21px;" ng-show = "team.ranking == 1" ><i class="material-icons" style="font-size: 21px;" ></i></div>
                                 </div>
                             </div>
 
@@ -232,6 +251,12 @@
                             <div class="sports-match-info">
                                 Date: {{ match.date }}
                             </div>
+                            <div class="sports-match-info">
+								Maximum Teams Allowed: {{ match.maxTeams }}
+							</div>
+							<div class="sports-match-info" ng-hide = "match.remarks == null" >
+								Remarks: {{ match.remarks }}
+							</div>
                         </div>
                     </div>
 				</div>
@@ -271,7 +296,7 @@
 					</div>
 				</div>
 			</div>
-            <div class="col l9" ng-hide="checkSponsors()">
+            <div class="col l9" ng-hide="!checkSponsors()">
                 <div class="row">
                     <div class="col s12">
                         <h6 class="rockwell palette-text-3">No Sponsors Yet.</h6>
