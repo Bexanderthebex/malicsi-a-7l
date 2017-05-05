@@ -75,12 +75,6 @@
         $scope.upload = upload;
 
         function searchCompetitor(){
-            $(document).ready(function()
-            {
-                $("#visited-competitor-profile-img").on("error", function(){
-                    $(this).attr('src', '/assets/avatar.png');
-                });
-            });
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
@@ -91,15 +85,15 @@
                 }, function(err) {
                     $window.location.href = '/#/error';
                 })
+            $(document).ready(function()
+            {
+                $("#visited-competitor-profile-img").on("error", function(){
+                    $(this).attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
+                });
+            });
         }
 
         function getCompetitor(){
-            $(document).ready(function()
-            {
-                $("#competitor-profile-img").on("error", function(){
-                    $(this).attr('src', '/assets/avatar.png');
-                });
-            });
             UserService
                 .getUserInfo()
                 .then(function(res) {
@@ -111,6 +105,12 @@
                 }, function(err) {
                     $window.location.href = '/#/error';
                 })
+            $(document).ready(function()
+            {
+                $("#competitor-profile-img").on("error", function(){
+                    $(this).attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
+                });
+            });
         }
 
         function getCompetitorTeams(){
@@ -208,6 +208,7 @@
                 },function(err){
                     console.log(err);
                 });*/
+                $window.location.reload();
         }
 
         function upload(){
@@ -221,7 +222,7 @@
             UserService
                 .uploader($scope.fileItem)
                 .then(function(res){
-
+                    $window.location.reload();//$("#visited-competitor-profile-img").attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
                 },function(err){
                     console.log(err);
                 })

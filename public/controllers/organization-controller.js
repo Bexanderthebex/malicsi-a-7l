@@ -175,8 +175,14 @@
                     
                     $(document).ready(function()
                     {
-                        $(".organization-team-member-avatar").on("error", function(){
-                            $(this).attr("src", "assets/avatars/male_avatar_1.png");
+                        $("#M.organization-team-member-avatar").on("error", function(){
+                            $(this).attr("src", "assets/avatars/M.png");
+                        });
+                    });
+                    $(document).ready(function()
+                    {
+                        $("#F.organization-team-member-avatar").on("error", function(){
+                            $(this).attr("src", "assets/avatars/F.png");
                         });
                     });
                 }, function(err) {

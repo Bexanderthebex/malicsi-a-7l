@@ -104,7 +104,7 @@ CREATE PROCEDURE view_current_match
 (IN sportId INT
 )
 BEGIN
-	SELECT * FROM sport_match join sport using (sport_id) WHERE sport_match.sport_id = sportId AND CURDATE() = match_date;
+	SELECT match_id, m.time_start, m.time_end, m.sport_id, match_date, remarks FROM sport_match m join sport using (sport_id) WHERE m.sport_id = sportId AND CURDATE() = match_date;
 END //
 DELIMITER ;
 
@@ -114,7 +114,7 @@ CREATE PROCEDURE view_past_match
 (IN sportId INT
 )
 BEGIN 
-	SELECT * FROM sport_match join sport using (sport_id) WHERE sport_match.sport_id = sportId AND CURDATE() > match_date;
+	SELECT match_id, m.time_start, m.time_end, m.sport_id, match_date, remarks FROM sport_match m join sport using (sport_id) WHERE m.sport_id = sportId AND CURDATE() > match_date;
 END //
 DELIMITER ;
 
@@ -123,9 +123,8 @@ DELIMITER //
 CREATE PROCEDURE view_future_match
 (IN sportId INT
 )
-<<<<<<< HEAD
 BEGIN 
-	SELECT * FROM sport_match join sport using (sport_id) WHERE sport_match.sport_id = sportId AND CURDATE() < match_date;
+	SELECT match_id, m.time_start, m.time_end, m.sport_id, match_date, remarks FROM sport_match m join sport using (sport_id) WHERE m.sport_id = sportId AND CURDATE() < match_date;
 END //
 DELIMITER ;
 
@@ -134,7 +133,7 @@ DROP PROCEDURE IF EXISTS retrieve_teams_in_match;
 DELIMITER //
 CREATE PROCEDURE retrieve_teams_in_match (IN m_id INT)
 BEGIN
-	SELECT team_id, team_name FROM team JOIN team_in_match using (team_id) where match_id = m_id;
+	SELECT team_id, team_name, ranking FROM team JOIN team_in_match using (team_id) where match_id = m_id;
 END //
 DELIMITER ;
 

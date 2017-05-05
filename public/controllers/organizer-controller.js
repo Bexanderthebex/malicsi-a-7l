@@ -296,6 +296,7 @@
                                         Materialize.toast('Failed to update organizer!', 3000);
                                     })
                             } else Materialize.toast('Successfully updated organizer!', 3000);
+                            $window.location.reload();
                         }, function(err) {
                             Materialize.toast('Failed to update organizer!', 3000);
                         })

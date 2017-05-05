@@ -18,7 +18,6 @@ exports.addMatch = (req, res) => {
 				return res.status(200).send(rows[0]);
 			})
 		}else{
-			console.log(err);
 			return res.status(500).send("Internal Server Error");
 		}
 	})
@@ -75,6 +74,7 @@ exports.editTeamRankingInMatch = function(req, res, next){
 				return res.status(200).send(rows[0]);
 			})
 		}else{
+			console.log(err);
 		    return res.status(404).send("Not Found");
 		}
 	});
@@ -213,7 +213,6 @@ exports.retrieveTeamsInMatch = (req, res) => {
 		[req.params.matchId],
 		(err, rows, fields) => {
 		if(!err){
-			console.log(rows);
 			if(rows.length == 0){
 				return res.status(200).send([]);
 			}
@@ -222,7 +221,6 @@ exports.retrieveTeamsInMatch = (req, res) => {
 			}
 		
 		}else{
-			console.log(err)
 			return res.status(500).send("Internal server error occurred");
 		}
 	});
