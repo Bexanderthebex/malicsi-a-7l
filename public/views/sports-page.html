@@ -451,13 +451,13 @@
 								<div class="col s9 ">
 									<!-- Team Name -->
 									<label class="admin-fillup-label">Team Name</label>
-									<select class="browser-default" ng-click="" ng-model="">
+									<select class="browser-default" ng-model="toBeAddedTeam">
                                <option value="" selected disabled>Team</option>
                                <option value="{{ team.team_id }}" ng-repeat="team in teamsInSport" >{{ team.team_name }}</option>
                            </select>
 								</div>
 								<div class="col l3 valign-wrapper" style="height: 100%;">
-									<button class="waves-effect waves-light search-admin-button"><i class="fa fa-plus"></i></button>
+									<button class="waves-effect waves-light search-admin-button" ng-click="addTeamToMatch(toBeAddedTeam)"><i class="fa fa-plus"></i></button>
 								</div>
 							</div>
 						</div>

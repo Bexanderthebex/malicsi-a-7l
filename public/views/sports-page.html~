@@ -451,9 +451,9 @@
 								<div class="col s9 ">
 									<!-- Team Name -->
 									<label class="admin-fillup-label">Team Name</label>
-									<select class="browser-default blue" ng-click="" ng-model="">
+									<select class="browser-default" ng-click="" ng-model="">
                                <option value="" selected disabled>Team</option>
-                               <option value="" ng-repeat="team in teamsInSport" ></option>
+                               <option value="{{ team.team_id }}" ng-repeat="team in teamsInSport" >{{ team.team_name }}</option>
                            </select>
 								</div>
 								<div class="col l3 valign-wrapper" style="height: 100%;">

@@ -15,6 +15,7 @@
         $scope.enableMatch = undefined;
         $scope.copyMatch = copyMatch;
         $scope.addMatch = addMatch;
+        $scope.addTeamToMatch = addTeamToMatch;
         $scope.editMatch = editMatch;
         $scope.editTeamRanking = editTeamRanking;
         $scope.deleteMatch = deleteMatch;
@@ -359,6 +360,16 @@
                     viewPastMatch();
                     viewCurrentMatch();
                     viewFutureMatch();
+                }, function(err) {
+                    Materialize.toast('Match not edited!', 3000); 
+                })
+        }
+        
+        function addTeamToMatch(team) {
+            SportService
+                .addTeamToMatch($scope.matchIdCopy, team.team_id, team.ranking)
+                .then(function (res){
+                    Materialize.toast('Team Ranking Updated!', 3000); 
                 }, function(err) {
                     Materialize.toast('Match not edited!', 3000); 
                 })
