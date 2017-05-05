@@ -104,14 +104,14 @@
                         <table class="bordered centered highlight" ng-init="getCompetitorTeams()">
                             <thead>
                                 <tr class="white-text palette-3 telegrafico">
-                                    <th class="left">Team Name</th>
+                                    <th style="padding-left: 10px;" class="left">Team Name</th>
                                     <th>Sports</th>
                                     <th>Game</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="century-gothic" ng-repeat="team in competitorteams">
-                                    <td class="left">{{team.team_name}}</td>
+                                    <td style="padding-left: 10px;" class="left">{{team.team_name}}</td>
                                     <td><a href="#/sports/{{team.sport_id}}">{{team.sport_name}}</a></td>
                                     <td><a href="#/game/{{team.game_id}}">{{team.name}}</a></td>
                                 </tr>
@@ -281,6 +281,25 @@
                     <div class="input-field col l6 m6 s12 competitor-input-color-change">
                         <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
                         <label for="first-name">Username <span style="color:red;" ng-hide='((competitor.username.localeCompare("")))'>Required</span></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="file-title col s12 century-gothic valign-wrapper">
+                        <label class="active">Profile Picture</label>
+                    </div>
+
+                    <div class="col s12">
+                        <form action="#">
+                            <div class="file-field input-field">
+                                <div id="img-file-uploader" class="btn file-button palette-4 z-depth-0">
+                                    <span class="telegrafico">File</span>
+                                    <input type="file">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="row">    

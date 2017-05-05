@@ -76,14 +76,14 @@
                         <table class="bordered highlight" ng-init="getCompetitorTeamsPublic()">
                             <thead>
                                 <tr class="white-text palette-3 telegrafico">
-                                    <th>Team Name</th>
+                                    <th style="padding-left: 10px;">Team Name</th>
                                     <th class="centered">Sports</th>
                                     <th class="centered">Game</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="century-gothic" ng-repeat="team in competitorteams">
-                                    <td>{{team.team_name}}</td>
+                                    <td style="padding-left: 10px;">{{team.team_name}}</td>
                                     <td class="centered"><a href="#/sports/{{team.sport_id}}">{{team.sport_name}}</a></td>
                                     <td class="centered"><a href="#/game/{{team.game_id}}">{{team.name}}</a></td>
                                 </tr>
