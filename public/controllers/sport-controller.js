@@ -318,11 +318,23 @@
                 })
         }
 
-        function editMatch() {
+        function editMatch(match) {
+            var ts = new Date(match.timeStart);
+            var te = new Date(match.timeEnd);
+            var d = new Date(match.date);
+            $scope.editMatch.timeStart = addZero(ts.getHours()) + ':' + addZero(ts.getMinutes()) + ':' + addZero(ts.getSeconds());
+            $scope.editMatch.timeEnd = addZero(te.getHours()) + ':' + addZero(te.getMinutes()) + ':' + addZero(te.getSeconds());
+            $scope.editMatch.date = d.getFullYear() + '-' + addZero(d.getMonth()+1) + '-' + addZero(d.getDate());
+            $scope.editMatch.remarks = match.remarks;
+            $scope.editMatch.matchID = match.matchID;
+
             SportService
-                .editMatch()
+                .editMatch($scope.editMatch)
                 .then(function (res){
                     Materialize.toast('Edited match!', 3000); 
+                    viewPastMatch();
+                    viewCurrentMatch();
+                    viewFutureMatch();
                 }, function(err) {
                     Materialize.toast('Match not edited!', 3000); 
                 })

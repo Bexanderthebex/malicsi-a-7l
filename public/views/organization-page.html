@@ -105,7 +105,7 @@
 								</tr>
 							</thead>
 							<tbody >
-								<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams | filter:searchTeam" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id)" id="modal-trigger">
+								<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams | filter:searchTeam" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id);">
 									<td>
 										<div><span style="font-weight: bold">{{pagedTeam.team_name}}</span></div>
 									</td>
@@ -153,7 +153,7 @@
 						<div class="row">
 							<h5 class="organization-team-member-name palette-text-3 century-gothic strong" id="emptyTeam"></h5>
 							<div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers" >
-								<a class="modal-action modal-close" id="close-modal" href="#/competitor/profile/{{member.id}} ">
+								<a class="modal-action modal-close" href="#/competitor/profile/{{member.id}} ">
 								<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
 								<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
 								<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>

@@ -56,9 +56,17 @@
         function editMatch(match) {
             let deferred = $q.defer();
             console.log(match);
+            let ddata = {
+                timeStart: match.timeStart,
+                timeEnd: match.timeEnd,
+                date: match.date,
+                matchID: match.matchID,
+                remarks: match.remarks
+            }
+
             $http({
                 method: 'PUT',
-                data: $.param(match),
+                data: $.param(ddata),
                 url: '/sport/match/editMatch',
                 headers: headers
             }).then((res) => {
