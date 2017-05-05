@@ -84,6 +84,7 @@
 		$scope.gameEndDate = undefined;
 		$scope.user = {};
 		$scope.sport = {};
+		$scope.sportToUse = undefined;
 		$scope.query = undefined;
 		$scope.sports = [];
 		$scope.sportCopy = {};
@@ -193,8 +194,6 @@
 				gameID: $scope.thisGame.game_id
 			};
 
-
-			console.log(newSport);
 			GameService
 				.addSport(newSport)
 				.then(function (res){
@@ -468,9 +467,35 @@
 					$scope.sports = res.data;
 					for (var i = 0; i<res.data.length; i++){
 						countTeamInSport(res.data[i]);
+						if(new RegExp("archery").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "archery";
+						} else if(new RegExp("badminton").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "badminton";
+						} else if(new RegExp("baseball").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "baseball";
+						} else if(new RegExp("basketball").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "basketball";
+						} else if(new RegExp("boxing").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "boxing";
+						} else if(new RegExp("fencing").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "fencing";
+						} else if(new RegExp("golf").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "golf";
+						} else if(new RegExp("gymnast").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "gymnastics";
+						} else if(new RegExp("swim").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "swimming";
+						} else if(new RegExp("tennis").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "tennis";
+						} else if(new RegExp("track").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "tracknfield";
+						} else if(new RegExp("volley").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "volleyball";
+						} else {
+							$scope.sportToUse = "volleyball";
+						}
 					}
 					$scope.sports = res.data;
-					// console.log(res.data);
 				}, function(err) {
 					console.log(err);
 					Materialize.toast('Failed to retrieve sports!', 3000);
