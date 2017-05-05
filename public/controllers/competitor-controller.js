@@ -12,6 +12,7 @@
         $scope.thisCompetitor = {
             competitor_id: $routeParams.id
         };
+        $scope.image;
         $scope.pendingRequested = {};
         $scope.teamAccordion = {};
         $scope.competitor = {};
@@ -32,6 +33,7 @@
         };
         $scope.dup_password ="";
         $scope.isMember;
+        $scope.fileItem = {};
         $scope.rankings = {
             "first" : 0,
             "second" : 0,
@@ -70,6 +72,7 @@
         $scope.kickMember = kickMember;
         $scope.setPendingRequest = setPendingRequest;
         $scope.setKickMember = setKickMember;
+        $scope.upload = upload;
 
         function searchCompetitor(){
             CompetitorService
@@ -82,6 +85,12 @@
                 }, function(err) {
                     $window.location.href = '/#/error';
                 })
+            $(document).ready(function()
+            {
+                $("#visited-competitor-profile-img").on("error", function(){
+                    $(this).attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
+                });
+            });
         }
 
         function getCompetitor(){
@@ -96,6 +105,12 @@
                 }, function(err) {
                     $window.location.href = '/#/error';
                 })
+            $(document).ready(function()
+            {
+                $("#competitor-profile-img").on("error", function(){
+                    $(this).attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
+                });
+            });
         }
 
         function getCompetitorTeams(){
@@ -120,6 +135,7 @@
         }
 
         function getCompetitorTeamsPublic(){
+
             CompetitorService
                 .getCompetitorTeamsPublic($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
@@ -164,6 +180,7 @@
                     console.log(err);
                 })
 
+            upload();
 
             UserService
                 .updateUser($scope.competitor)
@@ -174,12 +191,39 @@
                     console.log(err);
                 })
 
+            
             UserService
                 .updateUserPassword($scope.competitor)
                 .then(function (res){
                     //Materialize.toast('Successfully edited!', 3000);
                 }, function(err) {
                     //Materialize.toast('Unsuccessful edit!', 3000);
+                    console.log(err);
+                })
+
+            /*UserService
+                .uploader()
+                .then(function(res)){
+
+                },function(err){
+                    console.log(err);
+                });*/
+                $window.location.reload();
+        }
+
+        function upload(){
+            $scope.fileItem.file = document.getElementById("fileItem").files[0];
+            $scope.fileItem.file.newname = $scope.competitor.id;
+            //$scope.fileItem.file.name = { "value":$scope.competitor.id,"writable":true};
+            $scope.fileItem.name=$scope.competitor.id;
+            console.log($scope.fileItem);
+            console.log($scope.fileItem.file);
+            //var uploadUrl = '/upload';
+            UserService
+                .uploader($scope.fileItem)
+                .then(function(res){
+                    $window.location.reload();//$("#visited-competitor-profile-img").attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
+                },function(err){
                     console.log(err);
                 })
         }
