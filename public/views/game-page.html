@@ -490,23 +490,27 @@
 			<form name="addSportForm">
 				<div class="row">
 					<div class="input-field col s6 game-input-color-change">
-						<input placeholder=" "  ng-model="addName" type="text" class="validate" name="addName" required>
+						<input placeholder=" "  ng-model="addName" type="text" data-length="50" ng-maxlength="50" class="validate" name="addName" required>
 						<label for="addName">Sport Name</label>
-						<div ng-show="addSportForm.addName.$invalid && addSportForm.addName.$touched" class="error">required</div>
+						<div ng-show="addSportForm.addName.$error.required && addSportForm.addName.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addName.$error.maxlength" class="error">Name should be up to 50 characters only</div>
 					</div>
 					
 					<div class="input-field col s2 game-input-color-change">
-						<input placeholder=" " ng-model="addMaxTeams" type="number" name="addMaxTeams" class="validate" required>
+						<input placeholder=" " ng-model="addMaxTeams" type="number" min="1" name="addMaxTeams" class="validate" required>
 						<label for="maxTeams">Max Teams</label>
-						<div ng-show="addSportForm.addMaxTeams.$invalid && addSportForm.addMaxTeams.$touched" class="error">required</div>
+						<div ng-show="addSportForm.addMaxTeams.$error.required && addSportForm.addMaxTeams.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addMaxTeams.$error.min" class="error">There should be at most 1 team</div>
+
 					</div>
 					<div class="input-field col s4 game-input-color-change">
 						<!-- <select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" >
 							<option value="" selected hidden>None</option>
 						</select> -->
-                        <input placeholder=" "  ng-model="addScoringSystem" type="text" class="validate" name="addScoringSystem" required>
+                        <input placeholder=" "  ng-model="addScoringSystem" type="text" data-length="50" ng-maxlength="50" class="validate" name="addScoringSystem" required>
 						<label for="addScoringSystem">Scoring system</label>
-                        <div ng-show="addSportForm.addScoringSystem.$invalid && addSportForm.addScoringSystem.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addScoringSystem.$error.required && addSportForm.addScoringSystem.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addScoringSystem.$error.maxlength" class="error">Scoring system should be up to 50 characters only</div>
 					</div>
 				</div>
 
@@ -521,33 +525,36 @@
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="Time started" name="addStartTime" type="time" ng-model="addStartTime" class="validate" required>
 						<label class="game-adjust-label" for="start-time">Start</label>
-						<div class="dummy">
-							<div ng-show="addSportForm.addStartTime.$invalid && addSportForm.addStartTime.$touched" class="error">required</div>
-						</div>
+						<div ng-show="addSportForm.addStartTime.$error.required && addSportForm.addStartTime.$touched" class="error">required</div>
+
+
+
 
 					</div>
 					<div class="input-field col s3 game-input-color-change">
-						<input placeholder="Time ended" name="addEndTime" type="time" ng-model="addEndTime" class="validate" required>
+						<input placeholder="Time ended" name="addEndTime" type="time" ng-model="addEndTime" min={{addStartTime}} class="validate" required>
 						<label class="game-adjust-label" for="end-time">End</label>
-						<div ng-show="addSportForm.addEndTime.$invalid && addSportForm.addEndTime.$touched" class="error">required</div>
+						<div ng-show="addSportForm.addEndTime.$error.required && addSportForm.addEndTime.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addEndTime.$error.min" class="error">End time should not be set before start time</div>
+
 					</div>
 					<br/>
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="Date started" name="addStartDate" type="date" ng-model="addStartDate" class="validate" min="{{game.start_date}}" max="{{game.end_date}}" required>
 						<label class="game-adjust-label" for="start-time">Start</label>
-						<div ng-show="addSportForm.addStartDate.$invalid && addSportForm.addStartDate.$touched" class="error">Start date should be from {{game.start_date}} to {{game.end_date}}</div>
+						<div ng-show="addSportForm.addStartDate.$error.required && addSportForm.addStartDate.$touched" class="error">Start date should be from {{game.start_date}} to {{game.end_date}}</div>
 					</div>
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="Date ended" name="addEndDate" type="date" ng-model="addEndDate" class="validate" min="{{addStartDate | date:'yyyy-MM-dd'}}" max="{{game.end_date}}" required>
 						<label class="game-adjust-label" for="end-time">End</label>
-						<div ng-show="addSportForm.addEndDate.$invalid && addSportForm.addEndDate.$touched" class="error">End date should be from your specified start date to {{game.end_date}}</div>
+						<div ng-show="addSportForm.addEndDate.$error.required && addSportForm.addEndDate.$touched" class="error">End date should be from your specified start date to {{game.end_date}}</div>
 					</div>
 				</div>
 
 				<div class="input-field col s12 game-input-color-change">
-					<textarea placeholder=" " name="addMechanics" ng-model="addMechanics" class="materialize-textarea" required></textarea>
+					<textarea placeholder=" " name="addMechanics" ng-model="addMechanics" class="materialize-textarea validate" required></textarea>
 					<label for="description" class="game-textarea-label-color-change">Mechanics</label>
-					<div ng-show="addSportForm.addMechanics.$invalid && addSportForm.addMechanics.$touched" class="error">required</div>
+					<div ng-show="addSportForm.addMechanics.$error.required && addSportForm.addMechanics.$touched" class="error">required</div>
 				</div>
 
 				<!--
@@ -618,7 +625,7 @@
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="" name="updateStartTime" type="time" class="validate" ng-model="updateStartTime" required>
 						<label for="start-time" class="game-adjust-label">Start</label>
-						<div ng-show="updateSportForm.updateStartTime.$invalid" class="error">required</div>
+						<div ng-show="updateSportForm.updateStartTime.$error.required" class="error">required</div>
 					</div>
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="" name="updateEndTime" type="time" min="{{updateStartTime}}" class="validate" ng-model="updateEndTime" required>
