@@ -18,6 +18,7 @@
     margin: 0 auto;
     max-width: 1280px;
     width: 88%;
+    margin-top:-350px; border-radius: 5px; position:relative;
 }
 
 .game-rightpanel-container {
@@ -634,7 +635,7 @@
 }
 
 .game-organization-content {
-    margin-top: 22px;
+    margin-top: 20px;
 }
 
 .game-rightpanel-content-box-organization {
@@ -700,7 +701,7 @@
 }
 
 .game-match-content-row-top{
-    padding-top: 45px;
+    /*padding-top: 45pcx;*/
 }
 
 .game-maintain-anchor{
@@ -724,17 +725,13 @@
 	text-shadow: 2px 2px 3px black;
 }
 
-.game-parallax {
-    height: 180px;
-}
-
 .game-panel-bottom {
     border: solid 1px transparent !important;
 }
 
 .game-toppanel {
     overflow-y:auto;
-    height:380px;
+    height:0px;
 }
 
 .game-toppanel::-webkit-scrollbar-track{
@@ -750,4 +747,14 @@
 
 .game-toppanel::-webkit-scrollbar-thumb{
 	background-color: #00415a;
+}
+
+.game-infinite-scroll {
+    overflow-y:auto;
+    height:300px;
+}
+
+.game-wew-scroll {
+    overflow-y:auto;
+    height:485px;
 }
