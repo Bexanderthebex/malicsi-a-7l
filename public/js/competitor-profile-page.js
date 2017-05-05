@@ -40,5 +40,5 @@ $(document).ready(function(){
 
     $('.chips').material_chip();
 
-    // $('.chips').on('chip.delete', function(e, chip){ alert('This member will be removed.'); });
+    $('.chips').on('chip.delete', function(e, chip){ alert('This member will be removed.'); });
 });
