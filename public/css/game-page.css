@@ -709,6 +709,7 @@
 }
 
 .game-title {
+    font-size: 45px !important;
 	letter-spacing: 3px;
 	padding-top: 45px;
 	margin-top: 0;
@@ -718,6 +719,7 @@
 }
 
 .game-details {
+    font-size: 15px !important;
 	letter-spacing: 1px;
 	margin-top: 0;
 	margin-bottom: 0;
@@ -757,4 +759,41 @@
 .game-wew-scroll {
     overflow-y:auto;
     height:485px;
+}
+
+@media screen and (max-device-width : 450px) {
+    .game-container {
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 88%;
+        margin-top:-350px; border-radius: 5px; position:relative;
+    }
+
+    .game-title {
+        font-size: 30px !important;
+        letter-spacing: 3px;
+        padding-top: 45px;
+        margin-top: 0;
+        margin-bottom: 0;
+        text-align: center;
+        text-shadow: 2px 2px 3px black;
+    }
+
+    .game-details {
+        font-size: 12px !important;
+        letter-spacing: 1px;
+        margin-top: 0;
+        margin-bottom: 0;
+        text-align: center;
+        text-shadow: 2px 2px 3px black;
+    }
+}
+
+@media screen and (max-device-width : 300px) {
+    .game-container {
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 88%;
+        margin-top:-300px; border-radius: 5px; position:relative;
+    }
 }
