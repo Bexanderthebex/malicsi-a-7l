@@ -1,6 +1,3 @@
-USE malicsi;
-
-
 DROP PROCEDURE IF EXISTS get_team;
 DELIMITER //
 
@@ -11,14 +8,14 @@ CREATE PROCEDURE get_team (IN id INT)
 
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS search_team;		
-DELIMITER //		
-		
-CREATE PROCEDURE search_team (IN team_namein VARCHAR(50))		
-	BEGIN		
-		SELECT * from team where team_name like team_namein;		
-	END; //		
-		
+DROP PROCEDURE IF EXISTS search_team;
+DELIMITER //
+
+CREATE PROCEDURE search_team (IN team_namein VARCHAR(50))
+	BEGIN
+		SELECT * from team where team_name like team_namein;
+	END; //
+
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS get_coached_team;
@@ -152,46 +149,7 @@ DELIMITER //
 
 CREATE PROCEDURE display_pending_membership_request(IN owner_idin INT)
 	BEGIN
-		SELECT competitor.id, first_name, last_name, team_id, team_name, sport_name FROM competitor, sport s join team JOIN competitor_joins_team using(team_id) 
+		SELECT competitor.id, first_name, last_name, team_id, team_name, sport_name FROM competitor, sport s join team JOIN competitor_joins_team using(team_id)
 		WHERE s.sport_id = team.sport_id AND competitor.id = competitor_joins_team.id AND team.id = owner_idin AND is_member = 0;
 	END; //
 DELIMITER ;
-
-
-GRANT EXECUTE ON procedure display_pending_membership_request TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure create_team TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure delete_team TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure team_membership_request TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure accept_membership_request TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure rankings TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure count_teams_in_sport TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure get_members TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure organization_rankings TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure get_teams_on_organization TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure add_team_member TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure delete_membership_request TO 'competitor'@'localhost';
-
-
-GRANT EXECUTE ON procedure display_pending_membership_request TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure create_team TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure delete_team TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure team_membership_request TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure accept_membership_request TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure rankings TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure count_teams_in_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure get_members TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure organization_rankings TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure get_teams_on_organization TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure add_team_member TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure delete_membership_request TO 'administrator'@'localhost';
-
-GRANT EXECUTE ON procedure rankings TO 'guest'@'localhost';
-GRANT EXECUTE ON procedure count_teams_in_sport TO 'guest'@'localhost';
-GRANT EXECUTE ON procedure get_members TO 'guest'@'localhost';
-GRANT EXECUTE ON procedure organization_rankings TO 'guest'@'localhost';
-GRANT EXECUTE ON procedure get_teams_on_organization TO 'guest'@'localhost';
-
-GRANT EXECUTE ON procedure get_membership_request TO 'administrator'@'localhost';
-GRANT EXECUTE ON procedure get_membership_request TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure get_membership_request TO 'organizer'@'localhost';		
-GRANT EXECUTE ON procedure get_membership_request TO 'guest'@'localhost';

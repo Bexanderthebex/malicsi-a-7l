@@ -1,5 +1,3 @@
-USE malicsi;
-
 DROP PROCEDURE IF EXISTS search_competitor;
 DELIMITER //
 
@@ -81,24 +79,3 @@ DELIMITER //
 
 	//
 DELIMITER ;
-
-
-GRANT EXECUTE ON PROCEDURE search_competitor TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE search_competitor TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE search_competitor TO 'guest'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor TO 'guest'@'localhost';
-GRANT EXECUTE ON PROCEDURE edit_competitor TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE edit_competitor TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor_teams TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor_teams TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor_teams TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor_teams TO 'guest'@'localhost';
-GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE edit_competitor_bio TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'guest'@'localhost';

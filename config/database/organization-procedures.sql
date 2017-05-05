@@ -1,5 +1,3 @@
-USE malicsi;
-
 DROP PROCEDURE IF EXISTS check_organization;
 DELIMITER //
 CREATE PROCEDURE check_organization(in org_Name CHAR(50))
@@ -26,15 +24,3 @@ BEGIN
 END;
 //
 DELIMITER ;
-
--- check organization
-GRANT EXECUTE ON PROCEDURE check_organization TO organizer;
-GRANT EXECUTE ON PROCEDURE check_organization TO administrator;
-
--- add organization
-GRANT EXECUTE ON PROCEDURE add_organization TO organizer;
-GRANT EXECUTE ON PROCEDURE add_organization TO administrator;
-
--- delete organization
-GRANT EXECUTE ON PROCEDURE delete_organization TO organizer;
-GRANT EXECUTE ON PROCEDURE delete_organization TO administrator;

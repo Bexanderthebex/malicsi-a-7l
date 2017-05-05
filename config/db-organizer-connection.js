@@ -2,10 +2,10 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host : 'localhost',
-  user : 'organizer',
-  password : 'password3',
-  db : 'malicsi',
+  host : 'us-cdbr-iron-east-03.cleardb.net',
+  user : 'b8683e6c21f02f',
+  password : 'b6051e50',
+  db : 'heroku_ce2b03d42f2b112',
   dateStrings: true
 });
 
