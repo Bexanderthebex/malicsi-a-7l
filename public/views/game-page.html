@@ -542,12 +542,14 @@
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="Date started" name="addStartDate" type="date" ng-model="addStartDate" class="validate" min="{{game.start_date}}" max="{{game.end_date}}" required>
 						<label class="game-adjust-label" for="start-time">Start</label>
-						<div ng-show="addSportForm.addStartDate.$error.required && addSportForm.addStartDate.$touched" class="error">Start date should be from {{game.start_date}} to {{game.end_date}}</div>
+						<div ng-show="addSportForm.addStartDate.$error.required && addSportForm.addStartDate.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addStartDate.$error.min && addSportForm.addStartDate.$touched" class="error">Start date should be from {{game.start_date}} to {{game.end_date}}</div>
 					</div>
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="Date ended" name="addEndDate" type="date" ng-model="addEndDate" class="validate" min="{{addStartDate | date:'yyyy-MM-dd'}}" max="{{game.end_date}}" required>
 						<label class="game-adjust-label" for="end-time">End</label>
-						<div ng-show="addSportForm.addEndDate.$error.required && addSportForm.addEndDate.$touched" class="error">End date should be from your specified start date to {{game.end_date}}</div>
+						<div ng-show="addSportForm.addEndDate.$error.required && addSportForm.addEndDate.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addEndDate.$error.min && addSportForm.addEndDate.$touched" class="error">End date should be from your specified start date to {{game.end_date}}</div>
 					</div>
 				</div>
 
