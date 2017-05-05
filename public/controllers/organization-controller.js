@@ -160,6 +160,7 @@
             OrganizationService
                 .retrieveMembers(team_id)
                 .then(function(res) {
+                    $scope.teamMembers = [];
                     let i;
                     let len = res.data.length;
                     for (i = 0 ; i< len; i++){

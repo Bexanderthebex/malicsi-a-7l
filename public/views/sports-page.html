@@ -1,7 +1,7 @@
 <div id="mainHolder" ng-init="retrieveSport()">
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below t9he navbar -->
-	<div id="main">
+	<div id="main" ng-init="getCurrentUser()">
 		<!-- Do your thing here -->
 		<div id="sports-title" class="rockwell valign-wrapper">
 			<div id="sports-title-holder">
@@ -46,7 +46,7 @@
 				<h4 class="rockwell center strong" style="margin: 0!important;">Matches
 
 				<!-- ADD MATCH BUTTON -->
-					<i class="fa fa-plus match-actions" data-target="match-add-modal"></i>
+					<i class="fa fa-plus match-actions" data-target="match-add-modal" ng-hide="!enableMatch || game.organizer_id !== user.id"></i>
 				</h4>
 			</div>
             <div class="row" ng-hide="checkMatches()">
@@ -61,8 +61,8 @@
 					<h5 class="telegrafico center">PAST MATCHES</h5>
 
 					<!-- LIST OF MATCHES -->
-					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewPastMatch()">
-						<div data-target="match-edit-modal" class="sports-match palette-border-5" ng-repeat="match in pastMatch" ng-click="copyMatch(value)">
+					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewPastMatch()" ng-hide="!enableMatch">
+						<div class="sports-match palette-border-5" ng-repeat="match in pastMatch" ng-click="copyMatch(match)">
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
 								<div class="telegrafico col s9" ng-hide = "match.teams.length == 0">Players</div>
@@ -93,6 +93,33 @@
 							</div>
 						</div>
 					</div>
+
+                    <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewPastMatch()" ng-show="!enableMatch">
+                        <div class="sports-match palette-border-5" ng-repeat="match in pastMatch">
+                            <!-- MATCH TITLE -->
+                            <div class="sports-match-title row">
+                                <div class="telegrafico col s9">Players</div>
+                                <div class="telegrafico col s3">Winner</div>
+                            </div>
+
+                            <!-- MATCH PLAYERS -->
+                            <div style="margin-bottom: 10px;" ng-repeat="team in match.teams">
+                                <!-- One player -->
+                                <div class="sports-match-players row">
+                                    <div class="col s9 century-gothic">{{ team.team_name }}</div>
+                                    <!-- <div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;">done</i></div> -->
+                                </div>
+                            </div>
+
+                            <!-- MATCH INFO -->
+                            <div class="sports-match-info">
+                                Start: {{ match.timeStart }} • End: {{ match.timeEnd }}
+                            </div>
+                            <div class="sports-match-info" >
+                                Date: {{ match.date }}
+                            </div>
+                        </div>
+                    </div>
 				</div>
 
 				<!-- O N  G O I N G MATCHES -->
@@ -100,8 +127,8 @@
 					<h5 class="telegrafico center">ON-GOING MATCHES</h5>
 
 					<!-- LIST OF MATCHES -->
-					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewCurrentMatch()">
-						<div data-target="match-edit-modal" class="sports-match palette-border-3" ng-repeat="match in currMatch" ng-click="copyMatch(match)">
+					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewCurrentMatch()" ng-hide="!enableMatch">
+						<div class="sports-match palette-border-3" ng-repeat="match in currMatch" ng-click="copyMatch(match)">
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
 								<div class="telegrafico col s9" ng-hide = "match.teams.length == 0">Players</div>
@@ -132,6 +159,33 @@
 							</div>
 						</div>
 					</div>
+
+                    <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewCurrentMatch()" ng-show="!enableMatch">
+                        <div class="sports-match palette-border-3" ng-repeat="match in currMatch">
+                            <!-- MATCH TITLE -->
+                            <div class="sports-match-title row">
+                                <div class="telegrafico col s9">Players</div>
+                                <div class="telegrafico col s3">Winner</div>
+                            </div>
+
+                            <!-- MATCH PLAYERS -->
+                            <div style="margin-bottom: 10px;">
+                                <!-- One player -->
+                                <div class="sports-match-players row" ng-repeat="team in match.teams">
+                                    <div class="col s9 century-gothic">{{ team.team_name }}</div>
+                                    <div class="col s3" style="height: 21px;"><i class="material-icons" style="font-size: 21px;"></i></div>
+                                </div>
+                            </div>
+
+                            <!-- MATCH INFO -->
+                            <div class="sports-match-info" ng-repeat="match in value | first: 1">
+                                Start: {{ match.timeStart }} • End: {{ match.timeEnd }}
+                            </div>
+                            <div class="sports-match-info" ng-repeat="match in value | first: 1">
+                                Date: {{ match.date }}
+                            </div>
+                        </div>
+                    </div>
 				</div>
 
 				<!-- U P C O M I N G MATCHES -->
@@ -139,8 +193,9 @@
 					<h5 class="telegrafico center">UPCOMING MATCHES</h5>
 
 					<!-- LIST OF MATCHES -->
-					<div  class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewFutureMatch()">
-						<div data-target="match-edit-modal" class="sports-match palette-border-4" ng-repeat="match in futureMatch " ng-click="copyMatch(match)">
+					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewFutureMatch()" ng-hide="!enableMatch">
+						<div class="sports-match palette-border-4" ng-repeat="match in futureMatch " ng-click="copyMatch(match)">
+
 							<!-- MATCH TITLE -->
 							<div class="sports-match-title row">
 								<div class="telegrafico col s9" ng-hide = "match.teams.length == 0">Players</div>
@@ -171,6 +226,33 @@
 							</div>
 						</div>
 					</div>
+
+                    <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewFutureMatch()" ng-show="!enableMatch">
+                        <div class="sports-match palette-border-4" ng-repeat="match in futureMatch ">
+                            <!-- MATCH TITLE -->
+                            <div class="sports-match-title row">
+                                <div class="telegrafico col s9">Players</div>
+                                <div class="telegrafico col s3">Winner</div>
+                            </div>
+
+                            <!-- MATCH PLAYERS -->
+                            <div style="margin-bottom: 10px;">
+                                <!-- One player -->
+                                <div class="sports-match-players row" ng-repeat="team in match.teams">
+                                    <div class="col s9 century-gothic">{{ team.team_name }}</div>
+                                    <!-- <div class="col s3" style="height: 21px;" ><i class="material-icons" style="font-size: 21px;" ></i></div> -->
+                                </div>
+                            </div>
+
+                            <!-- MATCH INFO -->
+                            <div class="sports-match-info">
+                                Start: {{ match.timeStart }} • End: {{ match.timeEnd }}
+                            </div>
+                            <div class="sports-match-info">
+                                Date: {{ match.date }}
+                            </div>
+                        </div>
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -294,25 +376,25 @@
 					<div id="edit-match-tab-1" class="col s12 container">
 		                <!-- EDIT MATCH INFO -->
 		                <div class="input-field col s4 sports-match-input-color-change">
-		                    <input placeholder=" " id="match-start-time" type="time" class="validate" ng-model="matchDateCopy.timeStart">
+		                    <input placeholder=" " id="match-start-time" type="time" class="validate" ng-model="matchCopy.timeStart">
 		                    <label for="match-start-time" class="sports-match-adjust-label">
 		                        Start Time
 		                    </label>
 		                </div>
 		                <div class="input-field col s4 sports-match-input-color-change">
-		                    <input placeholder=" " id="match-end-time" type="time" class="validate" ng-model="matchDateCopy.timeEnd">
+		                    <input placeholder=" " id="match-end-time" type="time" class="validate" ng-model="matchCopy.timeEnd">
 		                    <label for="match-end-time" class="sports-match-adjust-label">
 		                        End Time
 		                    </label>
 		                </div>
 		                <div class="input-field col s4 sports-match-input-color-change">
-		                    <input placeholder=" " id="match-date" type="date" class="validate" ng-model="matchDateCopy.date">
+		                    <input placeholder=" " id="match-date" type="date" class="validate" ng-model="matchCopy.date">
 		                    <label for="match-date" class="sports-match-adjust-label">
 		                        Date
 		                    </label>
 		                </div>
 		                <div class="input-field col s12 sports-match-input-color-change">
-		                    <textarea placeholder=" " id="match-remarks" class="materialize-textarea" data-length="140" ng-model="matchDateCopy.remarks"></textarea>
+		                    <textarea placeholder=" " id="match-remarks" class="materialize-textarea" data-length="140" ng-model="matchCopy.remarks"></textarea>
 		                    <label for="match-remarks" class="sports-match-textarea-label-color-change">
 		                        Remarks
 		                    </label>
@@ -329,10 +411,10 @@
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
-								<tr ng-repeat="team in matchCopy">
+								<tr ng-repeat="team in matchCopy.teams">
 									<td style="width: 40%;">{{ team.team_name }}</td>
 									<td style="width: 20%;"><input type="text" value="1" ng-model="team.ranking"></td>
-									<td style="width: 40%;"><i class="fa-hover-style fa fa-pencil"></i></td>
+									<td style="width: 40%;"><i class="fa-hover-style fa fa-pencil" ng-click="editTeamRanking(team)"></i></td>
 								</tr>
 							</tbody>
 						</table>
@@ -349,8 +431,8 @@
 									</tr>
 								</thead>
 								<tbody class="century-gothic">
-									<tr>
-										<td><input type="text" value="Team Name"></td>
+									<tr ng-repeat="team in matchCopy.teams">
+										<td><input type="text" ng-model="team.team_name"></td>
 										<td><i class="fa fa-pencil fa-hover-style" style="margin-right: 5px!important;"></i><i class="fa fa-close fa-hover-style"></i></td>
 									</tr>
 								</tbody>
@@ -386,7 +468,7 @@
                 </div>
                 <div class="col s6 right-align">
                     <button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
-                    <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="editMatch(matchCopy, matchDateCopy)">SAVE CHANGES</button>
+                    <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="editMatch(matchCopy)">SAVE CHANGES</button>
                 </div>
             </div>
         </div>
