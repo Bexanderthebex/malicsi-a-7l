@@ -7,7 +7,7 @@
 		$('.button-collapse').sideNav();
 		$('.slider').slider();
 		$(document).ready(function() {
-			$('.modal').modal();
+            $('.modal').modal();
 		});
 		
 		$('.datepicker').pickadate({
