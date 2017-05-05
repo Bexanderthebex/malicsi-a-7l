@@ -1,5 +1,12 @@
+#sports-title-holder{
+	width: 100%;
+	text-align: center;
+	padding: 50px;
+	/*padding-bottom: 50px;*/
+}
+
 #sports-title{
-	height: 180px;
+	min-height: 180px;
 	width: 100%;
 	background-image: url('/assets/basketball.jpg')!important;
 	background-size: cover;
@@ -9,7 +16,7 @@
 
 #sports-title h3{
 	letter-spacing: 3px;
-	padding-top: 45px;
+	/*padding-top: 45px;*/
 	margin-top: 0;
 	margin-bottom: 0;
 	text-align: center;
@@ -229,6 +236,11 @@
 }
 
 /************ MODALS ************/
+.sports-edit-ranking-team td{
+	padding: 5px!important;
+	height: 30px!important;
+}
+
 .sports-match-header-fill{
     padding: 0px !important;
     overflow-x: hidden;
@@ -296,4 +308,99 @@
 .sports-match-radio-button [type="radio"]:checked + label:after,
 .sports-match-radio-button [type="radio"].with-gap:checked + label:after {
 	background-color: #00415a;
+}
+
+/***********TABS ****************/
+#edit-match-tab-1{
+	padding-top: 20px!important;
+}
+
+#edit-match-tab-2 input{
+	width: 20px!important;
+	text-align: center!important;
+}
+
+#edit-match-tab-3 input{
+	width: 100%!important;
+	font-size: 12px!important;
+}
+
+#edit-match-tab-2 input:active{
+	border-bottom: 2px solid #00719c!important;
+}
+
+#edit-match-tab-2 input, #edit-match-tab-3 input{
+	margin: 0!important;
+	height: 25px!important;
+	border-bottom: 2px solid #00415a!important;
+	color: #00415a!important;
+}
+
+#edit-match-tab-2 input:disabled, #edit-match-tab-3 input:disabled{
+	color: black!important;
+	font-style: bold!important;
+	border-bottom: none!important;
+}
+
+#edit-match-tab-2 td, #edit-match-tab-3 td{
+	height: 40px!important;
+	padding-top: 0!important;
+	padding-bottom: 0!important;
+	font-size: 12px!important;
+}
+
+.fa-hover-style:hover{
+	color: #00719c!important;
+	cursor: pointer!important;
+	transition: color 0.5s!important;
+}
+
+/*#sport-tab-1 a.active, #sport-tab-2 a.active, #sport-tab-3 a.active{
+	border-bottom: #00719c!important;
+	color: #00719c!important;
+}*/
+
+/*#sport-tab-1, #sport-tab-2, #sport-tab-3{
+	color: #00415a!important;
+}*/
+
+
+#sports-main-tabs .indicator {
+  background-color: #00a5d3;
+  height: 5px;
+}
+#sports-main-tabs a {
+  color: #ffffff;
+  font-size: 90%;
+}
+
+#sports-main-tabs a:hover {
+  color: #00a5d3;
+}
+
+#sports-main-tabs .active {
+  color: #00a5d3;
+}
+
+#sports-team-tabs {
+  /*margin-top: -18px;*/
+  margin-top: -1.29%;
+}
+
+#sports-team-tabs .indicator {
+  background-color: #00a5d3;
+  height: 5px;
+}
+
+#sports-team-tabs a {
+  color: #ffffff;
+  font-size: 90%;
+}
+
+#sports-team-tabs a:hover {
+  color: #00a5d3;
+}
+
+#sports-team-tabs .active {
+  color: #00a5d3;
 }

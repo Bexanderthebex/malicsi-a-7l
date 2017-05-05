@@ -179,13 +179,13 @@
             return deferred.promise;
         }
 
+
         function retrieveSportRankings(sport_id) {
             let deferred = $q.defer();
             console.log(sport_id);
             $http({
                 method: 'GET',
-                // params: { 'gameId':game_id },
-                url: '/sport/ranks/' + sport_id,
+                url: '/sport/rankings/' + sport_id,
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);

@@ -2,178 +2,204 @@
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
-		<div class="organization-header" ng-init="retrieveOrganization()">
+		<div class="organization-header col s12 m12 l12" ng-init="retrieveOrganization()">
 			<img class="valign" id="organization-logo" src="assets/team1.png">
-			<h2 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h2>
+			<h3 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h3>
 		</div>
-		<!--<div class="row org-search-panel palette-5">
-			<div class="col s6 m6 l6 offset-m3 container rockwell">
-				<form id="org-game-search-bar" class="search-bar-config">
-					<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
-				</form>
-			</div>
-		</div>-->
 
-		<div class="row statistics-label center-align"> 
-			<h3 class="rockwell palette-text-3 `"> Statistics </h3>
+		
+		<div class="row col s12 palette-5">
+			<ul id="organization-main-tabs" class="tabs">
+				<!-- <li class="tab col s3"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li> -->
+				<li class="tab col s6 palette-5">
+					<a class="blue-text-darken-3 rockwell active strong" href="#organization-statistics-panel">GENERAL STATISTICS</a>
+				<li>
+				<li class="tab col s6 palette-5 ">
+					<a class="blue-text-darken-3 rockwell strong" href="#organization-team-standings">TEAM STANDINGS</a>
+				<li>
+			</ul>
 		</div>
-		<div class="row container">
-		 	<!-- STATISTICS -->
-            <div class="col s12 m12 l5 palette-3">
-                <div class="row center-align" ng-model="OrganizationController">
-                    <div class="col s4 m4 l4">
-						<h1 class="stat-nums rockwell strong"> {{organizationStats.first}} </h1>
-					</div>
-					<div class="col s4 m4 l4">
-						<h1 class="stat-nums rockwell strong"> {{organizationStats.second}} </h1>
-					</div>
-					<div class="col s4 m4 l4">
-						<h1 class="stat-nums rockwell strong"> {{organizationStats.third}} </h1>
-					</div>
-             
-                </div>
-                <div class="row center-align">
-                    <div class="col s4 m4 l4">
-                        <h3 class="palette-text-5 rockwell strong">2nd</h3>
-                    </div>
-                    <div class="col s4 m4 l4">
-                        <h3 class="palette-text-5 rockwell strong">1st</h3>
-                    </div>
-                    <div class="col s4 m4 l4">
-                        <h3 class="palette-text-5 rockwell strong">3rd</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m12 l7 palette-2">
-                <div class="row center-align">
-					<h1 class="rockwell strong stat-nums"> {{organizationStats.total}} </h1>
-                </div>
-				<div class="row center-align">
-					<div class="col s12 m12 l12">
-						<h3 class="palette-text-5 rockwell strong"> Total wins </h3>
+
+		<div id="organization-statistics-panel">
+			<div class="row statistics-label center-align"> 
+				<h3 class="rockwell palette-text-3 strong"> GENERAL STATISTICS </h3>
+			</div>
+			<div class="row container">
+			 	<!-- STATISTICS -->
+	            <div class="col s12 m12 l9" id="org-wins-count-panel">
+	                <div class="row center-align" ng-model="OrganizationController">
+	                    <div class="col s4 m4 l4">
+							<h1 class="stat-nums rockwell strong blue-grey-text text-lighten-2"> {{organizationStats.first}} </h1>
+						</div>
+						<div class="col s4 m4 l4">
+							<h1 class="stat-nums rockwell strong amber-text text-darken-1"> {{organizationStats.second}} </h1>
+						</div>
+						<div class="col s4 m4 l4">
+							<h1 class="stat-nums rockwell strong brown-text text-darken-2"> {{organizationStats.third}} </h1>
+						</div>
+	             
+	                </div>
+	                <div class="row center-align">
+	                    <div class="col s4 m4 l4">
+	                        <h3 class="palette-text-5 rockwell strong">2nd</h3>
+	                    </div>
+	                    <div class="col s4 m4 l4">
+	                        <h3 class="palette-text-5 rockwell strong">1st</h3>
+	                    </div>
+	                    <div class="col s4 m4 l4">
+	                        <h3 class="palette-text-5 rockwell strong">3rd</h3>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col s12 m12 l3">
+	                <div class="row center-align">
+						<h1 class="rockwell strong stat-nums"> {{organizationStats.total}} </h1>
+	                </div>
+					<div class="row center-align">
+						<div class="col s12 m12 l12">
+							<h3 class="palette-text-5 rockwell strong"> Wins </h3>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-
-		<div class="col s6 m6 l6 container rockwell">
-			<div class="right">
-				<span class="rockwell"> GAME: </span>
-				<form id="org-game-search-bar" class="search-bar-config">
-					<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
-				</form>
-			</div>
-		</div>
-
-		<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
-			<div class="col s12">
-				<ul id="organization-team-tabs" class="tabs">
-					<li class="tab col s3"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li>
-				</ul>
+		<div id="organization-team-standings">
+			<div class="col s4 m4 l12 container rockwell">
+				<div class="center">
+					<span class="rockwell strong palette-text-3"> SEARCH A GAME </span>
+					<form id="org-game-search-bar" class="search-bar-config center">
+						<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
+					</form>
+				</div>
 			</div>
 
-			<div id="team-table-1">
-				<div id="game-table1" >
-					<a href="#/game/{{viewedGameID}}"><h3 class="rockwell strong letter-spacing-1 center">{{ viewedGame.name }}</h3></a>
-					<table class="highlight">
-						<thead>
-							<tr class="telegrafico">
-								<th> 
-									Team Name
+			<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
+				<div class="col s12">
+					<ul id="organization-team-tabs" class="tabs">
+						<li class="tab col s3 palette-5 active"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li>
+					</ul>
+				</div>
+				<div id="team-table-1">
+					<div id="game-table1">
+						<a href="#/game/{{viewedGameID}}"><h3 class="rockwell strong letter-spacing-1 center">{{ viewedGame.name }}</h3></a>
+						<div class="row">
+							<div class="col s12 m12 l12">
+								<div class="center"> 
 									<form id="org-team-search-bar" class="search-bar-config">
-										<input type="search" ng-model="searchOrg" code="13" ng-change="searchInOrg(searchOrg)">
+										<input type="search" ng-model="searchTeam" code="13"">
 									</form>
-								</th>
-								<th> Sport </th>
-								<th> Medals Won </th>
-							</tr>
-						</thead>
-						<tbody >
-							<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id)">
-								<td>
-									<div> {{pagedTeam.team_name}} </div>
-								</td>
-								<td>
-									<div> {{pagedTeam.sport_name}} </div>
-								</td>
-								<td>
-									<div class="col s4">
-										<div><span style="font-weight: bold">1st</span> {{pagedTeam.statistics.first}} </div>
-										<div><span style="font-weight: bold">2nd</span> {{pagedTeam.statistics.second}}</div> 
-										<div><span style="font-weight: bold">3rd</span> {{pagedTeam.statistics.third}} </div>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="container center col s12">
-				<ul class="pagination center">
-					<!-- <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li> -->
-					<li><a href="" ng-repeat="p in pages" ng-click="setPageView(p)">{{p + 1}}</a></li>
-					<!-- <li class="waves-effect"><a href="#team-table-2">2</a></li>
-					<li class="waves-effect"><a href="#team-table-3">3</a></li>
-					<li class="waves-effect"><a href="#team-table-4">4</a></li>
-					<li class="waves-effect"><a href="#team-table-5">5</a></li> -->
-					<!-- <li class="waves-effect"><a href="#team-table-6"><i class="material-icons">chevron_right</i></a></li> -->
-				</ul>
-			</div>
 
-		</div>
+								</div>
+							</div>
+						</div>	
+						
+						<table id="organization-table" class="highlight">
+							<thead>
+								<tr class="telegrafico">
+									<th> 
+										Team Name
+									</th>
+									<th class="center-align"> Sport </th>
+									<th class="center-align"> Medals Won </th>
+								</tr>
+							</thead>
+							<tbody >
+								<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams | filter:searchTeam" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id);">
+									<td>
+										<div><span style="font-weight: bold">{{pagedTeam.team_name}}</span></div>
+									</td>
+									<td>
+										<div> {{pagedTeam.sport_name}} </div>
+									</td>
+									<td id="org-team-medals-won">
+										<div class="col s4">
+											<div><span class="org-standing yellow-text text-accent-2" style="font-weight: bold">1st</span> {{pagedTeam.statistics.first}} |
+											<span class="org-standing blue-grey-text text-lighten-2" style="font-weight: bold">2nd</span> {{pagedTeam.statistics.second}} |
+											<span class="org-standing brown-text text-lighten-2" style="font-weight: bold">3rd</span> {{pagedTeam.statistics.third}} </div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="container center col s12">
+					<ul class="pagination center">
+						<!-- <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li> -->
+						<li><a href="" ng-repeat="p in pages" ng-click="setPageView(p)">{{p + 1}}</a></li>
+						<!-- <li class="waves-effect"><a href="#team-table-2">2</a></li>
+						<li class="waves-effect"><a href="#team-table-3">3</a></li>
+						<li class="waves-effect"><a href="#team-table-4">4</a></li>
+						<li class="waves-effect"><a href="#team-table-5">5</a></li> -->
+						<!-- <li class="waves-effect"><a href="#team-table-6"><i class="material-icons">chevron_right</i></a></li> -->
+					</ul>
+				</div>
+
+			</div>
+		<div>
 		<!--<div class="row org-handler" ng-init="retrieveTeams(1)"><h4 class="` palette-text-3 center rockwell"> Teams Handled </h4></div>-->
 
-		<div id="organization-team-info-modal" class="modal modal-fixed-footer">
-			<div class="modal-content">
-				<div class="row">
-					<h4 class="center rockwell"> {{teamModal.team_name}} </h4>
-					<div class="row organization-team-info-mem-label">
-						<h5 class="palette-text-3 leixo">Members </h5>
-					</div> 
+		<div id="organization-team-info-modal" class="modal modal-fixed-footer"">
+			<div class="col s12 m12 l12">	
+				<div class="modal-content">
 					<div class="row">
-						<h5 class="organization-team-member-name palette-text-3 century-gothic strong" id="emptyTeam"></h5>
-						<div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers" >
-							<a class="modal-action modal-close" href="#/competitor/profile/{{member.id}} ">
-							<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
-							<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
-							<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
-							</a>
+						<div class="col s12 m12 l12" id="organization-modal-header">
+							<h4 class="center rockwell"> {{teamModal.team_name}} </h4>
+							<div class="row organization-team-info-mem-label">
+								<h5 class="palette-text-3 leixo">Members </h5>
+							</div> 
 						</div>
-						
-					</div>
-					<div class="row organization-team-info-mem-label">
-						<h5 class="palette-text-3 leixo">Statistics</h5>
-					</div>
-					<div class="team-statistics">
-						<div class="row center">
-							<div class="col s4 m4 l4">
-								<h1 class="stat-nums rockwell strong"> {{teamStats.first}} </h1>
+						<div class="row">
+							<h5 class="organization-team-member-name palette-text-3 century-gothic strong" id="emptyTeam"></h5>
+							<div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers" >
+								<a class="modal-action modal-close" href="#/competitor/profile/{{member.id}} ">
+								<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
+								<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
+								<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
+								</a>
 							</div>
-							<div class="col s4 m4 l4">
-								<h1 class="stat-nums rockwell strong"> {{teamStats.second}} </h1>
-							</div>
-							<div class="col s4 m4 l4">
-								<h1 class="stat-nums rockwell strong"> {{teamStats.third}} </h1>
-							</div>
+							
 						</div>
-						<div class="row center">
-							<div class="col s4 m4 l4">
-								<h1 class="secondary-text century-gothic strong"> 1st </h1>
+						<div class="row organization-team-info-mem-label">
+							<h5 class="palette-text-3 leixo">Statistics</h5>
+						</div>
+						<div class="team-statistics">
+							<div class="col s12 m12 l12">
+								<div class="row center">
+										<div class="col s4 m4 l4">
+											<h1 class="stat-nums-modal rockwell strong yellow-text text-accent-2"> {{teamStats.first}} </h1>
+										</div>
+										<div class="col s4 m4 l4">
+											<h1 class="stat-nums-modal rockwell strong blue-grey-text text-lighten-2"> {{teamStats.second}} </h1>
+										</div>
+										<div class="col s4 m4 l4">
+											<h1 class="stat-nums-modal rockwell strong brown-text text-darken-2"> {{teamStats.third}} </h1>
+										</div>
+								</div>
 							</div>
-							<div class="col s4 m4 l4">
-								<h1 class="secondary-text century-gothic strong"> 2nd </h1>
-							</div>
-							<div class="col s4 m4 l4">
-								<h1 class="secondary-text century-gothic strong"> 3rd </h1>
+							<div class="s12 m12 l12">
+								<div class="row center">
+									<div class="col s4 m4 l4">
+										<h1 class="secondary-text stats-modal-label century-gothic strong"> 1st </h1>
+									</div>
+									<div class="col s4 m4 l4">
+										<h1 class="secondary-text stats-modal-label century-gothic strong"> 2nd </h1>
+									</div>
+									<div class="col s4 m4 l4">
+										<h1 class="secondary-text stats-modal-label century-gothic strong"> 3rd </h1>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="modal-footer">
-				<button ng-click="joinTeam(teamModal.id);" ng-hide="currentUser.type!='C'" class="right minimalist-button">Join Team</button>
-				<button class="modal-action modal-close right join-team-close minimalist-button">Close</button>
+				<div class="modal-footer">
+					<button ng-click="joinTeam(teamModal.team_id);" ng-hide="currentUser.type !='C' || !(isMember==-1)" class="right minimalist-button">Join Team </button>
+					<button ng-click="quitTeam(teamModal.team_id);" ng-hide="currentUser.type !='C' || !(isMember==1)" class="right minimalist-button">Quit Team </button>
+					<button  ng-hide="currentUser.type !='C' || !(isMember==0)" class="right minimalist-button disabled" disabled="true">Pending Request </button> <!-- make this button looked like disabled -->
+					<button class="modal-action modal-close right join-team-close minimalist-button">Close</button>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -4,7 +4,6 @@
 
 .collapsible-header .help-hover-icon {
 	cursor: pointer;
-	/*color: white;*/
 }
 
 .help-hover-icon:hover {
@@ -19,11 +18,7 @@
 	border-top: 20px solid black;
 }
 
-
 i.help-icon-arrow { 
-	/*position: absolute;*/
-	/*right: 20px;*/
-	/*top: 14px;*/
 	-webkit-transition: all 300ms ease-in 0s;
 	-moz-transition: all 300ms ease-in 0s;
 	-o-transition: all 300ms ease-in 0s;
@@ -31,10 +26,30 @@ i.help-icon-arrow {
 }
 
 .active i.help-icon-arrow {
-    /*color: #ACD4CE;*/
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     transform: rotate(180deg);
+}
+
+@media screen and (max-device-width : 1200px) {
+    .help-category-header {
+        font-size: 20px;   
+    }
+}
+
+@media screen and (max-device-width : 700px) {
+    .help-category-header {
+        font-size: 15px;   
+    }
+}
+
+@media screen and (max-device-width : 450px) {
+    .help-collapsible-header {
+        font-size: 12px;   
+    }
+    .help-collapsible-body {
+        font-size: 10px;
+    }
 }

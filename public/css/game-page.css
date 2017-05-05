@@ -1,5 +1,5 @@
 #game-slider .indicators{
-    margin-bottom: 1% !important;
+    /*margin-bottom: 1% !important;*/
 }
 
 #game-slider .indicators .indicator-item {
@@ -20,17 +20,23 @@
     width: 88%;
 }
 
+.game-rightpanel-container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 80%;
+}
+
 .game-slider-background {
     background-color: white !important;
 }
 
 #game-slider {
-    height: 220px !important;
+    height: 230px !important;
     margin-bottom: 0 !important;
 }
 
 #game-slides {
-    height: 200px !important;
+    height: 210px !important;
 }
 
 .game-smaller-padding {
@@ -100,13 +106,6 @@
 
 .game-remove-top {
     margin-top: 0px !important;
-}
-
-.game-adjust-image {
-    margin-top: 6%;
-    height: 100px;
-    width: 100px;
-    cursor: pointer;
 }
 
 #game-sport-search {
@@ -253,6 +252,7 @@
     border-radius: 8px;
     min-height: 100px;
     margin-top: 10px;
+    background-color: white !important;
 }
 
 .game-match-title, .game-match-players{
@@ -270,9 +270,7 @@
 }
 
 .game-match-container{
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
 }
 
 .game-match-header {
@@ -284,22 +282,22 @@
 #game-past-match .game-match:hover {
     border-color: #001f2b;
     color: white !important;
-    transition: background-color 0.5s;
-    background: #001f2b;
+    transition: background-color 0.4s;
+    background: #001f2b !important;
 }
 
 #game-ongoing-match .game-match:hover {
     border-color: #00415a;
     color: white !important;
-    background: #00415a;
-    transition: background-color 0.5s;
+    background: #00415a !important;
+    transition: background-color 0.4s;
 }
 
 #game-upcoming-match .game-match:hover {
     border-color: #00719c;
     color: white !important;
-    transition: background-color 0.5s;
-    background: #00719c;
+    transition: background-color 0.4s;
+    background: #00719c !important;
 }
 
 .game-circle-update {
@@ -361,11 +359,12 @@
     color: black;
     margin: 0px !important;
     margin-top: -10px;
+    line-height: 22px;
 }
 
 .game-sponsor-description{
-    font-size: 10px;
-    margin-top: -5px;
+    font-size: 12px;
+    margin-top: -1px;
     line-height: 14px !important;
     color: black;
 }
@@ -375,8 +374,13 @@
     /*margin-top: -20px; */
 }
 
+.game-organizer-header{
+    line-height: 18px !important;
+    font-size: 20px !important;
+}
+
 .game-organizer-description{
-    font-size: 14px;
+    font-size: 14px !important;
 }
 
 .game-center-sport-logo{
@@ -387,16 +391,19 @@
     padding: 10px !important;
 }
 
+.game-hovercard {
+    border: solid 2.5px grey;
+    border-radius: 8px;
+    min-height: 100px;
+    margin-top: 10px;
+    background-color: white !important;
+    box-shadow: none;
+}
 
 .game-hovercard:hover {
-    /*00b8ff*/
-    /*00a5d3*/
-    /*00719c*/
-    /*00415a*/
-    /*001f2b*/
-    border-color: #00b8ff;
+    border-color: grey;
     transition: background-color 0.5s;
-    background: #00b8ff;
+    background: grey !important;
 }
 
 .game-option-adjust {
@@ -404,7 +411,14 @@
 }
 
 #game-adjust-icon-add {
-    font-size: 100px;
+    font-size: 90px;
+}
+
+.game-adjust-image {
+    margin-top: 6%;
+    height: 90px;
+    width: 90px;
+    cursor: pointer;
 }
 
 #game-game-search input{
@@ -564,4 +578,156 @@
     left: 0rem;
     font-size: 0.8rem;
     color: #FF4081;
+}
+
+.game-adjust-sponsor-desc{
+    margin-top: -8px;
+    font-size: 12px;
+}
+
+.game-organizations-button{
+    background-color: transparent !important;
+    border: solid 2px #00415a !important;
+    color: #00415a !important;
+}
+
+.game-organizations-button:hover{
+    background-color: #00415a !important;
+    border: solid 2px #00415a !important;
+    color: white !important;
+}
+
+.game-sponsor-button{
+    background-color: transparent !important;
+    border: solid 2px #001f2b !important;
+    color: #001f2b !important;
+}
+
+.game-sponsor-button:hover{
+    background-color: #001f2b !important;
+    border: solid 2px #001f2b !important;
+    color: white !important;
+}
+
+.game-game-box{
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.game-game-box-header{
+	width: 100%;
+	height: 50px;
+	padding: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 18px;
+	letter-spacing: 1px;
+}
+
+.game-game-box-body{
+	width: 100%;
+	border: solid 1px rgba(0,0,0,.1);
+    height: 250px;
+}
+
+.game-organization-content {
+    margin-top: 22px;
+}
+
+.game-rightpanel-content-box-organization {
+    overflow-y:auto;
+    height:150px;
+}
+
+.game-rightpanel-content-box-organization::-webkit-scrollbar-track{
+	background: transparent;
+	-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);
+	background-color: #bdbdbd;
+}
+
+.game-rightpanel-content-box-organization::-webkit-scrollbar{
+	width: 10px;
+	background-color: transparent;
+}
+
+.game-rightpanel-content-box-organization::-webkit-scrollbar-thumb{
+	background-color: #00415a;
+}
+
+.game-rightpanel-content-box-sponsor {
+    overflow-y:auto;
+    height:150px;
+}
+
+.game-rightpanel-content-box-sponsor::-webkit-scrollbar-track{
+	background: transparent;
+	-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);
+	background-color: #bdbdbd;
+}
+
+.game-rightpanel-content-box-sponsor::-webkit-scrollbar{
+	width: 10px;
+	background-color: transparent;
+}
+
+.game-rightpanel-content-box-sponsor::-webkit-scrollbar-thumb{
+	background-color: #001f2b;
+}
+
+.game-panel-headers{
+    font-size: 22px !important;
+}
+
+.game-tab-header{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;    
+}
+
+.game-match-tab .indicator {
+    height: 5px;
+    background-color: white;
+}
+
+.game-match-tab .tab {
+    height: 30px !important;
+}
+
+.game-match-tab  {
+    height: 30px !important;
+}
+
+.game-match-content-row-top{
+    padding-top: 45px;
+}
+
+.game-maintain-anchor{
+    color: black;
+}
+
+.game-title {
+	letter-spacing: 3px;
+	padding-top: 45px;
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: center;
+	text-shadow: 2px 2px 3px black;
+}
+
+.game-details {
+	letter-spacing: 1px;
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: center;
+	text-shadow: 2px 2px 3px black;
+}
+
+.game-parallax {
+    height: 650px;
+}
+
+.game-panel-bottom {
+    border: solid 1px transparent !important;
 }

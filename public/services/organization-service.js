@@ -17,19 +17,20 @@
             retrieveTeam : retrieveTeam,
             retrieveMembers : retrieveMembers,
             retrieveTeamStatistics : retrieveTeamStatistics,
-            getOrganizationRankings: getOrganizationRankings,
+            retrieveOrganizationRankings: retrieveOrganizationRankings,
             getOrganization: getOrganization,
             getGamesInOrganization: getGamesInOrganization,
             updateOrganization: updateOrganization,
-			deleteOrganization: deleteOrganization
+			deleteOrganization: deleteOrganization,
+            checkTeamMembership: checkTeamMembership,
+            quitTeam: quitTeam
         }
 
         return service;
 
 
-        function getOrganizationRankings(org_id) {
+        function retrieveOrganizationRankings(org_id) {
             let deferred = $q.defer();
-
             $http({
                 method: 'GET',
                 params: { "org_id": org_id },
@@ -40,7 +41,6 @@
             }, (err) => {
                 deferred.reject(err);
             });
-
             return deferred.promise;
         }
 
@@ -63,7 +63,6 @@
 
         function retrieveTeam(team_id) {
             let deferred = $q.defer();
-
             $http({
                 method: 'GET',
                 params: { "team_id": team_id },
@@ -137,7 +136,6 @@
                 url: '/team/teamMembershipRequest',
                 headers: headers
             }).then((res) => {
-                console.log(res);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -146,15 +144,16 @@
             return deferred.promise;
         }
 
-        function checkTeamMembership(team_id) {
+        function checkTeamMembership(id,team_id) {
             let deferred = $q.defer();
             $http({
                 method: 'GET',
-                data: $.param({'team_id' : team_id}),
+                params: {
+                    "id": id,
+                    "team_id": team_id },
                 url: '/team/getMembershipRequest',
                 headers: headers
             }).then((res) => {
-                console.log(res);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -206,7 +205,6 @@
                 url: '/organization/editOrganization',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
                 console.log(err);
@@ -223,6 +221,26 @@
                 method: 'DELETE',
                 data: $.param({orgId: orgId}),
                 url: '/organization/deleteOrganization',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                console.log(err);
+                deferred.reject(err);
+            });
+
+            return deferred.promise;
+        }
+
+        function quitTeam(id,team_id) {
+            let deferred = $q.defer();
+
+            $http({
+                method: 'DELETE',
+                data: $.param({
+                    id: id,
+                    team_id: team_id}),
+                url: '/team/deleteMembershipRequest',
                 headers: headers
             }).then((res) => {
                 console.log(res.data);

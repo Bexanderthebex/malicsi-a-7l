@@ -2,14 +2,16 @@
     angular.module('app')
         .controller('AdminCtrl', AdminCtrl);
 
-    AdminCtrl.$inject = ['$scope', '$http', 'UserService', 'AdminService', 'SearchService', 'OrganizerService', 'OrganizationService'];
+    AdminCtrl.$inject = ['$scope', '$http', 'UserService', 'AdminService', 'SearchService', 'OrganizerService', 'OrganizationService', '$location'];
 
-    function AdminCtrl($scope, $http, UserService, AdminService, SearchService, OrganizerService, OrganizationService) {
+    function AdminCtrl($scope, $http, UserService, AdminService, SearchService, OrganizerService, OrganizationService, $location) {
         let adminCache = {};
         let userCache = {};
         let organizerCache = {};
         let organizationCache = {};
         let sponsorCache = {};
+        let user = null;
+        let pending = null;
 
         $scope.admins = [];
         $scope.users = [];
@@ -58,20 +60,47 @@
             console.log(err);
         });
 
+        UserService.getUserInfo().then((res) => {
+            user = res.data;
+            if (res.data == '' || user.type != 'A') {
+                Materialize.toast('You need to be logged in as an administrator to access the admin panel.', 2000);
+                $location.url('/');
+            }
+        }, (err) => {
+            Materialize.toast('An error occured.', 2000);
+            console.log(err);
+        })
+
         $scope.addAdmin = () => {
            if($scope.adminUsername === undefined || $scope.adminPassword == undefined || $scope.adminEmail === undefined || $scope.adminContact === undefined){
                 Materialize.toast('Error. Missing text field(s).', 2000);
             }else{
-                AdminService.addAdmin({
+                const admin = {
                     username: $scope.adminUsername,
                     password: $scope.adminPassword,
                     email: $scope.adminEmail,
                     contact: $scope.adminContact
-                }).then((res) => {
+                }
+                AdminService.addAdmin(admin)
+                .then((res) => {
                     $scope.adminUsername = "";
                     $scope.adminPassword = "";
                     $scope.adminEmail = "";
                     $scope.adminContact = "";
+
+                    UserService.getUsersByType('A').then((res) => {
+                        $scope.admins = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    Materialize.toast('Successfully created admin.', 2000);
                 }, (err) => {
                     Materialize.toast(err.data.message);
                 });
@@ -82,14 +111,17 @@
             if($scope.organizerUsername === undefined || $scope.organizerPassword == undefined || $scope.organizerEmail === undefined || $scope.organizerContact === undefined || $scope.organizerName === undefined || $scope.organizerDescription === undefined){
                 Materialize.toast('Error. Missing text field(s).', 2000);
             }else{
-                AdminService.addOrganizer({
+                const organizer = {
                     username: $scope.organizerUsername,
                     password: $scope.organizerPassword,
                     email: $scope.organizerEmail,
                     contact: $scope.organizerContact,
                     name: $scope.organizerName,
                     description: $scope.organizerDescription
-                }).then((res) => {
+                };
+
+                AdminService.addOrganizer(organizer)
+                .then((res) => {
                     $scope.organizerUsername = "";
                     $scope.organizerPassword = "";
                     $scope.organizerEmail = "";
@@ -97,7 +129,17 @@
                     $scope.organizerName = "";
                     $scope.organizerDescription = "";
 
-                    console.log('add organizer', res.data);
+                    SearchService.retrieveOrganizer('').then((res) => {
+                        $scope.organizers = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
 
                     Materialize.toast('Successfully created organizer.', 2000);
                 }, (err) => {
@@ -117,7 +159,20 @@
 
                     console.log('add organization', res.data);
 
-                    Materialize.toast('Successfully created organization..', 2000);
+                    SearchService.retrieveOrganization('').then((res) => {
+                        $scope.organizations = res.data;
+                        console.log('organizations', $scope.organizations);
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    Materialize.toast('Successfully created organization.', 2000);
                 }, (err) => {
                     console.log('Add organizer', err);
                 });
@@ -194,6 +249,12 @@
                         break;
                     }
                 }
+
+                AdminService.retrieveLog().then((res) => {
+                    $scope.logs = res.data;
+                }, (err) => {
+                    console.log(err);
+                });
             }, (err) => {
                 Materialize.toast('Something went wrong :\'(', 2000);
                 console.log(err);
@@ -225,6 +286,12 @@
 
                 UserService.updateUser(admin)
                 .then((res) => {
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('Admin info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
@@ -247,8 +314,6 @@
             $('#admin-cancel-edit-' + admin.id).hide();
             $('.admin-form-edit-' + admin.id).prop('disabled', true);
 
-            console.log(adminCache)
-
             admin.username = adminCache[admin.id].username;
             admin.email = adminCache[admin.id].email;
             admin.contact = adminCache[admin.id].contact;
@@ -260,8 +325,14 @@
                 $('#organizer-cancel-edit-' + organizer.id).hide();
                 $('.organizer-form-edit-' + organizer.id).prop('disabled', true);
 
-                 OrganizerService.updateOrganizer(organizer)
+                OrganizerService.updateOrganizer(organizer)
                 .then((res) => {
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('Organizer info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
@@ -299,6 +370,12 @@
 
                  OrganizationService.updateOrganization(organization)
                 .then((res) => {
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('Organization info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
@@ -328,6 +405,12 @@
             OrganizationService.deleteOrganization(orgId)
             .then((res) => {
                 Materialize.toast('Organization deleted', 2000);
+                AdminService.retrieveLog().then((res) => {
+                    $scope.logs = res.data;
+                }, (err) => {
+                    console.log(err);
+                });
+
                 for (let i = 0; i < $scope.organizations.length; ++i) {
                     if ($scope.organizations[i].organization_id === orgId) {
                         $scope.organizations.splice(i, 1);
@@ -346,6 +429,12 @@
 
                 UserService.updateUser(user.username, user.email, user.contact, user.id)
                 .then((res) => {
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('User info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
@@ -382,7 +471,20 @@
                     description: $scope.sponsorDescription
                 };
                 AdminService.addSponsor(sponsor).then((res) => {
-                    Materialize.toast("Sponsor added", 2000);
+                    SearchService.retrieveSponsor('').then((res) => {
+                        $scope.sponsors = res.data;
+                        console.log("sponsors", $scope.sponsors);
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
+                    Materialize.toast("Successfully created sponsor.", 2000);
                 }, (err) => {
                     console.log(err);
                     Materialize.toast("An error occured.", 2000);
@@ -392,6 +494,12 @@
 
         $scope.deleteSponsor = (id) => {
             AdminService.deleteSponsor(id).then((res) => {
+                AdminService.retrieveLog().then((res) => {
+                    $scope.logs = res.data;
+                }, (err) => {
+                    console.log(err);
+                });
+
                 Materialize.toast("Sponsor deleted", 2000);
                 for (let i = 0; i < $scope.sponsors.length; ++i) {
                     if ($scope.sponsors[i].sponsor_id === id) {
@@ -413,6 +521,12 @@
 
                 AdminService.editSponsor(sponsor)
                 .then((res) => {
+                    AdminService.retrieveLog().then((res) => {
+                        $scope.logs = res.data;
+                    }, (err) => {
+                        console.log(err);
+                    });
+
                     Materialize.toast('Sponsor info edited.', 2000);
                 }, (err) => {
                     Materialize.toast('Something went wrong :\'(', 2000);
@@ -441,210 +555,55 @@
         $scope.editPassword = (userID, newPassword) => {
             UserService.editPassword(userID, newPassword)
             .then((res) => {
-                $scope.admins = res.data;
+                AdminService.retrieveLog().then((res) => {
+                    $scope.logs = res.data;
+                }, (err) => {
+                    console.log(err);
+                });
+
                 console.log('edit password')
             }, (err) => {
                 console.log(err);
             })
         }
-    }
-})();
 
-/*
-'use strict';
-
-(() => {
-
-    angular
-        .module('app')
-        .controller('AdminController', AdminController)
-
-    AdminController.$inject = ['$scope', 'AdminService'];
-
-    function AdminController($scope, AdminService) {
-        //"declare" functions para magamit sa view
-        $scope.retrieveAdmin = retrieveAdmin;   // Admin
-        $scope.addAdmin = addAdmin;
-        $scope.updateAdmin = updateAdmin;
-        $scope.deleteAdmin = deleteAdmin;
-        $scope.retrieveOrganizer = retrieveOrganizer;   // Organizer
-        $scope.addOrganizer = addOrganizer;
-        $scope.updateOrganizer = updateOrganizer;
-        $scope.deleteOrganizer = deleteOrganizer;
-        $scope.retrieveUser = retrieveUser; // User
-        $scope.addUser = addUser;
-        $scope.updateUser = updateUser;
-        $scope.deleteUser = deleteUser;
-        $scope.retrieveLog = retrieveLog;   // Log
-
-        //kumabaga "declare" or "initialize" "variables" para mag-access sa front-end yung mga data
-        $scope.admins = [];
-        $scope.organizers = [];
-        $scope.users = [];
-        $scope.logs = [];
-        $scope.admin = {
-            id: undefined,
-            username: undefined,
-            password: undefined,
-            email: undefined,
-            contact: undefined
-        };
-        $scope.organizer = {
-            id: undefined,
-            name: undefined,
-            description: undefined
-        };
-        $scope.user = {
-            id: undefined,
-            username: undefined,
-            password: undefined,
-            email: undefined,
-            contact: undefined
-        };
-
-        function copyAdmin(admin) {
-            $scope.adminCopy = {
-                id: admin.id,
-                username: admin.username,
-                password: admin.password,
-                email: admin.email,
-                contact: admin.contact
-            }
+        $scope.setPending = (id) => {
+            pending = id;
         }
 
-        function copyOrganizer(organizer) {
-            $scope.organizerCopy = {
-                id: organizer.id,
-                name: organizer.name,
-                description: organizer.description
-            }
+        $scope.authenticate = () => {
+            console.log('kek', user.username, $scope.passwordVerify)
+            $http.post('/login', {
+				username : user.username,
+				password : $scope.passwordVerify,
+			}).then(function(result){
+                $('#admin-change-password').modal('close');
+                $('#admin-change-password2').modal('open');
+                $scope.passwordVerify = '';
+			}, function(err) {
+                $scope.passwordVerify = '';
+				Materialize.toast("Incorrect credentials", 2000);
+				console.log(err);
+			});
         }
 
-        function copyUser(user) {
-            $scope.userCopy = {
-                id: user.id,
-                username: user.username,
-                password: user.password,
-                email: user.email,
-                contact: user.contact
-            }
-        }
+        $scope.changePassword = () => {
+            UserService.editPassword(pending, $scope.newPassword)
+            .then((res) => {
+                $scope.newPassword = '';
 
-        function retrieveAdmin() {
-            AdminService
-                .retrieveAdmin('A')
-                .then(function(res) {
-                    $scope.admins = res.data.data;
-                    console.log($scope.admins);
-                    console.log(res.data.data);
-                }, function(err) {
+                AdminService.retrieveLog().then((res) => {
+                    $scope.logs = res.data;
+                }, (err) => {
                     console.log(err);
-                    Materialize.toast('Admins not retrieved.', 3000);
-                })
-        }
+                });
 
-        function updateAdmin() {
-            AdminService
-                .updateAdmin($scope.adminCopy)
-                .then(function(res) {
-                    Materialize.toast('Successfully updated admin!', 3000);
-                    $scope.retrieveAdmin();
-                }, function(err) {
-                    console.log(err.data);
-                })
-        }
-
-        function deleteAdmin() {
-            AdminService
-                .deleteAdmin(id)
-                .then(function(res) {
-                    Materialize.toast('Successfully deleted admin!', 3000);
-                }, function(err) {
-                    Materialize.toast('Error deleting admin!', 3000);
-                })
-        }
-
-        function retrieveOrganizer() {
-            AdminService
-                .retrieveOrganizer('O')
-                .then(function(res) {
-                    $scope.organizers = res.data.data;
-                    console.log($scope.organizers);
-                    console.log(res.data.data);
-                }, function(err) {
-                    console.log(err);
-                    Materialize.toast('Organizers not retrieved.', 3000);
-                })
-        }
-
-        function updateOrganizer() {
-            AdminService
-                .updateOrganizer($scope.organizerCopy)
-                .then(function(res) {
-                    Materialize.toast('Successfully updated organizer!', 3000);
-                    $scope.retrieveOrganizer();
-                }, function(err) {
-                    console.log(err.data);
-                })
-        }
-
-        function deleteOrganizer() {
-            AdminService
-                .deleteOrganizer(id)
-                .then(function(res) {
-                    Materialize.toast('Successfully deleted organizer!', 3000);
-                }, function(err) {
-                    Materialize.toast('Error deleting organizer!', 3000);
-                })
-        }
-
-        function retrieveUser() {
-            AdminService
-                .retrieveUser()
-                .then(function(res) {
-                    $scope.users = res.data.data;
-                    console.log($scope.users);
-                    console.log(res.data.data);
-                }, function(err) {
-                    console.log(err);
-                    Materialize.toast('Users not retrieved.', 3000);
-                })
-        }
-
-        function updateUser() {
-            AdminService
-                .updateUser($scope.adminCopy)
-                .then(function(res) {
-                    Materialize.toast('Successfully updated user!', 3000);
-                    $scope.retrieveUser();
-                }, function(err) {
-                    console.log(err.data);
-                })
-        }
-
-        function deleteUser() {
-            AdminService
-                .deleteUser(id)
-                .then(function(res) {
-                    Materialize.toast('Successfully deleted user!', 3000);
-                }, function(err) {
-                    Materialize.toast('Error deleting user!', 3000);
-                })
-        }
-
-        function retrieveLog() {
-            AdminService
-                .retrieveUser()
-                .then(function(res) {
-                    $scope.logs = res.data.data;
-                    console.log($scope.logs);
-                    console.log(res.data.data);
-                }, function(err) {
-                    console.log(err);
-                    Materialize.toast('Logs not retrieved.', 3000);
-                })
+                Materialize.toast('Password successfully edited', 2000);
+            }, (err) => {
+                $scope.newPassword = '';
+                Materialize.toast('An error occured', 2000);
+                console.log(err);
+            })
         }
     }
 })();
-
-*/

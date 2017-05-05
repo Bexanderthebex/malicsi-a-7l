@@ -11,12 +11,12 @@
 				</div>
 				<!-- TAB BUTTONS -->
 				<div id="admin-buttons">
-					<button class="ad-btn" id="admin-admins-btn" style="background:#00719c;"><div style="width: 90%; float: left;">ADMINS</div> <i class="fa fa-chevron-right"></i></button>
-					<button class="ad-btn" id="admin-organizers-btn"><div style="width: 90%; float: left;">ORGANIZERS</div> <i class="fa fa-chevron-right"></i></button>
-					<button class="ad-btn" id="admin-orgs-btn"><div style="width: 90%; float: left;">ORGANIZATIONS</div> <i class="fa fa-chevron-right"></i></button>
-					<button class="ad-btn" id="admin-users-btn"><div style="width: 90%; float: left;">USERS</div> <i class="fa fa-chevron-right"></i></button>
-					<button class="ad-btn" id="admin-logs-btn"><div style="width: 90%; float: left;">LOGS</div> <i class="fa fa-chevron-right"></i></button>
-					<button class="ad-btn" id="admin-spon-btn"><div style="width: 90%; float: left;">SPONSORS</div> <i class="fa fa-chevron-right"></i></button>
+					<button id="admin-admins-btn" style="background:#00719c;"><div style="width: 90%; float: left;">ADMINS</div> <i class="fa fa-chevron-right"></i></button>
+					<button id="admin-organizers-btn"><div style="width: 90%; float: left;">ORGANIZERS</div> <i class="fa fa-chevron-right"></i></button>
+					<button id="admin-orgs-btn"><div style="width: 90%; float: left;">ORGANIZATIONS</div> <i class="fa fa-chevron-right"></i></button>
+					<button id="admin-users-btn"><div style="width: 90%; float: left;">USERS</div> <i class="fa fa-chevron-right"></i></button>
+					<button id="admin-logs-btn"><div style="width: 90%; float: left;">LOGS</div> <i class="fa fa-chevron-right"></i></button>
+					<button id="admin-spon-btn"><div style="width: 90%; float: left;">SPONSORS</div> <i class="fa fa-chevron-right"></i></button>
 				</div>
 			</div>
 			<div id="admin-sidenav-trigger" class="col valign-wrapper offset-m6 offset-s7 admin-fixed-sidebar">
@@ -44,30 +44,31 @@
 
 					<!-- View Admins -->
 					<div class="admin-right-view">
-						<table class="striped">
+						<table class="striped table-width">
 							<thead>
 								<tr class="telegrafico">
 									<th>Username</th>
 									<th ><i class="fa fa-key"></i></th>
 									<th>Email</th>
 									<th>Contact</th>
-									<th>Inactive / Active</th>
+									<th style="padding-left: 30px!important;">Active</th>
+									<th>Edit</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
 								<tr ng-repeat="a in admins">
-									<td class="match-player" style="width: 10%;">
+									<td class="match-player" style="width: 10%;z-index: 1;">
 										<input disabled class="admin-form-edit admin-form-edit-{{a.id}}" type="text" ng-model="a.username" ng-init="a.username">
 									</td>
 									<td style="width: 5%!important;">
 
-											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password"></i>
+											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password" ng-click="setPending(a.id)"></i>
 									</td>
 									<td class="match-player" style="width: 25%;">
-										<input disabled class="admin-form-edit admin-form-edit-{{a.id}}" type="text" ng-model="a.email" ng-init="a.email">
+										<input disabled class="full-width-email admin-form-edit admin-form-edit-{{a.id}}" type="text" ng-model="a.email" ng-init="a.email">
 									</td>
 									<td class="match-player" style="width: 20%;">
-										<input disabled class="admin-form-edit admin-form-edit-{{a.id}}" type="text" ng-model="a.contact" ng-init="a.contact">
+										<input disabled class="full-width-contact admin-form-edit admin-form-edit-{{a.id}}" type="text" ng-model="a.contact" ng-init="a.contact">
 									</td>
 									<td class="match-player" style="width: 20%;">
 										<div class="switch">
@@ -79,7 +80,7 @@
 									</td>
 									<td style="width: 15%;">
 										<div>
-											<i ng-attr-id="admin-edit-{{a.id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editAdmin(a)"></i>
+											<i ng-attr-id="admin-edit-{{a.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editAdmin(a)"></i>
 											<i ng-attr-id="admin-cancel-edit-{{a.id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditAdmin(a)"></i>
 										</div>
 									</td>
@@ -133,25 +134,26 @@
 
 					<!-- View Organizers -->
 					<div class="admin-right-view">
-						<table class="striped">
+						<table class="striped table-width">
 							<thead>
 								<tr class="telegrafico">
 									<th>Name</th>
 									<th style="width: 20px!important;"><i class="fa fa-key"></i></th>
 									<th>Description</th>
-									<th>Inactive / Active</th>
+									<th style="padding-left: 30px!important;">Active</th>
+									<th>Edit</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
 								<tr ng-repeat="o in organizers">
-									<td style="width: 25%;" class="match-player">
-										<input disabled class="admin-form-edit organizer-form-edit-{{o.id}}" type="text" ng-model="o.name" ng-init="o.name">
+									<td style="width: 25%;z-index: 1" class="match-player">
+										<input disabled class=" admin-form-edit organizer-form-edit-{{o.id}}" type="text" ng-model="o.name" ng-init="o.name">
 									</td>
 									<td style="width: 5%;">
-											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password"></i>
+											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password" ng-click="setPending(o.id)"></i>
 									</td>
 									<td style="width: 35%;"class="match-player">
-										<input disabled class="admin-form-edit organizer-form-edit-{{o.id}}" type="text" ng-model="o.description" ng-init="o.description">
+										<input disabled class="full-width-desc admin-form-edit organizer-form-edit-{{o.id}}" type="text" ng-model="o.description" ng-init="o.description">
 									</td>
 									<td style="width: 20%;" class="match-player">
 										<div class="switch">
@@ -163,7 +165,7 @@
 									</td>
 									<td style="width: 15%;">
 										<div>
-											<i ng-attr-id="organizer-edit-{{o.id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganizer(o)"></i>
+											<i ng-attr-id="organizer-edit-{{o.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganizer(o)"></i>
 											<i ng-attr-id="organizer-cancel-edit-{{o.id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditOrganizer(o)"></i>
 										</div>
 									</td>
@@ -290,31 +292,32 @@
 					</div>
 					<!-- View Users -->
 					<div class="admin-right-view">
-						<table class="striped">
+						<table class="table-width striped">
 							<thead>
 								<tr class="telegrafico">
 									<th>Username</th>
 									<th><i class="fa fa-key"></i></th>
 									<th>Email Address</th>
 									<th>Contact No.</th>
-									<th>Inactive / Active</th>
+									<th style="padding-left: 30px!important;">Active</th>
+									<th>Edit</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
 								<tr ng-repeat="u in users">
-									<td class="match-player" style="width: 10%;">
+									<td style="z-index: 1;">
 										<input disabled class="admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.username" ng-init="u.username">
 									</td >
 									<td style="width: 10%!important;">
-											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password"></i>
+											<i data-target="admin-change-password" class="tooltip-icon btn tooltipped admin-form-edit-btn fa fa-lock fa-lg" data-position="right" data-delay="20" data-tooltip="Change Password" ng-click="setPending(u.id)"></i>
 									</td>
-									<td class="match-player" style="width: 25%;">
-										<input disabled class="admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.email" ng-init="u.email">
+									<td>
+										<input disabled class="full-width-email admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.email" ng-init="u.email">
 									</td>
-									<td class="match-player" style="width: 20%;">
-										<input disabled class="admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.contact" ng-init="u.contact">
+									<td>
+										<input disabled class="full-width-contact admin-form-edit user-form-edit-{{u.id}}" type="text" ng-model="u.contact" ng-init="u.contact">
 									</td>
-									<td class="match-player" style="width: 20%;">
+									<td>
 										<div class="switch">
 											<label>
 												<input class="admin-lever" type="checkbox" ng-init="u.is_active" ng-model="!!u.is_active" ng-click="setIsActive(!u.is_active, u.id, users)">
@@ -324,7 +327,7 @@
 									</td>
 									<td style="width: 15%;">
 										<div>
-											<i ng-attr-id="user-edit-{{u.id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editUser(u)"></i>
+											<i ng-attr-id="user-edit-{{u.id}}" class="admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editUser(u)"></i>
 											<i ng-attr-id="user-cancel-edit-{{u.id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditUser(u)"></i>
 										</div>
 									</td>
@@ -375,7 +378,7 @@
 
 					<!-- View Logs -->
 					<div class="admin-right-view">
-						<table class="striped">
+						<table class="table-width striped">
 							<thead>
 								<tr class="telegrafico">
 									<th>Log Id</th>
@@ -419,6 +422,7 @@
 								<tr class="telegrafico">
 									<th>Name</th>
 									<th>Description</th>
+									<th>Actions</th>
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
@@ -467,47 +471,48 @@
 			</div>
 		</div>
 	</div>
-</div>
 
-<!-- Modals -->
-<div id="admin-change-password" class="modal">
-	<div id="admin-verify-first" class="modal-content">
-		<form>
-			<div>
-				<label class="admin-verify">Verify you're an admin</label>
-			</div>
-			<div><label class="admin-enter-password">Enter password:</label></div>
-			<div class="row">
-				<div class="col s9 padding-override-0">
-					<input class="admin-fillup-form" type="password">
+	<!-- Modals -->
+	<div id="admin-change-password" class="modal">
+		<div id="admin-verify-first" class="modal-content">
+			<form>
+				<div>
+					<label class="admin-verify">Verify you're an admin</label>
 				</div>
-				<div class="col s3">
-					<button id="admin-proceed-btn" style="height: 40px; width: 40px;" class="waves-effect waves-light search-admin-button"><i class="fa fa-arrow-right"></i></button>
+				<div><label class="admin-enter-password">Enter password:</label></div>
+				<div class="row">
+					<div class="col s9 padding-override-0">
+						<input class="admin-fillup-form" type="password" ng-model="passwordVerify">
+					</div>
 				</div>
-			</div>
-		</form>
+			</form>
+		</div>
+		<div class="modal-footer right-align">
+			<button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
+			<button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="authenticate()">NEXT <i class="fa fa-angle-double-right"></i></button>
+		</div>
 	</div>
 
-	<div id="admin-verify-second" style="display: none;" class="modal-content">
-		<form>
-			<div><label class="admin-enter-password">Change Password:</label></div>
-			<div class="row margin-override-0">
-				<div class="col s9 padding-override-0">
-					<input class="admin-fillup-form" type="password">
+	<div id="admin-change-password2" class="modal">
+		<div id="admin-verify-second" class="modal-content">
+			<form>
+				<div><label class="admin-enter-password">Change Password:</label></div>
+				<div class="row margin-override-0">
+					<div class="col s9 padding-override-0">
+						<input class="admin-fillup-form" type="password" ng-model="newPassword">
+					</div>
 				</div>
-				<div class="col s3">
-					<button style="height: 40px; width: 40px;" class="waves-effect waves-light search-admin-button"><i class="fa fa-arrow-right"></i></button>
-				</div>
-			</div>
-		</form>
+			</form>
+		</div>
+		<div class="modal-footer right-align">
+			<button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
+			<button href="" class="modal-action modal-close minimalist-button" ng-click="changePassword()">NEXT <i class="fa fa-angle-double-right"></i></button>
+		</div>
 	</div>
-	<!-- <div class="modal-footer right-align">
-		<button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
-		<button href="" class="modal-action modal-close minimalist-button" ng-click="">NEXT <i class="fa fa-angle-double-right"></i></button>
-	</div> -->
 </div>
 
 <!--Scripts-->
 <script src="frontend_modules/js/init.js"></script>
+<script src="frontend_modules/js/jquery-plugin-table-fixed-header.js"></script>
 <script src="frontend_modules/js/materialize.js"></script>
 <script src="js/admin-panel.js"></script>

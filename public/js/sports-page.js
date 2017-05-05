@@ -1,5 +1,7 @@
 $(document).ready(function(){
     $('.tooltipped').tooltip();
+    $('ul.tabs').tabs();
+    $('ul.tabs').tabs('select_tab', 'sport-tab-1');
     
     $('.modal').modal();
 

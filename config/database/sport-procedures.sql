@@ -166,6 +166,22 @@ BEGIN
 END; //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS retrieve_competitor_rankings_from_sport;
+DELIMITER //
+CREATE PROCEDURE retrieve_competitor_rankings_from_sport (IN in_sport_id INT, IN in_id INT)
+BEGIN
+	select ranking, count(ranking) as ranks from competitor_joins_team join team_in_match using(team_id) join sport_match using(match_id) where sport_id = in_sport_id and id = in_id group by ranking;
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS retrieve_sport_rankings;
+DELIMITER //
+CREATE PROCEDURE retrieve_sport_rankings (IN in_sport_id INT)
+BEGIN
+	select * from organization join (SELECT team_id, team_name, team_organization as organization_id, sum(ranking) AS total_rank FROM team JOIN team_in_match using (team_id) JOIN sport_match using (match_id) where sport_match.sport_id = in_sport_id group by team_id order by total_rank) as sport_ranking using (organization_id);
+END //
+DELIMITER ;
+ 
 
 -- create sport
 GRANT EXECUTE ON PROCEDURE create_sport TO 'organizer'@'localhost';
@@ -217,3 +233,14 @@ GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'administrator'@'l
 GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'guest'@'localhost';
 
+-- retrieve competitor rankings from sport
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'guest'@'localhost';
+
+-- retrieve team rankings from sport
+GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'guest'@'localhost';

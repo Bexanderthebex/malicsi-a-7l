@@ -9,7 +9,12 @@
     GameFeedController.$inject = ['$scope', '$routeParams', 'GameService', 'SearchService', 'OrganizerService', 'UserService'];
 
     function GameFeedController($scope, $routeParams, GameService, SearchService, OrganizerService, UserService){
+        // whole column
         $scope.games = [];
+        // two column split
+        $scope.splitColumn1 = [];
+        $scope.splitColumn2 = [];
+        // three column split
         $scope.column1 = [];
         $scope.column2 = [];
         $scope.column3 = [];
@@ -32,6 +37,8 @@
 
         function gamefeedInit(){
             $scope.games = [];
+            $scope.splitColumn1 = [];
+            $scope.splitColumn2 = [];
             $scope.column1 = [];
             $scope.column2 = [];
             $scope.column3 = [];
@@ -43,6 +50,7 @@
                 .viewAllGames()
                 .then(function(res) {
                     $scope.games = res.data;
+                    console.log(res.data);
                     sortBy();
                 }, function(err) {
                     console.log(err);
@@ -61,8 +69,8 @@
 
         function sortByName(){
             $scope.games.sort(function(a, b){
-                if(a.name < b.name) return -1;
-                if(a.name > b.name) return 1;
+                if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
                 return 0;
             });
             distributeGame();
@@ -70,20 +78,22 @@
 
         function sortByDate(){
             $scope.games.sort(function(a, b){
-                var aDate = new Date(a.start_date);
-                var bDate = new Date(b.start_date);
-                var currentDate = new Date(Date.now());
-
-                var integerADate = aDate.getFullYear() * 10000 + aDate.getMonth() * 100 + aDate.getDay();
-                var integerBDate = bDate.getFullYear() * 10000 + bDate.getMonth() * 100 + bDate.getDay();
-
-                return (currentDate - integerADate > currentDate - integerBDate ? a : b);
+                return new Date(b.start_date) - new Date(a.start_date);
             });
             distributeGame();
         }
 
         function distributeGame(){
             for (var i = 0; i < $scope.games.length; i++) {
+                // two column split
+                if(i%2 == 0){
+                    $scope.splitColumn1.push($scope.games[i]);
+                }
+                else if(i%2 == 1){
+                    $scope.splitColumn2.push($scope.games[i]);
+                }
+
+                // three column split
                 if(i%3 == 0){
                     $scope.column1.push($scope.games[i]);
                 }
@@ -238,7 +248,8 @@
                 $scope.column1 = [];
                 $scope.column2 = [];
                 $scope.column3 = [];
-
+                $scope.splitColumn1 = [];
+                $scope.splitColumn2 = [];
                 $scope.games = res.data;
                 distributeGame();
             }, (err) => {

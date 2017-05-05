@@ -42,7 +42,7 @@
 	border-radius: 50%;
 	/*margin-left: 25px;*/
 	font-family: rockwell;
-	color: black;
+	color: white;
 }
 
 
@@ -57,7 +57,9 @@
 }
 
 .orgfeed-orgteambox:hover{
-
+	opacity: 0.7;
+	cursor: pointer;
+	transition: opacity 0.5s;
 }
 
 #orgfeed-title{

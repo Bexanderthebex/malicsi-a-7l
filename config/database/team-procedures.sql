@@ -11,16 +11,15 @@ CREATE PROCEDURE get_team (IN id INT)
 
 DELIMITER ;
 
-DROP PROCEDURE IF EXISTS search_team;
-DELIMITER //
-
-CREATE PROCEDURE search_team (IN team_namein VARCHAR(50))
-	BEGIN
-		SELECT * from team where team_name like team_namein;
-	END; //
-
+DROP PROCEDURE IF EXISTS search_team;		
+DELIMITER //		
+		
+CREATE PROCEDURE search_team (IN team_namein VARCHAR(50))		
+	BEGIN		
+		SELECT * from team where team_name like team_namein;		
+	END; //		
+		
 DELIMITER ;
-
 
 DROP PROCEDURE IF EXISTS get_coached_team;
 DELIMITER //
@@ -39,7 +38,7 @@ DELIMITER //
 
 CREATE PROCEDURE create_team (IN team_namein VARCHAR(50), IN idin INT, IN sport_idin INT, IN team_organizationin INT, IN max_membersin INT)
 	BEGIN
-		INSERT INTO team(team_name, id, sport_id, team_organization, pending_participation, max_members) VALUES (team_namein, idin, sport_idin, team_organizationin, 0, max_membersin);
+		INSERT INTO team(team_name, id, sport_id, team_organization, pending_participation, max_members) VALUES (team_namein, idin, sport_idin, team_organizationin, 1, max_membersin);
 	END; //
 
 DELIMITER ;
@@ -79,6 +78,15 @@ DELIMITER //
 CREATE PROCEDURE accept_membership_request (IN idin INT, IN team_idin INT)
 	BEGIN
 	  UPDATE competitor_joins_team SET is_member = 1 where id = idin AND team_id = team_idin;
+	END; //
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS add_team_member;
+DELIMITER //
+CREATE PROCEDURE add_team_member (IN idin INT, IN team_idin INT)
+	BEGIN
+	  INSERT INTO competitor_joins_team(id, team_id, is_member) VALUES(idin,team_idin,1);
 	END; //
 
 DELIMITER ;
@@ -149,6 +157,7 @@ CREATE PROCEDURE display_pending_membership_request(IN owner_idin INT)
 	END; //
 DELIMITER ;
 
+
 GRANT EXECUTE ON procedure display_pending_membership_request TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure create_team TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure delete_team TO 'competitor'@'localhost';
@@ -159,7 +168,11 @@ GRANT EXECUTE ON procedure count_teams_in_sport TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure get_members TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure organization_rankings TO 'competitor'@'localhost';
 GRANT EXECUTE ON procedure get_teams_on_organization TO 'competitor'@'localhost';
+GRANT EXECUTE ON procedure add_team_member TO 'competitor'@'localhost';
+GRANT EXECUTE ON procedure delete_membership_request TO 'competitor'@'localhost';
 
+
+GRANT EXECUTE ON procedure display_pending_membership_request TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure create_team TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure delete_team TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure team_membership_request TO 'administrator'@'localhost';
@@ -169,6 +182,8 @@ GRANT EXECUTE ON procedure count_teams_in_sport TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure get_members TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure organization_rankings TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure get_teams_on_organization TO 'administrator'@'localhost';
+GRANT EXECUTE ON procedure add_team_member TO 'administrator'@'localhost';
+GRANT EXECUTE ON procedure delete_membership_request TO 'administrator'@'localhost';
 
 GRANT EXECUTE ON procedure rankings TO 'guest'@'localhost';
 GRANT EXECUTE ON procedure count_teams_in_sport TO 'guest'@'localhost';
@@ -178,5 +193,5 @@ GRANT EXECUTE ON procedure get_teams_on_organization TO 'guest'@'localhost';
 
 GRANT EXECUTE ON procedure get_membership_request TO 'administrator'@'localhost';
 GRANT EXECUTE ON procedure get_membership_request TO 'competitor'@'localhost';
-GRANT EXECUTE ON procedure get_membership_request TO 'organizer'@'localhost';
+GRANT EXECUTE ON procedure get_membership_request TO 'organizer'@'localhost';		
 GRANT EXECUTE ON procedure get_membership_request TO 'guest'@'localhost';
