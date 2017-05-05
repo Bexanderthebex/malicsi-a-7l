@@ -33,6 +33,10 @@
 
 
     	function changeActiveTab(tab){
+            $(document).ready(function(){ 
+                console.log("close ka naman");
+                $('.modal').modal('close');; 
+            });
     		console.log(tab);
     		$scope.activeTab = tab;
     		if(tab === 'home'){
