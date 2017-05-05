@@ -688,7 +688,7 @@
 
 .game-match-tab .indicator {
     height: 5px;
-    background-color: white;
+    background-color: #00b8ff;
 }
 
 .game-match-tab .tab {
@@ -725,9 +725,29 @@
 }
 
 .game-parallax {
-    height: 650px;
+    height: 180px;
 }
 
 .game-panel-bottom {
     border: solid 1px transparent !important;
+}
+
+.game-toppanel {
+    overflow-y:auto;
+    height:380px;
+}
+
+.game-toppanel::-webkit-scrollbar-track{
+	background: transparent;
+	-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);
+	background-color: #bdbdbd;
+}
+
+.game-toppanel::-webkit-scrollbar{
+	width: 10px;
+	background-color: transparent;
+}
+
+.game-toppanel::-webkit-scrollbar-thumb{
+	background-color: #00415a;
 }
