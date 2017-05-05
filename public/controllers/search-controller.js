@@ -14,22 +14,32 @@
         $scope.competitors1 = [];
         $scope.competitors2 = [];
         $scope.competitors3 = [];
+        $scope.competitorsA = [];
+        $scope.competitorsB = [];
         $scope.organizations = [];
         $scope.organizations1 = [];
         $scope.organizations2 = [];
         $scope.organizations3 = [];
+        $scope.organizationsA = [];
+        $scope.organizationsB = [];
         $scope.games = [];
         $scope.games1 = [];
         $scope.games2 = [];
         $scope.games3 = [];
+        $scope.gamesA = [];
+        $scope.gamesB = [];
         $scope.sports = [];
         $scope.sports1 = [];
         $scope.sports2 = [];
         $scope.sports3 = [];
+        $scope.sportsA = [];
+        $scope.sportsB = [];
         $scope.organizers = [];
         $scope.organizers1 = [];
         $scope.organizers2 = [];
         $scope.organizers3 = [];
+        $scope.organizersA = [];
+        $scope.organizersB = [];
         $scope.search = search;
         $scope.goToCompetitor = goToCompetitor;
         $scope.goToOrganization = goToOrganization;
@@ -77,23 +87,42 @@
             $scope.competitors1 = [];
             $scope.competitors2 = [];
             $scope.competitors3 = [];
+            $scope.competitorsA = [];
+            $scope.competitorsB = [];
             $scope.organizations1 = [];
             $scope.organizations2 = [];
             $scope.organizations3 = [];
+            $scope.organizationsA = [];
+            $scope.organizationsB = [];
             $scope.games1 = [];
             $scope.games2 = [];
             $scope.games3 = [];
+            $scope.gamesA = [];
+            $scope.gamesB = [];
             $scope.sports1 = [];
             $scope.sports2 = [];
             $scope.sports3 = [];
+            $scope.sportsA = [];
+            $scope.sportsB = [];
             $scope.organizers1 = [];
             $scope.organizers2 = [];
             $scope.organizers3 = [];
+            $scope.organizersA = [];
+            $scope.organizersB = [];
             distributeResults();
         }
 
         function distributeResults(){
             for (var i = 0; i < $scope.games.length; i++) {
+                // two column split
+                if(i%2 == 0){
+                    $scope.gamesA.push($scope.games[i]);
+                }
+                else if(i%2 == 1){
+                    $scope.gamesB.push($scope.games[i]);
+                }
+
+                // three column split
                 if(i%3 == 0){
                     $scope.games1.push($scope.games[i]);
                 }
@@ -105,6 +134,15 @@
                 }
             }
             for (var i = 0; i < $scope.sports.length; i++) {
+                // two column split
+                if(i%2 == 0){
+                    $scope.sportsA.push($scope.sports[i]);
+                }
+                else if(i%2 == 1){
+                    $scope.sportsB.push($scope.sports[i]);
+                }
+
+                // three column split
                 if(i%3 == 0){
                     $scope.sports1.push($scope.sports[i]);
                 }
@@ -116,6 +154,15 @@
                 }
             }
             for (var i = 0; i < $scope.competitors.length; i++) {
+                // two column split
+                if(i%2 == 0){
+                    $scope.competitorsA.push($scope.competitors[i]);
+                }
+                else if(i%2 == 1){
+                    $scope.competitorsB.push($scope.competitors[i]);
+                }
+
+                // three column split
                 if(i%3 == 0){
                     $scope.competitors1.push($scope.competitors[i]);
                 }
@@ -127,6 +174,15 @@
                 }
             }
             for (var i = 0; i < $scope.organizations.length; i++) {
+                // two column split
+                if(i%2 == 0){
+                    $scope.organizationsA.push($scope.organizations[i]);
+                }
+                else if(i%2 == 1){
+                    $scope.organizationsB.push($scope.organizations[i]);
+                }
+
+                // three column split
                 if(i%3 == 0){
                     $scope.organizations1.push($scope.organizations[i]);
                 }
@@ -138,6 +194,15 @@
                 }
             }
             for (var i = 0; i < $scope.organizers.length; i++) {
+                // two column split
+                if(i%2 == 0){
+                    $scope.organizersA.push($scope.organizers[i]);
+                }
+                else if(i%2 == 1){
+                    $scope.organizersB.push($scope.organizers[i]);
+                }
+
+                // three column split
                 if(i%3 == 0){
                     $scope.organizers1.push($scope.organizers[i]);
                 }

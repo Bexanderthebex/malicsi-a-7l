@@ -11,8 +11,8 @@
   }
 }
 
-#toTop a {
-  background-color: rgba(238,238,238, 0.7);
+#teams-managed-header {
+  cursor: initial;
 }
 
 .competitor-cteam .collapsible-header:hover{

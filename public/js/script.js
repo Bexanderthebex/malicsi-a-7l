@@ -2,7 +2,7 @@ $(document).ready(function() {
     $(window).resize(function() {
         var bodyheight = $(this).height() - 60;
 
-        $(document).on('click', 'a', function(event){
+        $(document).on('click', '#toTop', function(event){
             event.preventDefault();
 
             $('html, body, #mainHolder, #main').animate({
@@ -10,7 +10,7 @@ $(document).ready(function() {
             }, 500);
         });
         var $root = $('html, body, #mainHolder, #main');
-        $('a').click(function() {
+        $('#toTop').click(function() {
             $root.animate({
                 scrollTop: $( $.attr(this, 'href') ).offset().top
             }, 500);
