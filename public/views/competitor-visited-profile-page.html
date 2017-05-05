@@ -2,12 +2,18 @@
 	<!-- Do not put anything inside main holder -->
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
-        <div class="row palette-3 visited-competitor-profile-info">
+          <div id="#toTop" class="fixed-action-btn">
+            <a class="btn-floating btn-large red">
+              <i class="large material-icons">mode_edit</i>
+            </a>
+          </div>
+
+        <div class="row palette-3 visited-competitor-profile-info" ng-init="searchCompetitor(thisCompetitor.competitor_id)">
             <div class="col l3 m5 s12 offset-l1 center">
-                <img id="visited-competitor-profile-img" src="assets/avatar.png" class="pallette-3">
+                <img id="competitor-profile-img" ng-src="../assets/avatars/{{competitor.sex}}.png" class="circle">
             </div>
 
-            <div id="visited-competitor-basic-info" class="col l7 m7 s12 white-text" ng-init="searchCompetitor(thisCompetitor.competitor_id)">
+            <div id="visited-competitor-basic-info" class="col l7 m7 s12 white-text">
                 <h3 class="rockwell">{{ competitor.first_name }} {{ competitor.last_name }}</h3>
                 <p class="telegrafico text-black">Contact: {{ competitor.contact }} | E-mail: {{ competitor.email }}</p>
                 <p class="telegrafico text-black">

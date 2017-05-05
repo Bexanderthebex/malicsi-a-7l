@@ -6,6 +6,10 @@
   src: local('Material Icons'), local('MaterialIcons-Regular'), url('/fonts/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2') format('woff2');
 }
 
+#toTop a {
+  background-color: rgba(238,238,238, 0.7);
+}
+
 #nav-dropdown li a:hover{
 	background: #212121;
 }
