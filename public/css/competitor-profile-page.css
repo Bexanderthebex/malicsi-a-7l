@@ -11,10 +11,6 @@
   }
 }
 
-#toTop a {
-  background-color: rgba(238,238,238, 0.7);
-}
-
 .competitor-cteam .collapsible-header:hover{
   background: #00a5d3!important;
   transition: background 0.5s;

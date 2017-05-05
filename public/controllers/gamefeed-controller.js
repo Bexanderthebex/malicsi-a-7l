@@ -151,10 +151,12 @@
             $scope.pending = game;
         }
 
-		function checkUser() {
+		function checkUser(game) {
+            console.log($scope.user == undefined || $scope.user == null);
 			return $scope.user != undefined
 				&& $scope.user != null
-				&& $scope.user.type == 'O';
+				&& $scope.user.type == 'O'
+                && $scope.user.id == game.organizer_id;
 		}
 
         function addGame() {
