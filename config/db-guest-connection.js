@@ -17,6 +17,6 @@ connection.connect((err) => {
     }
 });
 
-connection.query('USE malicsi');
+connection.query('USE heroku_ce2b03d42f2b112');
 module.exports = connection;
 
