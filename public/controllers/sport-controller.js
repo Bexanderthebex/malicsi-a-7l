@@ -60,6 +60,8 @@
                         $scope.enableMatch = false;
                     }
                     $scope.user = res.data; 
+                    console.log($scope.user);
+                    console.log($scope.enableMatch);
                  }, function(err) {     
                     Materialize.toast('error', 3000);       
                 })      
