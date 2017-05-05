@@ -3,8 +3,10 @@
     <!-- Main holder just keeps the main below the navbar -->
     <div id="main" class="">
         <div class="row palette-3 competitor-profile-info" ng-init="getCompetitor()">
-            <div class="col l3 m5 s12 offset-l1 center">
-                <img id="competitor-profile-img" ng-src="../assets/avatars/{{competitor.sex}}.png" class="circle">
+            <div id="competitor-profile-img-container" class="col l3 m5 s12 offset-l1 center">
+                <!-- <img id="competitor-profile-img" ng-src="../assets/avatars/{{competitor.sex}}.png" class="circle"> -->
+                <br>
+                <div id="competitor-profile-img" class="center-block materialboxed" style="background-image:url('../assets/about-us-cover.jpg');">&nbsp;</div>
             </div>
 
             <div id="competitor-basic-info" class="col l5 m5 s12 white-text">
