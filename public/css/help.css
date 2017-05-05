@@ -38,7 +38,7 @@ i.help-icon-arrow {
     transition: background-color 0.5s;
 }
 
-@media screen and (max-device-width : 1200px) {
+@media screen and (max-device-width : 1500px) {
     .help-category-header {
         font-size: 25px;   
     }
@@ -48,7 +48,6 @@ i.help-icon-arrow {
         padding-bottom: 1% !important;
         margin-left: -10% !important;
     }
-
 }
 
 @media screen and (max-device-width : 700px) {
