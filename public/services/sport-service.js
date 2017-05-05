@@ -23,7 +23,8 @@
             viewCurrentMatch: viewCurrentMatch,
             viewPastMatch: viewPastMatch,
             viewFutureMatch: viewFutureMatch,
-            retrieveTeamsInMatch:retrieveTeamsInMatch
+            retrieveTeamsInMatch:retrieveTeamsInMatch,
+            retrieveTeamsInSport:retrieveTeamsInSport
         }
 
         return service;
@@ -144,7 +145,7 @@
             console.log(sport_id);
             $http({
                 method: 'GET',
-                url: '/sport/match/viewFutureMatch/'+sport_id,
+                url: '/sport/match/viewUpcomingMatch/'+sport_id,
                 headers: headers
             }).then((res) =>{
                 deferred.resolve(res);
@@ -170,6 +171,23 @@
             
             return deferred.promise;
         }
+
+        function retrieveTeamsInSport(sport_id) {
+            let deferred = $q.defer();
+            console.log(sport_id);
+            $http({
+                method: 'GET',
+                url: '/sport/retrieveTeamsInSport/'+ sport_id,
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
         function retrieveSport(sport_id) {
             let deferred = $q.defer();
             console.log(sport_id);

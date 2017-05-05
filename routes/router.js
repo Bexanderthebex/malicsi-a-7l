@@ -169,6 +169,7 @@ router.get('/sport/match/viewCurrentMatch', matchController.viewCurrentMatch);
 router.get('/sport/match/viewPastMatch', matchController.viewPastMatch);
 router.get('/sport/match/viewFutureMatch', matchController.viewFutureMatch);
 router.get('/sport/match/retrieveTeamsInMatch/:matchId', matchController.retrieveTeamsInMatch);
+router.get('/sport/retrieveTeamsInSport/:sportId', sportController.retrieveTeamsInSport);
 router.get('/sport/retrieveSponsorInSport/:id', sportController.retrieveSponsorInSport);
 router.get('/sport/search', sportController.searchForSportByKeyword);
 router.get('/sport/rankings/:sportId', sportController.retrieveSportRankings);

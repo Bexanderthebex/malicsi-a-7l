@@ -213,11 +213,13 @@ exports.retrieveTeamsInMatch = (req, res) => {
 		[req.params.matchId],
 		(err, rows, fields) => {
 		if(!err){
-			console.log(rows);
+			console.log(rows[0]);
 			if(rows.length == 0){
+				console.log("Here");
 				return res.status(200).send([]);
 			}
 			else{
+				console.log("THere");
 				return res.status(200).send(rows[0]);
 			}
 		

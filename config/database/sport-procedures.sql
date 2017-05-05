@@ -190,9 +190,15 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS retrieve_teams_in_sport;
+DELIMITER //
+CREATE PROCEDURE retrieve_teams_in_sport (IN in_sport_id INT)
+BEGIN
+ 	select team_id, team_name from sport JOIN team using (sport_id) where sport.sport_id = in_sport_id;
+END //
+DELIMITER ;
 
--- create sport
-GRANT EXECUTE ON PROCEDURE create_sport TO 'organizer'@'localhost';
+
 GRANT EXECUTE ON PROCEDURE create_sport TO 'administrator'@'localhost';
 
 -- view sport
@@ -258,3 +264,9 @@ GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'guest'@'localhost';
+
+-- retrieve teams in sport
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'guest'@'localhost';
