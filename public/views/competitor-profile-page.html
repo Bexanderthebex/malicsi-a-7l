@@ -32,9 +32,17 @@
 
         <div class="container col s12">
             <ul id="competitor-profile-tabs" class="tabs">
-                <li class="tab col s3"><a class="blue-text darken-3 telegrafico active" href="#profile-div">Profile</a></li>
-                <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#teams-managed-div" ng-click="getCoachedTeam()">Teams Managed</a></li>
-                <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#pending-requests-div">Pending Requests</a></li>
+                <li class="tab col s3">
+                    <a class="blue-text darken-3 telegrafico active" href="#profile-div">Profile</a>
+                </li>
+                <li class="tab col s3">
+                    <a class="blue-text darken-3 telegrafico hide-on-small-only" href="#teams-managed-div" ng-click="getCoachedTeam()">Teams Managed</a>
+                    <a class="blue-text darken-3 telegrafico hide-on-med-and-up" href="#teams-managed-div" ng-click="getCoachedTeam()">Teams</a>
+                </li>
+                <li class="tab col s3">
+                    <a class="blue-text darken-3 telegrafico hide-on-small-only" href="#pending-requests-div">Pending Requests</a>
+                    <a class="blue-text darken-3 telegrafico hide-on-med-and-up" href="#pending-requests-div">Requests</a>
+                </li>
             </ul>
         </div>
         <div id="profile-div" class="col s12">
