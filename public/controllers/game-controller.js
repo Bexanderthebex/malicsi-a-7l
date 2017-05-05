@@ -59,6 +59,7 @@
 		$scope.checkSports = checkSports;
 		$scope.mergeMatchesBeta = mergeMatchesBeta;
 		$scope.checkValidAddSportStartDate = checkValidAddSportStartDate;
+		$scope.checkDeleteButtonOrgSpon = checkDeleteButtonOrgSpon;
 
 		$scope.addName = undefined;
 		$scope.addMaxTeams = undefined;
@@ -306,6 +307,12 @@
 				return false;
 			}
 			else return true;
+		}
+
+		function checkDeleteButtonOrgSpon(){
+			//if organizer and there are orgs to delete
+			if(checkIfOrganizer() && checkParticipatingOrganizations()) return true;
+			else return false;
 		}
 
 

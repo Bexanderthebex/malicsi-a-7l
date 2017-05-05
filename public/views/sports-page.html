@@ -439,7 +439,7 @@
 								<tbody class="century-gothic">
 									<tr ng-repeat="team in matchCopy.teams">
 										<td><input type="text" ng-model="team.team_name"></td>
-										<td><i class="fa fa-pencil fa-hover-style" style="margin-right: 5px!important;"></i><i class="fa fa-close fa-hover-style"></i></td>
+										<td><i class="fa fa-pencil fa-hover-style" style="margin-right: 5px!important;"></i><i class="fa fa-close fa-hover-style" ng-click = "deleteTeamInMatch(matchCopy)"></i></td>
 									</tr>
 								</tbody>
 							</table>

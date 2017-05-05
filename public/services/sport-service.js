@@ -25,6 +25,8 @@
             viewPastMatch: viewPastMatch,
             viewFutureMatch: viewFutureMatch,
             retrieveTeamsInMatch:retrieveTeamsInMatch,
+            addTeamInMatch:addTeamInMatch,
+            deleteTeamInMatch:deleteTeamInMatch,
             retrieveTeamsInSport:retrieveTeamsInSport
         }
 
@@ -79,6 +81,8 @@
             return deferred.promise;
         }
 
+
+
         function editTeamRanking(matchId,teamId,ranking) {
             let deferred = $q.defer();
             
@@ -113,6 +117,50 @@
                 method: 'DELETE',
                 data: $.param(ddata),
                 url: '/sport/match/deleteMatch',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+         function addTeamInMatch(match_id, team_id, ranking) {
+            let deferred = $q.defer();
+            
+            let ddata = {
+                matchId : match_id,
+                teamId : team_id,
+                rank : ranking
+            }
+
+            $http({
+                method: 'POST',
+                data: $.param(ddata),
+                url: '/sport/match/addTeamInMatch',
+                headers: headers
+            }).then((res) => {
+                deferred.resolve(res);
+            }, (err) => {
+                deferred.reject(err);
+            });
+            
+            return deferred.promise;
+        }
+
+        function deleteTeamInMatch(match_id, team_id) {
+            let deferred = $q.defer();
+            let ddata = {
+                matchId: match_id,
+                teamId: team_id
+            }
+
+            $http({
+                method: 'DELETE',
+                data: $.param(ddata),
+                url: '/sport/match/deleteTeamInMatch',
                 headers: headers
             }).then((res) => {
                 deferred.resolve(res);
