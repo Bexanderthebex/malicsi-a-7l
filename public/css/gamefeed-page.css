@@ -286,17 +286,15 @@
     }
 }
 
-@media screen and (max-device-width : 700px) {
-    .help-category-header {
-        font-size: 15px;   
-    }
+.gamefeed-shadow-details {
+	text-shadow: 2px 2px 3px black;
 }
 
-@media screen and (max-device-width : 450px) {
-    .help-collapsible-header {
-        font-size: 12px;   
-    }
-    .help-collapsible-body {
-        font-size: 10px;
-    }
+.gamefeed-game-box:hover{
+	opacity: 0.7;
+	transition: opacity 0.5s;
+}
+
+.gamefeed-black-text-anchor {
+    color: black;
 }

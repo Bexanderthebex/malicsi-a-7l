@@ -59,6 +59,7 @@
 		$scope.checkSports = checkSports;
 		$scope.mergeMatchesBeta = mergeMatchesBeta;
 		$scope.checkValidAddSportStartDate = checkValidAddSportStartDate;
+		$scope.checkDeleteButtonOrgSpon = checkDeleteButtonOrgSpon;
 
 		$scope.addName = undefined;
 		$scope.addMaxTeams = undefined;
@@ -308,6 +309,12 @@
 			else return true;
 		}
 
+		function checkDeleteButtonOrgSpon(){
+			//if organizer and there are orgs to delete
+			if(checkIfOrganizer() && checkParticipatingOrganizations()) return true;
+			else return false;
+		}
+
 
 		function getUserDetails(){
 			UserService
@@ -352,9 +359,10 @@
 				$scope.updateMechanics = sport.mechanics;
 				$scope.updateWinner = sport.winner;
 				$scope.updateStartTime = new Date(sport.start_date+"T"+sport.time_start+"+08:00");
-				$scope.updateEndTime =  new Date(sport.end_date+"T"+sport.time_end+"+08:00");
-				$scope.updateStartDate =  new Date(sport.start_date+"T"+"00:00:00"+"Z");
-				$scope.updateEndDate =  new Date(sport.end_date+"T"+"00:00:00"+"Z");
+				//uses same date for form validation. end time > start time
+				$scope.updateEndTime =  new Date(sport.start_date+"T"+sport.time_end+"+08:00"); 
+				$scope.updateStartDate =  new Date(sport.start_date+"T"+"00:00:00"+"+08:00");
+				$scope.updateEndDate =  new Date(sport.end_date+"T"+"00:00:00"+"+08:00");
 				$scope.updateMaxTeams =  sport.max_teams;
 				$scope.updateScoringSystem =  sport.scoring_system;
 				$scope.updateGameId = sport.game_id;
