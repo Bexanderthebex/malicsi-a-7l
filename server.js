@@ -13,6 +13,10 @@ var storage = multer.diskStorage({
   filename: function (req, file, cb) {
     var extArray = file.mimetype.split("/");
     var extension = extArray[extArray.length - 1];
+    console.log("\n\n\nFile: ");
+    console.log(file);
+    console.log("\n\n\nReq: ");
+    console.log(req.body);
     if (!(extension == 'jpeg' || extension == 'jpg' || extension == 'png'))
     	return;
     cb(null, file.originalname);

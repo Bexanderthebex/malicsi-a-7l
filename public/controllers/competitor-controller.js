@@ -12,6 +12,7 @@
         $scope.thisCompetitor = {
             competitor_id: $routeParams.id
         };
+        $scope.image;
         $scope.pendingRequested = {};
         $scope.teamAccordion = {};
         $scope.competitor = {};
@@ -74,6 +75,12 @@
         $scope.upload = upload;
 
         function searchCompetitor(){
+            $(document).ready(function()
+            {
+                $("#visited-competitor-profile-img").on("error", function(){
+                    $(this).attr('src', '/assets/avatar.png');
+                });
+            });
             CompetitorService
                 .searchCompetitor($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
@@ -87,6 +94,12 @@
         }
 
         function getCompetitor(){
+            $(document).ready(function()
+            {
+                $("#competitor-profile-img").on("error", function(){
+                    $(this).attr('src', '/assets/avatar.png');
+                });
+            });
             UserService
                 .getUserInfo()
                 .then(function(res) {
@@ -122,6 +135,7 @@
         }
 
         function getCompetitorTeamsPublic(){
+
             CompetitorService
                 .getCompetitorTeamsPublic($scope.thisCompetitor.competitor_id)
                 .then(function(res) {
@@ -198,7 +212,7 @@
 
         function upload(){
             $scope.fileItem.file = document.getElementById("fileItem").files[0];
-            $scope.fileItem.file.originalname = $scope.competitor.id;
+            $scope.fileItem.file.newname = $scope.competitor.id;
             //$scope.fileItem.file.name = { "value":$scope.competitor.id,"writable":true};
             $scope.fileItem.name=$scope.competitor.id;
             console.log($scope.fileItem);

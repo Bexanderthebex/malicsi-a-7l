@@ -1,13 +1,13 @@
 <div id="mainHolder" >
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
-    <div id="main" class="">
+    <div id="main" class="" ng-init="getCompetitor()">
         <div class="row palette-3 competitor-profile-info">
             <div class="col l3 m5 s12 offset-l1 center">
-                <img id="competitor-profile-img" src="assets/avatar.png" class="pallette-3">
+                <img id="competitor-profile-img" src="uploads/{{competitor.id}}.png" class="pallette-3">
             </div>
 
-            <div id="competitor-basic-info" class="col l5 m5 s12 white-text" ng-init="getCompetitor()">
+            <div id="competitor-basic-info" class="col l5 m5 s12 white-text" >
                 <h3 class="rockwell">{{ competitor.nickname }}</h3>
                 <p class="telegrafico">
                     {{ competitor.first_name }} {{ competitor.last_name}}
@@ -323,7 +323,7 @@
                         <div class="file-field input-field">
                             <div class="btn file-button blue darken-4">
                                 <span class="telegrafico">File</span>
-                                <input id="fileItem" type="file" file-model="fileItem.file" accept=".png,.jpeg,.jpg">
+                                <input id="fileItem" type="file" file-model="fileItem.file" accept=".png">
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">

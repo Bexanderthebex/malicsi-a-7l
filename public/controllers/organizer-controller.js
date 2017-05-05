@@ -43,8 +43,15 @@
             locat: undefined,
             descrip: undefined
         };
+        $scope.fileItem ={};
 
         function getCurrentUser() {	
+            $(document).ready(function()
+            {
+                $("#organizer-profile-img").on("error", function(){
+                    $(this).attr("src", "/assets/avatar.png");
+                });
+            });
             UserService		
                 .getUserInfo()		
                 .then(function (res){		
@@ -59,6 +66,12 @@
         }
 
         function getOrganizer() {
+            $(document).ready(function()
+            {
+                $("#organizer-profile-img").on("error", function(){
+                    $(this).attr("src", "/assets/avatar.png");
+                });
+            });
             OrganizerService
                 .getOrganizer($scope.thisOrganizer.orgID)
                 .then(function(res) {
@@ -267,6 +280,7 @@
         }
 
         function updateOrganizer() {
+            upload();
             OrganizerService
                 .updateOrganizer($scope.organizer)
                 .then(function(res) {
@@ -287,6 +301,25 @@
                         })
                 }, function(err) {
                     Materialize.toast('Failed to update organizer!', 3000);
+                })
+        }
+
+
+        function upload(){
+            $scope.fileItem.file = document.getElementById("fileItemOrg").files[0];
+            $scope.fileItem.file.newname = $scope.organizer.id;
+            //$scope.fileItem.file.name = { "value":$scope.organizer.id,"writable":true};
+            $scope.fileItem.name=$scope.organizer.id;
+            console.log("\n\n\n\n File Uploading...")
+            console.log($scope.fileItem);
+            console.log($scope.fileItem.file);
+            //var uploadUrl = '/upload';
+            UserService
+                .uploader($scope.fileItem)
+                .then(function(res){
+
+                },function(err){
+                    console.log(err);
                 })
         }
 

@@ -120,7 +120,8 @@
             var fd = new FormData();
             for(var key in data)
                 fd.append(key, data[key]);
-
+            fd.append("name",data.name);
+            console.log(fd);
             $http.post('/uploadImg', fd, {
             transformRequest: angular.indentity,
             headers: { 'Content-Type': undefined }
