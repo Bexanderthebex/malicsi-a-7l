@@ -63,7 +63,7 @@ INSERT INTO user VALUES (49,'ca','$2a$10$29IdnI9WyfHtrdkGTtvpNuBvwQYQe/Vtx56KJsM
 INSERT INTO user VALUES (50,'sesam','$2a$10$q24vwizj2C9RKMA1YubL2ufX3AygEQYWIEKbUkC/Snwn6nSk8efby','schenvscimgt@up.edu.ph','(801)260-9465','O',0);
 INSERT INTO user VALUES (51,'ics','$2a$10$TQM96kOyw2COG1rzj/SxRe0vONeIiBxlCzmar6N0QEx3SdNNiyKRG','instcomsci@up.edu.ph','(327)123-3269','O',0);
 INSERT INTO user VALUES (52,'mainlib','$2a$10$lgEsDVS5j42NjwraMO22qeHVOxc.n4FhD0ypryryVXR1qeYNCLuWO','elib@up.edu.ph','(469)532-8744','O',0);
-INSERT INTO user VALUES (53,'chancy','$2a$10$sA3lCqpyuztBTulSvOif3OEfgGmbPbAMztEvNrL3F9zoRwDyexzk.','fcsanchez@up.edu.ph','(366)499-5858','O',0);
+INSERT INTO user VALUES (53,'chancy','$2a$10$sA3lCqpyuztBTulSvOif3OEfgGmbPbAMztEvNrL3F9zoRwDyexzk.','fcsanchez@up.edu.ph','(366)499-5858','O',1);
 INSERT INTO user VALUES (54,'dean','$2a$10$7vXAaE5EtzFFvtCy1FXE1OKACB/GGbhihaMQJENpNN8cmDIZG50j6','fplansigan@up.edu.ph','(777)683-0986','O',1);
 INSERT INTO user VALUES (55,'sir_jimmy','$2a$10$184HZGZX/z5HDOMdcH5Gxu41AVOfaNNnmJLgrmvH55V.landd7lWu','jmsamaniego@up.edu.ph','(801)260-9465','O',0);
 
