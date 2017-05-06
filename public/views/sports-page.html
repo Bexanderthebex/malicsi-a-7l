@@ -46,7 +46,7 @@
 				<h4 class="rockwell center strong" style="margin: 0!important;">Matches
 
 				<!-- ADD MATCH BUTTON -->
-					<i class="fa fa-plus match-actions" data-target="match-add-modal" ng-hide="!enableMatch || game.organizer_id !== user.id"></i>
+					<i class="fa fa-plus match-actions" data-target="match-add-modal" ng-hide="!enableMatch "></i>
 				</h4>
 			</div>
             <div class="row" ng-hide="checkMatches()">
@@ -439,7 +439,7 @@
 								<tbody class="century-gothic">
 									<tr ng-repeat="team in matchCopy.teams">
 										<td><input type="text" ng-model="team.team_name"></td>
-										<td><i class="fa fa-pencil fa-hover-style" style="margin-right: 5px!important;"></i><i class="fa fa-close fa-hover-style" ng-click = "deleteTeamInMatch(matchCopy)"></i></td>
+										<td><i class="fa fa-pencil fa-hover-style" style="margin-right: 5px!important;"></i><i class="fa fa-close fa-hover-style" ng-click = "deleteTeamInMatch(team)"></i></td>
 									</tr>
 								</tbody>
 							</table>
@@ -451,10 +451,13 @@
 								<div class="col s9 ">
 									<!-- Team Name -->
 									<label class="admin-fillup-label">Team Name</label>
-									<input ng-model="adminUsername" id="name" type="text" class="validate admin-fillup-form">
+									<select class="browser-default" ng-model="toBeAddedTeam">
+                                       <option value="" selected disabled>Team</option>
+                                       <option value="{{ team.team_id }}" ng-repeat="team in teamsInSport" >{{ team.team_name }}</option>
+                                   </select>
 								</div>
-								<div class="col l3 valign-wrapper" style="height: 100%;">
-									<button class="waves-effect waves-light search-admin-button"><i class="fa fa-plus"></i></button>
+								<div class="col l3 valign-wrapper" style="height: 100%; padding-top: 25px;">
+									<button class="waves-effect waves-light search-admin-button" ng-click="addTeamToMatch(toBeAddedTeam)"><i class="fa fa-plus"></i></button>
 								</div>
 							</div>
 						</div>
