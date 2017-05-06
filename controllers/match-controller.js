@@ -250,13 +250,12 @@ exports.addTeamInMatch = (req, res) => {
 	connection.userType(req.session.user.type).query(query,
 		[req.body.matchId,
 		req.body.teamId,
-		req.body.rank],
+		null],
 		(err, rows, fields) => {
-		if(rows.length === 0){
-			return res.status(404).send("There are no current match winners");
-		}else if(!err){
+		if(!err){
 			return res.status(200).send(rows[0]);
 		}else{
+			console.log(err);
 			return res.status(500).send("Internal server error occurred");
 		}
 	});
