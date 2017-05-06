@@ -3,7 +3,7 @@
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
 		<div class="organization-header col s12 m12 l12" ng-init="retrieveOrganization()">
-			<img class="valign" id="organization-logo" src="assets/team1.png">
+			<img class="valign" id="organization-logo" src="assets/default-logo.png">
 			<h3 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h3>
 		</div>
 
@@ -77,7 +77,7 @@
 			<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
 				<div class="col s12">
 					<ul id="organization-team-tabs" class="tabs">
-						<li class="tab col s3 palette-5 active"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li>
+						<li class="tab col s3 palette-5"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-class="{'active':$first}" ng-click="setViewedGame(game)" class="blue-text darken-3 strong rockwell" href="#" >{{ game.name }}</a></li>
 					</ul>
 				</div>
 				<div id="team-table-1">
