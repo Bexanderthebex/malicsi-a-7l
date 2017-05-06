@@ -31,6 +31,7 @@
         $scope.viewFutureMatch = viewFutureMatch;           //newly added function
         $scope.retrieveTeamsInMatch = retrieveTeamsInMatch;
         $scope.retrieveTeamsInSport = retrieveTeamsInSport;
+        $scope.copyTeamId = copyTeamId;
         $scope.deleteTeamInMatch = deleteTeamInMatch;
         $scope.getCurrentUser = getCurrentUser;
         $scope.sport = {};
@@ -432,9 +433,16 @@
                 })
         }
 
-        function deleteTeamInMatch(team) {
+        function copyTeamId(team) {
+            $scope.teamCopy = {
+                team_id: team.team_id,
+                team_name: team.team_name
+            }
+        }
+
+        function deleteTeamInMatch() {
             SportService
-                .deleteTeamInMatch($scope.matchIdCopy,team.team_id)
+                .deleteTeamInMatch($scope.matchIdCopy,$scope.teamCopy.team_id)
                 .then(function (res){
                     viewFutureMatch();
                     viewCurrentMatch();

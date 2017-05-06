@@ -451,13 +451,13 @@
 								<thead>
 									<tr class="telegrafico">
 										<th>Team Name</th>
-										<th >Actions</th>
+										<th>Remove</th>
 									</tr>
 								</thead>
 								<tbody class="century-gothic">
 									<tr ng-repeat="team in matchCopy.teams">
-										<td><input type="text" ng-model="team.team_name"></td>
-										<td><i class="fa fa-pencil fa-hover-style" style="margin-right: 5px!important;"></i><i class="fa fa-close fa-hover-style" ng-click = "deleteTeamInMatch(team)"></i></td>
+										<td>{{ team.team_name }}</td>
+										<td style="width: 10%"><i class="fa fa-close fa-hover-style" ng-click = "copyTeamId(team)" data-target="sports-delete-team-in-match"></i></td>
 									</tr>
 								</tbody>
 							</table>
@@ -569,6 +569,30 @@
         </div>
         <div class="modal-footer palette-5 right-align">
             <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="deleteMatch()">YES</button>
+            <button href="" class="modal-action modal-close minimalist-button">NO</button>
+        </div>
+    </div>
+
+    <!-- DELETE TEAM IN MATCH -->
+    <div id="sports-delete-team-in-match" class="modal gamefeed-deletion">
+        <div class="modal-content gamefeed-header-fill century-gothic   ">
+            <div class="row gamefeed-remove-bottom">
+                <div class="col s12 gamefeed-padding-left gamefeed-padding-right">
+                    <div class="center palette-5">
+                        <br>
+                            <div class="card-title white-text center telegrafico" id="thicken">
+                                <h4 class="gamefeed-remove-bottom-modal">Remove Team in Match</h4>
+                            </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="row gamefeed-modal-container">
+                <p>Are you sure you want to remove {{ teamCopy.team_name }} in this match?</p>
+            </div>
+        </div>
+        <div class="modal-footer palette-5 right-align">
+            <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="deleteTeamInMatch()">YES</button>
             <button href="" class="modal-action modal-close minimalist-button">NO</button>
         </div>
     </div>

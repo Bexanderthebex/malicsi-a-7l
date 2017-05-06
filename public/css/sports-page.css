@@ -411,7 +411,7 @@
 	overflow: hidden;
 }
 
-#sports-delete-match {
+#sports-delete-match, #sports-delete-team-in-match {
     margin-top: 10%;
     max-width: 40%;
 }
