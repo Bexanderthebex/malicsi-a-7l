@@ -31,6 +31,7 @@
         $scope.viewFutureMatch = viewFutureMatch;           //newly added function
         $scope.retrieveTeamsInMatch = retrieveTeamsInMatch;
         $scope.retrieveTeamsInSport = retrieveTeamsInSport;
+        $scope.copyTeamId = copyTeamId;
         $scope.deleteTeamInMatch = deleteTeamInMatch;
         $scope.getCurrentUser = getCurrentUser;
         $scope.sport = {};
@@ -83,6 +84,7 @@
                 timeEnd: new Date(match.date+"T"+match.timeEnd+"Z"),
                 date: new Date(match.date+"T"+match.timeStart+"Z"),
                 matchID: match.match_id,
+                remarks: match.remarks,
                 teams : []
             }
             for (var i = 0; i < match.teams.length; i++) {
@@ -125,7 +127,11 @@
                 .retrieveSportRankings($scope.thisSport.sport_id) //parameter is sport id
                 .then(function (res){
                     console.log("retrieved rankings");
-                    $scope.rankingsSport = res.data;
+                    for (var i = 0; i < res.data.length; i++) {
+                        if (res.data[i].total_rank != null) {
+                            $scope.rankingsSport.push(res.data[i]);
+                        }
+                    }
                     console.log($scope.rankingsSport);
                 }, function(err) {
                     console.log("rankings not retrieved");
@@ -166,14 +172,22 @@
         }
         
         function retrieveTeamsInSport(){
+            let flag = 0;
             SportService
                 .retrieveTeamsInSport($scope.thisSport.sport_id)
                 .then(function (res){
                     console.log("teams in sport retrieved");
                     $scope.teamsInSport = [];
                     for (var i = 0; i < res.data.length; i++) {
-                        if (res.data[i].team_id != $scope.matchCopy.teams[i].team_id) {
+                        for (var j = 0; j < $scope.matchCopy.teams.length; j++) {
+                            if (res.data[i].team_id == $scope.matchCopy.teams[j].team_id) {
+                                flag = 1;
+                            }
+                        }
+                        if (flag == 0) {
                             $scope.teamsInSport.push(res.data[i]);
+                        } else {
+                            flag = 0;
                         }
                     }
                     console.log($scope.teamsInSport);
@@ -384,13 +398,15 @@
         }
 
         function editTeamRanking(team) {
+            console.log(team);
+            console.log($scope.matchIdCopy);
             SportService
                 .editTeamRanking($scope.matchIdCopy, team.team_id, team.ranking)
                 .then(function (res){
                     Materialize.toast('Team Ranking Updated!', 3000); 
                     retrieveSportRankings($scope.thisSport.sport_id);
                 }, function(err) {
-                    Materialize.toast('Match not updated!', 3000); 
+                    Materialize.toast('Team Ranking not updated!', 3000); 
                 })
         }
 
@@ -417,9 +433,16 @@
                 })
         }
 
-        function deleteTeamInMatch(team) {
+        function copyTeamId(team) {
+            $scope.teamCopy = {
+                team_id: team.team_id,
+                team_name: team.team_name
+            }
+        }
+
+        function deleteTeamInMatch() {
             SportService
-                .deleteTeamInMatch($scope.matchIdCopy,team.team_id)
+                .deleteTeamInMatch($scope.matchIdCopy,$scope.teamCopy.team_id)
                 .then(function (res){
                     viewFutureMatch();
                     viewCurrentMatch();

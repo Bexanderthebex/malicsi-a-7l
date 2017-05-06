@@ -51,13 +51,13 @@
 			</div>
             <div class="row" ng-hide="checkMatches()">
                 <div class="col s12">
-                    <h3 class="telegrafico center">No Matches Yet.</h3>
+                    <h4 class="center telegrafico strong palette-text-4">No Matches Yet</h4>
                 </div>
             </div>
 			<div class="row" ng-show="checkMatches()">
 
 				<!-- P A S T MATCHES -->
-				<div id="sports-past-matches" class="col l4 m6  s12">
+				<div id="sports-past-matches" class="col l4 m12  s12">
 					<h5 class="telegrafico center">PAST MATCHES</h5>
 
 					<!-- LIST OF MATCHES -->
@@ -92,6 +92,9 @@
 								Remarks: {{ match.remarks }}
 							</div>
 						</div>
+                        <div ng-hide="pastMatch.length!=0">
+                            <h5 class="center telegrafico strong palette-text-4">No Past Matches</h5>
+                        </div>
 					</div>
 
                     <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewPastMatch()" ng-show="!enableMatch">
@@ -119,12 +122,15 @@
                                 Date: {{ match.date }}
                             </div>
                         </div>
+                        <div ng-hide="pastMatch.length!=0">
+                            <h5 class="center telegrafico strong palette-text-4">No Past Matches</h5>
+                        </div>
                     </div>
 				</div>
 
 				<!-- O N  G O I N G MATCHES -->
-				<div id="sports-ongoing-matches" class="col l4 m6  s12">
-					<h5 class="telegrafico center">ON-GOING MATCHES</h5>
+				<div id="sports-ongoing-matches" class="col l4 m12  s12">
+					<h5 class="telegrafico center">ONGOING MATCHES</h5>
 
 					<!-- LIST OF MATCHES -->
 					<div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewCurrentMatch()" ng-hide="!enableMatch">
@@ -158,6 +164,9 @@
 								Remarks: {{ match.remarks }}
 							</div>
 						</div>
+                        <div ng-hide="currMatch.length!=0">
+                            <h5 class="center telegrafico strong palette-text-4">No Ongoing Matches</h5>
+                        </div>
 					</div>
 
                     <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewCurrentMatch()" ng-show="!enableMatch">
@@ -185,11 +194,14 @@
                                 Date: {{ match.date }}
                             </div>
                         </div>
+                        <div ng-hide="currMatch.length!=0">
+                            <h5 class="center telegrafico strong palette-text-4">No Ongoing Matches</h5>
+                        </div>
                     </div>
 				</div>
 
 				<!-- U P C O M I N G MATCHES -->
-				<div id="sports-upcoming-matches" class="col l4 m6 s12">
+				<div id="sports-upcoming-matches" class="col l4 m12 s12">
 					<h5 class="telegrafico center">UPCOMING MATCHES</h5>
 
 					<!-- LIST OF MATCHES -->
@@ -225,6 +237,9 @@
 								Remarks: {{ match.remarks }}
 							</div>
 						</div>
+                        <div ng-hide="futureMatch.length!=0">
+                            <h5 class="center telegrafico strong palette-text-4">No Upcoming Matches</h5>
+                        </div>
 					</div>
 
                     <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="viewFutureMatch()" ng-show="!enableMatch">
@@ -257,6 +272,9 @@
 							<div class="sports-match-info" ng-hide = "match.remarks == null" >
 								Remarks: {{ match.remarks }}
 							</div>
+                        </div>
+                        <div ng-hide="futureMatch.length!=0">
+                            <h5 class="center telegrafico strong palette-text-4">No Upcoming Matches</h5>
                         </div>
                     </div>
 				</div>
@@ -356,7 +374,7 @@
                     <div class="center palette-5"> <br>
                         <div class="card-title white-text center telegrafico" id="thicken">
                             <h4 class="sports-match-remove-bottom-modal">
-                                Edit Match
+                                Match
                             </h4>
                         </div> <br>
                     </div>
@@ -412,7 +430,7 @@
 							<thead>
 								<tr class="telegrafico">
 									<th>Team Name</th>
-									<th >Rank</th>
+									<th>Rank</th>
 									<th>Edit Rank</th>
 								</tr>
 							</thead>
@@ -428,24 +446,24 @@
 					</div>
 
 					<div id="edit-match-tab-3" class="padding-override-0 col s12 container row">
-						<div class="col l6 m8 s12">
+						<div class="col l6 m12 s12">
 							<table class="striped">
 								<thead>
 									<tr class="telegrafico">
 										<th>Team Name</th>
-										<th >Actions</th>
+										<th>Remove</th>
 									</tr>
 								</thead>
 								<tbody class="century-gothic">
 									<tr ng-repeat="team in matchCopy.teams">
-										<td><input type="text" ng-model="team.team_name"></td>
-										<td><i class="fa fa-pencil fa-hover-style" style="margin-right: 5px!important;"></i><i class="fa fa-close fa-hover-style" ng-click = "deleteTeamInMatch(team)"></i></td>
+										<td>{{ team.team_name }}</td>
+										<td style="width: 10%"><i class="fa fa-close fa-hover-style" ng-click = "copyTeamId(team)" data-target="sports-delete-team-in-match"></i></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 
-						<div class="col l6 m4 s12 palette-gray" style="height: 100%;">
+						<div class="col l6 m12 s12 palette-gray" style="height: 100%;">
 							<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADD TEAM</h6>
 							<div class="row padding-override-0">
 								<div class="col s9 ">
@@ -456,7 +474,7 @@
                                        <option value="{{ team.team_id }}" ng-repeat="team in teamsInSport" >{{ team.team_name }}</option>
                                    </select>
 								</div>
-								<div class="col l3 valign-wrapper" style="height: 100%; padding-top: 25px;">
+								<div class="col s3 valign-wrapper" style="height: 100%; padding-top: 25px;">
 									<button class="waves-effect waves-light search-admin-button" ng-click="addTeamToMatch(toBeAddedTeam)"><i class="fa fa-plus"></i></button>
 								</div>
 							</div>
@@ -471,12 +489,19 @@
             </div>
         </div>
         <div class="modal-footer palette-5"><!-- button -->
-            <div class="row">
-                <div class="col s6 left-align">
+            <div class="row hide-on-small-only">
+                <div class="col l3 m3 left-align">
                     <button href="" class="modal-action modal-close minimalist-button-inverted" data-target="sports-delete-match">DELETE</button>
                 </div>
-                <div class="col s6 right-align">
+                <div class="col l9 m9 right-align">
                     <button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
+                    <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="editMatch(matchCopy)">SAVE CHANGES</button>
+                </div>
+            </div>
+            <div class="row hide-on-large-only hide-on-med-only">
+                <div class="col s12 right-align">
+                    <button href="" class="modal-action modal-close minimalist-button-inverted" data-target="sports-delete-match"><i class="fa fa-trash-o"></i></button>
+                    <button href="" class="modal-action modal-close minimalist-button"><i class="fa fa-close"></i></button>
                     <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="editMatch(matchCopy)">SAVE CHANGES</button>
                 </div>
             </div>
@@ -544,6 +569,30 @@
         </div>
         <div class="modal-footer palette-5 right-align">
             <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="deleteMatch()">YES</button>
+            <button href="" class="modal-action modal-close minimalist-button">NO</button>
+        </div>
+    </div>
+
+    <!-- DELETE TEAM IN MATCH -->
+    <div id="sports-delete-team-in-match" class="modal gamefeed-deletion">
+        <div class="modal-content gamefeed-header-fill century-gothic   ">
+            <div class="row gamefeed-remove-bottom">
+                <div class="col s12 gamefeed-padding-left gamefeed-padding-right">
+                    <div class="center palette-5">
+                        <br>
+                            <div class="card-title white-text center telegrafico" id="thicken">
+                                <h4 class="gamefeed-remove-bottom-modal">Remove Team in Match</h4>
+                            </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="row gamefeed-modal-container">
+                <p>Are you sure you want to remove {{ teamCopy.team_name }} in this match?</p>
+            </div>
+        </div>
+        <div class="modal-footer palette-5 right-align">
+            <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="deleteTeamInMatch()">YES</button>
             <button href="" class="modal-action modal-close minimalist-button">NO</button>
         </div>
     </div>
