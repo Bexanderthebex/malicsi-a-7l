@@ -125,7 +125,11 @@
                 .retrieveSportRankings($scope.thisSport.sport_id) //parameter is sport id
                 .then(function (res){
                     console.log("retrieved rankings");
-                    $scope.rankingsSport = res.data;
+                    for (var i = 0; i < res.data.length; i++) {
+                        if (res.data[i].total_rank != null) {
+                            $scope.rankingsSport.push(res.data[i]);
+                        }
+                    }
                     console.log($scope.rankingsSport);
                 }, function(err) {
                     console.log("rankings not retrieved");
@@ -166,14 +170,24 @@
         }
         
         function retrieveTeamsInSport(){
+            let flag = 0;
             SportService
                 .retrieveTeamsInSport($scope.thisSport.sport_id)
                 .then(function (res){
                     console.log("teams in sport retrieved");
                     $scope.teamsInSport = [];
                     for (var i = 0; i < res.data.length; i++) {
-                        if (res.data[i].team_id != $scope.matchCopy.teams[i].team_id) {
+                        for (var j = 0; j < $scope.matchCopy.teams.length; j++) {
+                            console.log(res.data[i]);
+                            console.log($scope.matchCopy.teams[j]);
+                            if (res.data[i].team_id == $scope.matchCopy.teams[j].team_id) {
+                                flag = 1;
+                            }
+                        }
+                        if (flag == 0) {
                             $scope.teamsInSport.push(res.data[i]);
+                        } else {
+                            flag = 0;
                         }
                     }
                     console.log($scope.teamsInSport);
@@ -384,6 +398,7 @@
         }
 
         function editTeamRanking(team) {
+            console.log(team);
             SportService
                 .editTeamRanking($scope.matchIdCopy, team.team_id, team.ranking)
                 .then(function (res){
