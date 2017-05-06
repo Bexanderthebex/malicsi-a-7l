@@ -168,72 +168,72 @@ DELIMITER ;
 
 
 -- view future match in sport
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_sport TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_match_sport TO 'guest'@'%';
 
 -- view past match in sport
-GRANT EXECUTE ON PROCEDURE view_current_match TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_current_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_current_match TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_current_match TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_current_match TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_current_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_current_match TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_current_match TO 'guest'@'%';
 
 -- view current match in sport
-GRANT EXECUTE ON PROCEDURE view_future_match TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_future_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_future_match TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_future_match TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_future_match TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_future_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_future_match TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_future_match TO 'guest'@'%';
 
 -- view matches in a sport
-GRANT EXECUTE ON PROCEDURE view_past_match TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_past_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_past_match TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_past_match TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_past_match TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_past_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_past_match TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_past_match TO 'guest'@'%';
 
 -- view match details
-GRANT EXECUTE ON PROCEDURE view_match_details TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_details TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_details TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_match_details TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_match_details TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_match_details TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_match_details TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_match_details TO 'guest'@'%';
 
 -- view all matches
-GRANT EXECUTE ON PROCEDURE view_all_match TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_all_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_all_match TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_all_match TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_all_match TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_match TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_match TO 'guest'@'%';
 
 -- retrieve match winner
-GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'guest'@'%';
 
 -- retrieve teams in match
-GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'guest'@'%';
 -- add match
-GRANT EXECUTE ON PROCEDURE add_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE add_match TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE add_match TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE add_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE add_match TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE add_match TO 'guest'@'%';
 
 -- edit match
-GRANT EXECUTE ON PROCEDURE edit_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE edit_match TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE edit_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE edit_match TO 'administrator'@'%';
 
 -- edit team ranking
-GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO 'administrator'@'%';
 
 -- delete match
-GRANT EXECUTE ON PROCEDURE delete_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE delete_match TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE delete_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE delete_match TO 'administrator'@'%';
 
-GRANT EXECUTE ON PROCEDURE view_last_inserted_match TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_last_inserted_match TO 'guest'@'%';
 
 
-GRANT EXECUTE ON PROCEDURE add_team_in_match TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE add_team_in_match TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE add_team_in_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE add_team_in_match TO 'administrator'@'%';
 

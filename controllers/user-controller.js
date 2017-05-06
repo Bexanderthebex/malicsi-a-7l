@@ -38,6 +38,7 @@ exports.login = (req, res) => {
 			if (err.code == 'ER_BAD_NULL_ERROR') {
 				return res.status(500).send({ 'message' : 'Missing credentials'});
 			} else {
+				console.log(err)
 				return res.status(500).send({ 'message' : 'Unknown'});
 			}
 

@@ -175,35 +175,34 @@ CREATE TABLE log (
 	PRIMARY KEY(log_id)
 );
 
-DROP USER IF EXISTS 'administrator'@'localhost';
-DROP USER IF EXISTS 'competitor'@'localhost';
-DROP USER IF EXISTS 'organizer'@'localhost';
-DROP USER IF EXISTS 'guest'@'localhost';
+DROP USER IF EXISTS 'administrator'@'%';
+DROP USER IF EXISTS 'competitor'@'%';
+DROP USER IF EXISTS 'organizer'@'%';
+DROP USER IF EXISTS 'guest'@'%';
 
-CREATE USER IF NOT EXISTS 'administrator'@'localhost' IDENTIFIED BY 'password1';
-CREATE USER IF NOT EXISTS 'competitor'@'localhost' IDENTIFIED BY 'password2';
-CREATE USER IF NOT EXISTS 'organizer'@'localhost' IDENTIFIED BY 'password3';
-CREATE USER IF NOT EXISTS 'guest'@'localhost' IDENTIFIED BY 'password4';
+CREATE USER IF NOT EXISTS 'administrator'@'%' IDENTIFIED BY 'password1';
+CREATE USER IF NOT EXISTS 'competitor'@'%' IDENTIFIED BY 'password2';
+CREATE USER IF NOT EXISTS 'organizer'@'%' IDENTIFIED BY 'password3';
+CREATE USER IF NOT EXISTS 'guest'@'%' IDENTIFIED BY 'password4';
 
 
--- GRANT [type of permission] ON [database name].[table name] TO ‘admin’@'localhost’;
-GRANT ALL PRIVILEGES ON malicsi.* TO 'administrator'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.game TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.sport TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.sport_match TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.sponsor_games TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.organization TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.organization_in_game TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.organizer TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.team_in_match TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.competitor TO 'competitor'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.team TO 'competitor'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.team_in_match TO 'competitor'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.team_opponent TO 'competitor'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.team_announcement TO 'competitor'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.competitor_joins_team TO 'competitor'@'localhost';
-GRANT SELECT ON malicsi.* to 'administrator'@'localhost';
-GRANT SELECT ON malicsi.* to 'competitor'@'localhost';
-GRANT SELECT ON malicsi.* to 'organizer'@'localhost';
-GRANT SELECT ON malicsi.* to 'guest'@'localhost';
+-- GRANT [type of permission] ON [database name].[table name] TO ‘admin’@'%’;
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.* TO 'administrator'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.game TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.sport TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.sport_match TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.sponsor_games TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.organization TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.organization_in_game TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.organizer TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.team_in_match TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.competitor TO 'competitor'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.team TO 'competitor'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.team_in_match TO 'competitor'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.team_announcement TO 'competitor'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.competitor_joins_team TO 'competitor'@'%';
+GRANT SELECT ON malicsi.* to 'administrator'@'%';
+GRANT SELECT ON malicsi.* to 'competitor'@'%';
+GRANT SELECT ON malicsi.* to 'organizer'@'%';
+GRANT SELECT ON malicsi.* to 'guest'@'%';
 
