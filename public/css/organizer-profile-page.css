@@ -14,6 +14,10 @@
   /*border-radius: 5px;*/
 }
 
+#organizer-profile-tabs .indicator {
+  background-color: #00a5d3;
+}
+
 .organizer-pending-requests::-webkit-scrollbar-track{
   background: transparent;
   -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);
