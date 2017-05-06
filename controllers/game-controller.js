@@ -78,7 +78,7 @@ exports.viewAllGames = (req, res) => {
 
 exports.viewGameDetails = (req, res) => {
 	let query = 'call view_game_details(?);';
-	let param = parseInt(req.query.gameId);
+	let param = req.query.gameId;
 	if (!isNaN(param)){
 		connection.userType('G').query(query,
 		param,
@@ -124,7 +124,7 @@ exports.searchForGameByKeyword = (req,res) => {
 
 exports.viewAllSportsInGame = (req, res) => {
 	let query = 'call view_all_sports_in_game(?);';
-	let param = parseInt(req.params.gameId);
+	let param = req.params.gameId;
 	if (!isNaN(param)){
 
 		connection.userType('G').query(query,
@@ -222,26 +222,34 @@ exports.viewUpcomingOngoingGamesNotLimited = (req,res) =>{
 
 exports.viewAllOngoingMatchesInGame = (req, res) => {
 	let query = 'CALL view_all_ongoing_matches_in_game(?)';
-	connection.userType('G').query(query,
+	let param = req.query.gameId;
+	if(!isNaN(param)){
+		connection.userType('G').query(query,
 		[
 			req.query.gameId
 		], (err, rows, fields) => {
 			if(!err && rows[0].length != 0){
 				return res.status(200).send(rows[0]);
-			}else if(rows[0].length ==0 ){
+			}else if(rows[0].length == 0 ){
 				res.status(200).send([]);
 			}else{
 				res.status(500).send("Internal Server Error Occured");
 			}
-		});
+		});	
+	}else res.status(400).send("Invalid parameter");
+	
 }
 
 exports.viewAllPastMatchesInGame = (req, res) => {
 	let query = 'CALL view_all_past_matches_in_game(?)';
-	connection.userType('G').query(query,
+	let param = req.query.gameId;
+	if(!isNaN(param)){
+		connection.userType('G').query(query,
 		[
 			req.query.gameId
 		], (err, rows, fields) => {
+			console.log(req.query.gameId);
+			console.log(rows);
 			if(!err && rows[0].length != 0){
 				return res.status(200).send(rows[0]);
 
@@ -251,28 +259,34 @@ exports.viewAllPastMatchesInGame = (req, res) => {
 			else{
 				res.status(500).send("Internal Server Error Occured");
 			}
-		});
+		});	
+	}else res.status(404).send("Invalid parameter");
+	
 }
 
 exports.viewAllUpcomingMatchesInGame = (req, res) => {
 	let query = 'CALL view_all_upcoming_matches_in_game(?)';
-	connection.userType('G').query(query,
+	let param = req.query.gameId;
+	if(!isNaN(param)){
+		connection.userType('G').query(query,
 		[
 			req.query.gameId
 		], (err, rows, fields) => {
-			if(!err && rows[0].length != 0){
+			if(!err && rows != undefined){
 				return res.status(200).send(rows[0]);
-			}else if(rows[0].length ==0 ){
+			}else if(rows == undefined ){
 				res.status(200).send([]);
 			}else{
 				res.status(500).send("Internal Server Error Occured");
 			}
-		});
+		});	
+	}else res.status(404).send("Invalid parameter");
+	
 }
 
 exports.retrieveOrgRankings = (req, res, next) => {
 	let query = 'CALL retrieve_org_rankings_from_game(?)';
-	let param = parseInt(req.params.gameId);
+	let param = req.params.gameId;
 	if(!isNaN(param)){
 		connection.userType('G').query(query,
 			param,
@@ -406,12 +420,16 @@ exports.viewAllRecentGames = (req, res) => {
 
 exports.viewGameOrganizerDetails = (req, res) => {
 	let query = 'CALL view_game_organizer_details(?)';
-	connection.userType('G').query(query, [req.query.gameId],
+	let param = req.query.gameId;
+	if(!isNaN(param)){
+		connection.userType('G').query(query, [req.query.gameId],
 		(err, rows, fields) => {
 			if(!err)
 				return res.status(200).send(rows[0]);
 			else
 				return res.status(500).send("Internal Server Error");
 
-		})
+		})	
+	}else res.status(400).send("Invalid parameter");
+	
 }
