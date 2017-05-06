@@ -1,7 +1,7 @@
-<div id="mainHolder" ng-init="getUserDetails()">
+<div id="mainHolder" ng-init="initializeGamePage()">
 	<div id="main">
         <div class="">
-            <div class="col s12 game-padding-left game-padding-right" ng-init="viewGameDetails()">
+            <div class="col s12 game-padding-left game-padding-right">
                 <div class="parallax-container palette-5 game-parallax">
                     <div class="parallax"></div>
                     <div class="rockwell">
@@ -16,7 +16,7 @@
                     <div class="col s12 m12 l8">
                         <div class="col s12 game-padding-left game-padding-right">
                             <div class="game-game-box">
-                                <div class="game-game-box-header palette-3 valign-wrapper"  ng-init="viewGameOrganizerDetails()">
+                                <div class="game-game-box-header palette-3 valign-wrapper"  >
                                     <div class="width-100 row margin-override-0">
                                         <div class="col s12 rockwell white-text left truncate center">
                                             <h5 class="game-panel-headers"><i class="fa fa-ravelry"></i> | Matches</h5> 
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="game-game-box-body game-rightpanel-container game-panel-bottom game-game-box-matches">
                                     <div id="past-match">
-                                        <div class="row" ng-init="retrieveMatchesInGame()" ng-hide="checkPastMatches()">
+                                        <div class="row"  ng-hide="checkPastMatches()">
                                             <div id="game-past-match" class="col s12 m6 l4" ng-repeat="pastMatch in pastMatches">
                                                 <div class="game-match palette-border-5">
 
@@ -134,7 +134,7 @@
                         </div>
                         <div class="col s12 game-padding-left game-padding-right">
                             <div class="game-game-box">
-                                <div class="game-game-box-header palette-3 valign-wrapper"  ng-init="viewGameOrganizerDetails()">
+                                <div class="game-game-box-header palette-3 valign-wrapper"  >
                                     <div class="width-100 row margin-override-0">
                                         <div class="col s12 rockwell white-text left truncate center">
                                             <h5 class="game-panel-headers"><i class="fa fa-futbol-o"></i> | Sports</h5> 
@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="game-game-box-body game-rightpanel-container game-panel-bottom game-organization-content" ng-hide="checkSports()">
                                     <div class="col s12">
-                                        <div class="row" ng-init="retrieveAllSports()" >
+                                        <div class="row"  >
                                             <div class="col s12 m6 l4" ng-show="checkIfOrganizer()" >
                                                 <div class="game-sport" data-target="game-add-sport" >
                                                     <div class="card game-hovercard">
@@ -278,7 +278,7 @@
                     <div class="col s12 m12 l4">              
                         <div class="col s12 game-padding-left game-padding-right">
                             <div class="game-game-box">
-                                <div class="game-game-box-header palette-3"  ng-init="viewGameOrganizerDetails()">
+                                <div class="game-game-box-header palette-3"  >
                                     <div class="width-100 row margin-override-0">
                                         <div class="col s12 rockwell white-text left truncate center">
                                             <h5 class="game-panel-headers"><i class="fa fa-users"></i> | Organizer</h5> 
@@ -308,7 +308,7 @@
                         </div>
                         <div class="col s12 game-padding-left game-padding-right">
                             <div class="game-game-box">
-                                <div class="game-game-box-header palette-3 valign-wrapper" ng-init="viewAllOrganizationInGame()">
+                                <div class="game-game-box-header palette-3 valign-wrapper" >
                                     <div class="width-100 row margin-override-0">
                                         <div class="col s12 rockwell white-text left truncate center">
                                             <h5 class="game-panel-headers"><i class="fa fa-sitemap"></i> | Organizations</h5> 
@@ -332,14 +332,14 @@
                                     </div>
                                     <div class="row center">
                                         <button href="" class="modal-action modal-close game-organizations-button minimalist-button" ng-show='checkIfOrganizer()' data-target="game-organization-add" >ADD</button>
-                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-organization" ng-show='checkIfOrganizer()'>DELETE</button>
+                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-organization" ng-show='checkDeleteButtonOrg()'>DELETE</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col s12 game-padding-left game-padding-right">
                             <div class="game-game-box">
-                                <div class="game-game-box-header palette-3 valign-wrapper" ng-init="viewSponsoringInstitutions()">
+                                <div class="game-game-box-header palette-3 valign-wrapper" >
                                     <div class="width-100 row margin-override-0">
                                         <div class="col s12 rockwell white-text left truncate center">
                                             <h5 class="game-panel-headers"><i class="fa fa-building"></i> | Sponsors</h5> 
@@ -364,7 +364,7 @@
                                     </div>
                                     <div class="row center">
                                         <button href="" class="modal-action modal-close game-organizations-button minimalist-button" ng-show='checkIfOrganizer()' data-target="game-sponsor-add">ADD</button>
-                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-sponsor" ng-show='checkIfOrganizer()'>DELETE</button>
+                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-sponsor" ng-show='checkDeleteButtonSpon()'>DELETE</button>
                                     </div>
                                 </div>
                             </div>
@@ -488,12 +488,12 @@
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="deleteMultipleOrganizations()">YES</button>
-		<button href="" class="modal-action modal-close minimalist-button-inverted" data-target="game-delete-sponsor">NO</button>
+		<button href="" class="modal-action modal-close minimalist-button-inverted" data-target="game-delete-organization">NO</button>
 	</div>
 </div>
 
 <!-- ADD SPONSOR MODAL -->
-<div id="game-sponsor-add" class="modal" ng-init="viewOtherSponsoringInstitutions()">
+<div id="game-sponsor-add" class="modal">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-5">
 			<div class="center">
@@ -521,7 +521,7 @@
 </div>
 
 <!-- ADD ORGANIZATION MODAL -->
-<div id="game-organization-add" class="modal" ng-init="viewAllOrganizationForGame()">
+<div id="game-organization-add" class="modal">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-5">
 			<div class="center">
@@ -580,9 +580,6 @@
 
 					</div>
 					<div class="input-field col s4 game-input-color-change">
-						<!-- <select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" >
-							<option value="" selected hidden>None</option>
-						</select> -->
                         <input placeholder=" "  ng-model="addScoringSystem" type="text" data-length="50" ng-maxlength="50" class="validate" name="addScoringSystem" required>
 						<label for="addScoringSystem">Scoring system</label>
                         <div ng-show="addSportForm.addScoringSystem.$error.required && addSportForm.addScoringSystem.$touched" class="error">required</div>
@@ -608,7 +605,7 @@
 
 					</div>
 					<div class="input-field col s3 game-input-color-change">
-						<input placeholder="Time ended" name="addEndTime" type="time" ng-model="addEndTime" min={{addStartTime}} class="validate" required>
+						<input placeholder="Time ended" name="addEndTime" type="time" ng-model="addEndTime" min="{{addStartTime | date: 'HH:mm:ss'}}" class="validate" required>
 						<label class="game-adjust-label" for="end-time">End</label>
 						<div ng-show="addSportForm.addEndTime.$error.required && addSportForm.addEndTime.$touched" class="error">required</div>
                         <div ng-show="addSportForm.addEndTime.$error.min" class="error">End time should not be set before start time</div>

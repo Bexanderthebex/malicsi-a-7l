@@ -22,7 +22,6 @@
 		$scope.searchSport = searchSport;
 		$scope.passSport = passSport;
 		$scope.countTeamInSport = countTeamInSport;
-		$scope.viewGameDetails = viewGameDetails;
 		$scope.viewGameOrganizerDetails = viewGameOrganizerDetails;
 		$scope.viewPastMatchesInGame = viewPastMatchesInGame;
 		$scope.viewOngoingMatchesInGame = viewOngoingMatchesInGame;
@@ -59,6 +58,9 @@
 		$scope.checkSports = checkSports;
 		$scope.mergeMatchesBeta = mergeMatchesBeta;
 		$scope.checkValidAddSportStartDate = checkValidAddSportStartDate;
+		$scope.checkDeleteButtonOrg = checkDeleteButtonOrg;
+		$scope.initializeGamePage = initializeGamePage;
+		$scope.checkDeleteButtonSpon = checkDeleteButtonSpon;
 
 		$scope.addName = undefined;
 		$scope.addMaxTeams = undefined;
@@ -178,6 +180,7 @@
 
 		$scope.selectedScoring = undefined;
 		$scope.scoringSystemPresets = ["Tally Score", "Round Robin", "Elimination"];
+
 
 		function addSport() {
 			var newSport = {
@@ -308,6 +311,17 @@
 			else return true;
 		}
 
+		function checkDeleteButtonOrg(){
+			//if organizer and there are orgs to delete
+			if(checkIfOrganizer() && !checkParticipatingOrganizations()) return true;
+			else return false;
+		}
+
+		function checkDeleteButtonSpon(){
+			//if organizer and there are sponsors to delete
+			if(checkIfOrganizer() && !checkSponsors()) return true;
+			else return false;
+		}
 
 		function getUserDetails(){
 			UserService
@@ -549,7 +563,7 @@
 
 		}
 
-		function viewGameDetails(){
+		function initializeGamePage(){
 			GameService
 				.viewGameDetails($scope.thisGame.game_id)
 				.then(function(res){
@@ -558,6 +572,12 @@
 					$scope.game = res.data;
 					$scope.gameStartDate = new Date($scope.game.start_date+"T"+"00:00:00"+"Z");
 					$scope.gameEndDate = new Date($scope.game.end_date+"T"+"00:00:00"+"Z");
+					getUserDetails();
+					viewAllOrganizationInGame();
+					viewAllOrganizationForGame();
+					viewGameOrganizerDetails();
+					initializeSponsoringInstitutions();
+					retrieveMatchesInGame();
 				}, function(err){
 					console.log(err.data);
 					$location.path("/error");
