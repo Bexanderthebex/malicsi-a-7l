@@ -63,7 +63,7 @@ exports.editMatch = function(req, res, next){
 }
 
 exports.editTeamRankingInMatch = function(req, res, next){
-	connection.userType(req.session.user.type).query("CALL edit_team_ranking_in_match(?, ?, ?)"
+	connection.userType(req.session.user.type).query("CALL edit_team_ranking_in_match(?, ?, ?)",
 		[req.body.ranking,
 		 req.body.matchID,
 		 req.body.teamID],
@@ -71,7 +71,7 @@ exports.editTeamRankingInMatch = function(req, res, next){
 		if(!err){
 		    connection.userType(req.session.user.type).query('CALL view_team_in_match(?)', req.body.matchID, (err, rows) => {
 				logs.createLog(req.session.user.id, "Updated Team Ranking in Match");
-				return res.status(200).send(rows[0]);
+				return res.status(200).send(rows);
 			})
 		}else{
 			console.log(err);

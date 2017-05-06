@@ -179,8 +179,6 @@
                     $scope.teamsInSport = [];
                     for (var i = 0; i < res.data.length; i++) {
                         for (var j = 0; j < $scope.matchCopy.teams.length; j++) {
-                            console.log(res.data[i]);
-                            console.log($scope.matchCopy.teams[j]);
                             if (res.data[i].team_id == $scope.matchCopy.teams[j].team_id) {
                                 flag = 1;
                             }
@@ -400,13 +398,14 @@
 
         function editTeamRanking(team) {
             console.log(team);
+            console.log($scope.matchIdCopy);
             SportService
                 .editTeamRanking($scope.matchIdCopy, team.team_id, team.ranking)
                 .then(function (res){
                     Materialize.toast('Team Ranking Updated!', 3000); 
                     retrieveSportRankings($scope.thisSport.sport_id);
                 }, function(err) {
-                    Materialize.toast('Match not updated!', 3000); 
+                    Materialize.toast('Team Ranking not updated!', 3000); 
                 })
         }
 
