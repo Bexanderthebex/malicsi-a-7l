@@ -56,42 +56,7 @@
                     <div class="row" ng-show="checkGames()">
 
                         <!-- P A S T GAMES -->
-                        <div id="sports-past-matches" class="col l4 m4 hide-on-small-only">
-                            <h5 class="telegrafico center">PAST GAMES {{ pastGames.length>0 ? '(' + pastGames.length + ')' : ''}}</h5>
-
-                            <!-- LIST OF GAMES -->
-                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerPastGames()">
-                                <div class="sports-match palette-border-5" ng-repeat="game in pastGames">
-                                    
-                                <!-- GAME TITLE -->
-                                    <div class="sports-match-title row">
-                                        <a href="#/game/{{game.game_id}}">
-                                            <div class="telegrafico col s10">{{ game.name }}</div>
-                                        </a>
-                                        <div class="telegrafico col s1" data-target="organizer-update-game-modal">
-                                            <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
-                                        <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
-                                    </div>
-
-                                    <!-- GAME INFO -->
-                                    <div class="sports-match-info">
-                                        Start: {{ game.start_date| date:"longDate"}}
-
-                                    </div>
-                                    <div class="sports-match-info">
-                                        End: {{ game.end_date| date:"longDate"}}
-                                    </div>
-                                    <div class="sports-match-info">
-                                        Location: {{ game.location }}
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div ng-hide="pastGames.length!=0">
-                                <h5 class="center telegrafico strong palette-text-4">No Ongoing Games</h5>
-                            </div>
-                        </div>
-                        <div id="sports-past-matches" class="col s12 hide-on-large-only hide-on-med-only">
+                        <div id="sports-past-matches" class="col l4 m4 s12">
                             <h5 class="telegrafico center">PAST GAMES {{ pastGames.length>0 ? '(' + pastGames.length + ')' : ''}}</h5>
 
                             <!-- LIST OF GAMES -->
@@ -128,41 +93,7 @@
                         </div>
 
                         <!-- O N  G O I N G GAMES -->
-                        <div id="sports-ongoing-matches" class="col l4 m4 hide-on-small-only">
-                            <h5 class="telegrafico center">ONGOING GAMES {{ ongoingGames.length>0 ? '(' + ongoingGames.length + ')' : ''}}</h5>
-
-                            <!-- LIST OF GAMES -->
-                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerOngoingGames()">
-                                <div class="sports-match palette-border-3" ng-repeat="game in ongoingGames">
-                                    <!-- GAME TITLE -->
-                                    <div class="sports-match-title row">
-                                        <a href="#/game/{{game.game_id}}">
-                                            <div class="telegrafico col s10">{{ game.name }}</div>
-                                        </a>
-                                        <div class="telegrafico col s1" data-target="organizer-update-game-modal">
-                                            <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
-                                        <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
-                                    </div>
-
-                                    <!-- GAME INFO -->
-                                    <div class="sports-match-info">
-                                        Start: {{ game.start_date| date:"longDate"}}
-
-                                    </div>
-                                    <div class="sports-match-info">
-                                        End: {{ game.end_date| date:"longDate"}}
-                                    </div>
-                                    <div class="sports-match-info">
-                                        Location: {{ game.location }}
-                                    </div>
-                                
-                                </div>
-                            </div>
-                            <div ng-hide="ongoingGames.length!=0">
-                                <h5 class="center telegrafico strong palette-text-4">No Ongoing Games</h5>
-                            </div>
-                        </div>
-                        <div id="sports-ongoing-matches" class="col s12 hide-on-large-only hide-on-med-only">
+                        <div id="sports-ongoing-matches" class="col l4 m4 s12">
                             <h5 class="telegrafico center">ONGOING GAMES {{ ongoingGames.length>0 ? '(' + ongoingGames.length + ')' : ''}}</h5>
 
                             <!-- LIST OF GAMES -->
@@ -198,40 +129,7 @@
                         </div>
 
                         <!-- U P C O M I N G GAMES -->
-                        <div id="sports-upcoming-matches" class="col l4 m4 hide-on-small-only">
-                            <h5 class="telegrafico center">UPCOMING GAMES {{ upcomingGames.length>0 ? '(' + upcomingGames.length + ')' : ''}}</h5>
-
-                            <!-- LIST OF GAMES -->
-                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerUpcomingGames()">
-                                <div class="sports-match palette-border-4" ng-repeat="game in upcomingGames">
-                                    <!-- GAME TITLE -->
-                                    <div class="sports-match-title row">
-                                        <a href="#/game/{{game.game_id}}">
-                                            <div class="telegrafico col s10">{{ game.name }}</div>
-                                        </a>
-                                        <div class="telegrafico col s1" data-target="organizer-update-game-modal">
-                                            <i class="fa fa-pencil fa-lg" ng-click="copyGame(game)"></i></div>
-                                        <div class="telegrafico col s1" data-target="organizer-delete-game-modal"><i class="fa fa-close fa-lg" ng-click="copyGame(game)"></i></div>
-                                    </div>
-
-                                    <!-- GAME INFO -->
-                                    <div class="sports-match-info">
-                                        Start: {{ game.start_date| date:"longDate"}}
-
-                                    </div>
-                                    <div class="sports-match-info">
-                                        End: {{ game.end_date| date:"longDate"}}
-                                    </div>
-                                    <div class="sports-match-info">
-                                        Location: {{ game.location }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div ng-hide="upcomingGames.length!=0">
-                                <h5 class="center telegrafico strong palette-text-4">No Ongoing Games</h5>
-                            </div>
-                        </div>
-                        <div id="sports-upcoming-matches" class="col s12 hide-on-large-only hide-on-med-only">
+                        <div id="sports-upcoming-matches" class="col l4 m4 s12">
                             <h5 class="telegrafico center">UPCOMING GAMES {{ upcomingGames.length>0 ? '(' + upcomingGames.length + ')' : ''}}</h5>
 
                             <!-- LIST OF GAMES -->
