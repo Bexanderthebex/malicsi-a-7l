@@ -2,10 +2,10 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host : 'us-cdbr-iron-east-03.cleardb.net',
-  user : 'b8683e6c21f02f',
-  password : 'b6051e50',
-  db : 'heroku_ce2b03d42f2b112',
+  host : 'malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com',
+  user : 'administrator',
+  password : 'password1',
+  db : 'malicsi',
   dateStrings: true
 });
 
@@ -17,10 +17,6 @@ connection.connect((err) => {
     }
 });
 
-setInterval(function () {
-    connection.query('SELECT 1');
-}, 5000);
-
-connection.query('USE heroku_ce2b03d42f2b112');
+connection.query('USE malicsi');
 module.exports = connection;
 

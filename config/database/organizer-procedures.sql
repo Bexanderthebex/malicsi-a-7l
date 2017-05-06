@@ -1,3 +1,5 @@
+USE malicsi;
+
 DROP procedure IF EXISTS search_organizer;
 DELIMITER //
 
@@ -105,3 +107,44 @@ DELIMITER //
 	END; //
 
 DELIMITER ;
+
+grant execute on procedure search_organizer to 'organizer'@'localhost';
+grant execute on procedure search_organizer to 'administrator'@'localhost';
+grant execute on procedure search_organizer to 'competitor'@'localhost';
+grant execute on procedure search_organizer to 'guest'@'localhost';
+
+grant execute on procedure edit_organizer to 'organizer'@'localhost';
+grant execute on procedure edit_organizer to 'administrator'@'localhost';
+
+grant execute on procedure get_organizer to 'organizer'@'localhost';
+grant execute on procedure get_organizer to 'competitor'@'localhost';
+grant execute on procedure get_organizer to 'guest'@'localhost';
+grant execute on procedure get_organizer to 'administrator'@'localhost';
+
+grant execute on procedure get_request to 'administrator'@'localhost';
+grant execute on procedure get_request to 'organizer'@'localhost';
+
+grant execute on procedure get_pending_participation to 'organizer'@'localhost';
+grant execute on procedure get_pending_participation to 'administrator'@'localhost';
+
+grant execute on procedure process_request to 'organizer'@'localhost';
+grant execute on procedure process_request to 'administrator'@'localhost';
+
+grant execute on procedure find_game to 'administrator'@'localhost';
+grant execute on procedure find_game to 'organizer'@'localhost';
+grant execute on procedure find_game to 'competitor'@'localhost';
+grant execute on procedure find_game to 'guest'@'localhost';
+
+grant execute on procedure delete_team to 'administrator'@'localhost';
+grant execute on procedure delete_team to 'competitor'@'localhost';
+
+grant execute on procedure find_sport to 'organizer'@'localhost';
+grant execute on procedure find_sport to 'competitor'@'localhost';
+grant execute on procedure find_sport to 'administrator'@'localhost';
+grant execute on procedure find_sport to 'guest'@'localhost';
+
+grant execute on procedure find_team to 'organizer'@'localhost';
+grant execute on procedure find_team to 'competitor'@'localhost';
+grant execute on procedure find_team to 'administrator'@'localhost';
+grant execute on procedure find_team to 'guest'@'localhost';
+

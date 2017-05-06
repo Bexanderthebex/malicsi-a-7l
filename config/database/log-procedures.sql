@@ -1,3 +1,5 @@
+use malicsi;
+
 DROP PROCEDURE IF EXISTS create_log;
 DELIMITER //
 	CREATE PROCEDURE create_log(in _user_id INT, in _log_msg VARCHAR(140))
@@ -45,3 +47,23 @@ DELIMITER //
 
 	//
 DELIMITER ;
+
+GRANT EXECUTE ON PROCEDURE create_log TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE create_log TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE create_log TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE create_log TO 'guest'@'localhost';
+
+GRANT EXECUTE ON PROCEDURE get_user_logs TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_user_logs TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_user_logs TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_user_logs TO 'guest'@'localhost';
+
+GRANT EXECUTE ON PROCEDURE get_logs TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_logs TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_logs TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE get_logs TO 'guest'@'localhost';
+
+GRANT EXECUTE ON PROCEDURE search_logs TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_logs TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_logs TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_logs TO 'guest'@'localhost';

@@ -1,3 +1,5 @@
+USE malicsi;
+
 DROP PROCEDURE IF EXISTS update_activity;
 DELIMITER //
 CREATE PROCEDURE update_activity(
@@ -34,3 +36,6 @@ CREATE PROCEDURE search_admin(
 	END;
 //
 DELIMITER //
+
+
+grant execute on procedure update_activity to 'administrator'@'localhost';
