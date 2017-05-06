@@ -83,6 +83,7 @@
                 timeEnd: new Date(match.date+"T"+match.timeEnd+"Z"),
                 date: new Date(match.date+"T"+match.timeStart+"Z"),
                 matchID: match.match_id,
+                remarks: match.remarks,
                 teams : []
             }
             for (var i = 0; i < match.teams.length; i++) {
