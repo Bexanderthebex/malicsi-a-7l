@@ -186,7 +186,7 @@ DROP PROCEDURE IF EXISTS retrieve_sponsor_in_sport;
 DELIMITER //
 CREATE PROCEDURE retrieve_sponsor_in_sport (IN in_sport_id INT)
 BEGIN
- 	select name from sponsor_institution join sponsor_games using(sponsor_id) join sport using (game_id) where sponsor_games.game_id = sport.game_id AND sport_id = 1;
+ 	select name from sponsor_institution join sponsor_games using(sponsor_id) join sport using (game_id) where sponsor_games.game_id = sport.game_id AND sport_id = in_sport_id;
 END //
 DELIMITER ;
 
@@ -197,6 +197,8 @@ BEGIN
  	select team_id, team_name from sport JOIN team using (sport_id) where sport.sport_id = in_sport_id;
 END //
 DELIMITER ;
+
+
 
 
 GRANT EXECUTE ON PROCEDURE create_sport TO 'administrator'@'localhost';

@@ -143,6 +143,7 @@
 
 
         function retrieveTeam(team_id) {
+
             OrganizationService
                 .retrieveTeam(team_id)
                 .then(function(res) {
@@ -171,6 +172,19 @@
                         $('#emptyTeam').text('No Members Yet');
                     else
                         $('#emptyTeam').text('');
+                    
+                    $(document).ready(function()
+                    {
+                        $("#M.organization-team-member-avatar").on("error", function(){
+                            $(this).attr("src", "assets/avatars/M.png");
+                        });
+                    });
+                    $(document).ready(function()
+                    {
+                        $("#F.organization-team-member-avatar").on("error", function(){
+                            $(this).attr("src", "assets/avatars/F.png");
+                        });
+                    });
                 }, function(err) {
                     Materialize.toast('Error loading details');
                     console.log(err);

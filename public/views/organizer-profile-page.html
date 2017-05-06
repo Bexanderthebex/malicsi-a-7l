@@ -1,11 +1,11 @@
 <div id="mainHolder">
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
-    <div id="main" class="" ng-init="getCurrentUser()">
+    <div id="main" class="" ng-init='getCurrentUser();'>
         <!-- Organizer Basic Info -->
         <div class="row palette-3 organizer-profile-info">
-            <div class="col l3 m12 s12 offset-l1 center">
-                <img id="organizer-profile-img" src="assets/avatar.png" class="pallette-3">
+            <div class="col l3 m5 s12 offset-l1 center">
+                <img id="organizer-profile-img" src="uploads/{{organizer.id}}.png" class="pallette-3">
             </div>
 
             <div id="competitor-basic-info" class="col l7 hide-on-med-and-down white-text">
@@ -262,6 +262,19 @@
                     </label>
                 </div>
             </div>
+            <div class="col s12">
+                    <form action="#">
+                        <div class="file-field input-field">
+                            <div class="btn file-button blue darken-4">
+                                <span class="telegrafico">File</span>
+                                <input id="fileItemOrg" type="file" file-model="fileItem.file" accept=".png">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
         </div>
     </div>
     <div class="modal-footer palette-5 right-align"><!-- button -->

@@ -31,6 +31,8 @@
         $scope.viewFutureMatch = viewFutureMatch;           //newly added function
         $scope.retrieveTeamsInMatch = retrieveTeamsInMatch;
         $scope.retrieveTeamsInSport = retrieveTeamsInSport;
+        $scope.addTeamInMatch = addTeamInMatch;
+        $scope.deleteTeamInMatch = deleteTeamInMatch;
         $scope.getCurrentUser = getCurrentUser;
         $scope.sport = {};
         $scope.game = {};
@@ -381,7 +383,7 @@
                 .then(function (res){
                     Materialize.toast('Team Ranking Updated!', 3000); 
                 }, function(err) {
-                    Materialize.toast('Match not edited!', 3000); 
+                    Materialize.toast('Match not updated!', 3000); 
                 })
         }
 
@@ -405,6 +407,29 @@
                     console.log("retrieved matches");
                 }, function(err) {
                     console.log(err);
+                })
+        }
+
+        function addTeamInMatch(match_id,team_id) {
+            SportService
+                .addTeamInMatch(match_id,team_id)
+                .then(function (res){
+                    Materialize.toast('Added Team in match!', 3000);
+                }, function(err) {
+                    Materialize.toast('Team in match not added!', 3000); 
+                })
+        }
+
+        function deleteTeamInMatch(match) {
+            SportService
+                .deleteTeamInMatch(match.matchID,match.teams.team_id)
+                .then(function (res){
+                    viewFutureMatch();
+                    viewCurrentMatch();
+                    viewPastMatch();
+                    Materialize.toast('Deleted Team in match!', 3000);
+                }, function(err) {
+                    Materialize.toast('Team in match not deleted!', 3000); 
                 })
         }
     }

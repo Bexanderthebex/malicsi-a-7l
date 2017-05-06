@@ -1,255 +1,231 @@
-<div id="mainHolder" ng-init="getUserDetails()">
+<div id="mainHolder" ng-init="initializeGamePage()">
 	<div id="main">
         <div class="">
-            <div class="col s12 game-padding-left game-padding-right" ng-init="viewGameDetails()">
-                <div class="parallax-container game-parallax">
-                    <div class="parallax"><img src="assets/spor4.jpg"></div>
+            <div class="col s12 game-padding-left game-padding-right">
+                <div class="parallax-container palette-5 game-parallax">
+                    <div class="parallax"></div>
                     <div class="rockwell">
                         <h3 class="white-text center game-title">{{game.name}}</h3>
-                        <h6 class="white-text center game-details"><i class="fa fa-calendar"></i> | Start: {{game.start_date}} End: {{game.end_date}}</h6>
+                        <h6 class="white-text center game-details"><i class="fa fa-calendar"></i> | Start: {{game.start_date| date : 'longDate'}} End: {{game.end_date| date : 'longDate'}}</h6>
                         <h6 class="rockwell center game-details white-text" ng-hide="checkGameLocation()"><i class="fa fa-map-marker"></i> | {{game.location}}</h6>
                         <h6 class="rockwell center game-details white-text" ng-show="checkGameLocation()"><i class="fa fa-map-marker"></i> | No location available.</h6>
                         <p class="white-text game-details rockwell" ng-hide = "checkGameDescription()">{{game.description}}</p>
                     </div>
                 </div>
-                <div class="row game-container white" style="margin-top:-480px; position:relative;">
-                    <div class="col s12 m12 l4">
-                        <div class="game-game-box">
-                            <div class="game-game-box-header palette-3"  ng-init="viewGameOrganizerDetails()">
-                                <div class="width-100 row margin-override-0">
-                                    <div class="col s12 rockwell white-text left truncate center">
-                                        <h5 class="game-panel-headers"><i class="fa fa-users"></i> | Organizer</h5> 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="game-game-box-body white game-rightpanel-container">
-                                <div class="telegrafico game-rightpanel-container">
-                                    <p class="game-organizer-header center game-remove-bottom"><a href="#/organizer/profile/{{game.organizer_id}}" class="game-maintain-anchor">{{gameOrganizer.name}}</a><br>
-                                        <span class="game-organizer-description century-gothic"> {{gameOrganizer.description}}</span>
-                                    </p>
-                                    <div class="row game-remove-bottom">
-                                        <div class="col s12">
-                                            <p class="game-organizer-header center game-remove-bottom"><i class="fa fa-phone"></i> | 
-                                                <span class="game-organizer-description century-gothic"> {{gameOrganizer.contact}}</span>
-                                            </p>
-                                        </div>
-                                        <div class="col s12">
-                                            <p class="game-organizer-header center"><i class="fa fa-envelope"></i> | 
-                                                <span class="game-organizer-description century-gothic"> {{gameOrganizer.email}}</span>
-                                            </p>
+                <div class="row game-container white" >
+                    <div class="col s12 m12 l8">
+                        <div class="col s12 game-padding-left game-padding-right">
+                            <div class="game-game-box">
+                                <div class="game-game-box-header palette-3 valign-wrapper"  >
+                                    <div class="width-100 row margin-override-0">
+                                        <div class="col s12 rockwell white-text left truncate center">
+                                            <h5 class="game-panel-headers"><i class="fa fa-ravelry"></i> | Matches</h5> 
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m12 l4">
-                        <div class="game-game-box">
-                            <div class="game-game-box-header palette-4 valign-wrapper" ng-init="viewAllOrganizationInGame()">
-                                <div class="width-100 row margin-override-0">
-                                    <div class="col s12 rockwell white-text left truncate center">
-                                        <h5 class="game-panel-headers"><i class="fa fa-sitemap"></i> | Organizations</h5> 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="game-game-box-body white game-rightpanel-container">
-                                <div class="row game-organization-content">
-                                    <div class="col s12 game-rightpanel-content-box-organization" ng-hide="checkParticipatingOrganizations()">
-                                        <div ng-repeat="organization in participatingOrgs">
-                                            <p class="telegrafico game-sponsor-title center" >
-                                                <a href="#/organization/{{organization.organization_id}}" class="game-maintain-anchor"> {{organization.name}}</a>
-                                        
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col s12 m12" ng-show="checkParticipatingOrganizations()">
-                                        <p class="telegrafico game-sponsor-title center">
-                                            No organizations here yet!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row center">
-                                    <button href="" class="modal-action modal-close game-organizations-button minimalist-button" ng-show='checkIfOrganizer()' data-target="game-organization-add" >ADD</button>
-                                    <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-organization" ng-show='checkIfOrganizer()'>DELETE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m12 l4">
-                        <div class="game-game-box">
-                            <div class="game-game-box-header palette-5 valign-wrapper" ng-init="viewSponsoringInstitutions()">
-                                <div class="width-100 row margin-override-0">
-                                    <div class="col s12 rockwell white-text left truncate center">
-                                        <h5 class="game-panel-headers"><i class="fa fa-building"></i> | Sponsoring Institutions</h5> 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="game-game-box-body white game-rightpanel-container">
-                                <div class="row game-organization-content">
-                                    <div class="col s12 game-rightpanel-content-box-sponsor" ng-hide="checkSponsors()">
-                                        <div ng-repeat="sponsor in sponsors">
-                                            <p class="telegrafico game-sponsor-title center">
-                                            {{sponsor.name}}
-                                            </p>
-                                            <p class="game-sponsor-description century-gothic center">{{sponsor.description}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col s12 m12" ng-show="checkSponsors()">
-                                        <p class="telegrafico game-sponsor-title center">
-                                            No sponsors here yet!
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="row center">
-                                    <button href="" class="modal-action modal-close game-sponsor-button minimalist-button" ng-show='checkIfOrganizer()' data-target="game-sponsor-add">ADD</button>
-                                    <button href="" class="modal-action modal-close game-sponsor-button minimalist-button" data-target="game-delete-sponsor" ng-show='checkIfOrganizer()'>DELETE</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m12 l6">
-                        <div class="game-game-box">
-                            <div class="game-game-box-header palette-1 valign-wrapper"  ng-init="viewGameOrganizerDetails()">
-                                <div class="width-100 row margin-override-0">
-                                    <div class="col s12 rockwell black-text left truncate center">
-                                        <h5 class="game-panel-headers"><i class="fa fa-ravelry"></i> | Matches</h5> 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col s12 game-padding-left game-padding-right game-tab-header">
-                                <ul class="tabs game-match-tab">
-                                    <li class="tab game-match-tab-tab col s4 palette-5 lighten-1">
-                                        <a href="#past-match">
-                                            <h6 class="center telegrafico white-text">Past</h6>
-                                        </a>
-                                    </li>
-                                    <li class="tab game-match-tab-tab col s4 palette-4 lighten-1">
-                                        <a href="#ongoing-match">
-                                            <h6 class="center telegrafico white-text">Ongoing</h6>
-                                        </a>
+                                <div class="col s12 game-padding-left game-padding-right game-tab-header">
+                                    <ul class="tabs game-match-tab">
+                                        <li class="tab game-match-tab-tab col s4 palette-3 lighten-1">
+                                            <a href="#past-match">
+                                                <h6 class="center telegrafico white-text">Past</h6>
+                                            </a>
                                         </li>
-                                    <li class="tab game-match-tab-tab col s4 palette-3 lighten-1">
-                                        <a href="#upcoming-match">
-                                            <h6 class="center telegrafico white-text">Upcoming</h6>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="game-game-box-body game-rightpanel-container game-panel-bottom game-game-box-matches">
-                                <div id="past-match">
-                                    <div class="row" ng-init="retrieveMatchesInGame()" ng-hide="checkPastMatches()">
-                                        <div id="game-past-match" class="col s12 m6" ng-repeat="pastMatch in pastMatches">
-                                            <div class="game-match palette-border-5">
-
-                                                <div class="game-match-container">
-
-                                                    <div ng-repeat="team in pastMatch.teams">
-                                                        <div class="col s12 m12">
-                                                            <div class="game-match-title">
-                                                                <div class="center century-gothic truncate">{{team.name}}</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="game-match-info">
-                                                        Start: {{pastMatch.time_start}} • End: {{pastMatch.time_end}}
-                                                    </div>
-                                                    <div class="game-match-info">
-                                                        Date: {{pastMatch.match_date}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row" ng-show="checkPastMatches()">
-                                            <h5 class="rockwell center game-match-content-row-top past">No past matches. </h5>
-                                    </div>
+                                        <li class="tab game-match-tab-tab col s4 palette-3 lighten-1">
+                                            <a href="#ongoing-match">
+                                                <h6 class="center telegrafico white-text">Ongoing</h6>
+                                            </a>
+                                            </li>
+                                        <li class="tab game-match-tab-tab col s4 palette-3 lighten-1">
+                                            <a href="#upcoming-match">
+                                                <h6 class="center telegrafico white-text">Upcoming</h6>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div id="ongoing-match">
-                                    <div class="row" ng-hide = "checkOngoingMatches()">
-                                        <div id="game-ongoing-match" class="col s12 m6" ng-repeat="ongoingMatch in ongoingMatches" >
-                                            <div class="game-match palette-border-4">
+                                <div class="game-game-box-body game-rightpanel-container game-panel-bottom game-game-box-matches">
+                                    <div id="past-match">
+                                        <div class="row"  ng-hide="checkPastMatches()">
+                                            <div id="game-past-match" class="col s12 m6 l4" ng-repeat="pastMatch in pastMatches">
+                                                <div class="game-match palette-border-5">
 
-                                                <div class="game-match-container">
-                                                    <div ng-repeat="team in ongoingMatch.teams">
-                                                        <div class="col s12 m12">
-                                                            <div class="game-match-title">
-                                                                <div class="center century-gothic truncate">{{team.name}}</div>
+                                                    <div class="game-match-container">
+
+                                                        <div ng-repeat="team in pastMatch.teams">
+                                                            <div class="col s12 m12">
+                                                                <div class="game-match-title">
+                                                                    <div class="center century-gothic truncate">{{team.name}}</div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="game-match-info">
-                                                        Start: {{ongoingMatch.time_start}} • End: {{ongoingMatch.time_end}}
-                                                    </div>
-                                                    <div class="game-match-info">
-                                                        Date: {{ongoingMatch.match_date}}
+                                                        <div class="game-match-info">
+                                                            Start: {{pastMatch.time_start}} • End: {{pastMatch.time_end}}
+                                                        </div>
+                                                        <div class="game-match-info">
+                                                            Date: {{pastMatch.match_date}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-
+                                        </div>
+                                        <div class="row" ng-show="checkPastMatches()">
+                                                <h5 class="rockwell center game-match-content-row-top past">No past matches. </h5>
                                         </div>
                                     </div>
-                                    <div class="row" ng-show="checkOngoingMatches()">
-                                            <h5 class="rockwell center game-match-content-row-top">No ongoing matches. </h5>
-                                    </div>
-                                </div>
-                                <div id="upcoming-match">
-                                    <div class="row" ng-hide="checkUpcomingMatches()">
-                                        <div id="game-upcoming-match" class="col s12 m6" ng-repeat= "upcomingMatch in upcomingMatches">
-                                            <div class="game-match palette-border-3">
-                                                <div class="game-match-container">
-                                                    <div ng-repeat="team in upcomingMatch.teams">
-                                                        <div class="col s12 m12">
-                                                            <div class="game-match-title">
-                                                                <div class="center century-gothic truncate">{{team.name}}</div>
+                                    <div id="ongoing-match">
+                                        <div class="row" ng-hide = "checkOngoingMatches()">
+                                            <div id="game-ongoing-match" class="col s12 m6 l4" ng-repeat="ongoingMatch in ongoingMatches" >
+                                                <div class="game-match palette-border-4">
+
+                                                    <div class="game-match-container">
+                                                        <div ng-repeat="team in ongoingMatch.teams">
+                                                            <div class="col s12 m12">
+                                                                <div class="game-match-title">
+                                                                    <div class="center century-gothic truncate">{{team.name}}</div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="game-match-info">
-                                                        Start: {{upcomingMatch.time_start}} • End: {{upcomingMatch.time_end}}
+                                                        <div class="game-match-info">
+                                                            Start: {{ongoingMatch.time_start}} • End: {{ongoingMatch.time_end}}
+                                                        </div>
+                                                        <div class="game-match-info">
+                                                            Date: {{ongoingMatch.match_date}}
+                                                        </div>
                                                     </div>
-                                                    <div class="game-match-info">
-                                                        Date: {{upcomingMatch.match_date}}
-                                                    </div>
+                                                </div>
 
+                                            </div>
+                                        </div>
+                                        <div class="row" ng-show="checkOngoingMatches()">
+                                                <h5 class="rockwell center game-match-content-row-top">No ongoing matches. </h5>
+                                        </div>
+                                    </div>
+                                    <div id="upcoming-match">
+                                        <div class="row" ng-hide="checkUpcomingMatches()">
+                                            <div id="game-upcoming-match" class="col s12 m6 l4" ng-repeat= "upcomingMatch in upcomingMatches">
+                                                <div class="game-match palette-border-3">
+                                                    <div class="game-match-container">
+                                                        <div ng-repeat="team in upcomingMatch.teams">
+                                                            <div class="col s12 m12">
+                                                                <div class="game-match-title">
+                                                                    <div class="center century-gothic truncate">{{team.name}}</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="game-match-info">
+                                                            Start: {{upcomingMatch.time_start}} • End: {{upcomingMatch.time_end}}
+                                                        </div>
+                                                        <div class="game-match-info">
+                                                            Date: {{upcomingMatch.match_date}}
+                                                        </div>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row " ng-show="checkUpcomingMatches()">
-                                            <h5 class="rockwell center game-match-content-row-top">No upcoming matches. </h5>
+                                        <div class="row " ng-show="checkUpcomingMatches()">
+                                                <h5 class="rockwell center game-match-content-row-top">No upcoming matches. </h5>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col s12 m12 l6">
-                         <div class="game-game-box">
-                            <div class="game-game-box-header palette-2 valign-wrapper"  ng-init="viewGameOrganizerDetails()">
-                                <div class="width-100 row margin-override-0">
-                                    <div class="col s12 rockwell black-text left truncate center">
-                                        <h5 class="game-panel-headers"><i class="fa fa-futbol-o"></i> | Sports</h5> 
+                        <div class="col s12 game-padding-left game-padding-right">
+                            <div class="game-game-box">
+                                <div class="game-game-box-header palette-3 valign-wrapper"  >
+                                    <div class="width-100 row margin-override-0">
+                                        <div class="col s12 rockwell white-text left truncate center">
+                                            <h5 class="game-panel-headers"><i class="fa fa-futbol-o"></i> | Sports</h5> 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="game-game-box-body game-rightpanel-container game-panel-bottom" ng-hide="checkSports()">
-                                <div class="col s12">
-                                    <div class="row" ng-init="retrieveAllSports()" >
-                                        <div class="col s6 m6" ng-show="checkIfOrganizer()" >
-                                            <div class="game-sport" data-target="game-add-sport" >
-                                                <div class="card game-hovercard">
-                                                    <div class="center">
-                                                        <i id="game-adjust-icon-add" class="material-icons game-adjust-image activator">add</i>
+                                <div class="game-game-box-body game-rightpanel-container game-panel-bottom game-organization-content" ng-hide="checkSports()">
+                                    <div class="col s12">
+                                        <div class="row"  >
+                                            <div class="col s12 m6 l4" ng-show="checkIfOrganizer()" >
+                                                <div class="game-sport" data-target="game-add-sport" >
+                                                    <div class="card game-hovercard">
+                                                        <div class="center">
+                                                            <i id="game-adjust-icon-add" class="material-icons game-adjust-image activator">add</i>
+                                                        </div>
+                                                        <div class="card-content game-game-name" >
+                                                            <span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate" >Add</span>
+                                                        </div>
                                                     </div>
-                                                    <div class="card-content game-game-name" >
-                                                        <span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate" >Add</span>
+                                                </div>
+                                            </div>
+                                            <div class="col s12 m6 l4" ng-repeat = "sport in sports" ng-hide="checkSports()">
+                                                <div class="game-sport">
+                                                    <div class="card game-hovercard">
+                                                        <div class="center">
+                                                            <img src="assets/badges/badge_archery.png" class="game-adjust-image activator">
+                                                        </div>
+                                                        <div class="card-content game-game-name">
+                                                            <span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">{{sport.sport_name}}</span>
+                                                        </div>
+                                                        <div class="card-reveal game-arrange-padding grey lighten-2">
+                                                            <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                                                            <span class="card-title grey-text text-darken-4" ><i class="material-icons right" data-target="game-delete-sport" ng-click="passSport(sport)" ng-show='checkIfOrganizer()'>delete</i></span>
+                                                            <span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport" ng-click="passSport(sport)" ng-show='checkIfOrganizer()'>update</i></span>
+                                                            <div class="telegrafico">Date</div>
+                                                            <div class="game-match-info">
+                                                                {{sport.start_date}} - {{sport.end_date}}
+                                                            </div>
+
+                                                            <div class="telegrafico">Time</div>
+                                                            <div class="game-match-info">
+                                                                {{sport.time_start}} - {{sport.time_end}}
+                                                            </div>
+
+                                                            <div class="telegrafico">Teams Remaining</div>
+                                                            <div class="game-match-info">
+                                                                {{sport.team_count}}/{{sport.max_teams}}
+                                                            </div>
+                                                            <div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">
+                                                                <a href="/#/sports/{{sport.sport_id}}">{{sport.sport_name | lowercase}}</a>
+                                                            </div>
+                                                        </div>  
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col s6 m6" ng-repeat = "sport in sports" ng-hide="checkSports()">
+                                    </div>
+                                </div>
+                                <div class ="row center" ng-show="checkSports()">
+                                    <h5 class="rockwell center">No sports here.</h5>
+                                    <p class="rockwell center grey-text">Incorrect info? Contact your game organizer or administrator.</p>
+                                    <button class="minimalist-button game-sponsor-button" data-target="game-add-sport" ng-show="checkIfOrganizer()">
+                                        <span class="card-title game-remove-bottom activator center grey-text text-darken-4 telegrafico truncate" >Add</span>                                                                   
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!--<div class="game-game-box">
+                                <div class="game-game-box-header palette-3 valign-wrapper"  ng-init="viewGameOrganizerDetails()">
+                                    <div class="width-100 row margin-override-0">
+                                        <div class="col s12 rockwell white-text left truncate center">
+                                            <h5 class="game-panel-headers"><i class="fa fa-futbol-o"></i> | Sports</h5> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="game-game-box-body game-rightpanel-container game-panel-bottom game-organization-content" ng-hide="checkSports()">
+                                        <div class="row" ng-init="retrieveAllSports()" ng-show="checkIfOrganizer()">
+                                            <div class="col s12 m6 l4" >
+                                                <div class="game-sport" data-target="game-add-sport" >
+                                                    <div class="card game-hovercard">
+                                                        <div class="center">
+                                                            <i id="game-adjust-icon-add" class="material-icons game-adjust-image activator">add</i>
+                                                        </div>
+                                                        <div class="card-content game-game-name" >
+                                                            <span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate" >Add</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m6 l4" ng-repeat = "sport in sports" ng-hide="checkSports()">
                                             <div class="game-sport">
                                                 <div class="card game-hovercard">
                                                     <div class="center">
@@ -264,38 +240,138 @@
                                                         <span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport" ng-click="passSport(sport)" ng-show='checkIfOrganizer()'>update</i></span>
                                                         <div class="telegrafico">Date</div>
                                                         <div class="game-match-info">
-                                                            {{sport.start_date}} - {{sport.end_date}}
+                                                            {{sport.start_date | date: 'shortDate'}} - {{sport.end_date  | date: 'shortDate'}}
                                                         </div>
 
                                                         <div class="telegrafico">Time</div>
                                                         <div class="game-match-info">
-                                                            {{sport.time_start}} - {{sport.time_end}}
-                                                        </div>
+                                                            {{sport.time_start  | date: 'shortTime'}} - {{sport.time_end | date: 'shortTime'}}
 
+                                                        </div>
+                                                        <div class="card-reveal game-arrange-padding grey lighten-2">
+                                                            <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+                                                            <span class="card-title grey-text text-darken-4" ><i class="material-icons right" data-target="game-delete-sport" ng-click="passSport(sport)" ng-show='checkIfOrganizer()'>delete</i></span>
+                                                            <span class="card-title grey-text text-darken-4"><i class="material-icons right" data-target="game-update-sport" ng-click="passSport(sport)" ng-show='checkIfOrganizer()'>update</i></span>
+                                                            <div class="telegrafico">Date</div>
+                                                            <div class="game-match-info">
+                                                                {{sport.start_date}} - {{sport.end_date}}
+                                                            </div>
                                                         <div class="telegrafico">Teams Remaining</div>
                                                         <div class="game-match-info">
                                                             {{sport.team_count}}/{{sport.max_teams}}
                                                         </div>
-                                                        <div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">
+                                                        <div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text truncate">
                                                             <a href="/#/sports/{{sport.sport_id}}">{{sport.sport_name | lowercase}}</a>
                                                         </div>
-                                                    </div>  
+                                                    </div>
                                                 </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class ="row center" ng-show="checkSports()">
+                                    <h5 class="telegrafico center">No sports here.</h5>
+                                    <p class="telegrafico center grey-text">Please check your search query or contact your game organizer.</p>
+                                </div>
+                            </div>-->
+                        </div>   
+                    </div>   
+                    <div class="col s12 m12 l4">              
+                        <div class="col s12 game-padding-left game-padding-right">
+                            <div class="game-game-box">
+                                <div class="game-game-box-header palette-3"  >
+                                    <div class="width-100 row margin-override-0">
+                                        <div class="col s12 rockwell white-text left truncate center">
+                                            <h5 class="game-panel-headers"><i class="fa fa-users"></i> | Organizer</h5> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="game-game-box-body white game-rightpanel-container">
+                                    <div class="telegrafico game-rightpanel-container">
+                                        <p class="game-organizer-header center game-remove-bottom"><a href="#/organizer/profile/{{game.organizer_id}}" class="game-maintain-anchor">{{gameOrganizer.name}}</a><br>
+                                            <span class="game-organizer-description century-gothic"> {{gameOrganizer.description}}</span>
+                                        </p>
+                                        <div class="row game-remove-bottom">
+                                            <div class="col s12">
+                                                <p class="game-organizer-header center game-remove-bottom"><i class="fa fa-phone"></i> | 
+                                                    <span class="game-organizer-description century-gothic"> {{gameOrganizer.contact}}</span>
+                                                </p>
+                                            </div>
+                                            <div class="col s12">
+                                                <p class="game-organizer-header center"><i class="fa fa-envelope"></i> | 
+                                                    <span class="game-organizer-description century-gothic"> {{gameOrganizer.email}}</span>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class ="row center" ng-show="checkSports()">
-								<h5 class="rockwell center">No sports here.</h5>
-								<p class="rockwell center grey-text">Incorrect info? Contact your game organizer or administrator.</p>
-                                <button class="minimalist-button game-sponsor-button" data-target="game-add-sport" ng-show="checkIfOrganizer()">
-                                    
-                                            <span class="card-title game-remove-bottom activator center grey-text text-darken-4 telegrafico truncate" >Add</span>                           
-                                </button>
-							</div>
+                        </div>
+                        <div class="col s12 game-padding-left game-padding-right">
+                            <div class="game-game-box">
+                                <div class="game-game-box-header palette-3 valign-wrapper" >
+                                    <div class="width-100 row margin-override-0">
+                                        <div class="col s12 rockwell white-text left truncate center">
+                                            <h5 class="game-panel-headers"><i class="fa fa-sitemap"></i> | Organizations</h5> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="game-game-box-body white game-rightpanel-container">
+                                    <div class="row game-organization-content">
+                                        <div class="col s12 game-rightpanel-content-box-organization" ng-hide="checkParticipatingOrganizations()">
+                                            <div ng-repeat="organization in participatingOrgs">
+                                                <p class="telegrafico game-sponsor-title center" >
+                                                    <a href="#/organization/{{organization.organization_id}}" class="game-maintain-anchor"> {{organization.name}}</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m12" ng-show="checkParticipatingOrganizations()">
+                                            <p class="telegrafico game-sponsor-title center">
+                                                No organizations here yet!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row center">
+                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" ng-show='checkIfOrganizer()' data-target="game-organization-add" >ADD</button>
+                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-organization" ng-show='checkDeleteButtonOrg()'>DELETE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s12 game-padding-left game-padding-right">
+                            <div class="game-game-box">
+                                <div class="game-game-box-header palette-3 valign-wrapper" >
+                                    <div class="width-100 row margin-override-0">
+                                        <div class="col s12 rockwell white-text left truncate center">
+                                            <h5 class="game-panel-headers"><i class="fa fa-building"></i> | Sponsors</h5> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="game-game-box-body white game-rightpanel-container">
+                                    <div class="row game-organization-content">
+                                        <div class="col s12 game-rightpanel-content-box-organization" ng-hide="checkSponsors()">
+                                            <div ng-repeat="sponsor in sponsors">
+                                                <p class="telegrafico game-sponsor-title center">
+                                                {{sponsor.name}}
+                                                </p>
+                                                <p class="game-sponsor-description century-gothic center">{{sponsor.description}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m12" ng-show="checkSponsors()">
+                                            <p class="telegrafico game-sponsor-title center">
+                                                No sponsors here yet!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row center">
+                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" ng-show='checkIfOrganizer()' data-target="game-sponsor-add">ADD</button>
+                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-sponsor" ng-show='checkDeleteButtonSpon()'>DELETE</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                   
+                    
 
                 </div>
             </div>
@@ -412,12 +488,12 @@
 	<div class="modal-footer palette-5 right-align">
 		<button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
 		<button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="deleteMultipleOrganizations()">YES</button>
-		<button href="" class="modal-action modal-close minimalist-button-inverted" data-target="game-delete-sponsor">NO</button>
+		<button href="" class="modal-action modal-close minimalist-button-inverted" data-target="game-delete-organization">NO</button>
 	</div>
 </div>
 
 <!-- ADD SPONSOR MODAL -->
-<div id="game-sponsor-add" class="modal" ng-init="viewOtherSponsoringInstitutions()">
+<div id="game-sponsor-add" class="modal">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-5">
 			<div class="center">
@@ -445,7 +521,7 @@
 </div>
 
 <!-- ADD ORGANIZATION MODAL -->
-<div id="game-organization-add" class="modal" ng-init="viewAllOrganizationForGame()">
+<div id="game-organization-add" class="modal">
 	<div class="row game-remove-bottom">
 		<div class="col s12 game-padding-left game-padding-right palette-5">
 			<div class="center">
@@ -490,23 +566,24 @@
 			<form name="addSportForm">
 				<div class="row">
 					<div class="input-field col s6 game-input-color-change">
-						<input placeholder=" "  ng-model="addName" type="text" class="validate" name="addName" required>
+						<input placeholder=" "  ng-model="addName" type="text" data-length="50" ng-maxlength="50" class="validate" name="addName" required>
 						<label for="addName">Sport Name</label>
-						<div ng-show="addSportForm.addName.$invalid && addSportForm.addName.$touched" class="error">required</div>
+						<div ng-show="addSportForm.addName.$error.required && addSportForm.addName.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addName.$error.maxlength" class="error">Name should be up to 50 characters only</div>
 					</div>
 					
 					<div class="input-field col s2 game-input-color-change">
-						<input placeholder=" " ng-model="addMaxTeams" type="number" name="addMaxTeams" class="validate" required>
+						<input placeholder=" " ng-model="addMaxTeams" type="number" min="1" name="addMaxTeams" class="validate" required>
 						<label for="maxTeams">Max Teams</label>
-						<div ng-show="addSportForm.addMaxTeams.$invalid && addSportForm.addMaxTeams.$touched" class="error">required</div>
+						<div ng-show="addSportForm.addMaxTeams.$error.required && addSportForm.addMaxTeams.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addMaxTeams.$error.min" class="error">There should be at most 1 team</div>
+
 					</div>
 					<div class="input-field col s4 game-input-color-change">
-						<!-- <select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" >
-							<option value="" selected hidden>None</option>
-						</select> -->
-                        <input placeholder=" "  ng-model="addScoringSystem" type="text" class="validate" name="addScoringSystem" required>
+                        <input placeholder=" "  ng-model="addScoringSystem" type="text" data-length="50" ng-maxlength="50" class="validate" name="addScoringSystem" required>
 						<label for="addScoringSystem">Scoring system</label>
-                        <div ng-show="addSportForm.addScoringSystem.$invalid && addSportForm.addScoringSystem.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addScoringSystem.$error.required && addSportForm.addScoringSystem.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addScoringSystem.$error.maxlength" class="error">Scoring system should be up to 50 characters only</div>
 					</div>
 				</div>
 
@@ -521,33 +598,38 @@
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="Time started" name="addStartTime" type="time" ng-model="addStartTime" class="validate" required>
 						<label class="game-adjust-label" for="start-time">Start</label>
-						<div class="dummy">
-							<div ng-show="addSportForm.addStartTime.$invalid && addSportForm.addStartTime.$touched" class="error">required</div>
-						</div>
+						<div ng-show="addSportForm.addStartTime.$error.required && addSportForm.addStartTime.$touched" class="error">required</div>
+
+
+
 
 					</div>
 					<div class="input-field col s3 game-input-color-change">
-						<input placeholder="Time ended" name="addEndTime" type="time" ng-model="addEndTime" class="validate" required>
+						<input placeholder="Time ended" name="addEndTime" type="time" ng-model="addEndTime" min="{{addStartTime | date: 'HH:mm:ss'}}" class="validate" required>
 						<label class="game-adjust-label" for="end-time">End</label>
-						<div ng-show="addSportForm.addEndTime.$invalid && addSportForm.addEndTime.$touched" class="error">required</div>
+						<div ng-show="addSportForm.addEndTime.$error.required && addSportForm.addEndTime.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addEndTime.$error.min" class="error">End time should not be set before start time</div>
+
 					</div>
 					<br/>
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="Date started" name="addStartDate" type="date" ng-model="addStartDate" class="validate" min="{{game.start_date}}" max="{{game.end_date}}" required>
 						<label class="game-adjust-label" for="start-time">Start</label>
-						<div ng-show="addSportForm.addStartDate.$invalid && addSportForm.addStartDate.$touched" class="error">Start date should be from {{game.start_date}} to {{game.end_date}}</div>
+						<div ng-show="addSportForm.addStartDate.$error.required && addSportForm.addStartDate.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addStartDate.$error.min && addSportForm.addStartDate.$touched" class="error">Start date should be from {{game.start_date}} to {{game.end_date}}</div>
 					</div>
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="Date ended" name="addEndDate" type="date" ng-model="addEndDate" class="validate" min="{{addStartDate | date:'yyyy-MM-dd'}}" max="{{game.end_date}}" required>
 						<label class="game-adjust-label" for="end-time">End</label>
-						<div ng-show="addSportForm.addEndDate.$invalid && addSportForm.addEndDate.$touched" class="error">End date should be from your specified start date to {{game.end_date}}</div>
+						<div ng-show="addSportForm.addEndDate.$error.required && addSportForm.addEndDate.$touched" class="error">required</div>
+                        <div ng-show="addSportForm.addEndDate.$error.min && addSportForm.addEndDate.$touched" class="error">End date should be from your specified start date to {{game.end_date}}</div>
 					</div>
 				</div>
 
 				<div class="input-field col s12 game-input-color-change">
-					<textarea placeholder=" " name="addMechanics" ng-model="addMechanics" class="materialize-textarea" required></textarea>
+					<textarea placeholder=" " name="addMechanics" ng-model="addMechanics" class="materialize-textarea validate" required></textarea>
 					<label for="description" class="game-textarea-label-color-change">Mechanics</label>
-					<div ng-show="addSportForm.addMechanics.$invalid && addSportForm.addMechanics.$touched" class="error">required</div>
+					<div ng-show="addSportForm.addMechanics.$error.required && addSportForm.addMechanics.$touched" class="error">required</div>
 				</div>
 
 				<!--
@@ -585,28 +667,24 @@
 			<form name="updateSportForm">
 				<div class="row">
 					<div class="input-field col s6 game-input-color-change">
-						<input placeholder=" " name="updateName" type="text" class="validate" ng-model="updateName" required>
+						<input placeholder=" " name="updateName" type="text" data-length="50" ng-maxlength="50" class="validate" ng-model="updateName" required>
 						<label for="name">Sport Name</label>
-						<div ng-show="updateSportForm.updateName.$invalid" class="error">required</div>
+						<div ng-show="updateSportForm.updateName.$error.required" class="error">required</div>
+                        <div ng-show="updateSportForm.updateName.$error.maxlength" class="error">Name should be up to 50 characters only</div>
 					</div>
 
 					<div class="input-field col s2 game-input-color-change">
-						<input placeholder=" " name="updateMaxTeams" type="number" class="validate" ng-model="updateMaxTeams" required>
+						<input placeholder=" " name="updateMaxTeams" type="number" min="1" class="validate" ng-model="updateMaxTeams" required>
 						<label for="maxTeams">Max Teams</label>
-						<div ng-show="updateSportForm.updateMaxTeams.$invalid" class="error">required</div>
+						<div ng-show="updateSportForm.updateMaxTeams.$error.required" class="error">required</div>
+                        <div ng-show="updateSportForm.updateMaxTeams.$error.min" class="error">There should be at most 1 team</div>
 					</div>
 
 					<div class="input-field col s4 game-input-color-change">
-						<!-- <select ng-model="selectedScoring" ng-options="scoring for scoring in scoringSystemPresets" value="{{scoring}}" required>
-							<option value="" disabled selected>Choose your option</option>
-							<option value="Tally Score">Tally Score</option>
-							<option value="Round Robin">Round Robin</option>
-							<option value="None">None</option>
-							<option value="" selected hidden>None</option>
-						</select> -->
-                        <input placeholder=" "  ng-model="updateScoringSystem" type="text" class="validate" name="updateScoringSystem" required>
+                        <input placeholder=" "  ng-model="updateScoringSystem " data-length="50" ng-maxlength="50" type="text" class="validate" name="updateScoringSystem" required>
                         <label for="updateScoringSystem">Scoring system</label>
-                        <div ng-show="updateSportForm.updateScoringSystem.$invalid && updateSportForm.updateScoringSystem.$touched" class="error">required</div>
+                        <div ng-show="updateSportForm.updateScoringSystem.$error.required" class="error">required</div>
+                        <div ng-show="updateSportForm.updateScoringSystem.$error.maxlength" class="error">Scoring system should be up to 50 characters only</div>
 						<label>Scoring system</label>
 					</div>
 				</div>
@@ -622,12 +700,13 @@
 					<div class="input-field col s3 game-input-color-change">
 						<input placeholder="" name="updateStartTime" type="time" class="validate" ng-model="updateStartTime" required>
 						<label for="start-time" class="game-adjust-label">Start</label>
-						<div ng-show="updateSportForm.updateStartTime.$invalid" class="error">required</div>
+						<div ng-show="updateSportForm.updateStartTime.$error.required" class="error">required</div>
 					</div>
 					<div class="input-field col s3 game-input-color-change">
-						<input placeholder="" name="updateEndTime" type="time" class="validate" ng-model="updateEndTime" required>
+						<input placeholder="" name="updateEndTime" type="time" min="{{updateStartTime}}" class="validate" ng-model="updateEndTime" required>
 						<label for="end-time" class="game-adjust-label">End</label>
-						<div ng-show="updateSportForm.updateEndTime.$invalid" class="error">required</div>
+						<div ng-show="updateSportForm.updateEndTime.$error.required" class="error">required</div>
+                        <div ng-show="updateSportForm.updateEndTime.$error.min" class="error">End time should not be set before start time</div>
 					</div>
 
 					<div class="input-field col s3 game-input-color-change">
@@ -636,7 +715,7 @@
 						<div ng-show="updateSportForm.updateStartDate.$invalid" class="error">Start date should be from {{game.start_date}} to {{game.end_date}}</div>
 					</div>
 					<div class="input-field col s3 game-input-color-change">
-						<input placeholder="Date ended" id="updateEndDate" type="date" class="validate" ng-model="updateEndDate" min="{{updateStartDate | date: 'yyyy-MM-dd'}}" max="{{game.end_date}}" required>
+						<input placeholder="Date ended" id="updateEndDate" name="updateEndDate" type="date" class="validate" ng-model="updateEndDate" min="{{updateStartDate | date: 'yyyy-MM-dd'}}" max="{{game.end_date}}" required>
 						<label class="game-adjust-label" for="end-time">End</label>
 						<div ng-show="updateSportForm.updateEndDate.$invalid" class="error">End date should be from your specified start date to {{game.end_date}}</div>
 					</div>

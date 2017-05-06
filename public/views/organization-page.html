@@ -3,7 +3,7 @@
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
 		<div class="organization-header col s12 m12 l12" ng-init="retrieveOrganization()">
-			<img class="valign" id="organization-logo" src="assets/team1.png">
+			<img class="valign" id="organization-logo" src="assets/default-logo.png">
 			<h3 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h3>
 		</div>
 
@@ -77,7 +77,7 @@
 			<div class="container" style="margin: 0 auto; margin-top: 5px;" ng-init="retrieveGamesInOrganization(thisOrganization.organization_id)">
 				<div class="col s12">
 					<ul id="organization-team-tabs" class="tabs">
-						<li class="tab col s3 palette-5 active"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li>
+						<li class="tab col s3 palette-5"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-class="{'active':$first}" ng-click="setViewedGame(game)" class="blue-text darken-3 strong rockwell" href="#" >{{ game.name }}</a></li>
 					</ul>
 				</div>
 				<div id="team-table-1">
@@ -105,7 +105,7 @@
 								</tr>
 							</thead>
 							<tbody >
-								<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams | filter:searchTeam" data-target="organization-team-info-modal" ng-click="retrieveTeam(pagedTeam.team_id);">
+								<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams | filter:searchTeam" data-target="organization-team-info-modal" ng-click='retrieveTeam(pagedTeam.team_id);'>
 									<td>
 										<div><span style="font-weight: bold">{{pagedTeam.team_name}}</span></div>
 									</td>
@@ -154,7 +154,7 @@
 							<h5 class="organization-team-member-name palette-text-3 century-gothic strong" id="emptyTeam"></h5>
 							<div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers" >
 								<a class="modal-action modal-close" href="#/competitor/profile/{{member.id}} ">
-								<img class="valign organization-team-member-avatar" src="assets/avatars/male_avatar_1.png">
+								<img id="{{member.sex}}" class="valign organization-team-member-avatar" src="uploads/{{member.id}}.png">
 								<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
 								<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
 								</a>
