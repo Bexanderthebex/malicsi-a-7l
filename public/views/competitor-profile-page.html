@@ -290,9 +290,9 @@
                     <div class="col s12">
                         <form action="#">
                             <div class="file-field input-field">
-                                <div id="img-file-uploader" class="btn file-button palette-4 z-depth-0">
+                                <div class="btn file-button blue darken-4">
                                     <span class="telegrafico">File</span>
-                                    <input type="file">
+                                    <input id="fileItem" type="file" file-model="fileItem.file" accept=".png">
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text">
@@ -311,25 +311,7 @@
                         <label for="last-name">Confirm Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
                     </div>
                 </div>
-                <div class="row">
-                <div class="file-title col s12 century-gothic valign-wrapper">
-                    <label class="active">Profile Picture</label>
-                </div>
 
-                <div class="col s12">
-                    <form action="#">
-                        <div class="file-field input-field">
-                            <div class="btn file-button blue darken-4">
-                                <span class="telegrafico">File</span>
-                                <input id="fileItem" type="file" file-model="fileItem.file" accept=".png">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                </div>
             </form>
         </div>
     </div>
