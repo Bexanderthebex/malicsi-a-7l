@@ -27,28 +27,28 @@
 		<div class="row container" ng-hide="results.length==0">
 		    <div class="col m12 l12 hide-on-small-only">
 				<ul class="search-tabs tabs telegrafico palette-5">
-					<li class="tab col s2 search-tab"><a class="" href="#game-results">Game ({{ games.length }})</a></li>
-					<li class="tab col s3 search-tab"><a class="" href="#organization-results">Organization ({{ organizations.length }})</a></li>
-					<li class="tab col s2 search-tab"><a class="" href="#sport-results">Sport ({{ sports.length }})</a></li>
-					<li class="tab col s3 search-tab"><a class="" href="#competitor-results">Competitor ({{ competitors.length }})</a></li>
-					<li class="tab col s2 search-tab"><a class="" href="#organizer-results">Organizer ({{ organizers.length }})</a></li>
+					<li class="tab col s2 search-tab"><a class="" href="#game-results"><i class="fa fa-trophy"></i> Game ({{ games.length }})</a></li>
+					<li class="tab col s3 search-tab"><a class="" href="#organization-results"><i class="fa fa-sitemap"></i> Organization ({{ organizations.length }})</a></li>
+					<li class="tab col s2 search-tab"><a class="" href="#sport-results"><i class="fa fa-futbol-o"></i> Sport ({{ sports.length }})</a></li>
+					<li class="tab col s3 search-tab"><a class="" href="#competitor-results"><i class="fa fa-user"></i> Competitor ({{ competitors.length }})</a></li>
+					<li class="tab col s2 search-tab"><a class="" href="#organizer-results"><i class="fa fa-users"></i> Organizer ({{ organizers.length }})</a></li>
 					<div class="indicator" style="z-index: 1"></div>
 				</ul><br>
 		    </div>
 		    <div class="col s12 hide-on-large-only hide-on-med-only">
 				<ul class="search-tabs tabs telegrafico palette-5">
 					<li class="tab col s2 search-tab"><a class="tooltipped" href="#game-results" data-position="top" data-delay="50" data-tooltip="Game"><i class="fa fa-trophy"></i></a></li>
-					<li class="tab col s3 search-tab"><a class="tooltipped" href="#organization-results" data-position="top" data-delay="50" data-tooltip="Organization"><i class="fa fa-users"></i></a></li>
+					<li class="tab col s3 search-tab"><a class="tooltipped" href="#organization-results" data-position="top" data-delay="50" data-tooltip="Organization"><i class="fa fa-sitemap"></i></a></li>
 					<li class="tab col s2 search-tab"><a class="tooltipped" href="#sport-results" data-position="top" data-delay="50" data-tooltip="Sport"><i class="fa fa-futbol-o"></i></a></li>
-					<li class="tab col s3 search-tab"><a class="tooltipped" href="#competitor-results" data-position="top" data-delay="50" data-tooltip="Competitor"><i class="fa fa-user-o"></i></a></li>
-					<li class="tab col s2 search-tab"><a class="tooltipped" href="#organizer-results" data-position="top" data-delay="50" data-tooltip="Organizer"><i class="fa fa-user"></i></a></li>
+					<li class="tab col s3 search-tab"><a class="tooltipped" href="#competitor-results" data-position="top" data-delay="50" data-tooltip="Competitor"><i class="fa fa-user"></i></a></li>
+					<li class="tab col s2 search-tab"><a class="tooltipped" href="#organizer-results" data-position="top" data-delay="50" data-tooltip="Organizer"><i class="fa fa-users"></i></a></li>
 					<div class="indicator" style="z-index: 1"></div>
 				</ul><br>
 		    </div>
 		</div>
 	</div>
 	<div class="container search-results" ng-init="searchBy(searchquery)">
-		<div class="row center">		
+		<div class="row center" ng-hide="results.length==0">		
 			<!-- COMPETITOR RESULTS -->
 			<div id="competitor-results">
 				<div class="col m4 l4 hide-on-med-and-down">

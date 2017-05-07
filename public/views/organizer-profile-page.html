@@ -1,10 +1,10 @@
 <div id="mainHolder">
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
-    <div id="main" class="" ng-init='getCurrentUser();'>
+    <div id="main" class="" ng-init='getCurrentUser()'>
         <!-- Organizer Basic Info -->
         <div class="row palette-3 organizer-profile-info">
-            <div class="col l3 m5 s12 offset-l1 center">
+            <div class="col l3 m12 s12 offset-l1 center">
                 <img id="organizer-profile-img" src="uploads/{{organizer.id}}.png" class="pallette-3">
             </div>
 
@@ -39,7 +39,6 @@
             <ul id="organizer-profile-tabs" class="tabs">
                 <li class="tab col s3"><a class="blue-text darken-3 telegrafico active" href="#org-profile-div">Profile</a></li>
                 <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#org-pending-requests-div">Pending Requests</a></li>
-                <div class="indicator blue darken-3" style="z-index: 1"></div>
             </ul>
         </div>
 
@@ -54,11 +53,11 @@
                             <i class="fa fa-plus match-actions" data-target="org-add-modal"></i>
                         </h4>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-show="checkGames()">
 
                         <!-- P A S T GAMES -->
-                        <div id="sports-past-matches" class="col s4">
-                            <h5 class="telegrafico center">PAST GAMES ({{ pastGames.length }})</h5>
+                        <div id="sports-past-matches" class="col l4 m4 s12">
+                            <h5 class="telegrafico center">PAST GAMES {{ pastGames.length>0 ? '(' + pastGames.length + ')' : ''}}</h5>
 
                             <!-- LIST OF GAMES -->
                             <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerPastGames()">
@@ -88,11 +87,14 @@
                                     
                                 </div>
                             </div>
+                            <div ng-hide="pastGames.length!=0">
+                                <h5 class="center telegrafico strong palette-text-4">No Ongoing Games</h5>
+                            </div>
                         </div>
 
                         <!-- O N  G O I N G GAMES -->
-                        <div id="sports-ongoing-matches" class="col s4">
-                            <h5 class="telegrafico center">ON-GOING GAMES ({{ ongoingGames.length }})</h5>
+                        <div id="sports-ongoing-matches" class="col l4 m4 s12">
+                            <h5 class="telegrafico center">ONGOING GAMES {{ ongoingGames.length>0 ? '(' + ongoingGames.length + ')' : ''}}</h5>
 
                             <!-- LIST OF GAMES -->
                             <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerOngoingGames()">
@@ -121,11 +123,14 @@
                                 
                                 </div>
                             </div>
+                            <div ng-hide="ongoingGames.length!=0">
+                                <h5 class="center telegrafico strong palette-text-4">No Ongoing Games</h5>
+                            </div>
                         </div>
 
                         <!-- U P C O M I N G GAMES -->
-                        <div id="sports-upcoming-matches" class="col s4">
-                            <h5 class="telegrafico center">UPCOMING GAMES ({{ upcomingGames.length }})</h5>
+                        <div id="sports-upcoming-matches" class="col l4 m4 s12">
+                            <h5 class="telegrafico center">UPCOMING GAMES {{ upcomingGames.length>0 ? '(' + upcomingGames.length + ')' : ''}}</h5>
 
                             <!-- LIST OF GAMES -->
                             <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerUpcomingGames()">
@@ -153,8 +158,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div ng-hide="upcomingGames.length!=0">
+                                <h5 class="center telegrafico strong palette-text-4">No Ongoing Games</h5>
+                            </div>
                         </div>
 
+                    </div>
+                    <div class="row" ng-hide="checkGames()">
+                        <h4 class="center telegrafico strong palette-text-4">No Games Handled</h4>
                     </div>
                 </div>
             </div>
@@ -164,7 +175,7 @@
             <!-- Requests -->
             <div class="row container" ng-init="getOrganizerRequests()" style="max-height: 200px;">
                 <h5 class="rockwell">Requests</h5>
-                <table class="highlight responsive-table">
+                <table class="highlight responsive-table" ng-hide="requests.length==0">
                     <thead>
                         <tr class="telegrafico">
                             <th>Team Name</th>
@@ -175,21 +186,23 @@
                     </thead>
                     <tbody class="organizer-pending-requests">
                         <tr class="century-gothic" ng-repeat="request in requests">
-                            <td>{{ request.team_name }}</td>
+                            <td class="bold">{{ request.team_name }}</td>
                             <td>{{ request.sport_name }}</td>
                             <td>{{ request.name }} </td>
                             <td>{{ request.team_count}} / {{ request.max_teams }}</td>
                             <td>
-                                <div class="organizer-actions" data-target="organizer-profile-accept-modal">
+                                <div class="organizer-actions tooltipped" data-position="top" data-tooltip="Accept Join Request" data-target="organizer-profile-accept-modal">
                                     <i class="fa fa-check fa-lg" ng-click="copyRequest(request)"></i>
                                 </div>
-                                <div class="organizer-actions" data-target="organizer-profile-decline-modal">
+                                <div class="organizer-actions tooltipped" data-position="top" data-tooltip="Decline Join Request" data-target="organizer-profile-decline-modal">
                                     <i class="fa fa-close fa-lg" ng-click="copyRequest(request)"></i>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="container divider"></div>
+                <h4 class="center telegrafico strong palette-text-4" ng-hide="requests.length!=0">No Requests as of the moment</h4>
             </div><br>
         </div>
     </div>
