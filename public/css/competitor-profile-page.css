@@ -27,9 +27,18 @@
     /*background-image: url('/assets/basketball.jpg')!important;*/
 }
 
+#competitor-profile-img-container {
+  height: 250px;
+}
+
 #competitor-profile-img {
-  max-width: auto;
-  max-height: 250px;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 3px solid white;
+  border-radius: 3px;
 }
 
 #competitor-profile-right-panel {
@@ -288,7 +297,6 @@ div.tablewrapper table tbody tr td, div.tablewrapper table thead tr th {
 .modal-content::-webkit-scrollbar-thumb
 {
   background-color: #00415a;
-  border-radius: 5px;
 }
 
 div.tablewrapper::-webkit-scrollbar-track

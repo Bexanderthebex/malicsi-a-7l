@@ -17,9 +17,18 @@
     /*background-image: url('/assets/basketball.jpg')!important;*/
 }
 
+#visited-competitor-profile-img-container {
+  height: 250px;
+}
+
 #visited-competitor-profile-img {
-  max-width: auto;
-  max-height: 250px;
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 3px solid white;
+  border-radius: 3px;
 }
 
 #visited-competitor-profile-right-panel {

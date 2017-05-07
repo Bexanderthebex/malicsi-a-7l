@@ -163,7 +163,8 @@
 			time_start: undefined,
 			time_end: undefined,
 			match_date: undefined,
-			match_id: undefined
+			match_id: undefined,
+			sport_name: undefined
 		}
 
 		$scope.newOrganizationInGame = {
@@ -677,6 +678,7 @@
 						time_start: data[i].time_start,
 						time_end: data[i].time_end,
 						match_date: data[i].match_date,
+                        sport_name: data[i].sport_name
 					 }
 					match_id_tracker.push(data[i].match_id);
 					if(flag=="past")		$scope.pastMatches.push(mergedMatchBeta);

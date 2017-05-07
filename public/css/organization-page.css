@@ -458,3 +458,7 @@
 #organization-team-tabs .active {
   color: #00a5d3 !important;
 }
+
+#emptyTeam {
+    font-size: 30px;
+}
