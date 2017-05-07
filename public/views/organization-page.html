@@ -165,12 +165,12 @@
             <div class="modal-modal-container">
                 <div class="row">
                     <div class="row">
-                        <h1 class="organization-team-member-name telegrafico black-text" id="emptyTeam"></h1>
+                        <h1 class="organization-team-member-name telegrafico" id="emptyTeam"></h1>
                         <div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers" >
                             <a class="modal-action modal-close" href="#/competitor/profile/{{member.id}} ">
                             <img id="{{member.sex}}" class="valign organization-team-member-avatar" src="uploads/{{member.id}}.png">
                             <h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
-                            <span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
+                            <span class="organization-team-member-info palette-text-4 strong telegrafico"> Position </span>
                             </a>
                         </div>
                     </div>
@@ -222,9 +222,9 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button ng-click="joinTeam(teamModal.team_id);" ng-hide="currentUser.type !='C' || !(isMember==-1)" class="right minimalist-button">Join Team </button>
-        <button ng-click="quitTeam(teamModal.team_id);" ng-hide="currentUser.type !='C' || !(isMember==1)" class="right minimalist-button">Quit Team </button>
-        <button  ng-hide="currentUser.type !='C' || !(isMember==0)" class="right minimalist-button disabled" disabled="true">Pending Request </button> <!-- make this button looked like disabled -->
+        <button ng-click="joinTeam(teamModal.team_id);" ng-hide="currentUser.type !='C' || !(isMember==-1)" class="right minimalist-button-inverted">Join Team </button>
+        <button ng-click="quitTeam(teamModal.team_id);" ng-hide="currentUser.type !='C' || !(isMember==1)" class="right minimalist-button-inverted">Quit Team </button>
+        <button  ng-hide="currentUser.type !='C' || !(isMember==0)" class="right minimalist-button-inverted grey disabled" disabled="true" style="border-color: grey">Pending Request </button> <!-- make this button looked like disabled -->
         <button class="modal-action modal-close right join-team-close minimalist-button">Close</button>
     </div>
 </div>
