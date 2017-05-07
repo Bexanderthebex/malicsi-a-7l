@@ -39,6 +39,8 @@ $(document).ready(function(){
     $('.game-desc').css('width', $(".competitor-game-img").width());
 
     $('.chips').material_chip();
+    
+    // $('.chips').on('chip.delete', function(e, chip){ alert('This member will be removed.'); });
 
     $('.materialboxed').materialbox();
 

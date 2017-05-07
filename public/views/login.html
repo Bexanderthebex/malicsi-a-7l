@@ -1,9 +1,9 @@
 <div id="login-holder" class="valign-wrapper  palette-5" ng-controller="UserCtrl">
-  <div id="login-panel" class="center row margin-override-0">
-    <div id="login-cards" class="col l8 offset-l2 white z-depth-4 row">
-      <div id="login-left" class="col l6">
+  <div id="login-panel" class="center row margin-override-0" style="overflow: hidden;">
+    <div id="login-cards" class="hide-on-small-only col l8 offset-l2 m12 white z-depth-4 row">
+      <div id="login-left" class="col l6 m6 s12">
         <div id="title-left" class="valign-wrapper palette-3" style="height: 100%;">
-          <div style="width: 100%;" class="rockwell white-text">
+          <div style="width: 100%; padding-bottom: 100px;" class="rockwell palette-text-1">
             Know the updates.
           </div>
         </div>
@@ -22,15 +22,15 @@
 
               <!-- USER NAME & PASSWORD -->
               <div class="col s12 row margin-override-0">
-                <div class="input-field col s9">
+                <div class="input-field col l8 m12 s12">
                   <input placeholder="Username" id="signup-uname" type="text" ng-model="suname" class="validate margin-override-0" data-length="20" required>
                 </div>
               </div>
               <div class="col s12 row margin-override-0">
-                <div class="input-field col s6">
+                <div class="input-field col l6 m12 s12">
                   <input placeholder="Password" id="signup-password" type="password" ng-model="spword" class="validate margin-override-0" data-length="20" required>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col l6 m12 s12">
                   <input placeholder="Confirm Password" id="signup-confirm-password" type="password" ng-model="cspword" class="validate margin-override-0" required>
                 </div>
               </div>
@@ -43,27 +43,29 @@
 
               <!-- NAME -->
               <div class="col s12 row margin-override-0">
-                <div class="input-field col s10 ">
+                <div class="input-field col l10 m12 s12">
                   <input placeholder="First Name" id="signup-fname" type="text" ng-model="fname" class="validate margin-override-0" required>
                 </div>
               </div>
               <div class="col s12 row margin-override-0">
-                <div class="input-field col s10">
+                <div class="input-field col l10 m12 s12">
                   <input placeholder="Last Name" id="signup-lname" type="text" ng-model="lname" class="validate margin-override-0" required>
                 </div>
               </div>
               <div class="col s12 row margin-override-0">
-                <div class="input-field col s10 ">
+                <div class="input-field col l10 m12 s12">
                   <input placeholder="Nickname" id="signup-nname" type="text" ng-model="nname" class="validate margin-override-0" required>
                 </div>
               </div>
 
               <!-- BIRTHDAY & SEX -->
               <div class="col s12 row margin-override-0">
-                <div class="input-field col s6 ">
+                <div class="input-field col l6 m12 s12">
                   <input placeholder="Birthday" id="signup-bday" type="date" ng-model="bday" class="datepicker validate margin-override-0" required>
                 </div>
-                <div class="col s5 valign-wrapper margin-top-20" style="height: 100%;">
+              </div>
+              <div class="col s12 row margin-override-0">
+                <div class="col l5 m12 s12 valign-wrapper margin-top-20" style="height: 100%;">
                       <input ng-model="sex" name="signup-sex" type="radio" id="signup-sex-female" class="with-gap validate" value="F" required/>
                       <label class="black-text telegrafico" for="signup-sex-female">Female</label>
                       <label style="width: 20px!important;"></label>
@@ -72,27 +74,33 @@
                 </div>
               </div>
 
+              <div class="col s12 row rockwell palette-text-3" style="height: 20px!important; margin-top: 20px!important;">
+                <div class="input-field col s12 letter-spacing-1">
+                  CONTACT INFORMATION
+                </div>
+              </div>
+
               <!-- EMAIL & CONTACT NUMBER-->
               <div class="col s12 row margin-override-0">
-                <div class="input-field col s10 ">
+                <div class="input-field col l10 m12 s12">
                   <input placeholder="Email" id="signup-email" type="text" ng-model="email" class="validate margin-override-0" required>
                 </div>
               </div>
               <div class="col s12 row margin-override-0">
-                <div class="input-field col s10">
+                <div class="input-field col l10 m12 s12">
                   <input placeholder="Contact Number" id="signup-cnum" type="text" ng-model="contactNum" class="validate margin-override-0" required>
                 </div>
               </div>
 
               <!-- Buttons -->
               <div class="row margin-override-0">
-                <div class="row col l12 center">
-                  <div class="col l12">
+                <div class="row col l12 m12 s12 center">
+                  <div class="col s12">
                     <button class="waves-effect login-btn palette-1 margin-top-20 " ng-disabled="!validate(fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum)"
                         ng-click="signUp(fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum);">SIGN UP</button>
                   </div>
-                  <div class="col l12">
-                    <div class="col l12 century-gothic login-info">
+                  <div class="col s12">
+                    <div class="col s12 century-gothic login-info">
                       Already have an account? <a id="backtologin" href="">LOG IN.</a>
                     </div>
                   </div>
@@ -105,9 +113,9 @@
           </form>
         </div>
       </div>
-      <div id="login-right" class="col l6">
+      <div id="login-right" class="col l6 m6 s12">
         <div id="title-right" class="valign-wrapper" style="height: 100%; display: none;">
-          <div style="width: 100%;" class="rockwell white-text">
+          <div style="width: 100%;" class="rockwell palette-text-5">
             Compete with other teams.
           </div>
         </div>
@@ -118,33 +126,33 @@
               <div class="row margin-down-20" style="width: 100%;">
                 <div class="col s12 center" style="width: 100%;">
                   <h4 class="rockwell palette-text-3">Jump in.</h4>
-                  <p id="loginError" class="century-gothic" style="color:red;"></p>
+                  <p id="loginError" class="century-gothic center" style="color:red; font-size: 12px;"></p>
                 </div>
               </div>
 
               <!-- INPUT FORMS -->
               <!-- USERNAME -->
-              <div class="col s12 row margin-override-0">
-                <div class="input-field col s10 offset-s1 login-input">
-                  <input tabindex="1" placeholder="Username" id="login-username" type="text" ng-model="uname" class="margin-override-0 login-input">
+              <div class="col l12 m12 s12 row margin-override-0">
+                <div class="input-field col l8 m10 s10 offset-s1 offset-m1 offset-l2 login-input">
+                  <input placeholder="Username" id="login-username" type="text" ng-model="uname" class="margin-override-0 login-input">
                 </div>
               </div>
 
               <!-- PASSWORD -->
               <div class="col s12 row margin-override-0">
-                <div class="input-field col s10 offset-s1 login-input">
-                  <input tabindex="2" placeholder="Password" id="login-password" type="password" ng-model="pword" class="margin-override-0 login-btn">
+                <div class="input-field col col l8 m10 s10 offset-s1 offset-m1 offset-l2 login-input">
+                  <input placeholder="Password" id="login-password" type="password" ng-model="pword" class="margin-override-0 login-btn">
                 </div>
               </div>
 
               <div class="row margin-override-0">
-                <div id="login-button" class="col l12" style="margin-top: 10px;">
+                <div id="login-button" class="col l12 m12 s12" style="margin-top: 10px;">
                   <button class="waves-effect login-btn palette-1 margin-top-20 " ng-click="logAccount()" >LOG IN</button>
                 </div>
-                <div class="col l12 century-gothic login-info">
+                <div class="col l12 m12 s12 century-gothic login-info">
                   No account yet? <a href="" id="signup">SIGN UP.</a>
                 </div>
-                <div class="col l12 century-gothic login-info-small">
+                <div class="col l10 m10 s12 offset-l1 offset-m1 century-gothic login-info-small">
                   To organize a game, email us @<br> <span class="palette-text-3">malicsia7l@gmail.com </span> or view help for more details.
                 </div>
               </div>
@@ -154,7 +162,162 @@
         </div>
       </div>
       
-    </div>  
+    </div>
+    <div class="col l2 hide-on-small-only"></div>
+
+    <div id="login-cards-small s12 row" style="height: 100%;">
+      <div id="login-login" class="s12" style="height: 100%;">
+        <div id="content-login" class="valign-wrapper white" style="height: 100%;">
+          <div style="width: 100%;">
+            <form>
+              <!-- HEADER -->
+              <div class="row margin-down-20" style="width: 100%;">
+                <div class="col s12 center" style="width: 100%;">
+                  <h4 class="rockwell palette-text-3">Jump in.</h4>
+                  <p id="loginError" class="century-gothic center" style="color:red; font-size: 12px;"></p>
+                </div>
+              </div>
+
+              <!-- INPUT FORMS -->
+              <!-- USERNAME -->
+              <div class="col l12 m12 s12 row margin-override-0">
+                <div class="input-field col l8 m10 s10 offset-s1 offset-m1 offset-l2 login-input">
+                  <input placeholder="Username" id="login-username" type="text" ng-model="uname" class="margin-override-0 login-input">
+                </div>
+              </div>
+
+              <!-- PASSWORD -->
+              <div class="col s12 row margin-override-0">
+                <div class="input-field col col l8 m10 s10 offset-s1 offset-m1 offset-l2 login-input">
+                  <input placeholder="Password" id="login-password" type="password" ng-model="pword" class="margin-override-0 login-btn">
+                </div>
+              </div>
+
+              <div class="row margin-override-0">
+                <div id="login-button" class="col l12 m12 s12" style="margin-top: 10px;">
+                  <button class="waves-effect login-btn palette-1 margin-top-20 " ng-click="logAccount()" >LOG IN</button>
+                </div>
+                <div class="col l12 m12 s12 century-gothic login-info">
+                  No account yet? <a href="" id="signup-small">SIGN UP.</a>
+                </div>
+                <div class="col l10 m10 s12 offset-l1 offset-m1 century-gothic login-info-small">
+                  To organize a game, email us @<br> <span class="palette-text-3">malicsia7l@gmail.com </span> or view help for more details.
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+        
+      </div>
+      <div id="login-signup" class="col s12 white" style="display: none; height: 100%; overflow-y: scroll;">
+        <div id="content-signup">
+          <form>
+            <div class="row" style="width: 100%;">
+              <div class="col s12 center" style="width: 100%;">
+                <h4 class="rockwell black-text" style="margin: 0; margin-top: 20px;">Be a competitor.</h4>
+              </div>
+
+              <div class="col s12 row rockwell palette-text-3" style="height: 20px!important; margin-top: 20px!important;">
+                <div class="input-field col s12 letter-spacing-1" style="">
+                  ACCOUNT CREDENTIALS
+                </div>
+              </div>
+
+              <!-- USER NAME & PASSWORD -->
+              <div class="col s12 row margin-override-0">
+                <div class="input-field col l8 m12 s12">
+                  <input placeholder="Username" id="signup-uname" type="text" ng-model="suname" class="validate margin-override-0" data-length="20" required>
+                </div>
+              </div>
+              <div class="col s12 row margin-override-0">
+                <div class="input-field col l6 m12 s12">
+                  <input placeholder="Password" id="signup-password" type="password" ng-model="spword" class="validate margin-override-0" data-length="20" required>
+                </div>
+                <div class="input-field col l6 m12 s12">
+                  <input placeholder="Confirm Password" id="signup-confirm-password" type="password" ng-model="cspword" class="validate margin-override-0" required>
+                </div>
+              </div>
+
+              <div class="col s12 row rockwell palette-text-3" style="height: 20px!important; margin-top: 20px!important;">
+                <div class="input-field col s12 letter-spacing-1">
+                  PERSONAL INFORMATION
+                </div>
+              </div>
+
+              <!-- NAME -->
+              <div class="col s12 row margin-override-0">
+                <div class="input-field col l10 m12 s12">
+                  <input placeholder="First Name" id="signup-fname" type="text" ng-model="fname" class="validate margin-override-0" required>
+                </div>
+              </div>
+              <div class="col s12 row margin-override-0">
+                <div class="input-field col l10 m12 s12">
+                  <input placeholder="Last Name" id="signup-lname" type="text" ng-model="lname" class="validate margin-override-0" required>
+                </div>
+              </div>
+              <div class="col s12 row margin-override-0">
+                <div class="input-field col l10 m12 s12">
+                  <input placeholder="Nickname" id="signup-nname" type="text" ng-model="nname" class="validate margin-override-0" required>
+                </div>
+              </div>
+
+              <!-- BIRTHDAY & SEX -->
+              <div class="col s12 row margin-override-0">
+                <div class="input-field col l6 m12 s12">
+                  <input placeholder="Birthday" id="signup-bday" type="date" ng-model="bday" class="datepicker validate margin-override-0" required>
+                </div>
+              </div>
+              <div class="col s12 row margin-override-0">
+                <div class="col l5 m12 s12 valign-wrapper margin-top-20" style="height: 100%;">
+                      <input ng-model="sex" name="signup-sex" type="radio" id="signup-sex-female" class="with-gap validate" value="F" required/>
+                      <label class="black-text telegrafico" for="signup-sex-female">Female</label>
+                      <label style="width: 20px!important;"></label>
+                      <input ng-model="sex" style="margin-left:20px!important;" name="signup-sex" type="radio" id="signup-sex-male" class="with-gap validate" value="M" required/>
+                      <label class="black-text telegrafico" for="signup-sex-male">Male</label>
+                </div>
+              </div>
+
+              <div class="col s12 row rockwell palette-text-3" style="height: 20px!important; margin-top: 20px!important;">
+                <div class="input-field col s12 letter-spacing-1">
+                  CONTACT INFORMATION
+                </div>
+              </div>
+
+              <!-- EMAIL & CONTACT NUMBER-->
+              <div class="col s12 row margin-override-0">
+                <div class="input-field col l10 m12 s12">
+                  <input placeholder="Email" id="signup-email" type="text" ng-model="email" class="validate margin-override-0" required>
+                </div>
+              </div>
+              <div class="col s12 row margin-override-0">
+                <div class="input-field col l10 m12 s12">
+                  <input placeholder="Contact Number" id="signup-cnum" type="text" ng-model="contactNum" class="validate margin-override-0" required>
+                </div>
+              </div>
+
+              <!-- Buttons -->
+              <div class="row margin-override-0">
+                <div class="row col l12 m12 s12 center">
+                  <div class="col s12">
+                    <button class="waves-effect login-btn palette-1 margin-top-20 " ng-disabled="!validate(fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum)"
+                        ng-click="signUp(fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum);">SIGN UP</button>
+                  </div>
+                  <div class="col s12">
+                    <div class="col s12 century-gothic login-info">
+                      Already have an account? <a id="backtologin-small" href="">LOG IN.</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
