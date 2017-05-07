@@ -90,6 +90,11 @@
                 $("#visited-competitor-profile-img").on("error", function(){
                     $(this).attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
                 });
+
+                $("#visited-competitor-profile-img").on("change", function(){
+                    $("#competitor-profile-img").attr('src', '/uploads/'+$scope.competitor.id+'.png');
+                });
+
             });
         }
 
@@ -109,6 +114,11 @@
             {
                 $("#competitor-profile-img").on("error", function(){
                     $(this).attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
+                });
+
+
+                $("#competitor-profile-img").on("change", function(){
+                    $("#competitor-profile-img").attr('src', '/uploads/'+$scope.competitor.id+'.png');
                 });
             });
         }
@@ -181,6 +191,9 @@
                 })
 
             upload();
+            $("#competitor-profile-img").attr('src', '/uploads/'+$scope.competitor.id+'.png');
+
+
 
             UserService
                 .updateUser($scope.competitor)
@@ -208,7 +221,7 @@
                 },function(err){
                     console.log(err);
                 });*/
-                $window.location.reload();
+                
         }
 
         function upload(){
@@ -222,7 +235,7 @@
             UserService
                 .uploader($scope.fileItem)
                 .then(function(res){
-                    $window.location.reload();//$("#visited-competitor-profile-img").attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
+                    $("#competitor-profile-img").attr('src', '/uploads/'+$scope.competitor.id+'.png');
                 },function(err){
                     console.log(err);
                 })

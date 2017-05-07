@@ -63,6 +63,14 @@
                 }, function(err) {
                     console.log(err.data);
                 })
+
+            $(document).ready(function()
+            {
+                $("#organization-logo").on("error", function(){
+                    $(this).attr('src', '/assets/default-logo.png'   );
+                });
+
+            });
         }
 
         function retrieveOrganization() {
@@ -75,6 +83,8 @@
                     $window.location.href = '/#/error';
                     console.log(err);
                 })
+
+            
         }
 
         function retrieveGamesInOrganization(org_id) {
