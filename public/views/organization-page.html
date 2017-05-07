@@ -7,7 +7,6 @@
 			<h3 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h3>
 		</div>
 
-		
 		<div class="row col s12 palette-5">
 			<ul id="organization-main-tabs" class="tabs">
 				<!-- <li class="tab col s3"  ng-repeat="game in filteredGames" ng-init="setViewedGame(filteredGames[0])" ><a ng-click="setViewedGame(game)" class="blue-text darken-3 rockwell" href="#" >{{ game.name }}</a></li> -->
@@ -87,7 +86,7 @@
 							<div class="col s12 m12 l12">
 								<div class="center"> 
 									<form id="org-team-search-bar" class="search-bar-config">
-										<input type="search" ng-model="searchTeam" code="13"">
+										<input type="search" ng-model="searchTeam" code="13">
 									</form>
 
 								</div>
@@ -139,71 +138,97 @@
 			</div>
 		<div>
 		<!--<div class="row org-handler" ng-init="retrieveTeams(1)"><h4 class="` palette-text-3 center rockwell"> Teams Handled </h4></div>-->
-
-		<div id="organization-team-info-modal" class="modal modal-fixed-footer"">
-			<div class="col s12 m12 l12">	
-				<div class="modal-content">
-					<div class="row">
-						<div class="col s12 m12 l12" id="organization-modal-header">
-							<h4 class="center rockwell"> {{teamModal.team_name}} </h4>
-							<div class="row organization-team-info-mem-label">
-								<h5 class="palette-text-3 leixo">Members </h5>
-							</div> 
-						</div>
-						<div class="row">
-							<h5 class="organization-team-member-name palette-text-3 century-gothic strong" id="emptyTeam"></h5>
-							<div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers" >
-								<a class="modal-action modal-close" href="#/competitor/profile/{{member.id}} ">
-								<img id="{{member.sex}}" class="valign organization-team-member-avatar" src="uploads/{{member.id}}.png">
-								<h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
-								<span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
-								</a>
-							</div>
-							
-						</div>
-						<div class="row organization-team-info-mem-label">
-							<h5 class="palette-text-3 leixo">Statistics</h5>
-						</div>
-						<div class="team-statistics">
-							<div class="col s12 m12 l12">
-								<div class="row center">
-										<div class="col s4 m4 l4">
-											<h1 class="stat-nums-modal rockwell strong yellow-text text-accent-2"> {{teamStats.first}} </h1>
-										</div>
-										<div class="col s4 m4 l4">
-											<h1 class="stat-nums-modal rockwell strong blue-grey-text text-lighten-2"> {{teamStats.second}} </h1>
-										</div>
-										<div class="col s4 m4 l4">
-											<h1 class="stat-nums-modal rockwell strong brown-text text-darken-2"> {{teamStats.third}} </h1>
-										</div>
-								</div>
-							</div>
-							<div class="s12 m12 l12">
-								<div class="row center">
-									<div class="col s4 m4 l4">
-										<h1 class="secondary-text stats-modal-label century-gothic strong"> 1st </h1>
-									</div>
-									<div class="col s4 m4 l4">
-										<h1 class="secondary-text stats-modal-label century-gothic strong"> 2nd </h1>
-									</div>
-									<div class="col s4 m4 l4">
-										<h1 class="secondary-text stats-modal-label century-gothic strong"> 3rd </h1>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button ng-click="joinTeam(teamModal.team_id);" ng-hide="currentUser.type !='C' || !(isMember==-1)" class="right minimalist-button">Join Team </button>
-					<button ng-click="quitTeam(teamModal.team_id);" ng-hide="currentUser.type !='C' || !(isMember==1)" class="right minimalist-button">Quit Team </button>
-					<button  ng-hide="currentUser.type !='C' || !(isMember==0)" class="right minimalist-button disabled" disabled="true">Pending Request </button> <!-- make this button looked like disabled -->
-					<button class="modal-action modal-close right join-team-close minimalist-button">Close</button>
-				</div>
-			</div>
-		</div>
 	</div>
 </div>
+
+<div id="organization-team-info-modal" class="modal modal-large modal-fixed-footer">
+    <div class="modal-content game-header-fill century-gothic">
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5> {{teamModal.team_name}}</h5>
+                    </div>
+                </div>
+            </div>	
+        </div>	
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-4">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Members</h5>
+                    </div>
+                </div>
+            </div>	
+        </div>	
+        <div class="col s12 m12 l12">	
+            <div class="modal-modal-container">
+                <div class="row">
+                    <div class="row">
+                        <h1 class="organization-team-member-name telegrafico black-text" id="emptyTeam"></h1>
+                        <div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers" >
+                            <a class="modal-action modal-close" href="#/competitor/profile/{{member.id}} ">
+                            <img id="{{member.sex}}" class="valign organization-team-member-avatar" src="uploads/{{member.id}}.png">
+                            <h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
+                            <span class="organization-team-member-info palette-text-4 telegrafico"> Position </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-4">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Statistics</h5>
+                    </div>
+                </div>
+            </div>	
+        </div>	
+        <div class="col s12 m12 l12">	
+            <div class="modal-modal-container">
+                <div class="row">               
+                    <div class="team-statistics">
+                        <div class="col s12 m12 l12">
+                            <div class="row center">
+                                    <div class="col s4 m4 l4">
+                                        <h1 class="stat-nums-modal rockwell strong yellow-text text-accent-2"> {{teamStats.first}} </h1>
+                                    </div>
+                                    <div class="col s4 m4 l4">
+                                        <h1 class="stat-nums-modal rockwell strong blue-grey-text text-lighten-2"> {{teamStats.second}} </h1>
+                                    </div>
+                                    <div class="col s4 m4 l4">
+                                        <h1 class="stat-nums-modal rockwell strong brown-text text-darken-2"> {{teamStats.third}} </h1>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="s12 m12 l12">
+                            <div class="row center">
+                                <div class="col s4 m4 l4">
+                                    <h1 class="secondary-text stats-modal-label century-gothic strong"> 1st </h1>
+                                </div>
+                                <div class="col s4 m4 l4">
+                                    <h1 class="secondary-text stats-modal-label century-gothic strong"> 2nd </h1>
+                                </div>
+                                <div class="col s4 m4 l4">
+                                    <h1 class="secondary-text stats-modal-label century-gothic strong"> 3rd </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="joinTeam(teamModal.team_id);" ng-hide="currentUser.type !='C' || !(isMember==-1)" class="right minimalist-button">Join Team </button>
+        <button ng-click="quitTeam(teamModal.team_id);" ng-hide="currentUser.type !='C' || !(isMember==1)" class="right minimalist-button">Quit Team </button>
+        <button  ng-hide="currentUser.type !='C' || !(isMember==0)" class="right minimalist-button disabled" disabled="true">Pending Request </button> <!-- make this button looked like disabled -->
+        <button class="modal-action modal-close right join-team-close minimalist-button">Close</button>
+    </div>
+</div>
+
 
 <script type="text/javascript" src="../js/organization-page.js"></script>
 <script type="text/javascript" src="../controllers/organization-controller.js"></script> 

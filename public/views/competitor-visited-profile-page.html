@@ -116,37 +116,32 @@
         </div>
     </div>
 </div>
-
-<!--All games participated modal-->
-<div id="competitor-allgames-modal" class="modal modal-fixed-footer">
+<div id="competitor-allgames-modal" class="modal modal-large modal-fixed-footer">
     <div class="modal-content competitor-header-fill century-gothic">
-        <div class="row competitor-remove-bottom">
-                <div class="col s12 competitor-padding-left competitor-padding-right">
-                    <div class="center palette-5">
-                        <br>
-                            <div class="card-title white-text center telegrafico" id="thicken">
-                                <h4 class="competitor-remove-bottom-modal">Games Participated</h4>
-                            </div>
-                        <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Games Participated</h5>
                     </div>
                 </div>
-            </div>
-        <div class="row">
-            <div class="col s12 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
-                <a href="#/game/{{game.game_id}}">
-                    <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
-                    <span class="century-gothic secondary-text">{{ game.location }}</span>
-                </a>
-
+            </div>	
+        </div>	
+        <div class="modal-modal-container">
+            <div class="row">
+                <div class="col s12 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
+                    <a href="#/game/{{game.game_id}}">
+                        <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
+                        <span class="century-gothic secondary-text">{{ game.location }}</span>
+                    </a>
+                </div>
             </div>
         </div>
-
     </div>
     <div class="modal-footer palette-5 right-align">
         <button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
     </div>
 </div>
-
 
 <!--  Scripts-->
 <script type="text/javascript" src="../frontend_modules/js/materialize.js"></script>

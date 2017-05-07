@@ -18,6 +18,7 @@
     margin: 0 auto;
     max-width: 1280px;
     width: 88%;
+    margin-top:-350px; border-radius: 5px; position:relative;
 }
 
 .game-rightpanel-container {
@@ -125,27 +126,9 @@
     height: 25px !important;
 }
 
-#game-add-sport {
-    margin-top: 3%;
-}
-
-#game-update-sport {
-    margin-top: 3%;
-}
-
-#game-delete-sport {
-    margin-top: 10%;
-    width: 30%;
-}
-
-#game-delete-sponsor {
-    overflow-y: hidden;
-    max-height:100%;
-}
-
 #game-delete-sponsor .modal-content{
     max-height: 50vh;
-    overflow-y:auto;
+    /*overflow-y:auto;*/
     z-index:99;
 }
 
@@ -154,32 +137,32 @@
 }
 
 #game-sponsor-add {
-    overflow-y:hidden;
+    /*overflow-y:hidden;*/
     max-height:100%;
 }
 
 #game-sponsor-add .modal-content{
     max-height: 50vh;
-    overflow-y:auto;
+    /*overflow-y:auto;*/
     z-index:99;
 }
 
 #game-delete-organization{
-    overflow-y: hidden;
+    /*overflow-y: hidden;*/
 }
 
 #game-delete-organization .modal-content{
-    overflow-y:auto;
+    /*overflow-y:auto;*/
     max-height:50vh; 
     z-index:99;
 }
 
 #game-organization-add{
-    overflow:hidden;
+    /*overflow:hidden;*/
 }
 
 #game-organization-add .modal-content{
-    overflow-y:auto;
+    /*overflow-y:auto;*/
     max-height:50vh; 
     z-index:99;
 }
@@ -634,7 +617,7 @@
 }
 
 .game-organization-content {
-    margin-top: 22px;
+    margin-top: 20px;
 }
 
 .game-rightpanel-content-box-organization {
@@ -700,7 +683,7 @@
 }
 
 .game-match-content-row-top{
-    padding-top: 45px;
+    /*padding-top: 45pcx;*/
 }
 
 .game-maintain-anchor{
@@ -708,6 +691,7 @@
 }
 
 .game-title {
+    font-size: 45px !important;
 	letter-spacing: 3px;
 	padding-top: 45px;
 	margin-top: 0;
@@ -717,15 +701,12 @@
 }
 
 .game-details {
+    font-size: 15px !important;
 	letter-spacing: 1px;
 	margin-top: 0;
 	margin-bottom: 0;
 	text-align: center;
 	text-shadow: 2px 2px 3px black;
-}
-
-.game-parallax {
-    height: 180px;
 }
 
 .game-panel-bottom {
@@ -734,7 +715,7 @@
 
 .game-toppanel {
     overflow-y:auto;
-    height:380px;
+    height:0px;
 }
 
 .game-toppanel::-webkit-scrollbar-track{
@@ -750,4 +731,51 @@
 
 .game-toppanel::-webkit-scrollbar-thumb{
 	background-color: #00415a;
+}
+
+.game-infinite-scroll {
+    overflow-y:auto;
+    height:300px;
+}
+
+.game-wew-scroll {
+    overflow-y:auto;
+    height:485px;
+}
+
+@media screen and (max-device-width : 450px) {
+    .game-container {
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 88%;
+        margin-top:-350px; border-radius: 5px; position:relative;
+    }
+
+    .game-title {
+        font-size: 30px !important;
+        letter-spacing: 3px;
+        padding-top: 45px;
+        margin-top: 0;
+        margin-bottom: 0;
+        text-align: center;
+        text-shadow: 2px 2px 3px black;
+    }
+
+    .game-details {
+        font-size: 12px !important;
+        letter-spacing: 1px;
+        margin-top: 0;
+        margin-bottom: 0;
+        text-align: center;
+        text-shadow: 2px 2px 3px black;
+    }
+}
+
+@media screen and (max-device-width : 300px) {
+    .game-container {
+        margin: 0 auto;
+        max-width: 1280px;
+        width: 88%;
+        margin-top:-300px; border-radius: 5px; position:relative;
+    }
 }

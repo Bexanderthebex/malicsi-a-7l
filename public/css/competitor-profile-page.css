@@ -297,7 +297,6 @@ div.tablewrapper table tbody tr td, div.tablewrapper table thead tr th {
 .modal-content::-webkit-scrollbar-thumb
 {
   background-color: #00415a;
-  border-radius: 5px;
 }
 
 div.tablewrapper::-webkit-scrollbar-track

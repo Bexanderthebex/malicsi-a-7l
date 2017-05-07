@@ -226,20 +226,18 @@
     </div>
 
 <!-- Edit Profile Modal -->
-<div id="edit-profile-modal" class="modal modal-fixed-footer">
+<div id="edit-profile-modal" class="modal modal-large modal-fixed-footer">
     <div class="modal-content competitor-header-fill century-gothic">
-        <div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Edit Profile</h4>
-                        </div>
-                    <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Edit Profile</h5>
+                    </div>
                 </div>
-            </div>
-        </div>  
-        <div class="row competitor-modal-container  competitor-add-modal-content">
+            </div>	
+        </div>	
+        <div class="row modal-modal-container  competitor-add-modal-content">
             <form>
                 <div class="input-field col l6 m6 s12 competitor-input-color-change">
                     <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
@@ -316,25 +314,24 @@
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button ng-disabled='!competitor.first_name.localeCompare("") || !competitor.last_name.localeCompare("") || !competitor.nickname.localeCompare("") || !competitor.sex.localeCompare("") || !competitor.contact.localeCompare("") || !competitor.email.localeCompare("") || !competitor.username.localeCompare("") || (competitor.password.localeCompare(dup_password))' href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor(); getCompetitor()">UPDATE</button>
+        <button class="modal-action modal-close minimalist-button" >CLOSE</button>
+        <button ng-disabled='!competitor.first_name.localeCompare("") || !competitor.last_name.localeCompare("") || !competitor.nickname.localeCompare("") || !competitor.sex.localeCompare("") || !competitor.contact.localeCompare("") || !competitor.email.localeCompare("") || !competitor.username.localeCompare("") || (competitor.password.localeCompare(dup_password))' href="" class="modal-action modal-close minimalist-button-inverted" ng-click="editCompetitor(); getCompetitor()">UPDATE</button>
     </div>
 </div>
 
 <!-- Create Team Modal -->
-<div id="create-team-modal" class="modal modal-fixed-footer">
+<div id="create-team-modal" class="modal modal-large modal-fixed-footer">
     <div class="modal-content competitor-header-fill century-gothic">
-        <div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Create a Team</h4>
-                        </div>
-                    <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Create Team</h5>
+                    </div>
                 </div>
-            </div>
-        </div>  
-        <div class="row competitor-modal-container  competitor-add-modal-content">
+            </div>	
+        </div>	
+        <div class="row modal-modal-container  competitor-add-modal-content">
             <div class="input-field col l9 m9 s12 competitor-input-color-change">
                 <input placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name" required>
                 <label for="team-name">Team Name</label>
@@ -364,30 +361,31 @@
     </div>  
 
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="createTeam()">CREATE</button>
+        <button class="modal-action modal-close minimalist-button" >CLOSE</button>
+        <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="createTeam()">CREATE</button>
     </div>
 </div>
 
 <!--All games participated modal-->
-<div id="competitor-allgames-modal" class="modal modal-fixed-footer">
+<div id="competitor-allgames-modal" class="modal modal-large modal-fixed-footer">
     <div class="modal-content competitor-header-fill century-gothic">
-        <div class="row competitor-remove-bottom">
-                <div class="col s12 competitor-padding-left competitor-padding-right">
-                    <div class="center palette-5">
-                        <br>
-                            <div class="card-title white-text center telegrafico" id="thicken">
-                                <h4 class="competitor-remove-bottom-modal">Games Participated</h4>
-                            </div>
-                        <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Games Participated</h5>
                     </div>
                 </div>
-            </div>
-        <div class="row">
-            <div class="col s12 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
-                <a href="#/game/{{game.game_id}}">
-                    <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
-                    <span class="century-gothic secondary-text">{{ game.location }}</span>
-                </a>
+            </div>	
+        </div>	
+        <div class="modal-modal-container">
+            <div class="row">
+                <div class="col s12 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
+                    <a href="#/game/{{game.game_id}}">
+                        <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
+                        <span class="century-gothic secondary-text">{{ game.location }}</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -399,21 +397,19 @@
 <!--Competitor Add Member Modal-->
 <div id="competitor-add-member-modal" class="modal modal-fixed-footer">
     <div class="modal-content competitor-header-fill century-gothic">
-        <div class="row competitor-remove-bottom">
-                <div class="col s12 competitor-padding-left competitor-padding-right">
-                    <div class="center palette-5">
-                        <br>
-                            <div class="card-title white-text center telegrafico" id="thicken">
-                                <h4 class="competitor-remove-bottom-modal">Add Members</h4>
-                            </div>
-                        <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Add Members</h5>
                     </div>
                 </div>
-            </div>
+            </div>	
+        </div>	
         <div class="row">
             <div class="col s6 m4 l4 center-align all-games-card" data-target="competitor-add-applicant-modal" ng-repeat="competitor in roaster" ng-click="setScoutedApplicant(competitor);isFull(teamAccordion.team_id)">
-                    <h6 class="century-gothic palette-text-6 strong">{{ competitor.first_name }} {{ competitor.last_name }}</h6>
-                    <span class="secondary-text">({{ competitor.nickname }})</span>
+                <h6 class="century-gothic palette-text-6 strong">{{ competitor.first_name }} {{ competitor.last_name }}</h6>
+                <span class="secondary-text">({{ competitor.nickname }})</span>
             </div>
         </div>
     </div>
@@ -450,17 +446,15 @@
 <!-- Accept Applicant Modal -->
 <div id="competitor-accept-applicant-modal" class="modal competitor-prompt">
     <div class="modal-content competitor-header-fill century-gothic   ">
-        <div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Accept Applicant</h4>
-                        </div>
-                    <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Accept Applicants</h5>
+                    </div>
                 </div>
-            </div>
-        </div>  
+            </div>	
+        </div>	
         <div class="row competitor-modal-container">
             <p>Are you sure you want to accept {{ pendingRequests.first_name}}'s request to join {{ pendingRequests.team_name }}?</p>
         </div>
@@ -474,17 +468,15 @@
 <!-- Decline Applicant Modal -->
 <div id="competitor-decline-applicant-modal" class="modal competitor-prompt">
     <div class="modal-content competitor-header-fill century-gothic   ">
-        <div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Decline Applicant</h4>
-                        </div>
-                    <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Accept Applicants</h5>
+                    </div>
                 </div>
-            </div>
-        </div>  
+            </div>	
+        </div>	
         <div class="row competitor-modal-container">
             <p>Are you sure you want to decline {{ pendingRequested.first_name}}'s request to join {{ pendingRequested.team_name }}?</p>
         </div>
@@ -498,17 +490,15 @@
 <!-- Accept Invitation Modal -->
 <div id="competitor-accept-invitation-modal" class="modal competitor-prompt">
     <div class="modal-content competitor-header-fill century-gothic   ">
-        <div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Accept Invitation</h4>
-                        </div>
-                    <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Accept Invitation</h5>
+                    </div>
                 </div>
-            </div>
-        </div>  
+            </div>	
+        </div>	
         <div class="row competitor-modal-container">
             <p>Are you sure you want to accept [INVITEE NAME]'s request to join [TEAM NAME]?</p>
         </div>
@@ -546,17 +536,15 @@
 <!-- Delete Team Modal -->
 <div id="competitor-delete-team-modal" class="modal competitor-prompt">
     <div class="modal-content competitor-header-fill century-gothic   ">
-        <div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Delete Team</h4>
-                        </div>
-                    <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Delete Team</h5>
+                    </div>
                 </div>
-            </div>
-        </div>  
+            </div>	
+        </div>	
         <div class="row competitor-modal-container">
             <p>Are you sure you want to delete {{ team.team_name }}?</p>
         </div>
@@ -570,17 +558,15 @@
 <!-- Delete Team Member Modal -->
 <div id="competitor-remove-member" class="modal competitor-prompt">
     <div class="modal-content competitor-header-fill century-gothic   ">
-        <div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Kick Team Member</h4>
-                        </div>
-                    <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Kick Team Member</h5>
+                    </div>
                 </div>
-            </div>
-        </div>  
+            </div>	
+        </div>	
         <div class="row competitor-modal-container">
             <p>Are you sure you want to remove {{kickedMember.first_name}} from the {{kickedMember.team_name}}?</p>
         </div>
