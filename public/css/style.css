@@ -143,7 +143,7 @@ body::-webkit-scrollbar-thumb{
 
 #main{
 	height: 100%;
-	overflow-y: auto!important;
+	/*overflow-y: auto!important;*/
 }
 
 .dark-primary {
@@ -273,4 +273,82 @@ body::-webkit-scrollbar-thumb{
 
 .side-nav::-webkit-scrollbar-thumb{
 	background-color: #00719c;
+}
+
+/*modals*/
+.modal-remove-bottom {
+    margin-bottom: 0px !important;
+}
+
+.modal-header-fill{
+    padding: 0px !important;
+}
+
+.modal-padding-right {
+    padding-right: 0rem !important;
+}
+
+.modal-padding-left {
+    padding-left: 0rem !important;
+}
+
+.modal-modal-container {
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 90%;
+    margin-top: 20px !important;
+}
+
+.modal-modal-title {
+    font-weight: 800;
+}
+
+.modal-input-color-change input:not([type]):focus:not([readonly]),
+.modal-input-color-change input[type=text]:focus:not([readonly]),
+.modal-input-color-change input[type=date]:focus:not([readonly]),
+.modal-input-color-change input[type=number]:focus:not([readonly]),
+.modal-input-color-change textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #00415a;
+  box-shadow: 0 1px 0 0 #00415a;
+}
+
+.modal-input-color-change input:not([type]):focus:not([readonly]) + label,
+.modal-input-color-change input[type=text]:focus:not([readonly]) + label,
+.modal-input-color-change input[type=date]:focus:not([readonly]) + label,
+.modal-input-color-change input[type=number]:focus:not([readonly]) + label,
+.modal-input-color-change textarea.materialize-textarea:focus:not([readonly]) + label.modal-textarea-label-color-change {
+  color: #00415a;
+}
+
+.modal-large {
+    /*height: 60% !important;*/
+    margin-top: 1% !important;
+}
+
+.modal-medium {
+    height: 60% !important;
+    margin-top: 6% !important;
+}
+
+.modal-small {
+    height: 30% !important;
+    margin-top: 10% !important;
+    width: 30% !important;
+}
+
+.modal-content::-webkit-scrollbar-track{
+	background: transparent !important;
+	-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3) !important;
+	background-color: #bdbdbd !important;
+    border-radius: 0px !important;
+}
+
+.modal-content::-webkit-scrollbar{
+	width: 10px !important;
+	background-color: transparent !important;
+    border-radius: 0px !important;
+}
+
+.modal-content::-webkit-scrollbar-thumb{
+	background-color: #00719c !important;
 }

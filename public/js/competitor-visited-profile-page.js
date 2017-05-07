@@ -45,44 +45,4 @@ $(document).ready(function(){
     $('.game-desc').css('height', $(".visited-competitor-game-img").height());
     $('.game-desc').css('width', $(".visited-competitor-game-img").width());
 
-    /*************************************************************
-        var chip = {
-            tag: 'chip content',
-            image: '', //optional
-            id: 1, //optional
-        };
-
-        <div class="chips chips-autocomplete"></div>
-        
-        *************************************************
-
-        var my_data = {
-                "0":"Apple",
-                "1":"Microsoft",
-                "2":"Google"
-        }
-
-        var myConvertedData = {};
-
-        $.each(my_data, function(index, value) {
-            myConvertedData[value] = null;
-        });
-
-        $('.chips-autocomplete').material_chip({
-            autocompleteData: myConvertedData
-        });
-    *************************************************************/
-
-    $('.chips').material_chip();
-    $('.chips-autocomplete').material_chip({
-        autocompleteOptions: {
-            data: {
-                'Jane Doe': null,
-                'Jean Doe': null,
-                'Joan Doe': null
-            },
-            limit: Infinity,
-            minLength: 1
-        }
-    });
 });

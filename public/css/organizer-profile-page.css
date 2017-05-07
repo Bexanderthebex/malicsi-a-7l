@@ -14,6 +14,24 @@
   /*border-radius: 5px;*/
 }
 
+#organizer-profile-tabs .indicator {
+  background-color: #00a5d3;
+}
+
+#organizer-profile-img-container {
+  height: 250px;
+}
+
+#organizer-profile-img {
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 3px solid white;
+  border-radius: 3px;
+}
+
 .organizer-pending-requests::-webkit-scrollbar-track{
   background: transparent;
   -webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);
