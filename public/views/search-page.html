@@ -48,7 +48,7 @@
 		</div>
 	</div>
 	<div class="container search-results" ng-init="searchBy(searchquery)">
-		<div class="row center">		
+		<div class="row center" ng-hide="results.length==0">		
 			<!-- COMPETITOR RESULTS -->
 			<div id="competitor-results">
 				<div class="col m4 l4 hide-on-med-and-down">
