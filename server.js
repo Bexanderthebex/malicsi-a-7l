@@ -45,5 +45,5 @@ app.get('*', function(req, res) {
 })
 
 app.listen(app.get('port'), function(){
-	console.log('Server running at localhost:3000');
+	console.log('Server running at localhost:' + app.get('port'));
 });

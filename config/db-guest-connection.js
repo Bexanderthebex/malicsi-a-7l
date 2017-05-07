@@ -2,7 +2,7 @@
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host : 'malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com',
+  host : process.env.DBHOST,
   user : 'guest',
   password : 'password4',
   db : 'malicsi',

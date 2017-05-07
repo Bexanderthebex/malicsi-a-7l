@@ -1,1 +1,1 @@
-web: mkdir public/uploads && node server.js
+web: mkdir public/uploads; node server.js;
