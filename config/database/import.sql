@@ -570,4 +570,8 @@ INSERT INTO log VALUES (16, 53, 'Added Game', '2016-03-17');
 INSERT INTO log VALUES (17, 41, 'Added Game', '2016-09-27');
 INSERT INTO log VALUES (18, 41, 'Added Sport', '2016-09-27');
 INSERT INTO log VALUES (19, 43, 'Added Game', '2017-01-15');
+<<<<<<< HEAD
 INSERT INTO log VALUES (20, 53, 'Added Game', '2017-02-15');
+=======
+INSERT INTO log VALUES (20, 53, 'Added Game', '2017-02-15');
+>>>>>>> 97ab20eabe526792ab130209c8e395a81e4fbc9f

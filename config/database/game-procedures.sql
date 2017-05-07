@@ -118,7 +118,7 @@ DROP PROCEDURE IF EXISTS view_all_matches_in_game;
 DELIMITER //
 CREATE PROCEDURE view_all_matches_in_game(in game_id_input INT)
 BEGIN
-	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
+	SELECT team_id, team_name, match_id, sport.sport_id, sport.sport_name, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
 	FROM (((game JOIN sport using (game_id))
 		JOIN sport_match using (sport_id))
 		JOIN team_in_match using (match_id))
@@ -131,7 +131,7 @@ DROP PROCEDURE IF EXISTS view_all_ongoing_matches_in_game;
 DELIMITER //
 CREATE PROCEDURE view_all_ongoing_matches_in_game(in game_id_input INT)
 BEGIN
-	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
+	SELECT team_id, team_name, match_id, sport.sport_id, sport.sport_name, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
 	FROM (((game JOIN sport using (game_id))
 		JOIN sport_match using (sport_id))
 		JOIN team_in_match using (match_id))
@@ -144,7 +144,7 @@ DROP PROCEDURE IF EXISTS view_all_past_matches_in_game;
 DELIMITER //
 CREATE PROCEDURE view_all_past_matches_in_game(in game_id_input INT)
 BEGIN
-	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
+	SELECT team_id, team_name, match_id, sport.sport_id, sport.sport_name, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
 	FROM (((game JOIN sport using (game_id))
 		JOIN sport_match using (sport_id))
 		JOIN team_in_match using (match_id))
@@ -157,7 +157,7 @@ DROP PROCEDURE IF EXISTS view_all_upcoming_matches_in_game;
 DELIMITER //
 CREATE PROCEDURE view_all_upcoming_matches_in_game(in game_id_input INT)
 BEGIN
-	SELECT team_id, team_name, match_id, sport.sport_id, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
+	SELECT team_id, team_name, match_id, sport.sport_id, sport.sport_name, game_id, sport_match.time_start, sport_match.time_end, sport_match.match_date
 	FROM (((game JOIN sport using (game_id))
 		JOIN sport_match using (sport_id))
 		JOIN team_in_match using (match_id))

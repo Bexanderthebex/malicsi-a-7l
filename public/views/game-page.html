@@ -50,29 +50,35 @@
                                             <div class="row" ng-init="retrieveMatchesInGame()" ng-hide="checkPastMatches()">
                                                 <div id="game-past-match" class="col s12 m6 l4" ng-repeat="pastMatch in pastMatches">
                                                     <div class="game-match palette-border-5">
-
+                                                        <div class="game-match-header center palette-5 white-text telegrafico">
+                                                            {{ pastMatch.sport_name }}
+                                                        </div>
                                                         <div class="game-match-container">
-
-                                                            <div ng-repeat="team in pastMatch.teams">
-                                                                <div class="col s12 m12">
-                                                                    <div class="game-match-title">
-                                                                        <div class="center century-gothic truncate">{{team.name}}</div>
+                                                            
+                                                            <div class="game-scroll-multiple-teams">
+                                                                <div ng-repeat="team in pastMatch.teams">
+                                                                    <div class="col s12 m12">
+                                                                        <div class="game-match-title">
+                                                                            <div class="center century-gothic truncate">{{team.name}}</div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
 
-                                                            <div class="game-match-info">
-                                                                Start: {{pastMatch.time_start}} • End: {{pastMatch.time_end}}
-                                                            </div>
-                                                            <div class="game-match-info">
-                                                                Date: {{pastMatch.match_date}}
+                                                            <div class="game-container-info-padding">
+                                                                <div class="game-match-info">
+                                                                    Start: {{pastMatch.time_start}} • End: {{pastMatch.time_end}}
+                                                                </div>
+                                                                <div class="game-match-info">
+                                                                    Date: {{pastMatch.match_date}}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row" ng-show="checkPastMatches()">
-                                                    <h5 class="telegrafico center game-match-content-row-top past">No past matches. </h5>
+                                                    <h5 class="telegrafico center palette-text-4 strong game-match-content-row-top past">No past matches </h5>
                                             </div>
                                         </div>
                                     </div>
@@ -103,7 +109,7 @@
                                                 </div>
                                             </div>
                                             <div class="row" ng-show="checkOngoingMatches()">
-                                                    <h5 class="telegrafico center game-match-content-row-top">No ongoing matches. </h5>
+                                                    <h5 class="telegrafico center palette-text-4 strong game-match-content-row-top">No ongoing matches </h5>
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +139,7 @@
                                                 </div>
                                             </div>
                                             <div class="row " ng-show="checkUpcomingMatches()">
-                                                    <h5 class="telegrafico center game-match-content-row-top">No upcoming matches. </h5>
+                                                    <h5 class="telegrafico palette-text-4 strong center game-match-content-row-top">No upcoming matches </h5>
                                             </div>
                                         </div>
                                     </div>
@@ -167,12 +173,15 @@
                                             <div class="col s12 m6 l4" ng-repeat = "sport in sports" ng-hide="checkSports()">
                                                 <div class="game-sport" >
                                                     <div class="card game-hovercard">
-                                                        <div class="center">
+                                                        <div class="center activator">
                                                             <img src="assets/badges/badge_archery.png" class="game-adjust-image activator">
                                                         </div>
-                                                        <div class="card-content game-game-name">
-                                                            <span class="card-title game-remove-bottom activator center grey-text text-darken-4 rockwell truncate">{{sport.sport_name}}</span>
-                                                        </div>
+                                                        
+                                                        <a href="/#/sports/{{sport.sport_id}}" class="game-go-to-sport">
+                                                            <div class="card-content game-game-name game-link-sport" >
+                                                                <span class="card-title game-remove-bottom center grey-text text-darken-4 rockwell truncate game-wew-sport">{{sport.sport_name}}</span>
+                                                            </div>
+                                                        </a>
                                                         <div class="card-reveal game-arrange-padding grey lighten-2">
                                                             <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
                                                             <span class="card-title grey-text text-darken-4" ><i class="material-icons right" data-target="game-delete-sport" ng-click="passSport(sport)" ng-show='checkIfOrganizer()'>delete</i></span>
@@ -191,9 +200,6 @@
                                                             <div class="game-match-info">
                                                                 {{sport.team_count}}/{{sport.max_teams}}
                                                             </div>
-                                                            <div class="rockwell game-card-title-inside center palette-5 game-padding-right game-padding-left white-text">
-                                                                <a href="/#/sports/{{sport.sport_id}}">{{sport.sport_name | lowercase}}</a>
-                                                            </div>
                                                         </div>  
                                                     </div>
                                                 </div>
@@ -202,7 +208,7 @@
                                     </div>
                                 </div>
                                 <div class ="row center" ng-show="checkSports()">
-                                    <h5 class="telegrafico center">No sports here.</h5>
+                                    <h5 class="telegrafico center palette-text-4 strong">No sports here.</h5>
                                     <p class="telegrafico center grey-text">Incorrect info? Contact your game organizer or administrator.</p>
                                     <button class="minimalist-button game-sponsor-button" data-target="game-add-sport" ng-show="checkIfOrganizer()">Add</button>
                                 </div>
@@ -253,13 +259,13 @@
                                     <div class="row game-organization-content">
                                         <div class="col s12 game-rightpanel-content-box-organization" ng-hide="checkParticipatingOrganizations()">
                                             <div ng-repeat="organization in participatingOrgs">
-                                                <p class="telegrafico game-sponsor-title center" >
-                                                    <a href="#/organization/{{organization.organization_id}}" class="game-maintain-anchor"> {{organization.name}}</a>
+                                                <p class="telegrafico game-sponsor-title center">
+                                                    <a href="#/organization/{{organization.orgId}}" class="game-maintain-anchor"> {{organization.name}}</a>
                                                 </p>
                                             </div>
                                         </div>
                                         <div class="col s12 m12" ng-show="checkParticipatingOrganizations()">
-                                            <p class="telegrafico game-sponsor-title center">
+                                            <p class="telegrafico palette-text-4 strong game-sponsor-title black-text center">
                                                 No organizations here yet!
                                             </p>
                                         </div>
@@ -291,7 +297,7 @@
                                             </div>
                                         </div>
                                         <div class="col s12 m12" ng-show="checkSponsors()">
-                                            <p class="telegrafico game-sponsor-title center">
+                                            <p class="telegrafico palette-text-4 strong game-sponsor-title center black-text">
                                                 No sponsors here yet!
                                             </p>
                                         </div>
@@ -299,7 +305,6 @@
                                     <div class="row center">
                                         <button href="" class="modal-action modal-close game-organizations-button minimalist-button" ng-show='checkIfOrganizer()' data-target="game-sponsor-add">ADD</button>
                                         <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-sponsor" ng-show='checkDeleteButtonOrgSpon()'>DELETE</button>
-                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-sponsor">DELETE</button>
                                     </div>
                                 </div>
                             </div>

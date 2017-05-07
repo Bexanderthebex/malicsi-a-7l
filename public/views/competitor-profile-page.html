@@ -320,7 +320,7 @@
 </div>
 
 <!-- Create Team Modal -->
-<div id="create-team-modal" class="modal modal-large modal-fixed-footer">
+<div id="create-team-modal" class="modal modal-medium modal-fixed-footer">
     <div class="modal-content competitor-header-fill century-gothic">
         <div class="row modal-remove-bottom">
             <div class="col s12 modal-padding-left modal-padding-right palette-5">
@@ -395,7 +395,7 @@
 </div>
 
 <!--Competitor Add Member Modal-->
-<div id="competitor-add-member-modal" class="modal modal-fixed-footer">
+<div id="competitor-add-member-modal" class="modal modal-large modal-fixed-footer">
     <div class="modal-content competitor-header-fill century-gothic">
         <div class="row modal-remove-bottom">
             <div class="col s12 modal-padding-left modal-padding-right palette-5">
@@ -406,7 +406,7 @@
                 </div>
             </div>	
         </div>	
-        <div class="row">
+        <div class="row modal-modal-container">
             <div class="col s6 m4 l4 center-align all-games-card" data-target="competitor-add-applicant-modal" ng-repeat="competitor in roaster" ng-click="setScoutedApplicant(competitor);isFull(teamAccordion.team_id)">
                 <h6 class="century-gothic palette-text-6 strong">{{ competitor.first_name }} {{ competitor.last_name }}</h6>
                 <span class="secondary-text">({{ competitor.nickname }})</span>
@@ -419,74 +419,116 @@
 </div>
 
 <!-- Add Applicant Modal -->
-<div id="competitor-add-applicant-modal" class="modal competitor-prompt">
+<div id="competitor-add-applicant-modal" class="modal modal-small modal-fixed-footer competitor-prompt">
     <div class="modal-content competitor-header-fill century-gothic   ">
-        <div class="row competitor-remove-bottom">
-            <div class="col s12 competitor-padding-left competitor-padding-right">
-                <div class="center palette-5">
-                    <br>
-                        <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">Add Applicant</h4>
-                        </div>
-                    <br>
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Add Applicant</h5>
+                    </div>
                 </div>
-            </div>
-        </div>  
+            </div>	
+        </div>
         <div class="row competitor-modal-container">
             <p>Are you sure you want to add {{ scoutedApplicant.first_name}} to {{ scoutedApplicant.team_name }}?</p>
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="recruitNewMember()">YES</button>
         <button href="" class="modal-action modal-close minimalist-button">NO</button>
+        <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="recruitNewMember()">YES</button>
     </div>
 </div>
 
-
 <!-- Accept Applicant Modal -->
-<div id="competitor-accept-applicant-modal" class="modal competitor-prompt">
+<div id="competitor-accept-applicant-modal" class="modal modal-small modal-fixed-footer competitor-prompt">
     <div class="modal-content competitor-header-fill century-gothic   ">
         <div class="row modal-remove-bottom">
             <div class="col s12 modal-padding-left modal-padding-right palette-5">
                 <div class="center">
                     <div class="card-title white-text center telegrafico" id="thicken">
-                        <h5>Accept Applicants</h5>
+                        <h5>Accept Applicant</h5>
                     </div>
                 </div>
             </div>	
-        </div>	
-        <div class="row competitor-modal-container">
+        </div>
+        <div class="row modal-modal-container">
             <p>Are you sure you want to accept {{ pendingRequests.first_name}}'s request to join {{ pendingRequests.team_name }}?</p>
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="acceptMembershipRequest()">YES</button>
         <button href="" class="modal-action modal-close minimalist-button">NO</button>
+        <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="acceptMembershipRequest()">YES</button>
     </div>
 </div>
 
 <!-- Decline Applicant Modal -->
-<div id="competitor-decline-applicant-modal" class="modal competitor-prompt">
+<div id="competitor-decline-applicant-modal" class="modal modal-small modal-fixed-footer competitor-prompt">
     <div class="modal-content competitor-header-fill century-gothic   ">
         <div class="row modal-remove-bottom">
             <div class="col s12 modal-padding-left modal-padding-right palette-5">
                 <div class="center">
                     <div class="card-title white-text center telegrafico" id="thicken">
-                        <h5>Accept Applicants</h5>
+                        <h5>Decline Applicant</h5>
                     </div>
                 </div>
             </div>	
         </div>	
-        <div class="row competitor-modal-container">
+        <div class="row modal-modal-container">
             <p>Are you sure you want to decline {{ pendingRequested.first_name}}'s request to join {{ pendingRequested.team_name }}?</p>
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="deleteMembershipRequest(pendingRequested.team_id,pendingRequested.id)">YES</button>
         <button href="" class="modal-action modal-close minimalist-button">NO</button>
+        <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="deleteMembershipRequest(pendingRequested.team_id,pendingRequested.id)">YES</button>
     </div>
 </div>
 
+<!-- Delete Team Modal -->
+<div id="competitor-delete-team-modal" class="modal modal-small modal-fixed-footer competitor-prompt">
+    <div class="modal-content competitor-header-fill century-gothic   ">
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Delete Team</h5>
+                    </div>
+                </div>
+            </div>	
+        </div>	
+        <div class="row modal-modal-container">
+            <p>Are you sure you want to delete {{ team.team_name }}?</p>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button">NO</button>
+        <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="deleteTeam(team.team_id)">YES</button>
+    </div>
+</div>
+
+<!-- Delete Team Member Modal -->
+<div id="competitor-remove-member" class="modal modal-small modal-fixed-footer competitor-prompt">
+    <div class="modal-content competitor-header-fill century-gothic   ">
+        <div class="row modal-remove-bottom">
+            <div class="col s12 modal-padding-left modal-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Kick Team Member</h5>
+                    </div>
+                </div>
+            </div>	
+        </div>	
+        <div class="row modal-modal-container">
+            <p>Are you sure you want to remove {{kickedMember.first_name}} from the {{kickedMember.team_name}}?</p>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button">NO</button>
+        <button href="" class="modal-action modal-close minimalist-button-inverted" ng-click="kickMember(kickedMember.team_id, kickedMember.id)">YES</button>
+    </div>
+</div>
+
+<!-- unused modals: -->
 <!-- Accept Invitation Modal -->
 <div id="competitor-accept-invitation-modal" class="modal competitor-prompt">
     <div class="modal-content competitor-header-fill century-gothic   ">
@@ -509,7 +551,7 @@
     </div>
 </div>
 
-<!-- Decline Invitation Modal -->
+<!--Decline Invitation Modal  -->
 <div id="competitor-decline-invitation-modal" class="modal competitor-prompt">
     <div class="modal-content competitor-header-fill century-gothic   ">
         <div class="row competitor-remove-bottom">
@@ -529,50 +571,6 @@
     </div>
     <div class="modal-footer palette-5 right-align">
         <button href="" class="modal-action modal-close minimalist-button" onclick="Materialize.toast('Invitation Declined', 4000)">YES</button>
-        <button href="" class="modal-action modal-close minimalist-button">NO</button>
-    </div>
-</div>
-
-<!-- Delete Team Modal -->
-<div id="competitor-delete-team-modal" class="modal competitor-prompt">
-    <div class="modal-content competitor-header-fill century-gothic   ">
-        <div class="row modal-remove-bottom">
-            <div class="col s12 modal-padding-left modal-padding-right palette-5">
-                <div class="center">
-                    <div class="card-title white-text center telegrafico" id="thicken">
-                        <h5>Delete Team</h5>
-                    </div>
-                </div>
-            </div>	
-        </div>	
-        <div class="row competitor-modal-container">
-            <p>Are you sure you want to delete {{ team.team_name }}?</p>
-        </div>
-    </div>
-    <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="deleteTeam(team.team_id)">YES</button>
-        <button href="" class="modal-action modal-close minimalist-button">NO</button>
-    </div>
-</div>
-
-<!-- Delete Team Member Modal -->
-<div id="competitor-remove-member" class="modal competitor-prompt">
-    <div class="modal-content competitor-header-fill century-gothic   ">
-        <div class="row modal-remove-bottom">
-            <div class="col s12 modal-padding-left modal-padding-right palette-5">
-                <div class="center">
-                    <div class="card-title white-text center telegrafico" id="thicken">
-                        <h5>Kick Team Member</h5>
-                    </div>
-                </div>
-            </div>	
-        </div>	
-        <div class="row competitor-modal-container">
-            <p>Are you sure you want to remove {{kickedMember.first_name}} from the {{kickedMember.team_name}}?</p>
-        </div>
-    </div>
-    <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="kickMember(kickedMember.team_id, kickedMember.id)">YES</button>
         <button href="" class="modal-action modal-close minimalist-button">NO</button>
     </div>
 </div>

@@ -1,9 +1,9 @@
 <div id="login-holder" class="valign-wrapper  palette-5" ng-controller="UserCtrl">
   <div id="login-panel" class="center row margin-override-0">
-    <div id="login-cards" class="col l8 offset-l2 white z-depth-4 row">
-      <div id="login-left" class="col l6">
+    <div id="login-cards" class="col l8 offset-l2 m10 offset-m1 white z-depth-4 row">
+      <div id="login-left" class="col l6 m6 s12">
         <div id="title-left" class="valign-wrapper palette-3" style="height: 100%;">
-          <div style="width: 100%;" class="rockwell white-text">
+          <div style="width: 100%; padding-bottom: 100px;" class="rockwell palette-text-1">
             Know the updates.
           </div>
         </div>
@@ -105,9 +105,9 @@
           </form>
         </div>
       </div>
-      <div id="login-right" class="col l6">
+      <div id="login-right" class="col l6 m6 s12">
         <div id="title-right" class="valign-wrapper" style="height: 100%; display: none;">
-          <div style="width: 100%;" class="rockwell white-text">
+          <div style="width: 100%;" class="rockwell palette-text-5">
             Compete with other teams.
           </div>
         </div>
@@ -118,33 +118,33 @@
               <div class="row margin-down-20" style="width: 100%;">
                 <div class="col s12 center" style="width: 100%;">
                   <h4 class="rockwell palette-text-3">Jump in.</h4>
-                  <p id="loginError" class="century-gothic" style="color:red;"></p>
+                  <p id="loginError" class="century-gothic center" style="color:red; font-size: 12px;"></p>
                 </div>
               </div>
 
               <!-- INPUT FORMS -->
               <!-- USERNAME -->
-              <div class="col s12 row margin-override-0">
-                <div class="input-field col s10 offset-s1 login-input">
+              <div class="col l12 m12 s12 row margin-override-0">
+                <div class="input-field col l8 m10 s10 offset-s1 offset-m1 offset-l2 login-input">
                   <input tabindex="1" placeholder="Username" id="login-username" type="text" ng-model="uname" class="margin-override-0 login-input">
                 </div>
               </div>
 
               <!-- PASSWORD -->
               <div class="col s12 row margin-override-0">
-                <div class="input-field col s10 offset-s1 login-input">
+                <div class="input-field col col l8 m10 s10 offset-s1 offset-m1 offset-l2 login-input">
                   <input tabindex="2" placeholder="Password" id="login-password" type="password" ng-model="pword" class="margin-override-0 login-btn">
                 </div>
               </div>
 
               <div class="row margin-override-0">
-                <div id="login-button" class="col l12" style="margin-top: 10px;">
-                  <button class="waves-effect login-btn palette-1 margin-top-20 " ng-click="logAccount()" >LOG IN</button>
+                <div id="login-button" class="col l12 m12 s12" style="margin-top: 10px;">
+                  <button tabindex="3" class="waves-effect login-btn palette-1 margin-top-20 " ng-click="logAccount()" >LOG IN</button>
                 </div>
-                <div class="col l12 century-gothic login-info">
+                <div class="col l12 m12 s12 century-gothic login-info">
                   No account yet? <a href="" id="signup">SIGN UP.</a>
                 </div>
-                <div class="col l12 century-gothic login-info-small">
+                <div class="col l12 m12 s12 century-gothic login-info-small">
                   To organize a game, email us @<br> <span class="palette-text-3">malicsia7l@gmail.com </span> or view help for more details.
                 </div>
               </div>
