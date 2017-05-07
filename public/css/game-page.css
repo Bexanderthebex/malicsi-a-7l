@@ -126,27 +126,9 @@
     height: 25px !important;
 }
 
-#game-add-sport {
-    margin-top: 3%;
-}
-
-#game-update-sport {
-    margin-top: 3%;
-}
-
-#game-delete-sport {
-    margin-top: 10%;
-    width: 30%;
-}
-
-#game-delete-sponsor {
-    overflow-y: hidden;
-    max-height:100%;
-}
-
 #game-delete-sponsor .modal-content{
     max-height: 50vh;
-    overflow-y:auto;
+    /*overflow-y:auto;*/
     z-index:99;
 }
 
@@ -155,32 +137,32 @@
 }
 
 #game-sponsor-add {
-    overflow-y:hidden;
+    /*overflow-y:hidden;*/
     max-height:100%;
 }
 
 #game-sponsor-add .modal-content{
     max-height: 50vh;
-    overflow-y:auto;
+    /*overflow-y:auto;*/
     z-index:99;
 }
 
 #game-delete-organization{
-    overflow-y: hidden;
+    /*overflow-y: hidden;*/
 }
 
 #game-delete-organization .modal-content{
-    overflow-y:auto;
+    /*overflow-y:auto;*/
     max-height:50vh; 
     z-index:99;
 }
 
 #game-organization-add{
-    overflow:hidden;
+    /*overflow:hidden;*/
 }
 
 #game-organization-add .modal-content{
-    overflow-y:auto;
+    /*overflow-y:auto;*/
     max-height:50vh; 
     z-index:99;
 }
