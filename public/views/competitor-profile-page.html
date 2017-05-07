@@ -3,8 +3,9 @@
     <!-- Main holder just keeps the main below the navbar -->
     <div id="main" class="">
         <div class="row palette-3 competitor-profile-info" ng-init="getCompetitor()">
-            <div class="col l3 m5 s12 offset-l1 center">
-                <img id="competitor-profile-img" ng-src="uploads/{{competitor.id}}.png" class="circle">
+            <div id="competitor-profile-img-container" class="col l3 m5 s12 offset-l1 center">
+                <br>
+                <div id="competitor-profile-img" class="center-block materialboxed" style="background-image:url('uploads/{{competitor.id}}.png');">&nbsp;</div>
             </div>
 
             <div id="competitor-basic-info" class="col l5 m5 s12 white-text">
@@ -102,14 +103,14 @@
                         <table class="bordered centered highlight" ng-init="getCompetitorTeams()">
                             <thead>
                                 <tr class="white-text palette-3 telegrafico">
-                                    <th class="left">Team Name</th>
+                                    <th style="padding-left: 10px;" class="left">Team Name</th>
                                     <th>Sports</th>
                                     <th>Game</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="century-gothic" ng-repeat="team in competitorteams">
-                                    <td class="left">{{team.team_name}}</td>
+                                    <td style="padding-left: 10px;" class="left">{{team.team_name}}</td>
                                     <td><a href="#/sports/{{team.sport_id}}">{{team.sport_name}}</a></td>
                                     <td><a href="#/game/{{team.game_id}}">{{team.name}}</a></td>
                                 </tr>
@@ -281,6 +282,25 @@
                         <label for="first-name">Username <span style="color:red;" ng-hide='((competitor.username.localeCompare("")))'>Required</span></label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="file-title col s12 century-gothic valign-wrapper">
+                        <label class="active">Profile Picture</label>
+                    </div>
+
+                    <div class="col s12">
+                        <form action="#">
+                            <div class="file-field input-field">
+                                <div class="btn file-button palette-4 z-depth-0">
+                                    <span class="telegrafico">File</span>
+                                    <input id="fileItem" type="file" file-model="fileItem.file" accept=".png">
+                                </div>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 <div class="row">    
                     <div class="input-field col l6 m6 s12 competitor-input-color-change">
                         <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
@@ -291,25 +311,7 @@
                         <label for="last-name">Confirm Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
                     </div>
                 </div>
-                <div class="row">
-                <div class="file-title col s12 century-gothic valign-wrapper">
-                    <label class="active">Profile Picture</label>
-                </div>
 
-                <div class="col s12">
-                    <form action="#">
-                        <div class="file-field input-field">
-                            <div class="btn file-button blue darken-4">
-                                <span class="telegrafico">File</span>
-                                <input id="fileItem" type="file" file-model="fileItem.file" accept=".png">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                </div>
             </form>
         </div>
     </div>

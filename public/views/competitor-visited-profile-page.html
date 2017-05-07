@@ -3,8 +3,13 @@
     <!-- Main holder just keeps the main below the navbar -->
     <div id="main" ng-init="searchCompetitor(thisCompetitor.competitor_id)">
         <div class="row palette-3 visited-competitor-profile-info">
-            <div class="col l3 m5 s12 offset-l1 center">
-                <img id="visited-competitor-profile-img" src="uploads/{{competitor.id}}.png" class="pallette-3">
+            <!-- <div class="col l3 m5 s12 offset-l1 center">
+                <img id="competitor-profile-img" ng-src="../assets/avatars/{{competitor.sex}}.png" class="circle">
+            </div> -->
+
+            <div id="visited-competitor-profile-img-container" class="col l3 m5 s12 offset-l1 center">
+                <br>
+                <div id="visited-competitor-profile-img" class="center-block materialboxed" style="background-image:url('uploads/{{competitor.id}}.png');">&nbsp;</div>
             </div>
 
             <div id="visited-competitor-basic-info" class="col l7 m7 s12 white-text">
@@ -71,14 +76,14 @@
                         <table class="bordered highlight" ng-init="getCompetitorTeamsPublic()">
                             <thead>
                                 <tr class="white-text palette-3 telegrafico">
-                                    <th>Team Name</th>
+                                    <th style="padding-left: 10px;">Team Name</th>
                                     <th class="centered">Sports</th>
                                     <th class="centered">Game</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="century-gothic" ng-repeat="team in competitorteams">
-                                    <td>{{team.team_name}}</td>
+                                    <td style="padding-left: 10px;">{{team.team_name}}</td>
                                     <td class="centered"><a href="#/sports/{{team.sport_id}}">{{team.sport_name}}</a></td>
                                     <td class="centered"><a href="#/game/{{team.game_id}}">{{team.name}}</a></td>
                                 </tr>
