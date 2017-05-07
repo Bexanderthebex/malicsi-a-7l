@@ -31,6 +31,7 @@
         $scope.getPublicOrganizerUpcomingGames = getPublicOrganizerUpcomingGames;
         $scope.getOrganizerRequests = getOrganizerRequests;
         $scope.getCurrentUser = getCurrentUser;
+        $scope.checkGames = checkGames;
 
         $scope.organizer = {};
         $scope.game = {};
@@ -75,8 +76,8 @@
             OrganizerService
                 .getOrganizer($scope.thisOrganizer.orgID)
                 .then(function(res) {
-                    $scope.thisOrganizer = res.data;
-                    if($scope.thisOrganizer == []) {
+                    $scope.thisOrganizerInfo = res.data;
+                    if($scope.thisOrganizerInfo == []) {
                         $window.location.href = '/#/error';
                     }
                 }, function(err) {
@@ -322,6 +323,14 @@
                 },function(err){
                     console.log(err);
                 })
+        }
+
+        function checkGames() {
+            if (($scope.pastGames).length == 0 && ($scope.ongoingGames).length == 0 && ($scope.upcomingGames).length == 0) {
+                return false;
+            } else {
+                return true;
+            }
         }
 
     }

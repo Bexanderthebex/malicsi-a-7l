@@ -127,13 +127,12 @@
             return deferred.promise;
         }
 
-         function addTeamInMatch(match_id, team_id, ranking) {
+         function addTeamInMatch(match_id, team_id) {
             let deferred = $q.defer();
             
             let ddata = {
                 matchId : match_id,
-                teamId : team_id,
-                rank : ranking
+                teamId : team_id
             }
 
             $http({

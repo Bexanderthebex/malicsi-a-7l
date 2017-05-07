@@ -165,7 +165,9 @@ exports.viewSponsorInSport = (req, res) => {
 
 exports.viewSponsorInGame = (req, res) => {
 	let query = 'CALL view_all_sponsors_in_game(?)';
-	connection.userType('G').query(query,
+	let param = req.query.gameId;
+	if(!isNaN(param)){
+		connection.userType('G').query(query,
 		[
 			req.query.gameId
 		],
@@ -176,12 +178,16 @@ exports.viewSponsorInGame = (req, res) => {
 			else{
 				return res.status(500).send("Internal Server Error");
 			}
-		});
+		});	
+	}else res.status(400).send("Invalid parameter");
+	
 }
 
 exports.viewSponsorNotInGame = (req, res) => {
 	let query = 'CALL view_all_sponsors_not_in_game(?)';
-	connection.userType('G').query(query,
+	let param = req.query.gameId;
+	if(!isNaN(param)){
+		connection.userType('G').query(query,
 		[
 			req.query.gameId
 		],
@@ -192,7 +198,10 @@ exports.viewSponsorNotInGame = (req, res) => {
 			else{
 				return res.status(500).send("Internal Server Error");
 			}
-		});
+		});	
+	}
+	else res.status(400).send("Invalid parameter");
+	
 }
 
 exports.deleteSponsorFromGame = (req, res) => {

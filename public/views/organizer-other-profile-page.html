@@ -4,22 +4,22 @@
     <div id="main" class="" ng-init="getOrganizer()">
         <!-- Organizer Basic Info -->
         <div class="row palette-3 organizer-profile-info">
-            <div class="col l3 m5 s12 offset-l1 center">
-                <img id="organizer-profile-img" src="uploads/{{thisOrganizer.id}}.png" class="pallette-3">
+            <div class="col l3 m12 s12 offset-l1 center">
+                <img id="organizer-profile-img" src="uploads/{{organizer.id}}.png" class="pallette-3">
             </div>
 
             <div id="competitor-basic-info" class="col l7 hide-on-med-and-down white-text">
-                <h3 class="rockwell">{{ organizer.name }}</h3>
-                <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
+                <h3 class="rockwell">{{ thisOrganizerInfo.name }}</h3>
+                <p class="telegrafico">Contact: {{ thisOrganizerInfo.contact }} | E-mail: {{ thisOrganizerInfo.email }}</p>
                 <p class="telegrafico">
-                    {{ organizer.description }}
+                    {{ thisOrganizerInfo.description }}
                 </p>
             </div>
             <div id="competitor-basic-info" class="col m12 s12 hide-on-large-only palette-text-5">
-                <h3 class="rockwell">{{ organizer.name }}</h3>
-                <p class="telegrafico">Contact: {{ organizer.contact }} | E-mail: {{ organizer.email }}</p>
+                <h3 class="rockwell">{{ thisOrganizerInfo.name }}</h3>
+                <p class="telegrafico">Contact: {{ thisOrganizerInfo.contact }} | E-mail: {{ thisOrganizerInfo.email }}</p>
                 <p class="telegrafico">
-                    {{ organizer.description }}
+                    {{ thisOrganizerInfo.description }}
                 </p>
             </div>
             <div class="col l1 m1 s12"></div>
@@ -32,16 +32,17 @@
                     <div class="row" style="margin: 0; margin-top: 20px;">
                         <h4 class="rockwell center strong" style="margin: 0!important;">Games Handled</h4>
                     </div>
-                    <div class="row">
+                    <div class="row" ng-show="checkGames()">
 
                         <!-- P A S T GAMES -->
-                        <div id="sports-past-matches" class="col s4">
-                            <h5 class="telegrafico center">PAST GAMES ({{ pastGames.length }})</h5>
+                        <div id="sports-past-matches" class="col l4 m4 s12">
+                            <h5 class="telegrafico center">PAST GAMES {{ pastGames.length>0 ? '(' + pastGames.length + ')' : ''}}</h5>
 
                             <!-- LIST OF GAMES -->
-                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init=" getPublicOrganizerPastGames()">
+                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerPastGames()">
                                 <div class="sports-match palette-border-5" ng-repeat="game in pastGames">
-                                    <!-- GAME TITLE -->
+                                    
+                                <!-- GAME TITLE -->
                                     <div class="sports-match-title row">
                                         <a href="#/game/{{game.game_id}}">
                                             <div class="telegrafico col s10">{{ game.name }}</div>
@@ -59,16 +60,20 @@
                                     <div class="sports-match-info">
                                         Location: {{ game.location }}
                                     </div>
+                                    
                                 </div>
+                            </div>
+                            <div ng-hide="pastGames.length!=0">
+                                <h5 class="center telegrafico strong palette-text-4">No Ongoing Games</h5>
                             </div>
                         </div>
 
                         <!-- O N  G O I N G GAMES -->
-                        <div id="sports-ongoing-matches" class="col s4" ng-init=" getPublicOrganizerOngoingGames()">
-                            <h5 class="telegrafico center">ON-GOING GAMES ({{ ongoingGames.length }})</h5>
+                        <div id="sports-ongoing-matches" class="col l4 m4 s12">
+                            <h5 class="telegrafico center">ONGOING GAMES {{ ongoingGames.length>0 ? '(' + ongoingGames.length + ')' : ''}}</h5>
 
                             <!-- LIST OF GAMES -->
-                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;">
+                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerOngoingGames()">
                                 <div class="sports-match palette-border-3" ng-repeat="game in ongoingGames">
                                     <!-- GAME TITLE -->
                                     <div class="sports-match-title row">
@@ -88,16 +93,20 @@
                                     <div class="sports-match-info">
                                         Location: {{ game.location }}
                                     </div>
+                                
                                 </div>
+                            </div>
+                            <div ng-hide="ongoingGames.length!=0">
+                                <h5 class="center telegrafico strong palette-text-4">No Ongoing Games</h5>
                             </div>
                         </div>
 
                         <!-- U P C O M I N G GAMES -->
-                        <div id="sports-upcoming-matches" class="col s4">
-                            <h5 class="telegrafico center">UPCOMING GAMES ({{ upcomingGames.length }})</h5>
+                        <div id="sports-upcoming-matches" class="col l4 m4 s12">
+                            <h5 class="telegrafico center">UPCOMING GAMES {{ upcomingGames.length>0 ? '(' + upcomingGames.length + ')' : ''}}</h5>
 
                             <!-- LIST OF GAMES -->
-                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init=" getPublicOrganizerUpcomingGames()">
+                            <div class="sports-type-matches" style="width: 100%; max-height: 500px; overflow-y: scroll; margin-right: 5px;" ng-init="getOrganizerUpcomingGames()">
                                 <div class="sports-match palette-border-4" ng-repeat="game in upcomingGames">
                                     <!-- GAME TITLE -->
                                     <div class="sports-match-title row">
@@ -119,7 +128,14 @@
                                     </div>
                                 </div>
                             </div>
+                            <div ng-hide="upcomingGames.length!=0">
+                                <h5 class="center telegrafico strong palette-text-4">No Ongoing Games</h5>
+                            </div>
                         </div>
+
+                    </div>
+                    <div class="row" ng-hide="checkGames()">
+                        <h4 class="center telegrafico strong palette-text-4">No Games Handled</h4>
                     </div>
                 </div>
             </div>
