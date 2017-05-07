@@ -5,7 +5,9 @@
 
 	<head>
 		<title>MalICSi</title>
+		<link rel="icon" href="assets/logo/logo.png">
 		<!-- <base href="/"> -->
+
 
 		<!-- CSS -->
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -64,6 +66,7 @@
 		<script src="frontend_modules/js/jquery.bxslider.min.js"></script>
 		<script src="frontend_modules/js/angular-filter.js"></script>
 		<script src="js/slider.js"></script>
+		<script src="js/script.js"></script>
 
 	</head>
 
@@ -97,7 +100,7 @@
 						<li class="nav-dropdown-item black white-text telegrafico"><a href="/#/aboutus"><i style="color: #00719c;" class="fa fa-quote-left" aria-hidden="true"></i>About Us</a></li>
 					</ul>									
 
-					<a ng-href="{{iconUrl}}" id="nav-profile" class="usertab bluenavbtn navbtns valign-wrapper right" ng-click="changeActiveTab('user')"><i   class="fa fa-user-o" aria-hidden="true"></i><div style="padding-left: 3px;">{{user.username}}</div></a>
+					<a ng-href="{{iconUrl}}" id="nav-profile" class="usertab bluenavbtn navbtns valign-wrapper right" ng-click="changeActiveTab('user')"><i   class="fa fa-user-o" aria-hidden="true"></i><div style="padding-left: 3px;" ng-cloak>{{user.username}}</div></a>
 					<a href="#/organizations" class="orgstab bluenavbtn navbtns valign-wrapper right palette-text-1" style="color: #00719c;" ng-click="changeActiveTab('orgsfeed')">ORGANIZATIONS</a>
 					<a href="#/game" class="gamestab bluenavbtn navbtns valign-wrapper right palette-text-4" style="color: #00719c;" ng-click="changeActiveTab('gamefeed')">GAMES</a>
 					<a href="#/" class="hometab bluenavbtn navbtns valign-wrapper right palette-text-5" style="color: #00b8ff;" ng-click="changeActiveTab('home')">HOME</a>
@@ -135,7 +138,10 @@
 
 		</div>
 	</nav>
-
+	<div id="top"></div>
+	<div id="toTop"  class="fixed-action-btn">
+	    <a href="#top" class="btn-floating btn-flat tooltipped" data-position='top' data-delay='150' data-tooltip='Top'><i class="fa fa-arrow-up grey-text" aria-hidden="true"></i></a>
+	</div>
 	<div ng-view></div>
 
 	<!--	Scripts-->

@@ -16,10 +16,11 @@ $(document).ready(function(){
   $('.navbtns').on('click', function(){
     $('.navbtns').css('color', '#00719c');
     $(this).css('color', '#00b8ff');
+    $('.modal').modal('close');
   });
 
     $('.button-collapse').sideNav({
-        menuWidth: 300, // Default is 300
+        menuWidth: 250, // Default is 300
         closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
         draggable: true // Choose whether you can drag to open on touch screens
     });

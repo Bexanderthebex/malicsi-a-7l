@@ -128,12 +128,12 @@ DROP PROCEDURE IF EXISTS view_all_ongoing_matches_in_sport;
 DELIMITER //
 CREATE PROCEDURE view_all_ongoing_matches_in_sport(in sport_id_input INT)
 BEGIN
-	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date 
-    FROM sport s, sport_match m, team_in_match tm, team t 
-    WHERE s.sport_id = m.sport_id 
-        AND m.match_id = tm.match_id 
-        AND tm.team_id = t.team_id 
-        AND s.sport_id = sport_id_input 
+	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date
+    FROM sport s, sport_match m, team_in_match tm, team t
+    WHERE s.sport_id = m.sport_id
+        AND m.match_id = tm.match_id
+        AND tm.team_id = t.team_id
+        AND s.sport_id = sport_id_input
         AND m.match_date = curdate();
 END; //
 DELIMITER ;
@@ -142,12 +142,12 @@ DROP PROCEDURE IF EXISTS view_all_past_matches_in_sport;
 DELIMITER //
 CREATE PROCEDURE view_all_past_matches_in_sport(in sport_id_input INT)
 BEGIN
-	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date 
-    FROM sport s, sport_match m, team_in_match tm, team t 
-    WHERE s.sport_id = m.sport_id 
-        AND m.match_id = tm.match_id 
-        AND tm.team_id = t.team_id 
-        AND s.sport_id = sport_id_input 
+	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date
+    FROM sport s, sport_match m, team_in_match tm, team t
+    WHERE s.sport_id = m.sport_id
+        AND m.match_id = tm.match_id
+        AND tm.team_id = t.team_id
+        AND s.sport_id = sport_id_input
         AND m.match_date < curdate();
 END; //
 DELIMITER ;
@@ -156,12 +156,12 @@ DROP PROCEDURE IF EXISTS view_all_upcoming_matches_in_sport;
 DELIMITER //
 CREATE PROCEDURE view_all_upcoming_matches_in_sport(in sport_id_input INT)
 BEGIN
-	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date 
-    FROM sport s, sport_match m, team_in_match tm, team t 
-    WHERE s.sport_id = m.sport_id 
-        AND m.match_id = tm.match_id 
-        AND tm.team_id = t.team_id 
-        AND s.sport_id = sport_id_input 
+	SELECT t.team_id, team_name, m.match_id, s.sport_id, m.time_start, m.time_end, m.match_date
+    FROM sport s, sport_match m, team_in_match tm, team t
+    WHERE s.sport_id = m.sport_id
+        AND m.match_id = tm.match_id
+        AND tm.team_id = t.team_id
+        AND s.sport_id = sport_id_input
         AND m.match_date > curdate();
 END; //
 DELIMITER ;
@@ -186,13 +186,21 @@ DROP PROCEDURE IF EXISTS retrieve_sponsor_in_sport;
 DELIMITER //
 CREATE PROCEDURE retrieve_sponsor_in_sport (IN in_sport_id INT)
 BEGIN
- 	select name from sponsor_institution join sponsor_games using(sponsor_id) join sport using (game_id) where sponsor_games.game_id = sport.game_id AND sport_id = 1;
+ 	select name from sponsor_institution join sponsor_games using(sponsor_id) join sport using (game_id) where sponsor_games.game_id = sport.game_id AND sport_id = in_sport_id;
 END //
 DELIMITER ;
- 
 
--- create sport
-GRANT EXECUTE ON PROCEDURE create_sport TO 'organizer'@'localhost';
+DROP PROCEDURE IF EXISTS retrieve_teams_in_sport;
+DELIMITER //
+CREATE PROCEDURE retrieve_teams_in_sport (IN in_sport_id INT)
+BEGIN
+ 	select team_id, team_name from sport JOIN team using (sport_id) where sport.sport_id = in_sport_id;
+END //
+DELIMITER ;
+
+
+
+
 GRANT EXECUTE ON PROCEDURE create_sport TO 'administrator'@'localhost';
 
 -- view sport
@@ -258,3 +266,9 @@ GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'guest'@'localhost';
+
+-- retrieve teams in sport
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'guest'@'localhost';

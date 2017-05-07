@@ -2,13 +2,20 @@
     <!-- Do not put anything inside main holder -->
     <!-- Main holder just keeps the main below the navbar -->
     <div id="main" class="">
-        <div class="row palette-3 competitor-profile-info">
+        <div class="row palette-3 competitor-profile-info" ng-init="getCompetitor()">
             <div class="col l3 m5 s12 offset-l1 center">
-                <img id="competitor-profile-img" src="assets/avatar.png" class="pallette-3">
+                <img id="competitor-profile-img" ng-src="uploads/{{competitor.id}}.png" class="circle">
             </div>
 
-            <div id="competitor-basic-info" class="col l5 m5 s12 white-text" ng-init="getCompetitor()">
-                <h3 class="rockwell">{{ competitor.nickname }}</h3>
+            <div id="competitor-basic-info" class="col l5 m5 s12 white-text">
+                <h3 class="rockwell hide-on-small-only">{{ competitor.nickname }}</h3>
+                <div class="row hide-on-med-and-up">
+                    <h3 class="rockwell col s7">{{ competitor.nickname }}</h3>
+                    <div class="col s5">
+                        <br>
+                        <button class="minimalist-button-org" id="edit-profile-button" data-target="edit-profile-modal">EDIT PROFILE</button>
+                    </div>
+                </div>
                 <p class="telegrafico">
                     {{ competitor.first_name }} {{ competitor.last_name}}
                 </p>
@@ -17,7 +24,7 @@
                     {{ competitor.bio }}
                 </p>        
             </div>        
-            <div class="col l2 m2 s12">
+            <div class="col l2 m2 s12 hide-on-small-only">
                 <br><br>
                 <button class="minimalist-button-org" id="edit-profile-button" data-target="edit-profile-modal">EDIT PROFILE</button>
             </div>
@@ -25,9 +32,17 @@
 
         <div class="container col s12">
             <ul id="competitor-profile-tabs" class="tabs">
-                <li class="tab col s3"><a class="blue-text darken-3 telegrafico active" href="#profile-div">Profile</a></li>
-                <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#teams-managed-div">Teams Managed</a></li>
-                <li class="tab col s3"><a class="blue-text darken-3 telegrafico " href="#pending-requests-div">Pending Requests</a></li>
+                <li class="tab col s3">
+                    <a class="blue-text darken-3 telegrafico active" href="#profile-div">Profile</a>
+                </li>
+                <li class="tab col s3">
+                    <a class="blue-text darken-3 telegrafico hide-on-small-only" href="#teams-managed-div" ng-click="getCoachedTeam()">Teams Managed</a>
+                    <a class="blue-text darken-3 telegrafico hide-on-med-and-up" href="#teams-managed-div" ng-click="getCoachedTeam()">Teams</a>
+                </li>
+                <li class="tab col s3">
+                    <a class="blue-text darken-3 telegrafico hide-on-small-only" href="#pending-requests-div">Pending Requests</a>
+                    <a class="blue-text darken-3 telegrafico hide-on-med-and-up" href="#pending-requests-div">Requests</a>
+                </li>
             </ul>
         </div>
         <div id="profile-div" class="col s12">
@@ -84,22 +99,23 @@
                     <h5 class="rockwell center">Affiliations</h5>
                     
                     <div class="tablewrapper">
-                        <table class="bordered highlight" ng-init="getCompetitorTeams()">
+                        <table class="bordered centered highlight" ng-init="getCompetitorTeams()">
                             <thead>
                                 <tr class="white-text palette-3 telegrafico">
-                                    <th>Team Name</th>
-                                    <th class="centered">Sports</th>
-                                    <th class="centered">Game</th>
+                                    <th class="left">Team Name</th>
+                                    <th>Sports</th>
+                                    <th>Game</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="century-gothic" ng-repeat="team in competitorteams">
-                                    <td>{{team.team_name}}</td>
-                                    <td class="centered"><a href="#/sports/{{team.sport_id}}">{{team.sport_name}}</a></td>
-                                    <td class="centered"><a href="#/game/{{team.game_id}}">{{team.name}}</a></td>
+                                    <td class="left">{{team.team_name}}</td>
+                                    <td><a href="#/sports/{{team.sport_id}}">{{team.sport_name}}</a></td>
+                                    <td><a href="#/game/{{team.game_id}}">{{team.name}}</a></td>
                                 </tr>
                             </tbody>
                         </table>
+                        <h4 class="center telegrafico strong palette-text-4" ng-hide="competitorteams.length != 0"><br><br> No Teams</h4>
                     </div>
                 </div>
             </div>
@@ -112,62 +128,70 @@
             <div class="row container" ng-init="">
                 <h5 class="rockwell left-align">Games Participated</h5><br>    
                 <div class="row">
-                    <div class="col s3 m3 l2 push-s9 push-m9 push-l10 center-align recent-games-card see-more">
-                        <button href="" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
+                    <div class="col m2 l2 push-m10 push-l10 center-align recent-games-card see-more hide-on-small-only">
+                        <button ng-hide="competitorgames.length <= 3" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
                     </div>
-                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames | limitTo: 3"><a href="#/game/{{game.game_id}}">
+                    <div class="" ng-hide="competitorgames.length != 0"><a>
+                        <h4 class="telegrafico strong palette-text-4">No Games</h4>
+                        <span class="century-gothic secondary-text"></span>
+                        </a>
+                    </div>
+                    <div class="col s12 m3 l3 pull-m3 pull-l2 center-align recent-games-card" ng-repeat="game in competitorgames | limitTo: 3"><a href="#/game/{{game.game_id}}">
                         <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
                         <span class="century-gothic secondary-text">{{ game.location }}</span>
                         </a>
                     </div>
-                    <!-- <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card">
-                        <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                        <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
+                    <div class="col s4 offset-s4 center-align recent-games-card see-more hide-on-med-and-up">
+                        <button href="" ng-hide="competitorgames.length <= 3" data-target="competitor-allgames-modal" class="minimalist-button"> See more </button>
                     </div>
-                    <div class="col s3 m3 l3 pull-s3 pull-m3 pull-l2 center-align recent-games-card">
-                        <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                        <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-                    </div> -->
                 </div>
             </div><br>
-
-            <div class="row competitor-footer black">
-                <div class="black">
-                    <ul class="right hide-on-med-and-down">
-                        <li><a href="#"> Help </a></li>
-                        <li><a href="#"> About Us </a></li>
-                        <li>All Rights Reserved</li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
 
         <div id="teams-managed-div" class="col s12" ng-init="getCoachedTeam()">
             <div class="row container">
                 <br>
                 <div class="right-align"><button id="create-team-button" data-target="create-team-modal" class="minimalist-button modal-trigger">Create a Team</button></div>
-
-                <ul class="collapsible" data-collapsible="accordion">
-                    <li ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id)">
-                        <div class="collapsible-header grey lighten-2 remove-bottom active" id="teams-managed-header" ng-init="countMembersInTeam(cteam.team_id)">
+                <ul class="collapsible z-depth-0" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header grey lighten-2 remove-bottom">
                             <div id="teams-managed-header" class="row remove-bottom telegrafico">
-                                <div class="col l3 m3 s3 font-pt-18">{{cteam.team_name}}</div>
-                                <div class="col l3 m3 s3 font-pt-18 center">{{cteam.name}}</div>
-                                <div class="col l3 m3 s3 font-pt-18 center">{{cteam.sport_name}}</div>
+                                <div class="col l3 m3 s3 font-pt-18">Team Name</div>
+                                <div class="col l5 m5 s5 font-pt-18 center">Organization</div>
+                                <div class="col l3 m3 s3 font-pt-18 center">Sports</div>
                                 <div class="col l1 m1 s1 center-block">
-                                     <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="150" data-tooltip="Delete Team" ng-click="team.team_id=cteam.team_id"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="competitor-cteam" ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id); isFull(cteam.team_id)">
+                        <div class="collapsible-header active">
+                            <div class="row remove-bottom century-gothic">
+                                <div class="col l3 m3 s3">{{cteam.team_name}}</div>
+                                <div class="col l5 m5 s5 center">{{cteam.name}}</div>
+                                <div class="col l3 m3 s3 center">{{cteam.sport_name}}</div>
+                                <div class="col l1 m1 s1 center-block">
+                                     <div class="competitor-actions" data-target="competitor-delete-team-modal"><i class="fa fa-times fa-lg tooltipped" data-position="top" data-delay="20" data-tooltip="Delete Team" ng-click="team.team_id=cteam.team_id"></i></div>
                                 </div>
                             </div>
                         </div>
                         <div class="collapsible-body">
-                            <span class="telegrafico">Membership Count: {{membercount}}/{{cteam.max_members}}</span>
-                            <a class=" pull-right btn-floating btn-small waves-effect waves-light grey lighten-2 " data-target="competitor-add-member-modal" ng-click="getRecruitRoaster(cteam);" ng-hide="membercount>=cteam.max_members"><i class="grey-text text-darken-2 material-icons tiny">add</i></a>
-                            <div class="telegrafico">Members: </div>
-                            <div class="chip" ng-repeat="member in teammembers"><a href="/#/competitor/profile/{{member.id}}">{{member.first_name}} {{member.last_name}}</a><i class="close material-icons"><a ng-click = "kickMember(cteam.team_id,member.id)">close</a></i></div>
+                            <div class="row remove-bottom">
+                                <div class="col l11 m11 s11">
+                                    <div class="telegrafico">Members <span class="rockwell">({{membercount}}/{{cteam.max_members}})</span>:</div>
+                                    <div class="chip" ng-repeat="member in teammembers" ng-hide="member.is_member == 0"><a class="palette-text-4" href="/#/competitor/profile/{{member.id}}">{{member.first_name}} {{member.last_name}}</a><i class="close material-icons"><a class="palette-text-4" data-target="competitor-remove-member" ng-click = "setKickMember(cteam,member)">close</a></i></div>
+                                </div>
+                                <div class="col l1 m1 s1" style="padding-left:0px;padding-right:0px;">
+                                    <br>
+                                    <div class="competitor-actions" data-target="competitor-add-member-modal">
+                                        <i class="fa fa-plus fa-lg" ng-click="getRecruitRoaster(cteam);isFull(cteam.team_id)" ng-hide="membercount>=cteam.max_members"></i><span class="telegrafico"> Add</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </li>
                 </ul>
+                <h4 class="center telegrafico strong palette-text-4" ng-hide="coachedteam.length != 0">No Teams</h4>
             </div>
         </div>
 
@@ -183,7 +207,7 @@
                                 <td>{{ pr.team_name }}</td>
                                 <td>
                                     <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Applicant" data-target="competitor-accept-applicant-modal">
-                                        <i class="fa fa-check fa-lg" ng-click="pendingRequests.team_id=pr.team_id; pendingRequests.id=pr.id; pendingRequests.first_name=pr.first_name; pendingRequests.team_name=pr.team_name"></i>
+                                        <i class="fa fa-check fa-lg" ng-click="pendingRequests.team_id=pr.team_id; pendingRequests.id=pr.id; pendingRequests.first_name=pr.first_name; pendingRequests.team_name=pr.team_name; isFull(pr.team_id)"></i>
                                     </div>
                                     <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Applicant" data-target="competitor-decline-applicant-modal">
                                         <i class="fa fa-times fa-lg" ng-click="setPendingRequest(pr)"></i>
@@ -194,53 +218,7 @@
                     </table>
                 </div>
                 <div class="container divider"></div>
-                <!-- <div class="col s12">
-                    <h5 class="rockwell">Invites</h5>
-                    <table class="highlight responsive-table">
-                        <tbody>
-                            <tr class="century-gothic">
-                                <td class="bold">Jane Mare</td>
-                                <td>Team-You-Are-Invited-To</td>
-                                <td>Basketball</td>
-                                <td>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
-                                        <i class="fa fa-check fa-lg"></i>
-                                    </div>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
-                                        <i class="fa fa-times fa-lg"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td class="bold">Jean Mare</td>
-                                <td>Team-You-Are-Invited-To</td>
-                                <td>Football</td>
-                                <td>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
-                                        <i class="fa fa-check fa-lg"></i>
-                                    </div>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
-                                        <i class="fa fa-times fa-lg"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="century-gothic">
-                                <td class="bold">Joan Mare</td>
-                                <td>Team-You-Are-Invited-To</td>
-                                <td>Hockey</td>
-   
-                                <td>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Accept Invitation" data-target="competitor-accept-invitation-modal">
-                                        <i class="fa fa-check fa-lg"></i>
-                                    </div>
-                                    <div class="competitor-actions tooltipped" data-delay="150" data-position="top" data-tooltip="Decline Invitation" data-target="competitor-decline-invitation-modal">
-                                        <i class="fa fa-times fa-lg"></i>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> -->
+                <h4 class="center telegrafico strong palette-text-4" ng-hide="pendingRequests.length != 0">No Membership Applications</h4>
             </div>
         </div>
 
@@ -261,50 +239,59 @@
             </div>
         </div>  
         <div class="row competitor-modal-container  competitor-add-modal-content">
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
-                <label for="first-name">First Name</label>
-            </div>
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="last-name" type="text" class="validate" ng-model="competitor.last_name">
-                <label for="last-name">Last Name</label>
-            </div>
-            <div class="input-field col s4 competitor-input-color-change">
-                <input placeholder=" " id="nickname" type="text" class="validate" ng-model="competitor.nickname">
-                <label for="nickname">Nickname</label>
-            </div>
-            <div class="input-field col s4 competitor-input-color-change">
-                <input id="birthdate" type="date" class="validate" ng-model="bday">
-                <label for="birthdate" class="competitor-adjust-label">Birthdate</label>
-            </div>
-            <div class="input-field col s4">
-                <label class="competitor-adjust-label">Sex</label><br>
-                <span><input id="male" type="radio" name="gender" value="M" class="with-gap" ng-model="competitor.sex">
-                <label class="competitor-adjust-label" for="male">Male</label></span>
-                <span><input id="female" type="radio" name="gender" value="F" class="with-gap"  ng-model="competitor.sex">
-                <label class="competitor-adjust-label" for="female">Female</label></span>
-            </div>
-            <div class="input-field col s6 competitor-input-color-change" >
-                <input placeholder=" " id="contact" type="text" class="validate" ng-model="competitor.contact">
-                <label for="contact">Contact</label>
-            </div>
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="email" type="email" class="validate" ng-model="competitor.email">
-                <label for="email">Email</label>
-            </div>
-            <div class="input-field col s12 competitor-input-color-change">
-                <textarea placeholder=" " id="bio" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
-                <label for="Bio" class="competitor-textarea-label-color-change">Bio</label>
-            </div>
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
-                <label for="first-name">Username</label>
-            </div>
-            <div class="input-field col s6 competitor-input-color-change">
-                <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
-                <label for="last-name">Password</label>
-            </div>
-            <div class="row">
+            <form>
+                <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                    <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
+                    <label for="first-name">First Name <span style="color:red;" ng-hide='((competitor.first_name.localeCompare("")))'>Required</span></label>
+                </div>
+                <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                    <input placeholder=" " id="last-name" type="text" class="validate" ng-model="competitor.last_name">
+                    <label for="last-name">Last Name <span style="color:red;" ng-hide='((competitor.last_name.localeCompare("")))'>Required</span></label>
+                </div>
+                <div class="input-field col l4 m4 s12 competitor-input-color-change">
+                    <input placeholder=" " id="nickname" type="text" class="validate" ng-model="competitor.nickname">
+                    <label for="nickname">Nickname <span style="color:red;" ng-hide='((competitor.nickname.localeCompare("")))'>Required</span></label>
+                </div>
+                <div class="input-field col l4 m4 s12 competitor-input-color-change">
+                    <input id="birthdate" type="date" class="validate" ng-model="bday">
+                    <label for="birthdate" class="competitor-adjust-label">Birthdate</label>
+                </div>
+                <div class="input-field col l4 m4 s12">
+                    <label class="competitor-adjust-label">Sex</label><br>
+                    <span><input id="male" type="radio" name="gender" value="M" class="with-gap" ng-model="competitor.sex">
+                    <label class="competitor-adjust-label" for="male">Male</label></span>
+                    <span><input id="female" type="radio" name="gender" value="F" class="with-gap"  ng-model="competitor.sex">
+                    <label class="competitor-adjust-label" for="female">Female</label></span>
+                </div>
+                <div class="input-field col l6 m6 s12 competitor-input-color-change" >
+                    <input placeholder=" " id="contact" type="text" class="validate" ng-model="competitor.contact">
+                    <label for="contact">Contact <span style="color:red;" ng-hide='((competitor.contact.localeCompare("")))'>Required</span></label>
+                </div>
+                <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                    <input placeholder=" " id="email" type="email" class="validate" ng-model="competitor.email">
+                    <label for="email">Email <span style="color:red;" ng-hide='((competitor.email.localeCompare("")))'>Required</span></label>
+                </div>
+                <div class="input-field col l12 m12 s12 competitor-input-color-change">
+                    <textarea placeholder=" " id="bio" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
+                    <label for="Bio" class="competitor-textarea-label-color-change">Bio</label>
+                </div>
+                <div class="row">
+                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                        <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
+                        <label for="first-name">Username <span style="color:red;" ng-hide='((competitor.username.localeCompare("")))'>Required</span></label>
+                    </div>
+                </div>
+                <div class="row">    
+                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                        <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
+                        <label for="last-name">Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
+                    </div>
+                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                        <input placeholder=" " type="password" class="validate" ng-model="dup_password">
+                        <label for="last-name">Confirm Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
+                    </div>
+                </div>
+                <div class="row">
                 <div class="file-title col s12 century-gothic valign-wrapper">
                     <label class="active">Profile Picture</label>
                 </div>
@@ -314,7 +301,7 @@
                         <div class="file-field input-field">
                             <div class="btn file-button blue darken-4">
                                 <span class="telegrafico">File</span>
-                                <input type="file">
+                                <input id="fileItem" type="file" file-model="fileItem.file" accept=".png">
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" type="text">
@@ -322,11 +309,12 @@
                         </div>
                     </form>
                 </div>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor()">UPDATE</button>
+        <button ng-disabled='!competitor.first_name.localeCompare("") || !competitor.last_name.localeCompare("") || !competitor.nickname.localeCompare("") || !competitor.sex.localeCompare("") || !competitor.contact.localeCompare("") || !competitor.email.localeCompare("") || !competitor.username.localeCompare("") || (competitor.password.localeCompare(dup_password))' href="" class="modal-action modal-close minimalist-button" ng-click="editCompetitor(); getCompetitor()">UPDATE</button>
     </div>
 </div>
 
@@ -346,27 +334,27 @@
         </div>  
         <div class="row competitor-modal-container  competitor-add-modal-content">
             <div class="input-field col l9 m9 s12 competitor-input-color-change">
-                <input placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name">
+                <input placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name" required>
                 <label for="team-name">Team Name</label>
             </div>
             <div class="input-field col s3 m3 s12 competitor-input-color-change">
-                <input placeholder="" id="max_members" type="text" class="validate" ng-model="team.max_members">
+                <input placeholder="" id="max_members" type="text" class="validate" ng-model="team.max_members" required>
                 <label for="max-members">Max Members</label>
             </div>
             <div class="input-field col l6 m6 s12" ng-init="listAllGames()">
                 <label class="active">Game</label><br>
-                <select class="browser-default" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames">
+                <select class="browser-default" ng-model="game" ng-click="listAllSportAndOrganization()" ng-options="game.name for game in listgames" required>
                 </select>
             </div>
             <div class="input-field col l6 m6 s12">
                 <label class="active">Sports</label><br>
-                <select class="browser-default" ng-model="team.sport_id" ng-options="sport.sport_name for sport in sports">
+                <select class="browser-default" ng-model="team.sport_id" ng-options="sport.sport_name for sport in sports" required>
                     <option selected disabled class="white black-text" value="">&nbsp;</option>
                 </select>
             </div><br>
             <div class="input-field col l6 m6 s12">
                 <label class="active">Organization</label><br>
-                <select class="browser-default" ng-model="team.team_organization" ng-options="organization.name for organization in organizations">
+                <select class="browser-default" ng-model="team.team_organization" ng-options="organization.name for organization in organizations" required>
                     <option selected disabled class="white black-text" value="">&nbsp;</option>
                 </select>
             </div>
@@ -393,50 +381,13 @@
                 </div>
             </div>
         <div class="row">
-            <div class="col s4 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
+            <div class="col s12 m4 l4 center-align all-games-card" ng-repeat="game in competitorgames">
                 <a href="#/game/{{game.game_id}}">
                     <h4 class="rockwell strong palette-text-4">{{ game.name }}</h4>
                     <span class="century-gothic secondary-text">{{ game.location }}</span>
-                    <a class="btn-floating btn-small waves-effect waves-light grey lighten-2 " data-target=""><i class="grey-text text-darken-2 material-icons tiny">add</i></a>
                 </a>
             </div>
-            <!-- <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div> -->
         </div>
-        <!-- <div class="row">
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-            <div class="col s4 m4 l4 center-align all-games-card">
-                <h4 class="rockwell strong palette-text-4">GAME 1</h4>
-                <span class="century-gothic secondary-text"> Lorem ipsum dolor sit amet </span>
-            </div>
-        </div> -->
     </div>
     <div class="modal-footer palette-5 right-align">
         <button href="" class="modal-action modal-close minimalist-button">CLOSE</button>
@@ -458,9 +409,9 @@
                 </div>
             </div>
         <div class="row">
-            <div class="col s4 m4 l4 center-align all-games-card" data-target="competitor-add-applicant-modal" ng-repeat="competitor in roaster" ng-click="setScoutedApplicant(competitor)">
-                    <h6 class="rockwell palette-text-6">{{ competitor.first_name }} {{ competitor.last_name }}</h6>
-                    <span class="century-gothic secondary-text">({{ competitor.nickname }})</span>
+            <div class="col s6 m4 l4 center-align all-games-card" data-target="competitor-add-applicant-modal" ng-repeat="competitor in roaster" ng-click="setScoutedApplicant(competitor);isFull(teamAccordion.team_id)">
+                    <h6 class="century-gothic palette-text-6 strong">{{ competitor.first_name }} {{ competitor.last_name }}</h6>
+                    <span class="secondary-text">({{ competitor.nickname }})</span>
             </div>
         </div>
     </div>
@@ -615,25 +566,26 @@
 </div>
 
 <!-- Delete Team Member Modal -->
-<div id="competitor-remove-member" class="modal">
-    <div class="row remove-bottom">
-        <div class="col s12 padding-left padding-right palette-5">
-            <div class="center">
-                <br>
-                    <div class="card-title white-text center rockwell">
-                        <h5>Remove Team Member</h5>
-                    </div>
-                <br>
+<div id="competitor-remove-member" class="modal competitor-prompt">
+    <div class="modal-content competitor-header-fill century-gothic   ">
+        <div class="row competitor-remove-bottom">
+            <div class="col s12 competitor-padding-left competitor-padding-right">
+                <div class="center palette-5">
+                    <br>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="competitor-remove-bottom-modal">Kick Team Member</h4>
+                        </div>
+                    <br>
+                </div>
             </div>
+        </div>  
+        <div class="row competitor-modal-container">
+            <p>Are you sure you want to remove {{kickedMember.first_name}} from the {{kickedMember.team_name}}?</p>
         </div>
-    </div>  
-    <div class="modal-content telegrafico">
-        <p>Are you sure you want to remove [TEAM MEMBER] from the [TEAM NAME]?</p>
     </div>
-    <div class="divider"></div>
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect btn-flat" onclick="Materialize.toast('Member Removed', 3000)"><i class="material-icons left">close</i>No</a>
-        <a class="modal-action modal-close waves-effect btn-flat"><i class="material-icons left">check</i>Yes</a>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="kickMember(kickedMember.team_id, kickedMember.id)">YES</button>
+        <button href="" class="modal-action modal-close minimalist-button">NO</button>
     </div>
 </div>
 

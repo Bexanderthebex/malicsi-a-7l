@@ -96,15 +96,15 @@ BEGIN
 END //
 DELIMITER ;
 
+-- retrieve matches
+
 DROP PROCEDURE IF EXISTS view_current_match;
 DELIMITER //
 CREATE PROCEDURE view_current_match
 (IN sportId INT
 )
 BEGIN
-	SELECT team_id, team_name, time_start, time_end, match_date, team_in_match.match_id FROM
-	(sport_match join team_in_match using (match_id) join team using (team_id)) WHERE
-	sport_match.sport_id = sportId AND CURDATE() = match_date;
+	SELECT match_id, m.time_start, m.time_end, m.sport_id, match_date, remarks FROM sport_match m join sport using (sport_id) WHERE m.sport_id = sportId AND CURDATE() = match_date;
 END //
 DELIMITER ;
 
@@ -114,9 +114,7 @@ CREATE PROCEDURE view_past_match
 (IN sportId INT
 )
 BEGIN 
-	SELECT team_id, team_name, time_start, time_end, match_date, team_in_match.match_id, ranking FROM
-	(sport_match join team_in_match using (match_id) join team using (team_id)) WHERE
-	sport_match.sport_id = sportId AND CURDATE() > match_date;
+	SELECT match_id, m.time_start, m.time_end, m.sport_id, match_date, remarks FROM sport_match m join sport using (sport_id) WHERE m.sport_id = sportId AND CURDATE() > match_date;
 END //
 DELIMITER ;
 
@@ -126,9 +124,16 @@ CREATE PROCEDURE view_future_match
 (IN sportId INT
 )
 BEGIN 
-	SELECT team_id, team_name, time_start, time_end, match_date, team_in_match.match_id FROM
-	(sport_match join team_in_match using (match_id) join team using (team_id)) WHERE
-	sport_match.sport_id = sportId AND CURDATE() < match_date;
+	SELECT match_id, m.time_start, m.time_end, m.sport_id, match_date, remarks FROM sport_match m join sport using (sport_id) WHERE m.sport_id = sportId AND CURDATE() < match_date;
+END //
+DELIMITER ;
+
+-- retrieve teams in match
+DROP PROCEDURE IF EXISTS retrieve_teams_in_match;
+DELIMITER //
+CREATE PROCEDURE retrieve_teams_in_match (IN m_id INT)
+BEGIN
+	SELECT team_id, team_name, ranking FROM team JOIN team_in_match using (team_id) where match_id = m_id;
 END //
 DELIMITER ;
 
@@ -137,12 +142,30 @@ DELIMITER //
 CREATE PROCEDURE retrieve_match_winner
 (IN s_id INT
 )
-BEGIN 
+BEGIN
 	SELECT m.match_id, t.team_name FROM
 	team t, team_in_match tm, sport_match m, sport s WHERE
 	t.team_id = tm.team_id AND tm.match_id = m.match_id AND m.sport_id = s.sport_id AND tm.ranking = 1 AND s.sport_id = s_id;
 END //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS add_team_in_match;
+DELIMITER //
+CREATE PROCEDURE add_team_in_match (IN m_id INT, IN t_id INT, IN rank INT)
+BEGIN
+	insert into team_in_match (match_id, team_id, ranking) values (m_id, t_id, rank);
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS delete_team_in_match;
+DELIMITER //
+CREATE PROCEDURE delete_team_in_match (IN m_id INT, IN t_id INT)
+BEGIN
+	DELETE FROM team_in_match WHERE team_id = t_id AND match_id = m_id;
+END //
+DELIMITER ;
+
+
 
 -- view future match in sport
 GRANT EXECUTE ON PROCEDURE view_match_sport TO 'administrator'@'localhost';
@@ -186,9 +209,15 @@ GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE retrieve_match_winner TO 'guest'@'localhost';
 
+-- retrieve teams in match
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'competitor'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_match TO 'guest'@'localhost';
 -- add match
 GRANT EXECUTE ON PROCEDURE add_match TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE add_match TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE add_match TO 'guest'@'localhost';
 
 -- edit match
 GRANT EXECUTE ON PROCEDURE edit_match TO 'organizer'@'localhost';
@@ -201,4 +230,10 @@ GRANT EXECUTE ON PROCEDURE edit_team_ranking_in_match TO 'administrator'@'localh
 -- delete match
 GRANT EXECUTE ON PROCEDURE delete_match TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE delete_match TO 'administrator'@'localhost';
+
+GRANT EXECUTE ON PROCEDURE view_last_inserted_match TO 'guest'@'localhost';
+
+
+GRANT EXECUTE ON PROCEDURE add_team_in_match TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE add_team_in_match TO 'administrator'@'localhost';
 

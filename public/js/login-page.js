@@ -1,12 +1,16 @@
 $(document).ready(function(){
 	$("#signup").on('click', function(){
-		$("#login-panel").css("display", "none");
-		$("#signup-panel").css("display", "inline");
+		$("#content-right").css("display", "none");
+		$("#title-right").css("display", "");
+		$("#content-left").css("display", "");
+		$("#title-left").css("display", "none");
 	});
 
 	$("#backtologin").on('click', function(){
-		$("#login-panel").css("display", "inline");
-		$("#signup-panel").css("display", "none");
+		$("#title-right").css("display", "none");
+		$("#content-right").css("display", "");
+		$("#content-left").css("display", "none");
+		$("#title-left").css("display", "");
 	});
 
 	$('.datepicker').pickadate({

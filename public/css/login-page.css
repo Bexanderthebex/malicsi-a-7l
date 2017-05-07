@@ -10,7 +10,7 @@
 
 #login-panel{
 	width: 100%;
-	height: 80%;
+	height: 75%;
 	/*background: white;*/
 }
 
@@ -19,7 +19,121 @@
 	padding: 0;
 }
 
-#login-left, #login-right{
+#login-left, #login-right, #content-left, #content-right{
 	height: 100%;
+	padding: 0;
 
+}
+
+#title-left{
+	background-image: url('/assets/login-leg.png');
+	background-size: cover;
+}
+
+#title-right{
+	background-image: url('/assets/login-pc-bg.png');
+	background-size: cover;
+	opacity: 0.9;
+	background-color: #00415a;
+
+}
+
+#content-left{
+	overflow-y: scroll;
+}
+
+#content-left input{
+	height: 30px;
+}
+
+#login-holder input::-webkit-input-placeholder{
+	color: black!important;
+	font-family: century-gothic!important;
+	letter-spacing: 1px!important;
+	font-style: bold;
+	font-size: 12px!important;
+	line-height: 12px!important;
+}
+
+#login-holder .input-field input[type=text]{
+	border-bottom: 3px solid #00719c!important;
+	font-family: century-gothic!important;
+	letter-spacing: 1px!important;
+	font-style: bold;
+	font-size: 12px!important;
+	line-height: 12px!important;
+	color: black!important;
+}
+
+#login-holder .input-field input[type=radio]{
+	color: #00b8ff;
+}
+
+#login-holder .input-field input[type=text]:focus,
+#login-holder .input-field input[type=password]:focus, #login-holder .input-field input[type=text]:active,
+#login-holder .input-field input[type=password]:active
+{
+	border-bottom: 3px solid black!important;
+	color: #00415a!important;
+}
+
+#login-holder input[type=password]{
+	border-bottom: 3px solid #00719c!important;
+	font-family: century-gothic!important;
+	font-style: bold;
+	font-size: 12px!important;
+	line-height: 12px!important;
+	color: black!important;
+	height: 30px!important;
+}
+
+.login-input{
+	height: 30px!important;
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+
+.login-btn{
+	height: 40px;
+	width: 50%;
+	border-radius: 20px;
+	border: none;
+	font-family: telegrafico;
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+
+.login-btn:disabled{
+	background: gray;
+}
+
+.login-info{
+	text-align: center;
+	font-size: 13px;
+}
+
+
+.login-info-small{
+	margin-top: 30px;
+	color: gray;
+	font-size: 12px;
+}
+
+#content-left::-webkit-scrollbar-track
+{
+	background: transparent;
+	/*-webkit-box-shadow: inset 0 0 0px rgba(0,0,0,0.3);*/
+	/*background-color: #F5F5F5;*/
+}
+
+#content-left::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: transparent;
+}
+
+#content-left::-webkit-scrollbar-thumb
+{
+	background-color: #00719c;
+	border-radius: 5px;
 }

@@ -143,6 +143,7 @@
 
 
         function retrieveTeam(team_id) {
+
             OrganizationService
                 .retrieveTeam(team_id)
                 .then(function(res) {
@@ -160,11 +161,30 @@
             OrganizationService
                 .retrieveMembers(team_id)
                 .then(function(res) {
-                    $scope.teamMembers = res.data;
+                    $scope.teamMembers = [];
+                    let i;
+                    let len = res.data.length;
+                    for (i = 0 ; i< len; i++){
+                        if (res.data[i].is_member == 1)
+                            $scope.teamMembers.push(res.data[i]);
+                    }
                     if($scope.teamMembers.length < 1)
                         $('#emptyTeam').text('No Members Yet');
                     else
                         $('#emptyTeam').text('');
+                    
+                    $(document).ready(function()
+                    {
+                        $("#M.organization-team-member-avatar").on("error", function(){
+                            $(this).attr("src", "assets/avatars/M.png");
+                        });
+                    });
+                    $(document).ready(function()
+                    {
+                        $("#F.organization-team-member-avatar").on("error", function(){
+                            $(this).attr("src", "assets/avatars/F.png");
+                        });
+                    });
                 }, function(err) {
                     Materialize.toast('Error loading details');
                     console.log(err);

@@ -36,7 +36,7 @@ CREATE TABLE competitor_sport_played (
 
 CREATE TABLE organizer (
 	id INT NOT NULL,
-	name VARCHAR(70),
+	name VARCHAR(70) NOT NULL,
 	description VARCHAR(120),
 	PRIMARY KEY (id),
 	FOREIGN KEY (id) REFERENCES user(id) ON DELETE CASCADE
@@ -46,13 +46,15 @@ CREATE TABLE sponsor_institution (
 	sponsor_id INT AUTO_INCREMENT,
 	name VARCHAR(100) NOT NULL,
 	description TEXT,
-	PRIMARY KEY(sponsor_id)
+	PRIMARY KEY(sponsor_id),
+	UNIQUE KEY(name)
 );
 
 CREATE TABLE organization (
 	organization_id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(50) NOT NULL,
-	PRIMARY KEY (organization_id)
+	PRIMARY KEY (organization_id),
+	UNIQUE KEY (name)
 );
 
 CREATE TABLE game (

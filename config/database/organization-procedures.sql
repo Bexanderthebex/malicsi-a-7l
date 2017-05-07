@@ -28,13 +28,13 @@ END;
 DELIMITER ;
 
 -- check organization
-GRANT EXECUTE ON PROCEDURE check_organization TO organizer;
-GRANT EXECUTE ON PROCEDURE check_organization TO administrator;
+GRANT EXECUTE ON PROCEDURE check_organization TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE check_organization TO 'administrator'@'localhost';
 
 -- add organization
-GRANT EXECUTE ON PROCEDURE add_organization TO organizer;
-GRANT EXECUTE ON PROCEDURE add_organization TO administrator;
+GRANT EXECUTE ON PROCEDURE add_organization TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE add_organization TO 'administrator'@'localhost';
 
 -- delete organization
-GRANT EXECUTE ON PROCEDURE delete_organization TO organizer;
-GRANT EXECUTE ON PROCEDURE delete_organization TO administrator;
+GRANT EXECUTE ON PROCEDURE delete_organization TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE delete_organization TO 'administrator'@'localhost';

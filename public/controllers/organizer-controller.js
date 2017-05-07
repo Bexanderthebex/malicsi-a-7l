@@ -13,6 +13,7 @@
             orgID: $routeParams.id
         };
         $scope.addGame = addGame;
+        $scope.duped_password = "";
         $scope.deleteGame = deleteGame;
         $scope.updateGame = updateGame;
         $scope.getRequests = getRequests;
@@ -42,6 +43,46 @@
             locat: undefined,
             descrip: undefined
         };
+        $scope.fileItem ={};
+
+        function getCurrentUser() {	
+            $(document).ready(function()
+            {
+                $("#organizer-profile-img").on("error", function(){
+                    $(this).attr("src", "/assets/avatar.png");
+                });
+            });
+            UserService		
+                .getUserInfo()		
+                .then(function (res){		
+                    if(res.data.type != 'O') {
+                        $window.location.href = '/';
+                    } else {
+                        $scope.currentUser = res.data;
+                    }	
+                 }, function(err) {		
+                    Materialize.toast('error', 3000);       
+                })      
+        }
+
+        function getOrganizer() {
+            $(document).ready(function()
+            {
+                $("#organizer-profile-img").on("error", function(){
+                    $(this).attr("src", "/assets/avatar.png");
+                });
+            });
+            OrganizerService
+                .getOrganizer($scope.thisOrganizer.orgID)
+                .then(function(res) {
+                    $scope.thisOrganizer = res.data;
+                    if($scope.thisOrganizer == []) {
+                        $window.location.href = '/#/error';
+                    }
+                }, function(err) {
+                    $window.location.href = '/#/error';
+                })
+        }
 
         function copyGame(game) {
             $scope.gameCopy = {
@@ -109,6 +150,7 @@
                 .retrieveUpcomingGames($scope.thisOrganizer.orgID)
                 .then(function(res) {
                     $scope.upcomingGames = res.data;
+                    console.log($scope.upcomingGames);
                 }, function(err) { 
                     Materialize.toast('Games not retrieved.', 3000);
                 })
@@ -214,32 +256,6 @@
                     Materialize.toast('Error retrieving requests.', 3000);
                 })
         }
-        
-        function getCurrentUser() {	
-            console.log("anuna");	
-            UserService		
-                .getUserInfo()		
-                .then(function (res){
-                    console.log(res.data);			
-                    if(res.data.type != 'O') {
-                        $window.location.href = '/';
-                    } else {
-                        $scope.currentUser = res.data;
-                    }	
-                 }, function(err) {		
-                    Materialize.toast('error', 3000);		
-                })		
-        }
-
-        function getOrganizer() {
-            OrganizerService
-                .getOrganizer($scope.thisOrganizer.orgID)
-                .then(function(res) {
-                    $scope.thisOrganizer = res.data;
-                }, function(err) {
-                    Materialize.toast('Error retrieving organizer!', 3000);
-                })
-        }
 
         function acceptRequest() {
             OrganizerService
@@ -264,6 +280,7 @@
         }
 
         function updateOrganizer() {
+            upload();
             OrganizerService
                 .updateOrganizer($scope.organizer)
                 .then(function(res) {
@@ -279,11 +296,31 @@
                                         Materialize.toast('Failed to update organizer!', 3000);
                                     })
                             } else Materialize.toast('Successfully updated organizer!', 3000);
+                            $window.location.reload();
                         }, function(err) {
                             Materialize.toast('Failed to update organizer!', 3000);
                         })
                 }, function(err) {
                     Materialize.toast('Failed to update organizer!', 3000);
+                })
+        }
+
+
+        function upload(){
+            $scope.fileItem.file = document.getElementById("fileItemOrg").files[0];
+            $scope.fileItem.file.newname = $scope.organizer.id;
+            //$scope.fileItem.file.name = { "value":$scope.organizer.id,"writable":true};
+            $scope.fileItem.name=$scope.organizer.id;
+            console.log("\n\n\n\n File Uploading...")
+            console.log($scope.fileItem);
+            console.log($scope.fileItem.file);
+            //var uploadUrl = '/upload';
+            UserService
+                .uploader($scope.fileItem)
+                .then(function(res){
+
+                },function(err){
+                    console.log(err);
                 })
         }
 
