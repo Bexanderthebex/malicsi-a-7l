@@ -11,7 +11,6 @@
                         <h6 class="white-text center game-details"><i class="fa fa-calendar"></i> | Start: {{game.start_date| date : 'longDate'}} End: {{game.end_date| date : 'longDate'}}</h6>
                         <h6 class="rockwell center game-details white-text" ng-hide="checkGameLocation()"><i class="fa fa-map-marker"></i> | {{game.location}}</h6>
                         <h6 class="rockwell center game-details white-text" ng-show="checkGameLocation()"><i class="fa fa-map-marker"></i> | No location available.</h6>
-                        <p class="white-text game-details rockwell" ng-hide = "checkGameDescription()">{{game.description}}</p>
                     </div>
                 </div>
                 <div class="row game-container blue-grey lighten-5">
@@ -231,7 +230,7 @@
                                 <div class="game-game-box-body white game-rightpanel-container">
                                     <div class="telegrafico game-rightpanel-container">
                                         <p class="game-organizer-header center game-remove-bottom"><a href="#/organizer/profile/{{game.organizer_id}}" class="game-maintain-anchor">{{gameOrganizer.name}}</a><br>
-                                            <span class="game-organizer-description century-gothic"> {{gameOrganizer.description}}</span>
+                                            <span class="game-organizer-description century-gothic" style="word-wrap: break-word;"> {{gameOrganizer.description}}</span>
                                         </p>
                                         <div class="row game-remove-bottom">
                                             <div class="col s12">
