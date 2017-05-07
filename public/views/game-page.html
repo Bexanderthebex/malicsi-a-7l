@@ -54,7 +54,6 @@
                                                             {{ pastMatch.sport_name }}
                                                         </div>
                                                         <div class="game-match-container">
-                                                            
                                                             <div class="game-scroll-multiple-teams">
                                                                 <div ng-repeat="team in pastMatch.teams">
                                                                     <div class="col s12 m12">
@@ -64,7 +63,6 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-
                                                             <div class="game-container-info-padding">
                                                                 <div class="game-match-info">
                                                                     Start: {{pastMatch.time_start}} • End: {{pastMatch.time_end}}
@@ -87,7 +85,9 @@
                                             <div class="row" ng-hide = "checkOngoingMatches()">
                                                 <div id="game-ongoing-match" class="col s12 m6 l4" ng-repeat="ongoingMatch in ongoingMatches" >
                                                     <div class="game-match palette-border-4">
-
+                                                        <div class="game-match-header center palette-4 white-text telegrafico">
+                                                            {{ ongoingMatch.sport_name }}
+                                                        </div>
                                                         <div class="game-match-container">
                                                             <div ng-repeat="team in ongoingMatch.teams">
                                                                 <div class="col s12 m12">
@@ -118,6 +118,9 @@
                                             <div class="row" ng-hide="checkUpcomingMatches()">
                                                 <div id="game-upcoming-match" class="col s12 m6 l4" ng-repeat= "upcomingMatch in upcomingMatches">
                                                     <div class="game-match palette-border-3">
+                                                        <div class="game-match-header center palette-3 white-text telegrafico">
+                                                            {{ upcomingMatch.sport_name }}
+                                                        </div>
                                                         <div class="game-match-container">
                                                             <div ng-repeat="team in upcomingMatch.teams">
                                                                 <div class="col s12 m12">
@@ -265,7 +268,7 @@
                                             </div>
                                         </div>
                                         <div class="col s12 m12" ng-show="checkParticipatingOrganizations()">
-                                            <p class="telegrafico palette-text-4 strong game-sponsor-title black-text center">
+                                            <p class="telegrafico palette-text-4 strong game-sponsor-title palette-text-4 center">
                                                 No organizations here yet!
                                             </p>
                                         </div>
@@ -297,7 +300,7 @@
                                             </div>
                                         </div>
                                         <div class="col s12 m12" ng-show="checkSponsors()">
-                                            <p class="telegrafico palette-text-4 strong game-sponsor-title center black-text">
+                                            <p class="telegrafico palette-text-4 strong game-sponsor-title center palette-text-4">
                                                 No sponsors here yet!
                                             </p>
                                         </div>
