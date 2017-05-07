@@ -202,6 +202,7 @@ DELIMITER ;
 
 
 GRANT EXECUTE ON PROCEDURE create_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE create_sport TO 'organizer'@'localhost';
 
 -- view sport
 GRANT EXECUTE ON PROCEDURE view_sport TO 'organizer'@'localhost';
