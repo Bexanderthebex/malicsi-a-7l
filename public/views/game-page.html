@@ -1,7 +1,7 @@
 <div id="mainHolder" ng-init="initializeGamePage()">
 	<div id="main">
         <div class="">
-            <div class="col s12 game-padding-left game-padding-right" ng-init="viewGameDetails()">
+            <div class="col s12 game-padding-left game-padding-right">
                 <div class="parallax-container game-parallax">
                     <div class="parallax"><
                     <img src="assets/yey.jpg">
@@ -47,7 +47,7 @@
                                 <div class="game-game-box-body game-rightpanel-container game-panel-bottom game-game-box-matches">
                                     <div id="past-match">
                                         <div class="col s12 game-infinite-scroll">
-                                            <div class="row" ng-init="retrieveMatchesInGame()" ng-hide="checkPastMatches()">
+                                            <div class="row"  ng-hide="checkPastMatches()">
                                                 <div id="game-past-match" class="col s12 m6 l4" ng-repeat="pastMatch in pastMatches">
                                                     <div class="game-match palette-border-5">
                                                         <div class="game-match-header center palette-5 white-text telegrafico">
@@ -160,7 +160,7 @@
                                 </div>
                                 <div class="game-game-box-body game-rightpanel-container game-panel-bottom game-organization-content" ng-hide="checkSports()">
                                     <div class="col s12 game-wew-scroll">
-                                        <div class="row" ng-init="retrieveAllSports()" >
+                                        <div class="row" >
                                             <div class="col s12 m6 l4" ng-show="checkIfOrganizer()" >
                                                 <div class="game-sport" data-target="game-add-sport" >
                                                     <div class="card game-hovercard">

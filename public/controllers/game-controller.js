@@ -329,7 +329,7 @@
 				.getUserInfo()
 				.then(function(res){
 					// console.log("user details retrieved");
-					console.log(res);
+					// console.log(res);
 					$scope.user = res.data;
 				}, function(err){
 					// console.log(err);
@@ -478,7 +478,7 @@
 						countTeamInSport(res.data[i]);
 					}
 					$scope.sports = res.data;
-					console.log(res.data);
+					// console.log(res.data);
 				}, function(err) {
 					// console.log(err);
 					Materialize.toast('Failed to retrieve sports!', 3000);
@@ -574,6 +574,7 @@
 					$scope.gameStartDate = new Date($scope.game.start_date+"T"+"00:00:00"+"Z");
 					$scope.gameEndDate = new Date($scope.game.end_date+"T"+"00:00:00"+"Z");
 					getUserDetails();
+					retrieveAllSports();
 					viewAllOrganizationInGame();
 					viewAllOrganizationForGame();
 					viewGameOrganizerDetails();
@@ -657,7 +658,7 @@
 				.then(function(res){
 					// console.log("past matches retrieved for game#"+ $scope.thisGame.game_id);
 					// console.log(res.data);
-					$scope.temp = res.data;
+
 					mergeMatchesBeta(res.data, "past");
 					// console.log($scope.pastMatches);
 				}, function(err){
@@ -687,7 +688,7 @@
 				}
 
 			}
-
+			// console.log($scope.pastMatches);
 			//then add the teams to the matches
 			//welp, javascript is not a pass-by-reference language they said....
 			if (flag=="past"){
@@ -828,7 +829,7 @@
 
 					$scope.sponsorAdd = {};
 					// $scope.otherSponsors = res;
-					console.log(angular.extend($scope.otherSponsors, res));
+					// console.log(angular.extend($scope.otherSponsors, res));
 					for (var i = 0; i< res.length; i++){
 						$scope.newSponsorGame = {
 							sponsorId: res[i].sponsor_id,
