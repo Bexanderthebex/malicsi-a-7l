@@ -58,7 +58,6 @@
 
         function editMatch(match) {
             let deferred = $q.defer();
-            console.log(match);
             let ddata = {
                 timeStart: match.timeStart,
                 timeEnd: match.timeEnd,
@@ -108,7 +107,6 @@
 
         function deleteMatch(match) {
             let deferred = $q.defer();
-            console.log(match);
             let ddata = {
                 matchId: match
             }
@@ -172,7 +170,6 @@
 
         function retrieveMatches(sport_id) {
             let deferred = $q.defer();
-            console.log(sport_id);
             $http({
                 method: 'GET',
                 params: { 'sportId':sport_id },
@@ -186,10 +183,9 @@
             
             return deferred.promise;
         }
-        //start of added part -melbex
+
         function viewCurrentMatch(sport_id){
             let deferred = $q.defer();
-            console.log(sport_id);
             $http({
                 method: 'GET',
                 url: '/sport/match/viewCurrentMatch/' + sport_id,
@@ -205,7 +201,6 @@
 
         function viewPastMatch(sport_id){
             let deferred = $q.defer();
-            console.log(sport_id);
             $http({
                 method: 'GET',
                 url: '/sport/match/viewPastMatch/' + sport_id,
@@ -221,7 +216,6 @@
 
         function viewFutureMatch(sport_id){
             let deferred = $q.defer();
-            console.log(sport_id);
             $http({
                 method: 'GET',
                 url: '/sport/match/viewUpcomingMatch/' + sport_id,
@@ -237,7 +231,6 @@
 
         function retrieveTeamsInMatch(match_id) {
             let deferred = $q.defer();
-            console.log(match_id);
             $http({
                 method: 'GET',
                 url: '/sport/match/retrieveTeamsInMatch/'+ match_id,
@@ -253,7 +246,6 @@
 
         function retrieveTeamsInSport(sport_id) {
             let deferred = $q.defer();
-            console.log(sport_id);
             $http({
                 method: 'GET',
                 url: '/sport/retrieveTeamsInSport/'+ sport_id,
@@ -269,7 +261,6 @@
 
         function retrieveSport(sport_id) {
             let deferred = $q.defer();
-            console.log(sport_id);
             $http({
                 method: 'GET',
                 params: { 'sportID':sport_id },
@@ -286,7 +277,6 @@
 
         function retrieveGame(game_id) {
             let deferred = $q.defer();
-            console.log(game_id);
             $http({
                 method: 'GET',
                 params: { 'gameId':game_id },
@@ -304,7 +294,6 @@
 
         function retrieveSportRankings(sport_id) {
             let deferred = $q.defer();
-            console.log(sport_id);
             $http({
                 method: 'GET',
                 url: '/sport/rankings/' + sport_id,
@@ -320,7 +309,6 @@
 
         function retrieveSponsors(sport_id) {
             let deferred = $q.defer();
-            console.log(sport_id);
             $http({
                 method: 'GET',
                 url: '/sport/viewSponsorInSport/' + sport_id,
@@ -336,7 +324,6 @@
 
         function retrieveMatchWinner(sport_id) {
             let deferred = $q.defer();
-            console.log(sport_id);
             $http({
                 method: 'GET',
                 //params: { 'sportId':sport_id },

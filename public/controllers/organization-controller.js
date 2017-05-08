@@ -45,12 +45,8 @@
         $scope.joinTeam = joinTeam;
         $scope.initPage = initPage;
         $scope.quitTeam = quitTeam;
-        //$scope.retrieveMembers = retrieveMembers;
-        //$scope.retrieveTeamStatistics = retrieveTeamStatistics;
-        //$scope.retrieveOrganizationStatistics = retrieveOrganizationStatistics;
         $scope.retrieveOrganization = retrieveOrganization;
         $scope.retrieveGamesInOrganization = retrieveGamesInOrganization;
-        //$scope.checkTeamMembership = checkTeamMembership;
         $scope.setViewedGame = setViewedGame;
         $scope.setPageView = setPageView;
         $scope.searchInOrg = searchInOrg;
@@ -60,8 +56,7 @@
             $(document).ready(function(){ 
                 $('.modal').modal('close'); 
                 $('#organization-team-info-modal').modal('close'); 
-            });    
-            console.log("closing modal");
+            }); 
         });
 
         function closeAllModals() {
@@ -267,23 +262,13 @@
                         st = res.data[i]==undefined?st:res.data[i].ranking == 1?res.data[i].rankCount:st; 
                         nd = res.data[i]==undefined?nd:res.data[i].ranking == 2?res.data[i].rankCount:nd;
                         rd = res.data[i]==undefined?rd:res.data[i].ranking == 3?res.data[i].rankCount:rd; 
-                    } 
-                    /*if (res.data.ranking == null){
-                        $scope.organizationStats.first = 0;
-                        $scope.organizationStats.second= 0;
-                        $scope.organizationStats.third = 0;
-                        $scope.organizationStats.total = 0;
-                        console.log("Not Available");
                     }
-                    else{
 
+                    $scope.organizationStats.first = st;
+                    $scope.organizationStats.second= nd;
+                    $scope.organizationStats.third = rd;
+                    $scope.organizationStats.total = st + nd + rd;
 
-*/
-                        $scope.organizationStats.first = st;
-                        $scope.organizationStats.second= nd;
-                        $scope.organizationStats.third = rd;
-                        $scope.organizationStats.total = st + nd + rd;
-                    //}
                 }, function(err) {
                     Materialize.toast('Error loading details');
                     console.log(err.data);
@@ -318,7 +303,6 @@
         }
 
         function searchInOrg(input) {
-            console.log("halbira");
             var temp =  $scope.gamesInOrganization;
             var i;
             var matches = [];
@@ -332,8 +316,6 @@
             }
             $scope.filteredGames = matches.slice(0);
             setViewedGame($scope.filteredGames[0])
-            // matches array contains the results
-            console.log($scope.filteredGames);
         }
 
     }

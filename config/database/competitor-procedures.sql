@@ -7,19 +7,18 @@ DELIMITER //
 	BEGIN
 	   SELECT * FROM competitor WHERE first_name LIKE search OR last_name LIKE search OR nickname LIKE search;
 	END; //
-
 DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS get_competitor;
 DELIMITER //
 
-CREATE PROCEDURE get_competitor (IN search INT)
-	BEGIN
-	   SELECT user.id, user.username, user.email, user.contact, user.type, user.is_active,
-	   competitor.birthday, competitor.first_name, competitor.last_name, competitor.nickname, competitor.sex, competitor.bio
-	   FROM user join competitor using(id) where id = search;
-	END; //
-
+	CREATE PROCEDURE get_competitor (IN search INT)
+		BEGIN
+		   SELECT user.id, user.username, user.email, user.contact, user.type, user.is_active,
+		   competitor.birthday, competitor.first_name, competitor.last_name, competitor.nickname, competitor.sex, competitor.bio
+		   FROM user join competitor using(id) where id = search;
+		END; //
 DELIMITER ;
 
 
@@ -86,6 +85,7 @@ DELIMITER ;
 GRANT EXECUTE ON PROCEDURE search_competitor TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE search_competitor TO 'administrator'@'localhost';
 GRANT EXECUTE ON PROCEDURE search_competitor TO 'guest'@'localhost';
+
 GRANT EXECUTE ON PROCEDURE get_competitor TO 'competitor'@'localhost';
 GRANT EXECUTE ON PROCEDURE get_competitor TO 'organizer'@'localhost';
 GRANT EXECUTE ON PROCEDURE get_competitor TO 'administrator'@'localhost';

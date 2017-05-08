@@ -317,7 +317,6 @@
                     $scope.organizers = [];
                     $scope.results.push.apply($scope.results, res.data);
                     $scope.organizers = res.data;
-                    console.log($scope.results);
                     sortBy('atoz');
                 }, function(err){
                     
@@ -331,7 +330,6 @@
                     $scope.games = [];
                     $scope.results.push.apply($scope.results, res.data);
                     $scope.games = res.data;
-                    console.log($scope.results);
                     sortBy('atoz');
                 }, function(err){
                     
@@ -345,7 +343,6 @@
                     $scope.sports = [];
                     $scope.results.push.apply($scope.results, res.data);
                     $scope.sports = res.data;
-                    console.log($scope.results);
                     sortBy('atoz');
                 }, function(err){                    
                 })
@@ -358,7 +355,6 @@
                     $scope.organizations = [];
                     $scope.results.push.apply($scope.results, res.data);
                     $scope.organizations = res.data;
-                    console.log($scope.organizations);
                     sortBy('atoz');
                 }, function(err){                    
                 })
@@ -371,7 +367,6 @@
                     $scope.competitors = [];
                     $scope.results.push.apply($scope.results, res.data);
                     $scope.competitors = res.data;
-                    console.log($scope.results);
                     sortBy('atoz');
                 }, function(err){                    
                 })

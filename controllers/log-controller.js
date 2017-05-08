@@ -7,8 +7,8 @@ const connection = require('./../config/db-connection.js');
 
 exports.viewAllLogs = (req, res) => {
 	let query = 'CALL get_logs()';
-
 	let type = req.session.user.type;
+
 	connection.userType(type).query(query, [], (err, rows) => {
 		if(!err) {
 			res.status(200).send(rows[0]);
@@ -21,8 +21,8 @@ exports.viewAllLogs = (req, res) => {
 
 exports.viewUserLogs = (req, res) => {
 	let query = 'CALL get_user_logs(?);';
-
 	let type = req.session.user.type;
+
 	connection.userType(type).query(query,
 		[
 			req.query.id
@@ -38,8 +38,8 @@ exports.viewUserLogs = (req, res) => {
 
 exports.viewLogsByDate = (req, res) => {
 	let query = 'SELECT * FROM log WHERE date_created BETWEEN ? AND ?';
-
 	let type = req.session.user.type;
+
 	connection.userType(type).query(query,
 		[
 			req.body.startDate,
@@ -58,6 +58,7 @@ exports.viewLogsByDate = (req, res) => {
 exports.searchLog = (req, res) => {
 	let query = 'call search_logs(?, ?, ?)';
 	let type = req.session.user.type;
+
     connection.userType(type).query(query,
         [
             '%' + req.query.username + '%',
@@ -65,7 +66,6 @@ exports.searchLog = (req, res) => {
 			new Date(req.query.endDate)
         ], (err, rows) => {
             if(!err) {
-				console.log(rows);
                 return res.status(200).send(rows[0]);
             } else {
                 return res.status(500).send({ 'message' : 'An error occured'});
@@ -76,6 +76,7 @@ exports.searchLog = (req, res) => {
 
 exports.createLog = (id, message) => {
 	let query = "CALL create_log(?,?)";
+	
     connection.userType('A').query(query,
         [
             id,

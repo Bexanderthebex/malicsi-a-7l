@@ -8,6 +8,7 @@ const logs = require('./../controllers/log-controller.js');
 
 exports.editSport = (req, res, next) => {
 	let query = 'CALL edit_sport(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+
 	connection.userType(req.session.user.type).query(query,
 	[
 		req.body.sportName,
@@ -33,6 +34,7 @@ exports.editSport = (req, res, next) => {
 
 exports.createSport = (req, res) => {
   	let query = 'CALL create_sport(?, ?, ?, ?, ?, ?, ?, ?, ?);';
+
 	connection.userType(req.session.user.type).query(query, 
 		[
 			req.body.sportName,
@@ -58,6 +60,7 @@ exports.createSport = (req, res) => {
 
 exports.countSportByGame = (req, res) => {
 	let query = 'CALL count_sport_by_game(?)';
+
 	connection.userType('G').query(query, 
 		[
 			req.params.gameID
@@ -72,36 +75,38 @@ exports.countSportByGame = (req, res) => {
 
 exports.viewSportDetails = (req, res) => {
 	let query = 'CALL view_sport(?)';
+
 	connection.userType('G').query(query, 
 		[
 		req.query.sportID
 		], 
 		(err, rows) => {
-		if (!err){
-			return res.status(200).send(rows[0][0]);
-		}else{
-			return res.status(500).send("Internal Server Ercvror");
-		}
-	});
+			if (!err){
+				return res.status(200).send(rows[0][0]);
+			}else{
+				return res.status(500).send("Internal Server Ercvror");
+			}
+		});
 }
 
 
 exports.addWinnerSport = (req, res, next) => {
 	let query = 'CALL add_winner_sport(?,?)';
+
 	connection.userType(req.session.user.type).query(query,
 		[
 			req.body.winner,
 			req.body.sportId
 		], (err, rows) => {
-				if(!err && !rows){
-					return res.status(200).send(rows);
-				}
-				else if(rows.length = undefined){
-					return res.status(404).send(req.body.sport_id + " already updated");
-				}
-				else{
-					return res.status(500).send("update unsuccessful. error occured");
-				}
+			if(!err && !rows){
+				return res.status(200).send(rows);
+			}
+			else if(rows.length = undefined){
+				return res.status(404).send(req.body.sport_id + " already updated");
+			}
+			else{
+				return res.status(500).send("update unsuccessful. error occured");
+			}
 		
 		});
 }
@@ -131,6 +136,7 @@ exports.deleteSport = (req, res, next) => {
 exports.searchForSportByKeyword = (req,res) => {
 	let query = 'call search_for_sport_by_keyword(?);';
 	let param = '%' + req.query.keyword + '%';
+
 	connection.userType('G').query(query, 
 		param,
 		(err, results, fields)	=> {
@@ -149,6 +155,7 @@ exports.searchForSportByKeyword = (req,res) => {
 exports.retrieveCompetitorSportRankings = (req, res, next) => {
 	let query = 'CALL retrieve_competitor_rankings_from_sport(?, ?)';
 	let param = parseInt(req.params.sportId);
+
 	if(!isNaN(param)){
 		connection.userType('G').query(query,
 			[req.params.sportId, req.params.id],
@@ -160,7 +167,6 @@ exports.retrieveCompetitorSportRankings = (req, res, next) => {
 					return res.status(404).send("Rankings are unavailable.");
 				}
 				else{
-					console.log(err);
 					return res.status(500).send("Internal server error.");
 				}
 			});
@@ -173,20 +179,20 @@ exports.retrieveCompetitorSportRankings = (req, res, next) => {
 
 exports.retrieveSportRankings = (req, res, next) => {
 	let query = 'CALL retrieve_sport_rankings(?)';
-		connection.userType('G').query(query,
-			[req.params.sportId],
-			(err, rows) =>{
-				if(!err){
-					return res.status(200).send(rows[0]);
-				}
-				else if(rows.length == undefined){
-					return res.status(404).send("Rankings are unavailable.");
-				}
-				else{
-					console.log(err);
-					return res.status(500).send("Internal server error.");
-				}
-			});
+
+	connection.userType('G').query(query,
+		[req.params.sportId],
+		(err, rows) =>{
+			if(!err){
+				return res.status(200).send(rows[0]);
+			}
+			else if(rows.length == undefined){
+				return res.status(404).send("Rankings are unavailable.");
+			}
+			else{
+				return res.status(500).send("Internal server error.");
+			}
+		});
 
 }
 
@@ -212,6 +218,7 @@ exports.retrieveSponsorInSport = (req, res, next) => {
 
 exports.retrieveTeamsInSport = (req, res, next) => {
 	let query = 'CALL retrieve_teams_in_sport(?)';
+	
 	connection.userType('G').query(query,
 	[req.params.sportId],
 	(err, rows) =>{

@@ -11,8 +11,6 @@
 		$scope.pword = undefined;
 
 		$scope.logAccount = function(){
-			console.log($scope.uname);
-			console.log($scope.pword);
 
 			$http.post('/login', {
 				username : $scope.uname,
@@ -27,7 +25,6 @@
 		}
 
 		$scope.signUp = function(fname, lname, nname, uname, sex, pword, cspword, bday, email, contactNum){
-			console.log('sex', sex)
 			if (pword != cspword) {
 				Materialize.toast('Passwords do not match', 2000);
 				return;
