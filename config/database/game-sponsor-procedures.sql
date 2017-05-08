@@ -146,6 +146,11 @@ GRANT EXECUTE ON PROCEDURE view_sponsor TO 'administrator'@'%';
 GRANT EXECUTE ON PROCEDURE view_sponsor TO 'competitor'@'%';
 GRANT EXECUTE ON PROCEDURE view_sponsor TO 'guest'@'%';
 
+GRANT EXECUTE ON PROCEDURE view_sponsor_in_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_sponsor_in_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_sponsor_in_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_sponsor_in_sport TO 'guest'@'%';
+
 GRANT EXECUTE ON PROCEDURE search_sponsor TO 'organizer'@'%';
 GRANT EXECUTE ON PROCEDURE search_sponsor TO 'administrator'@'%';
 GRANT EXECUTE ON PROCEDURE search_sponsor TO 'competitor'@'%';

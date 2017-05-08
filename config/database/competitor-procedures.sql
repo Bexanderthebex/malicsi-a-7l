@@ -101,3 +101,7 @@ GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'competitor'@'%';
 GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'administrator'@'%';
 GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'organizer'@'%';
 GRANT EXECUTE ON PROCEDURE get_competitor_ranking TO 'guest'@'%';
+GRANT EXECUTE ON PROCEDURE get_competitor_organization TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE get_competitor_organization TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE get_competitor_organization TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE get_competitor_organization TO 'guest'@'%';

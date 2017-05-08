@@ -113,7 +113,7 @@ DELIMITER //
 CREATE PROCEDURE view_past_match
 (IN sportId INT
 )
-BEGIN 
+BEGIN
 	SELECT match_id, m.time_start, m.time_end, m.sport_id, match_date, remarks FROM sport_match m join sport using (sport_id) WHERE m.sport_id = sportId AND CURDATE() > match_date;
 END //
 DELIMITER ;
@@ -123,7 +123,7 @@ DELIMITER //
 CREATE PROCEDURE view_future_match
 (IN sportId INT
 )
-BEGIN 
+BEGIN
 	SELECT match_id, m.time_start, m.time_end, m.sport_id, match_date, remarks FROM sport_match m join sport using (sport_id) WHERE m.sport_id = sportId AND CURDATE() < match_date;
 END //
 DELIMITER ;
@@ -237,3 +237,10 @@ GRANT EXECUTE ON PROCEDURE view_last_inserted_match TO 'guest'@'%';
 GRANT EXECUTE ON PROCEDURE add_team_in_match TO 'organizer'@'%';
 GRANT EXECUTE ON PROCEDURE add_team_in_match TO 'administrator'@'%';
 
+GRANT EXECUTE ON PROCEDURE delete_team_in_match TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE delete_team_in_match TO 'administrator'@'%';
+
+GRANT EXECUTE ON PROCEDURE count_match_by_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE count_match_by_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE count_match_by_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE count_match_by_sport TO 'guest'@'%';

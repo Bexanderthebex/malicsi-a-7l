@@ -270,3 +270,18 @@ GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'organizer'@'%';
 GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'administrator'@'%';
 GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'competitor'@'%';
 GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'guest'@'%';
+
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO 'guest'@'%';
+
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO 'guest'@'%';
+
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO 'guest'@'%';
