@@ -27,36 +27,6 @@
             console.log(err);
         });
 
-        SearchService.retrieveOrganizer('').then((res) => {
-            $scope.organizers = res.data;
-        }, (err) => {
-            console.log(err);
-        });
-
-        SearchService.retrieveSponsor('').then((res) => {
-            $scope.sponsors = res.data;
-        }, (err) => {
-            console.log(err);
-        });
-
-        SearchService.retrieveOrganization('').then((res) => {
-            $scope.organizations = res.data;
-        }, (err) => {
-            console.log(err);
-        });
-
-        AdminService.retrieveLog().then((res) => {
-            $scope.logs = res.data;
-        }, (err) => {
-            console.log(err);
-        });
-
-        AdminService.retrieveUser().then((res) => {
-            $scope.users = res.data;
-        }, (err) => {
-            console.log(err);
-        });
-
         UserService.getUserInfo().then((res) => {
             user = res.data;
             if (res.data == '' || user.type != 'A') {
@@ -67,6 +37,54 @@
             Materialize.toast('An error occured.', 2000);
             console.log(err);
         })
+
+        $scope.getAdmins = () => {
+            UserService.getUsersByType('A').then((res) => {
+                $scope.admins = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
+
+        $scope.getOrganizers = () => {
+            SearchService.retrieveOrganizer('').then((res) => {
+                $scope.organizers = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
+
+        $scope.getSponsors = () => {
+            SearchService.retrieveSponsor('').then((res) => {
+                $scope.sponsors = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
+
+        $scope.getOrganizations = () => {
+            SearchService.retrieveOrganization('').then((res) => {
+                $scope.organizations = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
+
+        $scope.getLogs = () => {
+            AdminService.retrieveLog().then((res) => {
+                $scope.logs = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
+
+        $scope.getUsers = () => {
+            AdminService.retrieveUser().then((res) => {
+                $scope.users = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
 
         $scope.addAdmin = () => {
            if($scope.adminUsername === undefined || $scope.adminPassword == undefined || $scope.adminEmail === undefined || $scope.adminContact === undefined){
