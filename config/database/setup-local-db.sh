@@ -1,13 +1,20 @@
-mysql -u root malicsi --password=$1 < malicsi.sql;
-mysql -u root malicsi --password=$1 < import.sql;
-mysql -u root malicsi --password=$1 < competitor-procedures.sql;
-mysql -u root malicsi --password=$1 < game-procedures.sql;
-mysql -u root malicsi --password=$1 < game-sponsor-procedures.sql;
-mysql -u root malicsi --password=$1 < sport-procedures.sql;
-mysql -u root malicsi --password=$1 < sport-match-procedures.sql;
-mysql -u root malicsi --password=$1 < organizer-procedures.sql;
-mysql -u root malicsi --password=$1 < team-procedures.sql;
-mysql -u root malicsi --password=$1 < user-procedures.sql;
-mysql -u root malicsi --password=$1 < admin-procedures.sql;
-mysql -u root malicsi --password=$1 < log-procedures.sql;
-mysql -u root malicsi --password=$1 < organization-procedures.sql;
+pword=$1
+runsql() {
+    echo -n "Executing $1... "
+    mysql -u root malicsi --password=$pword < $1;
+    # mysql -u root malicsi --password=$1 < import.sql;
+    if [ $? -ne 0 ]
+    then
+        echo "Failed. Exiting..."
+        exit 1
+    fi
+    echo "Done."
+}
+
+runsql malicsi.sql
+runsql MOCK/init.sql
+
+for file in *-procedures.sql
+do
+    runsql $file
+done

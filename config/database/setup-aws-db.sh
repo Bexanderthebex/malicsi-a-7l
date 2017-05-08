@@ -1,15 +1,19 @@
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < malicsi.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < import.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < competitor-procedures.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < game-procedures.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < game-sponsor-procedures.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < sport-procedures.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < sport-match-procedures.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < organizer-procedures.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < team-procedures.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < user-procedures.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < admin-procedures.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < log-procedures.sql;
-mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < organization-procedures.sql;
-# Append this to file for each procedure.sql file
-# mysql -u root --password=$1 < module-procedures.sql
+runsql() {
+    echo -n "Executing $1... "
+    mysql -u malicsia7l -pmalicsia7lthebetels -h malicsi.cfkmmn5aiujh.ap-southeast-1.rds.amazonaws.com -P 3306 malicsi < $1;
+    # mysql -u root malicsi --password=$1 < import.sql;
+    if [ $? -ne 0 ]
+    then
+        echo "Failed. Exiting..."
+        exit 1
+    fi
+    echo "Done."
+}
+
+runsql malicsi.sql
+runsql MOCK/init.sql
+
+for file in *-procedures.sql
+do
+    runsql $file
+done
