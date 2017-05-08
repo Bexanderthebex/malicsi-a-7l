@@ -31,7 +31,6 @@
         .then((res) => {
             $scope.user = res.data;
         }, (err) => {
-            console.log('game feed get current user error', err);
             Materialize.toast('Error getting user data.', 2000);
         });
 
@@ -50,11 +49,10 @@
                 .viewAllGames()
                 .then(function(res) {
                     $scope.games = res.data;
-                    console.log(res.data);
                     sortBy();
                 }, function(err) {
                     console.log(err);
-                    // Materialize.toast('', 3000);
+                    Materialize.toast('Cannot retrieve games', 3000);
                 })
         }
 
@@ -152,7 +150,6 @@
         }
 
 		function checkUser(game) {
-            console.log($scope.user == undefined || $scope.user == null);
 			return $scope.user != undefined
 				&& $scope.user != null
 				&& $scope.user.type == 'O'
@@ -236,7 +233,6 @@
         }
 
         function searchGame() {
-            console.log($scope.gameFeedSearch)
             if ($scope.gameFeedSearch == undefined
                 || $scope.gameFeedSearch == null
                 || $scope.gameFeedSearch.trim() == '') {

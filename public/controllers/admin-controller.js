@@ -35,28 +35,24 @@
 
         SearchService.retrieveSponsor('').then((res) => {
             $scope.sponsors = res.data;
-            console.log("sponsors", $scope.sponsors);
         }, (err) => {
             console.log(err);
         });
 
         SearchService.retrieveOrganization('').then((res) => {
             $scope.organizations = res.data;
-            console.log('organizations', $scope.organizations);
         }, (err) => {
             console.log(err);
         });
 
         AdminService.retrieveLog().then((res) => {
             $scope.logs = res.data;
-            console.log('logs', $scope.logs);
         }, (err) => {
             console.log(err);
         });
 
         AdminService.retrieveUser().then((res) => {
             $scope.users = res.data;
-            console.log('users', $scope.users);
         }, (err) => {
             console.log(err);
         });
@@ -158,11 +154,8 @@
                 }).then((res) => {
                     $scope.organizationName = "";
 
-                    console.log('add organization', res.data);
-
                     SearchService.retrieveOrganization('').then((res) => {
                         $scope.organizations = res.data;
-                        console.log('organizations', $scope.organizations);
                     }, (err) => {
                         console.log(err);
                     });
@@ -185,7 +178,6 @@
             SearchService.retrieveAdmin($scope.adminSearch)
             .then((res) => {
                 $scope.admins = res.data;
-                console.log('admins', $scope.admins)
             }, (err) => {
                 console.log(err);
             })
@@ -195,7 +187,6 @@
             SearchService.retrieveLogByDateAndUsername($scope.username, $scope.startDate, $scope.endDate)
             .then((res) => {
                 $scope.logs = res.data;
-                console.log('logs', $scope.logs);
             }, (err) => {
                 console.log(err);
             })
@@ -205,7 +196,6 @@
             SearchService.retrieveOrganizer($scope.organizerSearch)
             .then((res) => {
                 $scope.organizers =  res.data;
-                console.log('organizers', $scope.organizers);
             }, (err) => {
                 console.log(err);
             })
@@ -215,7 +205,6 @@
             SearchService.retrieveOrganization($scope.organizationSearch)
             .then((res) => {
                 $scope.organizations =  res.data;
-                console.log('organizations', $scope.organizations);
             }, (err) => {
                 console.log(err);
             })
@@ -225,7 +214,6 @@
             SearchService.retrieveUser($scope.userSearch)
             .then((res) => {
                 $scope.users = res.data;
-                console.log('users', $scope.users);
             }, (err) => {
                 console.log(err);
             })
@@ -235,7 +223,6 @@
             SearchService.retrieveSponsor($scope.sponsorSearch)
             .then((res) => {
                 $scope.sponsors = res.data;
-                console.log('users', $scope.users);
             }, (err) => {
                 console.log(err);
             })
@@ -262,23 +249,6 @@
                 console.log(err);
             });
         }
-
-       /* $scope.setIsActive = (isActive, id, list) => {
-            UserService.setIsActive(isActive, id)
-            .then((res) => {
-                Materialize.toast('User status changed', 2000);
-                for (let a of list) {
-                    if (a.id == id) {
-                        a.is_active = isActive;
-                        break;
-                    }
-                }
-            }, (err) => {
-                Materialize.toast('Something went wrong :\'(', 2000);
-                console.log(err);
-            });
-        }*/
-
 
         $scope.editAdmin = (admin) => {
             if ($('#admin-edit-' + admin.id).data('isEditing')) {
@@ -356,15 +326,11 @@
             $('#organizer-cancel-edit-' + organizer.id).hide();
             $('.organizer-form-edit-' + organizer.id).prop('disabled', true);
 
-            console.log(organizerCache)
-
             organizer.name = organizerCache[organizer.id].name;
             organizer.description = organizerCache[organizer.id].description;
         }
 
         $scope.editOrganization = (organization) => {
-            console.log('pasok sa editOrganization');
-            console.log('id', organization.organization_id);
             if ($('#organization-edit-' + organization.organization_id).data('isEditing')) {
                 $('#organization-edit-' + organization.organization_id).data('isEditing', false);
                 $('#organization-cancel-edit-' + organization.organization_id).hide();
@@ -402,8 +368,6 @@
             $('#organization-edit-' + organization.organization_id).data('isEditing', false);
             $('#organization-cancel-edit-' + organization.organization_id).hide();
             $('.organization-form-edit-' + organization.organization_id).prop('disabled', true);
-
-            console.log(organizationCache)
 
             organization.name = organizationCache[organization.organization_id].name;
         }
@@ -480,7 +444,6 @@
                 AdminService.addSponsor(sponsor).then((res) => {
                     SearchService.retrieveSponsor('').then((res) => {
                         $scope.sponsors = res.data;
-                        console.log("sponsors", $scope.sponsors);
                     }, (err) => {
                         console.log(err);
                     });
@@ -567,8 +530,6 @@
                 }, (err) => {
                     console.log(err);
                 });
-
-                console.log('edit password')
             }, (err) => {
                 console.log(err);
             })
@@ -579,7 +540,6 @@
         }
 
         $scope.authenticate = () => {
-            console.log('kek', user.username, $scope.passwordVerify)
             $http.post('/login', {
 				username : user.username,
 				password : $scope.passwordVerify,

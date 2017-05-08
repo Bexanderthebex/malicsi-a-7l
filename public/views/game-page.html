@@ -1,17 +1,16 @@
 <div id="mainHolder" ng-init="initializeGamePage()">
 	<div id="main">
         <div class="">
-            <div class="col s12 game-padding-left game-padding-right" ng-init="viewGameDetails()">
+            <div class="col s12 game-padding-left game-padding-right">
                 <div class="parallax-container game-parallax">
-                    <div class="parallax"><
-                    <img src="assets/yey.jpg">
+                    <div class="parallax">
+                        <img src="assets/yey.jpg">
                     </div>
                     <div class="rockwell">
                         <h3 class="white-text center game-title">{{game.name}}</h3>
                         <h6 class="white-text center game-details"><i class="fa fa-calendar"></i> | Start: {{game.start_date| date : 'longDate'}} End: {{game.end_date| date : 'longDate'}}</h6>
                         <h6 class="rockwell center game-details white-text" ng-hide="checkGameLocation()"><i class="fa fa-map-marker"></i> | {{game.location}}</h6>
                         <h6 class="rockwell center game-details white-text" ng-show="checkGameLocation()"><i class="fa fa-map-marker"></i> | No location available.</h6>
-                        <p class="white-text game-details rockwell" ng-hide = "checkGameDescription()">{{game.description}}</p>
                     </div>
                 </div>
                 <div class="row game-container blue-grey lighten-5">
@@ -47,7 +46,7 @@
                                 <div class="game-game-box-body game-rightpanel-container game-panel-bottom game-game-box-matches">
                                     <div id="past-match">
                                         <div class="col s12 game-infinite-scroll">
-                                            <div class="row" ng-init="retrieveMatchesInGame()" ng-hide="checkPastMatches()">
+                                            <div class="row"  ng-hide="checkPastMatches()">
                                                 <div id="game-past-match" class="col s12 m6 l4" ng-repeat="pastMatch in pastMatches">
                                                     <div class="game-match palette-border-5">
                                                         <div class="game-match-header center palette-5 white-text telegrafico">
@@ -160,7 +159,7 @@
                                 </div>
                                 <div class="game-game-box-body game-rightpanel-container game-panel-bottom game-organization-content" ng-hide="checkSports()">
                                     <div class="col s12 game-wew-scroll">
-                                        <div class="row" ng-init="retrieveAllSports()" >
+                                        <div class="row" >
                                             <div class="col s12 m6 l4" ng-show="checkIfOrganizer()" >
                                                 <div class="game-sport" data-target="game-add-sport" >
                                                     <div class="card game-hovercard">
@@ -177,7 +176,7 @@
                                                 <div class="game-sport" >
                                                     <div class="card game-hovercard">
                                                         <div class="center activator">
-                                                            <img src="assets/badges/badge_archery.png" class="game-adjust-image activator">
+                                                            <img id="to-change" src="assets/badges/badge_{{sportToUse}}.png" class="game-adjust-image activator">
                                                         </div>
                                                         
                                                         <a href="/#/sports/{{sport.sport_id}}" class="game-go-to-sport">
@@ -231,7 +230,7 @@
                                 <div class="game-game-box-body white game-rightpanel-container">
                                     <div class="telegrafico game-rightpanel-container">
                                         <p class="game-organizer-header center game-remove-bottom"><a href="#/organizer/profile/{{game.organizer_id}}" class="game-maintain-anchor">{{gameOrganizer.name}}</a><br>
-                                            <span class="game-organizer-description century-gothic"> {{gameOrganizer.description}}</span>
+                                            <span class="game-organizer-description century-gothic" style="word-wrap: break-word;"> {{gameOrganizer.description}}</span>
                                         </p>
                                         <div class="row game-remove-bottom">
                                             <div class="col s12">
@@ -307,7 +306,7 @@
                                     </div>
                                     <div class="row center">
                                         <button href="" class="modal-action modal-close game-organizations-button minimalist-button" ng-show='checkIfOrganizer()' data-target="game-sponsor-add">ADD</button>
-                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-sponsor" ng-show='checkDeleteButtonOrgSpon()'>DELETE</button>
+                                        <button href="" class="modal-action modal-close game-organizations-button minimalist-button" data-target="game-delete-sponsor" ng-show='checkDeleteButtonSpon()'>DELETE</button>
                                     </div>
                                 </div>
                             </div>
@@ -336,7 +335,7 @@
             <span class="telegrafico game-checkbox-change-color" >
                 <input type="checkbox" class="filled-in" ng-click="checkValidSponsorDel()" id="spon{{sponsor.sponsorId}}" ng-model="sponsor.checked"/>
                 <label for="spon{{sponsor.sponsorId}}">
-                    <p class="game-sponsor-title">{{sponsor.name}}</p>
+                    <p class="game-sponsor-title black-text">{{sponsor.name}}</p>
                     <p class="century-gothic game-adjust-sponsor-desc">{{sponsor.description}}</p>
                 </label>
             </span>
@@ -386,7 +385,7 @@
             <span class="telegrafico game-checkbox-change-color" >
                 <input type="checkbox" class="filled-in" ng-click="checkValidOrgDel()" id="org{{organization.orgId}}" ng-model="organization.checked"/>
                 <label for="org{{organization.orgId}}">
-                    <p class="game-sponsor-title">{{organization.name}}</p>
+                    <p class="game-sponsor-title black-text">{{organization.name}}</p>
                 </label>
             </span>
         </div>
@@ -432,14 +431,14 @@
             </div>
         </div>
         <div class="row modal-modal-container" ng-repeat="newSponsor in otherSponsors" >
-            <span class="telegrafico game-checkbox-change-color" >
-                <input type="checkbox" class="filled-in" ng-click="checkValidSponsorAdd()" id="newSpon{{newSponsor.sponsorId}}" ng-model="newSponsor.checked"/>
+			<span class="telegrafico game-checkbox-change-color" >
+				<input type="checkbox" class="filled-in" ng-click="checkValidSponsorAdd()" id="newSpon{{newSponsor.sponsorId}}" ng-model="newSponsor.checked"/>
                 <label for="newSpon{{newSponsor.sponsorId}}">
-                    <p class="game-sponsor-title">{{newSponsor.name}}</p>
+                    <p class="game-sponsor-title black-text">{{newSponsor.name}}</p>
                     <p class="century-gothic game-adjust-sponsor-desc">{{newSponsor.description}}</p>
                 </label>
-            </span>
-        </div>
+			</span>
+		</div>
 	</div>
 	<div class="modal-footer right-align" >
 		<button href="" class="modal-action modal-close minimalist-button">CANCEL</button>
@@ -448,22 +447,22 @@
 </div>
 
 <!-- ADD ORGANIZATION MODAL -->
-<div id="game-organization-add" class="modal modal-large" ng-init="viewAllOrganizationForGame()">
-	<div class="row game-remove-bottom">
-		<div class="col s12 game-padding-left game-padding-right palette-5">
-			<div class="center">
-					<div class="card-title white-text center telegrafico" id="thicken">
-				 		<h5>Add Organization(s) To Game</h5>
-					</div>
-			</div>
-		</div>
-	</div>
-	<div class="modal-content">
-		<div class="row" ng-repeat="newOrg in availableOrgs" >
+<div id="game-organization-add" class="modal modal-medium modal-fixed-footer " ng-init="viewAllOrganizationForGame()">
+	<div class="modal-content game-header-fill">
+        <div class="row game-remove-bottom">
+            <div class="col s12 game-padding-left game-padding-right palette-5">
+                <div class="center">
+                    <div class="card-title white-text center telegrafico" id="thicken">
+                        <h5>Add Organization(s) To Game</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="row modal-modal-container" ng-repeat="newOrg in availableOrgs" >
 			<span class="telegrafico game-checkbox-change-color" >
 				<input type="checkbox" class="filled-in" ng-click="checkValidOrgAdd()" id="newOrg{{newOrg.orgId}}" ng-model="newOrg.checked"/>
 				<label for="newOrg{{newOrg.orgId}}">
-					<p class="game-sponsor-title">{{newOrg.name}}</p>
+					<p class="game-sponsor-title black-text">{{newOrg.name}}</p>
 				</label>
 			</span>
 		</div>
@@ -482,7 +481,7 @@
             <div class="col s12 game-padding-left game-padding-right palette-5">
                 <div class="center">
                     <div class="card-title white-text center telegrafico" id="thicken">
-                        <h5>Add Sports</h5>
+                        <h5>Add Sport</h5>
                     </div>
                 </div>
             </div>

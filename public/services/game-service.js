@@ -42,7 +42,7 @@
         return service;
 
         function viewAllGames() {
-            console.log("HELLOO")
+            // console.log("HELLOO")
             let deferred = $q.defer();
             $http({
                 method: 'GET',
@@ -59,7 +59,7 @@
 
         function retrieveSport(sportId) {
             let deferred = $q.defer();
-            console.log(sportId);
+            // console.log(sportId);
             $http({
                 method: 'GET',
                 params: { 'sportId': sportId },
@@ -131,14 +131,14 @@
 
         function addSport(sport) {
             let deferred = $q.defer();
-            console.log(sport);
+            // console.log(sport);
             $http({
                 method: 'POST',
                 data: $.param(sport),
                 url: '/sport/createSport',
                 headers: headers
             }).then((res) => {
-                console.log(res);
+                // console.log(res);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -155,14 +155,14 @@
                     gameId : organizations[i].gameId,
                     orgId : organizations[i].orgId
                 }
-                console.log(organizations);
+                // console.log(organizations);
                 $http({
                     method: 'POST',
                     data: $.param(organization),
                     url: '/game/addOrganizationToGame',
                     headers: headers
                 }).then((res) => {
-                    console.log(res);
+                    // console.log(res);
                     count++;
                     if (count === organizations.length) deferred.resolve(res);
                 }, (err) => {
@@ -190,17 +190,14 @@
                 scoringSystem: sport.scoring_system,
                 sportId: sport.sport_id
             }
-            console.log(editedSport);
             $http({
                 method: 'PUT',
                 data: $.param(editedSport), // json
                 url: '/sport/editSport',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
-                console.log(err);
                 deferred.reject(err);
             });
 
@@ -221,10 +218,8 @@
                 url: '/sport/addWinnerSport',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
-                console.log(err);
                 deferred.reject(err);
             });
 
@@ -244,7 +239,7 @@
                 url: '/sport/deleteSport',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
                 deferred.reject(err);
@@ -267,7 +262,7 @@
                     url: '/game/deleteOrganizationFromGame',
                     headers: headers
                 }).then((res) => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     count++;
                     if (count === organizations.length) deferred.resolve(res);
                 }, (err) => {
@@ -473,14 +468,14 @@
                     sponsorId: sponsors[i].sponsorId,
                     gameId: sponsors[i].gameId
                 }
-                console.log(sponsor);
+                // console.log(sponsor);
                 $http({
                     method: 'DELETE',
                     data: $.param(sponsor),
                     url: '/game/deleteSponsorFromGame',
                     headers: headers
                 }).then((res) => {
-                    console.log("deleted sponsor#"+ sponsor.sponsorId);
+                    // console.log("deleted sponsor#"+ sponsor.sponsorId);
                     counter += 1;
                     if (counter === sponsors.length) deferred.resolve(res);
                 }, (err) => {

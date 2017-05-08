@@ -1,11 +1,12 @@
+'use strict'
+
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 const logs = require('./../controllers/log-controller.js');
 
-
 exports.searchOrganizer = (req, res) => {
-	query = 'CALL search_organizer(?)';
+	let query = 'CALL search_organizer(?)';
 
 	connection.userType('G').query(query,
 		[
@@ -26,7 +27,7 @@ exports.searchOrganizer = (req, res) => {
 }
 
 exports.getOrganizer = (req, res) => {
-	query = 'CALL get_organizer(?)';
+	let query = 'CALL get_organizer(?)';
 
 	connection.userType('G').query(query,
 		[
@@ -42,7 +43,6 @@ exports.getOrganizer = (req, res) => {
 }
 
 exports.editOrganizer = (req,res) => {
-	currentUser = req.session.user;
 	query = "CALL edit_organizer(?,?,?)";
 	query1 = "CALL get_organizer(?)";
 
@@ -58,7 +58,7 @@ exports.editOrganizer = (req,res) => {
 						req.body.id
 					], (err, rows) => {
 						if(!err) {
-							logs.createLog(currentUser.id,"Edited Organizer Information");
+							logs.createLog(req.session.user.id,"Edited Organizer Information");
 							return res.status(200).send(rows[0]);
 
 						}
@@ -72,7 +72,8 @@ exports.editOrganizer = (req,res) => {
 }
 
 exports.findGames = (req,res,next) => {
-	query = "CALL find_game(?)"
+	let query = "CALL find_game(?)";
+	
 	connection.userType('G').query(query,
 		[
 			req.query.id
@@ -91,7 +92,8 @@ exports.findGames = (req,res,next) => {
 };
 
 exports.findSport = (req,res,next) =>{
-	query = "CALL find_sport(?)"
+	let query = "CALL find_sport(?)";
+
 	connection.userType('G').query(query,
 		[
 		 	req.query.game_id
@@ -110,7 +112,8 @@ exports.findSport = (req,res,next) =>{
 };
 
 exports.findTeam = (req,res,next) =>{
-	query = "CALL find_team(?)"
+	let query = "CALL find_team(?)";
+
 	connection.userType('G').query(query,
 		[
 			req.query.sport_id
@@ -130,7 +133,8 @@ exports.findTeam = (req,res,next) =>{
 
 
 exports.getRequest = (req, res, next) => {
-	query = "CALL get_request(?)"
+	let query = "CALL get_request(?)";
+
 	connection.userType(req.session.user.type).query(query,
 		[
 			req.query.team_id
@@ -150,8 +154,8 @@ exports.getRequest = (req, res, next) => {
 
 
 exports.processRequest = (req, res, next) => {
-	query = "CALL process_request(?)"
-	query1 = "CALL get_team(?)"
+	let query = "CALL process_request(?)";
+	let query1 = "CALL get_team(?)";
 
 	connection.userType(req.session.user.type).query(query,
 		[
@@ -163,28 +167,26 @@ exports.processRequest = (req, res, next) => {
 				 		req.body.team_id
 					], (err,rows) => {
 						if(!err){
-							logs.createLog(currentUser.id,"Accepted Team "+req.body.team_id+" to a Game");
+							logs.createLog(req.session.user.id,"Accepted Team "+req.body.team_id+" to a Game");
 							if(rows.length == 1){
 								return res.status(200).send(rows[0][0]);
 							} else {
 								return res.status(200).send(rows[0]);
 							}
 						} else {
-							console.log(err);
 							return res.status(500).send({'message' : 'Internal Server Error'});
 						}
 					}
 				);
 			} else {
-				console.log(err);
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 	});
 };
 
 exports.deleteTeam = (req, res, next) => {
-	query1 = "CALL delete_team(?)"
-	query = "CALL get_team(?)"
+	let query1 = "CALL delete_team(?)"
+	let query = "CALL get_team(?)"
 
 	connection.userType(req.session.user.type).query(query,
 		[
@@ -196,29 +198,28 @@ exports.deleteTeam = (req, res, next) => {
 				} else {
 					res.status(200).send(rows[0]);
 				}
-				connection.userType('A').query(query1,
+				connection.userType('G').query(query1,
 					[
 				 		req.body.team_id
 					], (err,rows) => {
 						if(!err){
-							logs.createLog(currentUser.id,"Deleted Team "+req.body.team_id);
-							return 200;
+							logs.createLog(req.session.user.id,"Deleted Team "+req.body.team_id);
+							return res.status(200).send({'message' : 'Sucessfully deleted team'});
 
 						} else {
-							console.log(err);
 							return res.status(500).send({'message' : 'Internal Server Error'});
 						}
 					}
 				);
 			} else {
-				console.log(err);
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 	});
 };
 
 exports.getPendingParticipation = (req, res, next) => {
-	query = "CALL get_pending_participation(?)"
+	let query = "CALL get_pending_participation(?)";
+
 	connection.userType(req.session.user.type).query(query,
 		[
 			req.query.organizer_id

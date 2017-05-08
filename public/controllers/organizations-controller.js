@@ -30,7 +30,6 @@
             SearchService.retrieveOrganization(org)
             .then((res) => {
                 let organizations = res.data;
-                console.log('filter orgs', organizations);
                 if (team != '' || team != null || team != undefined) {
                     SearchService.retrieveTeam(team)
                     .then((res) => {
@@ -86,7 +85,6 @@
                 .then(function(res){
                     $scope.organizations = [];
                     $scope.organizations = res.data;
-                    console.log($scope.organizations);
                     retrieveTeams();
                 }, function(err){                    
                 })
@@ -98,7 +96,6 @@
                 .then(function(res){
                     $scope.organizations = [];
                     $scope.organizations = res.data;
-                    console.log($scope.organizations);
                     retrieveTeams();
                 }, function(err){                    
                 })
@@ -108,7 +105,6 @@
             var index = 0;
             $scope.orgfeedData = [];
             for(var i=0; i<$scope.organizations.length; i++){
-                console.log($scope.organizations[i].name);
                 OrganizationService
                     .retrieveTeams($scope.organizations[i].organization_id)
                     .then(function(res){
@@ -118,9 +114,7 @@
                             var fetchedTeams = [];
                             fetchedTeams.push(res.data);
                         }
-                        console.log(fetchedTeams);
                         var name = $scope.organizations[index].name;
-                        console.log(name);
                         var data = {
                             org: name,
                             id: $scope.organizations[index].organization_id,

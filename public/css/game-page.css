@@ -773,7 +773,7 @@
 
 .game-wew-scroll {
     overflow-y:auto;
-    height:485px;
+    height:480px;
 }
 
 .game-wew-scroll::-webkit-scrollbar-track{

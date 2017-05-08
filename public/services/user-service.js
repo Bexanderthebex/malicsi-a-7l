@@ -62,7 +62,6 @@
             }).then(function(res){
               deferred.resolve(res)
             }, function(err) {
-                      console.log(err);
               deferred.reject(err);
             });
 
@@ -121,24 +120,10 @@
             for(var key in data)
                 fd.append(key, data[key]);
             fd.append("name",data.name);
-            console.log(fd);
             $http.post('/uploadImg', fd, {
             transformRequest: angular.indentity,
             headers: { 'Content-Type': undefined }
             });
-/*
-            console.log(fd);
-            $http({
-                method: 'POST',
-                data: $.param(fd),
-                url: '/uploadImg',
-                transformRequest: angular.indentity,
-                headers: { 'Content-Type': undefined }    
-            }).then((res) => {
-                deferred.resolve(res);
-            }, (err) => {
-                deferred.reject(err);
-            });*/
 
             return deferred.promise;
         }

@@ -23,7 +23,7 @@ var storage = multer.diskStorage({
   }
 })
 
-
+app.set('port', (process.env.PORT || 3000))
 app.use(multer({storage:storage}).any());
 
 var routes = require('./routes/router');
@@ -44,6 +44,6 @@ app.get('*', function(req, res) {
   res.redirect('/')
 })
 
-app.listen(3000, function(){
-	console.log('Server running at localhost:3000');
+app.listen(app.get('port'), function(){
+	console.log('Server running at localhost:' + app.get('port'));
 });

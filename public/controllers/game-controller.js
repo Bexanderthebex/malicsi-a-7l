@@ -85,6 +85,7 @@
 		$scope.gameEndDate = undefined;
 		$scope.user = {};
 		$scope.sport = {};
+		$scope.sportToUse = undefined;
 		$scope.query = undefined;
 		$scope.sports = [];
 		$scope.sportCopy = {};
@@ -164,7 +165,7 @@
 			time_end: undefined,
 			match_date: undefined,
 			match_id: undefined,
-			sport_name: undefined
+			// sport_name: undefined
 		}
 
 		$scope.newOrganizationInGame = {
@@ -196,17 +197,15 @@
 				gameID: $scope.thisGame.game_id
 			};
 
-
-			console.log(newSport);
 			GameService
 				.addSport(newSport)
 				.then(function (res){
-					console.log("added");
+					// console.log("added");
 					Materialize.toast("Successfully added the sport!", 3000);
 					resetAddSportForm();
 					retrieveAllSports();
 				}, function(err) {
-					console.log(err);
+					// console.log(err);
 					Materialize.toast("Failed to add the sport!", 3000);
 				})
 		}
@@ -328,11 +327,8 @@
 			UserService
 				.getUserInfo()
 				.then(function(res){
-					console.log("user details retrieved");
-					// console.log(res);
 					$scope.user = res.data;
 				}, function(err){
-					console.log(err);
 					Materialize.toast("Failed to get user details!", 3000);
 				})
 		}
@@ -346,7 +342,6 @@
 		   GameService
 				.addMultipleOrganizations(newOrganizations)
 				.then(function (res){
-					console.log("added organizations to game");
 					$scope.availableOrgs = [];
 					$scope.participatingOrgs =[];
 					viewAllOrganizationForGame();
@@ -354,7 +349,6 @@
 					checkValidOrgAdd();
 					Materialize.toast("Successfully added the organizations!", 3000);
 				}, function(err) {
-					console.log(err);
 					Materialize.toast("Failed to add the organizations!", 3000);
 				})
 		}
@@ -374,32 +368,24 @@
 				$scope.updateMaxTeams =  sport.max_teams;
 				$scope.updateScoringSystem =  sport.scoring_system;
 				$scope.updateGameId = sport.game_id;
-
-
-			console.log(sport);
 		}
 
 		function passSponsorAdd(sponsor){
-			console.log(JSON.parse(sponsor));
 			let parsed = JSON.parse(sponsor);
 			$scope.sponsorAdd = {
 				name: parsed.name,
 				description: parsed.description,
 				sponsor_id: parsed.sponsor_id
 			}
-			console.log($scope.sponsorAdd);
 		}
 
 		function passSponsorDelete(sponsor){
-			console.log(sponsor);
-
 			$scope.sponsorCopy = {
 				name: sponsor.name,
 				description: sponsor.description,
 				sponsor_id: sponsor.sponsor_id,
 				game_id: $scope.thisGame.game_id
 			}
-			console.log($scope.sponsorCopy);
 		}
 
 
@@ -456,7 +442,6 @@
 			SearchService
 				.retrieveSport($scope.query)
 				.then(function(res){
-					console.log("Sport search success");
 					$scope.sports = [];
 					var temp = res.data;
 
@@ -476,9 +461,37 @@
 					$scope.sports = res.data;
 					for (var i = 0; i<res.data.length; i++){
 						countTeamInSport(res.data[i]);
+						if(new RegExp("archery").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "archery";
+						} else if(new RegExp("badminton").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "badminton";
+						} else if(new RegExp("baseball").test(res.data[i].sport_name.toLowerCase()) || 
+								new RegExp("base").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "baseball";
+						} else if(new RegExp("basketball").test(res.data[i].sport_name.toLowerCase()) ||
+								new RegExp("basket").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "basketball";
+						} else if(new RegExp("boxing").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "boxing";
+						} else if(new RegExp("fencing").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "fencing";
+						} else if(new RegExp("golf").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "golf";
+						} else if(new RegExp("gymnast").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "gymnastics";
+						} else if(new RegExp("swim").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "swimming";
+						} else if(new RegExp("tennis").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "tennis";
+						} else if(new RegExp("track").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "tracknfield";
+						} else if(new RegExp("volley").test(res.data[i].sport_name.toLowerCase())) {
+							$scope.sportToUse = "volleyball";
+						} else {
+							$scope.sportToUse = "volleyball";
+						}
 					}
 					$scope.sports = res.data;
-					// console.log(res.data);
 				}, function(err) {
 					console.log(err);
 					Materialize.toast('Failed to retrieve sports!', 3000);
@@ -487,15 +500,12 @@
 
 
 		function deleteSport() {
-			console.log("To delete sport " + $scope.updateId);
 			GameService
 				.deleteSport($scope.updateId)
 				.then(function(res) {
-					console.log("deleted");
 					Materialize.toast('Successfully deleted the sport!', 3000);
 					retrieveAllSports();
 				}, function(err) {
-					console.log(err.data);
 					Materialize.toast('Failed to delete sport!', 3000);
 				})
 		}
@@ -512,7 +522,6 @@
 					$scope.participatingOrgs = [];
 					viewAllOrganizationForGame();
 					viewAllOrganizationInGame();
-					console.log("deleted");
 					Materialize.toast('Successfully deleted the organization from current game!', 3000);
 				}, function(err) {
 					console.log(err.data);
@@ -535,11 +544,9 @@
 				winner: $scope.updateWinner
 			}
 
-			console.log(sport);
 			GameService
 				.updateSport(sport)
 				.then(function(res) {
-					console.log("updated");
 					Materialize.toast('Successfully updated the sport!', 3000);
 					resetUpdateSportForm();
 					retrieveAllSports();
@@ -555,8 +562,6 @@
 			GameService
 				.countTeamInSport(sport.sport_id)
 				.then(function(res) {
-
-					console.log("Team count for sport#"+sport.sport_id+": "+ res.data.team_count);
 					sport.team_count = res.data.team_count;
 				}, function(err){
 					console.log(err.data);
@@ -568,12 +573,11 @@
 			GameService
 				.viewGameDetails($scope.thisGame.game_id)
 				.then(function(res){
-					console.log("game details retrieved for game#"+ $scope.thisGame.game_id);
-					console.log(res.data);
 					$scope.game = res.data;
 					$scope.gameStartDate = new Date($scope.game.start_date+"T"+"00:00:00"+"Z");
 					$scope.gameEndDate = new Date($scope.game.end_date+"T"+"00:00:00"+"Z");
 					getUserDetails();
+					retrieveAllSports();
 					viewAllOrganizationInGame();
 					viewAllOrganizationForGame();
 					viewGameOrganizerDetails();
@@ -582,7 +586,6 @@
 				}, function(err){
 					console.log(err.data);
 					$location.path("/error");
-					// Materialize.toast('Failed to retrieve game details!', 3000);
 				})
 		}
 
@@ -590,11 +593,8 @@
 			GameService
 				.viewGameOrganizerDetails($scope.thisGame.game_id)
 				.then(function(res){
-					console.log("game organizer details retrieved for game#"+ $scope.thisGame.game_id);
-					console.log(res.data);
 					$scope.gameOrganizer = res.data[0];
 				}, function(err){
-					console.log(err.data);
 					Materialize.toast('Failed to retrieve game details!', 3000);
 				})
 		}
@@ -602,7 +602,6 @@
 			GameService
 				.viewAllOrganizationForGame($scope.thisGame.game_id)
 				.then(function(res){
-					console.log("Available organizations retrieved for game#"+ $scope.thisGame.game_id);
 					$scope.tempOrgs = res.data;
 					$scope.availableOrgs = [];
 					for(var i = 0; i<$scope.tempOrgs.length; i++){
@@ -614,7 +613,6 @@
 						}
 						$scope.availableOrgs.push($scope.newOrganizationInGame);
 					}
-					console.log($scope.availableOrgs);
 				}, function(err){
 					console.log(err.data);
 					Materialize.toast('Failed to retrieve Available Organizations!', 3000);
@@ -625,7 +623,6 @@
 			GameService
 				.viewAllOrganizationInGame($scope.thisGame.game_id)
 				.then(function(res){
-					console.log("Organizations In Game Retrieved"+ $scope.thisGame.game_id);
 					$scope.tempOrgs = res.data;
 					$scope.participatingOrgs = [];
 					for(var i = 0; i<$scope.tempOrgs.length; i++){
@@ -637,7 +634,6 @@
 						}
 						$scope.participatingOrgs.push($scope.newOrganizationInGame);
 					}
-					console.log($scope.participatingOrgs);
 				}, function(err){
 					console.log(err.data);
 					Materialize.toast('Failed to retrieve Organizations in Game!', 3000);
@@ -655,11 +651,7 @@
 			GameService
 				.viewPastMatchesInGame($scope.thisGame.game_id)
 				.then(function(res){
-					console.log("past matches retrieved for game#"+ $scope.thisGame.game_id);
-					console.log(res.data);
-					$scope.temp = res.data;
 					mergeMatchesBeta(res.data, "past");
-					console.log($scope.pastMatches);
 				}, function(err){
 					console.log(err.data);
 					Materialize.toast('Failed to retrieve past matches!', 3000);
@@ -688,8 +680,6 @@
 
 			}
 
-			//then add the teams to the matches
-			//welp, javascript is not a pass-by-reference language they said....
 			if (flag=="past"){
 				for(var i = 0; i<data.length; i++){
 					var team = {
@@ -742,12 +732,9 @@
 			GameService
 				.viewOngoingMatchesInGame($scope.thisGame.game_id)
 				.then(function(res){
-					console.log("ongoing matches retrieved for game#"+ $scope.thisGame.game_id);
-					console.log(res.data);
 					$scope.temp = res.data;
 
 					mergeMatchesBeta(res.data, "ongoing");
-					console.log($scope.ongoingMatches);
 
 				}, function(err){
 					console.log(err.data);
@@ -758,12 +745,9 @@
 			GameService
 				.viewUpcomingMatchesInGame($scope.thisGame.game_id)
 				.then(function(res){
-					console.log("upcoming matches retrieved for game#"+ $scope.thisGame.game_id);
-					console.log(res.data);
 					$scope.temp = res.data;
 
 					mergeMatchesBeta(res.data, "upcoming");
-					console.log($scope.upcomingMatches);
 
 				}, function(err){
 					console.log(err.data);
@@ -775,8 +759,6 @@
 			GameService
 				.viewOrgRankings($scope.thisGame.game_id)
 				.then(function(res){
-					console.log("organization rankings retrieved for game#"+ $scope.thisGame.game_id);
-					console.log(res.data);
 					$scope.tempOrgs = res.data;
 					for(var i = 0; i<$scope.tempOrgs.length; i++){
 						$scope.newOrg = {
@@ -785,7 +767,6 @@
 						}
 						$scope.organizationRanks.push($scope.newOrg);
 					}
-					console.log($scope.organizationRanks);
 				}, function(err){
 					console.log(err.data);
 					Materialize.toast('Failed to retrieve organization rankings!', 3000);
@@ -801,7 +782,7 @@
 			GameService
 				.viewSponsoringInstitutions($scope.thisGame.game_id)
 				.then(function(res){
-					console.log("sponsoring institutions retrieved for game#"+ $scope.thisGame.game_id);
+					// console.log("sponsoring institutions retrieved for game#"+ $scope.thisGame.game_id);
 					for (var i = 0; i< res.length; i++){
 						$scope.newSponsorGame = {
 							sponsorId: res[i].sponsor_id,
@@ -812,8 +793,6 @@
 						};
 						$scope.sponsors.push($scope.newSponsorGame);
 					}
-
-					console.log($scope.sponsors);
 				}, function(err){
 					console.log(err.data);
 					Materialize.toast('Failed to retrieve sponsoring institutions!', 3000);
@@ -824,11 +803,7 @@
 			GameService
 				.viewOtherSponsoringInstitutions($scope.thisGame.game_id)
 				.then(function(res){
-					console.log("other sponsoring institutions retrieved for game#"+ $scope.thisGame.game_id);
-
 					$scope.sponsorAdd = {};
-					// $scope.otherSponsors = res;
-					// console.log(angular.extend($scope.otherSponsors, res));
 					for (var i = 0; i< res.length; i++){
 						$scope.newSponsorGame = {
 							sponsorId: res[i].sponsor_id,
@@ -841,7 +816,6 @@
 
 						$scope.otherSponsors.push($scope.newSponsorGame);
 					}
-					 console.log($scope.otherSponsors);
 				}, function(err){
 					console.log(err.data);
 					Materialize.toast('Failed to retrieve sponsoring institutions!', 3000);
@@ -855,11 +829,9 @@
 					$scope.checkedSponsors.push ($scope.otherSponsors[i].sponsorId);
 				}
 			}
-			console.log($scope.checkedSponsors);
 		}
 
 		function addMultipleSponsors(){
-			console.log("adding multiple sponsors:")
 			for(var i=0; i<$scope.otherSponsors.length; i++){
 				if($scope.otherSponsors[i].checked==true) $scope.checkedSponsorsAdd.push($scope.otherSponsors[i])
 			}
@@ -872,7 +844,6 @@
 					viewSponsoringInstitutions();
 					viewOtherSponsoringInstitutions();
 					checkValidSponsorAdd();
-					console.log("done adding");
 				}, function(err){
 					console.log(err.data);
 					Materialize.toast('Failed to add new sponsoring institutions!', 3000);
@@ -886,14 +857,13 @@
 			GameService
 				.deleteMultipleSponsoringInstitutions($scope.checkedSponsorsDel)
 				.then(function(res){
-					// console.log("deleted sponsoring institutions");
+					console.log("deleted sponsoring institutions");
 					$scope.sponsors = [];
 					$scope.otherSponsors = [];
 					$scope.checkedSponsorsDel = [];
 					viewSponsoringInstitutions();
 					viewOtherSponsoringInstitutions();
-					checkValidSponsorDel();
-					console.log("done deleting");	
+					checkValidSponsorDel();	
 				}, function(err){
 					console.log(err.data);
 					Materialize.toast('Failed to delete sponsoring institutions!', 3000);

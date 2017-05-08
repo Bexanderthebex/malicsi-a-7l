@@ -61,7 +61,6 @@
                 .getUserInfo()      
                 .then(function (res){       
                     $scope.user = res.data; 
-                    console.log($scope.game);
                     if(res.data.type == 'O' && $scope.game.organizer_id == $scope.user.id) {
                         $scope.enableMatch = true;
                     } else if (res.data.type == 'A') {
@@ -69,16 +68,13 @@
                     } else {
                 		$scope.enableMatch = false;
                     }
-                    console.log($scope.user);
-                    console.log($scope.enableMatch);
                  }, function(err) {     
-                    Materialize.toast('error', 3000);       
+                    Materialize.toast('Cannot get current user', 3000);       
                 })      
         }
 
         function copyMatch(match) {
-            retrieveTeamsInSport();        
-            console.log(match);
+            retrieveTeamsInSport()
             $scope.matchCopy = {
                 timeStart: new Date(match.date+"T"+match.timeStart+"Z"),
                 timeEnd: new Date(match.date+"T"+match.timeEnd+"Z"),
@@ -91,7 +87,6 @@
                 $scope.matchCopy.teams.push(match.teams[i]);
             }
             $scope.matchIdCopy = match.match_id;
-            console.log($scope.matchCopy);
             $('#match-edit-modal').modal('open');
         }
 
@@ -99,26 +94,23 @@
             SportService
                 .retrieveSport($scope.thisSport.sport_id) //parameter is sport id
                 .then(function (res){
-                    console.log("retrieved sport");
                     $scope.sport = res.data;
                     retrieveGame($scope.sport.game_id);
                     retrieveSportRankings($scope.sport.sport_id);
                     retrieveSponsors($scope.sport.sport_id);
                     getCurrentUser();
                 }, function(err) {
-                    console.log("sport not retrieved");
+                    console.log(err);
                 })
         }
 
         function retrieveGame(game_id) {
-            console.log(game_id);
             SportService
                 .retrieveGame(game_id) //parameter is sport id
                 .then(function (res){
-                    console.log("retrieved game");
                     $scope.game = res.data;
                 }, function(err) {
-                    console.log("sport not retrieved");
+                    console.log(err);
                 })
         }
 
@@ -126,15 +118,13 @@
             SportService
                 .retrieveSportRankings($scope.thisSport.sport_id) //parameter is sport id
                 .then(function (res){
-                    console.log("retrieved rankings");
                     for (var i = 0; i < res.data.length; i++) {
                         if (res.data[i].total_rank != null) {
                             $scope.rankingsSport.push(res.data[i]);
                         }
                     }
-                    console.log($scope.rankingsSport);
                 }, function(err) {
-                    console.log("rankings not retrieved");
+                    console.log(err);
                 })
         }
 
@@ -142,10 +132,9 @@
             SportService
                 .retrieveMatchWinner(sport_id) //parameter is sport id
                 .then(function (res){
-                    console.log("retrieved match winners");
                     $scope.rankings = res.data;
                 }, function(err) {
-                    console.log("match winners not retrieved");
+                    console.log(err);
                 })
         }
 
@@ -153,10 +142,9 @@
             SportService
                 .retrieveSponsors(sport_id) //parameter is sport id
                 .then(function (res){
-                    console.log("retrieved sponsors");
                     $scope.sportSponsors = res.data;
                 }, function(err) {
-                    console.log("sponsors not retrieved");
+                    console.log(err);
                 })
         }
 // --------------------------------------------------------------------
@@ -164,10 +152,9 @@
             SportService
                 .retrieveTeamsInMatch(match.match_id)
                 .then(function (res){
-                    console.log("teams in match retrieved", match);
                     match.teams = res.data;
                 }), function(err){
-                    console.log("teams in match not retrieved");
+                    console.log(err);
                 }
         }
         
@@ -176,7 +163,6 @@
             SportService
                 .retrieveTeamsInSport($scope.thisSport.sport_id)
                 .then(function (res){
-                    console.log("teams in sport retrieved");
                     $scope.teamsInSport = [];
                     for (var i = 0; i < res.data.length; i++) {
                         for (var j = 0; j < $scope.matchCopy.teams.length; j++) {
@@ -190,9 +176,8 @@
                             flag = 0;
                         }
                     }
-                    console.log($scope.teamsInSport);
                 }), function(err){
-                    console.log("teams in sport not retrieved");
+                    console.log(err);
                 }
         }
 
@@ -220,10 +205,9 @@
                         match.maxTeams = tempMatch.max_teams;
                         retrieveTeamsInMatch(match)
                         $scope.currMatch.push(match);
-                    }  
-                    console.log("Current matches retrieved");
+                    } 
                 }), function(err){ 
-                    console.log("matches not retrieved");
+                    console.log(err);
                 }
         }
 
@@ -253,10 +237,8 @@
                         $scope.pastMatch.push(match);
                     } 
 
-        	        console.log("Past matches retrieved");
-
                 }), function(err){
-                    console.log("matches not retrieved");
+                    console.log(err);
                 }
         }
 
@@ -264,7 +246,6 @@
             SportService
                 .viewFutureMatch($scope.thisSport.sport_id)
                 .then(function (res){
-                    console.log("future matches retrieved");
                     $scope.futureMatch = [];
                     for (var i = 0; i < res.data.length; i++) {
                         var tempMatch = res.data[i];
@@ -285,12 +266,10 @@
                         match.maxTeams = tempMatch.max_teams;
                         retrieveTeamsInMatch(match)   
                         $scope.futureMatch.push(match);
-                        console.log("Upcoming matches retrieved");
-                   		console.log(res);
 
                 }
                 }), function(err){
-                    console.log("matches not retrieved");
+                    console.log(err);
                 }
         }
 // -----------------------------------------------------------------------------------
@@ -398,8 +377,6 @@
         }
 
         function editTeamRanking(team) {
-            console.log(team);
-            console.log($scope.matchIdCopy);
             SportService
                 .editTeamRanking($scope.matchIdCopy, team.team_id, team.ranking)
                 .then(function (res){

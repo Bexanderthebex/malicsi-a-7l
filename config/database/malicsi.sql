@@ -87,7 +87,6 @@ CREATE TABLE sponsor_games (
 	FOREIGN KEY(game_id) references game(game_id) ON DELETE CASCADE
 );
 
-
 CREATE TABLE sport (
 	sport_id INT NOT NULL AUTO_INCREMENT,
 	sport_name VARCHAR(50) NOT NULL,
@@ -117,8 +116,6 @@ CREATE TABLE team (
 	FOREIGN KEY(sport_id) REFERENCES sport(sport_id) ON DELETE CASCADE,
 	FOREIGN KEY(team_organization) REFERENCES organization(organization_id) ON DELETE CASCADE
 );
-
--- alter table to add winner reference
 
 CREATE TABLE sport_match (
 	match_id INT NOT NULL AUTO_INCREMENT,
@@ -175,35 +172,78 @@ CREATE TABLE log (
 	PRIMARY KEY(log_id)
 );
 
-DROP USER IF EXISTS 'administrator'@'localhost';
-DROP USER IF EXISTS 'competitor'@'localhost';
-DROP USER IF EXISTS 'organizer'@'localhost';
-DROP USER IF EXISTS 'guest'@'localhost';
+DROP USER 'administrator'@'%';
+DROP USER 'competitor'@'%';
+DROP USER 'organizer'@'%';
+DROP USER 'guest'@'%';
 
-CREATE USER IF NOT EXISTS 'administrator'@'localhost' IDENTIFIED BY 'password1';
-CREATE USER IF NOT EXISTS 'competitor'@'localhost' IDENTIFIED BY 'password2';
-CREATE USER IF NOT EXISTS 'organizer'@'localhost' IDENTIFIED BY 'password3';
-CREATE USER IF NOT EXISTS 'guest'@'localhost' IDENTIFIED BY 'password4';
+CREATE USER 'administrator'@'%' IDENTIFIED BY 'password1';
+CREATE USER 'competitor'@'%' IDENTIFIED BY 'password2';
+CREATE USER 'organizer'@'%' IDENTIFIED BY 'password3';
+CREATE USER 'guest'@'%' IDENTIFIED BY 'password4';
 
 
--- GRANT [type of permission] ON [database name].[table name] TO ‘admin’@'localhost’;
-GRANT ALL PRIVILEGES ON malicsi.* TO 'administrator'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.game TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.sport TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.sport_match TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.sponsor_games TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.organization TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.organization_in_game TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.organizer TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.team_in_match TO 'organizer'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.competitor TO 'competitor'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.team TO 'competitor'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.team_in_match TO 'competitor'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.team_opponent TO 'competitor'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.team_announcement TO 'competitor'@'localhost';
-GRANT ALL PRIVILEGES ON malicsi.competitor_joins_team TO 'competitor'@'localhost';
-GRANT SELECT ON malicsi.* to 'administrator'@'localhost';
-GRANT SELECT ON malicsi.* to 'competitor'@'localhost';
-GRANT SELECT ON malicsi.* to 'organizer'@'localhost';
-GRANT SELECT ON malicsi.* to 'guest'@'localhost';
+-- GRANT [type of permission] ON [database name].[table name] TO ‘admin’@'%’;
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.* TO 'administrator'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.game TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.sport TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.sport_match TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.sponsor_games TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.organization TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.organization_in_game TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.organizer TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.team_in_match TO 'organizer'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.competitor TO 'competitor'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.team TO 'competitor'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.team_in_match TO 'competitor'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.team_announcement TO 'competitor'@'%';
+GRANT SELECT, INSERT, DELETE, UPDATE ON malicsi.competitor_joins_team TO 'competitor'@'%';
+GRANT SELECT ON malicsi.* to 'administrator'@'%';
+GRANT SELECT ON malicsi.* to 'competitor'@'%';
+GRANT SELECT ON malicsi.* to 'organizer'@'%';
+GRANT SELECT ON malicsi.* to 'guest'@'%';
+
+-- add indeces
+
+-- user table
+create index user_id using btree on user(id);
+create index user_username using btree on user(username);
+create index user_password using btree on user(password);
+
+-- competitor table
+create index user_competitor_id using btree on competitor(id);
+
+-- organizer table
+create index user_organizer_id using btree on organizer(id);
+
+-- competitor_sport_played table
+create index ind_competitor_sport_played using btree on competitor_sport_played(sport_played_id);
+
+-- sponsor table
+create index ind_sponsor_institution using btree on sponsor_institution(sponsor_id);
+
+-- game table
+create index ind_game_id using btree on game(game_id);
+create index game_organizer_id using btree on game(organizer_id);
+
+-- organization_in_game table
+create index ind_organization_in_game_id using btree on organization_in_game(game_id, organization_id);
+
+-- sponsor in games table
+create index ind_sponsor_games_id using btree on sponsor_games(sponsor_id, game_id);
+
+-- sport table
+create index ind_sport_id using btree on sport(sport_id);
+
+-- team table
+create index ind_team_id using btree on team(team_id);
+
+-- sport_match table
+create index ind_sport_match_id using btree on sport_match(match_id);
+
+-- team_in_match table
+create index ind_team_in_match_id using btree on team_in_match(match_id, team_id);
+
+-- pending request table
+create index ind_competitor_joins_team_id using btree on competitor_joins_team(team_id, id);
 

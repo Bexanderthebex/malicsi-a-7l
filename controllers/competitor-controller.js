@@ -1,10 +1,13 @@
+'use strict'
+
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const connection = require('./../config/db-connection.js');
 const logs = require('./../controllers/log-controller.js');
 
 exports.searchCompetitor = (req, res) => {
-	query = "CALL search_competitor(?)";
+	let query = "CALL search_competitor(?)";
+	
 	connection.userType("G").query(query,
 		[
 			"%" + req.query.keyword + "%"
@@ -23,7 +26,7 @@ exports.searchCompetitor = (req, res) => {
 }
 
 exports.getCompetitor = (req, res) => {
-	query = "CALL get_competitor(?)";
+	let query = "CALL get_competitor(?)";
 
 	connection.userType("G").query(query,
 		[
@@ -40,7 +43,7 @@ exports.getCompetitor = (req, res) => {
 }
 
 exports.getCompetitorTeams = (req, res) => {
-	query = 'CALL get_competitor_teams(?)';
+	let query = 'CALL get_competitor_teams(?)';
 	
 	connection.userType(req.session.user.type).query(query,
 		[
@@ -55,7 +58,8 @@ exports.getCompetitorTeams = (req, res) => {
 }
 
 exports.getCompetitorTeamsPublic = (req, res) => {
-	query = 'CALL get_competitor_teams(?)';
+	let query = 'CALL get_competitor_teams(?)';
+	
 	connection.userType("G").query(query,
 		[
 			req.query.id
@@ -69,7 +73,8 @@ exports.getCompetitorTeamsPublic = (req, res) => {
 }
 
 exports.getCompetitorOrganization = (req, res) => {
-	query = 'CALL get_competitor_organization(?)';
+	let query = 'CALL get_competitor_organization(?)';
+	
 	connection.userType("G").query(query,
 		[
 			req.session.user.id
@@ -83,9 +88,8 @@ exports.getCompetitorOrganization = (req, res) => {
 }
 
 exports.editCompetitor = (req,res) => {
-	currentUser = req.session.user;
-	query = "CALL edit_competitor(?,?,?,?,?,?)";
-	query1 = "CALL get_competitor(?)";
+	let query = "CALL edit_competitor(?,?,?,?,?,?)";
+	let query1 = "CALL get_competitor(?)";
 
 	connection.userType(req.session.user.type).query(query,
 		[
@@ -94,21 +98,20 @@ exports.editCompetitor = (req,res) => {
 			req.body.last_name,
 			req.body.nickname,
 			req.body.sex,
-			currentUser.id
+			req.session.user.id
 		], (err, rows) => {
 			if(!err) {
 				connection.userType(req.session.user.type).query(query1,
 					[
-						currentUser.id
+						req.session.user.id
 					], (err, rows) => {
 						if(!err) {
-							logs.createLog(currentUser.id,"Edited Competitor Information");
+							logs.createLog(req.session.user.id,"Edited Competitor Information");
 							return res.status(200).send(rows[0][0]);
 						}
 					}
 				);
 			} else {
-				console.log(err);
 				return res.status(501).send({ 'message' : 'Not implemented'});
 			}
 		}
@@ -116,22 +119,21 @@ exports.editCompetitor = (req,res) => {
 }
 
 exports.editCompetitorBio = (req,res) => {
-	currentUser = req.session.user;
-	query = "CALL edit_competitor_bio(?,?)";
-	query1 = "CALL get_competitor(?)";
+	let query = "CALL edit_competitor_bio(?,?)";
+	let query1 = "CALL get_competitor(?)";
 
 	connection.userType(req.session.user.type).query(query,
 		[
 			req.body.bio,
-			currentUser.id
+			req.session.user.id
 		], (err, rows) => {
 			if(!err) {
 				connection.userType(req.session.user.type).query(query1,
 					[
-						currentUser.id
+						req.session.user.id
 					], (err, rows) => {
 						if(!err) {
-							logs.createLog(currentUser.id,"Edited Competitor Bio");
+							logs.createLog(req.session.user.id,"Edited Competitor Bio");
 							return res.status(200).send(rows[0][0]);
 						}
 						else{
@@ -146,10 +148,8 @@ exports.editCompetitorBio = (req,res) => {
 	);
 }
 
-
-
 exports.getCompetitorRanking = (req, res) => {
-	query = "CALL get_competitor_ranking(?)";
+	let query = "CALL get_competitor_ranking(?)";
 
 	connection.userType("G").query(query,
 		[
