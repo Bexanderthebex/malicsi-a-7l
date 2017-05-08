@@ -201,13 +201,6 @@
                     console.log(err);
                 })
 
-            /*UserService
-                .uploader()
-                .then(function(res)){
-
-                },function(err){
-                    console.log(err);
-                });*/
                 $window.location.reload();
         }
 
@@ -216,8 +209,6 @@
             $scope.fileItem.file.newname = $scope.competitor.id;
             //$scope.fileItem.file.name = { "value":$scope.competitor.id,"writable":true};
             $scope.fileItem.name=$scope.competitor.id;
-            console.log($scope.fileItem);
-            console.log($scope.fileItem.file);
             //var uploadUrl = '/upload';
             UserService
                 .uploader($scope.fileItem)
@@ -275,7 +266,6 @@
                 .getCoachedTeam()
                 .then(function (res){
                     $scope.coachedteam = res.data;
-                    // console.log($scope.coachedteam);
                 }, function(err) {
                     console.log(err);
                 })
@@ -304,8 +294,6 @@
             CompetitorService
                 .getPendingRequests()
                 .then(function (res){
-                    console.log("\n\n\n\n");
-                    console.log(res.data);
                     $scope.pendingRequests = res.data;
                 }, function(err) {
                     console.log(err);
@@ -357,7 +345,6 @@
                 .viewAllSportsInGame($scope.game.game_id)
                 .then(function (res){
                     $scope.sports = res.data;
-                    // console.log($scope.sports);
                 }, function(err) {
                     console.log(err);
                 })
@@ -426,8 +413,6 @@
         }
 
         function kickMember(team_id,id){
-            console.log(team_id);
-            console.log(id);
             CompetitorService
                 .deleteMembershipRequest(team_id, id)
                 .then(function (res){
@@ -508,7 +493,6 @@
         }
 
         function recruitNewMember(){
-            console.log($scope.scoutedApplicant.id);
             isFull($scope.scoutedApplicant.team_id)
             if ($scope.full){
                 Materialize.toast("Team is Already Full", 4000);
@@ -521,7 +505,6 @@
                 }, function(err) {
                     console.log(err);
                 })
-            console.log($scope.scoutedApplicant.team_id);
             getTeamMembers($scope.scoutedApplicant.team_id);
             getRecruitRoaster($scope.teamAccordion);
         }

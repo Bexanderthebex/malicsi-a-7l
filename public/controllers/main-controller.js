@@ -37,13 +37,11 @@
                 console.log("close ka naman");
                 $('.modal').modal('close');
             });
-    		console.log(tab);
     		$scope.activeTab = tab;
     		if(tab === 'home'){
     			$('.bluenavbtn').css('color', '#00415a');
     			$('.usertab').css('color', 'white');
     			$('.hometab').css('color', '#00719c');
-    			console.log("helluh");
     		}else if(tab === 'gamefeed'){
     			$('.bluenavbtn').css('color', '#00415a');
     			$('.usertab').css('color', 'white');

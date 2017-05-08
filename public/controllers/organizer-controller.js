@@ -310,16 +310,11 @@
         function upload(){
             $scope.fileItem.file = document.getElementById("fileItemOrg").files[0];
             $scope.fileItem.file.newname = $scope.organizer.id;
-            //$scope.fileItem.file.name = { "value":$scope.organizer.id,"writable":true};
             $scope.fileItem.name=$scope.organizer.id;
-            console.log("\n\n\n\n File Uploading...")
-            console.log($scope.fileItem);
-            console.log($scope.fileItem.file);
-            //var uploadUrl = '/upload';
             UserService
                 .uploader($scope.fileItem)
                 .then(function(res){
-
+                    Materialize.toast("Sucessfully uploaded image", 2000);
                 },function(err){
                     console.log(err);
                 })

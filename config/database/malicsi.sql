@@ -87,7 +87,6 @@ CREATE TABLE sponsor_games (
 	FOREIGN KEY(game_id) references game(game_id) ON DELETE CASCADE
 );
 
-
 CREATE TABLE sport (
 	sport_id INT NOT NULL AUTO_INCREMENT,
 	sport_name VARCHAR(50) NOT NULL,
@@ -117,8 +116,6 @@ CREATE TABLE team (
 	FOREIGN KEY(sport_id) REFERENCES sport(sport_id) ON DELETE CASCADE,
 	FOREIGN KEY(team_organization) REFERENCES organization(organization_id) ON DELETE CASCADE
 );
-
--- alter table to add winner reference
 
 CREATE TABLE sport_match (
 	match_id INT NOT NULL AUTO_INCREMENT,
@@ -206,4 +203,48 @@ GRANT SELECT ON malicsi.* to 'administrator'@'localhost';
 GRANT SELECT ON malicsi.* to 'competitor'@'localhost';
 GRANT SELECT ON malicsi.* to 'organizer'@'localhost';
 GRANT SELECT ON malicsi.* to 'guest'@'localhost';
+
+-- add indeces
+
+-- user table
+create index user_id using btree on user(id);
+create index user_username using btree on user(username);
+create index user_password using btree on user(password);
+
+-- competitor table
+create index user_competitor_id using btree on competitor(id);
+
+-- organizer table
+create index user_organizer_id using btree on organizer(id);
+
+-- competitor_sport_played table
+create index ind_competitor_sport_played using btree on competitor_sport_played(sport_played_id);
+
+-- sponsor table
+create index ind_sponsor_institution using btree on sponsor_institution(sponsor_id);
+
+-- game table
+create index ind_game_id using btree on game(game_id);
+create index game_organizer_id using btree on game(organizer_id);
+
+-- organization_in_game table
+create index ind_organization_in_game_id using btree on organization_in_game(game_id, organization_id);
+
+-- sponsor in games table
+create index ind_sponsor_games_id using btree on sponsor_games(sponsor_id, game_id);
+
+-- sport table
+create index ind_sport_id using btree on sport(sport_id);
+
+-- team table
+create index ind_team_id using btree on team(team_id);
+
+-- sport_match table
+create index ind_sport_match_id using btree on sport_match(match_id);
+
+-- team_in_match table
+create index ind_team_in_match_id using btree on team_in_match(match_id, team_id);
+
+-- pending request table
+create index ind_competitor_joins_team_id using btree on competitor_joins_team(team_id, id);
 

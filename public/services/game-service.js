@@ -190,17 +190,14 @@
                 scoringSystem: sport.scoring_system,
                 sportId: sport.sport_id
             }
-            // console.log(editedSport);
             $http({
                 method: 'PUT',
                 data: $.param(editedSport), // json
                 url: '/sport/editSport',
                 headers: headers
             }).then((res) => {
-                // console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
-                // console.log(err);
                 deferred.reject(err);
             });
 
@@ -221,10 +218,8 @@
                 url: '/sport/addWinnerSport',
                 headers: headers
             }).then((res) => {
-                // console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
-                // console.log(err);
                 deferred.reject(err);
             });
 

@@ -19,11 +19,9 @@ let organizationController = require("../controllers/organization-controller");
 let uploadController = require("../controllers/upload-controller");
 
 function sha256Hash(req, res, next) {
-    console.log(req.body);
     if (req.body.password == undefined) {
         res.status(404).send({ 'message' : 'Incorrect credentials'});
     } else {
-        console.log("Hi");
         let hash = crypto.createHash('sha256');
         hash.update(req.body.password);
         req.body.password = hash.digest('hex');

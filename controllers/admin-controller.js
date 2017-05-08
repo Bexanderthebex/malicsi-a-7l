@@ -21,29 +21,30 @@ exports.createOrganizer = (req, res) => {
 	let insert_query1 = 'CALL create_user(?, ?, ?, ?, ?)';
 	let insert_query2 = 'CALL create_organizer(?, ?, ?)';
 	let type = req.session.user.type;
+
+	// admin only can create organizer
 	connection.userType(type).query(insert_query1, [
 		req.body.username,
 		req.body.password,
 		req.body.email,
 		req.body.contact,
 		'O'
-	], function(err, rows){
+	], (err, rows) => {
 		if(!err){
 			connection.userType(type).query(query, [
 				req.body.username
-			], function(err, rows){
+			], (err, rows) => {
 				if(!err){
 					if(rows.length == 1){
 						connection.userType(type).query(insert_query2, [
 							rows[0].id,
 							req.body.name,
 							req.body.description
-						], function(err, rows){
+						], (err, rows) => {
 							if(!err){
 								logs.createLog(req.session.user.id, 'Created Organizer')
 								return res.status(200).send({'message': 'Successfully created organizer.'});
 							}else{
-								console.log(err);
 								if(err.code == 'ER_BAD_NULL_ERROR') return res.status(500).send({'message':'Missing field.'});
 								else if(err.code == 'ER_DUP_ENTRY') return res.status(500).send({'message':'Duplicate user.'})
 								else return res.status(500).send({'message':'Unknown error'});
@@ -57,7 +58,6 @@ exports.createOrganizer = (req, res) => {
 				}
 			});
 		}else{
-			console.log(err);
 			if(err.code == 'ER_BAD_NULL_ERROR') return res.status(500).send({'message':'Missing field.'});
 			else if(err.code == 'ER_DUP_ENTRY') return res.status(500).send({'message':'Duplicate user.'})
 			else return res.status(500).send({'message':'Unknown error'});
@@ -68,14 +68,12 @@ exports.createOrganizer = (req, res) => {
 exports.changeActivity = (req, res) => {
 	let query = 'CALL update_activity(?, ?)';
 	let type = req.session.user.type;
-	console.log(req.params.id)
+
 	connection.userType(type).query(query, [
 		req.body.is_active,
 		req.params.id
 	], (err, rows) => {
 		if(!err){
-			console.log(req.params.id)
-			console.log(rows);
 			if(rows.affectedRows == 0) {
 				return res.status(500).send({'message': 'User does not exist.'});
 			}else{
@@ -84,7 +82,6 @@ exports.changeActivity = (req, res) => {
 				return res.status(200).send({'message': 'User activity status successfully updated.'});
 			}
 		}else{
-			console.log(err);
 			if(err.code == 'ER_BAD_NULL_ERROR') {
 				return res.status(500).send({ 'message' : 'Missing field.' });
 			}
@@ -95,13 +92,13 @@ exports.changeActivity = (req, res) => {
 exports.getUsersByType = (req, res) => {
 	let query = 'SELECT id, username, email, contact, is_active FROM user WHERE type = ?';
 	let type = req.session.user.type;
+	
 	connection.userType(type).query(query, [
 		req.body.type
 	], (err, rows) => {
 		if(!err){
 			res.status(200).send(rows);
 		}else{
-			console.log(err);
 			res.status(500).send({ 'message' : 'Internal Server Error.' });
 		}
 	});
@@ -110,11 +107,11 @@ exports.getUsersByType = (req, res) => {
 exports.getAllUsers = (req, res) => {
 	let query = 'SELECT id, username, email, contact, type, is_active FROM user';
 	let type = req.session.user.type;
+	
 	connection.userType('A').query(query, [], (err, rows) => {
 		if(!err){
 			return res.status(200).send(rows);
 		}else{
-			console.log(err);
 			return res.status(500).send({ 'message' : 'Internal Server Error.' });
 		}
 	});
@@ -123,6 +120,7 @@ exports.getAllUsers = (req, res) => {
 exports.createAdmin = (req, res) => {
 	let query = 'call create_user(?, ?, ?, ?, \'A\')';
 	let type = req.session.user.type;
+	
 	connection.userType(type).query(query, [
 		req.body.username,
 		req.body.password,
@@ -142,15 +140,14 @@ exports.createAdmin = (req, res) => {
 
 exports.searchAdmin = (req, res) => {
 	let query = 'call search_admin(?)';
-
 	let type = req.session.user.type;
+	
 	connection.userType(type).query(query, [
 		'%' + req.query.search + '%'
 	], (err, rows) => {
 		if (!err) {
 			res.status(200).send(rows[0]);
 		} else {
-			console.log(err);
 			res.status(500).send(err);
 		}
 	});
