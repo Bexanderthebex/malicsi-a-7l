@@ -1,8 +1,10 @@
 'use strict'
 const mysql = require('mysql');
+const DBHOST = process.env.DBHOST === undefined
+    ? 'localhost' : process.env.DBHOST;
 
 const connection = mysql.createConnection({
-  host : process.env.DBHOST,
+  host : DBHOST,
   user : 'competitor',
   password : 'password2',
   db : 'malicsi',
