@@ -172,15 +172,15 @@ CREATE TABLE log (
 	PRIMARY KEY(log_id)
 );
 
-DROP USER 'administrator'@'%';
-DROP USER 'competitor'@'%';
-DROP USER 'organizer'@'%';
-DROP USER 'guest'@'%';
+DROP USER IF EXISTS 'administrator'@'%';
+DROP USER IF EXISTS 'competitor'@'%';
+DROP USER IF EXISTS 'organizer'@'%';
+DROP USER IF EXISTS 'guest'@'%';
 
-CREATE USER 'administrator'@'%' IDENTIFIED BY 'password1';
-CREATE USER 'competitor'@'%' IDENTIFIED BY 'password2';
-CREATE USER 'organizer'@'%' IDENTIFIED BY 'password3';
-CREATE USER 'guest'@'%' IDENTIFIED BY 'password4';
+CREATE USER IF NOT EXISTS 'administrator'@'%' IDENTIFIED BY 'password1';
+CREATE USER IF NOT EXISTS 'competitor'@'%' IDENTIFIED BY 'password2';
+CREATE USER IF NOT EXISTS 'organizer'@'%' IDENTIFIED BY 'password3';
+CREATE USER IF NOT EXISTS 'guest'@'%' IDENTIFIED BY 'password4';
 
 
 -- GRANT [type of permission] ON [database name].[table name] TO ‘admin’@'%’;
