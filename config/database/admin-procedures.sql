@@ -37,8 +37,6 @@ CREATE PROCEDURE search_admin(
 //
 DELIMITER //
 
-
-grant execute on procedure update_activity to 'administrator'@'localhost';
-grant execute on procedure create_organizer to 'administrator'@'localhost';
-grant execute on procedure search_admin to 'administrator'@'localhost';
-
+grant execute on procedure update_activity to 'administrator'@'%';
+grant execute on procedure search_admin to 'administrator'@'%';
+grant execute on procedure create_organizer to 'administrator'@'%';

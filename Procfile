@@ -1,0 +1,1 @@
+web: mkdir public/uploads; node server.js;
