@@ -32,44 +32,44 @@
 
 						<div class="row gamefeed-padding-left gamefeed-padding-right" >
                             <div class="col s12" ng-repeat="x in games">
-                                <a class="gamefeed-black-text-anchor" ng-href="#/game/{{x.game_id}}">
-                                    <div class="gamefeed-game-box">
-                                            <div class="gamefeed-game-box-header palette-3 valign-wrapper">
-                                                <div class="width-100 row margin-override-0">
-                                                    <div class="col s12 telegrafico white-text left truncate center gamefeed-adjust-title-game">
-                                                        {{ x.name }}
-                                                    </div>
+                                <div class="gamefeed-game-box">
+                                    <a class="gamefeed-black-text-anchor" ng-href="#/game/{{x.game_id}}">
+                                        <div class="gamefeed-game-box-header palette-3 valign-wrapper">
+                                            <div class="width-100 row margin-override-0">
+                                                <div class="col s12 telegrafico white-text left truncate center gamefeed-adjust-title-game">
+                                                    {{ x.name }}
                                                 </div>
                                             </div>
-                                        <div class="gamefeed-game-box-body">
-                                            <div class="row gamefeed-remove-bottom">
-                                                <div class="col s12">
-                                                    <div class="gamefeed-description gamefeed-remove-bottom">
-                                                    </div>
+                                        </div>
+                                    </a>
+                                    <div class="gamefeed-game-box-body">
+                                        <div class="row gamefeed-remove-bottom">
+                                            <div class="col s12">
+                                                <div class="gamefeed-description gamefeed-remove-bottom">
                                                 </div>
                                             </div>
-                                            <div class="gamefeed-match-container">
-                                                <p class="center century-gothic" style="word-wrap: break-word;">{{ x.description }}</p>
-                                                <div class="telegrafico center">Date</div>
-                                                <div class="gamefeed-match-info center">
-                                                    Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                        </div>
+                                        <div class="gamefeed-match-container">
+                                            <p class="center century-gothic" style="word-wrap: break-word;">{{ x.description }}</p>
+                                            <div class="telegrafico center">Date</div>
+                                            <div class="gamefeed-match-info center">
+                                                Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                            </div>
+                                            <div class="telegrafico center">Location</div>
+                                            <div class="gamefeed-match-info center">
+                                                {{ x.location }}
+                                            </div>
+                                            <div class="gamefeed-padding-down">
+                                                <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
+                                                    <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
                                                 </div>
-                                                <div class="telegrafico center">Location</div>
-                                                <div class="gamefeed-match-info center">
-                                                    {{ x.location }}
-                                                </div>
-                                                <div class="gamefeed-padding-down">
-                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
-                                                        <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-                                                    </div>
-                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
-                                                        <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-                                                    </div>
+                                                <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
+                                                    <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
+                                </div>
 
                             </div>
 						</div>
@@ -80,46 +80,45 @@
 
 						<div class="row gamefeed-padding-left gamefeed-padding-right" >
                             <div class="col m12" ng-repeat="x in splitColumn1">
-                                <a class="gamefeed-black-text-anchor" ng-href="#/game/{{x.game_id}}">
-                                    <div class="gamefeed-game-box">
-                                            <div class="gamefeed-game-box-header palette-3 valign-wrapper">
-                                                <div class="width-100 row margin-override-0">
-                                                    <div class="col s12 telegrafico white-text left truncate center gamefeed-adjust-title-game">
-                                                        {{ x.name }}
-                                                    </div>
+                                <div class="gamefeed-game-box">
+                                    <a class="gamefeed-black-text-anchor" ng-href="#/game/{{x.game_id}}">
+                                        <div class="gamefeed-game-box-header palette-3 valign-wrapper">
+                                            <div class="width-100 row margin-override-0">
+                                                <div class="col s12 telegrafico white-text left truncate center gamefeed-adjust-title-game">
+                                                    {{ x.name }}
                                                 </div>
                                             </div>
-                                        <div class="gamefeed-game-box-body">
-                                            <div class="row gamefeed-remove-bottom">
-                                                <div class="col s12">
-                                                    <div class="gamefeed-description gamefeed-remove-bottom">
-                                                        <!--<div class="center century-gothic">{{ x.description }}</div>-->
-                                                    </div>
+                                        </div>
+                                    </a>
+                                    <div class="gamefeed-game-box-body">
+                                        <div class="row gamefeed-remove-bottom">
+                                            <div class="col s12">
+                                                <div class="gamefeed-description gamefeed-remove-bottom">
+                                                    <!--<div class="center century-gothic">{{ x.description }}</div>-->
                                                 </div>
                                             </div>
-                                            <div class="gamefeed-match-container">
-                                                <p class="center century-gothic" style="word-wrap: break-word;">{{ x.description }}</p>
-                                                <div class="telegrafico center">Date</div>
-                                                <div class="gamefeed-match-info center">
-                                                    Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                        </div>
+                                        <div class="gamefeed-match-container">
+                                            <p class="center century-gothic" style="word-wrap: break-word;">{{ x.description }}</p>
+                                            <div class="telegrafico center">Date</div>
+                                            <div class="gamefeed-match-info center">
+                                                Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                            </div>
+                                            <div class="telegrafico center">Location</div>
+                                            <div class="gamefeed-match-info center">
+                                                {{ x.location }}
+                                            </div>
+                                            <div class="gamefeed-padding-down">
+                                                <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
+                                                    <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
                                                 </div>
-                                                <div class="telegrafico center">Location</div>
-                                                <div class="gamefeed-match-info center">
-                                                    {{ x.location }}
-                                                </div>
-                                                <div class="gamefeed-padding-down">
-                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
-                                                        <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-                                                    </div>
-                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
-                                                        <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-                                                    </div>
+                                                <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
+                                                    <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-
+                                </div>
                             </div>
 						</div>
 
@@ -129,46 +128,45 @@
 
 						<div class="row gamefeed-padding-left gamefeed-padding-right" >
                             <div class="col m12" ng-repeat="x in splitColumn2">
-                                <a class="gamefeed-black-text-anchor" ng-href="#/game/{{x.game_id}}">
-                                    <div class="gamefeed-game-box">
-                                            <div class="gamefeed-game-box-header palette-3 valign-wrapper">
-                                                <div class="width-100 row margin-override-0">
-                                                    <div class="col s12 telegrafico white-text left truncate center gamefeed-adjust-title-game">
-                                                        {{ x.name }}
-                                                    </div>
+                                <div class="gamefeed-game-box">
+                                    <a class="gamefeed-black-text-anchor" ng-href="#/game/{{x.game_id}}">
+                                        <div class="gamefeed-game-box-header palette-3 valign-wrapper">
+                                            <div class="width-100 row margin-override-0">
+                                                <div class="col s12 telegrafico white-text left truncate center gamefeed-adjust-title-game">
+                                                    {{ x.name }}
                                                 </div>
                                             </div>
-                                        <div class="gamefeed-game-box-body">
-                                            <div class="row gamefeed-remove-bottom">
-                                                <div class="col s12">
-                                                    <div class="gamefeed-description gamefeed-remove-bottom">
-                                                        <!--<div class="center century-gothic">{{ x.description }}</div>-->
-                                                    </div>
+                                        </div>
+                                    </a>
+                                    <div class="gamefeed-game-box-body">
+                                        <div class="row gamefeed-remove-bottom">
+                                            <div class="col s12">
+                                                <div class="gamefeed-description gamefeed-remove-bottom">
+                                                    <!--<div class="center century-gothic">{{ x.description }}</div>-->
                                                 </div>
                                             </div>
-                                            <div class="gamefeed-match-container">
-                                                <p class="center century-gothic" style="word-wrap: break-word;">{{ x.description }}</p>
-                                                <div class="telegrafico center">Date</div>
-                                                <div class="gamefeed-match-info center">
-                                                    Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                        </div>
+                                        <div class="gamefeed-match-container">
+                                            <p class="center century-gothic" style="word-wrap: break-word;">{{ x.description }}</p>
+                                            <div class="telegrafico center">Date</div>
+                                            <div class="gamefeed-match-info center">
+                                                Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                            </div>
+                                            <div class="telegrafico center">Location</div>
+                                            <div class="gamefeed-match-info center">
+                                                {{ x.location }}
+                                            </div>
+                                            <div class="gamefeed-padding-down">
+                                                <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
+                                                    <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
                                                 </div>
-                                                <div class="telegrafico center">Location</div>
-                                                <div class="gamefeed-match-info center">
-                                                    {{ x.location }}
-                                                </div>
-                                                <div class="gamefeed-padding-down">
-                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
-                                                        <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-                                                    </div>
-                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
-                                                        <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-                                                    </div>
+                                                <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
+                                                    <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-
+                                </div>
                             </div>
 						</div>
 
@@ -178,47 +176,46 @@
 
 						<div class="row gamefeed-padding-left gamefeed-padding-right" >
                             <div class="col s12" ng-repeat="x in column1">
-                                <a class="gamefeed-black-text-anchor" ng-href="#/game/{{x.game_id}}">
-                                    <div class="gamefeed-game-box">
-                                            <div class="gamefeed-game-box-header palette-3 valign-wrapper">
-                                                <div class="width-100 row margin-override-0">
-                                                    <div class="col s12 telegrafico white-text left truncate center gamefeed-adjust-title-game">
-                                                        {{ x.name }}
-                                                    </div>
+                                <div class="gamefeed-game-box">
+                                    <a class="gamefeed-black-text-anchor" ng-href="#/game/{{x.game_id}}">
+                                        <div class="gamefeed-game-box-header palette-3 valign-wrapper">
+                                            <div class="width-100 row margin-override-0">
+                                                <div class="col s12 telegrafico white-text left truncate center gamefeed-adjust-title-game">
+                                                    {{ x.name }}
                                                 </div>
                                             </div>
-                                        <div class="gamefeed-game-box-body">
-                                            <div class="row gamefeed-remove-bottom">
-                                                <div class="col s12">
-                                                    <div class="gamefeed-description gamefeed-remove-bottom">
-                                                        <!--<div class="center century-gothic">{{ x.description }}</div>-->
-                                                    </div>
+                                        </div>
+                                    </a>
+                                    <div class="gamefeed-game-box-body">
+                                        <div class="row gamefeed-remove-bottom">
+                                            <div class="col s12">
+                                                <div class="gamefeed-description gamefeed-remove-bottom">
+                                                    <!--<div class="center century-gothic">{{ x.description }}</div>-->
                                                 </div>
                                             </div>
-                                            <div class="gamefeed-match-container">
-                                                <p class="center century-gothic" style="word-wrap: break-word;">{{ x.description }}</p>
+                                        </div>
+                                        <div class="gamefeed-match-container">
+                                            <p class="center century-gothic" style="word-wrap: break-word;">{{ x.description }}</p>
 
-                                                <div class="telegrafico center">Date</div>
-                                                <div class="gamefeed-match-info center">
-                                                    Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                            <div class="telegrafico center">Date</div>
+                                            <div class="gamefeed-match-info center">
+                                                Start: {{ x.start_date }} | End: {{ x.end_date }}
+                                            </div>
+                                            <div class="telegrafico center">Location</div>
+                                            <div class="gamefeed-match-info center">
+                                                {{ x.location }}
+                                            </div>
+                                            <div class="gamefeed-padding-down">
+                                                <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
+                                                    <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
                                                 </div>
-                                                <div class="telegrafico center">Location</div>
-                                                <div class="gamefeed-match-info center">
-                                                    {{ x.location }}
-                                                </div>
-                                                <div class="gamefeed-padding-down">
-                                                    <div data-target="gamefeed-update-game" class="col s1 offset-s10" ng-click="setPending(x)" ng-show="checkUser(x)">
-                                                        <i class="fa fa-pencil gamefeed-adjust-icons" aria-hidden="true"></i>
-                                                    </div>
-                                                    <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
-                                                        <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
-                                                    </div>
+                                                <div data-target="gamefeed-delete-game" class="col s1" ng-click="setPending(x)" ng-show="checkUser(x)">
+                                                    <i class="fa fa-close gamefeed-adjust-icons" aria-hidden="true"></i>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </a>
-
+                                </div>
                             </div>
 						</div>
 
