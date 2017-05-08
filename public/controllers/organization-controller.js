@@ -54,6 +54,18 @@
         $scope.setViewedGame = setViewedGame;
         $scope.setPageView = setPageView;
         $scope.searchInOrg = searchInOrg;
+        $scope.closeAllModals = closeAllModals;
+        
+        $scope.$on('$routeChangeStart', function(next, current) {
+            $(document).ready(function(){ 
+                $('.modal').modal('close'); 
+                $('#organization-team-info-modal').modal('close'); 
+            });    
+            console.log("closing modal");
+        });
+
+        function closeAllModals() {
+        }
         
         function initPage(org_id){
             UserService

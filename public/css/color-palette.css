@@ -43,23 +43,23 @@
 }
 
 .palette-border-1{
-	border-color: #00b8ff;
+	border-color: #00b8ff !important;
 }
 
 .palette-border-2 {
-	border-color: #00a5d3;
+	border-color: #00a5d3 !important;
 }
 
 .palette-border-3 {
-	border-color: #00719c;
+	border-color: #00719c !important;
 }
 
 .palette-border-4 {
-	border-color: #00415a;
+	border-color: #00415a !important;
 }
 
 .palette-border-5 {
-	color: #001f2b;
+	border-color: #001f2b !important;
 }
 
 .palette-gray{
