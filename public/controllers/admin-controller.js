@@ -19,6 +19,7 @@
         $scope.organizations = [];
         $scope.logs = [];
         $scope.sponsors = [];
+        $scope.fileItem = {};
 
         UserService.getUsersByType('A').then((res) => {
             $scope.admins = res.data;
@@ -333,7 +334,10 @@
             if ($('#organization-edit-' + organization.organization_id).data('isEditing')) {
                 $('#organization-edit-' + organization.organization_id).data('isEditing', false);
                 $('#organization-cancel-edit-' + organization.organization_id).hide();
+                $('#organization-upload-profile-picture-' + organization.organization_id).hide();
                 $('.organization-form-edit-' + organization.organization_id).prop('disabled', true);
+
+                upload(organization.organization_id);
 
                  OrganizationService.updateOrganization(organization)
                 .then((res) => {
@@ -349,8 +353,10 @@
                     console.log(err);
                 });
             } else {
+
                 $('#organization-edit-' + organization.organization_id).data('isEditing', true);
                 $('#organization-cancel-edit-' + organization.organization_id).show();
+                $('#organization-upload-profile-picture-' + organization.organization_id).show();
                 $('.organization-form-edit-' + organization.organization_id).prop('disabled', false);
 
                 organizationCache[organization.organization_id] = {}
@@ -565,6 +571,25 @@
                 Materialize.toast('An error occured', 2000);
                 console.log(err);
             })
+        }
+
+        function upload(organization_id){
+            Materialize.toast("uploadding "+organization_id,3000);
+            console.log(document.getElementById("organization-upload-profile-picture-" + organization_id));
+            $scope.fileItem.file = document.getElementById("organization-upload-profile-picture-" + organization_id).files[0];
+            $scope.fileItem.file.newname = "org-"+organization_id;
+            //$scope.fileItem.file.name = { "value":$scope.competitor.id,"writable":true};
+            $scope.fileItem.name="org-"+organization_id;
+            console.log($scope.fileItem);
+            console.log($scope.fileItem.file);
+            //var uploadUrl = '/upload';
+            UserService
+                .uploader($scope.fileItem)
+                .then(function(res){
+                    //$window.location.reload();//$("#visited-competitor-profile-img").attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
+                },function(err){
+                    console.log(err);
+                })
         }
     }
 })();
