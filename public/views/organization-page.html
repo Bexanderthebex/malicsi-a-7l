@@ -3,7 +3,7 @@
 	<!-- Main holder just keeps the main below the navbar -->
 	<div id="main">
 		<div class="organization-header col s12 m12 l12" ng-init="retrieveOrganization()">
-			<img class="valign" id="organization-logo" src="/assets/default-logo.png">
+			<img class="valign" id="organization-logo" src="uploads/org-{{organization.organization_id}}.png">
 			<h3 id="organization-name" class="rockwell strong letter-spacing-1">{{ organization.name }}</h3>
 		</div>
 
@@ -167,7 +167,7 @@
                     <div class="row">
                         <h1 class="organization-team-member-name telegrafico" id="emptyTeam"></h1>
                         <div class="col s4 m3 l2 organization-team-member" ng-repeat="member in teamMembers" >
-                            <a ng-click="closeAllModals()" class="modal-action modal-close" href="/#/competitor/profile/{{member.id}} ">
+                            <a class="modal-action modal-close" href="#/competitor/profile/{{member.id}} ">
                             <img id="{{member.sex}}" class="valign organization-team-member-avatar" src="uploads/{{member.id}}.png">
                             <h5 class="organization-team-member-name palette-text-3 century-gothic strong"> {{member.nickname}} </h5>
                             <span class="organization-team-member-info palette-text-4 strong telegrafico"> Position </span>
