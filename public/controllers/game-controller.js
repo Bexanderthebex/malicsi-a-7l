@@ -61,6 +61,7 @@
 		$scope.checkDeleteButtonOrg = checkDeleteButtonOrg;
 		$scope.initializeGamePage = initializeGamePage;
 		$scope.checkDeleteButtonSpon = checkDeleteButtonSpon;
+		$scope.setBadges = setBadges;
 
 		$scope.addName = undefined;
 		$scope.addMaxTeams = undefined;
@@ -461,41 +462,45 @@
 					$scope.sports = res.data;
 					for (var i = 0; i<res.data.length; i++){
 						countTeamInSport(res.data[i]);
-						if(new RegExp("archery").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "archery";
-						} else if(new RegExp("badminton").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "badminton";
-						} else if(new RegExp("baseball").test(res.data[i].sport_name.toLowerCase()) || 
-								new RegExp("base").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "baseball";
-						} else if(new RegExp("basketball").test(res.data[i].sport_name.toLowerCase()) ||
-								new RegExp("basket").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "basketball";
-						} else if(new RegExp("boxing").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "boxing";
-						} else if(new RegExp("fencing").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "fencing";
-						} else if(new RegExp("golf").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "golf";
-						} else if(new RegExp("gymnast").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "gymnastics";
-						} else if(new RegExp("swim").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "swimming";
-						} else if(new RegExp("tennis").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "tennis";
-						} else if(new RegExp("track").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "tracknfield";
-						} else if(new RegExp("volley").test(res.data[i].sport_name.toLowerCase())) {
-							$scope.sportToUse = "volleyball";
-						} else {
-							$scope.sportToUse = "volleyball";
-						}
+						setBadges(i);
 					}
-					$scope.sports = res.data;
 				}, function(err) {
 					console.log(err);
 					Materialize.toast('Failed to retrieve sports!', 3000);
 				})
+		}
+
+		
+		function setBadges(i) {
+			if(new RegExp("archery").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "archery";
+			} else if(new RegExp("badminton").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "badminton";
+			} else if(new RegExp("baseball").test($scope.sports[i].sport_name.toLowerCase()) || 
+					new RegExp("base").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "baseball";
+			} else if(new RegExp("basketball").test($scope.sports[i].sport_name.toLowerCase()) ||
+					new RegExp("basket").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "basketball";
+			} else if(new RegExp("boxing").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "boxing";
+			} else if(new RegExp("fencing").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "fencing";
+			} else if(new RegExp("golf").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "golf";
+			} else if(new RegExp("gymnast").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "gymnastics";
+			} else if(new RegExp("swim").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "swimming";
+			} else if(new RegExp("tennis").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "tennis";
+			} else if(new RegExp("track").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "tracknfield";
+			} else if(new RegExp("volley").test($scope.sports[i].sport_name.toLowerCase())) {
+				$scope.sports[i]["badge"] = "volleyball";
+			} else {
+				$scope.sports[i]["badge"] = "volleyball";
+			}
 		}
 
 
