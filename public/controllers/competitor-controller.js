@@ -12,7 +12,8 @@
         $scope.thisCompetitor = {
             competitor_id: $routeParams.id
         };
-        $scope.image;
+        let image;
+        $scope.profileImage;
         $scope.pendingRequested = {};
         $scope.teamAccordion = {};
         $scope.competitor = {};
@@ -73,6 +74,7 @@
         $scope.setPendingRequest = setPendingRequest;
         $scope.setKickMember = setKickMember;
         $scope.upload = upload;
+        $scope.setProfileImage = setProfileImage;
 
         function searchCompetitor(){
             CompetitorService
@@ -81,22 +83,32 @@
                     $scope.competitor = res.data;
                     if($scope.competitor == []) {
                         $window.location.href = '/#/error';
-                    }
+                    };
+
+                    $(document).ready(function()
+                    {
+                        let img = new Image();
+                        img.src = "uploads/"+$scope.competitor.id+".png";
+                        img.onload = function(){ // abled to load
+                            image = img.src;
+                            console.log("\n\n\n");
+                            console.log( image);
+                            //$scope.profileImage = img.src;
+                            document.getElementById("visited-competitor-profile-img").style.backgroundImage = "/uploads/"+$scope.competitor.id+".png";
+                        };
+                        img.onerror = function(){
+                            document.getElementById("visited-competitor-profile-img").style.backgroundImage = '/assets/avatars/'+$scope.competitor.sex+'.png';
+                            //$scope.profileImage = '/assets/avatars/'+$scope.competitor.sex+'.png';
+                        };
+
+                    });
                 }, function(err) {
                     $window.location.href = '/#/error';
                 })
-            $(document).ready(function()
-            {
-                $("#visited-competitor-profile-img").on("error", function(){
-                    $(this).attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
-                });
-
-                $("#visited-competitor-profile-img").on("change", function(){
-                    $("#competitor-profile-img").attr('src', '/uploads/'+$scope.competitor.id+'.png');
-                });
-
-            });
+           
         }
+
+
 
         function getCompetitor(){
             UserService
@@ -107,20 +119,34 @@
                     if($scope.competitor == []) {
                         $window.location.href = '/';
                     }
+                     $(document).ready(function()
+                    {
+                        let img = new Image();
+                        img.src = "uploads/"+$scope.competitor.id+".png";
+                        img.onload = function(){ // abled to load
+                            image = img.src;
+                            console.log("\n\n\n");
+                            console.log( image);
+                            $scope.profileImage = img.src;
+                            document.getElementById("competitor-profile-img").style.backgroundImage = "url('/uploads/"+$scope.competitor.id+".png')";
+                            //alert(document.getElementById("competitor-profile-img").style.backgroundImage);
+                        };
+                        img.onerror = function(){
+                            document.getElementById("competitor-profile-img").style.backgroundImage = 'url("/assets/avatars/'+$scope.competitor.sex+'.png")';
+                            $scope.profileImage = '/assets/avatars/'+$scope.competitor.sex+'.png';
+                        }
+
+                        $scope.profileImage = image;
+                        console.log( image);
+                    });
                 }, function(err) {
                     $window.location.href = '/#/error';
                 })
-            $(document).ready(function()
-            {
-                $("#competitor-profile-img").on("error", function(){
-                    $(this).attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
-                });
+            
+        }
 
-
-                $("#competitor-profile-img").on("change", function(){
-                    $("#competitor-profile-img").attr('src', '/uploads/'+$scope.competitor.id+'.png');
-                });
-            });
+        function setProfileImage(){
+            $scope.profileImage = image;
         }
 
         function getCompetitorTeams(){

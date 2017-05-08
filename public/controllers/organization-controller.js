@@ -13,6 +13,7 @@
         $scope.thisOrganization = {
             organization_id: $routeParams.id
         };
+        let image;
         $scope.currentUser = {};
         $scope.teams = [];
         $scope.temp = [];
@@ -63,14 +64,6 @@
                 }, function(err) {
                     console.log(err.data);
                 })
-
-            $(document).ready(function()
-            {
-                $("#organization-logo").on("error", function(){
-                    $(this).attr('src', '/assets/default-logo.png'   );
-                });
-
-            });
         }
 
         function retrieveOrganization() {
@@ -78,13 +71,31 @@
                 .getOrganization($scope.thisOrganization.organization_id)
                 .then(function(res) {
                     $scope.organization = res.data;
+                    $(document).ready(function()
+                    {
+                        let img = new Image();
+                        img.src = "uploads/org-"+$scope.organization.id+".png";
+                        img.onload = function(){ // abled to load
+                            image = img.src;
+                            console.log("\n\n\n");
+                            console.log( image);
+                            //$scope.profileImage = img.src;
+                            document.getElementById("organization-logo").style.backgroundImage = "url('/uploads/org-"+$scope.organization.id+".png')";
+                            //alert(document.getElementById("competitor-profile-img").style.backgroundImage);
+                        };
+                        img.onerror = function(){
+                            document.getElementById("organization-logo").style.backgroundImage = 'url("/assets/default-logo.png")';
+                            $scope.profileImage = '/assets/default-logo.png';
+                        }
+
+                        //$scope.profileImage = image;
+                        console.log( image);
+                    });   
                     retrieveOrganizationStatistics($scope.thisOrganization.organization_id);
                 }, function(err) {
                     $window.location.href = '/#/error';
                     console.log(err);
                 })
-
-            
         }
 
         function retrieveGamesInOrganization(org_id) {
