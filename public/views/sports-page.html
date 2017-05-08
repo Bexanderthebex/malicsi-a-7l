@@ -20,7 +20,7 @@
 
 				<div id="sports-ranking-body" class="col l9 m6 s12 row" ng-show="checkRankings()">
 					<div class="rank-entity col l4 m12 s12" ng-repeat="team in rankingsSport | limitTo: 5">
-						<div class="rank"><h3>{{ team.total_rank }}</h3></div>
+						<div class="rank"><h3>{{ $index + 1 }}</h3></div>
 						<div>
 							<h5>{{ team.team_name }}</h5>
 							<h6>{{ team.name }}</h6>
