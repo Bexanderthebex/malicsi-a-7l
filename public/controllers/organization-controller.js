@@ -81,14 +81,14 @@
                     $(document).ready(function()
                     {
                         let img = new Image();
-                        img.src = "uploads/org-"+$scope.organization.id+".png";
+                        img.src = "uploads/org-"+$scope.organization.organization_id+".png";
                         img.onload = function(){ // abled to load
                             image = img.src;
                             console.log("\n\n\n");
                             console.log( image);
                             //$scope.profileImage = img.src;
-                            document.getElementById("organization-logo").style.backgroundImage = "url('/uploads/org-"+$scope.organization.id+".png')";
-                            document.getElementById("organization-logo").src = '/uploads/org-'+$scope.organization.id+'.png';
+                            //document.getElementById("organization-logo").style.backgroundImage = "url('/uploads/org-"+$scope.organization.organization_id+".png')";
+                            document.getElementById("organization-logo").src = '/uploads/org-'+$scope.organization.organization_id+'.png';
                             //alert(document.getElementById("competitor-profile-img").style.backgroundImage);
                         };
                         img.onerror = function(){

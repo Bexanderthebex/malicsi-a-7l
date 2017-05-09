@@ -74,7 +74,6 @@
         $scope.setPendingRequest = setPendingRequest;
         $scope.setKickMember = setKickMember;
         $scope.upload = upload;
-        $scope.setProfileImage = setProfileImage;
 
         function searchCompetitor(){
             CompetitorService
@@ -90,14 +89,15 @@
                         let img = new Image();
                         img.src = "uploads/"+$scope.competitor.id+".png";
                         img.onload = function(){ // abled to load
-                            image = img.src;
+                            //image = img.src;
                             console.log("\n\n\n");
-                            console.log( image);
+                            //alert( image);
                             //$scope.profileImage = img.src;
-                            document.getElementById("visited-competitor-profile-img").style.backgroundImage = "/uploads/"+$scope.competitor.id+".png";
+                            document.getElementById("visited-competitor-profile-img").style.backgroundImage = "url('/uploads/"+$scope.competitor.id+".png')";
                         };
                         img.onerror = function(){
-                            document.getElementById("visited-competitor-profile-img").style.backgroundImage = '/assets/avatars/'+$scope.competitor.sex+'.png';
+                            alert("default")
+                            document.getElementById("visited-competitor-profile-img").style.backgroundImage = 'url("/assets/avatars/'+$scope.competitor.sex+'.png")';
                             //$scope.profileImage = '/assets/avatars/'+$scope.competitor.sex+'.png';
                         };
 
@@ -143,10 +143,6 @@
                     $window.location.href = '/#/error';
                 })
             
-        }
-
-        function setProfileImage(){
-            $scope.profileImage = image;
         }
 
         function getCompetitorTeams(){

@@ -250,7 +250,7 @@
 											<i data-position="left" data-delay="20" data-tooltip="Delete" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-trash fa-lg" ng-click="deleteOrganization(org.organization_id)"></i>
 											<i ng-attr-id="organization-edit-{{org.organization_id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganization(org)"></i>
 											<!-- <i ></i> -->
-											<input id="organizationFileItem" ng-attr-id="organization-upload-profile-picture-{{org.organization_id}}" data-position="right" data-delay="20" data-tooltip="Upload Profile Picture" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-image fa-lg"  style="display:none;" ng-click="setOrgModal(org.organization_id)" type="file" file-model="fileItem.file" accept=".png" class="modal-close">
+											<i id="organizationFileItem" ng-attr-id="organization-upload-profile-picture-{{org.organization_id}}" data-position="right" data-delay="20" data-tooltip="Upload Profile Picture" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-image fa-lg"  style="display:none;" data-target="upload-organization-image" ng-click="setOrgModal(org.organization_id);uploadOrganizationID=org.organization_id" class=""></i>
 											<i ng-attr-id="organization-cancel-edit-{{org.organization_id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditOrganization(org)"></i>
 										</div>
 									</td>
@@ -512,17 +512,15 @@
 			<button href="" class="modal-action modal-close minimalist-button" ng-click="changePassword()">NEXT <i class="fa fa-angle-double-right"></i></button>
 		</div>
 	</div>
-</div>
-
-<!--Upload Organization Image-->
-<!-- <div id="upload-organization-image" class="modal">
+	<!--Upload Organization Image-->
+<div id="upload-organization-image" class="modal">
     <div class="modal-content competitor-header-fill century-gothic   ">
         <div class="row competitor-remove-bottom">
             <div class="col s12 competitor-padding-left competitor-padding-right">
                 <div class="center palette-5">
                     <br>
                         <div class="card-title white-text center telegrafico" id="thicken">
-                            <h4 class="competitor-remove-bottom-modal">{{uploadOrganizationID}} Organization Image</h4>
+                            <h4 class="competitor-remove-bottom-modal">Organization Image</h4>
                         </div>
                     <br>
                 </div>
@@ -533,7 +531,7 @@
                 <div class="file-field input-field">
                     <div class="btn file-button blue darken-4">
                         <span class="telegrafico">File</span>
-                        <input id="fileItem" type="file" file-model="fileItem.file" accept=".png" class="modal-close">
+                        <input id="organization-upload-profile-picture" type="file" file-model="fileItem.file" accept=".png">
                     </div>
                     <div class="file-path-wrapper">
                         <input class="file-path validate" type="text">
@@ -543,10 +541,13 @@
         </div>
     </div>
     <div class="modal-footer palette-5 right-align">
-        <button href="" class="modal-action modal-close minimalist-button" ng-click="uploadOrganizationImage()">Upload</button>
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="uploadOrgImg(uploadOrganizationID)">Upload</button>
         <button href="" class="modal-action modal-close minimalist-button">Cancel</button>
     </div>
-</div> -->
+</div>
+</div>
+
+
 
 <!--Scripts-->
 <script src="frontend_modules/js/init.js"></script>
