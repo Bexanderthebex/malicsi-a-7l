@@ -13,6 +13,7 @@
         let user = null;
         let pending = null;
 
+        $scope.uploadOrganizationID;
         $scope.admins = [];
         $scope.users = [];
         $scope.organizers = [];
@@ -20,6 +21,8 @@
         $scope.logs = [];
         $scope.sponsors = [];
         $scope.fileItem = {};
+        $scope.setOrgModal = setOrgModal;
+        $scope.uploadOrgImg = upload;
 
         UserService.getUsersByType('A').then((res) => {
             $scope.admins = res.data;
@@ -355,8 +358,6 @@
                 $('#organization-upload-profile-picture-' + organization.organization_id).hide();
                 $('.organization-form-edit-' + organization.organization_id).prop('disabled', true);
 
-                upload(organization.organization_id);
-
                  OrganizationService.updateOrganization(organization)
                 .then((res) => {
                     AdminService.retrieveLog().then((res) => {
@@ -591,10 +592,15 @@
             })
         }
 
+        function setOrgModal(organization_id){
+            $scope.uploadOrganizationID = organization_id;
+            //alert( $scope.uploadOrganizationID);
+        }
+
         function upload(organization_id){
-            Materialize.toast("uploadding "+organization_id,3000);
-            console.log(document.getElementById("organization-upload-profile-picture-" + organization_id));
-            $scope.fileItem.file = document.getElementById("organization-upload-profile-picture-" + organization_id).files[0];
+            Materialize.toast("Uploading New Profile Picture",3000);
+            console.log(document.getElementById("organization-upload-profile-picture"));
+            $scope.fileItem.file = document.getElementById("organization-upload-profile-picture").files[0];
             $scope.fileItem.file.newname = "org-"+organization_id;
             //$scope.fileItem.file.name = { "value":$scope.competitor.id,"writable":true};
             $scope.fileItem.name="org-"+organization_id;
@@ -604,6 +610,7 @@
             UserService
                 .uploader($scope.fileItem)
                 .then(function(res){
+                    Materialize.toast("Uploaded New Profile Picture",3000);
                     //$window.location.reload();//$("#visited-competitor-profile-img").attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
                 },function(err){
                     console.log(err);
