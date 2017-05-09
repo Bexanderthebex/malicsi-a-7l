@@ -9047,3 +9047,6 @@ insert into competitor_joins_team (id, team_id, is_member) values (797, 684, 1);
 insert into competitor_joins_team (id, team_id, is_member) values (798, 562, 1);
 insert into competitor_joins_team (id, team_id, is_member) values (799, 713, 1);
 insert into competitor_joins_team (id, team_id, is_member) values (800, 422, 1);
+
+delete from user where id > 434 and id < 936;
+delete from game where game_id > 280;
