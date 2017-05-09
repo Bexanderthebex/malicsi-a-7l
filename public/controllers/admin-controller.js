@@ -10,7 +10,7 @@
         let organizerCache = {};
         let organizationCache = {};
         let sponsorCache = {};
-        let user = null;
+        $scope.user = null;
         let pending = null;
 
         $scope.uploadOrganizationID;
@@ -31,8 +31,8 @@
         });
 
         UserService.getUserInfo().then((res) => {
-            user = res.data;
-            if (res.data == '' || user.type != 'A') {
+            $scope.user = res.data;
+            if (res.data == '' || $scope.user.type != 'A') {
                 Materialize.toast('You need to be logged in as an administrator to access the admin panel.', 2000);
                 $location.url('/');
             }

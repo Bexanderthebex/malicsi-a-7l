@@ -1,4 +1,4 @@
-INSERT INTO user VALUES (1,'asmith0','$2a$10$lwsdMs1oR3xqKtz0lVTIIOd7H/1t8TpZuVmYPwcjtS067HnZiIzxy','jhawkins0@tuttocitta.it','(577)399-7885','A',0);
+INSERT INTO user VALUES (1,'malicsi.thebetels','$2a$10$Ldp6onw9UX1mPORicFdy9OMULPHn.aGyCGCADL5zVii/DNHJdzJsS', 'malicsi.thebetels@gmail.com', '09356912182', 'A', 1);
 INSERT INTO user VALUES (2,'jramirez1','$2a$10$TsvjLdfO.NnDul03QKy.8uppWDR.8L5hmfWFIbFbpPvJwEq304Os.','tjenkins1@amazon.co.uk','(160)503-6933','A',1);
 INSERT INTO user VALUES (3,'mwillis2','$2a$10$jmoDlpASfAZzNddnK0u8T.wCHJACaeoC2WlzY6Cv.Yud6BWEadK3e','adean2@1688.com','(430)228-8448','A',0);
 INSERT INTO user VALUES (4,'ehawkins3','$2a$10$p1LjciDnvKkzRQim2ZzLmOK5gqC3YgtIsyfs2iXssswenKDyf9GN2','alawson3@nih.gov','(560)849-2974','A',0);
