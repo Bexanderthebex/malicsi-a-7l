@@ -280,6 +280,17 @@
                         <label for="first-name">Username <span style="color:red;" ng-hide='((competitor.username.localeCompare("")))'>Required</span></label>
                     </div>
                 </div>
+                <div class="row">    
+                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                        <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
+                        <label for="last-name">Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
+                    </div>
+                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                        <input placeholder=" " type="password" class="validate" ng-model="dup_password">
+                        <label for="last-name">Confirm Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="file-title col s12 century-gothic valign-wrapper">
                         <label class="active">Profile Picture</label>
@@ -299,17 +310,6 @@
                         </form>
                     </div>
                 </div>
-                <div class="row">    
-                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
-                        <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
-                        <label for="last-name">Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
-                    </div>
-                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
-                        <input placeholder=" " type="password" class="validate" ng-model="dup_password">
-                        <label for="last-name">Confirm Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
-                    </div>
-                </div>
-
             </form>
         </div>
     </div>
