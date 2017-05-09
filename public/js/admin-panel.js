@@ -53,11 +53,11 @@ $(document).ready(function(){
 
   // $('.admin-form-edit').attr('disabled', 'disabled');
 
-  $("#admin-admins-btn").mouseover(function() {
+  $("#admin-organizers-btn").mouseover(function() {
       $(this).css("background","#00719c");
   });
 
-  $("#admin-organizers-btn, #admin-users-btn, #admin-logs-btn, #admin-spon-btn, #admin-orgs-btn").mouseover(function() {
+  $("#admin-admins-btn, #admin-users-btn, #admin-logs-btn, #admin-spon-btn, #admin-orgs-btn").mouseover(function() {
       $(this).css("background","#00415a");
   }).mouseout(function() {
       $(this).css("background","transparent");

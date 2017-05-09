@@ -10,13 +10,13 @@
 					</div>
 				</div>
 				<!-- TAB BUTTONS -->
-				<div id="admin-buttons">
-					<button id="admin-admins-btn" style="background:#00719c;" ng-click="getAdmins()"><div style="width: 90%; float: left;">ADMINS</div> <i class="fa fa-chevron-right"></i></button>
-					<button id="admin-organizers-btn" ng-click="getOrganizers()"><div style="width: 90%; float: left;">ORGANIZERS</div> <i class="fa fa-chevron-right"></i></button>
+				<div id="admin-buttons" ng-init="getOrganizers()">
+					<button id="admin-organizers-btn" style="background:#00719c;" ng-click="getOrganizers()"><div style="width: 90%; float: left;">ORGANIZERS</div> <i class="fa fa-chevron-right"></i></button>
 					<button id="admin-orgs-btn" ng-click="getOrganizations()"><div style="width: 90%; float: left;">ORGANIZATIONS</div> <i class="fa fa-chevron-right"></i></button>
 					<button id="admin-users-btn" ng-click="getUsers()"><div style="width: 90%; float: left;">USERS</div> <i class="fa fa-chevron-right"></i></button>
 					<button id="admin-logs-btn" ng-click="getLogs()"><div style="width: 90%; float: left;">LOGS</div> <i class="fa fa-chevron-right"></i></button>
 					<button id="admin-spon-btn" ng-click="getSponsors()"><div style="width: 90%; float: left;">SPONSORS</div> <i class="fa fa-chevron-right"></i></button>
+					<button ng-hide="user.id != 1 " id="admin-admins-btn"  ng-click="getAdmins()"><div style="width: 90%; float: left;">Admin</div> <i class="fa fa-chevron-right"></i></button>
 				</div>
 			</div>
 			<div id="admin-sidenav-trigger" class="col valign-wrapper offset-m6 offset-s7 admin-fixed-sidebar">
@@ -26,7 +26,7 @@
 			<!-- NAV VIEWS -->
 			<div id="admin-main" class="col l9 offset-l3 m12 s12 admin-padding-left admin-padding-right">
 				<!-- Admins -->
-				<div id="admin-adminscrud" class="admin-view" style="display: inline;">
+				<div id="admin-adminscrud" class="admin-view" style="display: none;">
 
 					<h4 class="rockwell margin-down-40">Admins</h4>
 					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADMIN LIST</h6>
@@ -116,7 +116,7 @@
 				</div>
 
 				<!-- Organizer -->
-				<div class="admin-view" id="admin-organizerscrud" style="display: none;">
+				<div class="admin-view" id="admin-organizerscrud" style="display: inline;">
 
 					<h4 class="rockwell margin-down-40">Organizers</h4>
 					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ORGANIZERS LIST</h6>
