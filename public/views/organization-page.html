@@ -106,7 +106,7 @@
 							<tbody >
 								<tr class="rockwell" ng-repeat="pagedTeam in pagedTeams | filter:searchTeam" data-target="organization-team-info-modal" ng-click='retrieveTeam(pagedTeam.team_id);'>
 									<td>
-										<div><span style="font-weight: bold">{{pagedTeam.team_name}}</span></div>
+										<div><span class="team-pending-{{pagedTeam.pending_participation}}" style="font-weight: bold">{{pagedTeam.team_name}}</span></div>
 									</td>
 									<td>
 										<div> {{pagedTeam.sport_name}} </div>
