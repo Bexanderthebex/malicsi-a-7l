@@ -151,8 +151,7 @@ exports.getMembershipRequest = (req, res) => {
 
 exports.displayPendingMembershipRequest = (req, res) => {
     let query = "CALL display_pending_membership_request(?)";
-    
-    connection.userType(req.session.user).query(query, 
+    connection.userType(req.session.user.type).query(query, 
         [
             req.session.user.id
         ], (err, rows) => {
@@ -257,7 +256,7 @@ exports.getTeam = (req, res) => {
 exports.getCoachedTeam = (req, res) => {
     let query = "CALL get_coached_team(?)";
 
-    connection.userType('A').query(query,
+    connection.userType('G').query(query,
     [
         req.session.user.id
     ], (err, rows) => {
