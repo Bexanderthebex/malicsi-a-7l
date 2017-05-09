@@ -56,7 +56,7 @@
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
-								<tr ng-repeat="a in admins">
+								<tr ng-repeat="a in admins" ng-hide="a.id == 1">
 									<td class="match-player" style="width: 10%;z-index: 1;">
 										<input disabled class="admin-form-edit admin-form-edit-{{a.id}}" type="text" ng-model="a.username" ng-init="a.username">
 									</td>
