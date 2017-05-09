@@ -167,7 +167,7 @@
                     </li>
                     <li class="competitor-cteam" ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id); isFull(cteam.team_id)">
                         <div class="collapsible-header active">
-                            <div class="row remove-bottom century-gothic">
+                            <div class="row remove-bottom century-gothic team-pending-{{cteam.pending_participation}}">
                                 <div class="col l3 m3 s3">{{cteam.team_name}}</div>
                                 <div class="col l5 m5 s5 center">{{cteam.name}}</div>
                                 <div class="col l3 m3 s3 center">{{cteam.sport_name}}</div>
