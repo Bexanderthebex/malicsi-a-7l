@@ -298,3 +298,8 @@
 .gamefeed-black-text-anchor {
     color: black;
 }
+
+.gamefeed-fab-force-left {
+    left: 23px;
+    right: 0px !important;
+}
