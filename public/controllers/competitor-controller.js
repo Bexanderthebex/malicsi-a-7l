@@ -213,9 +213,9 @@
                 })
 
             upload();
-            $("#competitor-profile-img").attr('src', '/uploads/'+$scope.competitor.id+'.png');
+            
 
-
+            editCompetitorBio();
 
             UserService
                 .updateUser($scope.competitor)
@@ -235,12 +235,14 @@
                     //Materialize.toast('Unsuccessful edit!', 3000);
                     console.log(err);
                 })
-
+                document.getElementById("competitor-profile-img").style.backgroundImage = "url('/uploads/"+$scope.competitor.id+".png')";
                 $window.location.reload();
         }
 
         function upload(){
             $scope.fileItem.file = document.getElementById("fileItem").files[0];
+            if ($scope.fileItem.file == null)
+                return;
             $scope.fileItem.file.newname = $scope.competitor.id;
             //$scope.fileItem.file.name = { "value":$scope.competitor.id,"writable":true};
             $scope.fileItem.name=$scope.competitor.id;
@@ -248,7 +250,7 @@
             UserService
                 .uploader($scope.fileItem)
                 .then(function(res){
-                    $("#competitor-profile-img").attr('src', '/uploads/'+$scope.competitor.id+'.png');
+                    document.getElementById("competitor-profile-img").style.backgroundImage = "url('/uploads/"+$scope.competitor.id+".png')";
                 },function(err){
                     console.log(err);
                 })
