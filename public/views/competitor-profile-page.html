@@ -109,7 +109,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="century-gothic" ng-repeat="team in competitorteams">
+                                <tr ng-repeat="team in competitorteams" class="century-gothic team-pending-{{team.pending_participation}}" >
                                     <td style="padding-left: 10px;" class="left">{{team.team_name}}</td>
                                     <td><a href="#/sports/{{team.sport_id}}">{{team.sport_name}}</a></td>
                                     <td><a href="#/game/{{team.game_id}}">{{team.name}}</a></td>
