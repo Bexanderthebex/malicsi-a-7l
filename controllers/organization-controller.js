@@ -29,7 +29,10 @@ exports.editOrganization = (req, res) => {
 		], (err, rows) => {
 			if(!err){
 				if(rows.affectedRows === 0) return res.status(404).send({ 'message': 'Organization was not updated.' });
-				else return res.status(200).send(rows);
+				else {
+					logs.createLog(req.session.user.id, "Edited Organization");
+					return res.status(200).send(rows);
+				}
 			}else return res.status(500).send({'message' : 'Internal Server Error'});
 		}
 	);
@@ -43,6 +46,7 @@ exports.addOrganization = (req, res) => {
             req.body.name
         ], (err, rows) => {
             if(!err) {
+            	logs.createLog(req.session.user.id, "Added an Organization");
                 return res.status(200).send({ 'message' : 'Sucessfully created organization'});
             } else {
 				if (err.code === 'ER_DUP_ENTRY') {
@@ -59,27 +63,31 @@ exports.addOrganization = (req, res) => {
 
 exports.addOrganizationToGame = (req, res) =>{
 	connection.userType('A').query('CALL get_organization(?, ?)',
-		[req.body.orgId, req.body.gameId],
+		[
+			req.body.orgId,
+			req.body.gameId
+		],
 		(err, rows) => {
-		if (!err) {
-			return res.status(200).send("Successfully Added");
-		}else{
-			res.status(500).send("Internal Server Error");
-		}
+			if (!err) {
+				return res.status(200).send("Successfully Added");
+			}else{
+				return res.status(500).send("Internal Server Error");
+			}
 	});
 }
 
 exports.deleteOrganization = (req, res) => {
-	var query = 'call delete_organization(?)'
+	let query = 'call delete_organization(?)';
+
 	connection.userType(req.session.user.type).query(query, [
 		req.body.orgId
 	],
 	(err, rows) => {
 		if (!err) {
-			res.status(200).send('Successfully deleted');
+			logs.createLog(req.session.user.id, "Deleted an Organization");
+			return res.status(200).send('Successfully deleted');
 		} else {
-			console.log(err);
-			res.status(500).send('Internal Server Error');
+			return res.status(500).send('Internal Server Error');
 		}
 	});
 }

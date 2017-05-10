@@ -7,10 +7,11 @@ const bcrypt = require('bcrypt');
 const logs= require('./log-controller');
 
 exports.login = (req, res) => {
-	var query = 'CALL select_user_with_password_from_username(?)';
+	let query = 'CALL select_user_with_password_from_username(?)';
+	
 	connection.userType('A').query(query, [
 		req.body.username
-	], function(err, rows) {
+	], (err, rows) => {
 		if(!err) {
 			if (rows[0].length == 1) {
 				bcrypt.compare(req.body.password, rows[0][0].password, (err, isCorrect) => {
@@ -22,22 +23,21 @@ exports.login = (req, res) => {
 						}
 
 						logs.createLog(req.session.user.id, 'Login');
-
 						return res.status(200).send({ 'message' : 'Successfully logged in'});
 					} else {
-						// console.log('hello')
 						return res.status(401).json({ 'message' : 'Incorrect credentials', 'userdata' : rows[0]}).status(401);
-						//console.log(res);
 					}
 				});
 			} else {
-				//console.log(rows);
 				return res.status(401).send({ 'message' : 'Incorrect credentials'});
 			}
 		} else {
+			
+				console.log(err);
 			if (err.code == 'ER_BAD_NULL_ERROR') {
 				return res.status(500).send({ 'message' : 'Missing credentials'});
 			} else {
+				console.log(err)
 				return res.status(500).send({ 'message' : 'Unknown'});
 			}
 
@@ -56,7 +56,6 @@ exports.register = (req, res) => {
 	let select_user_query = 'CALL select_user_from_username(?)';
 	let insert_comp_query = 'CALL create_competitor(?,?,?,?,?,?)';
 
-	//let type = req.session.user.type;
 	connection.userType('A').query(insert_user_query,
 		[
 			req.body.username,
@@ -70,7 +69,7 @@ exports.register = (req, res) => {
 					[
 						req.body.username
 					], (err, rows) => {
-						var returnObject = rows[0][0];
+						let returnObject = rows[0][0];
 
 						req.session.user = {
 							id: returnObject.id,
@@ -98,14 +97,12 @@ exports.register = (req, res) => {
 										returnObject["sex"] = req.body.sex;
 										return res.status(200).send(returnObject);
 									}else{
-										console.log(err);
 										if (err.code == 'ER_BAD_NULL_ERROR') return res.status(400).send({ 'message' : 'Missing field' });
 										else if (err.code == 'ER_DUP_ENTRY') return res.status(400).send({ 'message' : 'Duplicate entry' });
 										else return res.status(500).send({ 'message': 'Unknown error.' });
 									}
 								});
 							}else{
-								console.log(err);
 								return res.status(404).send({'message':'User does not exist.'});
 							}
 						}else{
@@ -114,7 +111,6 @@ exports.register = (req, res) => {
 					}
 				);
 			}else{
-				console.log(err);
 				if (err.code == 'ER_BAD_NULL_ERROR') {
 					return res.status(500).send({ 'message' : 'Missing field'});
 				} else if (err.code == 'ER_DUP_ENTRY') {
@@ -131,21 +127,13 @@ exports.register = (req, res) => {
 exports.update = (req, res) =>{
 	let update_query = 'CALL update_user(?, ?, ?, ?)';
 
-	/*
-		NOTE FOR FRONT END: Must make sure that if a field is empty, pass the old value.
-		Example, use did not provide password. req.body.password must be the user's old password.
-	*/
-
-	//let type = req.session.user.type;
-	// console.log(req.body);
-	connection.userType('A').query(update_query, [
+	connection.userType(req.session.user.type).query(update_query, [
 		req.body.username,
 		req.body.email,
 		req.body.contact,
 		req.body.id !== undefined ? req.body.id : req.session.user.id // was the id included in the request? if not, default to session user id.
 	], function (err, rows) {
 		if(err) {
-			console.log(err);
 			return res.status(404).send({ 'message' : 'Error updating user!', 'data': err});
 		} else if (rows.affectedRows === 0) {
 			return res.status(404).send({ 'message': 'User was not updated.' });
@@ -160,7 +148,7 @@ exports.update = (req, res) =>{
 exports.searchUser = (req, res) => {
 	let query = "CALL search_user(?)";
 
-	connection.userType('A').query(query,
+	connection.userType('G').query(query,
 		[
 			"%" + req.query.keyword + "%"
 		], (err, rows) => {
@@ -179,9 +167,7 @@ exports.searchUser = (req, res) => {
 
 exports.updatePassword = (req, res) => {
 	let update_query = 'CALL update_user_password(?, ?)';
-	console.log('kek', req.body)
-	//let type = req.session.user.type;
-	// console.log("pw: " +req.body.password);
+
 	connection.userType('A').query(update_query, [
 		req.body.password,
 		req.body.id !== undefined ? req.body.id : req.session.user.id
@@ -198,7 +184,8 @@ exports.updatePassword = (req, res) => {
 }
 
 exports.returnInfo = (req, res) => {
-	var query = 'CALL select_user(?)';
+	let query = 'CALL select_user(?)';
+
 	connection.query(query, [
 		req.params.id
 	], function(err, rows) {
@@ -215,7 +202,8 @@ exports.returnInfo = (req, res) => {
 }
 
 exports.registerCompetitor = (req, res) => {
-	var query = 'INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)';
+	let query = 'INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)';
+	
 	connection.query(query, [
 		req.body.id,
 		req.body.birthday,
@@ -233,7 +221,6 @@ exports.registerCompetitor = (req, res) => {
 
 			return res.status(200).send({ 'message' : 'Successfully inserted new user competitor'});
 		}else{
-			console.log(err);
 			if (err.code == 'ER_BAD_NULL_ERROR') {
 				return res.status(500).send({ 'message' : 'Missing field' });
 			} else if (err.code == 'ER_DUP_ENTRY') {
@@ -258,7 +245,7 @@ exports.getUserInfo = (req,res) => {
 						if(!err) {
 							return res.status(200).send(rows[0][0]);
 						} else {
-							console.log(err);
+							return res.status(500).send("Internal server error.");
 						}
 					})
 				} else if (currentUser.type == 'O') {
@@ -266,14 +253,14 @@ exports.getUserInfo = (req,res) => {
 						if(!err) {
 							return res.status(200).send(rows[0][0]);
 						} else {
-							console.log(err);
+							return res.status(500).send("Internal server error.");
 						}
 					});
 				} else {
 					return res.status(200).send(rows[0][0]);
 				}
 			} else {
-				console.log(err);
+				return res.status(500).send("Internal server error.");
 			}
 		});
 	}

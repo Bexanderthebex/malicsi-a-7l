@@ -10,13 +10,13 @@
 					</div>
 				</div>
 				<!-- TAB BUTTONS -->
-				<div id="admin-buttons">
-					<button id="admin-admins-btn" style="background:#00719c;"><div style="width: 90%; float: left;">ADMINS</div> <i class="fa fa-chevron-right"></i></button>
-					<button id="admin-organizers-btn"><div style="width: 90%; float: left;">ORGANIZERS</div> <i class="fa fa-chevron-right"></i></button>
-					<button id="admin-orgs-btn"><div style="width: 90%; float: left;">ORGANIZATIONS</div> <i class="fa fa-chevron-right"></i></button>
-					<button id="admin-users-btn"><div style="width: 90%; float: left;">USERS</div> <i class="fa fa-chevron-right"></i></button>
-					<button id="admin-logs-btn"><div style="width: 90%; float: left;">LOGS</div> <i class="fa fa-chevron-right"></i></button>
-					<button id="admin-spon-btn"><div style="width: 90%; float: left;">SPONSORS</div> <i class="fa fa-chevron-right"></i></button>
+				<div id="admin-buttons" ng-init="getOrganizers()">
+					<button id="admin-organizers-btn" style="background:#00719c;" ng-click="getOrganizers()"><div style="width: 90%; float: left;">ORGANIZERS</div> <i class="fa fa-chevron-right"></i></button>
+					<button id="admin-orgs-btn" ng-click="getOrganizations()"><div style="width: 90%; float: left;">ORGANIZATIONS</div> <i class="fa fa-chevron-right"></i></button>
+					<button id="admin-users-btn" ng-click="getUsers()"><div style="width: 90%; float: left;">USERS</div> <i class="fa fa-chevron-right"></i></button>
+					<button id="admin-logs-btn" ng-click="getLogs()"><div style="width: 90%; float: left;">LOGS</div> <i class="fa fa-chevron-right"></i></button>
+					<button id="admin-spon-btn" ng-click="getSponsors()"><div style="width: 90%; float: left;">SPONSORS</div> <i class="fa fa-chevron-right"></i></button>
+					<button ng-hide="user.id != 1 " id="admin-admins-btn"  ng-click="getAdmins()"><div style="width: 90%; float: left;">Admin</div> <i class="fa fa-chevron-right"></i></button>
 				</div>
 			</div>
 			<div id="admin-sidenav-trigger" class="col valign-wrapper offset-m6 offset-s7 admin-fixed-sidebar">
@@ -26,7 +26,7 @@
 			<!-- NAV VIEWS -->
 			<div id="admin-main" class="col l9 offset-l3 m12 s12 admin-padding-left admin-padding-right">
 				<!-- Admins -->
-				<div id="admin-adminscrud" class="admin-view" style="display: inline;">
+				<div id="admin-adminscrud" class="admin-view" style="display: none;">
 
 					<h4 class="rockwell margin-down-40">Admins</h4>
 					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ADMIN LIST</h6>
@@ -56,7 +56,7 @@
 								</tr>
 							</thead>
 							<tbody class="century-gothic">
-								<tr ng-repeat="a in admins">
+								<tr ng-repeat="a in admins" ng-hide="a.id == 1">
 									<td class="match-player" style="width: 10%;z-index: 1;">
 										<input disabled class="admin-form-edit admin-form-edit-{{a.id}}" type="text" ng-model="a.username" ng-init="a.username">
 									</td>
@@ -116,7 +116,7 @@
 				</div>
 
 				<!-- Organizer -->
-				<div class="admin-view" id="admin-organizerscrud" style="display: none;">
+				<div class="admin-view" id="admin-organizerscrud" style="display: inline;">
 
 					<h4 class="rockwell margin-down-40">Organizers</h4>
 					<h6 style="margin-top: 20px!important;" class="century-gothic strong ">ORGANIZERS LIST</h6>
@@ -246,8 +246,11 @@
 									</td>
 									<td style="width: 30%!important;">
 										<div>
+
 											<i data-position="left" data-delay="20" data-tooltip="Delete" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-trash fa-lg" ng-click="deleteOrganization(org.organization_id)"></i>
 											<i ng-attr-id="organization-edit-{{org.organization_id}}" data-position="right" data-delay="20" data-tooltip="Edit" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-pencil fa-lg" data-is-editing="false" ng-click="editOrganization(org)"></i>
+											<!-- <i ></i> -->
+											<i id="organizationFileItem" ng-attr-id="organization-upload-profile-picture-{{org.organization_id}}" data-position="right" data-delay="20" data-tooltip="Upload Profile Picture" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-image fa-lg"  style="display:none;" data-target="upload-organization-image" ng-click="setOrgModal(org.organization_id);uploadOrganizationID=org.organization_id" class=""></i>
 											<i ng-attr-id="organization-cancel-edit-{{org.organization_id}}" data-position="right" data-delay="20" data-tooltip="Cancel" class="btn tooltip-icon tooltipped admin-form-edit-btn fa fa-close fa-lg" style="display:none;" ng-click="cancelEditOrganization(org)"></i>
 										</div>
 									</td>
@@ -509,7 +512,42 @@
 			<button href="" class="modal-action modal-close minimalist-button" ng-click="changePassword()">NEXT <i class="fa fa-angle-double-right"></i></button>
 		</div>
 	</div>
+	<!--Upload Organization Image-->
+<div id="upload-organization-image" class="modal">
+    <div class="modal-content competitor-header-fill century-gothic   ">
+        <div class="row competitor-remove-bottom">
+            <div class="col s12 competitor-padding-left competitor-padding-right">
+                <div class="center palette-5">
+                    <br>
+                        <div class="card-title white-text center telegrafico" id="thicken">
+                            <h4 class="competitor-remove-bottom-modal">Organization Image</h4>
+                        </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="row competitor-modal-container">
+            <form action="#">
+                <div class="file-field input-field">
+                    <div class="btn file-button blue darken-4">
+                        <span class="telegrafico">File</span>
+                        <input id="organization-upload-profile-picture" type="file" file-model="fileItem.file" accept=".png">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer palette-5 right-align">
+        <button href="" class="modal-action modal-close minimalist-button" ng-click="uploadOrgImg(uploadOrganizationID)">Upload</button>
+        <button href="" class="modal-action modal-close minimalist-button">Cancel</button>
+    </div>
 </div>
+</div>
+
+
 
 <!--Scripts-->
 <script src="frontend_modules/js/init.js"></script>

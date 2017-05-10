@@ -12,6 +12,7 @@
         $scope.thisOrganizer = {
             orgID: $routeParams.id
         };
+        let image;
         $scope.addGame = addGame;
         $scope.duped_password = "";
         $scope.deleteGame = deleteGame;
@@ -47,12 +48,6 @@
         $scope.fileItem ={};
 
         function getCurrentUser() {	
-            $(document).ready(function()
-            {
-                $("#organizer-profile-img").on("error", function(){
-                    $(this).attr("src", "/assets/avatar.png");
-                });
-            });
             UserService		
                 .getUserInfo()		
                 .then(function (res){		
@@ -63,16 +58,31 @@
                     }	
                  }, function(err) {		
                     Materialize.toast('error', 3000);       
-                })      
+                })
+
+            $(document).ready(function()
+            {
+                let img = new Image();
+                img.src = "uploads/"+$scope.organizer.id+".png";
+                img.onload = function(){ // abled to load
+                    image = img.src;
+                    console.log("\n\n\n");
+                    console.log( image);
+                    //$scope.profileImage = img.src;
+                    document.getElementById("organizer-profile-img").style.backgroundImage = "url('/uploads/"+$scope.organizer.id+".png')";
+                    //alert(document.getElementById("competitor-profile-img").style.backgroundImage);
+                };
+                img.onerror = function(){
+                    document.getElementById("organizer-profile-img").style.backgroundImage = 'url("/assets/default-logo.png")';
+                    $scope.profileImage = '/assets/default-logo.png';
+                }
+
+                //$scope.profileImage = image;
+                console.log( image);
+            });    
         }
 
         function getOrganizer() {
-            $(document).ready(function()
-            {
-                $("#organizer-profile-img").on("error", function(){
-                    $(this).attr("src", "/assets/avatar.png");
-                });
-            });
             OrganizerService
                 .getOrganizer($scope.thisOrganizer.orgID)
                 .then(function(res) {
@@ -83,6 +93,26 @@
                 }, function(err) {
                     $window.location.href = '/#/error';
                 })
+            $(document).ready(function()
+            {
+                let img = new Image();
+                img.src = "uploads/"+$scope.thisOrganizerInfo.id+".png";
+                img.onload = function(){ // abled to load
+                    image = img.src;
+                    console.log("\n\n\n");
+                    console.log( image);
+                    //$scope.profileImage = img.src;
+                    document.getElementById("organizer-profile-img").style.backgroundImage = "url('/uploads/"+$scope.thisOrganizerInfo.id+".png')";
+                    //alert(document.getElementById("competitor-profile-img").style.backgroundImage);
+                };
+                img.onerror = function(){
+                    document.getElementById("organizer-profile-img").style.backgroundImage = 'url("/assets/default-logo.png")';
+                    //$scope.profileImage = '/assets/default-logo.png';
+                }
+
+                //$scope.profileImage = image;
+                console.log( image);
+            });    
         }
 
         function copyGame(game) {
@@ -310,16 +340,11 @@
         function upload(){
             $scope.fileItem.file = document.getElementById("fileItemOrg").files[0];
             $scope.fileItem.file.newname = $scope.organizer.id;
-            //$scope.fileItem.file.name = { "value":$scope.organizer.id,"writable":true};
             $scope.fileItem.name=$scope.organizer.id;
-            console.log("\n\n\n\n File Uploading...")
-            console.log($scope.fileItem);
-            console.log($scope.fileItem.file);
-            //var uploadUrl = '/upload';
             UserService
                 .uploader($scope.fileItem)
                 .then(function(res){
-
+                    Materialize.toast("Sucessfully uploaded image", 2000);
                 },function(err){
                     console.log(err);
                 })

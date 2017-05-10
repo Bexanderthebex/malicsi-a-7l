@@ -198,78 +198,90 @@ BEGIN
 END //
 DELIMITER ;
 
-
-
-
-GRANT EXECUTE ON PROCEDURE create_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE create_sport TO 'organizer'@'localhost';
+GRANT EXECUTE ON PROCEDURE create_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE create_sport TO 'organizer'@'%';
 
 -- view sport
-GRANT EXECUTE ON PROCEDURE view_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_sport TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_sport TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_sport TO 'guest'@'%';
 
 -- view last inserted sport
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE view_last_inserted_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_last_inserted_sport TO 'administrator'@'%';
 
 -- edit sport
-GRANT EXECUTE ON PROCEDURE edit_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE edit_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE edit_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE edit_sport TO 'administrator'@'%';
 
 -- add winner
-GRANT EXECUTE ON PROCEDURE add_winner_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE add_winner_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE add_winner_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE add_winner_sport TO 'administrator'@'%';
 
 -- delete sport
-GRANT EXECUTE ON PROCEDURE delete_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE delete_sport TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE delete_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE delete_sport TO 'administrator'@'%';
 
 -- count sport
-GRANT EXECUTE ON PROCEDURE count_sport_by_game TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE count_sport_by_game TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE count_sport_by_game TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE count_sport_by_game TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE count_sport_by_game TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE count_sport_by_game TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE count_sport_by_game TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE count_sport_by_game TO 'guest'@'%';
 
 -- retrieve team rankings from sport
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_team_rankings_from_sport TO 'guest'@'%';
 
 -- search all sport by keyword
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE search_for_sport_by_keyword TO 'guest'@'%';
 
 -- retrieve org rankings from game
-GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_org_rankings_from_game TO 'guest'@'%';
 
 -- retrieve competitor rankings from sport
-GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_competitor_rankings_from_sport TO 'guest'@'%';
 
 -- retrieve team rankings from sport
-GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_sport_rankings TO 'guest'@'%';
 
 -- retrieve sponsor in sport
-GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_sponsor_in_sport TO 'guest'@'%';
 
 -- retrieve teams in sport
-GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'organizer'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'administrator'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'competitor'@'localhost';
-GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'guest'@'localhost';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE retrieve_teams_in_sport TO 'guest'@'%';
+
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_ongoing_matches_in_sport TO 'guest'@'%';
+
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_past_matches_in_sport TO 'guest'@'%';
+
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO 'administrator'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO 'competitor'@'%';
+GRANT EXECUTE ON PROCEDURE view_all_upcoming_matches_in_sport TO 'guest'@'%';

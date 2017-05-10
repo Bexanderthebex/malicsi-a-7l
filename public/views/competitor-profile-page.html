@@ -5,7 +5,7 @@
         <div class="row palette-3 competitor-profile-info" ng-init="getCompetitor()">
             <div id="competitor-profile-img-container" class="col l3 m5 s12 offset-l1 center">
                 <br>
-                <div id="competitor-profile-img" class="center-block materialboxed" style="background-image:url('uploads/{{competitor.id}}.png');">&nbsp;</div>
+                <div id="competitor-profile-img" class="center-block" style="background-image:url('/assets/avatars/{{competitor.sex}}.png');">&nbsp;</div>
             </div>
 
             <div id="competitor-basic-info" class="col l5 m5 s12 white-text">
@@ -167,7 +167,7 @@
                     </li>
                     <li class="competitor-cteam" ng-repeat="cteam in coachedteam" ng-click="getTeamMembers(cteam.team_id); isFull(cteam.team_id)">
                         <div class="collapsible-header active">
-                            <div class="row remove-bottom century-gothic">
+                            <div class="row remove-bottom century-gothic team-pending-{{cteam.pending_participation}}">
                                 <div class="col l3 m3 s3">{{cteam.team_name}}</div>
                                 <div class="col l5 m5 s5 center">{{cteam.name}}</div>
                                 <div class="col l3 m3 s3 center">{{cteam.sport_name}}</div>
@@ -184,8 +184,8 @@
                                 </div>
                                 <div class="col l1 m1 s1" style="padding-left:0px;padding-right:0px;">
                                     <br>
-                                    <div class="competitor-actions" data-target="competitor-add-member-modal">
-                                        <i class="fa fa-plus fa-lg" ng-click="getRecruitRoaster(cteam);isFull(cteam.team_id)" ng-hide="membercount>=cteam.max_members"></i><span class="telegrafico"> Add</span>
+                                    <div class="competitor-actions" data-target="competitor-add-member-modal" ng-click="getRecruitRoaster(cteam);isFull(cteam.team_id)" ng-hide="membercount>=cteam.max_members">
+                                        <i class="fa fa-plus fa-lg" ></i><span class="telegrafico"> Add</span>
                                     </div>
                                 </div>
                             </div>
@@ -280,6 +280,17 @@
                         <label for="first-name">Username <span style="color:red;" ng-hide='((competitor.username.localeCompare("")))'>Required</span></label>
                     </div>
                 </div>
+                <div class="row">    
+                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                        <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
+                        <label for="last-name">Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
+                    </div>
+                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
+                        <input placeholder=" " type="password" class="validate" ng-model="dup_password">
+                        <label for="last-name">Confirm Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="file-title col s12 century-gothic valign-wrapper">
                         <label class="active">Profile Picture</label>
@@ -299,17 +310,6 @@
                         </form>
                     </div>
                 </div>
-                <div class="row">    
-                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
-                        <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
-                        <label for="last-name">Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
-                    </div>
-                    <div class="input-field col l6 m6 s12 competitor-input-color-change">
-                        <input placeholder=" " type="password" class="validate" ng-model="dup_password">
-                        <label for="last-name">Confirm Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
-                    </div>
-                </div>
-
             </form>
         </div>
     </div>

@@ -127,7 +127,7 @@
 }
 
 #game-delete-sponsor .modal-content{
-    max-height: 50vh;
+    /*max-height: 50vh;*/
     /*overflow-y:auto;*/
     z-index:99;
 }
@@ -142,7 +142,7 @@
 }
 
 #game-sponsor-add .modal-content{
-    max-height: 50vh;
+    /*max-height: 50vh;*/
     /*overflow-y:auto;*/
     z-index:99;
 }
@@ -153,7 +153,7 @@
 
 #game-delete-organization .modal-content{
     /*overflow-y:auto;*/
-    max-height:50vh; 
+    /*max-height:50vh; */
     z-index:99;
 }
 
@@ -163,7 +163,7 @@
 
 #game-organization-add .modal-content{
     /*overflow-y:auto;*/
-    max-height:50vh; 
+    /*max-height:50vh; */
     z-index:99;
 }
 
@@ -850,3 +850,39 @@
 }
 
 
+@media screen and (max-device-width : 700px) {
+    #game-delete-sponsor .modal-content{
+        max-height: 100%;
+    }
+
+    #game-sponsor-add .modal-content{
+        max-height: 100%;
+    }
+
+    #game-delete-organization .modal-content{
+        max-height: 100%; 
+    }
+
+    #game-organization-add .modal-content{
+        max-height: 100%; 
+    }
+}
+
+
+@media screen and (max-device-width : 450px) {
+    #game-delete-sponsor .modal-content{
+        max-height: 100%;
+    }
+
+    #game-sponsor-add .modal-content{
+        max-height: 100%;
+    }
+
+    #game-delete-organization .modal-content{
+        max-height: 100%; 
+    }
+
+    #game-organization-add .modal-content{
+        max-height: 100%; 
+    }
+}

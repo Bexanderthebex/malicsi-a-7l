@@ -15,5 +15,8 @@ exports.userType = (type) => {
 			return connection3;
 		case 'G':
 			return connection4;
+		default:
+			return connection4;
 	}
+	return connection4;
 }

@@ -31,14 +31,12 @@
 
 		function addGame(game) {
 			let deferred = $q.defer();
-			console.log(game);
 			$http({
 				method: 'POST',
 				data: $.param(game),
 				url: '/game/createGame',
 				headers: headers
 			}).then((res) => {
-				console.log(res);
 				deferred.resolve(res);
 			}, (err) => {
 				deferred.reject(err);
@@ -49,14 +47,12 @@
 
 		function updateAdmin(admin) {
 			let deferred = $q.defer();
-			console.log(admin);
 			$http({
 				method: 'POST',
 				data: $.param(admin),
 				url: '/admin/createGame',
 				headers: headers
 			}).then((res) => {
-				console.log(res);
 				deferred.resolve(res);
 			}, (err) => {
 				deferred.reject(err);
@@ -67,7 +63,6 @@
 
 		function retrieveAdmin(type) {
 			let deferred = $q.defer();
-			console.log(type);
 			$http({
 				method: 'POST',
 				params: { 'type': type },
@@ -84,7 +79,6 @@
 
 		function retrieveOrganizer(type) {
 			let deferred = $q.defer();
-			console.log(type);
 			$http({
 				method: 'POST',
 				params: { 'type': type },
@@ -101,7 +95,6 @@
 
 		function retrieveUser() {
 			let deferred = $q.defer();
-			console.log("Retrieve User");
 			$http({
 				method: 'POST',
 				url: '/user/getAllUsers',
@@ -117,7 +110,6 @@
 
 		function retrieveLog() {
 			let deferred = $q.defer();
-			console.log("Retrieve Log");
 			$http({
 				method: 'GET',
 				url: '/log/viewAllLogs',
@@ -140,7 +132,6 @@
 				data: $.param(admin),
 				headers: headers
 			}).then((res) => {
-				console.log(res);
 				deferred.resolve(res);
 			}, (err) => {
 				deferred.reject(err);
@@ -158,7 +149,6 @@
 				data: $.param(organizer),
 				headers: headers
 			}).then((res) => {
-				console.log(res);
 				deferred.resolve(res);
 			}, (err) => {
 				deferred.reject(err);
@@ -176,10 +166,8 @@
                 url: '/organization/addOrganization',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
-                console.log(err);
                 deferred.reject(err);
             });
 

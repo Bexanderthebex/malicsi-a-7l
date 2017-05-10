@@ -20,7 +20,7 @@
 
 				<div id="sports-ranking-body" class="col l9 m6 s12 row" ng-show="checkRankings()">
 					<div class="rank-entity col l4 m12 s12" ng-repeat="team in rankingsSport | limitTo: 5">
-						<div class="rank"><h3>{{ team.total_rank }}</h3></div>
+						<div class="rank"><h3>{{ $index + 1 }}</h3></div>
 						<div>
 							<h5>{{ team.team_name }}</h5>
 							<h6>{{ team.name }}</h6>
@@ -324,6 +324,12 @@
 		</div>
 	</div>
 
+<div class="fixed-action-btn gamefeed-fab-force-left">
+	<a class="btn-floating btn-large waves-effect waves-light tooltipped left" href="" data-target="match-edit-modal" id="gamefeed-fab-palette-4" data-position="right" data-delay="50" data-tooltip="Add game">
+		<i class="large material-icons">add</i>
+	</a>
+</div>
+
 	<!-- RANKINGS MODAL -->
     <div id="rankings-view-all-modal" class="modal modal-medium modal-fixed-footer">
         <div class="modal-content sports-match-header-fill century-gothic">
@@ -395,19 +401,19 @@
 				<div class="col s12 row padding-override-0">
 					<div id="edit-match-tab-1" class="col s12 container">
 		                <!-- EDIT MATCH INFO -->
-		                <div class="input-field col s4 sports-match-input-color-change">
+		                <div class="input-field col s12 m4 l4 sports-match-input-color-change">
 		                    <input placeholder=" " id="match-start-time" type="time" class="validate" ng-model="matchCopy.timeStart">
 		                    <label for="match-start-time" class="sports-match-adjust-label">
 		                        Start Time
 		                    </label>
 		                </div>
-		                <div class="input-field col s4 sports-match-input-color-change">
+		                <div class="input-field col s12 m4 l4 sports-match-input-color-change">
 		                    <input placeholder=" " id="match-end-time" type="time" class="validate" ng-model="matchCopy.timeEnd">
 		                    <label for="match-end-time" class="sports-match-adjust-label">
 		                        End Time
 		                    </label>
 		                </div>
-		                <div class="input-field col s4 sports-match-input-color-change">
+		                <div class="input-field col s12 m4 l4 sports-match-input-color-change">
 		                    <input placeholder=" " id="match-date" type="date" class="validate" ng-model="matchCopy.date">
 		                    <label for="match-date" class="sports-match-adjust-label">
 		                        Date
@@ -566,7 +572,7 @@
     </div>
 
     <!-- DELETE TEAM IN MATCH -->
-    <div id="sports-delete-team-in-match" class="modal gamefeed-deletion">
+    <div id="sports-delete-team-in-match" class="modal modal-fixed-footer modal-small gamefeed-deletion">
         <div class="modal-content gamefeed-header-fill century-gothic   ">
             <div class="row modal-remove-bottom">
                 <div class="col s12 modal-padding-left modal-padding-right palette-5">

@@ -12,7 +12,8 @@
         $scope.thisCompetitor = {
             competitor_id: $routeParams.id
         };
-        $scope.image;
+        let image;
+        $scope.profileImage;
         $scope.pendingRequested = {};
         $scope.teamAccordion = {};
         $scope.competitor = {};
@@ -81,17 +82,33 @@
                     $scope.competitor = res.data;
                     if($scope.competitor == []) {
                         $window.location.href = '/#/error';
-                    }
+                    };
+
+                    $(document).ready(function()
+                    {
+                        let img = new Image();
+                        img.src = "uploads/"+$scope.competitor.id+".png";
+                        img.onload = function(){ // abled to load
+                            //image = img.src;
+                            console.log("\n\n\n");
+                            //alert( image);
+                            //$scope.profileImage = img.src;
+                            document.getElementById("visited-competitor-profile-img").style.backgroundImage = "url('/uploads/"+$scope.competitor.id+".png')";
+                        };
+                        img.onerror = function(){
+                            alert("default")
+                            document.getElementById("visited-competitor-profile-img").style.backgroundImage = 'url("/assets/avatars/'+$scope.competitor.sex+'.png")';
+                            //$scope.profileImage = '/assets/avatars/'+$scope.competitor.sex+'.png';
+                        };
+
+                    });
                 }, function(err) {
                     $window.location.href = '/#/error';
                 })
-            $(document).ready(function()
-            {
-                $("#visited-competitor-profile-img").on("error", function(){
-                    $(this).attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
-                });
-            });
+           
         }
+
+
 
         function getCompetitor(){
             UserService
@@ -102,15 +119,30 @@
                     if($scope.competitor == []) {
                         $window.location.href = '/';
                     }
+                     $(document).ready(function()
+                    {
+                        let img = new Image();
+                        img.src = "uploads/"+$scope.competitor.id+".png";
+                        img.onload = function(){ // abled to load
+                            image = img.src;
+                            console.log("\n\n\n");
+                            console.log( image);
+                            $scope.profileImage = img.src;
+                            document.getElementById("competitor-profile-img").style.backgroundImage = "url('/uploads/"+$scope.competitor.id+".png')";
+                            //alert(document.getElementById("competitor-profile-img").style.backgroundImage);
+                        };
+                        img.onerror = function(){
+                            document.getElementById("competitor-profile-img").style.backgroundImage = 'url("/assets/avatars/'+$scope.competitor.sex+'.png")';
+                            $scope.profileImage = '/assets/avatars/'+$scope.competitor.sex+'.png';
+                        }
+
+                        $scope.profileImage = image;
+                        console.log( image);
+                    });
                 }, function(err) {
                     $window.location.href = '/#/error';
                 })
-            $(document).ready(function()
-            {
-                $("#competitor-profile-img").on("error", function(){
-                    $(this).attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
-                });
-            });
+            
         }
 
         function getCompetitorTeams(){
@@ -181,6 +213,9 @@
                 })
 
             upload();
+            $("#competitor-profile-img").attr('src', '/uploads/'+$scope.competitor.id+'.png');
+
+
 
             UserService
                 .updateUser($scope.competitor)
@@ -201,13 +236,6 @@
                     console.log(err);
                 })
 
-            /*UserService
-                .uploader()
-                .then(function(res)){
-
-                },function(err){
-                    console.log(err);
-                });*/
                 $window.location.reload();
         }
 
@@ -216,13 +244,11 @@
             $scope.fileItem.file.newname = $scope.competitor.id;
             //$scope.fileItem.file.name = { "value":$scope.competitor.id,"writable":true};
             $scope.fileItem.name=$scope.competitor.id;
-            console.log($scope.fileItem);
-            console.log($scope.fileItem.file);
             //var uploadUrl = '/upload';
             UserService
                 .uploader($scope.fileItem)
                 .then(function(res){
-                    $window.location.reload();//$("#visited-competitor-profile-img").attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
+                    $("#competitor-profile-img").attr('src', '/uploads/'+$scope.competitor.id+'.png');
                 },function(err){
                     console.log(err);
                 })
@@ -275,7 +301,6 @@
                 .getCoachedTeam()
                 .then(function (res){
                     $scope.coachedteam = res.data;
-                    // console.log($scope.coachedteam);
                 }, function(err) {
                     console.log(err);
                 })
@@ -304,8 +329,6 @@
             CompetitorService
                 .getPendingRequests()
                 .then(function (res){
-                    console.log("\n\n\n\n");
-                    console.log(res.data);
                     $scope.pendingRequests = res.data;
                 }, function(err) {
                     console.log(err);
@@ -357,7 +380,6 @@
                 .viewAllSportsInGame($scope.game.game_id)
                 .then(function (res){
                     $scope.sports = res.data;
-                    // console.log($scope.sports);
                 }, function(err) {
                     console.log(err);
                 })
@@ -426,8 +448,6 @@
         }
 
         function kickMember(team_id,id){
-            console.log(team_id);
-            console.log(id);
             CompetitorService
                 .deleteMembershipRequest(team_id, id)
                 .then(function (res){
@@ -508,7 +528,6 @@
         }
 
         function recruitNewMember(){
-            console.log($scope.scoutedApplicant.id);
             isFull($scope.scoutedApplicant.team_id)
             if ($scope.full){
                 Materialize.toast("Team is Already Full", 4000);
@@ -521,7 +540,6 @@
                 }, function(err) {
                     console.log(err);
                 })
-            console.log($scope.scoutedApplicant.team_id);
             getTeamMembers($scope.scoutedApplicant.team_id);
             getRecruitRoaster($scope.teamAccordion);
         }

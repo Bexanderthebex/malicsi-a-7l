@@ -10,15 +10,19 @@
         let organizerCache = {};
         let organizationCache = {};
         let sponsorCache = {};
-        let user = null;
+        $scope.user = null;
         let pending = null;
 
+        $scope.uploadOrganizationID;
         $scope.admins = [];
         $scope.users = [];
         $scope.organizers = [];
         $scope.organizations = [];
         $scope.logs = [];
         $scope.sponsors = [];
+        $scope.fileItem = {};
+        $scope.setOrgModal = setOrgModal;
+        $scope.uploadOrgImg = upload;
 
         UserService.getUsersByType('A').then((res) => {
             $scope.admins = res.data;
@@ -26,43 +30,9 @@
             console.log(err);
         });
 
-        SearchService.retrieveOrganizer('').then((res) => {
-            $scope.organizers = res.data;
-        }, (err) => {
-            console.log(err);
-        });
-
-        SearchService.retrieveSponsor('').then((res) => {
-            $scope.sponsors = res.data;
-            console.log("sponsors", $scope.sponsors);
-        }, (err) => {
-            console.log(err);
-        });
-
-        SearchService.retrieveOrganization('').then((res) => {
-            $scope.organizations = res.data;
-            console.log('organizations', $scope.organizations);
-        }, (err) => {
-            console.log(err);
-        });
-
-        AdminService.retrieveLog().then((res) => {
-            $scope.logs = res.data;
-            console.log('logs', $scope.logs);
-        }, (err) => {
-            console.log(err);
-        });
-
-        AdminService.retrieveUser().then((res) => {
-            $scope.users = res.data;
-            console.log('users', $scope.users);
-        }, (err) => {
-            console.log(err);
-        });
-
         UserService.getUserInfo().then((res) => {
-            user = res.data;
-            if (res.data == '' || user.type != 'A') {
+            $scope.user = res.data;
+            if (res.data == '' || $scope.user.type != 'A') {
                 Materialize.toast('You need to be logged in as an administrator to access the admin panel.', 2000);
                 $location.url('/');
             }
@@ -70,6 +40,54 @@
             Materialize.toast('An error occured.', 2000);
             console.log(err);
         })
+
+        $scope.getAdmins = () => {
+            UserService.getUsersByType('A').then((res) => {
+                $scope.admins = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
+
+        $scope.getOrganizers = () => {
+            SearchService.retrieveOrganizer('').then((res) => {
+                $scope.organizers = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
+
+        $scope.getSponsors = () => {
+            SearchService.retrieveSponsor('').then((res) => {
+                $scope.sponsors = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
+
+        $scope.getOrganizations = () => {
+            SearchService.retrieveOrganization('').then((res) => {
+                $scope.organizations = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
+
+        $scope.getLogs = () => {
+            AdminService.retrieveLog().then((res) => {
+                $scope.logs = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
+
+        $scope.getUsers = () => {
+            AdminService.retrieveUser().then((res) => {
+                $scope.users = res.data;
+            }, (err) => {
+                console.log(err);
+            });
+        }
 
         $scope.addAdmin = () => {
            if($scope.adminUsername === undefined || $scope.adminPassword == undefined || $scope.adminEmail === undefined || $scope.adminContact === undefined){
@@ -157,11 +175,8 @@
                 }).then((res) => {
                     $scope.organizationName = "";
 
-                    console.log('add organization', res.data);
-
                     SearchService.retrieveOrganization('').then((res) => {
                         $scope.organizations = res.data;
-                        console.log('organizations', $scope.organizations);
                     }, (err) => {
                         console.log(err);
                     });
@@ -184,7 +199,6 @@
             SearchService.retrieveAdmin($scope.adminSearch)
             .then((res) => {
                 $scope.admins = res.data;
-                console.log('admins', $scope.admins)
             }, (err) => {
                 console.log(err);
             })
@@ -194,7 +208,6 @@
             SearchService.retrieveLogByDateAndUsername($scope.username, $scope.startDate, $scope.endDate)
             .then((res) => {
                 $scope.logs = res.data;
-                console.log('logs', $scope.logs);
             }, (err) => {
                 console.log(err);
             })
@@ -204,7 +217,6 @@
             SearchService.retrieveOrganizer($scope.organizerSearch)
             .then((res) => {
                 $scope.organizers =  res.data;
-                console.log('organizers', $scope.organizers);
             }, (err) => {
                 console.log(err);
             })
@@ -214,7 +226,6 @@
             SearchService.retrieveOrganization($scope.organizationSearch)
             .then((res) => {
                 $scope.organizations =  res.data;
-                console.log('organizations', $scope.organizations);
             }, (err) => {
                 console.log(err);
             })
@@ -224,7 +235,6 @@
             SearchService.retrieveUser($scope.userSearch)
             .then((res) => {
                 $scope.users = res.data;
-                console.log('users', $scope.users);
             }, (err) => {
                 console.log(err);
             })
@@ -234,7 +244,6 @@
             SearchService.retrieveSponsor($scope.sponsorSearch)
             .then((res) => {
                 $scope.sponsors = res.data;
-                console.log('users', $scope.users);
             }, (err) => {
                 console.log(err);
             })
@@ -261,23 +270,6 @@
                 console.log(err);
             });
         }
-
-       /* $scope.setIsActive = (isActive, id, list) => {
-            UserService.setIsActive(isActive, id)
-            .then((res) => {
-                Materialize.toast('User status changed', 2000);
-                for (let a of list) {
-                    if (a.id == id) {
-                        a.is_active = isActive;
-                        break;
-                    }
-                }
-            }, (err) => {
-                Materialize.toast('Something went wrong :\'(', 2000);
-                console.log(err);
-            });
-        }*/
-
 
         $scope.editAdmin = (admin) => {
             if ($('#admin-edit-' + admin.id).data('isEditing')) {
@@ -355,18 +347,15 @@
             $('#organizer-cancel-edit-' + organizer.id).hide();
             $('.organizer-form-edit-' + organizer.id).prop('disabled', true);
 
-            console.log(organizerCache)
-
             organizer.name = organizerCache[organizer.id].name;
             organizer.description = organizerCache[organizer.id].description;
         }
 
         $scope.editOrganization = (organization) => {
-            console.log('pasok sa editOrganization');
-            console.log('id', organization.organization_id);
             if ($('#organization-edit-' + organization.organization_id).data('isEditing')) {
                 $('#organization-edit-' + organization.organization_id).data('isEditing', false);
                 $('#organization-cancel-edit-' + organization.organization_id).hide();
+                $('#organization-upload-profile-picture-' + organization.organization_id).hide();
                 $('.organization-form-edit-' + organization.organization_id).prop('disabled', true);
 
                  OrganizationService.updateOrganization(organization)
@@ -383,8 +372,10 @@
                     console.log(err);
                 });
             } else {
+
                 $('#organization-edit-' + organization.organization_id).data('isEditing', true);
                 $('#organization-cancel-edit-' + organization.organization_id).show();
+                $('#organization-upload-profile-picture-' + organization.organization_id).show();
                 $('.organization-form-edit-' + organization.organization_id).prop('disabled', false);
 
                 organizationCache[organization.organization_id] = {}
@@ -396,8 +387,6 @@
             $('#organization-edit-' + organization.organization_id).data('isEditing', false);
             $('#organization-cancel-edit-' + organization.organization_id).hide();
             $('.organization-form-edit-' + organization.organization_id).prop('disabled', true);
-
-            console.log(organizationCache)
 
             organization.name = organizationCache[organization.organization_id].name;
         }
@@ -474,7 +463,6 @@
                 AdminService.addSponsor(sponsor).then((res) => {
                     SearchService.retrieveSponsor('').then((res) => {
                         $scope.sponsors = res.data;
-                        console.log("sponsors", $scope.sponsors);
                     }, (err) => {
                         console.log(err);
                     });
@@ -561,8 +549,6 @@
                 }, (err) => {
                     console.log(err);
                 });
-
-                console.log('edit password')
             }, (err) => {
                 console.log(err);
             })
@@ -573,7 +559,6 @@
         }
 
         $scope.authenticate = () => {
-            console.log('kek', user.username, $scope.passwordVerify)
             $http.post('/login', {
 				username : user.username,
 				password : $scope.passwordVerify,
@@ -605,6 +590,31 @@
                 Materialize.toast('An error occured', 2000);
                 console.log(err);
             })
+        }
+
+        function setOrgModal(organization_id){
+            $scope.uploadOrganizationID = organization_id;
+            //alert( $scope.uploadOrganizationID);
+        }
+
+        function upload(organization_id){
+            Materialize.toast("Uploading New Profile Picture",3000);
+            console.log(document.getElementById("organization-upload-profile-picture"));
+            $scope.fileItem.file = document.getElementById("organization-upload-profile-picture").files[0];
+            $scope.fileItem.file.newname = "org-"+organization_id;
+            //$scope.fileItem.file.name = { "value":$scope.competitor.id,"writable":true};
+            $scope.fileItem.name="org-"+organization_id;
+            console.log($scope.fileItem);
+            console.log($scope.fileItem.file);
+            //var uploadUrl = '/upload';
+            UserService
+                .uploader($scope.fileItem)
+                .then(function(res){
+                    Materialize.toast("Uploaded New Profile Picture",3000);
+                    //$window.location.reload();//$("#visited-competitor-profile-img").attr('src', '/assets/avatars/'+$scope.competitor.sex+'.png');
+                },function(err){
+                    console.log(err);
+                })
         }
     }
 })();

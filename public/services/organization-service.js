@@ -207,7 +207,6 @@
             }).then((res) => {
                 deferred.resolve(res);
             }, (err) => {
-                console.log(err);
                 deferred.reject(err);
             });
 
@@ -225,7 +224,6 @@
             }).then((res) => {
                 deferred.resolve(res);
             }, (err) => {
-                console.log(err);
                 deferred.reject(err);
             });
 
@@ -243,10 +241,8 @@
                 url: '/team/deleteMembershipRequest',
                 headers: headers
             }).then((res) => {
-                console.log(res.data);
                 deferred.resolve(res);
             }, (err) => {
-                console.log(err);
                 deferred.reject(err);
             });
 
