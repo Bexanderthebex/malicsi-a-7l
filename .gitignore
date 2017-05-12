@@ -39,3 +39,4 @@ jspm_packages
 # Database Configurations
 # config
 .env
+uploads
