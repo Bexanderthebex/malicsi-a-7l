@@ -8,7 +8,7 @@ const logs= require('./log-controller');
 
 exports.login = (req, res) => {
 	let query = 'CALL select_user_with_password_from_username(?)';
-	
+
 	connection.userType('A').query(query, [
 		req.body.username
 	], (err, rows) => {
@@ -32,7 +32,7 @@ exports.login = (req, res) => {
 				return res.status(401).send({ 'message' : 'Incorrect credentials'});
 			}
 		} else {
-			
+
 				console.log(err);
 			if (err.code == 'ER_BAD_NULL_ERROR') {
 				return res.status(500).send({ 'message' : 'Missing credentials'});
@@ -148,7 +148,7 @@ exports.update = (req, res) =>{
 exports.searchUser = (req, res) => {
 	let query = "CALL search_user(?)";
 
-	connection.userType('G').query(query,
+	connection.userType('A').query(query,
 		[
 			"%" + req.query.keyword + "%"
 		], (err, rows) => {
@@ -159,6 +159,7 @@ exports.searchUser = (req, res) => {
 					return res.status(200).send(rows[0]);
 				}
 			} else {
+				console.log(err);
 				return res.status(500).send({'message' : 'Internal Server Error'});
 			}
 		}
@@ -203,7 +204,7 @@ exports.returnInfo = (req, res) => {
 
 exports.registerCompetitor = (req, res) => {
 	let query = 'INSERT INTO competitor (id, birthday, first_name, last_name, nickname, sex) values(?,?,?,?,?,?)';
-	
+
 	connection.query(query, [
 		req.body.id,
 		req.body.birthday,
