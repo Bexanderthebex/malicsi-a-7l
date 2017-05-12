@@ -91,12 +91,10 @@
                         img.onload = function(){ // abled to load
                             //image = img.src;
                             console.log("\n\n\n");
-                            //alert( image);
                             //$scope.profileImage = img.src;
                             document.getElementById("visited-competitor-profile-img").style.backgroundImage = "url('/uploads/"+$scope.competitor.id+".png')";
                         };
                         img.onerror = function(){
-                            alert("default")
                             document.getElementById("visited-competitor-profile-img").style.backgroundImage = 'url("/assets/avatars/'+$scope.competitor.sex+'.png")';
                             //$scope.profileImage = '/assets/avatars/'+$scope.competitor.sex+'.png';
                         };
@@ -129,7 +127,6 @@
                             console.log( image);
                             $scope.profileImage = img.src;
                             document.getElementById("competitor-profile-img").style.backgroundImage = "url('/uploads/"+$scope.competitor.id+".png')";
-                            //alert(document.getElementById("competitor-profile-img").style.backgroundImage);
                         };
                         img.onerror = function(){
                             document.getElementById("competitor-profile-img").style.backgroundImage = 'url("/assets/avatars/'+$scope.competitor.sex+'.png")';
