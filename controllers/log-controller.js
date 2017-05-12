@@ -61,7 +61,8 @@ exports.searchLog = (req, res) => {
 
     connection.userType(type).query(query,
         [
-            '%' + req.query.username + '%',
+			(req.query.username == null || req.query.username == undefined)
+				? null : '%' + req.query.username + '%',
 			new Date(req.query.startDate),
 			new Date(req.query.endDate)
         ], (err, rows) => {
@@ -76,7 +77,7 @@ exports.searchLog = (req, res) => {
 
 exports.createLog = (id, message) => {
 	let query = "CALL create_log(?,?)";
-	
+
     connection.userType('A').query(query,
         [
             id,
