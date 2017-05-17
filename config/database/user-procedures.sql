@@ -125,4 +125,5 @@ grant execute on procedure update_user_password to 'administrator'@'%';
 
 grant execute on procedure select_user to 'guest'@'%';
 grant execute on procedure select_user to 'organizer'@'%';
+grant execute on procedure update_user to 'organizer'@'%';
 grant execute on procedure update_user_password to 'organizer'@'%';
