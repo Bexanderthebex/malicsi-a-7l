@@ -120,7 +120,7 @@
 
                     Materialize.toast('Successfully created admin.', 2000);
                 }, (err) => {
-                    Materialize.toast(err.data.message);
+                    Materialize.toast(err.data.message, 2000);
                 });
             }
         }
@@ -161,7 +161,7 @@
 
                     Materialize.toast('Successfully created organizer.', 2000);
                 }, (err) => {
-                    Materialize.toast(err.data.message)
+                    Materialize.toast(err.data.message, 2000)
                 });
             }
         }

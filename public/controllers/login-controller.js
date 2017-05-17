@@ -64,6 +64,7 @@
 		}
 
 		$scope.validate = (fname, lname, nname, suname, sex, spword, cspword, bday, email, contactNum) => {
+			console.log(contactNum);
 			return (fname != '' && fname != undefined && fname != null)
 				&& (lname != '' && lname != undefined && lname != null)
 				&& (nname != '' && nname != undefined && nname != null)
@@ -73,7 +74,7 @@
 				&& (cspword != '' && cspword != undefined && cspword != null)
 				&& (bday != '' && bday != undefined && bday != null)
 				&& (email != '' && email != undefined && email != null)
-				&& (contactNum != '' && fname != undefined && fname != null);
+				&& (contactNum != '' && contactNum != undefined && contactNum != null);
 		}
 	}
 })();
