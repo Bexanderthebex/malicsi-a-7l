@@ -504,7 +504,15 @@
                         .checkTeamMembership(competitor.id,team.team_id)
                         .then(function(res) {
                             if(res.data.length == 0) {
-                                $scope.roaster.push(competitor);
+                                let searchVariable = competitor.first_name + " "+competitor.last_name +" "+competitor.nickname
+                                let temp = {
+                                    'first_name': competitor.first_name, 
+                                    'last_name': competitor.last_name, 
+                                    'nickname': competitor.nickname, 
+                                    'id': competitor.id,
+                                    'searchVariable': searchVariable
+                                }
+                                $scope.roaster.push(temp);
                             }
                         }, function(err) {
                             console.log(err.data);

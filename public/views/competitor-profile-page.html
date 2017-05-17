@@ -407,7 +407,10 @@
             </div>	
         </div>	
         <div class="row modal-modal-container">
-            <div class="col s6 m4 l4 center-align all-games-card" data-target="competitor-add-applicant-modal" ng-repeat="competitor in roaster" ng-click="setScoutedApplicant(competitor);isFull(teamAccordion.team_id)">
+            <form id="org-team-search-bar" class="search-bar-config center">
+                <input type="search" ng-model="searchComp" code="13">
+            </form>
+            <div class="col s6 m4 l4 center-align all-games-card" data-target="competitor-add-applicant-modal" ng-repeat="competitor in roaster | filter:{'searchVariable':searchComp}" ng-click="setScoutedApplicant(competitor);isFull(teamAccordion.team_id)">
                 <h6 class="century-gothic palette-text-6 strong">{{ competitor.first_name }} {{ competitor.last_name }}</h6>
                 <span class="secondary-text">({{ competitor.nickname }})</span>
             </div>
