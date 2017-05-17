@@ -118,11 +118,15 @@ END; //
 DELIMITER ;
 
 GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE add_sponsor_to_game TO 'administrator'@'%';
+
 GRANT EXECUTE ON PROCEDURE add_sponsor TO 'administrator'@'%';
 
 GRANT EXECUTE ON PROCEDURE edit_sponsor_details TO 'administrator'@'%';
 
 GRANT EXECUTE ON PROCEDURE delete_sponsor_from_game TO 'organizer'@'%';
+GRANT EXECUTE ON PROCEDURE delete_sponsor_from_game TO 'administrator'@'%';
+
 GRANT EXECUTE ON PROCEDURE delete_sponsor TO 'administrator'@'%';
 
 GRANT EXECUTE ON PROCEDURE view_last_inserted_sponsor TO 'organizer'@'%';
