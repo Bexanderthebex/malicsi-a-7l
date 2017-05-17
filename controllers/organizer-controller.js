@@ -43,9 +43,8 @@ exports.getOrganizer = (req, res) => {
 }
 
 exports.editOrganizer = (req,res) => {
-	query = "CALL edit_organizer(?,?,?)";
-	query1 = "CALL get_organizer(?)";
-
+	let query = "CALL edit_organizer(?,?,?)";
+	let query1 = "CALL get_organizer(?)";
 	connection.userType(req.session.user.type).query(query,
 		[
 			req.body.name,

@@ -339,6 +339,8 @@
 
         function upload(){
             $scope.fileItem.file = document.getElementById("fileItemOrg").files[0];
+            if ($scope.fileItem.file == (undefined))
+                return;
             $scope.fileItem.file.newname = $scope.organizer.id;
             $scope.fileItem.name=$scope.organizer.id;
             UserService
