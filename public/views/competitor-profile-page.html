@@ -240,16 +240,18 @@
         <div class="row modal-modal-container  competitor-add-modal-content">
             <form>
                 <div class="input-field col l6 m6 s12 competitor-input-color-change">
-                    <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
-                    <label for="first-name">First Name <span style="color:red;" ng-hide='((competitor.first_name.localeCompare("")))'>Required</span></label>
+                    <input maxlength="30" placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.first_name">
+                    <label for="first-name">First Name <span style="color:red;" ng-hide='((competitor.first_name.localeCompare("")))'>Required</span>
+                    <span style="color:red;" ng-hide='((competitor.first_name.length < 30))'> Maxed</span></label>
                 </div>
                 <div class="input-field col l6 m6 s12 competitor-input-color-change">
-                    <input placeholder=" " id="last-name" type="text" class="validate" ng-model="competitor.last_name">
-                    <label for="last-name">Last Name <span style="color:red;" ng-hide='((competitor.last_name.localeCompare("")))'>Required</span></label>
+                    <input maxlength="30" placeholder=" " id="last-name" type="text" class="validate" ng-model="competitor.last_name">
+                    <label for="last-name">Last Name <span style="color:red;" ng-hide='((competitor.last_name.localeCompare("")))'>Required</span>
+                    <span style="color:red;" ng-hide='((competitor.last_name.length < 30))'> Maxed</span></label>
                 </div>
                 <div class="input-field col l4 m4 s12 competitor-input-color-change">
-                    <input placeholder=" " id="nickname" type="text" class="validate" ng-model="competitor.nickname">
-                    <label for="nickname">Nickname <span style="color:red;" ng-hide='((competitor.nickname.localeCompare("")))'>Required</span></label>
+                    <input maxlength="25" placeholder=" " id="nickname" type="text" class="validate" ng-model="competitor.nickname">
+                    <label for="nickname">Nickname <span style="color:red;" ng-hide='((competitor.nickname.localeCompare("")))'>Required</span><span style="color:red;" ng-hide='((competitor.nickname.length < 25))'> Maxed</span></label>
                 </div>
                 <div class="input-field col l4 m4 s12 competitor-input-color-change">
                     <input id="birthdate" type="date" class="validate" ng-model="bday">
@@ -263,31 +265,32 @@
                     <label class="competitor-adjust-label" for="female">Female</label></span>
                 </div>
                 <div class="input-field col l6 m6 s12 competitor-input-color-change" >
-                    <input placeholder=" " id="contact" type="text" class="validate" ng-model="competitor.contact">
-                    <label for="contact">Contact <span style="color:red;" ng-hide='((competitor.contact.localeCompare("")))'>Required</span></label>
+                    <input maxlength="20" placeholder=" " id="contact" type="text" class="validate" ng-model="competitor.contact">
+                    <label for="contact">Contact <span style="color:red;" ng-hide='((competitor.contact.localeCompare("")))'>Required</span><span style="color:red;" ng-hide='((competitor.contact.length < 20))'> Maxed</span></label>
                 </div>
                 <div class="input-field col l6 m6 s12 competitor-input-color-change">
-                    <input placeholder=" " id="email" type="email" class="validate" ng-model="competitor.email">
-                    <label for="email">Email <span style="color:red;" ng-hide='((competitor.email.localeCompare("")))'>Required</span></label>
+                    <input maxlength="254" placeholder=" " id="email" type="email" class="validate" ng-model="competitor.email">
+                    <label for="email">Email <span style="color:red;" ng-hide='((competitor.email.length < 254))'>Invalid Email|</span><span style="color:red;" ng-hide='((competitor.email.localeCompare("")))'>Required</span></label>
                 </div>
                 <div class="input-field col l12 m12 s12 competitor-input-color-change">
-                    <textarea placeholder=" " id="bio" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
-                    <label for="Bio" class="competitor-textarea-label-color-change">Bio</label>
+                    <textarea maxlength="140" placeholder=" " id="bio" class="materialize-textarea" data-length="140" ng-model="competitor.bio"></textarea>
+                    <label for="Bio" class="competitor-textarea-label-color-change">Bio
+                    <span style="color:red;" ng-hide='((competitor.bio.length < 140))'> Maxed</span></label>
                 </div>
                 <div class="row">
                     <div class="input-field col l6 m6 s12 competitor-input-color-change">
-                        <input placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
-                        <label for="first-name">Username <span style="color:red;" ng-hide='((competitor.username.localeCompare("")))'>Required</span></label>
+                        <input maxlength="50" placeholder=" " id="first-name" type="text" class="validate" ng-model="competitor.username">
+                        <label for="first-name">Username <span style="color:red;" ng-hide='((competitor.username.localeCompare("")))'>Required</span><span style="color:red;" ng-hide='((competitor.username.length < 50))'> Maxed</span></label>
                     </div>
                 </div>
                 <div class="row">    
                     <div class="input-field col l6 m6 s12 competitor-input-color-change">
-                        <input placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
-                        <label for="last-name">Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
+                        <input maxlength="60" placeholder=" " id="last-name" type="password" class="validate" ng-model="competitor.password">
+                        <label for="last-name">Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span><span style="color:red;" ng-hide='(dup_password.length < 60)'> Maxed</span></label>
                     </div>
                     <div class="input-field col l6 m6 s12 competitor-input-color-change">
-                        <input placeholder=" " type="password" class="validate" ng-model="dup_password">
-                        <label for="last-name">Confirm Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span></label>
+                        <input maxlength="60" placeholder=" " type="password" class="validate" ng-model="dup_password">
+                        <label for="last-name">Confirm Password <span style="color:red;" ng-hide="(!(competitor.password.localeCompare(dup_password)))">Password Mismatched</span><span style="color:red;" ng-hide='(dup_password.length < 60)'> Maxed</span></label>
                     </div>
                 </div>
 
@@ -333,7 +336,7 @@
         </div>	
         <div class="row modal-modal-container  competitor-add-modal-content">
             <div class="input-field col l9 m9 s12 competitor-input-color-change">
-                <input placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name" required>
+                <input maxlength="50" placeholder="" id="team_name" type="text" class="validate" ng-model="team.team_name" required>
                 <label for="team-name">Team Name</label>
             </div>
             <div class="input-field col s3 m3 s12 competitor-input-color-change">

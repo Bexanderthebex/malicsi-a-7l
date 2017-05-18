@@ -226,52 +226,53 @@
         <div class="row organizer-modal-container"><br>
             <div class="row">
                 <div class="input-field col s6 organizer-input-color-change">
-                    <input placeholder=" " id="username" type="text" class="validate" ng-model="organizer.username">
+                    <input maxlength="50" placeholder=" " id="username" type="text" class="validate" ng-model="organizer.username">
                     <label for="username">
-                        Username <span style="color:red;" ng-hide='((organizer.username.localeCompare("")))'>Required</span>
+                        Username <span style="color:red;" ng-hide='((organizer.username.localeCompare("")))'>Required</span><span style="color:red;" ng-hide='(organizer.username.length < 50)'> Maxed</span>
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6 organizer-input-color-change">
-                    <input placeholder=" " id="password" type="password" class="validate" ng-model="organizer.password">
+                    <input maxlength="60" placeholder=" " id="password" type="password" class="validate" ng-model="organizer.password">
                     <label for="password">
-                        Password <span style="color:red;" ng-hide="(!(organizer.password.localeCompare(duped_password)))">Password Mismatched</span>
+                        Password <span style="color:red;" ng-hide="(!(organizer.password.localeCompare(duped_password)))">Password Mismatched</span><span style="color:red;" ng-hide='(duped_password.length < 60)'> Maxed</span>
                     </label>
                 </div><div class="input-field col s6 organizer-input-color-change">
-                    <input placeholder=" " type="password" class="validate" ng-model="duped_password">
+                    <input maxlength="60" placeholder=" " type="password" class="validate" ng-model="duped_password">
                     <label for="password">
-                        Password <span style="color:red;" ng-hide="(!(organizer.password.localeCompare(duped_password)))">Password Mismatched</span>
+                        Password <span style="color:red;" ng-hide="(!(organizer.password.localeCompare(duped_password)))">Password Mismatched</span><span style="color:red;" ng-hide='(duped_password.length < 60)'> Maxed</span>
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 organizer-input-color-change">
-                    <input placeholder=" " id="name" type="text" class="validate" ng-model="organizer.name">
+                    <input maxlength="70" placeholder=" " id="name" type="text" class="validate" ng-model="organizer.name">
                     <label for="name">
                         Name <span style="color:red;" ng-hide='((organizer.name.localeCompare("")))'>Required</span>
+                        <span style="color:red;" ng-hide='(organizer.name.length < 70)'> Maxed</span>
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s6 organizer-input-color-change">
-                    <input placeholder=" " id="contact" type="text" class="validate" ng-model="organizer.contact">
+                    <input maxlength="20" placeholder=" " id="contact" type="text" class="validate" ng-model="organizer.contact">
                     <label for="contact">
-                        Contact Number <span style="color:red;" ng-hide='((organizer.contact.localeCompare("")))'>Required</span>
+                        Contact Number <span style="color:red;" ng-hide='((organizer.contact.localeCompare("")))'>Required</span><span style="color:red;" ng-hide='((organizer.contact.length < 20))'> Maxed</span>
                     </label>
                 </div>
                 <div class="input-field col s6 organizer-input-color-change">
-                    <input placeholder=" " id="email" type="text" class="validate" ng-model="organizer.email">
+                    <input maxlength="254" placeholder=" " id="email" type="text" class="validate" ng-model="organizer.email">
                     <label for="email">
-                        Email <span style="color:red;" ng-hide='((organizer.email.localeCompare("")))'>Required</span>
+                        Email <span style="color:red;" ng-hide='((organizer.email.length < 254))'>Invalid Email|</span><span style="color:red;" ng-hide='((organizer.email.localeCompare("")))'>Required</span>
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12 organizer-input-color-change">
-                    <textarea placeholder=" " id="description" class="materialize-textarea" data-length="140" ng-model="organizer.description"></textarea>
+                    <textarea maxlength="120" placeholder=" " id="description" class="materialize-textarea" data-length="120" ng-model="organizer.description"></textarea>
                     <label for="description" class="organizer-textarea-label-color-change">
-                        Description
+                        Description<span style="color:red;" ng-hide='(organizer.username.length < 120)'> Maxed</span>
                     </label>
                 </div>
             </div>
@@ -314,13 +315,13 @@
         <div class="row modal-modal-container">
             <div class="row">
                 <div class="input-field col s6 organizer-input-color-change">
-                    <input placeholder=" " id="username" type="text" class="validate" ng-model="gameCopy.name">
+                    <input maxlength="50" placeholder=" " id="username" type="text" class="validate" ng-model="gameCopy.name">
                     <label for="username">
                         Game Name
                     </label>
                 </div>
                 <div class="input-field col s6 organizer-input-color-change">
-                    <input placeholder=" " id="password" type="text" class="validate" ng-model="gameCopy.location">
+                    <input maxlength="100" placeholder=" " id="password" type="text" class="validate" ng-model="gameCopy.location">
                     <label for="password">
                         Location
                     </label>
@@ -458,13 +459,13 @@
         <div class="row modal-modal-container">
             <div class="row">
                 <div class="input-field col s6 organizer-input-color-change">
-                    <input placeholder=" " type="text" class="validate" ng-model="newGame.gameName">
+                    <input maxlength="50" placeholder=" " type="text" class="validate" ng-model="newGame.gameName">
                     <label>
                         Game Name
                     </label>
                 </div>
                 <div class="input-field col s6 organizer-input-color-change">
-                    <input placeholder=" " type="text" class="validate" ng-model="newGame.locat">
+                    <input maxlength="100" placeholder=" " type="text" class="validate" ng-model="newGame.locat">
                     <label>
                         Location
                     </label>
