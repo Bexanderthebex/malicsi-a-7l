@@ -1,11 +1,18 @@
-# cmsc-128-a-7l
-An all sports event web application
+MalICSi by The Betels
 
-Conventions:
-  * for file names: sample-filename (dash-separated)
-  * for JS functions/variable names: useThis (camel case)
-  * for database attribute names/tables: this_is_a_sample (snake case)
-  * for all constants: USE_THIS (all caps, snake case)
-  * Spacing: 1 tab == 4 spaces
+Malicsi is an online game management application where you can view, manage, and engage in games brough to you be organizers.
 
-Proper documentation should always be enforced.
+	To setup locally:
+		path: malicsi-a-7l/config/database
+				chmod a+x setup-db-local.sh
+				./setup-db-local
+	
+		path: malicsi-a-7l/
+				npm install
+
+		view at localhost:3000
+	
+	Dependecies:
+	- MySQL version 5.7
+	- Stable internet connection
+	
